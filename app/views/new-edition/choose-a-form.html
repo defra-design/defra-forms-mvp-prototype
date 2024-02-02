@@ -1,0 +1,72 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<div class="login-nav login-border">
+  <ul class="login-nav__list">
+    <li class="login-nav__list-item-new">Steven Thomas</li>
+    <li class="login-nav__list-item-new"><a href="/form-designer-V2/admin-2.html"
+        class="govuk-link govuk-link app-c-topic-list__link brand__color--no-visited-state profile">Admin</a></li>
+    <li class="login-nav__list-item-new"><a href="account?returnURL=dashboard-submitted"
+        class="govuk-link login-nav__link-new govuk-link--no-visited-state profile">Manage account</a></li>
+    <li class="login-nav__list-item-new"><a href="#"
+        class="govuk-link login-nav__link-new govuk-link--no-visited-state">Sign out</a></li>
+  </ul>
+</div>
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+
+
+
+<!-- <main class="govuk-main-wrapper" id="main-content" role="main"> -->
+  <form class="form" action="/new-edition/name-of-form" method="post">
+
+    {{ govukRadios({
+      name: "choose-a-form",
+      fieldset: {
+        legend: {
+          text: "Choose a form edition to duplicate?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "v1",
+          text: "Report a dead wild bird - version 1"
+        },
+
+        {
+          value: "v2",
+          text: "Report a dead wild bird - version 2"
+          ],
+
+          {
+            value: "v3",
+            text: "Report a dead wild bird - version 3"
+          }
+
+      ]
+    }) }}
+
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+
+{% endblock %}

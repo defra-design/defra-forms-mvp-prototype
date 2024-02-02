@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<div class="login-nav login-border">
+  <ul class="login-nav__list">
+    <li class="login-nav__list-item-new">Alex Luckett</li>
+    <li class="login-nav__list-item-new"><a href="/form-designer/admin.html" class="govuk-link login-nav__link-new govuk-link--no-visited-state profile">Admin</a></li>
+    <li class="login-nav__list-item-new"><a href="account?returnURL=dashboard-submitted" class="govuk-link login-nav__link-new govuk-link--no-visited-state profile">Manage account</a></li>
+    <li class="login-nav__list-item-new"><a href="#" class="govuk-link login-nav__link-new govuk-link--no-visited-state">Sign out</a></li>
+  </ul>
+</div>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Change user role and permissions
+      </h1>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Steven Thomas
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Role
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Publisher
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/form-designer/admin/user-management/steven-thomas/role-change.html">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            steven.thomas@defra.gov.uk
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> address</span></a>
+          </dd>
+        </div>
+            </ul>
+          </dd>
+        </div>
+      </dl>
+  </div>
+    <div>
+          <a href="/form-designer/admin/user-management/steven-thomas/confirm-delete.html" class="govuk-link govuk-link--no-visited-state">Delete account</a>
+        </div>
+      </div>
+
+       
+  
+
+{% endblock %}

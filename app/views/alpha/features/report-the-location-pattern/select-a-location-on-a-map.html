@@ -1,0 +1,188 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-xl">
+      Help users to
+    </span>
+    <h1 class="govuk-heading-l">
+      Report a location using a map
+    </h1>
+
+    <P>
+      Use an interactive map to allow users to select a location and retrieves the coordinates of the selected location.
+    </P>
+
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Requirements</span>
+
+      </summary>
+
+      <div class="govuk-details__text">
+        <ul>
+          <p class="govuk-body" style="font-weight: 600" ;="">The ability:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>to select a location on an interactive map</li>
+            <li>to move the map to explore different areas</li>
+            <li>for users to confirm the accuracy of the pin's location</li>
+            <li>for grid references to be captured</li>
+            <li>for city, postcode/road information to be captured</li>
+          </ul>
+        </ul>
+      </div>
+    </details>
+
+    <hr style="margin-bottom: 30px;width= 100%;border-color: #1d70b8;">
+
+    <h2 class="govuk-heading-m">
+      Version log
+    </h2>
+
+    <!-- NEW VERSION -->
+
+    <div class="govuk-form-group govuk-!-margin-bottom-7">
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+        <a href="https://www.figma.com/proto/WFATVk4WLUzeR1fxzg1ONX/Report-the-location_pattern_v1?page-id=562%3A40803&type=design&node-id=610-95259&viewport=-16206%2C-63%2C0.3&t=pcZQ21P94gvNAZdX-8&scaling=scale-down-width&starting-point-node-id=562%3A95256&show-proto-sidebar=1&hide-ui=1"
+          class="govuk-link govuk-link--no-visited-state" target="_blank">Version 1.1 (opens in new
+          tab)</a>
+        <span class="govuk-tag govuk-tag--purple" style="margin-left: 10px;">in progress</span>
+      </h3>
+      <span class="govuk-hint">27 November 2023 to 7 December 2023 (Sprints 2 to 3)</span>
+      <p class="govuk-body">
+      </p>
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">Main changes</span>
+
+        </summary>
+
+        <div class="govuk-details__text">
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header govuk-!-width-one-third">What we've done</th>
+                <th scope="col" class="govuk-table__header govuk-!-width-two-third">Why we did it</th>
+                <!-- <th scope="col" class="govuk-table__header govuk-!-width-one-third">Links</th> -->
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+
+              <!-- WHAT WE'VE DONE -->
+
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Added address lookup feature</td>
+
+                <!-- WHY WE DID IT -->
+
+                <td class="govuk-table__cell">
+                  <p>So users can set the initial view of the map to a location of their choosing.</p>
+                </td>
+                <td class="govuk-table__cell">
+
+                  <!-- LINKS -->
+<!-- 
+                  <strong>Figma files</strong>
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li><a
+                        href="http://www.figma.com/file/Y6Xf7WNayx3ZsAej4P8Dyz/Add-a-declaration-page-type_pattern_v1?type=design&node-id=960-97850&mode=design&t=KGczMWU4wPlmAsNm-4"
+                        class="govuk-link" target="_blank">Link (opens in new
+                        tab)</a></li>
+                  </ul> -->
+                </td>
+              </tr>
+
+              <!-- ADD NEW ROW HERE       -->
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Ability to set the initial view to your current GPS location</td>
+
+                <!-- WHY WE DID IT -->
+
+                <td class="govuk-table__cell">To allow users that are at the location to quickly access their GPS coordinates on the map</td>
+                <td class="govuk-table__cell">
+
+                  <!-- LINKS -->
+
+                  <!-- <strong>Figma files</strong>
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li><a
+                        href="http://www.figma.com/file/Y6Xf7WNayx3ZsAej4P8Dyz/Add-a-declaration-page-type_pattern_v1?type=design&node-id=960-97850&mode=design&t=KGczMWU4wPlmAsNm-4/"
+                        class="govuk-link" target="_blank">Link (opens in new
+                        tab)</a></li>
+                  </ul> -->
+                </td>
+              </tr>
+              </tr>
+
+                   <!-- ADD NEW ROW HERE       -->
+                   <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Show the location of the pin semantically, below the map</td>
+    
+                    <!-- WHY WE DID IT -->
+    
+                    <td class="govuk-table__cell">To avoid using innaccessible map overlays</td>
+                    <td class="govuk-table__cell">
+    
+                      <!-- LINKS -->
+    
+                      <!-- <strong>Figma files</strong>
+                      <ul class="govuk-list govuk-list--bullet">
+                        <li><a
+                            href="http://www.figma.com/file/Y6Xf7WNayx3ZsAej4P8Dyz/Add-a-declaration-page-type_pattern_v1?type=design&node-id=960-97850&mode=design&t=KGczMWU4wPlmAsNm-4/"
+                            class="govuk-link" target="_blank">Link (opens in new
+                            tab)</a></li>
+                      </ul> -->
+                    </td>
+                  </tr>
+                  </tr>
+
+                      <!-- ADD NEW ROW HERE       -->
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Give users the chance to double check that their selection is as they've intended</td>
+        
+                        <!-- WHY WE DID IT -->
+        
+                        <td class="govuk-table__cell">To help users have confidence in their answers by showing them a page with their selection and the opportunity to change it before carrying on</td>
+                        <td class="govuk-table__cell">
+        
+                          <!-- LINKS -->
+<!--         
+                          <strong>Figma files</strong>
+                          <ul class="govuk-list govuk-list--bullet">
+                            <li><a
+                                href="http://www.figma.com/file/Y6Xf7WNayx3ZsAej4P8Dyz/Add-a-declaration-page-type_pattern_v1?type=design&node-id=960-97850&mode=design&t=KGczMWU4wPlmAsNm-4/"
+                                class="govuk-link" target="_blank">Link (opens in new
+                                tab)</a></li>
+                          </ul> -->
+                        </td>
+                      </tr>
+                      </tr>
+                  
+
+            </tbody>
+          </table>
+        </div>
+      </details>
+      <hr style="border-bottom=1px solid #b1b4b6; width=100%;">
+
+      <!-- ADD NEW VERSION BELOW HERE -->
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

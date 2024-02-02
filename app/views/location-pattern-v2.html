@@ -1,0 +1,210 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/path/of/next/page" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Select one option to tell us where [x] is
+            </h1>
+          </legend>
+          <div id="location-hint" class="govuk-hint">
+            Select one option.
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location" name="contact" type="radio" value="email"
+                data-aria-controls="conditional-location">
+              <label class="govuk-label govuk-radios__label" for="location-1">
+                Set the location on a map
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="address-postcode">
+                  Postcode
+                  <div id="postcode-hint" class="govuk-hint">
+                    For example, Bakewell or WA4 1AB.
+                  </div>
+                </label>
+                <input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode"
+                  type="text" autocomplete="postal-code">
+              </div>
+              <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button"
+                style="margin-top: 20px;">
+                Find address
+              </button>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location-2" name="contact" type="radio" value="phone"
+                data-aria-controls="conditional-location-2">
+              <label class="govuk-label govuk-radios__label" for="location-2">
+                Address
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-2">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="postcode">
+                  Postcode
+                </label>
+                <div id="postcode-hint" class="govuk-hint">
+                  For example, AA3 1AB.
+                </div>
+                <input class="govuk-input govuk-!-width-two-thirds" id="postcode" name="postcode" type="text"
+                  aria-describedby="postcode-hint">
+              </div>
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="searchString">
+                  Building number or name
+                </label>
+                <div id="searchString-hint" class="govuk-hint">
+                  For example, 15 or Prospect Cottage.
+                </div>
+                <input class="govuk-input govuk-!-width-two-thirds" id="searchString" name="searchString" type="text"
+                  aria-describedby="searchString-hint">
+              </div>
+              <button class="govuk-button govuk-button--secondary" data-module="govuk-button" style="margin-top: 20px;">
+                Find address
+              </button>
+              <p class="govuk-body govuk-!-margin-bottom-0" style="margin-bottom: 20px;">
+                <a href="#" class="govuk-link">Enter address manually</a>
+              </p>
+              </label>
+            </div>
+            <!-- New radio button -->
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location-3" name="contact" type="radio" value="additionalContent"
+                data-aria-controls="conditional-location-3">
+              <label class="govuk-label govuk-radios__label" for="location-3">
+                Coordinates
+              </label>
+            </div>
+
+            <!-- Conditional content for the new radio button -->
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-3">
+
+              <!-- Add your additional content here -->
+
+              <!-- <div class="govuk-radios__conditional" id="conditional-location-type"> -->
+              <div id="location-type-2-item-hint" class="govuk-hint">
+                For example <em>53.76385° &nbsp;&nbsp; -3.73904°</em>.
+              </div>
+
+              <fieldset class="govuk-fieldset row-prototype-coordinate-input">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="location-latitude-decimal">
+                    Latitude
+                  </label>
+                  <div class="govuk-input__wrapper">
+                    <input class="govuk-input govuk-input--width-5" id="location-latitude-decimal"
+                      name="location-latitude-decimal" type="text" inputmode="numeric">
+                    <div class="govuk-input__suffix" aria-hidden="true">°</div>
+                  </div>
+                </div>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="location-longitude-decimal">
+                    Longitude
+                  </label>
+                  <div class="govuk-input__wrapper">
+                    <input class="govuk-input govuk-input--width-5" id="location-longitude-decimal"
+                      name="location-longitude-decimal" type="text" inputmode="numeric">
+                    <div class="govuk-input__suffix" aria-hidden="true">°</div>
+                    <!-- </label> -->
+                  </div>
+                  </p>
+                </div>
+                </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location-4" name="contact" type="radio" value="additionalContent"
+                data-aria-controls="conditional-location-4">
+              <label class="govuk-label govuk-radios__label" for="location-4">
+                UK Grid reference
+              </label>
+            </div>
+
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-4">
+
+              <div id="location-type-4-item-hint" class="govuk-hint">
+                For example <em>TQ 3003 8038</em>.
+              </div>
+              <fieldset class="govuk-fieldset row-prototype-coordinate-input">
+
+                <legend class="govuk-fieldset__legend">
+                  Grid reference
+                </legend>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="location-osgrid-square">
+                    Square
+                  </label>
+
+                  <input class="govuk-input govuk-input--width-4" id="location-osgrid-square"
+                    name="location-osgrid-square" type="text" inputmode="text">
+                </div>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="location-osgrid-easting">
+                    Easting
+                  </label>
+
+                  <input class="govuk-input govuk-input--width-5" id="location-osgrid-easting"
+                    name="location-osgrid-easting" type="text" inputmode="numeric">
+                </div>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="location-osgrid-northing">
+                    Northing
+                  </label>
+
+                  <input class="govuk-input govuk-input--width-5" id="location-osgrid-northing"
+                    name="location-osgrid-northing" type="text" inputmode="numeric">
+                </div>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location-5" name="contact" type="radio" value="additionalContent"
+                data-aria-controls="conditional-location-5">
+              <label class="govuk-label govuk-radios__label" for="location-5">
+                Describe the location
+              </label>
+            </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-5">
+                <div class="govuk-form-group">
+                  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5"
+                    aria-describedby="more-detail-hint"></textarea>
+                </div>
+
+              </div>
+
+            </div>
+        </fieldset>
+
+      </div>
+
+
+      {{ govukButton({
+      text: "Continue"
+      }) }}
+
+    </form>
+    <!-- </div>
+</div> -->
+    {% endblock %}

@@ -1,0 +1,105 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<div class="login-nav login-border">
+  <ul class="login-nav__list">
+    <li class="login-nav__list-item-new">Steven Thomas</li>
+    <li class="login-nav__list-item-new"><a href="/form-designer/admin.html"
+        class="govuk-link govuk-link app-c-topic-list__link brand__color--no-visited-state profile">Admin</a></li>
+    <li class="login-nav__list-item-new"><a href="account?returnURL=dashboard-submitted"
+        class="govuk-link login-nav__link-new govuk-link--no-visited-state profile">Manage account</a></li>
+    <li class="login-nav__list-item-new"><a href="#"
+        class="govuk-link login-nav__link-new govuk-link--no-visited-state">Sign out</a></li>
+  </ul>
+</div>
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Add a new user
+      </h1>
+
+      <form class="form" action="/form-designer-v2/admin/account-added-successfully" method="post">
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="full-name">
+            Their full name
+          </label>
+          <input class="govuk-input" id="full-name" name="fullName" type="text" spellcheck="false" autocomplete="name">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="email">
+            Their email address
+          </label>
+          <div id="email-hint" class="govuk-hint">
+            They will use this email to sign in to Defra forms
+          </div>
+          <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+        </div>
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="signIn-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h2 class="govuk-fieldset__heading">
+                Choose a role
+              </h2>
+            </legend>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="signIn" name="signIn" type="radio" value="government-gateway" aria-describedby="signIn-item-hint">
+                <label class="govuk-label govuk-radios__label" for="signIn">
+                  Admin
+                </label>
+                <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+                  Manage all users and forms. Full access to system configurations.
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="signIn-2" name="signIn" type="radio" value="govuk-one-login" aria-describedby="signIn-2-item-hint">
+                <label class="govuk-label govuk-radios__label" for="signIn-2">
+                  Managing editor
+                </label>
+                <div id="signIn-2-item-hint" class="govuk-hint govuk-radios__hint">
+                  Ability to manage and adding user accounts, and to create, edit and publish forms.
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="signIn-2" name="signIn" type="radio" value="govuk-one-login" aria-describedby="signIn-2-item-hint">
+                <label class="govuk-label govuk-radios__label" for="signIn-2">
+                  Writer
+                </label>
+                <div id="signIn-2-item-hint" class="govuk-hint govuk-radios__hint">
+                  Create and edit forms.
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+
+
+        {{ govukButton({
+          text: "Add user"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

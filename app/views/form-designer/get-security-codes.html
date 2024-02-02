@@ -1,0 +1,115 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/form-designer/register/setup-authenticator-app" method="post" novalidate="">
+        <input type="hidden" name="_csrf" value="LP1tu7Lw-Ay61oi3HWRdW0RS4ZcXEY3fovL8">
+      
+      
+      
+      <div class="govuk-form-group">
+      
+        <fieldset class="govuk-fieldset" aria-describedby="mfaOptions-hint">
+        
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        
+          <h1 class="govuk-fieldset__heading">
+            Choose how to get security codes
+          </h1>
+        
+        </legend>
+        
+      
+        <div id="mfaOptions-hint" class="govuk-hint">
+          To finish creating your Defra forms Login, choose a way to prove it’s you when you sign in. 
+        </div>
+      
+      
+        <div class="govuk-radios" data-module="govuk-radios">
+          
+            
+                
+              
+              
+              
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mfaOptions" name="mfaOptions" type="radio" value="SMS">
+                <label class="govuk-label govuk-radios__label" for="mfaOptions">
+              Text message
+            </label>
+                
+              </div>
+              
+              
+            
+          
+            
+              
+              
+              
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mfaOptions-2" name="mfaOptions" type="radio" value="AUTH_APP">
+                <label class="govuk-label govuk-radios__label" for="mfaOptions-2">
+              Authenticator app for smartphone, tablet or computer
+            </label>
+                
+              </div>
+              
+              
+            
+          
+        </div>
+        
+      
+      </fieldset>
+      
+      
+      </div>
+      
+      
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            What is an authenticator app?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          
+        <p class="govuk-body">An authenticator app creates a security code that helps confirm it’s you when you sign in.</p>
+        <p class="govuk-body">You can use an authenticator app on your smartphone, tablet or desktop computer.  Download an authenticator app for your smartphone or tablet from your app store or search online for an authenticator app for your computer.</p>
+      
+        </div>
+      </details>
+      
+      
+      
+      
+        
+          
+        
+      
+      <button type="Submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+      
+      
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

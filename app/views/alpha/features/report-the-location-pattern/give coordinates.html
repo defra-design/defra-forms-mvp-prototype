@@ -1,0 +1,141 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-xl">
+      Help users to
+    </span>
+    <h1 class="govuk-heading-l">
+      Give coordinates
+    </h1>
+
+    <P>
+      Help users to give us the location of something using coordinates.
+    </P>
+
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Requirements</span>
+
+      </summary>
+
+      <div class="govuk-details__text">
+        <ul>
+          <p class="govuk-body" style="font-weight: 600" ;="">The ability for users to:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>give latitude</li>
+            <li>give longitute</li>
+          </ul>
+        </ul>
+      </div>
+    </details>
+
+    <hr style="margin-bottom: 30px;width= 100%;border-color: #1d70b8;">
+
+    <h2 class="govuk-heading-m">
+      Version log
+    </h2>
+
+    <!-- NEW VERSION -->
+
+    <div class="govuk-form-group govuk-!-margin-bottom-7">
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+        <a href="https://www.figma.com/proto/WFATVk4WLUzeR1fxzg1ONX/Report-the-location_pattern?page-id=753%3A2695&type=design&node-id=753-8030&viewport=-4916%2C309%2C0.1&t=RPmyLUjrhYakr04D-1&scaling=scale-down-width&starting-point-node-id=753%3A7918&show-proto-sidebar=1&mode=design"
+          class="govuk-link govuk-link--no-visited-state" target="_blank">Version 2 (opens in new
+          tab)</a>
+        <span class="govuk-tag govuk-tag--purple" style="margin-left: 10px;">in progress</span>
+      </h3>
+      <span class="govuk-hint">27 November 2023 to 7 December 2023 (Sprints 2 to 3)</span>
+      <p class="govuk-body">
+      </p>
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">Main changes</span>
+
+        </summary>
+
+        <div class="govuk-details__text">
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header govuk-!-width-one-third">What we've done</th>
+                <th scope="col" class="govuk-table__header govuk-!-width-two-third">Why we did it</th>
+                <!-- <th scope="col" class="govuk-table__header govuk-!-width-one-third">Links</th> -->
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+
+              <!-- WHAT WE'VE DONE -->
+
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Added a link to UK grid finder page with hint text</td>
+
+                <!-- WHY WE DID IT -->
+
+                <td class="govuk-table__cell">
+                  <p>To allow us to test our assumption that this is helpful for users</p>
+                </td>
+                <td class="govuk-table__cell">
+
+                  <!-- LINKS -->
+                  <!-- 
+                  <strong>Figma files</strong>
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li><a
+                        href="http://www.figma.com/file/Y6Xf7WNayx3ZsAej4P8Dyz/Add-a-declaration-page-type_pattern_v1?type=design&node-id=960-97850&mode=design&t=KGczMWU4wPlmAsNm-4"
+                        class="govuk-link" target="_blank">Link (opens in new
+                        tab)</a></li>
+                  </ul> -->
+                </td>
+              </tr>
+
+              <!-- ADD NEW ROW HERE      
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Added the ability to change checkbox label titles when creating the
+                  declaration component pattern.</td>
+
+                WHY WE DID IT
+
+                <td class="govuk-table__cell">To avoid conflicts with page button labels and allows form designers to
+                  adapt content to specific types of declarations</td>
+                <td class="govuk-table__cell">
+
+                  <!-- LINKS -->
+
+              <!-- <strong>Figma files</strong>
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li><a
+                        href="http://www.figma.com/file/Y6Xf7WNayx3ZsAej4P8Dyz/Add-a-declaration-page-type_pattern_v1?type=design&node-id=960-97850&mode=design&t=KGczMWU4wPlmAsNm-4/"
+                        class="govuk-link" target="_blank">Link (opens in new
+                        tab)</a></li>
+                  </ul> -->
+              </td>
+              </tr>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </details>
+      <hr style="border-bottom=1px solid #b1b4b6; width=100%;">
+
+      <!-- ADD NEW VERSION BELOW HERE -->
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

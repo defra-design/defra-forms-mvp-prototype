@@ -3,6 +3,7 @@
 {% block pageTitle %}
 Content page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
+
 {% block header %}
 <header class="cross-service-header" role="banner" data-module="one-login-header">
   <div class="one-login-header" data-one-login-header-nav>
@@ -87,11 +88,10 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
           <nav aria-label="Name of example service menu">
             <ul class="service-header__nav-list service-header__nav" id="service-header__nav" data-open-class="service-header__nav--open">
               <!-- Use the "service-header__nav-list-item--active" modifier class on the li to visually highlight the page the user is currently viewing -->
-              <li class="service-header__nav-list-item">
+              <li class="service-header__nav-list-item ">
                 <!-- Use the aria-current="page" attribute on the anchor tag -->
-                <a class="service-header__nav-list-item-link"
-                  href="#">
-                  Library
+                <a class="service-header__nav-list-item-link" href="/form-library">
+                  Form library
                 </a>
               </li>
 
@@ -109,6 +109,7 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
 </header>
 
 {% endblock %}
+
 {% block beforeContent %}
 {{ govukBackLink({
 text: "Back",
@@ -123,36 +124,23 @@ href: "javascript:window.history.back()"
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
 <!-- <main class="govuk-main-wrapper" id="main-content" role="main"> -->
-  <form class="form"
-  action="https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=301%3A6853&type=design&node-id=801-125037&viewport=-7625%2C13526%2C0.37&t=4LsVLbLUtkC19ewP-1&scaling=scale-down-width&starting-point-node-id=801%3A125037&mode=design"
+<form class="form"
+  action="/form-designer-v2/forms/form-home/report-a-dead-wild-bird-live-2"
   method="post">
 
   {% from "govuk/components/input/macro.njk" import govukInput %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-
-{{ govukErrorSummary({
-  titleText: "There is a problem",
-  errorList: [
-    {
-      text: "The name your entered already exists",
-      href: "#"
-    }
-  ]
-}) }}
-      {% from "govuk/components/input/macro.njk" import govukInput %}
+      <h1 class="govuk-heading-l">Enter the name of the SME/policy team</h1>
 
       {{ govukInput({
-        label: {
-          text: "Enter name of your form",
-          classes: "govuk-label--l",
-          isPageHeading: true
-        },
-        errorMessage: {
-          text: "This name already exists. Enter a different name"
-        }
+      label: {
+      },
+      id: "full-name",
+      name: "fullName",
+      autocomplete: "name",
+      spellcheck: false
       }) }}
 
       {{ govukButton({

@@ -1,5 +1,8 @@
 {% extends "layouts/main.html" %}
 
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
 
 {% block header %}
 <header class="cross-service-header" role="banner" data-module="one-login-header">
@@ -16,8 +19,8 @@
               </path>
             </svg>
             <!--<![endif]-->
-            <span style="margin-left:10px;">
-              Defra form builder
+            <span>
+              GOV.UK
             </span>
           </span>
         </a>
@@ -97,7 +100,7 @@
           </li>
           <li class="one-login-header__nav__list-item">
             <!-- REPLACE SIGN OUT URL PLACEHOLDER WITH SIGN OUT PAGE FOR YOUR SERVICE -->
-            <a class="one-login-header__nav__link" href="/form-designer/onboarding/sign-in">
+            <a class="one-login-header__nav__link" href="https://home.account.gov.uk/sign-out">
               Sign out
             </a>
           </li>
@@ -126,7 +129,7 @@
             <ul class="service-header__nav-list service-header__nav" id="service-header__nav"
               data-open-class="service-header__nav--open">
               <!-- Use the "service-header__nav-list-item--active" modifier class on the li to visually highlight the page the user is currently viewing -->
-              <li class="service-header__nav-list-item service-header__nav-list-item--active">
+              <li class="service-header__nav-list-item">
                 <!-- Use the aria-current="page" attribute on the anchor tag -->
                 <a class="service-header__nav-list-item-link " href="#">
                   Form home
@@ -159,11 +162,14 @@
 
 {% endblock %}
 
-{% block pageTitle %}
-Report a dead wild bird v5 – {{ serviceName }} – Defra form builder
+{% block beforeContent %}
+
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+
 {% endblock %}
-
-
 
 {% block content %}
 
@@ -172,56 +178,76 @@ Report a dead wild bird v5 – {{ serviceName }} – Defra form builder
 
 
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    <span class="govuk-caption-xl">Forms</span>
-    <h1 class="govuk-heading-xl">Report a dead wild bird</h1>
-    <div class="govuk-inset-text">
-      <div class="govuk-tag govuk-tag--orange">
-        Draft
-      </div>
+
+<!-- <main class="govuk-main-wrapper" id="main-content" role="main"> -->
+  <form class="form" action="/form-designer-v2/forms/report-a-dead-wild-bird-live-2" method="post">
+
+    {{ govukRadios({
+      name: "organisation-name",
+      fieldset: {
+        legend: {
+          text: "Choose a lead organisation for this form",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "apha",
+          text: "Animal and Plant Health Agency - APHA"
+        },
+
+          {
+            value: "cefas",
+            checked: "true",
+            text: "Centre for Environment, Fisheries and Aquaculture Science - Cefas"
+
+          },
+
+          {
+            value: "defra",
+            text: "Defra"
+          },
+
+          {
+            value: "ea",
+            text: "Environment agency"
+          },
+
+          {
+            value: "fc",
+            text: "Forrestry commision"
+          },
+
+          {
+            value: "mmo",
+            text: "Marine Management Organisaiton - MMO"
+          },
 
 
-      <h2 class="govuk-heading-m">
-        <div class="govuk-!-padding-top-3">
-          <a href="https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=301%3A6853&type=design&node-id=768-124605&viewport=-8745%2C634%2C0.43&t=MkU1eSzJuBa0Tm60-8&scaling=scale-down&starting-point-node-id=302%3A42964&show-proto-sidebar=1&hide-ui=1"
-            class="govuk-link govuk-link--no-visited-state">Report a dead wild bird - v5</a>
-          <br>
-          <span class="govuk-caption-m" style="padding-top:10px;">Created on 20 December 2023 by Steven Thomas</span>
-        </div>
-    </div>
-    </h1>
-  </div>
-</div>
+          {
+            value: "ne",
+            text: "Natural England"
+          },
 
-<details class ="govuk-details" data-module="govuk-details" >
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Details
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-    <ul class="govuk-list">
-      <li>
-        <strong>Organisation</strong>
-        <a class="govuk-link govuk-link--no-visited-state" href="/form-designer-v2/forms/organisation-name-change.html">
-          <br>Center for Environment, Fisheries and Aquaculture Science - Cefas</a>
-      </li>
-      <div class="govuk-!-padding-top-2">
-        <li>
-          <strong>Team</strong>
-          <br>
-          <a class="govuk-link govuk-link--no-visited-state" href="/form-designer-v2/forms/policy-sme-change.html">Policy directorate</a>
-        </li>
-      </div>
-    </ul>
-  </div>
-</details>
+          {
+            value: "rpa",
+            text: "Rural Payments Agency - RPA"
+          },
 
-</details>
+          {
+            value: "vmd",
+            text: "Veterinary Medicines Directorate - VMD"
+          }
 
-</form>
+          ]
+        }) }}
 
 
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+
+  </form>
 
 {% endblock %}

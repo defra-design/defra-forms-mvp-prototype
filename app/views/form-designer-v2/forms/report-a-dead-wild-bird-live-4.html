@@ -16,8 +16,8 @@
               </path>
             </svg>
             <!--<![endif]-->
-            <span style="margin-left:10px;">
-              Defra form builder
+            <span>
+              GOV.UK
             </span>
           </span>
         </a>
@@ -97,7 +97,7 @@
           </li>
           <li class="one-login-header__nav__list-item">
             <!-- REPLACE SIGN OUT URL PLACEHOLDER WITH SIGN OUT PAGE FOR YOUR SERVICE -->
-            <a class="one-login-header__nav__link" href="/form-designer/onboarding/sign-in">
+            <a class="one-login-header__nav__link" href="https://home.account.gov.uk/sign-out">
               Sign out
             </a>
           </li>
@@ -163,7 +163,14 @@
 Report a dead wild bird v5 – {{ serviceName }} – Defra form builder
 {% endblock %}
 
+{% block beforeContent %}
 
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
 
 {% block content %}
 
@@ -173,52 +180,32 @@ Report a dead wild bird v5 – {{ serviceName }} – Defra form builder
 
 
 <div class="govuk-grid-row">
+
+
+
   <div class="govuk-grid-column-full">
-    <span class="govuk-caption-xl">Forms</span>
-    <h1 class="govuk-heading-xl">Report a dead wild bird</h1>
-    <div class="govuk-inset-text">
-      <div class="govuk-tag govuk-tag--orange">
-        Draft
-      </div>
 
+    <div class="govuk-tag govuk-tag--orange" style="margin-bottom:10px;">
+      Draft
+    </div>
+    <h1 class="govuk-heading-xl">Report a dead wild bird - v5</h1>
+    <span class="govuk-caption-m"1>Created on 20 December 2023 by Steven Thomas</span>
 
-      <h2 class="govuk-heading-m">
-        <div class="govuk-!-padding-top-3">
-          <a href="https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=301%3A6853&type=design&node-id=768-124605&viewport=-8745%2C634%2C0.43&t=MkU1eSzJuBa0Tm60-8&scaling=scale-down&starting-point-node-id=302%3A42964&show-proto-sidebar=1&hide-ui=1"
-            class="govuk-link govuk-link--no-visited-state">Report a dead wild bird - v5</a>
-          <br>
-          <span class="govuk-caption-m" style="padding-top:10px;">Created on 20 December 2023 by Steven Thomas</span>
+    </h1>
+
+  </div>
+
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <div class="govuk-card govuk-card--contained govuk-card--selectable">
+        <a id="link-apply-for-a-phytosanitary-certificate" href="../account" aria-label="Manage service Apply for a Phytosanitary Certificate"></a>
+        <div class="govuk-card__content">
+            <h3 class="govuk-heading-m">Apply for a Phytosanitary Certificate</h3>
         </div>
     </div>
-    </h1>
   </div>
 </div>
-
-<details class ="govuk-details" data-module="govuk-details" >
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Details
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-    <ul class="govuk-list">
-      <li>
-        <strong>Organisation</strong>
-        <a class="govuk-link govuk-link--no-visited-state" href="/form-designer-v2/forms/organisation-name-change.html">
-          <br>Center for Environment, Fisheries and Aquaculture Science - Cefas</a>
-      </li>
-      <div class="govuk-!-padding-top-2">
-        <li>
-          <strong>Team</strong>
-          <br>
-          <a class="govuk-link govuk-link--no-visited-state" href="/form-designer-v2/forms/policy-sme-change.html">Policy directorate</a>
-        </li>
-      </div>
-    </ul>
-  </div>
-</details>
-
-</details>
 
 </form>
 

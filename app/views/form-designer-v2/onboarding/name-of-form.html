@@ -1,6 +1,8 @@
 {% extends "layouts/main.html" %}
 
-
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
 {% block header %}
 <header class="cross-service-header" role="banner" data-module="one-login-header">
   <div class="one-login-header" data-one-login-header-nav>
@@ -17,45 +19,12 @@
             </svg>
             <!--<![endif]-->
             <span style="margin-left:10px;">
-              Defra form builder
+              Defra form builder 1
             </span>
           </span>
         </a>
       </div>
-      <button type="button" aria-controls="one-login-header__nav" aria-label="Show GOV.UK One Login menu"
-        data-open-class="cross-service-header__button--open" data-label-for-show="Show GOV.UK One Login menu"
-        data-label-for-hide="Hide GOV.UK One Login menu" aria-expanded="false"
-        class="cross-service-header__button cross-service-header__button--one-login js-x-header-toggle">
-        <span class="cross-service-header__button-content">One Login</span>
 
-        <!--[if gt IE 8]><!-->
-        <span class="cross-service-header__button-icon cross-service-header__button-icon--default">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
-            focusable="false" aria-hidden="true">
-            <circle cx="11" cy="11" r="11" fill="white" />
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M3.29297 18.8487C4.23255 15.4753 7.32741 13 11.0004 13C14.6731 13 17.7678 15.4749 18.7076 18.848C17.8058 19.7338 16.752 20.4654 15.5889 21H11.0004H6.41097C5.24819 20.4655 4.19463 19.7342 3.29297 18.8487Z"
-              fill="#1D70B8" />
-            <circle cx="11" cy="7.75" r="3.75" fill="#1D70B8" />
-            <circle cx="11" cy="11" r="10" stroke="white" stroke-width="2" />
-          </svg>
-        </span>
-        <!--<![endif]-->
-
-        <!--[if gt IE 8]><!-->
-        <span class="cross-service-header__button-icon cross-service-header__button-icon--focus">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
-            focusable="false" aria-hidden="true">
-            <circle cx="11" cy="11" r="11" fill="black" />
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M3.29297 18.8487C4.23255 15.4753 7.32741 13 11.0004 13C14.6731 13 17.7678 15.4749 18.7076 18.848C17.8058 19.7338 16.752 20.4654 15.5889 21H11.0004H6.41097C5.24819 20.4655 4.19463 19.7342 3.29297 18.8487Z"
-              fill="white" />
-            <circle cx="11" cy="7.75" r="3.75" fill="white" />
-            <circle cx="11" cy="11" r="10" stroke="black" stroke-width="2" />
-          </svg>
-        </span>
-        <!--<![endif]-->
-      </button>
       <nav aria-label="GOV.UK One Login menu" class="one-login-header__nav"
         data-open-class="one-login-header__nav--open" id="one-login-header__nav">
         <ul class="one-login-header__nav__list">
@@ -97,7 +66,7 @@
           </li>
           <li class="one-login-header__nav__list-item">
             <!-- REPLACE SIGN OUT URL PLACEHOLDER WITH SIGN OUT PAGE FOR YOUR SERVICE -->
-            <a class="one-login-header__nav__link" href="/form-designer/onboarding/sign-in">
+            <a class="one-login-header__nav__link" href="https://home.account.gov.uk/sign-out">
               Sign out
             </a>
           </li>
@@ -110,8 +79,7 @@
   <div class="service-header" data-one-login-header-nav>
     <div class="govuk-width-container">
       <div class="service-header__container">
-        <!-- The name of your service goes here -->
-        <h2 class="service-header__heading">Report a dead wild bird - v5</h2>
+        <!-- <h2 class="service-header__heading">Form builder</h2> -->
         <div>
           <!-- Label the toggle button appropriately (you might want to use the name of your service) to provide support for screen reader users -->
           <button type="button" aria-controls="service-header__nav" data-open-class="cross-service-header__button--open"
@@ -126,26 +94,15 @@
             <ul class="service-header__nav-list service-header__nav" id="service-header__nav"
               data-open-class="service-header__nav--open">
               <!-- Use the "service-header__nav-list-item--active" modifier class on the li to visually highlight the page the user is currently viewing -->
-              <li class="service-header__nav-list-item service-header__nav-list-item--active">
-                <!-- Use the aria-current="page" attribute on the anchor tag -->
-                <a class="service-header__nav-list-item-link " href="#">
-                  Form home
-                </a>
-              </li>
-              <!-- Use the "service-header__nav-list-item--active" modifier class on the li to visually highlight the page the user is currently viewing -->
-              <li class="service-header__nav-list-item ">
+              <li class="service-header__nav-list-item">
                 <!-- Use the aria-current="page" attribute on the anchor tag -->
                 <a class="service-header__nav-list-item-link" href="#">
-                  Form editor
+                  Library
                 </a>
               </li>
+
               <!-- Use the "service-header__nav-list-item--active" modifier class on the li to visually highlight the page the user is currently viewing -->
-              <!-- <li class="service-header__nav-list-item ">
-                <a class="service-header__nav-list-item-link"
-                  href="#">
-                  Analytics
-                </a>
-              </li> -->
+
             </ul>
           </nav>
         </div>
@@ -158,70 +115,41 @@
 </header>
 
 {% endblock %}
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
 
-{% block pageTitle %}
-Report a dead wild bird v5 – {{ serviceName }} – Defra form builder
 {% endblock %}
-
-
 
 {% block content %}
 
 {% from "govuk/components/tabs/macro.njk" import govukTabs %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
+<!-- <main class="govuk-main-wrapper" id="main-content" role="main"> -->
+<form class="form"
+  action="https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=301%3A6853&type=design&node-id=801-125037&viewport=-7625%2C13526%2C0.37&t=4LsVLbLUtkC19ewP-1&scaling=scale-down-width&starting-point-node-id=801%3A125037&mode=design"
+  method="post">
 
+  {% from "govuk/components/input/macro.njk" import govukInput %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    <span class="govuk-caption-xl">Forms</span>
-    <h1 class="govuk-heading-xl">Report a dead wild bird</h1>
-    <div class="govuk-inset-text">
-      <div class="govuk-tag govuk-tag--orange">
-        Draft
-      </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukInput({
+      label: {
+      text: "Enter a name for your form",
+      classes: "govuk-label--l",
+      isPageHeading: true
+      },
+      id: "form-name",
+      name: "formName"
+      }) }}
 
-
-      <h2 class="govuk-heading-m">
-        <div class="govuk-!-padding-top-3">
-          <a href="https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=301%3A6853&type=design&node-id=768-124605&viewport=-8745%2C634%2C0.43&t=MkU1eSzJuBa0Tm60-8&scaling=scale-down&starting-point-node-id=302%3A42964&show-proto-sidebar=1&hide-ui=1"
-            class="govuk-link govuk-link--no-visited-state">Report a dead wild bird - v5</a>
-          <br>
-          <span class="govuk-caption-m" style="padding-top:10px;">Created on 20 December 2023 by Steven Thomas</span>
-        </div>
-    </div>
-    </h1>
-  </div>
-</div>
-
-<details class ="govuk-details" data-module="govuk-details" >
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Details
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-    <ul class="govuk-list">
-      <li>
-        <strong>Organisation</strong>
-        <a class="govuk-link govuk-link--no-visited-state" href="/form-designer-v2/forms/organisation-name-change.html">
-          <br>Center for Environment, Fisheries and Aquaculture Science - Cefas</a>
-      </li>
-      <div class="govuk-!-padding-top-2">
-        <li>
-          <strong>Team</strong>
-          <br>
-          <a class="govuk-link govuk-link--no-visited-state" href="/form-designer-v2/forms/policy-sme-change.html">Policy directorate</a>
-        </li>
-      </div>
-    </ul>
-  </div>
-</details>
-
-</details>
-
+      {{ govukButton({
+      text: "Continue"
+      }) }}
 </form>
-
-
 
 {% endblock %}

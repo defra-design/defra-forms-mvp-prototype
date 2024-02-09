@@ -9,8 +9,8 @@ ___
 
 
 ## Key things we are designing for
-- the ability to create a basic gov.uk style form
-- the ability to use what already exists in XGov Digital Form builder to: manage forms including, creating, finding existing forms, and deleting forms
+- the ability to access the form builder
+- the ability to manage forms including, creating, finding existing forms, and deleting forms
 
 <br>
 Below are the screens a form creator will see when making or editing their forms.

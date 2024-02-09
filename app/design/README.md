@@ -9,6 +9,8 @@ One of our core design principles is to always **start with what already exists*
 We reviewed several existing form builder used across government against their suitability to meet Defra's needs. Consequently, we decided to adapt the [XGov Digital Form Builder](https://github.com/XGovFormBuilder/digital-form-builder/tree/main).
 
 ## 3. Heuristic evaluation of the XGov Digital Form Builder
+One of the the first things we did was a heuristic evaluation.
+
 "A heuristic evaluation is a method for identifying design problems in a user interface"-[NNGroup](https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/#:~:text=A%C2%A0heuristic%20evaluation%20is%20a%C2%A0method%20for%20identifying%20design%20problems%20in%20a%20user%20interface.%20Evaluators%20judge%20the%20design%20against%20a%20set%20of%20guidelines%20(called%20heuristics)%20that%20make%20systems%20easy%20to%20use.)
 
 One senior interaction designer and two senior content designers (core users) took part in a heuristics evaluation. The following section summarises the main issues found.

@@ -10,6 +10,7 @@ The ability to add:
 - configure the check your answers page (summary behaviour)
 
 <br>
+<hr>
 
 ### Version 2
 
@@ -27,6 +28,7 @@ The ability to add:
   
 
 <br>
+<hr>
 
 ### Version 1
 

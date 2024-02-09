@@ -51,3 +51,12 @@ One senior interaction designer and two senior content designers (core users) to
 | The starting point in the system is not clearly defined, possibly due to the flexibility for creating diverse forms. However, this flexibility makes it challenging to perceive connections. For instance, when adding an output like an email address, it's unclear where it goes or how to locate it for placement on a page.​ |  
 | Multiple buttons on a single page doesn't facilitate visual hierarchy. | 
 | The positioning of things on the page may not correspond with the sequence of people's form-making workflow. |  
+
+### 3e. Consistency and standards
+"Minimize the user's memory load by making elements, actions, and options visible. The user should not have to remember information from one part of the interface to another. Information required to use the design (e.g. field labels or menu items) should be visible or easily retrievable when needed.​"
+
+| What didn't perform well well |
+| ------------- |
+| Navigating the page initially is challenging due to the absence of a clear start and end point.​ |  
+| The system lacks progressive disclosure; all information is presented at once, requiring trial and error.​ | 
+| Connecting pages isn't intuitively clear, and undoing drags connections is equally limited. |  

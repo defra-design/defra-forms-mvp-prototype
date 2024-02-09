@@ -33,7 +33,7 @@
 - there were a number of components that were needed by form designers, for example, the 'Flash card' was not something that is in the GOV.UK design system and unlikely to be used by Defra. It was decided therefore that we remove any of these components which would improve the user's ability scan the page
 - there was also a number of components that had names that were unfamiliar to our users and would need to be changed  
 
-### Version 1
+### Editing a form: as-is user journey
 
 To view a complete flow diagram, view the as-is in [our figma file](https://www.figma.com/file/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?type=design&node-id=6-41685&mode=design&t=iWP6ZljjZAGkqQy8-4)
 <br>

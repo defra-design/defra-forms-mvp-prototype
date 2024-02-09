@@ -1,7 +1,7 @@
 # Initial form setup
 
 ## Key things we are designing for
-- the ability to setup a new form
+- the ability to setup a new form by first adding necessary background information about it so that someone that didn't create it will be able to view that information later
 
 <br>
 

@@ -1,11 +1,3 @@
-## Contents
-
-- [Context](#1-design-documentation) 
-- [Our approach](#2-out-approach)
-- [Form runner screenshots](#form-runner-screenshots)
-- [What we learned](#what-we-learned)
-- [Opportunites](#opportunities)
-
 # 1. Design documentation context
 The following is where the design history of Defra forms will be stored.
 

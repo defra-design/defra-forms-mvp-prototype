@@ -1,4 +1,4 @@
-# Initial form setup
+# Creating a new form
 
 ## Key things we are designing for
 - the ability to create a basic form
@@ -7,65 +7,39 @@
 
 ## Versions of the journey to setting up a new form
 
-### Version 3
+### Create component pane
 
-#### Forms sme/policy details page
-![form library](/app/design/assets/policy-sme-v2.png)
-<br> *Page with “an input box that only asks for a team name rather than the name and email of a person” *
+#### Create component pane - v1
+<details>
+  <summary>View a figma screenshot of the as-is 'Create component pane'</summary>
+
+  ![XGov find an existing form journey screenshot 1](/app/design/assets/create-component-pattern-v1.png)
+  <br> *the as-is XGov create component pane” *
+
+</details>
+
 
 ## What we learned
-- this overcome the data protection concerns from version 2
-
-
-<br>
-
-
-### Version 2
-
-#### Forms name page
-![form library](/app/design/assets/form-name-v1.png)
-<br> *Page with “an text input box to enter a form name” *
-
-#### Forms sme/policy details page
-![form library](/app/design/assets/policy-sme-v1.png)
-<br> *Page with “text input boxes for sme/policy details” *
-
-#### Forms lead organisation details
-![form library](/app/design/assets/lead-organisation-v1.png)
-<br> *Page with “radio buttons to choose a lead organisation” *
-
-## What we learned
-- the ability to add such details and connect them to specific forms gave content designers more confidence and assurance that if they went on leave or they needed to delegate tasks that people would have needed details
-- data privacy concerns were raised with taking the names of sme/policy details and so will need to be removed and only ask for team name
+- there were a number of components that were needed by form designers, for example, the 'Flash card' was not something that is in the GOV.UK design system and unlikely to be used by Defra. It was decided therefore that we remove any of these components which would improve the user's ability scan the page
+- there was also a number of components that had names that were unfamiliar to our users and would need to be changed  
 
 <br>
-
-
-https://www.figma.com/file/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?type=design&node-id=1455-62334&mode=design&t=iWP6ZljjZAGkqQy8-4
 
 ### Version 1
 
-#### Form designer landing page
+To view a complete flow diagram, view the as-is in [our figma file](https://www.figma.com/file/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?type=design&node-id=6-41685&mode=design&t=iWP6ZljjZAGkqQy8-4)
+<br>
+<details>
+  <summary>View a figma screenshot of the as-is flow</summary>
 
-![XGov find an existing form journey screenshot 1](/app/design/assets/initial-form-setup-v1.jpeg)
-<br> *Page that shows a radio button selected to create a new form” *
+  ![XGov find an existing form journey screenshot 1](/app/design/assets/xGov_As-Is.png)
 
-#### Form name page
-
-![XGov find an existing form journey screenshot 1](/app/design/assets/initial-form-setup-name-v1.jpeg)
-<br> *Page that shows a small input box for entering a form name” *
+</details>
 
 ## What we learned
 
-The following gaps were identified:
-- form ownership
-- content designers emphasised the need for them to connect forms to a lead organisation (e.g., APHA)
-- they also emphasised the need to add SME and policy details for each newly created form
-- the input box was too small for the number of characters usually needed for forms
-<br>
-
-
-
+- most of the issues are summarised in [our heuristic evaluation](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/blob/main/app/design/Iterations/heuristic-evaluation.md)
+  
 <br>
 
 [Back to the top](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/edit/main/app/design/Iterations/form-management/finding-forms.md#finding-forms)

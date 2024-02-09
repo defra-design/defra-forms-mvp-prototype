@@ -1,7 +1,10 @@
 # Initial form setup
 
+[figma proto](https://www.figma.com/file/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?type=design&node-id=1455-62334&mode=design&t=iWP6ZljjZAGkqQy8-4)
+
+
 ## Key things we are designing for
-- the ability to setup a new form by first adding necessary background information about it so that someone that didn't create it will be able to view that information later
+- the ability to create a basic form
 
 <br>
 
@@ -39,6 +42,9 @@
 - data privacy concerns were raised with taking the names of sme/policy details and so will need to be removed and only ask for team name
 
 <br>
+
+
+https://www.figma.com/file/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?type=design&node-id=1455-62334&mode=design&t=iWP6ZljjZAGkqQy8-4
 
 ### Version 1
 

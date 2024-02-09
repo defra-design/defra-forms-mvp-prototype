@@ -3,10 +3,9 @@
 ## Key things we are designing for
 - the ability to create a basic form
 
-## Versions of the journey to setting up a new form
+## Versions of the journey to editing a form
 
-### Create component pane
-#### Create component pane - v2
+### Create component pane - v2
 <details>
   <summary>View a figma screenshot of version 2 of the create component pane</summary>
 
@@ -16,11 +15,11 @@
 </details>
 
 
-## What we learned
+#### What we learned
 - testing underway
 
 
-#### Create component pane - v1
+### Create component pane - v1
 <details>
   <summary>View a figma screenshot of the as-is 'Create component pane'</summary>
 
@@ -30,7 +29,7 @@
 </details>
 
 
-## What we learned
+#### What we learned
 - there were a number of components that were needed by form designers, for example, the 'Flash card' was not something that is in the GOV.UK design system and unlikely to be used by Defra. It was decided therefore that we remove any of these components which would improve the user's ability scan the page
 - there was also a number of components that had names that were unfamiliar to our users and would need to be changed  
 
@@ -45,7 +44,7 @@ To view a complete flow diagram, view the as-is in [our figma file](https://www.
 
 </details>
 
-## What we learned
+#### What we learned
 
 - most of the issues are summarised in [our heuristic evaluation](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/blob/main/app/design/Iterations/heuristic-evaluation.md)
   

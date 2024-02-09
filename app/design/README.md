@@ -17,7 +17,8 @@ One senior interaction designer and two senior content designers (core users) to
 "The design should always keep users informed about what is going on, through appropriate feedback within a reasonable amount of time"
 
 Context:
-![Image of the desktop version of the service header from 14, 15 March testing ](app/design/assets/thumbnails.png)
+![Image of the as-is XGov Digital Form Designer](app/design/assets/form-designer-main-page.png)
+
 
 | What didn't perform well well |
 | ------------- |

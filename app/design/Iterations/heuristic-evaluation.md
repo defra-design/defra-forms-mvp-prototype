@@ -1,4 +1,4 @@
-## 3. Heuristic evaluation of the XGov Digital Form Builder
+## Heuristic evaluation of the XGov Digital Form Builder
 One of the the first things we did was a heuristic evaluation.
 
 "A heuristic evaluation is a method for identifying design problems in a user interface"-[NNGroup](https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/#:~:text=A%C2%A0heuristic%20evaluation%20is%20a%C2%A0method%20for%20identifying%20design%20problems%20in%20a%20user%20interface.%20Evaluators%20judge%20the%20design%20against%20a%20set%20of%20guidelines%20(called%20heuristics)%20that%20make%20systems%20easy%20to%20use.)
@@ -9,7 +9,7 @@ One senior interaction designer and two senior content designers (core users) to
 ![Image of the as-is XGov Digital Form Designer](/app/design/assets/form-designer-main-page.png)
 
 
-### 3a. Visibility of system status
+### 1. Visibility of system status
 "The design should always keep users informed about what is going on, through appropriate feedback within a reasonable amount of time"
 
 | What didn't perform well well |
@@ -19,7 +19,7 @@ One senior interaction designer and two senior content designers (core users) to
 | The system lacks progressive disclosure, overwhelming users with all options at once and requiring trial and error to understand. There's no clear, intuitive sequence of actions.  |
 | when creating a new component and saving it, there is no confirmation message besides the addition of an illustration to the page visualizer component |
 
-### 3b. Match between system and the real world
+### 2. Match between system and the real world
 "The design should use language and terminology that users are familiar with, avoiding internal jargon. It should adhere to real-world conventions, presenting information in a natural and logical order that users can easily understand."
 
 | What didn't perform well well |
@@ -28,7 +28,7 @@ One senior interaction designer and two senior content designers (core users) to
 | Headings accessed from green buttons lack breadcrumb formatting, and the mix of verbs and nouns in button labels adds confusion |
 | Excessive text, such as in the "Add link" box, overwhelms users, while some components like "Fees" lack any description, leaving users without guidance |
 
-### 3c. User control and freedom
+### 3. User control and freedom
 "Users often perform actions by mistake. They need a clearly marked "emergency exit" to leave the unwanted action without having to go through an extended process​"
 
 | What didn't perform well well |
@@ -42,7 +42,7 @@ One senior interaction designer and two senior content designers (core users) to
 #### Context: image of the as-is save and delete buttons lacking distinctions
 ![Context: image of the as-is save and delete buttons lacking distinctions](/app/design/assets/control-freedom1.png)
 
-### 3d. Consistency and standards
+### 4. Consistency and standards
 "Users should not have to wonder whether different words, situations, or actions mean the same thing. Follow platform and industry conventions.​"
 
 | What didn't perform well well |
@@ -51,7 +51,7 @@ One senior interaction designer and two senior content designers (core users) to
 | Multiple buttons on a single page doesn't facilitate visual hierarchy. |
 | The positioning of things on the page may not correspond with the sequence of people's form-making workflow. |
 
-### 3e. Consistency and standards
+### 5. Consistency and standards
 "Minimize the user's memory load by making elements, actions, and options visible. The user should not have to remember information from one part of the interface to another. Information required to use the design (e.g. field labels or menu items) should be visible or easily retrievable when needed.​"
 
 | What didn't perform well well |

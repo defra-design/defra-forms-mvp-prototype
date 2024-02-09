@@ -32,7 +32,22 @@ One senior interaction designer and two senior content designers (core users) to
 | Headings accessed from green buttons lack breadcrumb formatting, and the mix of verbs and nouns in button labels adds confusion | 
 | Excessive text, such as in the "Add link" box, overwhelms users, while some components like "Fees" lack any description, leaving users without guidance |  
 
+### 3c. User control and freedom
+"Users often perform actions by mistake. They need a clearly marked "emergency exit" to leave the unwanted action without having to go through an extended process​"
 
+| What didn't perform well well |
+| ------------- |
+| The "undo" option lets you revise completed actions individually, but lacks a confirmation dialog for deletions, increasing error risk |  
+| Delete buttons are inconsistently styled and placed, contributing to mistakes | 
+| There's no straightforward way to copy pages or components, and completing actions lacks visual cues. |  
+| Copying forms requires a time-consuming multi-step process. |  
+| User profiles lack restrictions, posing privacy and security risks as anyone can edit or view forms created by others. |  
 
+### 3d. Consistency and standards
+"Users should not have to wonder whether different words, situations, or actions mean the same thing. Follow platform and industry conventions.​"
 
-
+| What didn't perform well well |
+| ------------- |
+| The starting point in the system is not clearly defined, possibly due to the flexibility for creating diverse forms. However, this flexibility makes it challenging to perceive connections. For instance, when adding an output like an email address, it's unclear where it goes or how to locate it for placement on a page.​ |  
+| Multiple buttons on a single page doesn't facilitate visual hierarchy. | 
+| The positioning of things on the page may not correspond with the sequence of people's form-making workflow. |  

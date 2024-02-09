@@ -1,8 +1,5 @@
 # Initial form setup
 
-[figma proto](https://www.figma.com/file/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?type=design&node-id=1455-62334&mode=design&t=iWP6ZljjZAGkqQy8-4)
-
-
 ## Key things we are designing for
 - the ability to create a basic form
 

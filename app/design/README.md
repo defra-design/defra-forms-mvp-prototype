@@ -16,6 +16,9 @@ One senior interaction designer and two senior content designers (core users) to
 ### 3a. Visibility of system status
 "The design should always keep users informed about what is going on, through appropriate feedback within a reasonable amount of time"
 
+Context:
+![Image of the desktop version of the service header from 14, 15 March testing ](app/design/assets/thumbnails.png)
+
 | What didn't perform well well |
 | ------------- |
 | The main form builder lacks a clear title, making it difficult to understand its purpose and where to start. |

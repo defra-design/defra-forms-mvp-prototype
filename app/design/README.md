@@ -47,6 +47,9 @@ One senior interaction designer and two senior content designers (core users) to
 | Copying forms requires a time-consuming multi-step process. |
 | User profiles lack restrictions, posing privacy and security risks as anyone can edit or view forms created by others. |
 
+#### Context: image of the as-is save and delete buttons lacking distinctions
+![Context: image of the as-is save and delete buttons lacking distinctions](/app/design/assets/control-freedom1.png)
+
 ### 3d. Consistency and standards
 "Users should not have to wonder whether different words, situations, or actions mean the same thing. Follow platform and industry conventions.​"
 

@@ -11,14 +11,14 @@ We reviewed several existing form builder used across government against their s
 ## 3. Heuristic evaluation of the XGov Digital Form Builder
 "A heuristic evaluation is a method for identifying design problems in a user interface"-[NNGroup](https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/#:~:text=A%C2%A0heuristic%20evaluation%20is%20a%C2%A0method%20for%20identifying%20design%20problems%20in%20a%20user%20interface.%20Evaluators%20judge%20the%20design%20against%20a%20set%20of%20guidelines%20(called%20heuristics)%20that%20make%20systems%20easy%20to%20use.)
 
-One senior interaction designer and two senior content designers (core users) took part in a heuristics evaluation. The following issues were found:
+One senior interaction designer and two senior content designers (core users) took part in a heuristics evaluation. The following section summarises the main issues found.
+
+#### Context: image of the as-is XGov Digital Form Designer's main page
+![Image of the as-is XGov Digital Form Designer](/app/design/assets/form-designer-main-page.png)
+
 
 ### 3a. Visibility of system status
 "The design should always keep users informed about what is going on, through appropriate feedback within a reasonable amount of time"
-
-Context:
-![Image of the as-is XGov Digital Form Designer](app/design/assets/form-designer-main-page.png)
-
 
 | What didn't perform well well |
 | ------------- |

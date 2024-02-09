@@ -1,4 +1,12 @@
-# 1. Design documentation
+## Contents
+
+- [Context](#1-design-documentation) 
+- [Our approach](#2-out-approach)
+- [Form runner screenshots](#form-runner-screenshots)
+- [What we learned](#what-we-learned)
+- [Opportunites](#opportunities)
+
+# 1. Design documentation context
 The following is where the design history of Defra forms will be stored.
 
 Decisions are organised according to whether it's for the Form designer or Form runner.
@@ -7,6 +15,7 @@ Decisions are organised according to whether it's for the Form designer or Form 
 One of our core design principles is to always **start with what already exists**. We believe that this is not only more efficient, but also ensures we're using components and patterns that have already been tested and proven to be effective.
 
 We reviewed several existing form builder used across government against their suitability to meet Defra's needs. Consequently, we decided to adapt the [XGov Digital Form Builder](https://github.com/XGovFormBuilder/digital-form-builder/tree/main).
+
 
 ## 3. Heuristic evaluation of the XGov Digital Form Builder
 One of the the first things we did was a heuristic evaluation.

@@ -1,4 +1,4 @@
-# 1. Design documentation
+# 1. Design documentation context
 The following is where the design history of Defra forms will be stored.
 
 Decisions are organised according to whether it's for the Form designer or Form runner.
@@ -8,10 +8,17 @@ One of our core design principles is to always **start with what already exists*
 
 We reviewed several existing form builder used across government against their suitability to meet Defra's needs. Consequently, we decided to adapt the [XGov Digital Form Builder](https://github.com/XGovFormBuilder/digital-form-builder/tree/main).
 
+
 ## 3. Heuristic evaluation of the XGov Digital Form Builder
+One of the the first things we did was a heuristic evaluation.
+
 "A heuristic evaluation is a method for identifying design problems in a user interface"-[NNGroup](https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/#:~:text=A%C2%A0heuristic%20evaluation%20is%20a%C2%A0method%20for%20identifying%20design%20problems%20in%20a%20user%20interface.%20Evaluators%20judge%20the%20design%20against%20a%20set%20of%20guidelines%20(called%20heuristics)%20that%20make%20systems%20easy%20to%20use.)
 
-One senior interaction designer and two senior content designers (core users) took part in a heuristics evaluation. The following issues were found:
+One senior interaction designer and two senior content designers (core users) took part in a heuristics evaluation. The following section summarises the main issues found.
+
+#### Context: image of the as-is XGov Digital Form Designer's main page
+![Image of the as-is XGov Digital Form Designer](/app/design/assets/form-designer-main-page.png)
+
 
 ### 3a. Visibility of system status
 "The design should always keep users informed about what is going on, through appropriate feedback within a reasonable amount of time"
@@ -42,6 +49,9 @@ One senior interaction designer and two senior content designers (core users) to
 | There's no straightforward way to copy pages or components, and completing actions lacks visual cues. |
 | Copying forms requires a time-consuming multi-step process. |
 | User profiles lack restrictions, posing privacy and security risks as anyone can edit or view forms created by others. |
+
+#### Context: image of the as-is save and delete buttons lacking distinctions
+![Context: image of the as-is save and delete buttons lacking distinctions](/app/design/assets/control-freedom1.png)
 
 ### 3d. Consistency and standards
 "Users should not have to wonder whether different words, situations, or actions mean the same thing. Follow platform and industry conventions.​"

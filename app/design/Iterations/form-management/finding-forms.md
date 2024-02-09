@@ -12,6 +12,19 @@ Below are the screens a form creator will see when making or editing their forms
 
 ## Versions of the journey to finding an existing form that we have tested
 
+### Version 3
+
+#### Forms library
+![form library](/app/design/assets/form-library-v3.jpeg)
+<br> *Page with “a table that allows users to find a form by scanning their meta data, and use of the [MoJ sortable table component](https://design-patterns.service.justice.gov.uk/components/sortable-table/), and [GovUK pagination](https://design-system.service.gov.uk/components/pagination/#:~:text=For%20navigating%20between%20pages%20of%20items)” *
+
+## What we learned
+- as a minimum viable product, this version had the most positive feedback in terms of meeting the core need of finding forms quickly
+- future iteration should consider a search function to enable users to find forms even faster using keywords
+
+<br>
+
+
 ### Version 2
 
 #### Forms library
@@ -19,7 +32,7 @@ Below are the screens a form creator will see when making or editing their forms
 <br> *Page with “a table that allows users to find a form by scanning their meta data” *
 
 ## What we learned
-- having the details about who created and last edited a form was found to be benificial to ensuring correct ownership and logging of activity. However, users found it difficult to find forms a list that very long and without any form of filtering
+- having the details about who created and last edited a form was found to be benificial to ensuring correct ownership and logging of activity. However, users found it difficult to find forms when the list was very long and without any form of filtering
 
 <br>
 

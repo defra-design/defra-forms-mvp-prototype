@@ -1,9 +1,5 @@
 # Onboarding
 
-## Contents
--
-___
-
 ## Key things we are designing for
 - the ability to access the form builder and maintain the necessary standard for security
 
@@ -11,6 +7,14 @@ ___
 Below are the screens a form creator will see when making or editing their forms.
 
 ## Versions of the journey to finding an existing form that we have tested
+
+### Version 3
+#### Onboarding landing page
+![sign-in screen v3](/app/design/assets/authentication-page.png)
+<br> *Sign in page for Defra forms which will use single sign-on to authenticate user access” *
+
+## What we learned
+- testing is being planned this sprint
 
 ### Version 2
 #### Onboarding landing page

@@ -21,6 +21,7 @@ Below are the screens a form creator will see when making or editing their forms
 ## What we learned
 - as a minimum viable product, this version had the most positive feedback in terms of meeting the core need of finding forms quickly
 - future iteration should consider a search function to enable users to find forms even faster using keywords
+- an update is needed to use the recently released versions of the [GovUK tag component](https://design-system.service.gov.uk/components/tag/)
 
 <br>
 

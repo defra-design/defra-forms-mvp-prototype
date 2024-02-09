@@ -3,11 +3,22 @@
 ## Key things we are designing for
 - the ability to create a basic form
 
-<br>
-
 ## Versions of the journey to setting up a new form
 
 ### Create component pane
+#### Create component pane - v2
+<details>
+  <summary>View a figma screenshot of version 2 of the create component pane</summary>
+
+  ![XGov find an existing form journey screenshot 1](/app/design/assets/create-component-pattern-v2.png)
+  <br> *create component pane with only needed components and with names that match gov.uk design system and/or Defra terminology” *
+
+</details>
+
+
+## What we learned
+- testing underway
+
 
 #### Create component pane - v1
 <details>
@@ -22,8 +33,6 @@
 ## What we learned
 - there were a number of components that were needed by form designers, for example, the 'Flash card' was not something that is in the GOV.UK design system and unlikely to be used by Defra. It was decided therefore that we remove any of these components which would improve the user's ability scan the page
 - there was also a number of components that had names that were unfamiliar to our users and would need to be changed  
-
-<br>
 
 ### Version 1
 

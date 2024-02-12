@@ -37,10 +37,14 @@
 
 <br>
 
+---
+
 ### Editing a form: as-is user journey
 
 To view a complete flow diagram, view the as-is in [our figma file](https://www.figma.com/file/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?type=design&node-id=6-41685&mode=design&t=iWP6ZljjZAGkqQy8-4)
+
 <br>
+
 <details>
   <summary>View a figma screenshot of the as-is flow</summary>
 

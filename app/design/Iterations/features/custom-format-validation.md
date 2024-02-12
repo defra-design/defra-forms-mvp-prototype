@@ -21,7 +21,8 @@ Additional Information
 <br> *Process of adding custom field validation in which users can specify the length requirements for user input*
 
 <br>
-##### Page 2 for adding custom field validation
+
+#### Page 2 for adding custom field validation
 ![form status tags v3](/app/design/assets/custom-field-validation_page2.png)
 <br> *They can specify the letters/number requirements for each characters or still use Regex if inclined to. They can also add a custom validaiton message when errors occur*
 
@@ -41,9 +42,9 @@ Additional Information
   
 </details>
 
-
 <br>
-##### Page 1 for adding custom field validation
+
+##### Custom field validation - citizen view example
 ![form status tag in form editor pages v3](/app/design/assets/custom-field-validation-error-message.png)
 <br> *Example of the types of custom validations users need and an custom validation messaging when users enter incompatible characters*
 

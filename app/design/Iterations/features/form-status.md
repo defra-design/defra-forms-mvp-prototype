@@ -11,9 +11,8 @@
 
 #### Forms statuses
 
-![form status tags v3](/app/design/assets/statuses-v3.svg)
+![form status tags v3](/app/design/assets/statuses-v3.png)
 <br> *Statuses in the context of form library*
-
 
 ![form status tag in form editor pages v3](/app/design/assets/form-editor-status.svg)
 <br> *Shows a form editor page with a form status above the H1*

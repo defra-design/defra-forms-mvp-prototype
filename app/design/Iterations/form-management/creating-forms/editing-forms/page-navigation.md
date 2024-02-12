@@ -25,7 +25,7 @@ The ability to add:
 #### What we learned
 - testing is ongoing
 - having the links to the side significantly reduced cognitive overload and the ability to minimise the side navigation helped users have more space when adding new pages
-  
+
 
 <br>
 <hr>

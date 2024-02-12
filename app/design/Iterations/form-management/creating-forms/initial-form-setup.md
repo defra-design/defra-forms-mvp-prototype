@@ -64,5 +64,3 @@ The following gaps were identified:
 - the input box was too small for the number of characters usually needed for forms
 <br>
 
-<a class="top-link hide" href="#top">↑</a>
-<a name="top"></a>

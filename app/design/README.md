@@ -1,8 +1,6 @@
 # 1. Design documentation context
 The following is where the design history of Defra forms will be stored.
 
-Decisions are organised according to whether it's for the Form designer or Form runner.
-
 ## 2. Our approach
 One of our core design principles is to always **start with what already exists**. We believe that this is not only more efficient, but also ensures we're using components and patterns that have already been tested and proven to be effective.
 

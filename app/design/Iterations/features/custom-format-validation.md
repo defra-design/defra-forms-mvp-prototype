@@ -13,8 +13,7 @@ Additional Information
 ---
 ### Version 1
 
-#### Form editor views for adding a field that requires custom field validation
-##### Page 1 for adding custom field validation
+#### Page 1 for adding custom field validation
 ![form status tag in form editor pages v3](/app/design/assets/custom-field-validation_page1.png)
 <br> *Process of adding custom field validation in which users can specify the length requirements for user input*
 
@@ -40,9 +39,7 @@ Additional Information
   
 </details>
 
-<br>
-
-##### Custom field validation - citizen view example
+#### Custom field validation - citizen view example
 ![form status tag in form editor pages v3](/app/design/assets/custom-field-validation-error-message.png)
 <br> *Example of the types of custom validations users need and an custom validation messaging when users enter incompatible characters*
 

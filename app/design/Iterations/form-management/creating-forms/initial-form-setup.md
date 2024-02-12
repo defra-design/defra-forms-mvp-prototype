@@ -41,8 +41,6 @@
 
 ---
 
-<br>
-
 ### Version 1
 
 #### Form designer landing page

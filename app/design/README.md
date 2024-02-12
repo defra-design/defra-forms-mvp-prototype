@@ -10,7 +10,7 @@ One of our core design principles is to always **start with what already exists*
 ## 3. See how designs were iterated over time
 
 > [!NOTE]
-> You can also [view a page dedicated to the current MVP iteration](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/blob/main/app/design/latest-MVP-iteration.md) of the Defra form builder.
+> You can also [view a page dedicated to the current MVP iteration on Figma]([https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/blob/main/app/design/latest-MVP-iteration.md](https://www.figma.com/file/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?type=design&node-id=1330%3A51984&mode=design&t=iWP6ZljjZAGkqQy8-1)) of the Defra form builder.
 
 <br>
 

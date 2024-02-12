@@ -5,6 +5,7 @@
 - specifically to finding existing forms
 
 <br>
+
 Below are the screens a form creator will see when making or editing their forms.
 
 ## Versions of the journey to finding an existing form that we have tested
@@ -13,7 +14,7 @@ Below are the screens a form creator will see when making or editing their forms
 
 #### Forms library
 ![form library](/app/design/assets/form-library-v3.jpeg)
-<br> *Page with “a table that allows users to find a form by scanning their meta data, and use of the [MoJ sortable table component](https://design-patterns.service.justice.gov.uk/components/sortable-table/), and [GovUK pagination](https://design-system.service.gov.uk/components/pagination/#:~:text=For%20navigating%20between%20pages%20of%20items)” *
+<br> *Page with a table that allows users to find a form by scanning their meta data, and use of the [MoJ sortable table component](https://design-patterns.service.justice.gov.uk/components/sortable-table/),and [GovUK pagination](https://design-system.service.gov.uk/components/pagination/#:~:text=For%20navigating%20between%20pages%20of%20items)*
 
 ## What we learned
 - as a minimum viable product, this version had the most positive feedback in terms of meeting the core need of finding forms quickly
@@ -22,6 +23,7 @@ Below are the screens a form creator will see when making or editing their forms
 
 <br>
 
+---
 
 ### Version 2
 
@@ -34,12 +36,14 @@ Below are the screens a form creator will see when making or editing their forms
 
 <br>
 
+---
+
 ### Version 1
 
 #### Form designer existing forms list
 
 ![XGov find an existing form journey screenshot 1](/app/design/assets/xgov-as-is-existing-forms2.png)
-<br> *Page that shows a table used to find and open existing forms in Xgov” *
+<br> *Page that shows a table used to find and open existing forms in Xgov*
 
 
 ## What we learned

@@ -18,6 +18,8 @@
 
 [View and interactive prototype of version 2 where is more than one question per item](https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=301%3A6853&type=design&node-id=547-28857&viewport=72229%2C18765%2C0.66&t=as93lDkAmGptg1Ye-1&scaling=min-zoom&starting-point-node-id=547%3A28857&show-proto-sidebar=1&mode=design)
 
+---
+
 ### Version 2 - Form designer facing
 
 | What we've done  | Why we did it |

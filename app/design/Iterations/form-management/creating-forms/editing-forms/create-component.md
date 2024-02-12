@@ -1,4 +1,4 @@
-# Editin a form
+# Editing a form
 
 ## Key things we are designing for
 - the ability to edit a basic form
@@ -15,11 +15,10 @@
 
 </details>
 
-
-
 #### What we learned
 - testing underway
-<br>
+
+---
 
 ### Create component pane - v1
 
@@ -54,5 +53,3 @@ To view a complete flow diagram, view the as-is in [our figma file](https://www.
 - most of the issues are summarised in [our heuristic evaluation](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/blob/main/app/design/Iterations/heuristic-evaluation.md)
   
 <br>
-
-[Back to the top](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/edit/main/app/design/Iterations/form-management/finding-forms.md#finding-forms)

@@ -1,9 +1,31 @@
-# Repeated questions
+# Repeater questions
 
 ## Key things we are designing for
 
 - users able add another thing of the same type in a form
 - add this pattern to a form in as little steps as possible
+
+### Version 2 - Citizen facing
+| What we've done  | Why we did it |
+| ------------- | ------------- |
+|  Added a check answer page after the last question and before the summary lists page, for complex items with many fields or with more than one question page |  Gives us the ability to meet the needs of more forms which would require more than one question page per item |
+| Introduced a fixed cap for number of entries users can to forms in MVP | Until we have a save and return feature and/or spreadsheet upload, this is to protect users from losing the progress of their form |
+| Decided that warning messages are needed to inform users that they need to do it in one sitting | So that users dont get timed out of their form |
+
+![form status tag in form editor pages v3](/app/design/assets/add-a-thing-form-designer-v2.svg)
+
+
+[View an interactive prototype of version 2 where there is only one question page](https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=301%3A6853&type=design&node-id=540-24172&viewport=72229%2C18765%2C0.66&t=as93lDkAmGptg1Ye-1&scaling=scale-down&starting-point-node-id=540%3A24172&mode=design) 
+
+[View and interactive prototype of version 2 where is more than one question per item](https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=301%3A6853&type=design&node-id=547-28857&viewport=72229%2C18765%2C0.66&t=as93lDkAmGptg1Ye-1&scaling=min-zoom&starting-point-node-id=547%3A28857&show-proto-sidebar=1&mode=design)
+
+### Version 2 - Form designer facing
+
+| What we've done  | Why we did it |
+| ------------- | ------------- |
+|  Configurations will happen on a seperate page to the form editor |  Adding repeater questions means essentially creating a form within a form so to avoid it getting mixed up with the main form pages, we decided to have this in a seperate page |
+| Users will be able to decide which fields appear on summary list pages | When there are several fields within an item, it wouldn't be feasible to list them all on summary list pages. Therefore, giving users the ability to choose the most important ones was chosen. |
+| Ability to specify a suffix on the summary list heading, add another button and item removal messaging | So that users know what they are adding or removing |
   
 ---
 ### Version 1
@@ -15,7 +37,7 @@ Designed in the context of the [support-attestation-costs-reimbursement-applicat
 | Avoid in-line table editor patterns | Riddled with accessibility issues/|
 | Spreadsheet upload will not fall part of MVP |  To start small and build up as the product becomes more sophisticated |
 
-<h3>
+ <h3>
 <details>
   <summary>view screens</summary>
   

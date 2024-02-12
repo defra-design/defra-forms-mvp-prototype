@@ -10,9 +10,7 @@ Additional Information
 
 - Primary use would be for reference number entries (could be a combination of text + special characters)
 - For our predefined question list, where possible we would look to use regex or ensure the appropriate format is configured
-
-<br>
-
+---
 ### Version 1
 
 #### Form editor views for adding a field that requires custom field validation

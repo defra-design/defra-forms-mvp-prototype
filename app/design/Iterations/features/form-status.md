@@ -5,8 +5,6 @@
 
 <br>
 
-## Versions of the journey to finding an existing form that we have tested
-
 ### Version 3
 
 #### Forms statuses
@@ -23,9 +21,9 @@
 <br>
 
 ## What we learned
-- as a minimum viable product, this version had the most positive feedback in terms of meeting the core need of finding forms quickly
-- future iteration should consider a search function to enable users to find forms even faster using keywords
-- an update is needed to use the recently released versions of the [GovUK tag component](https://design-system.service.gov.uk/components/tag/)
+- statuses helped user scan pages and keep track of what forms needed action
+- users expect that when a new form is created that it automatically inherits a 'Draft' tag
+- changing form status during the process of adding an internal note might fit into the content designers' workflow (to be tested)
 
 <br>
 
@@ -64,5 +62,3 @@
 - the number of roles proposed was deemed out of scope for MVP and it was decided that we'd slim down our approach in MVP so that the role needed would grow when there is need to do so.
 
 <br>
-
-[Back to the top](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/edit/main/app/design/Iterations/form-management/finding-forms.md#finding-forms)

@@ -6,8 +6,6 @@
 
 <br>
 
-Below are the screens a form creator will see when making or editing their forms.
-
 ## Versions of the journey to finding an existing form that we have tested
 
 ### Version 3

@@ -8,3 +8,11 @@ One of our core design principles is to always **start with what already exists*
 
 - We reviewed several existing form builder used across government against their suitability to meet Defra's needs. Consequently, we decided to adapt the [XGov Digital Form Builder](https://github.com/XGovFormBuilder/digital-form-builder/tree/main).
 - We conducted a [heuristics evaluation of the as-is XGov form builder](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/blob/main/app/design/Iterations/heuristic-evaluation.md)
+
+## 3. Contents
+
+- [iterations main folder](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/tree/main/app/design/Iterations)
+    - [form management designs](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/tree/main/app/design/Iterations/form-management) -
+      (how to find, create and edit forms)
+    - [onboarding designs](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/tree/main/app/design/Iterations/onboarding)- (how to get into the form builder)
+ - [heuristic evaluation summ,ary](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/blob/main/app/design/Iterations/heuristic-evaluation.md) - (review of the as-is interface of the XGov Digital Form Builder)

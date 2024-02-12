@@ -16,6 +16,7 @@
 ## What we learned
 - this overcome the data protection concerns from version 2
 
+---
 
 <br>
 
@@ -37,6 +38,8 @@
 ## What we learned
 - the ability to add such details and connect them to specific forms gave content designers more confidence and assurance that if they went on leave or they needed to delegate tasks that people would have needed details
 - data privacy concerns were raised with taking the names of sme/policy details and so will need to be removed and only ask for team name
+
+---
 
 <br>
 
@@ -64,5 +67,5 @@ The following gaps were identified:
 
 
 <br>
-
-[Back to the top](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/edit/main/app/design/Iterations/form-management/finding-forms.md#finding-forms)
+<a class="top-link hide" href="#top">↑</a>
+<a name="top"></a>

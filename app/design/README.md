@@ -9,8 +9,10 @@ One of our core design principles is to always **start with what already exists*
 
 ## 3. Contents
 
-- [iterations main folder](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/tree/main/app/design/Iterations)
-    - [form management designs](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/tree/main/app/design/Iterations/form-management) -
-      (how to find, create and edit forms)
-    - [onboarding designs](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/tree/main/app/design/Iterations/onboarding)- (how to get into the form builder)
- - [heuristic evaluation summ,ary](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/blob/main/app/design/Iterations/heuristic-evaluation.md) - (review of the as-is interface of the XGov Digital Form Builder)
+| Page  | Description |
+| ------------- | ------------- |
+|  [Iterations main folder](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/tree/main/app/design/Iterations)  |  See a history of all design iterations  |
+| [Form management designs](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/tree/main/app/design/Iterations/form-management) |   Designs for how to find, create and edit forms |
+| [Onboarding designs](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/tree/main/app/design/Iterations/onboarding)|   Designs for how to access the form builder |
+| [Features](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/tree/main/app/design/Iterations/features)| Design history of more specific Defra form features such as custom form validation |
+| [Heuristic evaluation summmary](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/blob/main/app/design/Iterations/heuristic-evaluation.md)| review of the as-is interface of the XGov Digital Form Builder |

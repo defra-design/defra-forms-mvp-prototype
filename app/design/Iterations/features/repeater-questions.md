@@ -9,38 +9,41 @@
 ### Version 1
 Designed in the context of the [support-attestation-costs-reimbursement-application form](https://www.gov.uk/government/publications/support-attestation-costs-reimbursement-application)
 
-#### Screens for v1
-Designed in the context of the [support-attestation-costs-reimbursement-application form](https://www.gov.uk/government/publications/support-attestation-costs-reimbursement-application)
+| What we've done  | Why we did it |
+| ------------- | ------------- |
+|  Use the [DWP 'Add another' pattern](https://design-system.dwp.gov.uk/patterns/add-another-thing) |  Pre-tested feature with the flexibility for adapting to any specific defra needs |
+| Avoid in-line table editor patterns | Riddled with accessibility issues/|
+| Spreadsheet upload will not fall part of MVP |  To start small and build up as the product becomes more sophisticated |
 
+<h3>
 <details>
-  <summary>View character rule configurations</summary>
-
-Page 1: item 1
+  <summary>view screens</summary>
+  
+  <h4>Page 1</h4>
 
 ![form status tag in form editor pages v3](/app/design/assets/multiple.png)
+
+  <h4>Page 2: add another page </h4>
+
+![form status tag in form editor pages v3](/app/design/assets/multiple-3.png)
+
+  <h4>Page 3: item 2</h4>
+
+![form status tag in form editor pages v3](/app/design/assets/multiple-1.png)
+
+  <h4>Page 3: add another page</h4>
+
+![form status tag in form editor pages v3](/app/design/assets/multiple-4.png)
+
+> Cycle then repeats itself until stops adding items
   
 </details>
 </h3>
 
-
-![form status tag in form editor pages v3](/app/design/assets/custom-field-validation_page1.png)
-<br> *Process of adding custom field validation in which users can specify the length requirements for user input*
-
 <br>
 
-#### Page 2 for adding custom field validation
-![form status tags v3](/app/design/assets/custom-field-validation_page2.png)
-<br> *They can specify the letters/number requirements for each characters or still use Regex if inclined to. They can also add a custom validaiton message when errors occur*
-
-
-
-#### Custom field validation - citizen view example
-![form status tag in form editor pages v3](/app/design/assets/custom-field-validation-error-message.png)
-<br> *Example of the types of custom validations users need and an custom validation messaging when users enter incompatible characters*
-
-
 ## What we learned
-- the interface enabled content designers to avoid the very steep learning curve of using Regex and create their own custom field validation requirements
-- additional need was identified to allow users to have more than one reange of letters in a single cell. For example, A-C, Y-Z
+- not all questions will be on a single page so we need to incorporate DWP's pattern for more complex items
+- save and return won't fall part of our MVP so we need to consider a limit of items users can add to avoid them being timed out and losing all their progress
 
 <br>

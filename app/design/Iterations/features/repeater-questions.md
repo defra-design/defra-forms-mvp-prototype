@@ -12,7 +12,6 @@
 | Introduced a fixed cap for number of entries users can to forms in MVP | Until we have a save and return feature and/or spreadsheet upload, this is to protect users from losing the progress of their form |
 | Decided that warning messages are needed to inform users that they need to do it in one sitting | So that users dont get timed out of their form |
 
-![form status tag in form editor pages v3](/app/design/assets/add-a-thing-form-designer-v2.svg)
 
 
 [View an interactive prototype of version 2 where there is only one question page](https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=301%3A6853&type=design&node-id=540-24172&viewport=72229%2C18765%2C0.66&t=as93lDkAmGptg1Ye-1&scaling=scale-down&starting-point-node-id=540%3A24172&mode=design) 
@@ -26,9 +25,16 @@
 |  Configurations will happen on a seperate page to the form editor |  Adding repeater questions means essentially creating a form within a form so to avoid it getting mixed up with the main form pages, we decided to have this in a seperate page |
 | Users will be able to decide which fields appear on summary list pages | When there are several fields within an item, it wouldn't be feasible to list them all on summary list pages. Therefore, giving users the ability to choose the most important ones was chosen. |
 | Ability to specify a suffix on the summary list heading, add another button and item removal messaging | So that users know what they are adding or removing |
+
+### Screens
+[**View screens in Figma**](https://www.figma.com/file/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?type=design&node-id=524-18950&mode=design&t=iWP6ZljjZAGkqQy8-4)
+
+<br>
+
+![form status tag in form editor pages v3](/app/design/assets/add-a-thing-form-designer-v2.svg)
   
 ---
-### Version 1
+### Version 1 - citizen facing
 Designed in the context of the [support-attestation-costs-reimbursement-application form](https://www.gov.uk/government/publications/support-attestation-costs-reimbursement-application)
 
 | What we've done  | Why we did it |

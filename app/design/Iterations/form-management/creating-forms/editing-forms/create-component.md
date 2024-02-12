@@ -32,7 +32,7 @@
 
 
 #### What we learned
-- there were a number of components that were needed by form designers, for example, the 'Flash card' was not something that is in the GOV.UK design system and unlikely to be used by Defra. It was decided therefore that we remove any of these components which would improve the user's ability scan the page
+- there were a number of components that were not needed by form designers, for example, the 'Flash card' was not something that is in the GOV.UK design system and unlikely to be used by Defra. It was decided therefore that we remove any of these components which would improve the user's ability scan the page
 - there was also a number of components that had names that were unfamiliar to our users and would need to be changed  
 
 <br>

@@ -9,6 +9,8 @@
 
 ### Version 3
 
+Pages from version 2 were maintained except for the forms/sme policy details page
+
 #### Forms sme/policy details page
 ![form library](/app/design/assets/policy-sme-v2.png)
 <br> *Page with “an input box that only asks for a team name rather than the name and email of a person” *

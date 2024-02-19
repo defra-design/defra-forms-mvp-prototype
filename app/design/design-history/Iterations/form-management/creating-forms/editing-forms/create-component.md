@@ -1,4 +1,4 @@
-# Editin a form
+# Editing a form
 
 ## Key things we are designing for
 - the ability to edit a basic form
@@ -15,11 +15,10 @@
 
 </details>
 
-
-
 #### What we learned
 - testing underway
-<br>
+
+---
 
 ### Create component pane - v1
 
@@ -33,15 +32,19 @@
 
 
 #### What we learned
-- there were a number of components that were needed by form designers, for example, the 'Flash card' was not something that is in the GOV.UK design system and unlikely to be used by Defra. It was decided therefore that we remove any of these components which would improve the user's ability scan the page
+- there were a number of components that were not needed by form designers, for example, the 'Flash card' was not something that is in the GOV.UK design system and unlikely to be used by Defra. It was decided therefore that we remove any of these components which would improve the user's ability scan the page
 - there was also a number of components that had names that were unfamiliar to our users and would need to be changed  
 
 <br>
 
+---
+
 ### Editing a form: as-is user journey
 
 To view a complete flow diagram, view the as-is in [our figma file](https://www.figma.com/file/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?type=design&node-id=6-41685&mode=design&t=iWP6ZljjZAGkqQy8-4)
+
 <br>
+
 <details>
   <summary>View a figma screenshot of the as-is flow</summary>
 
@@ -54,5 +57,3 @@ To view a complete flow diagram, view the as-is in [our figma file](https://www.
 - most of the issues are summarised in [our heuristic evaluation](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/blob/main/app/design/Iterations/heuristic-evaluation.md)
   
 <br>
-
-[Back to the top](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/edit/main/app/design/Iterations/form-management/finding-forms.md#finding-forms)

@@ -9,6 +9,8 @@
 
 ### Version 3
 
+Pages from version 2 were maintained except for the forms/sme policy details page
+
 #### Forms sme/policy details page
 ![form library](/app/design/assets/policy-sme-v2.png)
 <br> *Page with “an input box that only asks for a team name rather than the name and email of a person” *
@@ -16,6 +18,7 @@
 ## What we learned
 - this overcome the data protection concerns from version 2
 
+---
 
 <br>
 
@@ -38,7 +41,7 @@
 - the ability to add such details and connect them to specific forms gave content designers more confidence and assurance that if they went on leave or they needed to delegate tasks that people would have needed details
 - data privacy concerns were raised with taking the names of sme/policy details and so will need to be removed and only ask for team name
 
-<br>
+---
 
 ### Version 1
 
@@ -61,8 +64,3 @@ The following gaps were identified:
 - the input box was too small for the number of characters usually needed for forms
 <br>
 
-
-
-<br>
-
-[Back to the top](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/edit/main/app/design/Iterations/form-management/finding-forms.md#finding-forms)

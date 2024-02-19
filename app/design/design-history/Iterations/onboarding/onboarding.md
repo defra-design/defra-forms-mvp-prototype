@@ -16,6 +16,8 @@ Below are the screens a form creator will see when making or editing their forms
 ## What we learned
 - testing is being planned this sprint
 
+---
+
 ### Version 2
 #### Onboarding landing page
 ![sign-in screen 1](/app/design/assets/sign-in-v2.jpeg)
@@ -36,7 +38,7 @@ Below are the screens a form creator will see when making or editing their forms
 - it will be much more feasible and a more pleasant experience for people opening Defra forms on a daily basis to utilise single sign on processes for authentication.
 - having the details about who created and last edited a form was found to be benificial to ensuring correct ownership and logging of activity. However, users found it difficult to find forms a list that very long and without any form of filtering
 
-<br>
+---
 
 ### Version 1
 #### Form designer landing page
@@ -51,5 +53,3 @@ The following gaps were identified:
 - Anyone could access the forms which could pose security and data protections risks.
 
 <br>
-
-[Back to the top](#prototype-version-6)

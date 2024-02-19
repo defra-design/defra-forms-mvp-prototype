@@ -44,5 +44,3 @@ The following gaps were identified:
 - most of the issues are summarised in [our heuristic evaluation](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/blob/main/app/design/Iterations/heuristic-evaluation.md) but the principle items that users found confusing was the array of green buttons at the top of the page, lack of page title, and button/link labels that didn't mean anything to them
 
 <br>
-
-[Back to the top](https://github.com/Daniel-Da-Silveira/defra-froms-mvp1/edit/main/app/design/Iterations/form-management/finding-forms.md#finding-forms)

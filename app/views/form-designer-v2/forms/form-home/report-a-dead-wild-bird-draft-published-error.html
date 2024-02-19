@@ -1,8 +1,5 @@
 {% extends "layouts/main.html" %}
 
-{% block pageTitle %}
-Content page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
 
 {% block header %}
 <header class="cross-service-header" role="banner" data-module="one-login-header">
@@ -29,7 +26,7 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
         data-open-class="cross-service-header__button--open" data-label-for-show="Show GOV.UK One Login menu"
         data-label-for-hide="Hide GOV.UK One Login menu" aria-expanded="false"
         class="cross-service-header__button cross-service-header__button--one-login js-x-header-toggle">
-        <span class="cross-service-header__button-content">Menu</span>
+        <span class="cross-service-header__button-content">One Login</span>
 
         <!--[if gt IE 8]><!-->
         <span class="cross-service-header__button-icon cross-service-header__button-icon--default">
@@ -64,7 +61,7 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
         <ul class="one-login-header__nav__list">
           <li class="one-login-header__nav__list-item">
             <a class="one-login-header__nav__link one-login-header__nav__link--one-login"
-              href="https://home.account.gov.uk/">
+              href="/index.html">
               <span class="one-login-header__nav__link-content">
                 Steven Thomas
               </span>
@@ -100,7 +97,7 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
           </li>
           <li class="one-login-header__nav__list-item">
             <!-- REPLACE SIGN OUT URL PLACEHOLDER WITH SIGN OUT PAGE FOR YOUR SERVICE -->
-            <a class="one-login-header__nav__link" href="/form-designer/onboarding/sign-in">
+            <a class="one-login-header__nav__link" href="/form-designer-v2/onboarding/sign-out-confirmation.html">
               Sign out
             </a>
           </li>
@@ -115,7 +112,7 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
       <div class="service-header__container">
         <!-- The name of your service goes here -->
         <h2 class="service-header__heading">
-          Create new form
+
         </h2>
         <div>
           <!-- Label the toggle button appropriately (you might want to use the name of your service) to provide support for screen reader users -->
@@ -133,11 +130,17 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
             <ul class="service-header__nav-list service-header__nav" id="service-header__nav"
               data-open-class="service-header__nav--open">
               <!-- Use the "service-header__nav-list-item--active" modifier class on the li to visually highlight the page the user is currently viewing -->
-              <!-- Use the "service-header__nav-list-item--active" modifier class on the li to visually highlight the page the user is currently viewing -->
-              <li class="service-header__nav-list-item">
+              <li class="service-header__nav-list-item ">
                 <!-- Use the aria-current="page" attribute on the anchor tag -->
                 <a class="service-header__nav-list-item-link " href="/index.html">
                   Form library
+                </a>
+              </li>
+              <!-- Use the "service-header__nav-list-item--active" modifier class on the li to visually highlight the page the user is currently viewing -->
+              <li class="service-header__nav-list-item service-header__nav-list-item--active">
+                <!-- Use the aria-current="page" attribute on the anchor tag -->
+                <a class="service-header__nav-list-item-link" href="#">
+                  Form home
                 </a>
               </li>
               <!-- Use the "service-header__nav-list-item--active" modifier class on the li to visually highlight the page the user is currently viewing -->
@@ -160,59 +163,199 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
 
 {% endblock %}
 
-{% block beforeContent %}
-{{ govukBackLink({
-text: "Back",
-href: "javascript:window.history.back()"
-}) }}
-
+{% block pageTitle %}
+Report a dead wild bird – {{ serviceName }}
 {% endblock %}
+
+
 
 {% block content %}
 
 {% from "govuk/components/tabs/macro.njk" import govukTabs %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
-<!-- <main class="govuk-main-wrapper" id="main-content" role="main"> -->
-<form class="form"
-  action="/new-edition/name-of-form"
-  method="post">
-
-  {% from "govuk/components/input/macro.njk" import govukInput %}
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-
-      {% from "govuk/components/input/macro.njk" import govukInput %}
-
-      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {{ govukErrorSummary({
   titleText: "There is a problem",
   errorList: [
     {
-      text: "Enter the name of the SME/Policy team",
-      href: "#"
+      text: "You can't create a new edition as there is already a form in draft"
+
     }
   ]
 }) }}
 
-      {{ govukInput({
-        label: {
-          text: "Enter the name of the SME/Policy team",
-          classes: "govuk-label--l",
-          isPageHeading: true
-        },
-        id: "event-name",
-        name: "eventName",
-        errorMessage: {
-          text: "Enter the name name of the SME/Policy team"
-        }
-      }) }}
+<!-- <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl">Forms</span>
+    <h1 class="govuk-heading-xl">Report a dead wild bird</h1>
+    <div class="govuk-inset-text">
+      <div class="govuk-tag govuk-tag--orange">
+        Draft
+      </div>
 
-      {{ govukButton({
-      text: "Continue"
-      }) }}
+
+      <h2 class="govuk-heading-m">
+        <div class="govuk-!-padding-top-3">
+          <a href="https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=301%3A6853&type=design&node-id=768-124605&viewport=-8745%2C634%2C0.43&t=MkU1eSzJuBa0Tm60-8&scaling=scale-down&starting-point-node-id=302%3A42964&show-proto-sidebar=1&hide-ui=1"
+            class="govuk-link govuk-link--no-visited-state">Report a dead wild bird - v5</a>
+          <br>
+          <span class="govuk-caption-m" style="padding-top:10px;">Created on 20 December 2023 by Steven Thomas</span>
+        </div>
+    </div>
+    </h1>
+  </div>
+</div> -->
+
+
+
+</form>
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h2 class="govuk-heading-l">Report a dead wild bird</h2>
+
+
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Details
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list">
+          <li>
+            <strong>Organisation</strong>
+            <a class="govuk-link govuk-link--no-visited-state"
+              href="/form-designer-v2/forms/organisation-name-change.html">
+              <br>Center for Environment, Fisheries and Aquaculture Science - Cefas</a>
+          </li>
+          <div class="govuk-!-padding-top-2">
+            <li>
+              <strong>Team</strong>
+              <br>
+              <a class="govuk-link govuk-link--no-visited-state"
+                href="/form-designer-v2/forms/policy-sme-change.html">Policy directorate</a>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </details>
+
+    </details>
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-grid-row">
+
+        <!-- <div class="govuk-grid-column-two-thirds">
+
+            <form method="get" novalidate="">
+              <div class="search-wrapper govuk-form-group">
+                <label for="search-applications" class="govuk-label">Search by a user's name</label>
+
+                <div class="search-input-wrapper">
+                  <input type="search" value="" id="search-applications" name="search" title="Search" class="govuk-input">
+
+                  <div class="search-input-submit-wrapper">
+                    <button type="submit" class="search-submit">Search</button>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </form>
+
+          </div> -->
+
+        <!-- <div class="govuk-grid-column-one-third">
+
+              <div class="defra-filter--action" style="padding-top:28px;">
+                <button id="defra-filter--button" class="govuk-button govuk-button--secondary" type="button"
+                  aria-expanded="false">
+                  <span class="defra-filter--button-content">Show filters</span>
+                  <span class="defra-filter__icon"></span>
+                </button>
+              </div>
+
+            </div> -->
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<form class="form" action="/new-edition/duplicate-form-question" method="post">
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Create new edition
+      </button>
+
+
+      </div>
+
+
+
+      </div>
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Created by</th>
+        <th scope="col" class="govuk-table__header">Last edited by</th>
+        <th scope="col" class="govuk-table__header">Status</th>
+        <th scope="col" class="govuk-table__header" style="width:10%!important;">Action</th>
+
+      </tr>
+    </thead>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">Anna Scott on 15 December 2023</td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">
+        <div class="govuk-tag govuk-tag--orange">
+          draft
+        </div>
+      <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Edit</a></td>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+
+
+          <td class="govuk-table__cell">Steven Thomas on 15 December 2023</td>
+          <td class="govuk-table__cell">Anna Scott on 16 February 2024</td>
+          <td class="govuk-table__cell">
+            <div class="govuk-tag govuk-tag--green">
+              published
+            </div>
+            <!-- <span class="govuk-!-margin-bottom-2 govuk-!-margin-top-2" style="display: block">and</span> -->
+            <!--
+
+        <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Copy</a></td>
+        </td> -->
+          <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Edit</a></td>
+        </tr>
+
+
+
+
+
+        <!-- <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Copy</a></td> -->
+    </tr>
+
+
+    </tbody>
+  </table>
+  </div>
+
+  </table>
+  </div>
+  </div>
+
 </form>
 
 {% endblock %}

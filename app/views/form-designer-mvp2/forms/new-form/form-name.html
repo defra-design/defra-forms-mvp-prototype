@@ -1,5 +1,8 @@
 {% extends "layouts/main.html" %}
 
+{% block pageTitle %}
+Form name – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
 {% block header %}
 <header class="cross-service-header" role="banner" data-module="one-login-header">
   <div class="one-login-header" data-one-login-header-nav>
@@ -91,9 +94,9 @@
             <ul class="service-header__nav-list service-header__nav" id="service-header__nav"
               data-open-class="service-header__nav--open">
               <!-- Use the "service-header__nav-list-item--active" modifier class on the li to visually highlight the page the user is currently viewing -->
-              <li class="service-header__nav-list-item service-header__nav-list-item--active ">
+              <li class="service-header__nav-list-item">
                 <!-- Use the aria-current="page" attribute on the anchor tag -->
-                <a class="service-header__nav-list-item-link" href="#">
+                <a class="service-header__nav-list-item-link" href="/form-library">
                   Form library
                 </a>
               </li>
@@ -112,32 +115,11 @@
 </header>
 
 {% endblock %}
-
-
-{% block pageTitle %}
-Library – {{ serviceName }} – Form builder
-{% endblock %}
-
 {% block beforeContent %}
-<!-- {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
-
-{{ govukPhaseBanner({
-  tag: {
-    text: "Beta"
-  },
-  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
-}) }} -->
-<!-- <div class="login-nav login-border">
-  <ul class="login-nav__list">
-    <li class="login-nav__list-item-new">Steven Thomas</li>
-    <li class="login-nav__list-item-new"><a href="/form-designer-V2/admin-2.html"
-        class="govuk-link govuk-link app-c-topic-list__link brand__color--no-visited-state profile">Admin</a></li>
-    <li class="login-nav__list-item-new"><a href="account?returnURL=dashboard-submitted"
-        class="govuk-link login-nav__link-new govuk-link--no-visited-state profile">Manage account</a></li>
-    <li class="login-nav__list-item-new"><a href="#"
-        class="govuk-link login-nav__link-new govuk-link--no-visited-state">Sign out</a></li>
-  </ul>
-</div> -->
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
 
 {% endblock %}
 
@@ -146,228 +128,28 @@ Library – {{ serviceName }} – Form builder
 {% from "govuk/components/tabs/macro.njk" import govukTabs %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
-
-<div class="govuk-grid-row">
-
-
-
-  <div class="govuk-grid-column-full">
-    <h1 class="govuk-heading-xl">Form library</h1>
-    {% from "govuk/components/button/macro.njk" import govukButton %}
-
-    {{ govukButton({
-    text: "Create new form",
-    href: "/form-designer-v2/forms/new-form/form-name"
-    }) }}
-
-    <!-- <a class="govuk-button govuk-button--secondary" href="/form-designer-v2/admin/user-management/steven-thomas/add-user-page-1.html">Add a new
-      user</a> -->
-
-
-  </div>
-
-</div>
-
-{%- from "govuk/components/table/macro.njk" import govukTable -%}
-
-<table class="govuk-table" data-module="moj-sortable-table">
-
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-
-      <th scope="col" class="govuk-table__header" aria-sort="ascending" style="width:25%!important;">Form name</th>
-
-      <th scope="col" class="govuk-table__header" aria-sort="none" style="width:25%!important;">Created by</th>
-
-      <th scope="col" class="govuk-table__header" aria-sort="none" style="width:25%!important;">Last edited by</th>
-
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none"
-        style="text-align: left;" style="width:25%!important;">Status</th>
-
-    </tr>
-  </thead>
-
-  <tbody class="govuk-table__body">
-
-    <tr class="govuk-table__row">
-
-      <td class="govuk-table__cell"><a href="/form-designer-v2/forms/form-home/report-a-dead-wild-bird-live-2.html"
-          class="govuk-link govuk-link--no-visited-state">Report a dead wild bird</a></td>
-
-      <td class="govuk-table__cell" data-sort-value="6961">Anna Scott</td>
-
-      <td class="govuk-table__cell">Janna Sullivan on 15 Decemeber 2023 </td>
-
-      <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-        <div class="govuk-tag govuk-tag--green">
-          Published
-        </div>
-      </td>
-
-    </tr>
-
-    <tr class="govuk-table__row">
-
-      <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
-          class="govuk-link govuk-link--no-visited-state">Export fertlisisers</a></td>
-
-      <td class="govuk-table__cell">Steven Thomas</td>
-
-      <td class="govuk-table__cell">Daniel Da Silveira on 17 Decemeber 2023 </td>
-
-      <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-        <div class="govuk-tag govuk-tag--orange">
-          Draft
-        </div>
-      </td>
-
-    </tr>
-
-    <tr class="govuk-table__row">
-
-      <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
-          class="govuk-link govuk-link--no-visited-state">Report a flood</a></td>
-
-      <td class="govuk-table__cell">Lorenzo Pagani</td>
-
-      <td class="govuk-table__cell">Anna Scott on 19 Decemeber 2023 </td>
-
-      <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-        <div class="govuk-tag govuk-tag--orange">
-          Draft
-        </div>
-      </td>
-    </tr>
-
-    <tr class="govuk-table__row">
-
-      <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
-          class="govuk-link govuk-link--no-visited-state">Co2 level reporting</a></td>
-
-      <td class="govuk-table__cell">James Smithy</td>
-
-      <td class="govuk-table__cell">Daniel Da Silveira on 24 Decemeber 2023 </td>
-
-      <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-        <div class="govuk-tag govuk-tag--blue">
-          Review
-        </div>
-      </td>
-
-    </tr>
-
-    <tr class="govuk-table__row">
-
-      <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
-          class="govuk-link govuk-link--no-visited-state">Import plants</a></td>
-
-      <td class="govuk-table__cell">Lucy Smith</td>
-
-      <td class="govuk-table__cell">Lorenzo Pagani on 15 Decemeber 2023 </td>
-
-      <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-        <div class="govuk-tag govuk-tag--blue">
-          Review
-        </div>
-      </td>
-
-    </tr>
-
-    <tr class="govuk-table__row">
-
-      <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
-          class="govuk-link govuk-link--no-visited-state">Report a wreck</a></td>
-
-      <td class="govuk-table__cell">Elliot Zedmin</td>
-
-      <td class="govuk-table__cell">Steven Thomas on 01 January 2023 </td>
-
-      <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-        <div class="govuk-tag govuk-tag--orange">
-          Draft
-        </div>
-      </td>
-
-    </tr>
-
-    <tr class="govuk-table__row">
-
-      <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
-          class="govuk-link govuk-link--no-visited-state">Apply for a farming license</a></td>
-
-      <td class="govuk-table__cell">Steven Thomas</td>
-
-      <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td>
-
-      <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-        <div class="govuk-tag govuk-tag--green">
-          Published
-        </div>
-      </td>
-
-    </tr>
-
-  </tbody>
-
-
-</table>
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    {% from "govuk/components/pagination/macro.njk" import govukPagination %}
-
-    {{ govukPagination({
-    previous: {
-    href: "#"
-    },
-    next: {
-    href: "#"
-    },
-    items: [
-    {
-    number: 1,
-    current: false,
-    href: "#"
-    },
-    {
-    ellipsis: false
-    },
-    {
-    number: 2,
-    current: true,
-    href: "#"
-    },
-    {
-    number: 3,
-    current: false,
-    href: "#"
-    },
-    {
-    number: 4,
-    href: "#"
-    },
-    {
-    ellipsis: true
-    },
-    {
-    number: 10,
-    href: "#"
-    }
-    ]
-    }) }}
-
-    </nav>
-
-
-  </div>
-
-  </table>
-</div>
-</div>
-
-</div>
-
-
-
+<!-- <main class="govuk-main-wrapper" id="main-content" role="main"> -->
+<form class="form"
+  action="/form-designer-v2/forms/new-form/organisation-name"
+  method="post">
+
+  {% from "govuk/components/input/macro.njk" import govukInput %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukInput({
+      label: {
+      text: "Enter a name for your form",
+      classes: "govuk-label--l",
+      isPageHeading: true
+      },
+      id: "form-name",
+      name: "formName"
+      }) }}
+
+      {{ govukButton({
+      text: "Continue"
+      }) }}
 </form>
 
 {% endblock %}

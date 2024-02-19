@@ -1,0 +1,344 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<div class="login-nav login-border">
+  <ul class="login-nav__list">
+    <li class="login-nav__list-item-new">Steven Thomas</li>
+    <li class="login-nav__list-item-new"><a href="/form-designer/admin.html"
+        class="govuk-link govuk-link app-c-topic-list__link brand__color--no-visited-state profile">Admin</a></li>
+    <li class="login-nav__list-item-new"><a href="account?returnURL=dashboard-submitted"
+        class="govuk-link login-nav__link-new govuk-link--no-visited-state profile">Manage account</a></li>
+    <li class="login-nav__list-item-new"><a href="#"
+        class="govuk-link login-nav__link-new govuk-link--no-visited-state">Sign out</a></li>
+  </ul>
+</div>
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+<div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+          </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+              Account deleted successfully
+          </h3>
+      </div>
+  </div>
+  </div>
+  <div class="govuk-grid-row">
+
+
+
+    <div class="govuk-grid-column-full">
+
+      <span class="govuk-caption-xl">Managing editor</span>
+      <h1 class="govuk-heading-xl">Steven Thomas</h1>
+
+      <!-- <a class="govuk-button govuk-button--secondary" href="/form-designer-v2/admin/user-management/steven-thomas/add-user-page-1.html">Add a new
+        user</a> -->
+
+
+    </div>
+
+  </div>
+
+
+  <div class="govuk-tabs" data-module="govuk-tabs">
+    <h2 class="govuk-tabs__title">
+      Contents
+    </h2>
+    <ul class="govuk-tabs__list">
+      <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+        <a class="govuk-tabs__tab" href="#user-management">
+          User management
+        </a>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#forms">
+          Forms
+        </a>
+      </li>
+
+    </ul>
+    <div class="govuk-tabs__panel" id="user-management">
+      <h2 class="govuk-heading-l">User management</h2>
+
+
+      <a class="govuk-button" href="/form-designer-v2/admin/user-management/steven-thomas/add-user-page-1.html">Add a new
+        user</a>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" style="width:33.3%!important;">Email</th>
+            <th scope="col" class="govuk-table__header" style="width:33.3%!important;">Name</th>
+            <th scope="col" class="govuk-table__header" style="width:33.3%!important;">Role</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="#"
+                class="govuk-link govuk-link--no-visited-state">alex.luckett@defra.gov.uk</a></td>
+            <td class="govuk-table__cell">Alex Luckett</td>
+            <td class="govuk-table__cell">Administrator</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="#"
+                class="govuk-link govuk-link--no-visited-state">anna.scott@defra.gov.uk</a></td>
+            <td class="govuk-table__cell">Anna Scott</td>
+            <td class="govuk-table__cell">Managing editor</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="/form-designer-v2/admin/user-management/daniel-da-silveira.html"
+                class="govuk-link govuk-link--no-visited-state">daniel.dasilveira@defra.gov.uk</a></td>
+            <td class="govuk-table__cell">Daniel Da Silveira</td>
+            <td class="govuk-table__cell">Writer</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href=""
+                class="govuk-link govuk-link--no-visited-state">lorenzo.pagani@defra.gov.uk</a></td>
+            <td class="govuk-table__cell">Lorenzo Pagani</td>
+            <td class="govuk-table__cell">Writer</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="#"
+                class="govuk-link govuk-link--no-visited-state">james.smith@defra.gov.uk</a></td>
+            <td class="govuk-table__cell">James Smith</td>
+            <td class="govuk-table__cell">Writer</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form class="form" action="/new-edition/duplicate-form-question" method="post">
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="forms">
+        <h2 class="govuk-heading-l">Forms</h2>
+        <div class="govuk-grid-row">
+
+          <div class="govuk-grid-column-two-thirds">
+
+            <div class="govuk-grid-row">
+
+              <div class="govuk-grid-column-two-thirds">
+                <button type="submit" action="/new-edition/duplicate-form-question" class="govuk-button"
+                  data-module="govuk-button">
+                  Create new form
+                </button>
+                <!-- <h2 class="govuk-heading-l">Existing forms</h2> -->
+
+                <form class="gem-c-layout-super-navigation-header__search-form" id="search" data-module="ga4-form-tracker"
+                  data-ga4-form="{ &quot;event_name&quot;: &quot;search&quot;, &quot;type&quot;: &quot;header menu bar&quot;, &quot;section&quot;: &quot;Search GOV.UK&quot;, &quot;action&quot;: &quot;search&quot;, &quot;url&quot;: &quot;/search/all&quot; }"
+                  data-ga4-form-include-text="" data-ga4-form-no-answer-undefined="" action="https://www.gov.uk/search"
+                  method="get" role="search" aria-label="Site-wide" data-ga4-form-tracker-module-started="true">
+
+                  <div
+                    class="gem-c-search govuk-!-display-none-print  govuk-!-margin-bottom-0 gem-c-search--large gem-c-search--on-white gem-c-search--separate-label"
+                    style="padding-bottom: 45;" data-module="gem-toggle-input-class-on-focus"
+                    data-gem-toggle-input-class-on-focus-module-started="true">
+                    <label for="search-main-ee0ee96d"
+                      class="govuk-label govuk-label--m gem-c-layout-super-navigation-header__search-label--large-navbar">Search</label>
+                    <div class="gem-c-search__item-wrapper">
+                      <input enterkeyhint="search" class="gem-c-search__item gem-c-search__input js-class-toggle"
+                        id="search-main-ee0ee96d" name="q" title="Search" type="search" value="">
+                      <div class="gem-c-search__item gem-c-search__submit-wrapper">
+                        <button class="gem-c-search__submit" type="submit" data-track-category="headerClicked"
+                          data-track-action="searchSubmitted" data-track-label="/search/all"
+                          data-track-dimension="Search on GOV.UK" data-track-dimension-index="29"
+                          data-module="gem-track-click" enterkeyhint="search" data-gem-track-click-module-started="true">
+                          Search
+
+                          <svg class="gem-c-search__icon" width="27" height="27" viewBox="0 0 27 27" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            <circle cx="12.0161" cy="11.0161" r="8.51613" stroke="currentColor" stroke-width="3"></circle>
+                            <line x1="17.8668" y1="17.3587" x2="26.4475" y2="25.9393" stroke="currentColor"
+                              stroke-width="3"></line>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+
+    </form>
+
+
+  </div>
+
+  </div>
+
+  </div>
+
+
+
+  <table class="govuk-table" data-module="moj-sortable-table">
+
+
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+
+        <th scope="col" class="govuk-table__header" aria-sort="ascending" style="width:25%!important;">Form name</th>
+
+        <th scope="col" class="govuk-table__header" aria-sort="none" style="width:25%!important;">Created by</th>
+
+        <th scope="col" class="govuk-table__header" aria-sort="none" style="width:25%!important;">Last edited by</th>
+
+        <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none"
+          style="text-align: left;" style="width:25%!important;">Status</th>
+
+      </tr>
+    </thead>
+
+    <tbody class="govuk-table__body">
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live-2"
+            class="govuk-link govuk-link--no-visited-state">Report a dead wild bird</a></td>
+
+        <td class="govuk-table__cell" data-sort-value="6961">Anna Scott</td>
+
+        <td class="govuk-table__cell">Janna Sullivan on 15 Decemeber 2023 </td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
+          <div class="govuk-tag govuk-tag--green">
+            Published
+          </div>
+        </td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
+            class="govuk-link govuk-link--no-visited-state">Export fertlisisers</a></td>
+
+        <td class="govuk-table__cell">Steven Thomas</td>
+
+        <td class="govuk-table__cell">Daniel Da Silveira on 17 Decemeber 2023 </td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
+          <div class="govuk-tag govuk-tag--orange">
+            Draft
+          </div>
+        </td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
+            class="govuk-link govuk-link--no-visited-state">Report a flood</a></td>
+
+        <td class="govuk-table__cell">Lorenzo Pagani</td>
+
+        <td class="govuk-table__cell">Anna Scott on 19 Decemeber 2023 </td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
+          <div class="govuk-tag govuk-tag--orange">
+            Draft
+          </div>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
+            class="govuk-link govuk-link--no-visited-state">Co2 level reporting</a></td>
+
+        <td class="govuk-table__cell">James Smithy</td>
+
+        <td class="govuk-table__cell">Daniel Da Silveira on 24 Decemeber 2023 </td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
+          <div class="govuk-tag govuk-tag--blue">
+            Review
+          </div>
+        </td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
+            class="govuk-link govuk-link--no-visited-state">Import plants</a></td>
+
+        <td class="govuk-table__cell">Lucy Smith</td>
+
+        <td class="govuk-table__cell">Lorenzo Pagani on 15 Decemeber 2023 </td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
+          <div class="govuk-tag govuk-tag--blue">
+            Review
+          </div>
+        </td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
+            class="govuk-link govuk-link--no-visited-state">Report a wreck</a></td>
+
+        <td class="govuk-table__cell">Elliot Zedmin</td>
+
+        <td class="govuk-table__cell">Steven Thomas on 01 January 2023 </td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
+          <div class="govuk-tag govuk-tag--orange">
+            Draft
+          </div>
+        </td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-live"
+            class="govuk-link govuk-link--no-visited-state">Apply for a farming license</a></td>
+
+        <td class="govuk-table__cell">Steven Thomas</td>
+
+        <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
+          <div class="govuk-tag govuk-tag--green">
+            Published
+          </div>
+        </td>
+
+      </tr>
+
+    </tbody>
+  </table>
+
+  </div>
+
+  </table>
+  </div>
+  </div>
+
+  </div>
+
+  </form>
+
+
+
+  {% endblock %}

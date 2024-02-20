@@ -63,7 +63,7 @@
             <a class="one-login-header__nav__link one-login-header__nav__link--one-login"
               href="https://home.account.gov.uk/">
               <span class="one-login-header__nav__link-content">
-                Steven Thomas
+                Chris Smith
               </span>
 
               <!--[if gt IE 8]><!-->
@@ -164,10 +164,34 @@
 {% endblock %}
 
 {% block pageTitle %}
-Report a dead wild bird – {{ serviceName }} – Defra form builder
+Report a dead wild bird – {{ serviceName }}
 {% endblock %}
 
-
+{% block footer %}
+ {{ govukFooter({
+   meta: {
+     items: [
+       {
+         href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-published.html",
+         text: "Form in publish state"
+       },
+       {
+         href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft.html",
+         text: "Form in draft state"
+       },
+       {
+        href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft-published.html",
+        text: "Form in Published and Draft state"
+      },
+       {
+         href: "/manage-prototype/clear-data",
+         text: "Clear data"
+       }
+     ],
+     visuallyHiddenTitle: "Footer links"
+   }
+ }) }}
+{% endblock %}
 
 {% block content %}
 
@@ -209,32 +233,44 @@ Report a dead wild bird – {{ serviceName }} – Defra form builder
     <h2 class="govuk-heading-l">Report a dead wild bird</h2>
 
 
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Details
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list">
+          <div class="govuk-!-padding-top-0">
+            <li>
+              <strong>Lead organisation</strong>
+              <a class="govuk-link govuk-link--no-visited-state"
+                href="/form-designer-v2/forms/organisation-name-change.html">
+                <br>Center for Environment, Fisheries and Aquaculture Science - Cefas</a>
+            </li>
+          </div>
+          <div class="govuk-!-padding-top-4">
+            <li>
+              <strong>Team name</strong>
+              <br>
+              <a class="govuk-link govuk-link--no-visited-state"
+                href="/form-designer-v2/forms/policy-sme-change.html">Policy directorate</a>
+            </li>
+            <div class="govuk-!-padding-top-4">
+              <li>
+                <strong>Shared email address</strong>
+                <br>
+                <a class="govuk-link govuk-link--no-visited-state"
+                  href="/form-designer-v2/forms/policy-sme-change.html">SM-Defra-Not-Real@defra.gov.uk</a>
+              </li>
+            </div>
 
-    <details class ="govuk-details" data-module="govuk-details" >
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Details
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-    <ul class="govuk-list">
-      <li>
-        <strong>Organisation</strong>
-        <a class="govuk-link govuk-link--no-visited-state" href="/form-designer-v2/forms/organisation-name-change.html">
-          <br>Center for Environment, Fisheries and Aquaculture Science - Cefas</a>
-      </li>
-      <div class="govuk-!-padding-top-2">
-        <li>
-          <strong>Team</strong>
-          <br>
-          <a class="govuk-link govuk-link--no-visited-state" href="/form-designer-v2/forms/policy-sme-change.html">Policy directorate</a>
-        </li>
+
+          </div>
+
       </div>
-    </ul>
-  </div>
-</details>
-
-</details>
+      </ul>
+    </details>
 
       <div class="govuk-grid-column-two-thirds">
 
@@ -280,13 +316,14 @@ Report a dead wild bird – {{ serviceName }} – Defra form builder
     </div>
   </div>
 
-  <form class="form" action="/new-edition/duplicate-form-question" method="post">
-
   <table class="govuk-table">
     <thead class="govuk-table__head">
-            <button type="submit" class="govuk-button" data-module="govuk-button">
-        Create new edition
-      </button>
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      {{ govukButton({
+        text: "Create draft",
+        href: "https://designer.forms.cyb.dev/app/designer/user-research-test"
+      }) }}
 
 
       </div>
@@ -317,7 +354,7 @@ Report a dead wild bird – {{ serviceName }} – Defra form builder
 
         <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Copy</a></td>
         </td> -->
-        <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Edit</a></td>
+        <td class="govuk-table__cell"><a href="https://designer.forms.cyb.dev/app/designer/user-research-test" class="govuk-link govuk-link--no-visited-state">View</a></td>
       </tr>
 
 

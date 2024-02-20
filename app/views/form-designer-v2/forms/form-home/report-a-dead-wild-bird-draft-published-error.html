@@ -63,7 +63,7 @@
             <a class="one-login-header__nav__link one-login-header__nav__link--one-login"
               href="/index.html">
               <span class="one-login-header__nav__link-content">
-                Steven Thomas
+                Chris Smith
               </span>
 
               <!--[if gt IE 8]><!-->
@@ -167,7 +167,31 @@
 Report a dead wild bird – {{ serviceName }}
 {% endblock %}
 
-
+{% block footer %}
+ {{ govukFooter({
+   meta: {
+     items: [
+       {
+         href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-published.html",
+         text: "Form in publish state"
+       },
+       {
+         href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft.html",
+         text: "Form in draft state"
+       },
+       {
+        href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft-published.html",
+        text: "Form in Published and Draft state"
+      },
+       {
+         href: "/manage-prototype/clear-data",
+         text: "Clear data"
+       }
+     ],
+     visuallyHiddenTitle: "Footer links"
+   }
+ }) }}
+{% endblock %}
 
 {% block content %}
 
@@ -228,24 +252,35 @@ Report a dead wild bird – {{ serviceName }}
       </summary>
       <div class="govuk-details__text">
         <ul class="govuk-list">
-          <li>
-            <strong>Organisation</strong>
-            <a class="govuk-link govuk-link--no-visited-state"
-              href="/form-designer-v2/forms/organisation-name-change.html">
-              <br>Center for Environment, Fisheries and Aquaculture Science - Cefas</a>
-          </li>
-          <div class="govuk-!-padding-top-2">
+          <div class="govuk-!-padding-top-0">
             <li>
-              <strong>Team</strong>
+              <strong>Lead organisation</strong>
+              <a class="govuk-link govuk-link--no-visited-state"
+                href="/form-designer-v2/forms/organisation-name-change.html">
+                <br>Center for Environment, Fisheries and Aquaculture Science - Cefas</a>
+            </li>
+          </div>
+          <div class="govuk-!-padding-top-4">
+            <li>
+              <strong>Team name</strong>
               <br>
               <a class="govuk-link govuk-link--no-visited-state"
                 href="/form-designer-v2/forms/policy-sme-change.html">Policy directorate</a>
             </li>
-          </div>
-        </ul>
-      </div>
-    </details>
+            <div class="govuk-!-padding-top-4">
+              <li>
+                <strong>Shared email address</strong>
+                <br>
+                <a class="govuk-link govuk-link--no-visited-state"
+                  href="/form-designer-v2/forms/policy-sme-change.html">SM-Defra-Not-Real@defra.gov.uk</a>
+              </li>
+            </div>
 
+
+          </div>
+
+      </div>
+      </ul>
     </details>
 
     <div class="govuk-grid-column-two-thirds">
@@ -297,7 +332,7 @@ Report a dead wild bird – {{ serviceName }}
   <table class="govuk-table">
     <thead class="govuk-table__head">
       <button type="submit" class="govuk-button" data-module="govuk-button">
-        Create new edition
+        Create draft
       </button>
 
 

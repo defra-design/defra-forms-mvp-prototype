@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+Create new form – {{ serviceName }}
 {% endblock %}
 
 {% block header %}
@@ -9,7 +9,7 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
   <div class="one-login-header" data-one-login-header-nav>
     <div class="one-login-header__container govuk-width-container">
       <div class="one-login-header__logo">
-        <a href="https://www.gov.uk/" class="one-login-header__link one-login-header__link--homepage">
+        <a href="/index.html" class="one-login-header__link one-login-header__link--homepage">
           <span class="one-login-header__logotype">
             <!--[if gt IE 8]><!-->
             <svg aria-hidden="true" focusable="false" class="one-login-header__logotype-crown"
@@ -182,19 +182,33 @@ href: "javascript:window.history.back()"
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Enter the name of the SME/policy team</h1>
+      <h1 class="govuk-heading-l">Team details - optional</h1>
 
       {{ govukInput({
-      label: {
-      },
-      id: "full-name",
-      name: "fullName",
-      autocomplete: "name",
-      spellcheck: false
+        label: {
+          text: "Name of team"
+        },
+        hint: {
+          text: "Enter the name of the policy team or business area responsible for this form"
+        },
+        id: "team-name",
+        name: "teamName"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Shared team email address"
+        },
+
+        id: "email",
+        name: "email",
+        type: "email",
+        autocomplete: "email",
+        spellcheck: false
       }) }}
 
       {{ govukButton({
-      text: "Continue"
+      text: "Save and continue"
       }) }}
 </form>
 

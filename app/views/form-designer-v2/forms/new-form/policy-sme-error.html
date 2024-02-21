@@ -174,44 +174,67 @@ href: "javascript:window.history.back()"
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
 <!-- <main class="govuk-main-wrapper" id="main-content" role="main"> -->
-<form class="form"
-  action="/new-edition/name-of-form"
+  <form class="form"
+  action="https://designer.forms.cyb.dev/app/designer/user-research-test"
+  method="post">
+
+  {% from "govuk/components/input/macro.njk" import govukInput %}
+  {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+  {{ govukErrorSummary({
+    titleText: "There is a problem",
+    errorList: [
+      {
+        text: "Enter name of team",
+        href: "#team-name"
+      },
+      {
+        text: "Enter a shared email address",
+        href: "#email"
+      }
+    ]
+  }) }}
+  <form class="form"
+  action="https://designer.forms.cyb.dev/app/designer/user-research-test"
   method="post">
 
   {% from "govuk/components/input/macro.njk" import govukInput %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      {% from "govuk/components/input/macro.njk" import govukInput %}
-
-      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-
-{{ govukErrorSummary({
-  titleText: "There is a problem",
-  errorList: [
-    {
-      text: "Enter the name of the SME/Policy team",
-      href: "#"
-    }
-  ]
-}) }}
+      <h1 class="govuk-heading-l">Team details - optional</h1>
 
       {{ govukInput({
         label: {
-          text: "Enter the name of the SME/Policy team",
-          classes: "govuk-label--l",
-          isPageHeading: true
+          text: "Name of team"
         },
-        id: "event-name",
-        name: "eventName",
+        hint: {
+          text: "Enter the name of the policy team or business area responsible for this form"
+        },
+        id: "team-name",
+        name: "teamName",
         errorMessage: {
-          text: "Enter the name name of the SME/Policy team"
+          text: "Enter name of team"
+        }
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Shared team email address"
+        },
+
+        id: "email",
+        name: "email",
+        type: "email",
+        autocomplete: "email",
+        spellcheck: false,
+        errorMessage: {
+          text: "Enter a shared email address"
         }
       }) }}
 
       {{ govukButton({
-      text: "Continue"
+      text: "Save and continue"
       }) }}
 </form>
 

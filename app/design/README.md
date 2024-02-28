@@ -11,7 +11,7 @@ One of our core design principles is to always **start with what already exists*
 
 > [!NOTE]
 > You can also [view a page dedicated to the current MVP iteration on Figma](https://www.figma.com/file/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?type=design&node-id=1330%3A51984&mode=design&t=iWP6ZljjZAGkqQy8-1)
-> or view a working prototype of the [current iteration in our Heroku app]([url](https://defra-forms-mvp-prototype-6c025bd15252.herokuapp.com/))*
+> or view a working prototype of the [current iteration in our Heroku app](https://defra-forms-mvp-prototype-6c025bd15252.herokuapp.com/) 
 
 *the heroku version may not always be 100% representative of the final designs as shown in Figma
 

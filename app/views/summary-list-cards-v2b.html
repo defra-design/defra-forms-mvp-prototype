@@ -193,12 +193,25 @@ Form library – {{ serviceName }}
 
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">Form library</h1>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" style="display:inline; margin-right: 10px;" for="sort">
+        Sort by
+      </label>
+      <select class="govuk-select" id="sort" name="sort">
+        <option value="published">Form name (A to Z)</option>
+        <option value="updated">Form name (Z to A)</option>
+      </select>
+      <button type="submit" class="govuk-button govuk-button--secondary" style="margin-left: 10px; margin-bottom: 0px;" data-module="govuk-button">
+        Sort forms
+      </button>
+    </div>
+
+
+
     {% from "govuk/components/button/macro.njk" import govukButton %}
 
-    {{ govukButton({
-    text: "Create new form",
-    href: "/form-designer-v2/forms/new-form/form-name"
-    }) }}
+
 
     <!-- <a class="govuk-button govuk-button--secondary" href="/form-designer-v2/admin/user-management/steven-thomas/add-user-page-1.html">Add a new
       user</a> -->
@@ -226,18 +239,10 @@ Form library – {{ serviceName }}
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 
-    <div class="govuk-form-group">
-      <label class="govuk-label" style="display:inline; margin-right: 10px;" for="sort">
-        Sort by
-      </label>
-      <select class="govuk-select" id="sort" name="sort">
-        <option value="published">Form name (A to Z)</option>
-        <option value="updated">Form name (Z to A)</option>
-      </select>
-      <button type="submit" class="govuk-button govuk-button--secondary" style="margin-left: 10px; margin-bottom: 0px;" data-module="govuk-button">
-        Sort forms
-      </button>
-    </div>
+    {{ govukButton({
+      text: "Create new form",
+      href: "/form-designer-v2/forms/new-form/form-name"
+      }) }}
 
 
     <div class="govuk-summary-card">

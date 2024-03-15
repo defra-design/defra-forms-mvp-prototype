@@ -201,253 +201,32 @@ Form library – {{ serviceName }}
 
   </div>
 
-</div>
 
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
+<div class="govuk-form-group govuk-grid-column-two-thirds">
+  <label class="govuk-label" style="display:inline; margin-right: 10px;" for="sort">
+    Sort by
+  </label>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-third">
-    <h2 id="search-filters-heading" class="govuk-heading-m govuk-!-margin-bottom-2">
-      Search
-    </h2>
-    <div class="govuk-form-group">
-      <label class="govuk-label" for="search-field-title-search">
-        Form name
-      </label>
-      <input class="govuk-input" id="search-field-title-search" name="titleSearch" type="text">
-    </div>
-    <div id="search-buttons--header" class="govuk-button-group govuk-!-margin-bottom-4">
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Apply filters
-      </button>
+  <select class="govuk-select" id="sort" name="sort">
+    <option value="published">Newest to oldest</option>
+    <option value="published">Oldest to newest</option>
+    <option value="published">Form name (A to Z)</option>
+    <option value="published">Form name (Z to A)</option>
+    <option value="updated">Status (Draft)</option>
+    <option value="updated">Status (Published)</option>
+  </select>
 
-      <a href="/roles#search-filters" role="button" draggable="false" class="govuk-button govuk-button--secondary"
-        data-module="govuk-button">
-        Clear filters
-      </a>
-    </div>
+  <button type="submit" class="govuk-button govuk-button--secondary" style="margin-left: 10px; margin-bottom: 0px;" data-module="govuk-button">
+    Sort forms
+  </button>
 
-
-    <h3 class="govuk-heading-m govuk-!-margin-top-4 govuk-!-margin-bottom-1">
-      Filter search
-    </h3>
-    <p class="govuk-body">
-      Apply additional filters
-    </p>
-
-
-    <div class="govuk-accordion" data-module="govuk-accordion" id="search-filters-advanced">
-
-      <div class="govuk-accordion__section">
-        <div class="govuk-accordion__section-header">
-          <h4 class="govuk-accordion__section-heading">
-
-            <button type="button" aria-controls="search-filters-advanced-content-1"
-              class="govuk-accordion__section-button" aria-expanded="false"
-              aria-label="Location , Show this section"><span class="govuk-accordion__section-heading-text"
-                id="search-filters-advanced-heading-1"><span class="govuk-accordion__section-heading-text-focus">
-                  Author
-                  <span class="govuk-visually-hidden gem-c-step-nav__section-heading-divider">, </span></span><span
-                  class="gem-c-step-nav__toggle-link js-toggle-link govuk-!-display-none-print"><span
-                    class="gem-c-step-nav__toggle-link-focus"><span
-                      class="gem-c-step-nav__chevron js-toggle-link-icon gem-c-step-nav__chevron--down"></span>
-
-        </div>
-        <div id="search-filters-advanced-content-1" class="govuk-accordion__section-content" hidden="until-found">
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset">
-              <legend class="govuk-fieldset__legend">
-                Select an author
-              </legend>
-              <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="changedName" name="changedName" type="radio" value="month">
-                  <label class="govuk-label govuk-radios__label" for="changedName">
-                    Me (Chris Smith)
-                  </label>
-                </div>
-
-
-                <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
-                  <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="changedName" name="changedName" type="radio" value="month">
-                    <label class="govuk-label govuk-radios__label" for="changedName">
-                      Anna Scott
-                    </label>
-                  </div>
-
-
-                  <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
-                    <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="changedName" name="changedName" type="radio" value="month">
-                      <label class="govuk-label govuk-radios__label" for="changedName">
-                        James smithy
-                      </label>
-                    </div>
-
-                    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
-                      <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="changedName" name="changedName" type="radio" value="month">
-                        <label class="govuk-label govuk-radios__label" for="changedName">
-                          Steven Thomas
-                        </label>
-                      </div>
-
-              </div>
-            </fieldset>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="govuk-accordion__section">
-        <div class="govuk-accordion__section-header">
-          <h4 class="govuk-accordion__section-heading">
-
-            <button type="button" aria-controls="search-filters-advanced-content-1"
-              class="govuk-accordion__section-button" aria-expanded="false"
-              aria-label="Location , Show this section"><span class="govuk-accordion__section-heading-text"
-                id="search-filters-advanced-heading-1"><span class="govuk-accordion__section-heading-text-focus">
-                  Organisation
-                  <span class="govuk-visually-hidden gem-c-step-nav__section-heading-divider">, </span></span><span
-                  class="gem-c-step-nav__toggle-link js-toggle-link govuk-!-display-none-print"><span
-                    class="gem-c-step-nav__toggle-link-focus"><span
-                      class="gem-c-step-nav__chevron js-toggle-link-icon gem-c-step-nav__chevron--down"></span>
-
-        </div>
-        <div id="search-filters-advanced-content-1" class="govuk-accordion__section-content" hidden="until-found">
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset">
-              <legend class="govuk-fieldset__legend">
-                Select all organisations that apply
-              </legend>
-              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="region" name="region" type="checkbox" value="1000">
-                  <label class="govuk-label govuk-checkboxes__label" for="region">
-                    Animal and Plant Health Agency - APHA
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="region-2" name="region" type="checkbox" value="1001">
-                  <label class="govuk-label govuk-checkboxes__label" for="region-2">
-                    Centre for Environment, Fisheries and Aquaculture Science - Cefas
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="region-3" name="region" type="checkbox" value="1002">
-                  <label class="govuk-label govuk-checkboxes__label" for="region-3">
-                    Defra
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="region-4" name="region" type="checkbox" value="1003">
-                  <label class="govuk-label govuk-checkboxes__label" for="region-4">
-                    Environment agency
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="region-5" name="region" type="checkbox" value="1004">
-                  <label class="govuk-label govuk-checkboxes__label" for="region-5">
-                    Forrestry commision
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="region-6" name="region" type="checkbox" value="1005">
-                  <label class="govuk-label govuk-checkboxes__label" for="region-6">
-                    Marine Management Organisaiton - MMO
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="region-7" name="region" type="checkbox" value="1006">
-                  <label class="govuk-label govuk-checkboxes__label" for="region-7">
-                    Natural England
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="region-8" name="region" type="checkbox" value="1007">
-                  <label class="govuk-label govuk-checkboxes__label" for="region-8">
-                    Rural Payments Agency - RPA
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
-                  <label class="govuk-label govuk-checkboxes__label" for="region-9">
-                    Veterinary Medicines Directorate - VMD
-                  </label>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div class="govuk-accordion__section">
-        <div class="govuk-accordion__section-header">
-          <h4 class="govuk-accordion__section-heading">
-
-            <button type="button" aria-controls="search-filters-advanced-content-1"
-              class="govuk-accordion__section-button" aria-expanded="false"
-              aria-label="Location , Show this section"><span class="govuk-accordion__section-heading-text"
-                id="search-filters-advanced-heading-1"><span class="govuk-accordion__section-heading-text-focus">
-                  State
-                  <span class="govuk-visually-hidden gem-c-step-nav__section-heading-divider">, </span></span><span
-                  class="gem-c-step-nav__toggle-link js-toggle-link govuk-!-display-none-print"><span
-                    class="gem-c-step-nav__toggle-link-focus"><span
-                      class="gem-c-step-nav__chevron js-toggle-link-icon gem-c-step-nav__chevron--down"></span>
-
-        </div>
-        <div id="search-filters-advanced-content-1" class="govuk-accordion__section-content" hidden="until-found">
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset">
-              <legend class="govuk-fieldset__legend">
-                Select all states that apply
-              </legend>
-              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="region" name="region" type="checkbox" value="1000">
-                  <label class="govuk-label govuk-checkboxes__label" for="region">
-                    Draft
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="region-2" name="region" type="checkbox" value="1001">
-                  <label class="govuk-label govuk-checkboxes__label" for="region-2">
-                    Live
-                  </label>
-                </div>
-
-              </div>
-            </fieldset>
-          </div>
-        </div>
-      </div>
+</div>
 
 
 
 
-    </div>
-
-    <div id="search-buttons--header" class="govuk-button-group govuk-!-margin-bottom-4">
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Apply filters
-      </button>
-
-      <a href="/roles#search-filters" role="button" draggable="false" class="govuk-button govuk-button--secondary"
-        data-module="govuk-button">
-        Clear filters
-      </a>
-    </div>
-  </div>
-
-
-
-  <div class="govuk-grid-column-two-thirds">
-
-  </div>
 
   <div id="search-results" aria-describedby="search-results-heading"
     class="app-search__results govuk-grid-column-two-thirds">
@@ -497,22 +276,6 @@ Form library – {{ serviceName }}
       </thead>
 
       <tbody class="govuk-table__body">
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft.html"
-              class="govuk-link govuk-link--no-visited-state">Apply for a county parish holding number in England</a>
-          </td>
-
-          <!-- <td class="govuk-table__cell">Janna Sullivan on 15 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
 
         <tr class="govuk-table__row">
 
@@ -758,7 +521,21 @@ Form library – {{ serviceName }}
           </td>
 
         </tr>
+        <tr class="govuk-table__row">
 
+          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft.html"
+              class="govuk-link govuk-link--no-visited-state">Apply for a county parish holding number in England</a>
+          </td>
+
+          <!-- <td class="govuk-table__cell">Janna Sullivan on 15 Decemeber 2023 </td> -->
+
+          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
+            <div class="govuk-tag govuk-tag--green">
+              Live
+            </div>
+          </td>
+
+        </tr>
         <tr class="govuk-table__row">
 
           <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"

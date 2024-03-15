@@ -168,29 +168,29 @@ Apply for a county parish holding number in England – {{ serviceName }}
 {% endblock %}
 
 {% block footer %}
- {{ govukFooter({
-   meta: {
-     items: [
-       {
-         href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-published.html",
-         text: "Form in publish state"
-       },
-       {
-         href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft.html",
-         text: "Form in draft state"
-       },
-       {
-        href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft-published.html",
-        text: "Form in Published and Draft state"
-      },
-       {
-         href: "/manage-prototype/clear-data",
-         text: "Clear data"
-       }
-     ],
-     visuallyHiddenTitle: "Footer links"
-   }
- }) }}
+{{ govukFooter({
+meta: {
+items: [
+{
+href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-published.html",
+text: "Form in Live state"
+},
+{
+href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-Draft.html",
+text: "Form in Draft state"
+},
+{
+href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-Draft-published.html",
+text: "Form in Live and Draft state"
+},
+{
+href: "/manage-prototype/clear-data",
+text: "Clear data"
+}
+],
+visuallyHiddenTitle: "Footer links"
+}
+}) }}
 {% endblock %}
 
 {% block content %}
@@ -204,7 +204,7 @@ Apply for a county parish holding number in England – {{ serviceName }}
   titleText: "There is a problem",
   errorList: [
     {
-      text: "You can't create a new edition as there is already a form in draft"
+      text: "You can't create a new edition as there is already a form in Draft"
 
     }
   ]
@@ -332,7 +332,7 @@ Apply for a county parish holding number in England – {{ serviceName }}
   <table class="govuk-table">
     <thead class="govuk-table__head">
       <button type="submit" class="govuk-button" data-module="govuk-button">
-        Create draft
+        Create Draft
       </button>
 
 
@@ -354,7 +354,7 @@ Apply for a county parish holding number in England – {{ serviceName }}
       <td class="govuk-table__cell"></td>
       <td class="govuk-table__cell">
         <div class="govuk-tag govuk-tag--orange">
-          draft
+          Draft
         </div>
       <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Edit</a></td>
       <tbody class="govuk-table__body">

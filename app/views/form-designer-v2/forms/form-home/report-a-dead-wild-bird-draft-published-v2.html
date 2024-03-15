@@ -168,29 +168,29 @@ Report a dead wild bird – {{ serviceName }}
 {% endblock %}
 
 {% block footer %}
- {{ govukFooter({
-   meta: {
-     items: [
-       {
-         href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-published.html",
-         text: "Form in publish state"
-       },
-       {
-         href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft.html",
-         text: "Form in draft state"
-       },
-       {
-        href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft-published.html",
-        text: "Form in Published and Draft state"
-      },
-       {
-         href: "/manage-prototype/clear-data",
-         text: "Clear data"
-       }
-     ],
-     visuallyHiddenTitle: "Footer links"
-   }
- }) }}
+{{ govukFooter({
+meta: {
+items: [
+{
+href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-published.html",
+text: "Form in Live state"
+},
+{
+href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-Draft.html",
+text: "Form in Draft state"
+},
+{
+href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-Draft-published.html",
+text: "Form in Published and Draft state"
+},
+{
+href: "/manage-prototype/clear-data",
+text: "Clear data"
+}
+],
+visuallyHiddenTitle: "Footer links"
+}
+}) }}
 {% endblock %}
 
 {% block content %}
@@ -317,7 +317,7 @@ Report a dead wild bird – {{ serviceName }}
 </div>
 <div class="govuk-grid-row">
 <div class="govuk-grid-column-two-thirds">
-<form class="form" action="/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft-published-error" method="post">
+<form class="form" action="/form-designer-v2/forms/form-home/report-a-dead-wild-bird-Draft-published-error" method="post">
 
   <table class="govuk-table">
     <thead class="govuk-table__head">
@@ -342,7 +342,7 @@ Report a dead wild bird – {{ serviceName }}
       <td class="govuk-table__cell">23 March 2024<br>by Chris Smith</td>
       <td class="govuk-table__cell">
         <div class="govuk-tag govuk-tag--orange">
-          draft
+          Draft
         </div>
       </td><td class="govuk-table__cell"><a href="https://designer.forms.cyb.dev/app/designer/user-research-test" class="govuk-link govuk-link--no-visited-state">Edit</a></td>
       </tr></tbody><tbody class="govuk-table__body">

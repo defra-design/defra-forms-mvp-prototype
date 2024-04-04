@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Internal notes – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back to form settings",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Internal notes
+      </h1>
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+
+
+<form class="form" action="/internal-notes/new" method="post">
+
+{{ govukButton({
+  text: "Add internal note"
+}) }}
+
+
+
+      {%- from "moj/components/timeline/macro.njk" import mojTimeline -%}
+
+
+      {{ mojTimeline({
+        items: [
+          {
+            label: {
+              text:  "Changed field validation behaviour"
+            },
+            text: "Updated the email address input field to include a more sophisticated validation check, reducing the incidence of users entering incorrect email formats.",
+            datetime: {
+              timestamp: "2019-06-07T12:32:00.000Z",
+              type: "datetime"
+            },
+            byline: {
+              text: "Chris Smith"
+            }
+          },
+          {
+            label: {
+              text:  "New form created"
+            },
+            text: "Name of form: Report a dead wild bird. Lead organisation: Defra. SME/Policy team: Policy directorate.",
+            datetime: {
+              timestamp: "2019-06-07T12:32:00.000Z",
+              type: "datetime"
+            },
+            byline: {
+              text: "Moshe Pitt"
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+</form>
+{% endblock %}

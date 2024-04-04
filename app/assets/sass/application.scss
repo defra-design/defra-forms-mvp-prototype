@@ -4,6 +4,21 @@
 //
 
 // Add extra styles here
+
+// Hide empty <h2> without service header `params.pageName`
+@include govuk-media-query($until: tablet) {
+  .service-header__heading:empty {
+    display: none;
+  }
+}
+
+// Hide border from single "Sign in" navigation item
+@include govuk-media-query($from: tablet) {
+  .one-login-header__nav__list-item:only-child {
+    border-left-width: 0;
+  }
+}
+
 .login-nav {
     font-family: "GDS Transport", arial, sans-serif;
     -webkit-font-smoothing: antialiased;

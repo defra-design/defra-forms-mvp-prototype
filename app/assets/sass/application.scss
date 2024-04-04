@@ -42,7 +42,7 @@
       font-family: sans-serif;
     }
   }
-  @media (min-width: 40.0625em) {
+  @include govuk-media-query($from: tablet) {
     .login-nav {
       font-size: 16px;
       font-size: 1rem;
@@ -131,7 +131,7 @@
       font-family: sans-serif;
     }
   }
-  @media (min-width: 40.0625em) {
+  @include govuk-media-query($from: tablet) {
     .login-nav__details {
       font-size: 16px;
       font-size: 1rem;
@@ -151,7 +151,7 @@
   }
 
   /*** Small viewports ***/
-  @media all and (max-width: 40.0625em) {
+  @include govuk-media-query($until: tablet) {
     .login-nav__details {
       float: none;
     }
@@ -183,7 +183,7 @@
   }
 }
 
-@media (min-width: 40.0625em) {
+@include govuk-media-query($from: tablet) {
   .gem-c-search__label {
       font-size:19px;
       font-size: 1.1875rem;
@@ -215,7 +215,7 @@
   }
 }
 
-@media (min-width: 40.0625em) {
+@include govuk-media-query($from: tablet) {
   .gem-c-search__label h1 {
       font-size:19px;
       font-size: 1.1875rem;
@@ -272,7 +272,7 @@
   }
 }
 
-@media (min-width: 40.0625em) {
+@include govuk-media-query($from: tablet) {
   .gem-c-search__input[type="search"] {
       font-size:19px;
       font-size: 1.1875rem;
@@ -287,7 +287,7 @@
   }
 }
 
-@media (min-width: 40.0625em) {
+@include govuk-media-query($from: tablet) {
   .gem-c-search__input[type="search"] {
       height:2.1052631579em;
       padding: .3157894737em
@@ -449,7 +449,7 @@
   }
 }
 
-@media (min-width: 40.0625em) {
+@include govuk-media-query($from: tablet) {
   .gem-c-search--large .gem-c-search__label {
       font-size:19px;
       font-size: 1.1875rem;
@@ -573,7 +573,7 @@
   overflow: hidden;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+@include govuk-device-pixel-ratio {
   .search-submit {
     background-size: 52.5px auto;
     background-position: 115% 50%;
@@ -637,7 +637,7 @@
   background-position: 8px 50%;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+@include govuk-device-pixel-ratio {
   .search-wrapper .search-submit {
     background-size: 60px auto;
     background-position: 160% 50%;
@@ -663,7 +663,7 @@
   font-weight: 700;
   margin-bottom: 20px;
 }
-@media (min-width: 48.0625em) {
+@include govuk-media-query($from: desktop) {
   .defra-filter--action .govuk-button {
     margin-bottom: 0;
   }
@@ -743,7 +743,7 @@
   padding: 20px;
   margin-bottom: 20px;
 }
-@media (min-width: 48.0625em) {
+@include govuk-media-query($from: desktop) {
   .defra-filter--content {
     margin-top: -10px;
   }
@@ -758,7 +758,7 @@
   color: #0b0c0c !important;
   margin-bottom: 0;
 }
-@media (min-width: 48.0625em) {
+@include govuk-media-query($from: desktop) {
   .defra-filter--open .govuk-button {
     padding-bottom: 30px;
     height: 70px;

@@ -194,11 +194,20 @@
       {% set pageItems = [] %}
 
       {% for forms in formsByPage %}
-        {% set pageItems = (pageItems.push({
-          number: loop.index,
-          href: "?page=" + loop.index,
-          current: loop.index == pageCurrent
-        }), pageItems) %}
+        {% set isPrevious = loop.index - pageCurrent == -1 %}
+        {% set isUpcoming = loop.index >= pageCurrent and loop.index - pageCurrent <= 2 %}
+
+        {% if loop.first or loop.last or isPrevious or isUpcoming %}
+          {% set pageItems = (pageItems.push({
+            number: loop.index,
+            href: "?page=" + loop.index,
+            current: loop.index == pageCurrent
+          }), pageItems) %}
+        {% else %}
+          {% set pageItems = (pageItems.push({
+            ellipsis: true
+          }), pageItems) %}
+        {% endif %}
       {% endfor %}
 
       {{ govukPagination({

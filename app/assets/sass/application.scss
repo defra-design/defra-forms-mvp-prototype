@@ -17,6 +17,11 @@
   }
 }
 
+// Hide duplicate pagination ellipses
+.govuk-pagination__item--ellipses + .govuk-pagination__item--ellipses {
+  display: none;
+}
+
 .app-field-group {
   margin-bottom: govuk-spacing(4);
   // font-size: 0 removes whitespace caused by inline-block

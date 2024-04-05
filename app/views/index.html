@@ -107,8 +107,8 @@ Form library – {{ serviceName }}
         {% endset %}
 
         {% set formStatus %}
-          {% set tagDraft = govukTag({ text: "Draft", classes: "govuk-tag--orange" }) %}
-          {% set tagLive = govukTag({ text: "Live", classes: "govuk-tag--green" }) %}
+          {% set tagDraft = govukTag({ text: "Draft", classes: "govuk-tag--orange govuk-!-margin-bottom-1" }) %}
+          {% set tagLive = govukTag({ text: "Live", classes: "govuk-tag--green govuk-!-margin-top-1" }) %}
 
           {% switch formItem.status %}
             {% case "draft" %}

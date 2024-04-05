@@ -36,6 +36,8 @@ Form library – {{ serviceName }}
     <div class="govuk-grid-column-full">
       <div class="app-field-group">
         <div class="app-field-group__item">
+          <input type="hidden" name="page" value="1">
+
           {{ govukSelect({
             id: "sort",
             name: "sort",
@@ -97,9 +99,13 @@ Form library – {{ serviceName }}
           {% set sortReverse = false %}
       {% endswitch %}
 
+      {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
+      {% set formsPage = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
+      {% set formsByPage = formItems | sort(attribute=sortBy, reverse=sortReverse) | slice(pageCount) %}
+
       {% set formRows = [] %}
 
-      {% for formItem in formItems | sort(attribute=sortBy, reverse=sortReverse) %}
+      {% for formItem in formsByPage[formsPage - 1] %}
         {% set formName %}
           <a href="/form-designer-v2/{{ formItem.path }}" class="govuk-link govuk-link--no-visited-state">
             {{ formItem.name }}
@@ -154,28 +160,24 @@ Form library – {{ serviceName }}
         rows: formRows
       }) }}
 
+      {% set pageItems = [] %}
+
+      {% for forms in formsByPage %}
+        {% set pageItems = (pageItems.push({
+          number: loop.index,
+          href: "?page=" + loop.index,
+          current: loop.index == formsPage
+        }), pageItems) %}
+      {% endfor %}
+
       {{ govukPagination({
+        previous: {
+          href: "?page=" + (formsPage - 1)
+        } if formsPage > 1,
         next: {
-          href: "#"
-        },
-        items: [
-          {
-            number: 1,
-            href: "#",
-            current: true
-          },
-          {
-            number: 2,
-            href: "#"
-          },
-          {
-            ellipsis: true
-          },
-          {
-            number: 5,
-            href: "#"
-          }
-        ]
+          href: "?page=" + (formsPage + 1)
+        } if formsPage < pageCount,
+        items: pageItems
       }) }}
     </div>
   </div>

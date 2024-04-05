@@ -56,7 +56,8 @@ Form library – {{ serviceName }}
                 value: "status",
                 text: "Status"
               }
-            ]
+            ],
+            value: data["sort"]
           }) }}
         </div>
         <div class="app-field-group__item">
@@ -82,9 +83,21 @@ Form library – {{ serviceName }}
         href: "/form-designer-v2/forms/new-form/form-name"
       }) }}
 
+      {% switch data["sort"] %}
+        {% case "updated-newest" %}
+          {% set sortBy = "updated.date" %}
+          {% set sortReverse = true %}
+        {% case "updated-oldest" %}
+          {% set sortBy = "updated.date" %}
+          {% set sortReverse = false %}
+        {% case "status" %}
+          {% set sortBy = "status" %}
+          {% set sortReverse = false %}
+      {% endswitch %}
+
       {% set formRows = [] %}
 
-      {% for formItem in require("data/form-library.json").items | sort(attribute="updated.date", reverse=true) %}
+      {% for formItem in require("data/form-library.json").items | sort(attribute=sortBy, reverse=sortReverse) %}
         {% set formName %}
           <a href="{{ formItem.href }}" class="govuk-link govuk-link--no-visited-state">
             {{ formItem.name }}

@@ -122,8 +122,10 @@
       {% set formRows = [] %}
 
       {% for formItem in formsByPage[pageCurrent - 1] %}
+        {% set formHref = formItem.href if formItem.href else "/form-designer-v2/" + formItem.path %}
+
         {% set formName %}
-          <a href="/form-designer-v2/{{ formItem.path }}" class="govuk-link govuk-link--no-visited-state">
+          <a href="{{ formHref }}" class="govuk-link govuk-link--no-visited-state">
             {{ formItem.name }}
           </a>
         {% endset %}

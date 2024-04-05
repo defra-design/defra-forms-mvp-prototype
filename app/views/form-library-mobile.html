@@ -99,7 +99,7 @@ Form library – {{ serviceName }}
 
       {% for formItem in require("data/form-library.json").items | sort(attribute=sortBy, reverse=sortReverse) %}
         {% set formName %}
-          <a href="{{ formItem.href }}" class="govuk-link govuk-link--no-visited-state">
+          <a href="/form-designer-v2/{{ formItem.path }}" class="govuk-link govuk-link--no-visited-state">
             {{ formItem.name }}
           </a>
           <p class="govuk-!-margin-top-2 govuk-!-margin-bottom-1">

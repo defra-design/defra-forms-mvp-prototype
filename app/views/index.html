@@ -2,7 +2,29 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set formItems = require("data/form-library.json").items %}
+{% set formLibrary = require("data/form-library.json") %}
+
+{% switch data["sort"] %}
+  {% case "updated-oldest" %}
+    {% set sortBy = "updated.date" %}
+    {% set sortReverse = false %}
+  {% case "status" %}
+    {% set sortBy = "status" %}
+    {% set sortReverse = false %}
+  {% case "published-newest" %}
+    {% set filterBy = "published" %}
+    {% set sortBy = "published.date" %}
+    {% set sortReverse = true %}
+  {% case "published-oldest" %}
+    {% set filterBy = "published" %}
+    {% set sortBy = "published.date" %}
+    {% set sortReverse = false %}
+  {% case default %}
+    {% set sortBy = "updated.date" %}
+    {% set sortReverse = true %}
+{% endswitch %}
+
+{% set formItems = formLibrary.items | selectattr(filterBy) if filterBy else formLibrary.items %}
 {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
 {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
 
@@ -96,24 +118,6 @@
         text: "Create new form",
         href: "/form-designer-v2/forms/new-form/form-name"
       }) }}
-
-      {% switch data["sort"] %}
-        {% case "updated-newest" %}
-          {% set sortBy = "updated.date" %}
-          {% set sortReverse = true %}
-        {% case "updated-oldest" %}
-          {% set sortBy = "updated.date" %}
-          {% set sortReverse = false %}
-        {% case "status" %}
-          {% set sortBy = "status" %}
-          {% set sortReverse = false %}
-        {% case "published-newest" %}
-          {% set sortBy = "published.date" %}
-          {% set sortReverse = true %}
-        {% case "published-oldest" %}
-          {% set sortBy = "published.date" %}
-          {% set sortReverse = false %}
-      {% endswitch %}
 
       {% set formsByPage = formItems | sort(attribute=sortBy, reverse=sortReverse) | slice(pageCount) %}
       {% set formRowsMobile = [] %}

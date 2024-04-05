@@ -2,6 +2,8 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
+{% set formItems = require("data/form-library.json").items %}
+
 {% block header %}
   {{ serviceHeader({
     serviceName: "Defra form builder",
@@ -73,7 +75,7 @@ Form library – {{ serviceName }}
     <div id="search-results" aria-describedby="search-results-heading" class="app-search__results govuk-grid-column-two-thirds-from-desktop">
       <h2 id="search-results-heading" class="govuk-heading-m">
         <span class="govuk-visually-hidden">Search results</span>
-        49 forms
+        {{ formItems.length }} forms
       </h2>
 
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
@@ -97,7 +99,7 @@ Form library – {{ serviceName }}
 
       {% set formRows = [] %}
 
-      {% for formItem in require("data/form-library.json").items | sort(attribute=sortBy, reverse=sortReverse) %}
+      {% for formItem in formItems | sort(attribute=sortBy, reverse=sortReverse) %}
         {% set formName %}
           <a href="/form-designer-v2/{{ formItem.path }}" class="govuk-link govuk-link--no-visited-state">
             {{ formItem.name }}

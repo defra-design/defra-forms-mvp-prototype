@@ -84,7 +84,7 @@ Form library – {{ serviceName }}
 
       {% set formRows = [] %}
 
-      {% for formItem in require("data/form-library.json").items %}
+      {% for formItem in require("data/form-library.json").items | sort(attribute="updated.date", reverse=true) %}
         {% set formName %}
           <a href="{{ formItem.href }}" class="govuk-link govuk-link--no-visited-state">
             {{ formItem.name }}

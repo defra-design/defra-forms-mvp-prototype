@@ -176,6 +176,8 @@ Apply for a county parish holding number in England – {{ serviceName }}
     </div>
   </div>
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
   <table class="govuk-table">
     <thead class="govuk-table__head">
       {% from "govuk/components/button/macro.njk" import govukButton %}
@@ -192,10 +194,10 @@ Apply for a county parish holding number in England – {{ serviceName }}
 
       </div>
       <tr class="govuk-table__row">
-        <th scope="col" class="govuk-table__header">Created by</th>
-        <th scope="col" class="govuk-table__header">Last edited by</th>
-        <th scope="col" class="govuk-table__header">Status</th>
-        <th scope="col" class="govuk-table__header" style="width:10%!important;">Action</th>
+        <th scope="col" class="govuk-table__header">Created</th>
+        <th scope="col" class="govuk-table__header">Updated</th>
+        <th scope="col" class="govuk-table__header ">Status</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Action</th>
 
       </tr>
     </thead>
@@ -203,8 +205,8 @@ Apply for a county parish holding number in England – {{ serviceName }}
       <tr class="govuk-table__row">
 
 
-        <td class="govuk-table__cell">Chris Smith on 15 December 2023</td>
-        <td class="govuk-table__cell">Anna Scott on 16 February 2024</td>
+        <td class="govuk-table__cell">15 Dec 2023<br>by Chris Smith</td>
+        <td class="govuk-table__cell">16 Feb 2024<br>by Anna Scott</td>
         <td class="govuk-table__cell">
           <div class="govuk-tag govuk-tag--green">
             Live
@@ -269,6 +271,7 @@ Apply for a county parish holding number in England – {{ serviceName }}
   </table>
   </div>
   </div>
+
 
   </form>
 

@@ -22,562 +22,135 @@
 Form library – {{ serviceName }}
 {% endblock %}
 
-{% block beforeContent %}
-<!-- {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
-
-{{ govukPhaseBanner({
-  tag: {
-    text: "Beta"
-  },
-  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
-}) }} -->
-<!-- <div class="login-nav login-border">
-  <ul class="login-nav__list">
-    <li class="login-nav__list-item-new">Steven Thomas</li>
-    <li class="login-nav__list-item-new"><a href="/form-designer-V2/admin-2.html"
-        class="govuk-link govuk-link app-c-topic-list__link brand__color--no-visited-state profile">Admin</a></li>
-    <li class="login-nav__list-item-new"><a href="account?returnURL=dashboard-submitted"
-        class="govuk-link login-nav__link-new govuk-link--no-visited-state profile">Manage account</a></li>
-    <li class="login-nav__list-item-new"><a href="#"
-        class="govuk-link login-nav__link-new govuk-link--no-visited-state">Sign out</a></li>
-  </ul>
-</div> -->
-
-{% endblock %}
-
 {% block content %}
-
-{% from "govuk/components/tabs/macro.njk" import govukTabs %}
-{% from "govuk/components/table/macro.njk" import govukTable %}
-
-
 <div class="govuk-grid-row">
-
-
-
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">Form library</h1>
-
-
-    <!-- <a class="govuk-button govuk-button--secondary" href="/form-designer-v2/admin/user-management/steven-thomas/add-user-page-1.html">Add a new
-      user</a> -->
-
-
   </div>
-
-
-{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
-<div class="govuk-form-group govuk-grid-column-two-thirds">
-  <label class="govuk-label" style="display:inline; margin-right: 10px;" for="sort">
-    Sort by
-  </label>
-
-  <select class="govuk-select" id="sort" name="sort">
-    <option value="published">Newest to oldest</option>
-    <option value="published">Oldest to newest</option>
-    <option value="published">Form name (A to Z)</option>
-    <option value="published">Form name (Z to A)</option>
-    <option value="updated">Status (Draft)</option>
-    <option value="updated">Status (Published)</option>
-  </select>
-
-  <button type="submit" class="govuk-button govuk-button--secondary" style="margin-left: 10px; margin-bottom: 0px;" data-module="govuk-button">
-    Sort forms
-  </button>
-
 </div>
 
-
-
-
-
-  <div id="search-results" aria-describedby="search-results-heading"
-    class="app-search__results govuk-grid-column-two-thirds">
-    <h2 id="search-results-heading" class="govuk-heading-m">
-      <span class="govuk-visually-hidden">Search results</span>
-      49 forms
-    </h2>
-
-
-
-
-    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-    {% from "govuk/components/button/macro.njk" import govukButton %}
-
-    {{ govukButton({
-    text: "Create new form",
-    href: "/form-designer-v2/forms/new-form/form-name"
-    }) }}
-
-    <!-- <div class="govuk-form-group">
-      <label class="govuk-label" style="display:inline; margin-right: 10px;" for="sort">
-        Sort by
-      </label>
-      <select class="govuk-select" id="sort" name="sort">
-        <option value="Live">Most recent</option>
-        <option value="updated">Oldest to newest</option>
-      </select>
-      <button type="submit" class="govuk-button govuk-button--secondary" style="margin-left: 10px; margin-bottom: 0px;"
-        data-module="govuk-button">
-        Sort forms
-      </button>
-    </div> -->
-
-
-    <table class="govuk-table">
-
-      <!-- UNLOCK IF WANT MOJ SORTABLE BACK<table class="govuk-table" data-module="moj-sortable-table"> -->
-
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-
-          <th scope="col" class="govuk-table__header" aria-sort="descending">Form name</th>
-          <!-- <th scope="col" class="govuk-table__header" aria-sort="none" style="width:25%!important;">Last edited by</th> -->
-
-          <th scope="col" class="govuk-table__header" aria-sort="none">Status</th>
-        </tr>
-      </thead>
-
-      <tbody class="govuk-table__body">
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Export fertlisisers</a></td>
-
-          <!-- <td class="govuk-table__cell">Daniel Da Silveira on 17 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-
-
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-            <span>
-              and
-            </span>
-            <div class="govuk-tag govuk-tag--orange">
-              Draft
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Report a flood</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 19 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--orange">
-              Draft
-            </div>
-          </td>
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Co2 level reporting</a></td>
-
-          <!-- <td class="govuk-table__cell">Daniel Da Silveira on 24 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--orange">
-              Draft
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Import plants</a></td>
-
-          <!-- <td class="govuk-table__cell">Lorenzo Pagani on 15 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--orange">
-              Draft
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Report a wreck</a></td>
-
-          <!-- <td class="govuk-table__cell">Steven Thomas on 01 January 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--orange">
-              Draft
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Apply for a farming license</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--orange">
-              Draft
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Search high levels of C02</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--orange">
-              Draft
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">CPH application form</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Register an XL Bully</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Report lost Livestock</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Register a new lake</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--orange">
-              Draft
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Request permission to build</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--orange">
-              Draft
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Tell Defra something</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Report avian flu</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Search for registered farms</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Get financial help</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--orange">
-              Draft
-            </div>
-          </td>
-
-        </tr>
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft.html"
-              class="govuk-link govuk-link--no-visited-state">Apply for a county parish holding number in England</a>
-          </td>
-
-          <!-- <td class="govuk-table__cell">Janna Sullivan on 15 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Buy land</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Export seeds</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Pay for a permit</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Report treasure</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Get flood warnings</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Apply to own a farm</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Apply for a dog permit</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-
-          <td class="govuk-table__cell"><a href="/form-designer-v2/forms/report-a-dead-wild-bird-Live"
-              class="govuk-link govuk-link--no-visited-state">Apply for a cheese permit</a></td>
-
-          <!-- <td class="govuk-table__cell">Anna Scott on 1 Decemeber 2023 </td> -->
-
-          <td class="govuk-table__cell govuk-table__cell--numeric" style="text-align:left!important;">
-            <div class="govuk-tag govuk-tag--green">
-              Live
-            </div>
-          </td>
-
-        </tr>
-
-
-      </tbody>
-
-
-    </table>
-
-
-    <nav class="govuk-pagination" role="navigation" aria-label="Pagination">
-      <ul class="govuk-pagination__list">
-        <li class="govuk-pagination__item govuk-pagination__item--current">
-          <a class="govuk-link govuk-pagination__link"
-            href="?titleSearch=&amp;bodySearch=Select+organisation&amp;regulated=&amp;bodyJustice=&amp;remunerated=&amp;status=open&amp;sort=region%3Adesc&amp;body=Select+organisation&amp;page=1"
-            aria-label="Page 1" aria-current="page">
-            1
-          </a>
-        </li>
-        <li class="govuk-pagination__item">
-          <a class="govuk-link govuk-pagination__link"
-            href="?titleSearch=&amp;bodySearch=Select+organisation&amp;regulated=&amp;bodyJustice=&amp;remunerated=&amp;status=open&amp;sort=region%3Adesc&amp;body=Select+organisation&amp;page=2"
-            aria-label="Page 2">
-            2
-          </a>
-        </li>
-        <li class="govuk-pagination__item govuk-pagination__item--ellipses">
-          ⋯
-        </li>
-        <li class="govuk-pagination__item">
-          <a class="govuk-link govuk-pagination__link"
-            href="?titleSearch=&amp;bodySearch=Select+organisation&amp;regulated=&amp;bodyJustice=&amp;remunerated=&amp;status=open&amp;sort=region%3Adesc&amp;body=Select+organisation&amp;page=5"
-            aria-label="Page 5">
-            5
-          </a>
-        </li>
-      </ul>
-
-
-
-
-      <div class="govuk-pagination__next">
-        <a class="govuk-link govuk-pagination__link"
-          href="?titleSearch=&amp;bodySearch=Select+organisation&amp;regulated=&amp;bodyJustice=&amp;remunerated=&amp;status=open&amp;sort=region%3Adesc&amp;body=Select+organisation&amp;page=2"
-          rel="next">
-          <span class="govuk-pagination__link-title">
-            Next<span class="govuk-visually-hidden"> page</span>
-          </span>
-          <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg"
-            height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
-            <path
-              d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z">
-            </path>
-          </svg>
-        </a>
+<form>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div class="app-field-group">
+        <div class="app-field-group__item">
+          {{ govukSelect({
+            id: "sort",
+            name: "sort",
+            label: {
+              text: "Sort by",
+              classes: "app-field-group__label"
+            },
+            classes: "app-field-group__input",
+            items: [
+              {
+                value: "updated-newest",
+                text: "Updated (newest)",
+                selected: true
+              },
+              {
+                value: "updated-oldest",
+                text: "Updated (oldest)"
+              },
+              {
+                value: "status",
+                text: "Status"
+              }
+            ]
+          }) }}
+        </div>
+        <div class="app-field-group__item">
+          {{ govukButton({
+            text: "Sort forms",
+            classes: "govuk-button--secondary app-field-group__button"
+          }) }}
+        </div>
       </div>
-
+    </div>
   </div>
+  <div class="govuk-grid-row">
+    <div id="search-results" aria-describedby="search-results-heading" class="app-search__results govuk-grid-column-two-thirds-from-desktop">
+      <h2 id="search-results-heading" class="govuk-heading-m">
+        <span class="govuk-visually-hidden">Search results</span>
+        49 forms
+      </h2>
 
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-  </form>
-  {% endblock %}
+      {{ govukButton({
+        text: "Create new form",
+        href: "/form-designer-v2/forms/new-form/form-name"
+      }) }}
+
+      {% set formRows = [] %}
+
+      {% for formItem in require("data/form-library.json").items %}
+        {% set formName %}
+          <a href="{{ formItem.href }}" class="govuk-link govuk-link--no-visited-state">
+            {{ formItem.name }}
+          </a>
+        {% endset %}
+
+        {% set formStatus %}
+          {% set tagDraft = govukTag({ text: "Draft", classes: "govuk-tag--orange" }) %}
+          {% set tagLive = govukTag({ text: "Live", classes: "govuk-tag--green" }) %}
+
+          {% switch formItem.status %}
+            {% case "draft" %}
+              {{ tagDraft }}
+            {% case "live-draft" %}
+              {{ tagLive }} and {{ tagDraft }}
+            {% case "live" %}
+              {{ tagLive }}
+          {% endswitch %}
+        {% endset %}
+
+        {% set formRows = (formRows.push([
+          {
+            html: formName
+          },
+          {
+            html: formStatus
+          }
+        ]), formRows) %}
+      {% endfor %}
+
+      {{ govukTable({
+        head: [
+          {
+            text: "Form name"
+          },
+          {
+            text: "Status"
+          }
+        ],
+        rows: formRows
+      }) }}
+
+      {{ govukPagination({
+        next: {
+          href: "#"
+        },
+        items: [
+          {
+            number: 1,
+            href: "#",
+            current: true
+          },
+          {
+            number: 2,
+            href: "#"
+          },
+          {
+            ellipsis: true
+          },
+          {
+            number: 5,
+            href: "#"
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+</form>
+{% endblock %}

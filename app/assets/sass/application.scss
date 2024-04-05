@@ -5,6 +5,45 @@
 
 // Add extra styles here
 
+.app-field-group {
+  margin-bottom: govuk-spacing(4);
+  // font-size: 0 removes whitespace caused by inline-block
+  font-size: 0;
+}
+
+.app-field-group__item {
+  width: 100%;
+}
+
+.app-field-group .govuk-form-group {
+  margin-bottom: govuk-spacing(4);
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-field-group__item,
+  .app-field-group__label,
+  .app-field-group__input {
+    display: inline-block;
+    margin-right: govuk-spacing(3);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .app-field-group__item {
+    width: auto;
+  }
+
+  .app-field-group__button {
+    display: block;
+  }
+
+  .app-field-group .govuk-form-group {
+    margin-bottom: govuk-spacing(6);
+  }
+}
+
 // Hide empty <h2> without service header `params.pageName`
 @include govuk-media-query($until: tablet) {
   .service-header__heading:empty {

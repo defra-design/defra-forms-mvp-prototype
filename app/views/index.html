@@ -12,9 +12,11 @@
     {% set sortBy = "status" %}
     {% set sortReverse = false %}
   {% case "published-newest" %}
+    {% set filterBy = "published" %}
     {% set sortBy = "published.date" %}
     {% set sortReverse = true %}
   {% case "published-oldest" %}
+    {% set filterBy = "published" %}
     {% set sortBy = "published.date" %}
     {% set sortReverse = false %}
   {% case default %}
@@ -22,7 +24,7 @@
     {% set sortReverse = true %}
 {% endswitch %}
 
-{% set formItems = formLibrary.items %}
+{% set formItems = formLibrary.items | selectattr(filterBy) if filterBy else formLibrary.items %}
 {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
 {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
 

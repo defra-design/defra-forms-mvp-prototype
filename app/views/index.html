@@ -98,8 +98,8 @@ Form library – {{ serviceName }}
           {% switch formItem.status %}
             {% case "draft" %}
               {{ tagDraft }}
-            {% case "live-draft" %}
-              {{ tagLive }} and {{ tagDraft }}
+            {% case "draft-live" %}
+              {{ tagDraft }} and {{ tagLive }}
             {% case "live" %}
               {{ tagLive }}
           {% endswitch %}

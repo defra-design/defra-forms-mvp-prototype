@@ -12,7 +12,7 @@
     {
       "name": "Export fertilisers",
       "href": "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-published",
-      "status": "live-draft",
+      "status": "draft-live",
       "updated": {
         "name": "Chris Smith",
         "date": "2023-12-10"
@@ -21,7 +21,7 @@
     {
       "name": "Report a flood",
       "href": "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-published",
-      "status": "draft",
+      "status": "draft-live",
       "updated": {
         "name": "Lorenzo Pagani",
         "date": "2024-01-05"

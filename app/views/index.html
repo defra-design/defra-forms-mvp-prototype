@@ -102,13 +102,26 @@
           {% set sortReverse = false %}
       {% endswitch %}
 
-      {% set formRows = [] %}
+      {% set formRowsMobile = [] %}
+      {% set formRowsDesktop = [] %}
 
       {% for formItem in formsByPage[pageCurrent - 1] %}
         {% set formName %}
           <a href="/form-designer-v2/{{ formItem.path }}" class="govuk-link govuk-link--no-visited-state">
             {{ formItem.name }}
           </a>
+        {% endset %}
+
+        {% set formUpdated %}
+          <span class="app-display-until-desktop">Updated </span>{{ formItem.updated.date | govukDate("truncate") }}<br>
+          by {{ formItem.updated.name }}
+        {% endset %}
+
+        {% set formNameUpdated %}
+          {{ formName | safe }}
+          <p class="govuk-!-margin-top-2 govuk-!-margin-bottom-1">
+            {{ formUpdated | safe }}
+          </p>
         {% endset %}
 
         {% set formStatus %}
@@ -119,33 +132,63 @@
             {% case "draft" %}
               {{ tagDraft }}
             {% case "draft-live" %}
-              {{ tagDraft }} and {{ tagLive }}
+              {{ tagDraft }} {{ tagLive }}
             {% case "live" %}
               {{ tagLive }}
           {% endswitch %}
         {% endset %}
 
-        {% set formRows = (formRows.push([
+        {% set formRowsMobile = (formRowsMobile.push([
           {
-            html: formName
+            html: formNameUpdated
           },
           {
             html: formStatus
           }
-        ]), formRows) %}
+        ]), formRowsMobile) %}
+
+        {% set formRowsDesktop = (formRowsDesktop.push([
+          {
+            html: formName
+          },
+          {
+            html: formUpdated
+          },
+          {
+            html: formStatus
+          }
+        ]), formRowsDesktop) %}
       {% endfor %}
 
       {{ govukTable({
+        classes: "app-display-until-desktop",
         head: [
           {
-            text: "Form name",
+            text: "Name",
             classes: "govuk-!-width-three-quarters"
           },
           {
             text: "Status"
           }
         ],
-        rows: formRows
+        rows: formRowsMobile
+      }) }}
+
+      {{ govukTable({
+        classes: "app-display-from-desktop",
+        head: [
+          {
+            text: "Name",
+            classes: "govuk-!-width-one-half"
+          },
+          {
+            text: "Last updated"
+          },
+          {
+            text: "Status"
+          }
+        ],
+        rows: formRowsDesktop
       }) }}
 
       {% set pageItems = [] %}

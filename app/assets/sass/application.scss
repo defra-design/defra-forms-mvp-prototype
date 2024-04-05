@@ -5,6 +5,18 @@
 
 // Add extra styles here
 
+@include govuk-media-query($from: desktop) {
+  .app-display-until-desktop {
+    display: none;
+  }
+}
+
+@include govuk-media-query($until: desktop) {
+  .app-display-from-desktop {
+    display: none;
+  }
+}
+
 .app-field-group {
   margin-bottom: govuk-spacing(4);
   // font-size: 0 removes whitespace caused by inline-block

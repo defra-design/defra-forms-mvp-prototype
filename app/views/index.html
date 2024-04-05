@@ -5,7 +5,6 @@
 {% set formItems = require("data/form-library.json").items %}
 {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
 {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
-{% set formsByPage = formItems | sort(attribute=sortBy, reverse=sortReverse) | slice(pageCount) %}
 
 {% block header %}
   {{ serviceHeader({
@@ -62,6 +61,14 @@
               {
                 value: "status",
                 text: "Status"
+              },
+              {
+                value: "published-newest",
+                text: "Published (newest)"
+              },
+              {
+                value: "published-oldest",
+                text: "Published (oldest)"
               }
             ],
             value: data["sort"]
@@ -100,8 +107,15 @@
         {% case "status" %}
           {% set sortBy = "status" %}
           {% set sortReverse = false %}
+        {% case "published-newest" %}
+          {% set sortBy = "published.date" %}
+          {% set sortReverse = true %}
+        {% case "published-oldest" %}
+          {% set sortBy = "published.date" %}
+          {% set sortReverse = false %}
       {% endswitch %}
 
+      {% set formsByPage = formItems | sort(attribute=sortBy, reverse=sortReverse) | slice(pageCount) %}
       {% set formRowsMobile = [] %}
       {% set formRowsDesktop = [] %}
 

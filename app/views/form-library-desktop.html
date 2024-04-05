@@ -3,6 +3,9 @@
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
 {% set formItems = require("data/form-library.json").items %}
+{% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
+{% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
+{% set formsByPage = formItems | sort(attribute=sortBy, reverse=sortReverse) | slice(pageCount) %}
 
 {% block header %}
   {{ serviceHeader({
@@ -20,9 +23,9 @@
   }) }}
 {% endblock %}
 
-{% block pageTitle %}
-Form library – {{ serviceName }}
-{% endblock %}
+{% block pageTitle -%}
+  Form library (page {{ pageCurrent }} of {{ pageCount }}) – {{ serviceName }}
+{%- endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -99,13 +102,9 @@ Form library – {{ serviceName }}
           {% set sortReverse = false %}
       {% endswitch %}
 
-      {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
-      {% set formsPage = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
-      {% set formsByPage = formItems | sort(attribute=sortBy, reverse=sortReverse) | slice(pageCount) %}
-
       {% set formRows = [] %}
 
-      {% for formItem in formsByPage[formsPage - 1] %}
+      {% for formItem in formsByPage[pageCurrent - 1] %}
         {% set formName %}
           <a href="/form-designer-v2/{{ formItem.path }}" class="govuk-link govuk-link--no-visited-state">
             {{ formItem.name }}
@@ -166,17 +165,17 @@ Form library – {{ serviceName }}
         {% set pageItems = (pageItems.push({
           number: loop.index,
           href: "?page=" + loop.index,
-          current: loop.index == formsPage
+          current: loop.index == pageCurrent
         }), pageItems) %}
       {% endfor %}
 
       {{ govukPagination({
         previous: {
-          href: "?page=" + (formsPage - 1)
-        } if formsPage > 1,
+          href: "?page=" + (pageCurrent - 1)
+        } if pageCurrent > 1,
         next: {
-          href: "?page=" + (formsPage + 1)
-        } if formsPage < pageCount,
+          href: "?page=" + (pageCurrent + 1)
+        } if pageCurrent < pageCount,
         items: pageItems
       }) }}
     </div>

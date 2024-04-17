@@ -35,29 +35,22 @@
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
     navigationItems: [{
-
+      href: "#",
+      text: 'Form library',
+      id: 'servicelink3'
+    },{
       href: "/",
-      text: "Overview",
-      id: "overview"
+      text: "Form home",
+      id: "form-home"
     }],
 
-    activeLinkId: "overview"
+    activeLinkId: "form-home"
   }) }}
-
-
 {% endblock %}
 
 {% block pageTitle -%}
   Form home - Apply for a county parish holding number in England – {{ serviceName }}
 {%- endblock %}
-
-{% block beforeContent %}
-{{ govukBackLink({
-text: "Back to form library",
-href: "/index.html"
-}) }}
-
-{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -85,10 +78,14 @@ href: "/index.html"
       Action
     </dt>
 
+
     <dd class="govuk-summary-list__actions" >
       <ul class="govuk-summary-list__actions-list" style="text-align: left; font-weight: 600;>
         <li class="govuk-summary-list__actions-list-item">
-          <a class="govuk-link govuk-link--no-visited-state" href="https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=1330%3A51984&type=design&node-id=3671-492534&viewport=-13228%2C-8300%2C0.51&t=qoFA3GbdpLPRNHNU-8&scaling=scale-down-width&starting-point-node-id=3551%3A376245&hide-ui=1" class="govuk-link" rel="noreferrer noopener" target="_blank">Edit<span class="govuk-visually-hidden"> contact details</span></a>
+          <a class="govuk-link"  rel="noreferrer noopener" target="_blank" href="https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=1330%3A51984&type=design&node-id=3671-492534&viewport=-13228%2C-8300%2C0.51&t=qoFA3GbdpLPRNHNU-8&scaling=scale-down-width&starting-point-node-id=3551%3A376245&show-proto-sidebar=1&hide-ui=1">Edit<span class="govuk-visually-hidden"> contact details</span></a>
+        </li>
+        <li class="govuk-summary-list__actions-list-item">
+          <a class="govuk-link" rel="noreferrer noopener" target="_blank" href="https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=1330%3A51984&type=design&node-id=3671-494269&viewport=-13228%2C-8300%2C0.51&t=qoFA3GbdpLPRNHNU-8&scaling=scale-down-width&starting-point-node-id=3551%3A376245&show-proto-sidebar=1&hide-ui=1">Preview<span class="govuk-visually-hidden"> contact details</span></a>
         </li>
       </ul>
     </dd>
@@ -114,27 +111,14 @@ href: "/index.html"
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      Preview link
+      Preview draft
     </dt>
-    <dd class="govuk-summary-list__value" style="padding-right:0!important;">
-      <p class="govuk-body">https://preview.forms.cyb.dev/draft/user-research-test/whats-the-name-of-the-applicant</p>
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <ul class="govuk-summary-list__actions-list">
-        <li class="govuk-summary-list__actions-list-item">
-          <a class="govuk-link" href="#">Copy<span class="govuk-visually-hidden"> contact details</span></a>
-        </li>
-        <li class="govuk-summary-list__actions-list-item">
-          <a class="govuk-link" href="#">View<span class="govuk-visually-hidden"> contact details</span></a>
-        </li>
-      </ul>
-    </dd>
+    <dd class="govuk-summary-list__value" style="width: 100%;">
+      <p class="govuk-body"><a href="#" class="govuk-link">https://preview.forms.cyb.dev/draft/user-research-test/whats-the-name-of-the-applicant</a>.
+      </dd>
 
   </div>
 </dl>
-
-<hr class="govuk-section-break govuk-section-break--l">
-
 <dl class="govuk-summary-list">
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
@@ -146,58 +130,57 @@ href: "/index.html"
       </strong>
     </dd>
   </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Action
+    </dt>
 
+    <dd class="govuk-summary-list__actions" >
+      <ul class="govuk-summary-list__actions-list" style="text-align: left; font-weight: 600;>
+        <li class="govuk-summary-list__actions-list-item">
+          <a class="govuk-link" href="#">Preview<span class="govuk-visually-hidden"> contact details</span></a>
+        </li>
+      </ul>
+    </dd>
+
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Updated
+    </dt>
+    <dd class="govuk-summary-list__value">
+      17 Mar 2024 by Chris Smith
+    </dd>
+
+  </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
       Created
     </dt>
     <dd class="govuk-summary-list__value">
-      <p class="govuk-body">17 Mar 2024 by Waylon Brady</p>
+      <p class="govuk-body">11 Oct 2023 by Waylon Brady</p>
     </dd>
 
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      Preview link
+      Preview live form
     </dt>
-    <dd class="govuk-summary-list__value" style="padding-right:0!important;">
-      <p class="govuk-body">https://preview.forms.cyb.dev/draft/user-research-test/whats-the-name-of-the-applicant</p>
+    <dd class="govuk-summary-list__value" style="width: 100%;">
+      <p class="govuk-body"><a href="#" class="govuk-link">https://preview.forms.cyb.dev/live/user-research-test/whats-the-name-of-the-applicant</a>.
+      </p>
     </dd>
-    <dd class="govuk-summary-list__actions">
-      <ul class="govuk-summary-list__actions-list">
-        <li class="govuk-summary-list__actions-list-item">
-          <a class="govuk-link" href="#">Copy<span class="govuk-visually-hidden"> contact details</span></a>
-        </li>
-        <li class="govuk-summary-list__actions-list-item">
-          <a class="govuk-link" href="#">View<span class="govuk-visually-hidden"> contact details</span></a>
-        </li>
-      </ul>
-    </dd>
-
   </div>
-
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      Live link
+      Live form
     </dt>
-    <dd class="govuk-summary-list__value" style="padding-right:0!important;">
-      <p class="govuk-body">https://www.submit-form-to-defra.service.gov.uk/apply-for-a county-parish-holiding-certificate</p>
+    <dd class="govuk-summary-list__value" style="width: 100%;">
+      <p class="govuk-body"><a href="#" class="govuk-link">https://www.defra-forms.service.gov.uk/apply-for-a county-parish-holiding-certificate</a>.
+      </p>
     </dd>
-    <dd class="govuk-summary-list__actions">
-      <ul class="govuk-summary-list__actions-list">
-        <li class="govuk-summary-list__actions-list-item">
-          <a class="govuk-link" href="#">Copy<span class="govuk-visually-hidden"> contact details</span></a>
-        </li>
-        <li class="govuk-summary-list__actions-list-item">
-          <a class="govuk-link" href="#">View<span class="govuk-visually-hidden"> contact details</span></a>
-        </li>
-      </ul>
-    </dd>
-
   </div>
 </dl>
-
-
 
       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
       <h2 class="govuk-heading-m govuk-!-padding-top-4">Organisation details</h2>

@@ -35,16 +35,17 @@
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
     navigationItems: [{
-
+      href: "/index.html",
+      text: 'Form library',
+      id: 'servicelink3'
+    },{
       href: "/cph-home/draft",
-      text: "Overview",
-      id: "overview"
+      text: "Form home",
+      id: "form-home"
     }],
 
-    activeLinkId: "overview"
+    activeLinkId: ""
   }) }}
-
-
 {% endblock %}
 
 {% block pageTitle -%}
@@ -57,8 +58,14 @@
     <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
 
     {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-<h1 class="govuk-heading-xl">Are you sure you want to make the form live?</h1>
-<p class="govuk-body-l">Completed forms will be sent to PolicyTeam@defra.gov.uk</p>
+<h1 class="govuk-heading-xl">Are you sure you want to make the draft form live?</h1>
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{{ govukWarningText({
+  text: "It will replace the form that is currently live.",
+  iconFallbackText: "Warning"
+}) }}
+<p class="govuk-body">Completed forms will be sent to PolicyTeam@defra.gov.uk</p>
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 <div class="govuk-button-group">

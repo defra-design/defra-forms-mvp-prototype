@@ -35,20 +35,21 @@
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
     navigationItems: [{
-
-      href: "/cph-home/draft",
-      text: "Overview",
-      id: "overview"
+      href: "#",
+      text: 'Form library',
+      id: 'servicelink3'
+    },{
+      href: "/",
+      text: "Form home",
+      id: "form-home"
     }],
 
-    activeLinkId: "overview"
+    activeLinkId: ""
   }) }}
-
-
 {% endblock %}
 
 {% block pageTitle -%}
-  Close form?- Apply for a county parish holding number in England – {{ serviceName }}
+  Form home - Apply for a county parish holding number in England – {{ serviceName }}
 {%- endblock %}
 
 {% block content %}
@@ -57,21 +58,27 @@
     <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
 
     {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-<h1 class="govuk-heading-xl">Are you sure you want to make the form live?</h1>
-<p class="govuk-body-l">Completed forms will be sent to PolicyTeam@defra.gov.uk</p>
+<h1 class="govuk-heading-xl">What email address should completed forms be sent to?</h1>
+<p class="govuk-body">Provide an email address for completed forms to be sent to for processing.</p>
+<p class="govuk-body">It should be a shared government email inbox and you should test it before making a form live. The email address must end with ‘gov.uk’.</p>
+<div class="govuk-form-group">
+  <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+
+</div>
+
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 <div class="govuk-button-group">
-  <a href="/cph-home/live-success">
-    <button type="submit" class="govuk-button" data-module="govuk-button">
-      Make form live
-    </button>
-  </a>
-  <a href="/cph-home/draft-notification-email-added.html">
-    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" >
-      Cancel
-    </button>
-  </a>
+  {{ govukButton({
+    text: "Save email",
+    href: ""
+  }) }}
+
+  {{ govukButton({
+    text: "Cancel",
+    href: "",
+    classes: "govuk-button--secondary"
+  }) }}
 </div>
 </div>
 </div>

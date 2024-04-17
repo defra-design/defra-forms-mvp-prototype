@@ -35,17 +35,16 @@
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
     navigationItems: [{
-      href: "#",
-      text: 'Form library',
-      id: 'servicelink3'
-    },{
-      href: "/",
-      text: "Form home",
-      id: "form-home"
+
+      href: "/cph-home/draft",
+      text: "Overview",
+      id: "overview"
     }],
 
-    activeLinkId: ""
+    activeLinkId: "overview"
   }) }}
+
+
 {% endblock %}
 
 {% block pageTitle -%}
@@ -69,10 +68,12 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 <div class="govuk-button-group">
-  {{ govukButton({
-    text: "Save email",
-    href: ""
-  }) }}
+  <a href="/form-settings.html">
+    <button type="submit" class="govuk-button" data-module="govuk-button" style="width: 100%; margin-bottom: 15px;">
+        Create draft to edit
+    </button>
+</a>
+
 
   {{ govukButton({
     text: "Cancel",

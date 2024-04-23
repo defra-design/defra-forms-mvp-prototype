@@ -30,7 +30,7 @@
 {% block header %}
   {{ serviceHeader({
     serviceName: "Defra form builder",
-    pageName: "Apply for a county parish holding number in England",
+    pageName: "",
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
@@ -65,7 +65,12 @@ href: "/index.html"
     <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
 
     {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-<h1 class="govuk-heading-l">Forms</h1>
+
+<h1 class="govuk-heading-l">
+  Apply for a county parish holding number in England
+</h1>
+
+
   <dl class="govuk-summary-list">
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
@@ -77,26 +82,13 @@ href: "/index.html"
         </strong>
       </dd>
     </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Action
-      </dt>
 
-      <dd class="govuk-summary-list__actions" >
-        <ul class="govuk-summary-list__actions-list" style="text-align: left; font-weight: 600;>
-          <li class="govuk-summary-list__actions-list-item">
-            <a class="govuk-link govuk-link--no-visited-state" href="https://www.figma.com/proto/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?page-id=1330%3A51984&type=design&node-id=3671-492534&viewport=-13228%2C-8300%2C0.51&t=qoFA3GbdpLPRNHNU-8&scaling=scale-down-width&starting-point-node-id=3551%3A376245&hide-ui=1" class="govuk-link" rel="noreferrer noopener" target="_blank">Edit<span class="govuk-visually-hidden"> contact details</span></a>
-          </li>
-        </ul>
-      </dd>
-
-    </div>
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
         Updated
       </dt>
       <dd class="govuk-summary-list__value">
-
+        22 Mar 2024 by Chris Smith
       </dd>
 
     </div>
@@ -114,17 +106,8 @@ href: "/index.html"
         Preview link
       </dt>
       <dd class="govuk-summary-list__value" style="padding-right:0!important;">
-        <p class="govuk-body">https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number</p>
+        <a href="https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number" class="govuk-link"  rel="noreferrer noopener" target="_blank">https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number</a>
       </dd>
-      <dd class="govuk-summary-list__actions">
-        <ul class="govuk-summary-list__actions-list">
-          <li class="govuk-summary-list__actions-list-item">
-            <a class="govuk-link" href="#">Copy<span class="govuk-visually-hidden"> contact details</span></a>
-          </li>
-          <li class="govuk-summary-list__actions-list-item">
-            <a class="govuk-link" href="#">View<span class="govuk-visually-hidden"> contact details</span></a>
-          </li>
-        </ul>
       </dd>
 
 
@@ -199,21 +182,31 @@ href: "/index.html"
 </div>
 
 
+
   <div class="govuk-grid-column-one-third">
 
-    <div style="background-color: #f7f7f7; padding: 15px;">
+    <div style="background-color: #f3f2f1; padding: 15px;">
       <h2 class="govuk-heading-m">Manage form</h2>
+
+      <a href="">
+        <button class="gem-c-button govuk-button gem-c-button--secondary-quiet" style="width: 100%; margin-bottom: 15px;" type="submit">Edit draft</button>
+        <!-- <button class="gem-c-button govuk-button gem-c-button-publishing--secondary snipcss0-3-3-4" style="width: 100%; margin-bottom: 15px;" type="submit">Edit draft</button> -->
+      </a>
+
       <a href="/cph-home/make-draft-live-no-email.html">
         <button type="submit" class="govuk-button" data-module="govuk-button" style="width: 100%; margin-bottom: 15px;">
             Make draft live
         </button>
     </a>
 
+
+
 <!--
       <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" style="width: 100%;margin-bottom: 15px;">
         Close live form
       </button> -->
-      <a href="#" class="govuk-link">Delete draft</a>
+      <a href="#" class="govuk-link" style="color: 	#d4351c;">Delete draft</a>
+
   </div>
 
 
@@ -266,4 +259,6 @@ href: "/index.html"
   </div>
 </div>
 
+
 {% endblock %}
+

@@ -66,9 +66,68 @@ href: "/index.html"
 
     {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 <h1 class="govuk-heading-l">Forms</h1>
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{%- from "govuk/components/tag/macro.njk" import govukTag -%}
+{% set titleTag = govukTag({ text: "Draft", classes: "govuk-tag--orange" }) %}
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      html: "Status " + titleTag | safe
+    },
+
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Edit draft",
+          visuallyHiddenText: "of University of Gloucestershire"
+        },
+        {
+          href: "#",
+          text: "Delete draft",
+          visuallyHiddenText: "from University of Gloucestershire"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Updated"
+      },
+      value: {
+        html: "22 Mar 2024 by Chris Smith"
+      }
+    },
+    {
+      key: {
+        text: "Created"
+      },
+      value: {
+        html: "11 Oct 2023 by Waylon Brady"
+      }
+    },
+    {
+      key: {
+        text: "Preview link"
+      },
+      value: {
+        html: '<a href="https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number" class="govuk-link">https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number</a>'
+      }
+    }
+  ]
+}) }}
+
+
+
+
+<!--
+
+<div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper">
+    <h2 class="govuk-summary-card__title">
         Status
       </dt>
       <dd class="govuk-summary-list__value">
@@ -130,7 +189,7 @@ href: "/index.html"
 
 
     </div>
-  </dl>
+  </dl> -->
 
 
 

@@ -66,9 +66,114 @@ href: "/index.html"
 
     {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 <h1 class="govuk-heading-l">Forms</h1>
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{%- from "govuk/components/tag/macro.njk" import govukTag -%}
+{% set titleTag = govukTag({ text: "Draft", classes: "govuk-tag--orange" }) %}
+ <!-- html: "Status " + titleTag | safe -->
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Draft form"
+
+    },
+
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Edit",
+          visuallyHiddenText: "of University of Gloucestershire"
+        },
+        {
+          href: "#",
+          text: "Delete",
+          visuallyHiddenText: "from University of Gloucestershire"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Updated"
+      },
+      value: {
+        html: "22 Mar 2024 by Chris Smith"
+      }
+    },
+    {
+      key: {
+        text: "Created"
+      },
+      value: {
+        html: "11 Oct 2023 by Waylon Brady"
+      }
+    },
+    {
+      key: {
+        text: "Preview link"
+      },
+      value: {
+        html: '<a href="https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number" class="govuk-link">https://preview.submit-a-form-to-defra.gov.uk/draft/apply-for-a county-parish-holding-number</a>'
+      }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Live form"
+    }
+    },
+
+  rows: [
+    {
+      key: {
+        text: "Updated"
+      },
+      value: {
+        html: "22 Mar 2024 by Chris Smith"
+      }
+    },
+    {
+      key: {
+        text: "Went live"
+      },
+      value: {
+        html: "11 Oct 2023 by Waylon Brady"
+      }
+    },
+    {
+      key: {
+        text: "Preview link"
+      },
+      value: {
+        html: '<a href="https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number" class="govuk-link">https://preview.submit-a-form-to-defra.gov.uk/live/apply-for-a county-parish-holding-number</a>'
+      }
+    },
+    {
+      key: {
+        text: "Live link"
+      },
+      value: {
+        html: '<a href="https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number" class="govuk-link">https://submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number</a>'
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+<!--
+
+<div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper">
+    <h2 class="govuk-summary-card__title">
         Status
       </dt>
       <dd class="govuk-summary-list__value">
@@ -130,7 +235,7 @@ href: "/index.html"
 
 
     </div>
-  </dl>
+  </dl> -->
 
 
 
@@ -213,7 +318,7 @@ href: "/index.html"
       <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" style="width: 100%;margin-bottom: 15px;">
         Close live form
       </button> -->
-      <a href="#" class="govuk-link">Delete draft</a>
+      <!-- <a href="#" class="govuk-link">Delete draft</a> -->
   </div>
 
 

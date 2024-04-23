@@ -928,3 +928,35 @@
   background-color: #fff;
   box-shadow: none;
 }
+
+.gem-c-organisation-logo__container {
+  text-transform: none;
+  text-decoration: none;
+  display: block;
+  color: #0b0c0c;
+  height: auto;
+  width: auto;
+  direction: ltr;
+}
+
+.gem-c-organisation-logo__crest {
+  border-left: 2px solid #0b0c0c;
+  padding-top: 35px;
+  padding-left: 8px;
+}
+
+.gem-c-organisation-logo__crest--single-identity {
+  background: url(https://www.gov.uk/assets/collections/govuk_publishing_components/crests/org_crest_18px_x2-d759444376a83ad439650d64c8de4158658aa1b5034e5a6080e66ebaa9594b0d.png) no-repeat 8px 0;
+  background-size: auto 32px;
+}
+
+@media all{
+.brand__border-color  {
+  border-color: #00a33b;
+}
+}
+
+.gem-c-organisation-logo__name {
+  font-family: HelveticaNeue,"Helvetica Neue",Arial,Helvetica,sans-serif;
+}
+

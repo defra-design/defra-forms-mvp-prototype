@@ -1,8 +1,6 @@
 {% extends "layouts/main.html" %}
 
-{% block pageTitle %}
-Content page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
+{% set pageName = "Content page template" %}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -95,7 +93,7 @@ href: "javascript:window.history.back()"
                 <td class="govuk-table__cell">
 
                   <!-- LINKS -->
-<!-- 
+<!--
                   <strong>Figma files</strong>
                   <ul class="govuk-list govuk-list--bullet">
                     <li><a
@@ -131,14 +129,14 @@ href: "javascript:window.history.back()"
                    <!-- ADD NEW ROW HERE       -->
                    <tr class="govuk-table__row">
                     <td class="govuk-table__cell">Show the location of the pin semantically, below the map</td>
-    
+
                     <!-- WHY WE DID IT -->
-    
+
                     <td class="govuk-table__cell">To avoid using innaccessible map overlays</td>
                     <td class="govuk-table__cell">
-    
+
                       <!-- LINKS -->
-    
+
                       <!-- <strong>Figma files</strong>
                       <ul class="govuk-list govuk-list--bullet">
                         <li><a
@@ -153,14 +151,14 @@ href: "javascript:window.history.back()"
                       <!-- ADD NEW ROW HERE       -->
                       <tr class="govuk-table__row">
                         <td class="govuk-table__cell">Give users the chance to double check that their selection is as they've intended</td>
-        
+
                         <!-- WHY WE DID IT -->
-        
+
                         <td class="govuk-table__cell">To help users have confidence in their answers by showing them a page with their selection and the opportunity to change it before carrying on</td>
                         <td class="govuk-table__cell">
-        
+
                           <!-- LINKS -->
-<!--         
+<!--
                           <strong>Figma files</strong>
                           <ul class="govuk-list govuk-list--bullet">
                             <li><a
@@ -171,7 +169,7 @@ href: "javascript:window.history.back()"
                         </td>
                       </tr>
                       </tr>
-                  
+
 
             </tbody>
           </table>

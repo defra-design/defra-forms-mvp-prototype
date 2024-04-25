@@ -2,6 +2,8 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
+{% set pageName = "Form library" %}
+
 {% block header %}
   {{ serviceHeader({
     serviceName: "Defra form builder",
@@ -15,10 +17,6 @@
     }],
     activeLinkId: "form-library"
   }) }}
-{% endblock %}
-
-{% block pageTitle %}
-Form library – {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}

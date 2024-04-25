@@ -27,6 +27,10 @@
 {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
 {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
 
+{% set pageName -%}
+  Form library (page {{ pageCurrent }} of {{ pageCount }})
+{%- endset %}
+
 {% block header %}
   {{ serviceHeader({
     serviceName: "Defra form builder",
@@ -42,10 +46,6 @@
     activeLinkId: "form-library"
   }) }}
 {% endblock %}
-
-{% block pageTitle -%}
-  Form library (page {{ pageCurrent }} of {{ pageCount }}) – {{ serviceName }}
-{%- endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">

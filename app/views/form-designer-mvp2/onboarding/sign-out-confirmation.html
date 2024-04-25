@@ -1,10 +1,8 @@
 {% extends "layouts/main.html" %}
 
-{% block pageTitle %}
-Signed out – {{ serviceName }}
-{% endblock %}
-
 {% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Signed out" %}
 
 {% block header %}
   {{ serviceHeader({

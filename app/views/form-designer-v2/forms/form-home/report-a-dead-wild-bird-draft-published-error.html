@@ -2,6 +2,8 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
+{% set pageName = "Apply for a county parish holding number in England" %}
+
 {% block header %}
   {{ serviceHeader({
     serviceName: "Defra form builder",
@@ -21,10 +23,6 @@
     }],
     activeLinkId: "form-home"
   }) }}
-{% endblock %}
-
-{% block pageTitle %}
-Apply for a county parish holding number in England – {{ serviceName }}
 {% endblock %}
 
 {% block footer %}

@@ -1,10 +1,8 @@
 {% extends "layouts/main.html" %}
 
-{% block pageTitle %}
-Sign in – {{ serviceName }}
-{% endblock %}
-
 {% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Sign in" %}
 
 {% block header %}
   {{ serviceHeader({

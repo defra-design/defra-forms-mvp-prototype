@@ -1,10 +1,8 @@
 {% extends "layouts/main.html" %}
 
-{% block pageTitle %}
-Create new form – {{ serviceName }}
-{% endblock %}
-
 {% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Create new form" %}
 
 {% block header %}
   {{ serviceHeader({

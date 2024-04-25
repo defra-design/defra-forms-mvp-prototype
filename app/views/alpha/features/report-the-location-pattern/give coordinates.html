@@ -1,8 +1,6 @@
 {% extends "layouts/main.html" %}
 
-{% block pageTitle %}
-Content page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
+{% set pageName = "Content page template" %}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -91,7 +89,7 @@ href: "javascript:window.history.back()"
                 <td class="govuk-table__cell">
 
                   <!-- LINKS -->
-                  <!-- 
+                  <!--
                   <strong>Figma files</strong>
                   <ul class="govuk-list govuk-list--bullet">
                     <li><a
@@ -102,7 +100,7 @@ href: "javascript:window.history.back()"
                 </td>
               </tr>
 
-              <!-- ADD NEW ROW HERE      
+              <!-- ADD NEW ROW HERE
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">Added the ability to change checkbox label titles when creating the
                   declaration component pattern.</td>

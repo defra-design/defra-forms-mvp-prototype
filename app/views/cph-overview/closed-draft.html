@@ -27,6 +27,8 @@
 {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
 {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
 
+{% set pageName = "Overview - Apply for a county parish holding number in England" %}
+
 {% block header %}
   {{ serviceHeader({
     serviceName: "Defra forms designer",
@@ -35,20 +37,13 @@
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
     navigationItems: [{
-
       href: "/",
       text: "Overview",
       id: "overview"
     }],
-
     activeLinkId: "overview"
   }) }}
-
 {% endblock %}
-
-{% block pageTitle -%}
-  Overview - Apply for a county parish holding number in England – {{ serviceName }}
-{%- endblock %}
 
 {% block beforeContent %}
 {{ govukBackLink({

@@ -2,6 +2,8 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
+{% set pageName = "Report a dead wild bird" %}
+
 {% block header %}
   {{ serviceHeader({
     serviceName: "Defra form builder",
@@ -21,10 +23,6 @@
     }],
     activeLinkId: "form-home"
   }) }}
-{% endblock %}
-
-{% block pageTitle %}
-Report a dead wild bird – {{ serviceName }}
 {% endblock %}
 
 {% block footer %}

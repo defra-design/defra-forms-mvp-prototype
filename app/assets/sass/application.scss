@@ -5,6 +5,16 @@
 
 // Add extra styles here
 
+$defra-brand-colour: govuk-organisation-colour(department-for-environment-food-rural-affairs);
+$defra-brand-colour-high-contrast: #008531;
+
+$defra-link-colour: govuk-shade($defra-brand-colour-high-contrast, 25%);
+$defra-link-colour-hover: govuk-shade($defra-link-colour, 50%);
+
+.one-login-header {
+  border-bottom-color: $defra-brand-colour;
+}
+
 .one-login-header__logotype-text {
   margin: 0 5px 0 2px;
 }
@@ -12,6 +22,25 @@
 .one-login-header__product-name {
   @include govuk-font($size: 24, $line-height: 1);
   display: inline-table;
+}
+
+.service-header__nav-list-item-link {
+  &:link,
+  &:visited {
+    color: $defra-link-colour;
+  }
+
+  &:hover {
+    color: $defra-link-colour-hover;
+  }
+
+  &:focus {
+    color: $govuk-focus-text-colour;
+  }
+}
+
+.service-header__nav-list-item.service-header__nav-list-item--active {
+  border-color: $defra-brand-colour;
 }
 
 @include govuk-media-query($from: desktop) {

@@ -5,6 +5,14 @@
 
 // Add extra styles here
 
+.one-login-header__logotype-text {
+  margin: 0 5px 0 2px;
+}
+
+.one-login-header__product-name {
+  @include govuk-font($size: 24, $line-height: 1);
+  display: inline-table;
+}
 
 @include govuk-media-query($from: desktop) {
   .app-display-until-desktop {
@@ -854,4 +862,3 @@
 .gem-c-organisation-logo__name {
   font-family: HelveticaNeue,"Helvetica Neue",Arial,Helvetica,sans-serif;
 }
-

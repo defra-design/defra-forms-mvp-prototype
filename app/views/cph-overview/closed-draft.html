@@ -54,7 +54,25 @@ href: "/index.html"
 
 {% endblock %}
 
+
+
 {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+{% set html %}
+  <h3 class="govuk-notification-banner__heading">
+    New draft created
+  </h3>
+{% endset %}
+
+
+{{ govukNotificationBanner({
+  html: html,
+  type: "success"
+}) }}
+</div>
+</div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">

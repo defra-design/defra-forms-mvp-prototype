@@ -27,7 +27,7 @@
 {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
 {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
 
-{% set pageName = "Form home - Apply for a county parish holding number in England" %}
+{% set pageName = "Close form? - Apply for a county parish holding number in England" %}
 
 
 {% block header %}
@@ -80,27 +80,87 @@ visuallyHiddenTitle: "Footer links"
 
     {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
     <span class="govuk-caption-xl">Apply for a county-parish-holding-number</span>
-<h1 class="govuk-heading-xl">What email address should completed forms be sent to?</h1>
-<p class="govuk-body">Provide an email address for completed forms to be sent to for processing.</p>
-<p class="govuk-body">It should be a shared government email inbox and you should test it before making a form live. The email address must end with ‘gov.uk’.</p>
-<div class="govuk-form-group">
-  <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
-
-</div>
+<h1 class="govuk-heading-xl">Guidance and policies for this form</h1>
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+<h2 class="govuk-heading-m govuk-!-padding-top-2">
+Privacy and contact details
+</h2>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Provide contact details for support"
+      },
+      value: {
+        html: "Telephone: 020 7946 0101<br>Textphone: 020 7946 0102..."
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Change contact details for support"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Privacy notice"
+      },
+      value: {
+        text: "https://www.gov.uk/help/privacy-notice"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Change privacy notice"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+<h3 class="govuk-heading-m govuk-!-padding-top-5">
+ Information about what happens next
+</h3>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Tell users what happens next"
+      },
+      value: {
+        html: 'We’ll send you an email to let you know the outcome...whi'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Change information about what happens next"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
 <div class="govuk-button-group">
-  <a href="/cph-overview/make-draft-live-confirmation-question-guidance-policy.html">
-  <button type="submit" class="govuk-button" data-module="govuk-button">
-    Save and continue
-  </button>
-</a>
-<a href="/cph-overview/draft.html">
-  <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" >
-    Cancel
-  </button>
-</a>
+  <a href="/cph-overview/make-draft-live-confirmation-question.html">
+    <button type="submit" class="govuk-button govuk-!-margin-top-5" data-module="govuk-button">
+      Save and continue
+    </button>
+
 </div>
 </div>
 </div>

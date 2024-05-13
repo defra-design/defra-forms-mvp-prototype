@@ -71,6 +71,7 @@ visuallyHiddenTitle: "Footer links"
 }
 }) }}
 {% endblock %}
+
 {% block beforeContent %}
 {{ govukBackLink({
 text: "Back to form library",
@@ -80,12 +81,9 @@ href: "/index.html"
 {% endblock %}
 
 {% block content %}
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds-from-desktop">
 {% set html %}
   <h3 class="govuk-notification-banner__heading">
-    Email address added successfully
+    A new internal note was added
   </h3>
 {% endset %}
 
@@ -94,13 +92,9 @@ href: "/index.html"
   html: html,
   type: "success"
 }) }}
-</div>
-</div>
-
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
-
     <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
 
     {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
@@ -156,105 +150,108 @@ href: "/index.html"
 
 
 
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      <h2 class="govuk-heading-m govuk-!-padding-top-4">Organisation details</h2>
 
-  {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-  <h2 class="govuk-heading-m govuk-!-padding-top-4">Organisation details</h2>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Completed forms sent to
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <a href="/cph-overview/notification-email.html" class="govuk-link">Enter email address</a>
 
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Completed forms sent to
-      </dt>
-      <dd class="govuk-summary-list__value">
-        PolicyTeam@defra.gov.uk
-      </dd>
-      <dd class="govuk-summary-list__actions">
-        <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Form name
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Apply for a county parish holding number in England
-      </dd>
-      <dd class="govuk-summary-list__actions">
-        <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
-      </dd>
-    </div>
+          </dd>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Lead organisation
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Center for Environment, Fisheries and Aquaculture Science - Cefas
-      </dd>
-      <dd class="govuk-summary-list__actions">
-        <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Team name
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Policy directorate
-      </dd>
-      <dd class="govuk-summary-list__actions">
-        <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Shared email address
-      </dt>
-      <dd class="govuk-summary-list__value">
-        SM-Defra-Not-Real@defra.gov.uk
-      </dd>
-      <dd class="govuk-summary-list__actions">
-        <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
-      </dd>
-    </div>
-  </dl>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Form name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Apply for a county parish holding number in England
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Lead organisation
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Center for Environment, Fisheries and Aquaculture Science - Cefas
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Team name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Policy directorate
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Shared email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            SM-Defra-Not-Real@defra.gov.uk
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+          </dd>
+        </div>
+      </dl>
+      <!-- <div class="gem-c-organisation-logo__container gem-c-organisation-logo__crest gem-c-organisation-logo__crest--single-identity brand__border-color snipcss-CvocF">
+        <span class="gem-c-organisation-logo__name">Department for Environment Food & Rural Affairs</span>
+      </div> -->
+
 
 
 </div>
 
 
-<div class="govuk-grid-column-one-third-from-desktop">
 
-  <div style="background-color: #f3f2f1; padding: 15px;">
-    <h2 class="govuk-heading-m">Manage form</h2>
+  <div class="govuk-grid-column-one-third-from-desktop">
 
-    <a href="">
-      <button class="gem-c-button govuk-button gem-c-button-publishing--secondary-quiet" style="width: 100%; margin-bottom: 15px;" type="submit">Edit draft</button>
-      <!-- <button class="gem-c-button govuk-button gem-c-button-publishing--secondary snipcss0-3-3-4" style="width: 100%; margin-bottom: 15px;" type="submit">Edit draft</button> -->
+    <div style="background-color: #f3f2f1; padding: 15px;">
+      <h2 class="govuk-heading-m">Manage form</h2>
+
+      <a href="">
+        <button class="gem-c-button govuk-button gem-c-button-publishing--secondary-quiet" style="width: 100%; margin-bottom: 15px;" type="submit">Edit draft</button>
+        <!-- <button class="gem-c-button govuk-button gem-c-button-publishing--secondary snipcss0-3-3-4" style="width: 100%; margin-bottom: 15px;" type="submit">Edit draft</button> -->
+      </a>
+
+      <a href="/cph-overview/make-draft-live-no-email.html">
+        <button type="submit" class="govuk-button" data-module="govuk-button" style="width: 100%; margin-bottom: 15px;">
+            Make draft live
+        </button>
     </a>
-
-    <a href="/cph-overview/make-draft-live-confirmation-question">
-      <button type="submit" class="govuk-button" data-module="govuk-button" style="width: 100%; margin-bottom: 15px;">
-          Make draft live
-      </button>
-  </a>
 
 
 
 <!--
-    <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" style="width: 100%;margin-bottom: 15px;">
-      Close live form
-    </button> -->
-    <a href="#" class="govuk-link" style="color: 	#d4351c;">Delete draft</a>
+      <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" style="width: 100%;margin-bottom: 15px;">
+        Close live form
+      </button> -->
+      <a href="#" class="govuk-link" style="color: 	#d4351c;">Delete draft</a>
 
-</div>
-
+  </div>
 
 
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <h2 class="govuk-heading-m">Internal notes</h2>
     {{ govukButton({
       text: "Add internal note",
+      href: "/cph-overview/add-new-note",
       classes: "govuk-button--secondary"
     }) }}
 
@@ -273,20 +270,20 @@ href: "/index.html"
                 },
                 text: "Updated the email address input field to include a more sophisticated validation check, reducing the incidence of users entering incorrect email formats.",
                 datetime: {
-                  timestamp: "2019-06-07T12:32:00.000Z",
+                  timestamp: "2024-05-14T10:15:00.000Z",
                   type: "datetime"
                 },
                 byline: {
                   text: "Chris Smith"
                 }
               },
-              {
+                            {
                 label: {
                   text:  "New form created"
                 },
-                text: "Name of form: Report a dead wild bird. Lead organisation: Defra. SME/Policy team: Policy directorate.",
+                text: "Created this forms as requested by Policy Team.",
                 datetime: {
-                  timestamp: "2019-06-07T12:32:00.000Z",
+                  timestamp: "2024-05-13T12:32:00.000Z",
                   type: "datetime"
                 },
                 byline: {
@@ -296,8 +293,10 @@ href: "/index.html"
             ]
           }) }}
 
+
         </div>
   </div>
 </div>
+
 
 {% endblock %}

@@ -31,10 +31,32 @@
   Form library (page {{ pageCurrent }} of {{ pageCount }})
 {%- endset %}
 
+{% block footer %}
+{{ govukFooter({
+meta: {
+items: [
+{
+href: "/cph-overview/draft.html",
+text: "Form in draft state"
+},
+{
+href: "/cph-overview/guidance-policies",
+text: "Restart guidance and policies"
+},
+{
+href: "/manage-prototype/clear-data",
+text: "Clear data"
+}
+],
+visuallyHiddenTitle: "Footer links"
+}
+}) }}
+{% endblock %}
+
 {% block header %}
   {{ serviceHeader({
     organisationName: "Defra",
-    productName: "Forms designer",
+    productName: "Forms Designer",
     serviceName: "",
     accountName: "Chris Smith",
     homepageLink: "/",

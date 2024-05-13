@@ -2,6 +2,31 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
+{% set formLibrary = require("data/form-library.json") %}
+
+{% switch data["sort"] %}
+  {% case "updated-oldest" %}
+    {% set sortBy = "updated.date" %}
+    {% set sortReverse = false %}
+  {% case "status" %}
+    {% set sortBy = "status" %}
+    {% set sortReverse = false %}
+  {% case "published-newest" %}
+    {% set filterBy = "published" %}
+    {% set sortBy = "published.date" %}
+    {% set sortReverse = true %}
+  {% case "published-oldest" %}
+    {% set filterBy = "published" %}
+    {% set sortBy = "published.date" %}
+    {% set sortReverse = false %}
+{% endswitch %}
+
+{% set formItems = formLibrary.items | selectattr(filterBy) if filterBy else formLibrary.items %}
+{% set formItems = formItems | sort(attribute="updated.date", reverse=true) %}
+
+{% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
+{% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
+
 {% set pageName = "Overview - Apply for a county parish holding number in England" %}
 
 {% block header %}
@@ -54,8 +79,6 @@ href: "/index.html"
 }) }}
 
 {% endblock %}
-
-
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -214,37 +237,35 @@ href: "/index.html"
 
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <h2 class="govuk-heading-m">Internal notes</h2>
-    {{ govukButton({
-      text: "Add internal note",
-      href: "/cph-overview/add-new-note",
-      classes: "govuk-button--secondary"
+
+
+
+
+    {% from "govuk/components/input/macro.njk" import govukInput %}
+
+    {{ govukInput({
+      label: {
+        text: "Title of note"
+      },
+      id: "event-name",
+      name: "eventName"
     }) }}
 
+    {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
+{{ govukTextarea({
+  name: "moreDetail",
+  id: "more-detail",
+  label: {
+    text: "Describe the change"
+  }
+}) }}
 
-
-
-          {%- from "moj/components/timeline/macro.njk" import mojTimeline -%}
-
-
-          {{ mojTimeline({
-            items: [
-
-              {
-                label: {
-                  text:  "New form created"
-                },
-                text: "Created this forms as requested by Policy Team.",
-                datetime: {
-                  timestamp: "2024-05-13T12:32:00.000Z",
-                  type: "datetime"
-                },
-                byline: {
-                  text: "Moshe Pitt"
-                }
-              }
-            ]
-          }) }}
+    {{ govukButton({
+      text: "Save internal note ",
+      href: "/cph-overview/new-note-success.html",
+      classes: "govuk-button"
+    }) }}
 
         </div>
   </div>

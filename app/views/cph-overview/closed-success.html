@@ -27,24 +27,32 @@
 {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
 {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
 
-{% set pageName = "Overview - Apply for a county parish holding number in England" %}
+
 
 {% block header %}
   {{ serviceHeader({
     organisationName: "Defra",
-    productName: "Forms designer",
+    productName: "Forms Designer",
     serviceName: "",
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
     navigationItems: [{
-      href: "/",
+      href: "/cph-overview/draft.html",
       text: "Overview",
       id: "overview"
+     },{
+         href: "/cph-overview/guidance-policies.html",
+    text: 'Guidance and policies',
+    id: 'policies'
     }],
     activeLinkId: "overview"
   }) }}
 {% endblock %}
+
+{% block pageTitle -%}
+  Overview - Apply for a county parish holding number in England – {{ serviceName }}
+{%- endblock %}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -203,9 +211,6 @@ href: "/index.html"
           Create draft to edit
       </button>
   </a>
-
-
-
 
     <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" style="width: 100%;margin-bottom: 15px;">
       Re-open closed form

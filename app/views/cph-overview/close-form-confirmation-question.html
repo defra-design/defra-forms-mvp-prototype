@@ -29,20 +29,26 @@
 
 {% set pageName = "Close form? - Apply for a county parish holding number in England" %}
 
+
+
 {% block header %}
   {{ serviceHeader({
     organisationName: "Defra",
-    productName: "Forms designer",
+    productName: "Forms Designer",
     serviceName: "",
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
     navigationItems: [{
-      href: "/",
+      href: "/cph-overview/draft.html",
       text: "Overview",
       id: "overview"
+     },{
+         href: "/cph-overview/guidance-policies.html",
+    text: 'Guidance and policies',
+    id: 'policies'
     }],
-    activeLinkId: "overview"
+    activeLinkId: ""
   }) }}
 {% endblock %}
 

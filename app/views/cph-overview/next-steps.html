@@ -22,7 +22,7 @@
     text: 'Guidance and policies',
     id: 'policies'
     }],
-    activeLinkId: "overview"
+    activeLinkId: "/"
   }) }}
 {% endblock %}
 
@@ -50,6 +50,14 @@ text: "Clear data"
 visuallyHiddenTitle: "Footer links"
 }
 }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back to guidance and policies",
+href: "/cph-overview/guidance-policies"
+}) }}
+
 {% endblock %}
 
 {% block content %}

@@ -21,7 +21,7 @@
     text: 'Guidance and policies',
     id: 'policies'
     }],
-    activeLinkId: "overview"
+    activeLinkId: "/"
   }) }}
 {% endblock %}
 
@@ -54,7 +54,7 @@ visuallyHiddenTitle: "Footer links"
 {% block beforeContent %}
 {{ govukBackLink({
 text: "Back to guidance and policies",
-href: "/cph-overview/draft.html"
+href: "/cph-overview/guidance-policies"
 }) }}
 
 {% endblock %}
@@ -77,6 +77,12 @@ href: "/cph-overview/draft.html"
   <li>in an email confirming the date and time a form was submitted</li>
 </ul>
 
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  html: 'Follow the<a href="https://design-system.service.gov.uk/patterns/contact-a-department-or-service-team/" class="govuk-link" rel="noreferrer noopener" target="_blank"> GOV.UK design system pattern (opens in new tab)</a> for contacting a department or service team.'
+}) }}
+
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
@@ -90,7 +96,7 @@ href: "/cph-overview/draft.html"
     spellcheck: false,
     classes: "govuk-!-width-full",
     label: {
-      text: "Enter the email address"
+      text: "Email address"
     }
   }) }}
 {% endset %}
@@ -101,10 +107,7 @@ href: "/cph-overview/draft.html"
     name: "contactByPhoneTextarea",
     classes: "govuk-!-width-full",
     label: {
-      text: "Enter the phone number and its opening times"
-    },
-    hint: {
-      html: 'Follow the<a href="https://design-system.service.gov.uk/patterns/contact-a-department-or-service-team/" class="govuk-link" rel="noreferrer noopener" target="_blank"> GOV.UK design system pattern (opens in new tab)</a> for contacting a department or service team.'
+      text: "Telephone number and its opening times"
     }
   }) }}
   {{ govukInput({
@@ -127,7 +130,7 @@ href: "/cph-overview/draft.html"
     name: "contactLink",
     classes: "govuk-!-width-full",
     label: {
-      text: "Enter the link"
+      text: "Contact link"
     },
     hint: {
       text: "For example, ‘https://www.gov.uk/guidance/contact-defra’"
@@ -138,7 +141,7 @@ href: "/cph-overview/draft.html"
     name: "contactLinkDescription",
     classes: "govuk-!-width-full",
     label: {
-      text: "Enter text to describe this link."
+      text: "Text to describe this link"
     },
     hint: {
       text: "For example, ‘Online contact form’"

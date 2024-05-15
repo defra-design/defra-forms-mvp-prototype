@@ -19,7 +19,18 @@
       <h1 class="govuk-heading-l">
         Date component
       </h1>
-
+{{ govukInput({
+  label: {
+    text: "Title",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  hint: {
+    text: "Enter the name to show for this field"
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
 {{ govukTextarea({

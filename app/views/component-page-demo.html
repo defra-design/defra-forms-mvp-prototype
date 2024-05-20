@@ -1,0 +1,159 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Date component
+      </h1>
+{{ govukInput({
+  label: {
+    text: "Label",
+    classes: "govuk-label",
+    isPageHeading: true
+  },
+  hint: {
+    text: "Enter a label for this component and error messages. For example, 'date of birth'."
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Make label a heading (optional)",
+    classes: "govuk-label",
+    isPageHeading: true
+  },
+  hint: {
+    text: "You need to hide the page title for this label to appear on pages. For example, ‘What is your date of birth?’."
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{{ govukTextarea({
+  name: "moreDetail",
+  id: "more-detail",
+  label: {
+    text: "Hint text (optional)",
+    classes: "govuk-label",
+    isPageHeading: false
+  },
+  hint: {
+    text: "Use hint text for help that’s relevant to the majority of users, like how their information will be used, or where to find it."
+  }
+}) }}
+
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+
+  items: [
+    {
+      value: "hideTitle",
+      text: "Hide title",
+       hint: {
+        text: "Tick this box if you do not want the title to show on the page"
+      }
+    }
+  ]
+}) }}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Component name",
+    classes: "govuk-label",
+    isPageHeading: true
+  },
+  hint: {
+    text: "This is generated automatically and does not show on the page. Only change it if you are using an integration that requires you to, for example GOV.UK Notify. It must not contain spaces."
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+
+{{ govukCheckboxes({
+
+  items: [
+    {
+      value: "optionalDate",
+      text: "Make Date component field optional",
+       hint: {
+        text: "Tick this box if you do not need to complete this field to progress through the form"
+      }
+    }
+  ]
+
+}) }}
+
+<h2 class="govuk-heading-m">
+        Additional settings
+      </h2>
+
+{{ govukInput({
+  label: {
+    text: "Max days in the past"
+  },
+  hint: {
+    text: "Determines the latest date users can enter. Error message for this is, '[Label] must be the same as or before [date].'"
+  },
+  classes: "govuk-input--width-3",
+  id: "latest-date",
+  name: "maxtDate"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Max days in the future"
+  },
+  hint: {
+    text: "Determines the earlist date users can enter. Error message for this is, '[Label] must be the same as or after [date].'"
+  },
+  classes: "govuk-input--width-3",
+  id: "latest-date",
+  name: "maxtDate"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Classes"
+  },
+  hint: {
+    text: "Apply CSS classes to this field. For example, govuk-input govuk-!-width-full."
+  },
+  classes: "govuk-input",
+  id: "latest-date",
+  name: "maxtDate"
+}) }}
+
+
+
+      <form class="form" action="/path/of/next/page" method="post">
+
+        {{ govukButton({
+          text: "Save"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

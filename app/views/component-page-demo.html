@@ -26,7 +26,7 @@
     isPageHeading: true
   },
   hint: {
-    text: "Enter a label for this component and error messages. For example, 'date of birth'."
+    text: "For example, ‘Passport number’. Labels are used in error messages such as “Enter a passport number"
   },
   id: "event-name",
   name: "eventName"
@@ -34,12 +34,12 @@
 
 {{ govukInput({
   label: {
-    text: "Make label a heading (optional)",
+    text: "Question label (optional)",
     classes: "govuk-label",
     isPageHeading: true
   },
   hint: {
-    text: "You need to hide the page title for this label to appear on pages. For example, ‘What is your date of birth?’."
+    text: "For example, ‘What is your passport number?’. Question labels can be used in place of the page title when the page title is hidden."
   },
   id: "event-name",
   name: "eventName"
@@ -61,18 +61,6 @@
 
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
-{{ govukCheckboxes({
-
-  items: [
-    {
-      value: "hideTitle",
-      text: "Hide title",
-       hint: {
-        text: "Tick this box if you do not want the title to show on the page"
-      }
-    }
-  ]
-}) }}
 
 {% from "govuk/components/input/macro.njk" import govukInput %}
 

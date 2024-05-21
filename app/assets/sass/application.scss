@@ -909,3 +909,141 @@ code.lang-md {
   @include govuk-font(19);
 }
 
+// copied from xgov
+.page  {
+  position: absolute;
+  width: 240px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border-top: solid 2px #000;
+  border-right: solid 2px #000;
+  border-bottom: solid 2px #000;
+  border-left: solid 2px #000;
+}
+
+.page:hover  {
+  box-shadow: 0px 0px 0px 6px #ffbf47;
+}
+
+.page__heading  {
+  padding: 10px !important;
+}
+
+.page__heading  {
+  position: relative;
+  min-height: 2.8em;
+}
+
+.page__actions  {
+  display: flex;
+  flex-direction: column;
+}
+
+.page__heading h3  {
+  color: #0b0c0c;
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.25;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+@media (min-width: 40.0625em){
+.page__heading h3  {
+  font-size: 1.1875rem;
+  line-height: 1.3157894737;
+}
+
+.page__heading h3  {
+  margin-bottom: 20px;
+}
+}
+
+.page__heading h3  {
+  margin-bottom: 0;
+}
+
+.page-linkage__drag-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}
+
+.page__actions > *  {
+  padding-top: 5px !important;
+}
+
+.page__actions > *  {
+  padding-bottom: 5px !important;
+}
+
+.page__actions > *  {
+  padding-right: 10px !important;
+}
+
+.page__actions > *  {
+  padding-left: 10px !important;
+}
+
+.page__actions > *  {
+  width: 100%;
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  border: none;
+  box-shadow: none;
+  text-decoration: none;
+  text-align: left;
+  background-color: #0b0c0c;
+  color: #ffffff;
+}
+
+@media (min-width: 40.0625em){
+.page__actions > *  {
+  font-size: 0.875rem;
+  line-height: 1.4285714286;
+}
+}
+
+.page__actions > :not(:last-child)  {
+  border-bottom: 1px solid #ffffff;
+}
+
+.visualisation .page__actions > :hover {
+  background-color: #ffbf47;
+  color: #0b0c0c;
+  cursor: pointer;
+}
+
+.govuk-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+.govuk-visually-hidden:before {
+  content: " ";
+}
+
+.govuk-visually-hidden:after {
+  content: " ";
+}
+
+

@@ -1,0 +1,228 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Autocomplete component template – {{ serviceName }} – Defra Forms Designer
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Telephone number component
+      </h1>
+{{ govukInput({
+  label: {
+    text: "Short label",
+    classes: "govuk-label",
+    isPageHeading: true
+  },
+  hint: {
+    text: "For example, ‘Passport number’. Labels are used in error messages such as 'Enter a passport number'."
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Question label (optional)",
+    classes: "govuk-label",
+    isPageHeading: true
+  },
+  hint: {
+    text: "For example, ‘What is your passport number?’. Question labels can be used in place of the page title when the page title is hidden."
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{{ govukTextarea({
+  name: "moreDetail",
+  id: "more-detail",
+  label: {
+    text: "Hint text (optional)",
+    classes: "govuk-label",
+    isPageHeading: false
+  },
+  hint: {
+    text: "Use hint text for help that’s relevant to the majority of users, like how their information will be used, or where to find it."
+  }
+}) }}
+
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Component name",
+    classes: "govuk-label",
+    isPageHeading: true
+  },
+  hint: {
+    text: "This is generated automatically and does not show on the page. Only change it if you are using an integration that requires you to, for example GOV.UK Notify. It must not contain spaces."
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+
+{{ govukCheckboxes({
+
+  items: [
+    {
+      value: "optionalComponent",
+      text: "Make telephone number component field optional",
+       hint: {
+        text: "Tick this box if you do not need to complete this field to progress through the form"
+      }
+    }
+  ]
+
+}) }}
+
+{{ govukCheckboxes({
+
+  items: [
+    {
+      value: "exposeContext",
+      text: "Expose to context",
+       hint: {
+        text: "If using additional context, tick this option to expose the field to be used by additional contexts."
+      }
+    }
+  ]
+
+}) }}
+
+{{ govukCheckboxes({
+
+  items: [
+    {
+      value: "disableChanging",
+      text: "Disable changing from summary",
+       hint: {
+        text: "Tick this box if you want the change button to be removed for this field on the summary screen."
+      }
+    }
+  ]
+
+}) }}
+
+<h2 class="govuk-heading-m">
+        Additional settings
+      </h2>
+
+{{ govukInput({
+  label: {
+    text: "Min length"
+  },
+  hint: {
+    text: "Specifies the minimum number of characters users can enter"
+  },
+  classes: "govuk-input--width-3",
+  id: "min-length",
+  name: "minLength"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Max length"
+  },
+  hint: {
+    text: "Specifies the maximum number of characters users can enter"
+  },
+  classes: "govuk-input--width-3",
+  id: "max-length",
+  name: "maxLength"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Max words"
+  },
+  hint: {
+    text: "Specifies the maximum number of words users can enter"
+  },
+  classes: "govuk-input--width-3",
+  id: "max-words",
+  name: "maxWords"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Length"
+  },
+  hint: {
+    text: "Specifies the exact character length users must enter. Using this setting negates any values you set for Min length or Max length"
+  },
+  classes: "govuk-input--width-3",
+  id: "length",
+  name: "length"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Regex"
+  },
+  hint: {
+    text: "Specifies a regular expression to validate users' inputs. Use JavaScript syntax."
+  },
+  classes: "govuk-input",
+  id: "regex",
+  name: "regex"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Autocomplete"
+  },
+  hint: {
+    text: "Add the autocomplete attribute to this field. For example, 'on' or 'given-name'."
+  },
+  classes: "govuk-input",
+  id: "autcomplete",
+  name: "autocomplete"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Classes"
+  },
+  hint: {
+    text: "Apply CSS classes to this field. For example, govuk-input govuk-!-width-full."
+  },
+  classes: "govuk-input",
+  id: "classes",
+  name: "classes"
+}) }}
+
+
+     <div class="govuk-button-group govuk-!-padding-top-4">
+ <a href="/cph-home/draft-notification-email-added.html">
+    <button type="submit" class="govuk-button govuk-button" data-module="govuk-button" >
+      Save
+    </button>
+  </a>
+  <a href="/cph-overview/closed-success">
+    <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
+      Delete component
+    </button>
+  </a>
+
+
+</div>
+</div>
+</div>
+
+{% endblock %}

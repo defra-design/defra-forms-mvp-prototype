@@ -1,0 +1,128 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Components - Configuration pages" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "Configuration pages",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
+    navigationItems: [{
+      href: "/",
+      text: "Components",
+      id: "components"
+     },{
+         href: "",
+    text: 'Conditions',
+    id: 'conditions'
+    },
+    {
+         href: "",
+    text: 'Summary behaviour',
+    id: 'conditions'
+    },
+    {
+         href: "",
+    text: 'Links',
+    id: 'link'
+    }
+
+    ],
+
+    activeLinkId: "components"
+  }) }}
+{% endblock %}
+
+{% block footer %}
+{{ govukFooter({
+meta: {
+items: [
+{
+href: "/cph-overview/draft.html",
+text: "Form in draft state"
+},
+{
+href: "/cph-overview/guidance-policies",
+text: "Restart guidance and policies"
+},
+{
+href: "/manage-prototype/clear-data",
+text: "Clear data"
+}
+],
+visuallyHiddenTitle: "Footer links"
+}
+}) }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+      {# <span class="govuk-caption-xl">Configuration pages</span> #}
+  <h1 class="govuk-heading-xl">Components</h1>
+  </div>
+  </div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+  <h2 class="govuk-heading-m">Input fields</h2>
+    <ul class="govuk-list govuk-list--spaced">
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/autocomplete.html">Autocomplete</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/text.html">Text input</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/date-parts.html">Date parts</a>
+  </li>
+   <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/email.html">Email address</a>
+  </li>
+     <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/address.html">UK address</a>
+  </li>
+       <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/multiline.html">Multi-line text (textarea)</a>
+  </li>
+   <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/telephone.html">Telephone number</a>
+  </li>
+</ul>
+</div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+  <h3 class="govuk-heading-m">Selection fields</h3>
+ <ul class="govuk-list govuk-list--spaced">
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/checkboxes.html">Checkboxes</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/radios.html">Radios</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/select.html">Select</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/yesno.html">Yes/No</a>
+  </li>
+</ul>
+  </div>
+
+
+
+
+{% endblock %}
+
+
+
+

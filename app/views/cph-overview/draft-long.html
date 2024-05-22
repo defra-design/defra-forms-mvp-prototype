@@ -17,9 +17,9 @@
       text: "Overview",
       id: "overview"
      },{
-         href: "/cph-overview/guidance-policies.html",
-    text: 'Guidance and policies',
-    id: 'policies'
+         href: "",
+    text: 'Editor',
+    id: 'editor'
     }],
     activeLinkId: "overview"
   }) }}
@@ -120,7 +120,7 @@ href: "/index.html"
 
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 <h2 class="govuk-heading-m govuk-!-padding-top-2">
- Assisted digital support and what happens next
+  Assisted digital support details
 </h2>
 {{ govukSummaryList({
   rows: [
@@ -131,14 +131,38 @@ href: "/index.html"
       value: {
         html: '<a href="/cph-overview/support-details.html" class="govuk-link">Add contact details for support</a>'
       }
-    },
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m govuk-!-padding-top-2">
+  What happens next information
+</h2>
+{{ govukSummaryList({
+  rows: [
     {
       key: {
-        text: "Tell users what happens next"
+        text: "Tell users what happens after they submit their form"
       },
       value: {
         html: '<a href="/cph-overview/next-steps.html" class="govuk-link">Add information about what happens next</a>'
       }
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m govuk-!-padding-top-2">
+  Privacy notice
+</h2>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Privacy notice"
+      },
+      value: {
+        html: '<a href="/cph-overview/privacy-notice.html" class="govuk-link">Add a link to a privacy notice</a>'
+       }
     }
   ]
 }) }}
@@ -159,14 +183,7 @@ href: "/index.html"
         html: '<a href="/cph-overview/notification-email.html" class="govuk-link">Enter email address</a>'
       }
     },
-    {
-      key: {
-        text: "Privacy notice"
-      },
-      value: {
-        html: '<a href="/cph-overview/privacy-notice.html" class="govuk-link">Add a link to a privacy notice</a>'
-       }
-    },
+
     {
       key: {
         text: "Form name"

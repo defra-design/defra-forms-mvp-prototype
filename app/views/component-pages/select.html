@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Component page demo – {{ serviceName }} – GOV.UK Prototype Kit
+  Select component template – {{ serviceName }} – Defra Forms Designer
 {% endblock %}
 
 {% block beforeContent %}
@@ -17,7 +17,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        Date component
+        Select component
       </h1>
 {{ govukInput({
   label: {
@@ -81,8 +81,8 @@
 
   items: [
     {
-      value: "optionalDate",
-      text: "Make Date component field optional",
+      value: "optionalComponent",
+      text: "Make Select component field optional",
        hint: {
         text: "Tick this box if you do not need to complete this field to progress through the form"
       }
@@ -91,57 +91,101 @@
 
 }) }}
 
+{{ govukCheckboxes({
+
+  items: [
+    {
+      value: "exposeContext",
+      text: "Expose to context",
+       hint: {
+        text: "If using additional context, tick this option to expose the field to be used by additional contexts."
+      }
+    }
+  ]
+
+}) }}
+
+{{ govukCheckboxes({
+
+  items: [
+    {
+      value: "prePopulation",
+      text: "Allow pre-population",
+       hint: {
+        text: "Tick this box if you want this field to be available to be pre-populated by query parameter."
+      }
+    }
+  ]
+
+}) }}
+
+{{ govukSelect({
+  id: "list",
+  name: "list",
+  label: {
+    text: "Select list"
+},
+ hint: {
+    text: "Select an existing list to show in this field or add a new list."
+  },
+  formGroup: {
+    classes: "govuk-!-margin-bottom-2"
+  },
+  items: [
+    {
+      value: "choose",
+      text: "Select a list",
+      selected: true
+    },
+    {
+      value: "list1",
+      text: "List 1"
+    },
+    {
+      value: "list2",
+      text: "List 2"
+    },
+    {
+      value: "list3",
+      text: "List 3"
+    }
+  ]
+}) }}
+<p class="govuk-body">
+  <a href="#" class="govuk-link govuk-link--no-visited-state">Add a new list</a>
+</p>
+
 <h2 class="govuk-heading-m">
         Additional settings
       </h2>
 
-{{ govukInput({
+      {{ govukInput({
   label: {
-    text: "Max days in the past"
+    text: "Autocomplete"
   },
   hint: {
-    text: "Determines the latest date users can enter. Error message for this is, '[Label] must be the same as or before [date].'"
-  },
-  classes: "govuk-input--width-3",
-  id: "latest-date",
-  name: "maxtDate"
-}) }}
-
-{{ govukInput({
-  label: {
-    text: "Max days in the future"
-  },
-  hint: {
-    text: "Determines the earlist date users can enter. Error message for this is, '[Label] must be the same as or after [date].'"
-  },
-  classes: "govuk-input--width-3",
-  id: "latest-date",
-  name: "maxtDate"
-}) }}
-
-{{ govukInput({
-  label: {
-    text: "Classes"
-  },
-  hint: {
-    text: "Apply CSS classes to this field. For example, govuk-input govuk-!-width-full."
+    text: "Add the autocomplete attribute to this field. For example, 'on' or 'given-name'."
   },
   classes: "govuk-input",
-  id: "latest-date",
-  name: "maxtDate"
+  id: "autcomplete",
+  name: "autocomplete"
 }) }}
 
+ <div class="govuk-button-group govuk-!-padding-top-4">
+ <a href="/cph-home/draft-notification-email-added.html">
+    <button type="submit" class="govuk-button govuk-button" data-module="govuk-button" >
+      Save
+    </button>
+  </a>
+  <a href="/cph-overview/closed-success">
+    <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
+      Delete component
+    </button>
+  </a>
 
 
-      <form class="form" action="/path/of/next/page" method="post">
-
-        {{ govukButton({
-          text: "Save"
-        }) }}
-
-      </form>
-
-    </div>
-  </div>
+</div>
+</div>
+</div>
 
 {% endblock %}

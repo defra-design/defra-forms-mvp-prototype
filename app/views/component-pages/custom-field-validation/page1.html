@@ -2,7 +2,7 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set pageName = "Overview - Apply for a county parish holding number in England" %}
+{% set pageName = "Custom reference number - Apply for a county parish holding number in England" %}
 
 {% block header %}
   {{ serviceHeader({
@@ -44,8 +44,9 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        Date parts component
+        Reference number in a specific format
       </h1>
+
 {{ govukInput({
   label: {
     text: "Short label",
@@ -108,8 +109,8 @@
 
   items: [
     {
-      value: "optionalDate",
-      text: "Make Date parts component field optional",
+      value: "optionalComponent",
+      text: "Make this component field optional",
        hint: {
         text: "Tick this box if you do not need to complete this field to progress through the form"
       }
@@ -118,123 +119,57 @@
 
 }) }}
 
-<h2 class="govuk-heading-m">
-        Additional settings
-      </h2>
+{{ govukCheckboxes({
+
+  items: [
+    {
+      value: "exposeContext",
+      text: "Expose to context",
+       hint: {
+        text: "If using additional context, tick this option to expose the field to be used by additional contexts."
+      }
+    }
+  ]
+
+}) }}
+
 
 {{ govukInput({
   label: {
-    text: "Max days in the past"
+    text: "Minimum number of characters"
   },
   hint: {
-    text: "Determines the latest date users can enter. Error message for this is, '[Label] must be the same as or before [date].'"
+    text: "Specifies the minimum number of words users can enter"
   },
   classes: "govuk-input--width-3",
-  id: "latest-date",
-  name: "maxtDate"
+  id: "max-words",
+  name: "maxWords"
 }) }}
 
 {{ govukInput({
   label: {
-    text: "Max days in the future"
+    text: "Maximum number of characters"
   },
   hint: {
-    text: "Determines the earlist date users can enter. Error message for this is, '[Label] must be the same as or after [date].'"
+    text: "Specifies the maximum character length users must enter"
   },
   classes: "govuk-input--width-3",
-  id: "latest-date",
-  name: "maxtDate"
-}) }}
-
-{{ govukInput({
-  label: {
-    text: "Classes"
-  },
-  hint: {
-    text: "Apply CSS classes to this field. For example, govuk-input govuk-!-width-full."
-  },
-  classes: "govuk-input",
-  id: "latest-date",
-  name: "maxtDate"
+  id: "length",
+  name: "length"
 }) }}
 
 
-
-     <div class="govuk-button-group govuk-!-padding-top-4">
- <a href="/cph-home/draft-notification-email-added.html">
+ <div class="govuk-button-group govuk-!-padding-top-4">
+ <a href="/component-pages/custom-field-validation/page2.html">
     <button type="submit" class="govuk-button govuk-button" data-module="govuk-button" >
-      Save
-    </button>
-  </a>
-  <a href="/cph-overview/closed-success">
-    <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
-      Delete component
+      Save and continue
     </button>
   </a>
 
 
-</div>
-</div>
-
-    {# <div class="govuk-grid-column-one-third" style="  padding: 15px;">
-<details class="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      View error messages for required fields
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-  <div class="app-example" style="padding: 15px;">
-
-  <div class="app-example__frame" scrolling="auto" frameborder="0" height="100" title="Side navigation (example)">
-  {{ govukInput({
-  label: {
-    text: "Short label",
-    classes: "govuk-label",
-    isPageHeading: true
-  },
-  hint: {
-    text: "Give the component a short description, for example ‘training course completion date’. Short labels are used in error messages, such as ‘Enter a training course completion date’."
-  },
-
-  errorMessage: {
-    text: "Enter a short label"
-  },
-  id: "event-name",
-  name: "eventName"
-}) }}
-  </div>
 
 </div>
-<div class="app-example" style="padding: 15px;">
-
-  <div class="app-example__frame" scrolling="auto" frameborder="0" height="100" title="Side navigation (example)">
-  {{ govukInput({
-  label: {
-    text: "Short label",
-    classes: "govuk-label",
-    isPageHeading: true
-  },
-  hint: {
-    text: "Give the component a short description, for example ‘training course completion date’. Short labels are used in error messages, such as ‘Enter a training course completion date’."
-  },
-
-  errorMessage: {
-    text: "Enter a short label"
-  },
-  id: "event-name",
-  name: "eventName"
-}) }}
-  </div>
-  </div>
-</details>
-</div> #}
-{#
-      <h1 class="govuk-heading-s">
-        Error messages
-      </h1>
-      </div> #}
-
-
+</div>
+</div>
 
 {% endblock %}

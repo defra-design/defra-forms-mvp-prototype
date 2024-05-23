@@ -12,15 +12,20 @@
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
-    navigationItems: [{
+    navigationItems: [
+    {
+      href: "/index.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
       href: "/cph-overview/draft.html",
       text: "Overview",
       id: "overview"
-    },
-    {
-      href: "/editor.html",
-      text: "Editor",
-      id: "editor"
+     },{
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
     }],
     activeLinkId: "/"
   }) }}
@@ -100,7 +105,7 @@
       {# <li><a href="#0" class="govuk-link govuk-link--no-visited-state">File upload</a><div class="govuk-hint">Allows users to upload files from the device they are using</div></li> #}
       <li><a href="/component-pages/month-year.html" class="govuk-link govuk-link--no-visited-state">Month year parts</a><div class="govuk-hint">Allows users to manually enter a Month and Year</div></li>
       <li><a href="/component-pages/multiline.html" class="govuk-link govuk-link--no-visited-state">Multiline text (text area)</a><div class="govuk-hint">A text box for users to enter multiple lines of text into, for example as 'Additional info'</div></li>
-      <li><a href="/component-pages/number.html" class="govuk-link govuk-link--no-visited-state">Number</a><div class="govuk-hint">A text box that users can only enter numbers into</div></li>
+      {# <li><a href="/component-pages/number.html" class="govuk-link govuk-link--no-visited-state">Number</a><div class="govuk-hint">A text box that users can only enter numbers into</div></li> #}
       <li><a href="/component-pages/telephone.html" class="govuk-link govuk-link--no-visited-state">Telephone number</a><div class="govuk-hint">A text box that users can enter numbers and some symbols into, such as '+'</div></li>
       <li><a href="/component-pages/text.html" class="govuk-link govuk-link--no-visited-state">Text</a><div class="govuk-hint">A text box that users can enter letters, numbers and symbols into</div></li>
       {# <li><a href="#0" class="govuk-link govuk-link--no-visited-state">Time</a> #}

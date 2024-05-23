@@ -12,14 +12,20 @@
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
-    navigationItems: [{
+    navigationItems: [
+    {
+      href: "/index.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
       href: "/cph-overview/draft.html",
       text: "Overview",
       id: "overview"
      },{
-         href: "/cph-overview/guidance-policies.html",
-    text: 'Guidance and policies',
-    id: 'policies'
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
     }],
     activeLinkId: "/"
   }) }}
@@ -52,11 +58,10 @@ visuallyHiddenTitle: "Footer links"
 {% endblock %}
 
 {% block beforeContent %}
-{{ govukBackLink({
-text: "Back to guidance and policies",
-href: "/cph-overview/guidance-policies"
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
 }) }}
-
 {% endblock %}
 
 {% block content %}
@@ -244,7 +249,7 @@ href: "/cph-overview/guidance-policies"
 
  {{ govukButton({
     text: "Save",
-    href: "/cph-overview/support-details-success.html",
+    href: "/cph-overview/draft+email+support.html",
     classes: "govuk-button"
   }) }}
 

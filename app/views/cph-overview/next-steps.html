@@ -13,14 +13,20 @@
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
-    navigationItems: [{
+    navigationItems: [
+    {
+      href: "/index.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
       href: "/cph-overview/draft.html",
       text: "Overview",
       id: "overview"
      },{
-         href: "/cph-overview/guidance-policies.html",
-    text: 'Guidance and policies',
-    id: 'policies'
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
     }],
     activeLinkId: "/"
   }) }}
@@ -53,11 +59,10 @@ visuallyHiddenTitle: "Footer links"
 {% endblock %}
 
 {% block beforeContent %}
-{{ govukBackLink({
-text: "Back to guidance and policies",
-href: "/cph-overview/guidance-policies"
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
 }) }}
-
 {% endblock %}
 
 {% block content %}
@@ -83,10 +88,7 @@ href: "/cph-overview/guidance-policies"
     <h2 class="govuk-heading-s">Example</h2>
     {{ govukInsetText({ text: "We’ll send you an email to let you know the outcome. You’ll usually get a response within 10 working days." }) }}
 
-    <p class="govuk-body">
-      Add some information to tell people what will happen after they've
-      submitted their form, and when - so they know what to expect.
-    </p>
+
     <p class="govuk-body">
       The email confirmation will also include the contact details you provide
       for the form, and the date and time of submission.
@@ -95,7 +97,7 @@ href: "/cph-overview/guidance-policies"
     {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {{
     govukTextarea({ name: "moreDetail", id: "more-detail", label: { text: "Enter
     what happens next", classes: "govuk-label--m govuk-!-padding-top-4",
-    isPageHeading: true } }) }} {{ govukButton({ text: "Save", href: "/cph-overview/next-steps-success.html",
+    isPageHeading: true } }) }} {{ govukButton({ text: "Save", href: "/cph-overview/draft+email+support+next.html",
     classes: "govuk-button" }) }}
 
 

@@ -1,7 +1,29 @@
 {% extends "layouts/main.html" %}
 
-{% block pageTitle %}
-  Yes/No component template – {{ serviceName }} – Defra Forms Designer
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Overview - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
+    navigationItems: [{
+      href: "/cph-overview/draft.html",
+      text: "Overview",
+      id: "overview"
+    },
+    {
+      href: "/editor.html",
+      text: "Editor",
+      id: "editor"
+    }],
+    activeLinkId: ""
+  }) }}
 {% endblock %}
 
 {% block beforeContent %}

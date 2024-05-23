@@ -37,16 +37,22 @@
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
-    navigationItems: [{
+    navigationItems: [
+    {
+      href: "/index.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
       href: "/cph-overview/draft.html",
       text: "Overview",
       id: "overview"
      },{
-         href: "/cph-overview/guidance-policies.html",
-    text: 'Guidance and policies',
-    id: 'policies'
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
     }],
-    activeLinkId: "overview"
+    activeLinkId: "/"
   }) }}
 {% endblock %}
 
@@ -90,7 +96,7 @@ visuallyHiddenTitle: "Footer links"
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 <div class="govuk-button-group">
-  <a href="/cph-overview/draft-notification-email-added">
+  <a href="/cph-overview/draft+email.html">
   <button type="submit" class="govuk-button" data-module="govuk-button">
     Save and continue
   </button>

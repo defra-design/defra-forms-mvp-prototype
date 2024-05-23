@@ -1046,4 +1046,315 @@ code.lang-md {
   content: " ";
 }
 
+.visualisation .page__actions > :hover {
+  background-color: #ffbf47;
+  color: #0b0c0c;
+  cursor: pointer;
+}
 
+.page__actions > :not(:last-child)  {
+  border-bottom: 1px solid #ffffff;
+}
+
+@media (min-width: 40.0625em){
+  .page__actions > *  {
+    font-size: 0.875rem;
+    line-height: 1.4285714286;
+  }
+}
+
+@media (min-width: 40.0625em){
+  .page__heading h3  {
+    font-size: 1.1875rem;
+    line-height: 1.3157894737;
+  }
+
+  .page__heading h3  {
+    margin-bottom: 20px;
+  }
+}
+
+.page__heading h3  {
+    margin-bottom: 0;
+}
+
+.page-linkage__drag-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+.page__actions > *  {
+    padding-top: 5px !important;
+}
+
+.page__actions > *  {
+    padding-bottom: 5px !important;
+}
+
+.page__actions > *  {
+    padding-right: 10px !important;
+}
+
+.page__actions > *  {
+    padding-left: 10px !important;
+}
+
+.page  {
+  position: absolute;
+  width: 240px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border-top: solid 2px #000;
+  border-right: solid 2px #000;
+  border-bottom: solid 2px #000;
+  border-left: solid 2px #000;
+}
+
+.page:hover  {
+  box-shadow: 0px 0px 0px 6px #ffbf47;
+}
+
+.page__heading  {
+  padding: 10px !important;
+}
+
+.page__heading  {
+  position: relative;
+  min-height: 2.8em;
+}
+
+.page__actions  {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   #MoJ SIDE NAVIGATION
+   ========================================================================== */
+
+   .moj-side-navigation {
+    @include govuk-font(16);
+
+    @include govuk-media-query($until: tablet) {
+      display: flex;
+      overflow-x: scroll;
+    }
+
+    @include govuk-media-query($from: tablet) {
+      display: block;
+      padding: govuk-spacing(4) 0 0;
+    }
+
+  }
+
+  .moj-side-navigation__title {
+    @include govuk-font($size: 19);
+    color: govuk-colour("dark-grey");
+    font-weight: normal;
+    margin: 0;
+    padding: govuk-spacing(2);
+    padding-left: govuk-spacing(2) + 4px;
+
+    @include govuk-media-query($until: tablet) {
+      display: none;
+    }
+
+  }
+
+  .moj-side-navigation__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include govuk-media-query($until: tablet) {
+      display: flex;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    @include govuk-media-query($from: tablet) {
+      margin-bottom: govuk-spacing(4);
+    }
+  }
+
+  .moj-side-navigation__item {
+
+    @include govuk-media-query($until: tablet) {
+      display: flex;
+    }
+
+    a,
+    a:link,
+    a:visited {
+      background-color: inherit;
+      color: $govuk-link-colour;
+      display: block;
+      text-decoration: none;
+
+      @include govuk-media-query($until: tablet) {
+        border-bottom: 4px solid transparent;
+        padding: govuk-spacing(3);
+        padding-bottom: govuk-spacing(3) - 4px; // Compensate for 4px border
+      }
+
+      @include govuk-media-query($from: tablet) {
+        background-color: inherit;
+        border-left: 4px solid transparent;
+        padding: govuk-spacing(2);
+      }
+
+
+    }
+
+    a:hover {
+      color: $govuk-link-hover-colour;
+    }
+
+    a:focus {
+      color: $govuk-focus-text-colour;
+      background-color: $govuk-focus-colour;
+      border-color: $govuk-focus-text-colour;
+      position: relative;
+    }
+
+  }
+
+  .moj-side-navigation__item--active {
+
+    a:link,
+    a:visited {
+      border-color: $govuk-link-colour;
+      color: $govuk-link-colour;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: $govuk-link-hover-colour;
+      border-color: $govuk-link-hover-colour;
+    }
+
+    a:focus {
+      color: $govuk-focus-text-colour;
+      background-color: $govuk-focus-colour;
+      border-color: $govuk-focus-text-colour;
+    }
+
+    @include govuk-media-query($from: tablet) {
+      a:link,
+      a:visited {
+        background-color: govuk-colour("light-grey");
+      }
+
+      a:focus {
+        color: $govuk-focus-text-colour;
+        background-color: $govuk-focus-colour;
+      }
+    }
+
+
+  }
+
+  /* ==========================================================================
+   #EXAMPLE
+   ========================================================================== */
+
+   .app-example {
+    background-color: govuk-colour("white");
+    border: 1px solid $govuk-border-colour;
+    position: relative;
+  }
+
+
+  .app-example__frame {
+    background-color: govuk-colour("white");
+    border: 0;
+    display: block;
+    width: 100%;
+  }
+
+  .app-example-page {
+    margin-bottom: -1px;
+    padding: 30px;
+    padding-top: 60px;
+    position: relative;
+  }
+
+  .app-example__new-window {
+    @include govuk-font($size: 14);
+    border: 1px solid $govuk-border-colour;
+    position: absolute; top: -1px; left: -1px;
+
+    a,
+    a:link,
+    a:visited {
+      background-color: white;
+      color: govuk-colour("blue");
+      display: block;
+      padding: 5px 10px;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: govuk-colour("light-blue");
+    }
+
+    a:focus {
+      // color: $govuk-focus-text-colour;
+      background-color: $govuk-focus-colour;
+      // box-shadow: 0 -2px $govuk-focus-colour, 0 4px $govuk-focus-text-colour;
+      // border-color: $govuk-focus-text-colour;
+    }
+
+  }
+
+  /* ==========================================================================
+   #MOJ SCROLLABLE PANE
+   ========================================================================== */
+
+  .moj-scrollable-pane {
+    $scrollableBgColor: white;
+    $scrollableTransparentColor: rgba(255, 255, 255, 0);
+    $scrollableShadowColor: rgba(0, 0, 0, 0.2);
+    $scrollableShadowSize: 0.75em;
+
+    overflow-x: scroll;
+    background: linear-gradient(
+        to right,
+        $scrollableBgColor,
+        $scrollableBgColor,
+        $scrollableTransparentColor calc(var($scrollableShadowSize) * 2)
+      ),
+      radial-gradient(
+        farthest-side at 0 50%,
+        $scrollableShadowColor,
+        $scrollableTransparentColor
+      ),
+      linear-gradient(
+        to left,
+        $scrollableBgColor,
+        $scrollableBgColor,
+        $scrollableTransparentColor calc(var($scrollableShadowSize) * 2)
+      ),
+      radial-gradient(
+          farthest-side at 100% 50%,
+          $scrollableShadowColor,
+          $scrollableTransparentColor
+        )
+        100%;
+    background-color: $scrollableBgColor;
+    background-repeat: no-repeat;
+    background-attachment: local, scroll, local, scroll;
+    background-size: 100% 100%, $scrollableShadowSize 100%, 100% 100%,
+      $scrollableShadowSize 100%;
+  }
+
+  @include govuk-media-query($until: 1020px) {
+    .moj-scrollable-pane .govuk-table__header,
+    .moj-scrollable-pane .govuk-table__cell {
+      white-space: nowrap;
+    }
+  }

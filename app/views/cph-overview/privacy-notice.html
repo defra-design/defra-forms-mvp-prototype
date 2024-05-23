@@ -13,14 +13,20 @@
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
-    navigationItems: [{
+    navigationItems: [
+    {
+      href: "/index.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
       href: "/cph-overview/draft.html",
       text: "Overview",
       id: "overview"
      },{
-         href: "/cph-overview/guidance-policies.html",
-    text: 'Guidance and policies',
-    id: 'policies'
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
     }],
     activeLinkId: "/"
   }) }}
@@ -53,11 +59,10 @@ visuallyHiddenTitle: "Footer links"
 {% endblock %}
 
 {% block beforeContent %}
-{{ govukBackLink({
-text: "Back to guidance and policies",
-href: "/cph-overview/guidance-policies.html"
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
 }) }}
-
 {% endblock %}
 
 {% block content %}
@@ -72,7 +77,7 @@ href: "/cph-overview/guidance-policies.html"
 </h1>
 
 <p class="govuk-body-l">To comply with the UK General Data Protection Regulation (UK GDPR), you must provide privacy information for the people who will enter their data into your form.</p>
-<p class="govuk-body">The privacy information must include details such as:</p>
+{# <p class="govuk-body">The privacy information must include details such as:</p>
 <ul class="govuk-list govuk-list--bullet">
   <li>your purposes for processing the personal data</li>
   <li>how long you’ll keep the personal data</li>
@@ -80,7 +85,7 @@ href: "/cph-overview/guidance-policies.html"
   <li>contact details for your department and your data protection officer</li>
 </ul>
 
-<p class="govuk-body">You may already publish this information, for example in a privacy notice or personal information charter. Existing privacy information may need to be updated to cover the data you are collecting in this form, or you may need a new privacy notice.</p>
+<p class="govuk-body">You may already publish this information, for example in a privacy notice or personal information charter. Existing privacy information may need to be updated to cover the data you are collecting in this form, or you may need a new privacy notice.</p> #}
 
 {% from "govuk/components/input/macro.njk" import govukInput %}
 
@@ -99,7 +104,7 @@ href: "/cph-overview/guidance-policies.html"
 
  {{ govukButton({
     text: "Save",
-    href: "/cph-overview/privacy-success.html",
+    href: "/cph-overview/draft+email+support+next+privacy.html",
     classes: "govuk-button"
   }) }}
 

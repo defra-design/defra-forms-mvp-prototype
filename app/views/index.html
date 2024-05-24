@@ -28,7 +28,7 @@
 {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
 
 {% set pageName -%}
-  Form library (page {{ pageCurrent }} of {{ pageCount }})
+  Forms library (page {{ pageCurrent }} of {{ pageCount }})
 {%- endset %}
 
 {% block footer %}
@@ -63,7 +63,7 @@ visuallyHiddenTitle: "Footer links"
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
     navigationItems: [{
       href: "/",
-      text: "Form library",
+      text: "Forms library",
       id: "form-library"
     }],
     activeLinkId: "form-library"
@@ -73,7 +73,7 @@ visuallyHiddenTitle: "Footer links"
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <h1 class="govuk-heading-xl">Form library</h1>
+    <h1 class="govuk-heading-xl">Forms library</h1>
   </div>
 </div>
 

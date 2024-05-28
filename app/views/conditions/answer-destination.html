@@ -12,17 +12,22 @@
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
-    navigationItems: [{
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
       href: "/cph-overview/draft.html",
       text: "Overview",
       id: "overview"
-    },
-    {
-      href: "/editor.html",
-      text: "Editor",
-      id: "editor"
+     },{
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
     }],
-    activeLinkId: ""
+    activeLinkId: "/"
   }) }}
 {% endblock %}
 

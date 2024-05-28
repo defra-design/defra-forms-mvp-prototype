@@ -19,23 +19,14 @@
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <!-- <span class="govuk-caption-xl">Configuration pages</span> -->
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">Kit of parts</h1>
     <p class="govuk-body-l">View each page that makes up the Defra Forms Designer.</p>
-        <p class="govuk-body">Pages are constantly being iterated. To see previous versions, <a href="https://defra-forms-designer-history-377a8db06fe5.herokuapp.com/" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">see our Design History (opens in new tab)</a>.</p>
- <p>Last Updated: <span id="last-updated"></span></p>
+    <p class="govuk-body">Pages are constantly being iterated. To see previous versions, <a href="https://defra-forms-designer-history-377a8db06fe5.herokuapp.com/" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">see our Design History (opens in new tab)</a>.</p>
 
-  </div>
-</div>
-
-
-
-{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-{{ govukAccordion({
+        {{ govukAccordion({
   id: "accordion-with-summary-sections",
   items: [
    {
@@ -279,8 +270,60 @@
     }
   ]
 }) }}
-</div>
+      </div>
 
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third" style="background-color: #f3f2f1; height: 100vh; padding-top: 15px;">
+             <h2 class="govuk-heading-l">Use the prototype</h2>
+             {% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+<form class="form" action="/overview-answer" method="post">
+
+{{ govukRadios({
+  name: "overview",
+  value: data['overview'],
+  fieldset: {
+    legend: {
+      html: 'Which status do you want view the overview page in?',
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "draft",
+      html: 'Draft'
+    },
+    {
+      value: "live",
+      text: "Live"
+    },
+    {
+      value: "draftLive",
+      text: "Draft and live"
+    },
+    {
+      value: "closed",
+      text: "Closed"
+    }
+  ]
+}) }}
+{{ govukButton({
+  text: "Start prototype"
+}) }}
+</form>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 

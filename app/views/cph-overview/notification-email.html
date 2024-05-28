@@ -39,7 +39,7 @@
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
     navigationItems: [
     {
-      href: "/index.html",
+      href: "/library.html",
       text: "Forms library",
       id: "library"
      },
@@ -56,27 +56,7 @@
   }) }}
 {% endblock %}
 
-{% block footer %}
-{{ govukFooter({
-meta: {
-items: [
-{
-href: "/cph-overview/draft.html",
-text: "Form in draft state"
-},
-{
-href: "/cph-overview/guidance-policies",
-text: "Restart guidance and policies"
-},
-{
-href: "/manage-prototype/clear-data",
-text: "Clear data"
-}
-],
-visuallyHiddenTitle: "Footer links"
-}
-}) }}
-{% endblock %}
+
 
 {% block content %}
 <div class="govuk-grid-row">

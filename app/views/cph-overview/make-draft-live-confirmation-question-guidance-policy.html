@@ -25,38 +25,13 @@
   }) }}
 {% endblock %}
 
-{% block footer %}
-{{ govukFooter({
-meta: {
-items: [
-{
-href: "/cph-overview/draft.html",
-text: "Form in draft state"
-},
-{
-href: "/cph-overview/guidance-policies",
-text: "Restart guidance and policies"
-},
-{
-href: "/privacy-policy",
-text: "Preview privacy policy"
-},
-{
-href: "/manage-prototype/clear-data",
-text: "Clear data"
-}
-],
-visuallyHiddenTitle: "Footer links"
-}
-}) }}
-{% endblock %}
+
 
 {% block beforeContent %}
-{{ govukBackLink({
-text: "Back",
-href: "/index.html"
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
 }) }}
-
 {% endblock %}
 
 

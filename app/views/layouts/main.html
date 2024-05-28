@@ -9,3 +9,48 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
   {{ super() }}
   <script src="/public/javascripts/application.js"></script>
 {% endblock %}
+
+
+{% block footer %}
+{{ govukFooter({
+  navigation: [
+
+    {
+      title: "Quick links",
+      width: "full",
+      items: [
+        {
+          href: "/index.html",
+          text: "Kit of parts"
+        },
+        {
+          href: "https://github.com/defra-design/defra-forms-mvp-prototype",
+          text: "Github repo for prototype"
+        },
+        {
+          href: "/manage-prototype/clear-data",
+          text: "Clear data"
+        }
+      ]
+    }
+  ]
+}) }}
+{% endblock %}
+
+{# {% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: [{
+        href: "/cph-overview/draft.html",
+        text: "Kit of parts"
+      }, {
+        href: "/cph-overview/guidance-policies",
+        text: "Restart guidance and policies"
+      }, {
+        href: "/manage-prototype/clear-data",
+        text: "Clear data"
+      }],
+      visuallyHiddenTitle: "Footer links"
+    }
+  }) }}
+{% endblock %} #}

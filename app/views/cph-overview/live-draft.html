@@ -50,32 +50,12 @@
   }) }}
 {% endblock %}
 
-{% block footer %}
-{{ govukFooter({
-meta: {
-items: [
-{
-href: "/cph-overview/draft.html",
-text: "Form in draft state"
-},
-{
-href: "/cph-overview/guidance-policies",
-text: "Restart guidance and policies"
-},
-{
-href: "/manage-prototype/clear-data",
-text: "Clear data"
-}
-],
-visuallyHiddenTitle: "Footer links"
-}
-}) }}
-{% endblock %}
+
 
 {% block beforeContent %}
 {{ govukBackLink({
 text: "Back to form library",
-href: "/index.html"
+href: "/library.html"
 }) }}
 
 {% endblock %}

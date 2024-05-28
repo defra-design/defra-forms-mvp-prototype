@@ -38,23 +38,7 @@
 }) }}
 {% endblock %}
 
-{% block footer %}
-  {{ govukFooter({
-    meta: {
-      items: [{
-        href: "/cph-overview/draft.html",
-        text: "Form in draft state"
-      }, {
-        href: "/cph-overview/guidance-policies",
-        text: "Restart guidance and policies"
-      }, {
-        href: "/manage-prototype/clear-data",
-        text: "Clear data"
-      }],
-      visuallyHiddenTitle: "Footer links"
-    }
-  }) }}
-{% endblock %}
+
 
 {% block content %}
 
@@ -108,6 +92,7 @@
       {# <li><a href="/component-pages/number.html" class="govuk-link govuk-link--no-visited-state">Number</a><div class="govuk-hint">A text box that users can only enter numbers into</div></li> #}
       <li><a href="/component-pages/telephone.html" class="govuk-link govuk-link--no-visited-state">Telephone number</a><div class="govuk-hint">A text box that users can enter numbers and some symbols into, such as '+'</div></li>
       <li><a href="/component-pages/text.html" class="govuk-link govuk-link--no-visited-state">Text</a><div class="govuk-hint">A text box that users can enter letters, numbers and symbols into</div></li>
+      <li><a href="/component-pages/custom-field-validation/page1.html" class="govuk-link govuk-link--no-visited-state">Reference number</a><div class="govuk-hint">A text box where users can enter information in a specific format</div></li>
       {# <li><a href="#0" class="govuk-link govuk-link--no-visited-state">Time</a> #}
       </ol>
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">

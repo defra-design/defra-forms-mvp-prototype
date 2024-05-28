@@ -2,34 +2,6 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set formLibrary = require("data/form-library.json") %}
-
-{% switch data["sort"] %}
-  {% case "updated-oldest" %}
-    {% set sortBy = "updated.date" %}
-    {% set sortReverse = false %}
-  {% case "status" %}
-    {% set sortBy = "status" %}
-    {% set sortReverse = false %}
-  {% case "published-newest" %}
-    {% set filterBy = "published" %}
-    {% set sortBy = "published.date" %}
-    {% set sortReverse = true %}
-  {% case "published-oldest" %}
-    {% set filterBy = "published" %}
-    {% set sortBy = "published.date" %}
-    {% set sortReverse = false %}
-{% endswitch %}
-
-{% set formItems = formLibrary.items | selectattr(filterBy) if filterBy else formLibrary.items %}
-{% set formItems = formItems | sort(attribute="updated.date", reverse=true) %}
-
-{% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
-{% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
-
-{% set pageName = "Overview - Apply for a county parish holding number in England" %}
-
-
 {% block header %}
   {{ serviceHeader({
     organisationName: "Defra",
@@ -38,20 +10,27 @@
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
-    navigationItems: [{
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
       href: "/cph-overview/draft.html",
       text: "Overview",
       id: "overview"
      },{
-         href: "/cph-overview/guidance-policies.html",
-    text: 'Guidance and policies',
-    id: 'policies'
+         href: "/editor",
+    text: 'Editor',
+    id: 'editor'
     }],
-    activeLinkId: "overview"
+    activeLinkId: "/"
   }) }}
 {% endblock %}
 
 
+{% set pageName = "Overview - Apply for a county parish holding number in England" %}
 
 {% block content %}
 <div class="govuk-grid-row">

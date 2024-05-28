@@ -2,34 +2,6 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set formLibrary = require("data/form-library.json") %}
-
-{% switch data["sort"] %}
-  {% case "updated-oldest" %}
-    {% set sortBy = "updated.date" %}
-    {% set sortReverse = false %}
-  {% case "status" %}
-    {% set sortBy = "status" %}
-    {% set sortReverse = false %}
-  {% case "published-newest" %}
-    {% set filterBy = "published" %}
-    {% set sortBy = "published.date" %}
-    {% set sortReverse = true %}
-  {% case "published-oldest" %}
-    {% set filterBy = "published" %}
-    {% set sortBy = "published.date" %}
-    {% set sortReverse = false %}
-{% endswitch %}
-
-{% set formItems = formLibrary.items | selectattr(filterBy) if filterBy else formLibrary.items %}
-{% set formItems = formItems | sort(attribute="updated.date", reverse=true) %}
-
-{% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
-{% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
-
-{% set pageName = "Overview - Apply for a county parish holding number in England" %}
-
-
 {% block header %}
   {{ serviceHeader({
     organisationName: "Defra",
@@ -38,19 +10,26 @@
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
-    navigationItems: [{
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
       href: "/cph-overview/draft.html",
       text: "Overview",
       id: "overview"
      },{
-         href: "/cph-overview/guidance-policies.html",
-    text: 'Guidance and policies',
-    id: 'policies'
+         href: "/editor",
+    text: 'Editor',
+    id: 'editor'
     }],
     activeLinkId: "overview"
   }) }}
 {% endblock %}
 
+{% set pageName = "Overview - Apply for a county parish holding number in England" %}
 
 
 {% block beforeContent %}
@@ -179,70 +158,191 @@ href: "/library.html"
 </dl>
 
 
+<h2 class="govuk-heading-m govuk-!-padding-top-4">
+  Where forms completed by citizens are sent
+</h2>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Completed forms sent to"
+      },
+      value: {
+        html: 'PolicyTeam@defra.gov.uk'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Completed forms sent to"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-<h2 class="govuk-heading-m govuk-!-padding-top-4">Organisation details</h2>
+<h2 class="govuk-heading-m govuk-!-padding-top-2">
+  Contact details for support
+</h2>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Provide contact details for support"
+      },
+      value: {
+        html: 'Telephone: 020 7946 0101<br>Textphone: 020 7946 0102...'
+      },
+  actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Completed forms sent to"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
 
-<dl class="govuk-summary-list">
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Completed forms sent to
-    </dt>
-    <dd class="govuk-summary-list__value">
-      PolicyTeam@defra.gov.uk
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Form name
-    </dt>
-    <dd class="govuk-summary-list__value">
-      Apply for a county parish holding number in England
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
-    </dd>
-  </div>
+<h2 class="govuk-heading-m govuk-!-padding-top-2">
+  What happens next
+</h2>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Tell users what happens after they submit their form"
+      },
+      value: {
+        html: 'We’ll send you an email to let you know the outcome. You’ll usually...'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Completed forms sent to"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
 
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Lead organisation
-    </dt>
-    <dd class="govuk-summary-list__value">
-      Center for Environment, Fisheries and Aquaculture Science - Cefas
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Team name
-    </dt>
-    <dd class="govuk-summary-list__value">
-      Policy directorate
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Shared email address
-    </dt>
-    <dd class="govuk-summary-list__value">
-      SM-Defra-Not-Real@defra.gov.uk
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
-    </dd>
-  </div>
-</dl>
 
+<h2 class="govuk-heading-m govuk-!-padding-top-2">
+  Data protection
+</h2>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Privacy notice"
+      },
+      value: {
+        html: 'https://www.gov.uk/help/privacy-notice'
+  },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Completed forms sent to"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+<h2 class="govuk-heading-m govuk-!-padding-top-2">Organisation details</h2>
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Form name"
+      },
+      value: {
+        text: "Apply for a county parish holding number in England"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "form name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Lead organisation"
+      },
+      value: {
+        text: "Center for Environment, Fisheries and Aquaculture Science - Cefas"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "lead organisation"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Team name"
+      },
+      value: {
+        text: "Policy directorate"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "team name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Shared email address"
+      },
+      value: {
+        text: "SM-Defra-Not-Real@defra.gov.uk"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "shared email address"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
 
 </div>
+
 
 
 

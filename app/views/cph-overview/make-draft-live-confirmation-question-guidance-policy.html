@@ -2,8 +2,6 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set pageName = "Overview - Apply for a county parish holding number in England" %}
-
 {% block header %}
   {{ serviceHeader({
     organisationName: "Defra",
@@ -12,7 +10,13 @@
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
-    navigationItems: [{
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
       href: "/cph-overview/draft.html",
       text: "Overview",
       id: "overview"

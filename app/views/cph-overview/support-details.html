@@ -80,18 +80,8 @@
       text: "Email address"
     }
   }) }}
-{% endset %}
 
-{% set contactHtml %}
-  {{ govukTextarea({
-    id: "contact-by-phone-textarea",
-    name: "contactByPhoneTextarea",
-    classes: "govuk-!-width-full",
-    label: {
-      text: "Telephone number and its opening times"
-    }
-  }) }}
-  {{ govukInput({
+   {{ govukInput({
     id: "contact-by-phone-input",
     name: "responseTimes",
     autocomplete: "tel",
@@ -103,6 +93,18 @@
       text: "For example, ‘we aim to respond within 2 working days’"
     }
   }) }}
+{% endset %}
+
+{% set contactHtml %}
+  {{ govukTextarea({
+    id: "contact-by-phone-textarea",
+    name: "contactByPhoneTextarea",
+    classes: "govuk-!-width-full",
+    label: {
+      text: "Telephone number and its opening times"
+    }
+  }) }}
+
 {% endset %}
 
 {% set linkHtml %}

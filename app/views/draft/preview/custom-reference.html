@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Your national insurance number – Name of service – GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+
+{{ govukHeader({
+  homepageUrl: "#",
+  serviceName: "Service name",
+  serviceUrl: "#"
+}) }}
+
+{# {% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %} #}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+    This is a preview of a draft form. Do not enter personal information.
+  </p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
+      {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+    <form action="/form-handler" method="post" novalidate>
+
+{{ govukInput({
+  label: {
+    text: "National insurance number",
+    isPageHeading: true,
+    classes: "govuk-label--l"
+  },
+  hint: {
+    text: "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
+  },
+  classes:"govuk-input--width-10 govuk-input--extra-letter-spacing",
+  id: "ni",
+  name: "ni",
+  spellcheck: false
+}) }}
+
+
+      {{ govukButton({
+        href: "/draft/preview/custom-reference-error.html",
+        text: "Continue"
+      }) }}
+    </form>
+
+    <p class="govuk-body">
+  <a href="/draft/preview/custom-reference-error.html" class="govuk-link" rel="noreferrer noopener" target="_blank">View error message (opens in new tab)</a>
+</p>
+  </div>
+</div>
+
+
+
+{% endblock %}

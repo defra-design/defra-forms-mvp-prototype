@@ -29,7 +29,7 @@ router.post("/prototype-answer", function (request, response) {
   var prototype = request.session.data["prototype"];
   switch (prototype) {
     case "editor":
-      response.redirect("/editor.html");
+      response.redirect("/editor0.html");
       break;
     case "overview":
       response.redirect("/index-overview.html");

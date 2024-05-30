@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Your national insurance number – Name of service – GOV.UK Prototype Kit
+  Your National Insurance Number – Name of service – GOV.UK Prototype Kit
 {% endblock %}
 
 {% from "govuk/components/header/macro.njk" import govukHeader %}
@@ -36,7 +36,7 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "Enter national Insurance number that is 2 letters, 6 numbers, then A, B, C or D, like QQ 12 34 56 C",
+              text: "Enter National Insurance Number that is 2 letters, 6 numbers, then A, B, C or D, like QQ 12 34 56 C",
               href: "#"
             }
           ]
@@ -44,7 +44,7 @@
 
         {{ govukInput({
           label: {
-            text: "National insurance number",
+            text: "National Insurance Number",
             isPageHeading: true,
             classes: "govuk-label--l"
           },
@@ -55,7 +55,7 @@
           id: "ni",
           name: "ni",
           errorMessage: {
-            text: "Enter national Insurance number that is 2 letters, 6 numbers, then A, B, C or D, like QQ 12 34 56 C"
+            text: "Enter National Insurance Number that is 2 letters, 6 numbers, then A, B, C or D, like QQ 12 34 56 C"
           },
           spellcheck: false
         }) }}

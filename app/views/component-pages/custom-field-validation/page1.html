@@ -119,7 +119,7 @@
 
 }) }}
 
-{{ govukCheckboxes({
+{# {{ govukCheckboxes({
 
   items: [
     {
@@ -131,7 +131,7 @@
     }
   ]
 
-}) }}
+}) }} #}
 
 
 {{ govukInput({
@@ -139,7 +139,7 @@
     text: "Minimum number of characters"
   },
   hint: {
-    text: "Specifies the minimum number of words users can enter"
+    text: "Specify the minimum number of characters users must enter"
   },
   classes: "govuk-input--width-3",
   id: "max-words",
@@ -151,7 +151,7 @@
     text: "Maximum number of characters"
   },
   hint: {
-    text: "Specifies the maximum character length users must enter"
+    text: "Specify the maximum number of characters users can enter"
   },
   classes: "govuk-input--width-3",
   id: "length",

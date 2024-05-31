@@ -52,10 +52,10 @@
 </h1>
 
 <p class="govuk-body-l">You need to provide at least one way for people to get help if they get stuck.</p>
-<p class="govuk-body">Contact information will be shown:</p>
+<p class="govuk-body">The contact information you provide will be shown:</p>
 <ul class="govuk-list govuk-list--bullet">
   <li>at the bottom of every page of the form</li>
-  <li>in an email confirming the date and time a form was submitted</li>
+  <li>in the confirmation email, which will also state the date and time a form was submitted</li>
 </ul>
 
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
@@ -160,14 +160,14 @@
     autocomplete: "address-level2"
   }) }}
 
-  {{ govukInput({
+  {# {{ govukInput({
     label: {
       text: "County (optional)"
     },
     classes: "govuk-!-width-two-thirds",
     id: "address-county",
     name: "addressCounty"
-  }) }}
+  }) }} #}
 
   {{ govukInput({
     label: {

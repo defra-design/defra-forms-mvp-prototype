@@ -265,8 +265,43 @@
     <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/yesno.html" rel="noreferrer noopener" target="_blank">Yes/No</a>
   </li>
 </ul>'
-      }
+       }
+    },
 
+    {
+      heading: {
+        text: "Error messages"
+      },
+      summary: {
+        text: "Quickly view the error messages for pages that need them."
+      },
+      content: {
+        html:
+        '
+        <h3 class="govuk-heading-m">What happens next page</h3>
+<ul class="govuk-list govuk-list--spaced">
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/error-messages/happens-next/empty-string.html" rel="noreferrer noopener" target="_blank">Empty string</a>
+  </li>
+  </ul>
+
+  <ul class="govuk-list govuk-list--spaced">
+  <h3 class="govuk-heading-m">Add privacy notice link page</h3>
+   <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/error-messages/privacy/empty-string.html" rel="noreferrer noopener" target="_blank">Empty string</a>
+  </li>
+   <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/error-messages/privacy/incorrect-format.html" rel="noreferrer noopener" target="_blank">Incorrect format</a>
+  </li>
+  </ul>
+   <ul class="govuk-list govuk-list--spaced">
+  <h3 class="govuk-heading-m">Add contact details for support page</h3>
+   <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/error-messages/support/empty-strings.html" rel="noreferrer noopener" target="_blank">Empty string</a>
+  </li>
+  </ul>
+  '
+      }
     }
   ]
 }) }}
@@ -274,7 +309,7 @@
 
 
         <div class="govuk-grid-row">
-            <div class="govuk-grid-column-one-third" style="background-color: #f3f2f1;padding: 15px; border-block-color: black;border-style: solid;">
+            <div class="govuk-grid-column-one-third" style="background-color: #f3f2f1;padding-top: 15px;border-block-color: black;border-style: solid;">
              <h2 class="govuk-heading-l">Use the prototype</h2>
 
 {% from "govuk/components/radios/macro.njk" import govukRadios %}

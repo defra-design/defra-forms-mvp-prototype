@@ -46,6 +46,16 @@ href: "/library.html"
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
+  {% set html %}
+  <h3 class="govuk-notification-banner__heading">
+   Privacy notice has been added
+  </h3>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html,
+  type: "success"
+}) }}
     <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
 {# {% set html %}
   <h3 class="govuk-notification-banner__heading">
@@ -106,6 +116,7 @@ href: "/library.html"
 
     </div>
   </dl>
+
 <h2 class="govuk-heading-m govuk-!-padding-top-4">
   Where forms completed by citizens are sent
 </h2>
@@ -172,7 +183,7 @@ href: "/library.html"
         text: "Email address"
       },
       value: {
-        html: '<p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/call-charges">DefraSupport@defra.gov.uk</a></p><p class="govuk-body">We aim to response in 2 working days.</p> '
+        html: '<p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/call-charges">DefraSupport@defra.gov.uk</a></p><p class="govuk-body">We aim to respond in 2 working days.</p> '
       },
       actions: {
         items: [
@@ -201,7 +212,7 @@ href: "/library.html"
         ]
       }
     },
-    {
+     {
       key: {
         text: "Address"
       },
@@ -227,7 +238,6 @@ href: "/library.html"
 
 
 
-
 <h2 class="govuk-heading-m govuk-!-padding-top-2">
   What happens next
 </h2>
@@ -238,7 +248,7 @@ href: "/library.html"
         text: "Tell users what happens after they submit their form"
       },
       value: {
-        html: 'We’ll send you an email to let you know the outcome. You’ll usually...'
+        html: 'We’ll send you an email to let you know the outcome. You’ll usually get a response within 10 working days.'
       },
       actions: {
         items: [
@@ -264,7 +274,7 @@ href: "/library.html"
         text: "Privacy notice"
       },
       value: {
-        html: 'https://www.gov.uk/help/privacy-notice'
+        html: '<a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/call-charges">https://www.gov.uk/help/privacy-notice</a></p>'
   },
       actions: {
         items: [
@@ -371,7 +381,7 @@ href: "/library.html"
         <!-- <button class="gem-c-button govuk-button gem-c-button-publishing--secondary snipcss0-3-3-4" style="width: 100%; margin-bottom: 15px;" type="submit">Edit draft</button> -->
       </a>
 
-      <a href="/cph-overview/make-draft-live-no-email.html">
+      <a href="/cph-overview/make-draft-live-confirmation-question.html">
         <button type="submit" class="govuk-button" data-module="govuk-button" style="width: 100%; margin-bottom: 15px;">
             Make draft live
         </button>

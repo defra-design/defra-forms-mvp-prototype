@@ -46,6 +46,16 @@ href: "/library.html"
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
+  {% set html %}
+  <h3 class="govuk-notification-banner__heading">
+   Contact link for support has been added
+  </h3>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html,
+  type: "success"
+}) }}
     <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
 {# {% set html %}
   <h3 class="govuk-notification-banner__heading">
@@ -106,6 +116,7 @@ href: "/library.html"
 
     </div>
   </dl>
+
 <h2 class="govuk-heading-m govuk-!-padding-top-4">
   Where forms completed by citizens are sent
 </h2>
@@ -172,7 +183,7 @@ href: "/library.html"
         text: "Email address"
       },
       value: {
-        html: '<p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/call-charges">DefraSupport@defra.gov.uk</a></p><p class="govuk-body">We aim to response in 2 working days.</p> '
+        html: '<p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/call-charges">DefraSupport@defra.gov.uk</a></p><p class="govuk-body">We aim to respond in 2 working days.</p> '
       },
       actions: {
         items: [
@@ -206,25 +217,11 @@ href: "/library.html"
         text: "Address"
       },
       value: {
-        html: '          <p class="govuk-body">
-            49 to 53 Cherry Street<br>
-            London<br>
-            AB1 2DC
-          </p>'
-      },
-      actions: {
-        items: [
-          {
-            href: "/cph-overview/support-details.html",
-            text: "Change",
-            visuallyHiddenText: "Change"
-          }
-        ]
+        html: '<a href="/cph-overview/suppport/add-address.html" class="govuk-link govuk-link--no-visited-state">Enter address for support</a>'
       }
     }
   ]
 }) }}
-
 
 
 
@@ -238,16 +235,7 @@ href: "/library.html"
         text: "Tell users what happens after they submit their form"
       },
       value: {
-        html: 'We’ll send you an email to let you know the outcome. You’ll usually...'
-      },
-      actions: {
-        items: [
-          {
-            href: "/cph-overview/next-steps.html",
-            text: "Change",
-            visuallyHiddenText: "Completed forms sent to"
-          }
-        ]
+        html: '<a href="/cph-overview/next-steps.html" class="govuk-link govuk-link--no-visited-state">Add information about what happens next</a>'
       }
     }
   ]
@@ -264,17 +252,8 @@ href: "/library.html"
         text: "Privacy notice"
       },
       value: {
-        html: 'https://www.gov.uk/help/privacy-notice'
-  },
-      actions: {
-        items: [
-          {
-            href: "/cph-overview/privacy-notice.html",
-            text: "Change",
-            visuallyHiddenText: "Completed forms sent to"
-          }
-        ]
-      }
+        html: '<a href="/cph-overview/privacy-notice.html" class="govuk-link govuk-link--no-visited-state">Add a link to a privacy notice</a>'
+       }
     }
   ]
 }) }}

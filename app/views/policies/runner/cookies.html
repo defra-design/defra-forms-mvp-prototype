@@ -11,6 +11,33 @@
   }) }}
 {% endblock %} #}
 
+
+{% block footer %}
+ {{ govukFooter({
+   meta: {
+     items: [
+       {
+         href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-published.html",
+         text: "Get help with this form"
+       },
+       {
+         href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-published.html",
+         text: "Accessibility statement"
+       },
+       {
+         href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft.html",
+         text: "Cookies"
+       },
+       {
+        href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft-published.html",
+        text: "Privacy"
+      }
+     ],
+     visuallyHiddenTitle: "Footer links"
+   }
+ }) }}
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">

@@ -1,15 +1,38 @@
 {% extends "layouts/main.html" %}
 
-{% block pageTitle %}
-  Cookies – {{ serviceName }}
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Cookies - Defra Forms Designer" %}
+
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
+      href: "/cph-overview/draft.html",
+      text: "Overview",
+      id: "overview"
+     },{
+         href: "/editor0",
+    text: 'Editor',
+    id: 'editor'
+    }],
+    activeLinkId: "/"
+  }) }}
 {% endblock %}
 
-{# {% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %} #}
+
 
 {% block content %}
 

@@ -4,12 +4,7 @@
   Cookies – {{ serviceName }}
 {% endblock %}
 
-{# {% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %} #}
+
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
@@ -18,12 +13,13 @@
  {{ govukFooter({
    meta: {
      items: [
+
        {
          href: "/policies/runner/help.html",
          text: "Get help with this form"
        },
        {
-         href: "/",
+         href: "",
          text: "Accessibility statement"
        },
        {
@@ -31,7 +27,7 @@
          text: "Cookies"
        },
        {
-        href: "/form-designer-v2/forms/form-home/report-a-dead-wild-bird-draft-published.html",
+        href: "",
         text: "Privacy"
       }
      ],

@@ -107,13 +107,13 @@ href: "/library.html"
     </div>
   </dl>
 <h2 class="govuk-heading-m govuk-!-padding-top-4">
-  Where forms completed by citizens are sent
+  Where submitted forms are sent
 </h2>
 {{ govukSummaryList({
   rows: [
     {
       key: {
-        text: "Completed forms sent to"
+        text: "Submitted forms sent to"
       },
       value: {
         html: '<a href="/cph-overview/one-thing/notification-email.html" class="govuk-link govuk-link--no-visited-state">Enter email address</a>'
@@ -127,17 +127,17 @@ href: "/library.html"
   Contact details for support
 </h2>
 
-<p class="govuk-body">You need to provide at least one way for people to get help if they get stuck.</p>
-<p class="govuk-body">What you add will be shown at the bottom of every page of the form.</p>
+<p class="govuk-body">You must provide at least one way for users to get help.</p>
+<p class="govuk-body">The contact details are shown in the footer of every page of the form.</p>
 
 {{ govukSummaryList({
   rows: [
     {
       key: {
-        text: "Telephone"
+        text: "Phone"
       },
       value: {
-        html: '<a href="/cph-overview/suppport/add-telephone.html" class="govuk-link govuk-link--no-visited-state">Enter telephone number for support</a>'
+        html: '<a href="/cph-overview/suppport/add-telephone.html" class="govuk-link govuk-link--no-visited-state">Enter phone number for support</a>'
       }
     },
     {
@@ -155,15 +155,9 @@ href: "/library.html"
       value: {
         html: '<a href="/cph-overview/suppport/add-contact-link.html" class="govuk-link govuk-link--no-visited-state">Enter online contact link for support</a>'
       }
-    },
-    {
-      key: {
-        text: "Address"
-      },
-      value: {
-        html: '<a href="/cph-overview/suppport/add-address.html" class="govuk-link govuk-link--no-visited-state">Enter address for support</a>'
-      }
     }
+
+
   ]
 }) }}
 

@@ -48,7 +48,7 @@ href: "/library.html"
   <div class="govuk-grid-column-two-thirds-from-desktop">
   {% set html %}
   <h3 class="govuk-notification-banner__heading">
-   Telephone number for support has been added
+   Phone number for support has been added
   </h3>
 {% endset %}
 
@@ -118,13 +118,13 @@ href: "/library.html"
   </dl>
 
 <h2 class="govuk-heading-m govuk-!-padding-top-4">
-  Where forms completed by citizens are sent
+  Where submitted forms are sent
 </h2>
 {{ govukSummaryList({
   rows: [
     {
       key: {
-        text: "Completed forms sent to"
+        text: "Submitted forms sent to"
       },
       value: {
         html: 'PolicyTeam@defra.gov.uk'
@@ -147,14 +147,14 @@ href: "/library.html"
   Contact details for support
 </h2>
 
-<p class="govuk-body">You need to provide at least one way for people to get help if they get stuck.</p>
-<p class="govuk-body">What you add will be shown at the bottom of every page of the form.</p>
+<p class="govuk-body">You must provide at least one way for users to get help.</p>
+<p class="govuk-body">The contact details are shown in the footer of every page of the form.</p>
 
 {{ govukSummaryList({
   rows: [
     {
       key: {
-        text: "Telephone"
+        text: "Phone"
       },
       value: {
         html: '
@@ -171,7 +171,7 @@ href: "/library.html"
       actions: {
         items: [
           {
-            href: "/cph-overview/support-details.html",
+            href: "/cph-overview/suppport/add-telephone.html",
             text: "Change",
             visuallyHiddenText: "Completed forms sent to"
           }

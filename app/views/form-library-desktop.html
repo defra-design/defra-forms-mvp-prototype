@@ -19,23 +19,19 @@
     {% set filterBy = "published" %}
     {% set sortBy = "published.date" %}
     {% set sortReverse = false %}
+  {% case default %}
+    {% set sortBy = "updated.date" %}
+    {% set sortReverse = true %}
 {% endswitch %}
 
 {% set formItems = formLibrary.items | selectattr(filterBy) if filterBy else formLibrary.items %}
-{% set formItems = formItems | sort(attribute="updated.date", reverse=true) %}
-
 {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
 {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
 
-{% set pageName -%}
-  Form library (page {{ pageCurrent }} of {{ pageCount }})
-{%- endset %}
-
 {% block header %}
   {{ serviceHeader({
-    organisationName: "Defra",
-    productName: "Forms designer",
-    serviceName: "",
+    serviceName: "Defra form builder",
+    pageName: "",
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
@@ -47,6 +43,10 @@
     activeLinkId: "form-library"
   }) }}
 {% endblock %}
+
+{% block pageTitle -%}
+  Form library (page {{ pageCurrent }} of {{ pageCount }}) – {{ serviceName }}
+{%- endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -119,7 +119,7 @@
         href: "/form-designer-v2/forms/new-form/form-name"
       }) }}
 
-      {% set formsByPage = (formItems | sort(attribute=sortBy, reverse=sortReverse) if sortBy else formItems) | slice(pageCount) %}
+      {% set formsByPage = formItems | sort(attribute=sortBy, reverse=sortReverse) | slice(pageCount) %}
       {% set formRows = [] %}
 
       {% for formItem in formsByPage[pageCurrent - 1] %}

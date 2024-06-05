@@ -3,7 +3,7 @@
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
 
-{% set pageName = "Provide a link to privacy information for this form - Apply for a county parish holding number in England" %}
+{% set pageName = "What happens next - Apply for a county parish holding number in England" %}
 
 {% block header %}
   {{ serviceHeader({
@@ -71,8 +71,7 @@
     </p>
 
     {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {{
-    govukTextarea({ name: "moreDetail", id: "more-detail", label: { text: "Enter
-    what happens next", classes: "govuk-label--m govuk-!-padding-top-4",
+    govukTextarea({ name: "moreDetail", id: "more-detail", label: { text: "What happens next", classes: "govuk-label--m govuk-!-padding-top-4",
     isPageHeading: true } }) }}
 
 <div class="govuk-button-group">

@@ -27,30 +27,30 @@
 {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
 {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
 
-{% set pageName = "Form home - Apply for a county parish holding number in England" %}
-
 {% block header %}
   {{ serviceHeader({
-    organisationName: "Defra",
-    productName: "Forms designer",
-    serviceName: "Apply for a county parish holding number in England",
+    serviceName: "Defra form builder",
+    pageName: "Apply for a county parish holding number in England",
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
     navigationItems: [{
+
       href: "/",
       text: "Overview",
       id: "overview"
     }],
+
     activeLinkId: "overview"
   }) }}
-{% endblock %}
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
-{{ govukBackLink({
-  text: "Back",
-  href: "#"
-}) }}
+
+{% endblock %}
+
+{% block pageTitle -%}
+  Form home - Apply for a county parish holding number in England – {{ serviceName }}
+{%- endblock %}
+
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">

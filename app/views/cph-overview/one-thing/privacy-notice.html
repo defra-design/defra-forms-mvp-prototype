@@ -49,7 +49,7 @@
     {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 <span class="govuk-caption-l">Apply for a county parish holding number in England</span><h1 class="govuk-heading-l">
- Provide a link to privacy information for this form
+ Privacy notice for this form
 </h1>
 
 <p class="govuk-body-l">To comply with the UK General Data Protection Regulation (UK GDPR), you must provide privacy information for the people who will enter their data into your form.</p>
@@ -67,7 +67,7 @@
 
 {{ govukInput({
   label: {
-    text: "Enter a link to privacy information for this form",
+    text: "Link to privacy notice for this form",
     classes: "govuk-label--m govuk-!-padding-top-4",
     isPageHeading: true
   },
@@ -84,7 +84,7 @@
     Save and continue
   </button>
 </a>
-<a href="/cph-overview/one-thing/draft+notification+telephone+email+link+address+next.html">
+<a href="javascript:window.history.back()">
   <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" >
     Cancel
   </button>

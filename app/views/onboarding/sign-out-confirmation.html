@@ -1,0 +1,40 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Signed out" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    homepageLink: "/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">You have signed out</h1>
+    <p class="govuk-body-l">Sign in to Defra Forms Designer to access and create forms.</p>
+    <!-- <p class="govuk-body">Sign in to Defra forms to access and create forms</p> -->
+
+    <form action="/onboarding/sign-in" method="post" novalidate="novalidate">
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+      <!-- <form action="/form-designer/register/enter-email-address" method="post" novalidate="novalidate">
+  <button value="create" name="optionSelected" class="govuk-button govuk-!-margin-right-3 govuk-button--secondary" data-module="govuk-button">
+Request access
+</button> -->
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Create new form" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [{
+      href: "/library.html",
+      text: "Form library",
+      id: "overview"
+
+    }],
+    activeLinkId: ""
+  }) }}
+{% endblock %}
+
+
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back to lead organisation",
+href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+<!-- <main class="govuk-main-wrapper" id="main-content" role="main"> -->
+<form class="form"
+  action="/cph-overview/draft/default"
+  method="post">
+
+  {% from "govuk/components/input/macro.njk" import govukInput %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Team details</h1>
+
+      {{ govukInput({
+        label: {
+          text: "Name of team"
+        },
+        hint: {
+          text: "Enter the name of the policy team or business area responsible for this form"
+        },
+        id: "team-name",
+        name: "teamName"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Shared team email address"
+        },
+
+        id: "email",
+        name: "email",
+        type: "email",
+        autocomplete: "email",
+        spellcheck: false
+      }) }}
+
+      {{ govukButton({
+      text: "Save and continue"
+      }) }}
+</form>
+
+{% endblock %}

@@ -13,20 +13,16 @@
   }) }}
 {% endblock %}
 
-
-
-
-
 {% block content %}
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Kit of parts</h1>
+      <p class="govuk-body-l">View each page that makes up the Defra Forms Designer.</p>
+      <p class="govuk-body">Pages are constantly being iterated. To see previous versions,
+        <a href="https://defra-forms-designer-history-377a8db06fe5.herokuapp.com/" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">see our Design History (opens in new tab)</a>.</p>
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">Kit of parts</h1>
-    <p class="govuk-body-l">View each page that makes up the Defra Forms Designer.</p>
-    <p class="govuk-body">Pages are constantly being iterated. To see previous versions, <a href="https://defra-forms-designer-history-377a8db06fe5.herokuapp.com/" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">see our Design History (opens in new tab)</a>.</p>
-
-        {{ govukAccordion({
+      {{ govukAccordion({
   id: "accordion-with-summary-sections",
   items: [
    {
@@ -40,16 +36,10 @@
         html:
         '<ul class="govuk-list">
             <li>
-              <a class="govuk-link govuk-link--no-visited-state" href="/form-designer-v2/onboarding/sign-in.html" rel="noreferrer noopener" target="_blank">Sign in page</a>
-              <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: March 2024
-  </div>
+              <a class="govuk-link govuk-link--no-visited-state" href="/onboarding/sign-in.html" rel="noreferrer noopener" target="_blank">Sign in page</a>
             </li>
             <li>
-              <a class="govuk-link govuk-link--no-visited-state" href="/form-designer-v2/onboarding/sign-out-confirmation.html" rel="noreferrer noopener" target="_blank">Sign out</a>
-              <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: March 2024
-  </div>
+              <a class="govuk-link govuk-link--no-visited-state" href="/onboarding/sign-out-confirmation.html" rel="noreferrer noopener" target="_blank">Sign out</a>
             </li>
         </ul>'
       }
@@ -65,9 +55,6 @@
         html:
         '<div id="event-name-hint" class="govuk-hint" style="margin-bottom: 30px;">
   <a class="govuk-link govuk-link--no-visited-state" href="/library.html" rel="noreferrer noopener" target="_blank">View the forms library</a>
-  <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: 5 May 2024
-  </div>
 </div>'
       }
     },
@@ -88,10 +75,8 @@
 
         <ul class="govuk-list govuk-list--spaced">
       <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/draft.html" rel="noreferrer noopener" target="_blank">View a coded overview page in draft status</a>
-        <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: 23 May 2024
-  </div>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/draft/complete-clean.html" rel="noreferrer noopener" target="_blank">View a coded overview page in draft status</a>
+
       </li>
         </ul>
 
@@ -103,10 +88,8 @@
 
         <ul class="govuk-list govuk-list--spaced">
       <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/live-success.html" rel="noreferrer noopener" target="_blank">View a coded overview page in live status</a>
-        <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: 23 May 2024
-  </div>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/live/01.html" rel="noreferrer noopener" target="_blank">View a coded overview page in live status</a>
+
       </li>
         </ul>
 
@@ -123,10 +106,8 @@
 
         <ul class="govuk-list govuk-list--spaced">
       <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/live-draft-created.html" rel="noreferrer noopener" target="_blank">View a coded overview page in draft and live status</a>
-        <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: 10 May 2024
-  </div>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/live+draft/01.html" rel="noreferrer noopener" target="_blank">View a coded overview page in draft and live status</a>
+
       </li>
         </ul>
 
@@ -137,10 +118,8 @@
 
         <ul class="govuk-list govuk-list--spaced">
       <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/replace-live-form-confirmation-question" rel="noreferrer noopener" target="_blank">View a coded warning page for replacing a live form</a>
-        <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: 10 May 2024
-  </div>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/manage-form/make-draft-live/replace-live-form.html" rel="noreferrer noopener" target="_blank">View a coded warning page for replacing a live form</a>
+
       </li>
         </ul>
 
@@ -151,10 +130,8 @@
 
         <ul class="govuk-list govuk-list--spaced">
       <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/close-form-confirmation-question.html" rel="noreferrer noopener" target="_blank">View a coded warning page for closing a live form</a>
-        <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: 10 May 2024
-  </div>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/manage-form/close/confirm.html" rel="noreferrer noopener" target="_blank">View a coded warning page for closing a live form</a>
+
       </li>
         </ul>
         '
@@ -171,49 +148,22 @@
         html:
         '<ul class="govuk-list govuk-list--spaced">
       <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/editor.html" rel="noreferrer noopener" target="_blank">View a coded editor page (does not have all functionality)</a>
-        <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: 23 May 2024
-  </div>
+        <a class="govuk-link govuk-link--no-visited-state" href="/editor/0.html" rel="noreferrer noopener" target="_blank">View a coded editor page (does not have all functionality)</a>
+
       </li>
         </ul>
         <h3 class="govuk-heading-s">Add or change conditions (branching)</h3>
         <div id="event-name-hint" class="govuk-hint">
     Users can add conditions to forms that can route users to specific journeys depending on question answers.
   </div>
-          <a class="govuk-link govuk-link--no-visited-state" href="/conditions/existing0.html" rel="noreferrer noopener" target="_blank">View a coded page for conditions (does not have all functionality)</a>
-        <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: 23 May 2024
-  </div>'
+  <ul class="govuk-list govuk-list--spaced">
+    <li>
+          <a class="govuk-link govuk-link--no-visited-state" href="/editor/conditions/existing0.html.html" rel="noreferrer noopener" target="_blank">View a coded page for conditions (does not have all functionality)</a>
+          </ul>
+        '
       }
     },
-     {
-      heading: {
-        text: "Make a form live"
-      },
-      summary: {
-        text: "The process of making a form live."
-      },
-      content: {
-        html:
-        '<ul class="govuk-list govuk-list--spaced">
-      <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/editor.html" rel="noreferrer noopener" target="_blank">View a coded editor page (does not have all functionality)</a>
-        <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: 23 May 2024
-  </div>
-      </li>
-        </ul>
-        <h3 class="govuk-heading-s">Add or change conditions (branching)</h3>
-        <div id="event-name-hint" class="govuk-hint">
-    Users can add conditions to forms that can route users to specific journeys depending on question answers.
-  </div>
-          <a class="govuk-link govuk-link--no-visited-state" href="/conditions/existing0.html" rel="noreferrer noopener" target="_blank">View a coded page for conditions (does not have all functionality)</a>
-        <div id="event-name-hint" class="govuk-hint" style="font-size: 16px;">
-    Last updated: 23 May 2024
-  </div>'
-      }
-    },
+
     {
       heading: {
         text: "Component pages"
@@ -224,68 +174,103 @@
       content: {
         html:
         '<div id="event-name-hint" class="govuk-hint" style="margin-bottom: 30px;">
-  <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/add.html" rel="noreferrer noopener" target="_blank">View the complete list of components</a>
+  <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/add.html" rel="noreferrer noopener" target="_blank">View the complete list of components</a>
 </div>
 <h3 class="govuk-heading-s">Input fields</h3>
 <ul class="govuk-list govuk-list--spaced">
   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/autocomplete.html" rel="noreferrer noopener" target="_blank">Autocomplete</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/autocomplete.html" rel="noreferrer noopener" target="_blank">Autocomplete</a>
   </li>
   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/text.html" rel="noreferrer noopener" target="_blank">Text input</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/text.html" rel="noreferrer noopener" target="_blank">Text input</a>
   </li>
   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/date-parts.html" rel="noreferrer noopener" target="_blank">Date parts</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/date-parts.html" rel="noreferrer noopener" target="_blank">Date parts</a>
   </li>
   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/email.html" rel="noreferrer noopener" target="_blank">Email address</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/email.html" rel="noreferrer noopener" target="_blank">Email address</a>
   </li>
   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/address.html" rel="noreferrer noopener" target="_blank">UK address</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/address.html" rel="noreferrer noopener" target="_blank">UK address</a>
   </li>
   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/multiline.html" rel="noreferrer noopener" target="_blank">Multi-line text (textarea)</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/multiline.html" rel="noreferrer noopener" target="_blank">Multi-line text (textarea)</a>
   </li>
   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/telephone.html" rel="noreferrer noopener" target="_blank">Telephone number</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/telephone.html" rel="noreferrer noopener" target="_blank">Telephone number</a>
   </li>
 </ul>
 <h3 class="govuk-heading-s">Selection fields</h3>
 <ul class="govuk-list govuk-list--spaced">
   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/checkboxes.html" rel="noreferrer noopener" target="_blank">Checkboxes</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/checkboxes.html" rel="noreferrer noopener" target="_blank">Checkboxes</a>
   </li>
   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/radios.html" rel="noreferrer noopener" target="_blank">Radios</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/radios.html" rel="noreferrer noopener" target="_blank">Radios</a>
   </li>
   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/select.html" rel="noreferrer noopener" target="_blank">Select</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/select.html" rel="noreferrer noopener" target="_blank">Select</a>
   </li>
   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/component-pages/yesno.html" rel="noreferrer noopener" target="_blank">Yes/No</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/yesno.html" rel="noreferrer noopener" target="_blank">Yes/No</a>
   </li>
 </ul>'
-      }
+       }
+    },
 
+
+    {
+      heading: {
+        text: "Policies"
+      },
+      summary: {
+        text: "Cookie, privacy, and accessibility statements."
+      },
+      content: {
+        html:
+        '
+            <p class="govuk-body">These pages will be linked to in the page footers in designer and runner, respectively.</p>
+
+        <h3 class="govuk-heading-m">Designer</h3>
+<ul class="govuk-list govuk-list--spaced">
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/policies/designer/cookies.html" rel="noreferrer noopener" target="_blank">Cookies</a>
+  </li>
+  </ul>
+
+   <h3 class="govuk-heading-m">Runner</h3>
+<ul class="govuk-list govuk-list--spaced">
+   <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/policies/runner/footer.html" rel="noreferrer noopener" target="_blank">See how links will appear in the footer</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/policies/runner/cookies.html" rel="noreferrer noopener" target="_blank">Cookies</a>
+  </li>
+   <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/policies/runner/help.html" rel="noreferrer noopener" target="_blank">Get help with your form page</a>
+  </li>
+  </ul>
+'
+      }
     }
   ]
 }) }}
-      </div>
+    </div>
 
-
-        <div class="govuk-grid-row">
-<div class="govuk-grid-column-one-third" style="background-color: #f3f2f1;/* height: 100vh; */padding-top: 15px;border-block-color: black;border-style: solid;">             <h2 class="govuk-heading-l">Use the prototype</h2>
-             {% block beforeContent %}
-  {{ govukBackLink({
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-third" style="background-color: #f3f2f1;/* height: 100vh; */padding-top: 15px;border-block-color: black;border-style: solid;">
+        <h2 class="govuk-heading-l">Use the prototype</h2>
+        {% block beforeContent %}
+          {{ govukBackLink({
   text: "Back",
   href: "javascript:window.history.back()"
 }) }}
-{% endblock %}
+        {% endblock %}
 
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
-<form class="form" action="/overview-answer" method="post">
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        <form class="form" action="/overview-answer" method="post">
 
-{{ govukRadios({
+          {{ govukRadios({
   name: "overview",
   value: data['overview'],
   fieldset: {
@@ -314,18 +299,16 @@
     }
   ]
 }) }}
-{{ govukButton({
+          {{ govukButton({
   text: "Start prototype"
 }) }}
-</form>
+        </form>
 
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 {% endblock %}
 
-
 </div>
-

@@ -40,7 +40,7 @@
     serviceName: "",
     accountName: "Chris Smith",
     homepageLink: "/",
-    signOutLink: "/onboarding/sign-out-confirmation",
+    signOutLink: "/form-designer-v2/onboarding/sign-out-confirmation",
     navigationItems: [{
       href: "/",
       text: "Forms library",
@@ -118,7 +118,7 @@
 
       {{ govukButton({
         text: "Create new form",
-        href: "/new-form/form-name.html"
+        href: "/form-designer-v2/forms/new-form/form-name"
       }) }}
 
       {% set formsByPage = (formItems | sort(attribute=sortBy, reverse=sortReverse) if sortBy else formItems) | slice(pageCount) %}

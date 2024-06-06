@@ -2,7 +2,7 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set pageName = "Kit of parts - Defra Forms Designer" %}
+{% set pageName = "Choose an overview status - Defra Forms Designer" %}
 
 {% block header %}
   {{ serviceHeader({
@@ -76,7 +76,9 @@
         <ul class="govuk-list govuk-list--spaced">
       <li>
         <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/draft/complete-clean.html" rel="noreferrer noopener" target="_blank">View a coded overview page in draft status</a>
-
+      </li>
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/draft/default.html" rel="noreferrer noopener" target="_blank">View an overview page in draft where contact support has not been added</a>
       </li>
         </ul>
 
@@ -137,6 +139,58 @@
         '
       }
     },
+        {
+      heading: {
+        text: "Support and form configuration pages"
+      },
+      summary: {
+        text: "Pages to add support content to forms. Includes, setting an email address for receiving submitted forms, telling users what happens after submitting their form and providing assisted digital channels."
+      },
+      content: {
+        html:
+        '<ul class="govuk-list govuk-list--spaced">
+               <h3 class="govuk-heading-s">Sending submitted forms to operational teams</h3>
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/support/notification-email" rel="noreferrer noopener" target="_blank">Where submitted forms are sent</a>
+      </li>
+      </ul>
+      <ul class="govuk-list govuk-list--spaced">
+       <h3 class="govuk-heading-s">Contact details for support</h3>
+        <div id="event-name-hint" class="govuk-hint">
+    In order to make a form live users need add at least one contact detail for support.
+  </div>
+       <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/add-telephone" rel="noreferrer noopener" target="_blank">Phone number for support</a>
+      </li>
+       <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/add-email" rel="noreferrer noopener" target="_blank">Email address for support</a>
+      </li>
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/add-contact-link" rel="noreferrer noopener" target="_blank">Contact link for support</a>
+      </li>
+      </ul>
+      <ul class="govuk-list govuk-list--spaced">
+       <h3 class="govuk-heading-s">What happens next</h3>
+        <div id="event-name-hint" class="govuk-hint">
+    A textarea for adding instructions to appear in confirmation pages and emails.
+  </div>
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/next-steps" rel="noreferrer noopener" target="_blank">Tell users what happens after submitting their form</a>
+      </li>
+      </ul>
+      <ul class="govuk-list govuk-list--spaced">
+             <h3 class="govuk-heading-s">Data protection</h3>
+        <div id="event-name-hint" class="govuk-hint">
+    Add a link to privacy notice that is specific to the form being created.
+  </div>
+        <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/privacy-notice" rel="noreferrer noopener" target="_blank">Link to a privacy notice</a>
+      </li>
+        </ul>
+        '
+      }
+    },
+
     {
       heading: {
         text: "Editor"

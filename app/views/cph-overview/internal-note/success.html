@@ -31,36 +31,30 @@
   }) }}
 {% endblock %}
 
-
-
 {% block beforeContent %}
-{{ govukBackLink({
-text: "Back to form library",
+  {{ govukBackLink({
+text: "Back to forms library",
 href: "/library.html"
 }) }}
 
 {% endblock %}
 
-
-
 {% block content %}
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      {% set html %}
+      <h3 class="govuk-notification-banner__heading">
+        A new internal note has been added
+      </h3>
+      {% endset %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds-from-desktop">
-{% set html %}
-  <h3 class="govuk-notification-banner__heading">
-    A new internal note has been added
-  </h3>
-{% endset %}
-
-
-{{ govukNotificationBanner({
+      {{ govukNotificationBanner({
   html: html,
   type: "success"
 }) }}
-    <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
-{# {% set html %}
+      <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
+      {# {% set html %}
   <h3 class="govuk-notification-banner__heading">
    Privacy notice has been added
   </h3>
@@ -71,59 +65,58 @@ href: "/library.html"
   type: "success"
 }) }} #}
 
-    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
-<h1 class="govuk-heading-l">
-  Apply for a county parish holding number in England
-</h1>
+      <h1 class="govuk-heading-l">
+        Apply for a county parish holding number in England
+      </h1>
 
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <strong class="govuk-tag govuk-tag--orange">
+              Draft
+            </strong>
+          </dd>
+        </div>
 
-  <dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Status
-      </dt>
-      <dd class="govuk-summary-list__value">
-        <strong class="govuk-tag govuk-tag--orange">
-          Draft
-        </strong>
-      </dd>
-    </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Updated
+          </dt>
+          <dd class="govuk-summary-list__value">
+            22 Mar 2024 by Chris Smith
+          </dd>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Updated
-      </dt>
-      <dd class="govuk-summary-list__value">
-        22 Mar 2024 by Chris Smith
-      </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Created
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p class="govuk-body">11 Oct 2023 by Waylon Brady</p>
+          </dd>
 
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Created
-      </dt>
-      <dd class="govuk-summary-list__value">
-        <p class="govuk-body">11 Oct 2023 by Waylon Brady</p>
-      </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Preview link
+          </dt>
+          <dd class="govuk-summary-list__value" style="padding-right:0!important;">
+            <a href="https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number" class="govuk-link" rel="noreferrer noopener" target="_blank">https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number</a>
+          </dd>
+        </dd>
 
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Preview link
-      </dt>
-      <dd class="govuk-summary-list__value" style="padding-right:0!important;">
-        <a href="https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number" class="govuk-link"  rel="noreferrer noopener" target="_blank">https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number</a>
-      </dd>
-      </dd>
+      </div>
+    </dl>
 
-    </div>
-  </dl>
-
-<h2 class="govuk-heading-m govuk-!-padding-top-4">
-  Where submitted forms are sent
-</h2>
-{{ govukSummaryList({
+    <h2 class="govuk-heading-m govuk-!-padding-top-4">
+      Where submitted forms are sent
+    </h2>
+    {{ govukSummaryList({
   rows: [
     {
       key: {
@@ -145,15 +138,15 @@ href: "/library.html"
   ]
 }) }}
 
-{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-<h2 class="govuk-heading-m govuk-!-padding-top-2">
-  Contact details for support
-</h2>
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+    <h2 class="govuk-heading-m govuk-!-padding-top-2">
+      Contact details for support
+    </h2>
 
-<p class="govuk-body">You must provide at least one way for users to get help.</p>
-<p class="govuk-body">The contact details are shown in the footer of every page of the form.</p>
+    <p class="govuk-body">You must provide at least one way for users to get help.</p>
+    <p class="govuk-body">The contact details are shown in the footer of every page of the form.</p>
 
-{{ govukSummaryList({
+    {{ govukSummaryList({
   rows: [
     {
       key: {
@@ -218,12 +211,10 @@ href: "/library.html"
   ]
 }) }}
 
-
-
-<h2 class="govuk-heading-m govuk-!-padding-top-2">
-  What happens next
-</h2>
-{{ govukSummaryList({
+    <h2 class="govuk-heading-m govuk-!-padding-top-2">
+      What happens next
+    </h2>
+    {{ govukSummaryList({
   rows: [
     {
       key: {
@@ -245,11 +236,10 @@ href: "/library.html"
   ]
 }) }}
 
-
-<h2 class="govuk-heading-m govuk-!-padding-top-2">
-  Data protection
-</h2>
-{{ govukSummaryList({
+    <h2 class="govuk-heading-m govuk-!-padding-top-2">
+      Data protection
+    </h2>
+    {{ govukSummaryList({
   rows: [
     {
       key: {
@@ -271,13 +261,12 @@ href: "/library.html"
   ]
 }) }}
 
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+    <h2 class="govuk-heading-m govuk-!-padding-top-2">Organisation details</h2>
 
-      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-<h2 class="govuk-heading-m govuk-!-padding-top-2">Organisation details</h2>
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
-{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
-{{ govukSummaryList({
+    {{ govukSummaryList({
   rows: [
     {
       key: {
@@ -350,8 +339,7 @@ href: "/library.html"
   ]
 }) }}
 
-</div>
-
+  </div>
 
   <div class="govuk-grid-column-one-third-from-desktop">
 
@@ -365,34 +353,26 @@ href: "/library.html"
 
       <a href="/cph-overview/make-draft-live-confirmation-question.html">
         <button type="submit" class="govuk-button" data-module="govuk-button" style="width: 100%; margin-bottom: 15px;">
-            Make draft live
+          Make draft live
         </button>
-    </a>
+      </a>
 
-
-
-<!--
-      <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" style="width: 100%;margin-bottom: 15px;">
-        Close live form
-      </button> -->
+      <!-- <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" style="width: 100%;margin-bottom: 15px;"> Close live form </button> -->
       <a href="#" class="govuk-link">Delete draft</a>
 
-  </div>
-
+    </div>
 
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <h2 class="govuk-heading-m">Internal notes</h2>
-  {{ govukButton({
+    {{ govukButton({
       text: "Add internal note",
       href: "/cph-overview/internal-note/add.html",
       classes: "govuk-button--secondary"
     }) }}
 
+    {%- from "moj/components/timeline/macro.njk" import mojTimeline -%}
 
-          {%- from "moj/components/timeline/macro.njk" import mojTimeline -%}
-
-
-          {{ mojTimeline({
+    {{ mojTimeline({
             items: [
               {
                 label: {
@@ -423,10 +403,8 @@ href: "/library.html"
             ]
           }) }}
 
-
-        </div>
   </div>
 </div>
-
+</div>
 
 {% endblock %}

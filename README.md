@@ -1,9 +1,6 @@
 <h1>MVP prototype for the Defra form builder</h1>
 
-# 1. Design documentation context
-The following is where the design history of Defra forms will be stored.
-
-## 3. See how designs were iterated over time
+## See how designs were iterated over time
 
 > [!NOTE]
 > You can [view our design history](http://defra-forms-design-history-18deac2f53ea.herokuapp.com/)

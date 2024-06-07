@@ -35,6 +35,9 @@ router.post("/prototype-answer", function (request, response) {
     case "library":
       response.redirect("/library.html");
       break;
+    case "newForm":
+      response.redirect("/new-form/form-name.html");
+      break;
     case "signIn":
       response.redirect("/onboarding/sign-in.html.html");
       break;

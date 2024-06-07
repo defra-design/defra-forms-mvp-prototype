@@ -31,8 +31,6 @@
   }) }}
 {% endblock %}
 
-
-
 {% block beforeContent %}
   {{ govukBackLink({
   text: "Back",
@@ -41,30 +39,28 @@
 {% endblock %}
 
 {% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds-from-desktop">
-    <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
 
-    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+      <span class="govuk-caption-l">Apply for a county parish holding number in England</span>
+      <h1 class="govuk-heading-l">
+        Email address for support
+      </h1>
 
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
 
-{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-<span class="govuk-caption-l">Apply for a county parish holding number in England</span>
-<h1 class="govuk-heading-l">
-  Email address for support
-</h1>
+      {% from "govuk/components/input/macro.njk" import govukInput %}
 
-{% from "govuk/components/input/macro.njk" import govukInput %}
-
-{% from "govuk/components/input/macro.njk" import govukInput %}
-
-{{ govukInput({
+      {{ govukInput({
   label: {
     text: "Email address"
   },
@@ -78,7 +74,7 @@
   spellcheck: false
 }) }}
 
-{{ govukInput({
+      {{ govukInput({
   label: {
     text: "Response time"
   },
@@ -92,20 +88,78 @@
   spellcheck: false
 }) }}
 
-<div class="govuk-button-group">
-  <a href="/cph-overview/draft/notification+telephone+email.html">
-  <button type="submit" class="govuk-button" data-module="govuk-button">
-    Save and continue
-  </button>
-</a>
-<a href="javascript:window.history.back()">
-  <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" >
-    Cancel
-  </button>
-</a>
-</div>
-</div>
-</div>
+      <div class="govuk-button-group">
+        <a href="/cph-overview/draft/notification+telephone+email.html">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Save and continue
+          </button>
+        </a>
+        <a href="javascript:window.history.back()">
+          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Cancel
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
 
+  <details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        View error messages
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+      {{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Enter an email address for dedicated support in the correct format",
+      href: "/"
+    },
+    {
+      text: "Enter a response time for receiving responses",
+      href: "/"
+    }
+  ]
+}) }}
+      {{ govukInput({
+  label: {
+    text: "Email address"
+  },
+  hint: {
+    text: "Enter a dedicated support team email address. Do not enter a named individual. For example, 'support@defra.gov.uk'"
+ },
+  errorMessage: {
+    text: "Enter an email address for dedicated support in the correct format"
+  },
+  id: "email",
+  name: "email",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false
+}) }}
+
+      {{ govukInput({
+  label: {
+    text: "Response time"
+  },
+  hint: {
+    text: "Enter how long it takes to receive a response, for example, 'We aim to respond within 2 working days'"
+  },
+  errorMessage: {
+    text: "Enter a response time for receiving responses"
+  },
+  id: "response-time",
+  name: "response-time",
+  type: "text",
+  autocomplete: "off",
+  spellcheck: false
+}) }}
+
+    </div>
+  </details>
 
 {% endblock %}

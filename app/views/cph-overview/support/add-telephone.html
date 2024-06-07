@@ -96,4 +96,43 @@
     </div>
   </div>
 
+  <details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        View error messages
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+      {{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Enter phone number and opening times for users to get help",
+      href: "#"
+
+    }
+  ]
+}) }}
+
+      {{ govukTextarea({
+  name: "moreDetail",
+  id: "more-detail",
+  label: {
+    text: "What's the phone number and opening times for users to get help?",
+    classes: "govuk-label--m",
+    isPageHeading: true
+     },
+  errorMessage: {
+    text: "Enter phone number and opening times for users to get help"
+
+  }
+}) }}
+
+    </div>
+  </details>
+
 {% endblock %}

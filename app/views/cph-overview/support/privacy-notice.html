@@ -2,7 +2,6 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-
 {% set pageName = "Provide a link to privacy information for this form - Apply for a county parish holding number in England" %}
 
 {% block header %}
@@ -32,8 +31,6 @@
   }) }}
 {% endblock %}
 
-
-
 {% block beforeContent %}
   {{ govukBackLink({
   text: "Back",
@@ -42,18 +39,19 @@
 {% endblock %}
 
 {% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds-from-desktop">
-    <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
 
-    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
-<span class="govuk-caption-l">Apply for a county parish holding number in England</span><h1 class="govuk-heading-l">
- Privacy notice for this form
-</h1>
+      <span class="govuk-caption-l">Apply for a county parish holding number in England</span>
+      <h1 class="govuk-heading-l">
+        Privacy notice for this form
+      </h1>
 
-<p class="govuk-body-l">To comply with the UK General Data Protection Regulation (UK GDPR), you must provide privacy information for the people who will enter their data into your form.</p>
-{# <p class="govuk-body">The privacy information must include details such as:</p>
+      <p class="govuk-body-l">To comply with the UK General Data Protection Regulation (UK GDPR), you must provide privacy information for the people who will enter their data into your form.</p>
+      {# <p class="govuk-body">The privacy information must include details such as:</p>
 <ul class="govuk-list govuk-list--bullet">
   <li>your purposes for processing the personal data</li>
   <li>how long you’ll keep the personal data</li>
@@ -63,9 +61,9 @@
 
 <p class="govuk-body">You may already publish this information, for example in a privacy notice or personal information charter. Existing privacy information may need to be updated to cover the data you are collecting in this form, or you may need a new privacy notice.</p> #}
 
-{% from "govuk/components/input/macro.njk" import govukInput %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
 
-{{ govukInput({
+      {{ govukInput({
   label: {
     text: "Link to privacy notice for this form",
     classes: "govuk-label--m govuk-!-padding-top-4",
@@ -78,18 +76,92 @@
   name: "privacyLink"
 }) }}
 
-<div class="govuk-button-group">
-  <a href="/cph-overview/draft/complete.html">
-  <button type="submit" class="govuk-button" data-module="govuk-button">
-    Save and continue
-  </button>
-</a>
-<a href="javascript:window.history.back()">
-  <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" >
-    Cancel
-  </button>
-</a>
-</div>
-</div>
-</div>
+      <div class="govuk-button-group">
+        <a href="/cph-overview/draft/complete.html">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Save and continue
+          </button>
+        </a>
+        <a href="javascript:window.history.back()">
+          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Cancel
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        View error messages
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+      <p class="govuk-body-l">Empty string</p>
+
+      {{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Enter a link to a privacy notice for this form",
+      href: "#"
+    }
+  ]
+}) }}
+
+      {{ govukInput({
+  label: {
+    text: "Link to privacy notice for this form",
+    classes: "govuk-label--m govuk-!-padding-top-4",
+    isPageHeading: true
+  },
+  hint: {
+    text: "For example, https://www.gov.uk/help/privacy-notice"
+  },
+  id: "privacy-link",
+  name: "privacyLink",
+  type: "url",
+  autocomplete: "off",
+  spellcheck: false,
+  errorMessage: {
+    text: "Enter a link to a privacy notice for this form"
+  }
+}) }}
+
+      <p class="govuk-body-l">Incorrect URL format</p>
+
+      {{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Enter a link to a privacy notice for this form in the correct format",
+      href: "#"
+    }
+  ]
+}) }}
+      {{ govukInput({
+  label: {
+    text: "Link to privacy notice for this form",
+    classes: "govuk-label--m govuk-!-padding-top-4",
+    isPageHeading: true
+  },
+  hint: {
+    text: "For example, https://www.gov.uk/help/privacy-notice"
+  },
+  id: "privacy-link",
+  name: "privacyLink",
+  type: "url",
+  autocomplete: "off",
+  spellcheck: false,
+  errorMessage: {
+    text: "Enter a link to a privacy notice for this form in the correct format"
+  }
+}) }}
+
+    </div>
+  </details>
 {% endblock %}

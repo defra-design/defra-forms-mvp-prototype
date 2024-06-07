@@ -71,4 +71,74 @@
     </div>
   </div>
 
+  <details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        View error messages
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+      <p class="govuk-body-l">Empty string</p>
+
+      {{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Enter an email address submitted forms should be sent to",
+      href: "#"
+
+    }
+  ]
+}) }}
+
+      {{ govukInput({
+  label: {
+    text: "What email address should submitted forms be sent to?",
+    classes: "govuk-label--m",
+    isPageHeading: false
+  },
+  id: "notification-email",
+  name: "notificationEmail",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false,
+  errorMessage: {
+    text: "Enter an email address submitted forms should be sent to"
+  }
+}) }}
+
+      <p class="govuk-body-l">Incorrect format</p>
+
+      {{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Enter an email address submitted forms should be sent to in the correct format, like name@gov.uk",
+      href: "#"
+
+    }
+  ]
+}) }}
+
+      {{ govukInput({
+  label: {
+    text: "What email address should submitted forms be sent to?",
+    classes: "govuk-label--m",
+    isPageHeading: false
+  },
+  id: "notification-email",
+  name: "notificationEmail",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false,
+  errorMessage: {
+    text: "Enter an email address submitted forms should be sent to in the correct format, like name@gov.uk"
+  }
+}) }}
+
+    </div>
+  </details>
+
 {% endblock %}

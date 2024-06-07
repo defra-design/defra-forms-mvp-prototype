@@ -83,6 +83,45 @@
     </div>
   </div>
 
+  <details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        View error messages
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+      {{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Enter what will happen after a user submits a form",
+      href: "#"
+
+    }
+  ]
+}) }}
+
+      {{ govukTextarea({
+  name: "moreDetail",
+  id: "more-detail",
+  label: {
+    text: "What will happen after a user submits a form?",
+    classes: "govuk-label--m",
+    isPageHeading: true
+     },
+  errorMessage: {
+    text: "Enter what will happen after a user submits a form"
+
+  }
+}) }}
+
+    </div>
+  </details>
+
   {#
         <h2 class="govuk-heading-m">Formatting help</h3>
         <h3 class="govuk-heading-s">Heading and subheadings</h3>

@@ -1,8 +1,8 @@
 {% extends "layouts/main.html" %}
 
-{% set pageName = "Form name" %}
-
 {% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Change form name - Apply for a county parish holding number in England" %}
 
 {% block header %}
   {{ serviceHeader({
@@ -12,18 +12,29 @@
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/onboarding/sign-out-confirmation",
-    navigationItems: [{
-      href: "/library",
+    navigationItems: [
+    {
+      href: "/library.html",
       text: "Forms library",
       id: "library"
-    }]
+     },
+    {
+      href: "/cph-overview/draft/complete-clean.html",
+      text: "Overview",
+      id: "overview"
+     },{
+         href: "/editor/0",
+    text: 'Editor',
+    id: 'editor'
+    }],
+    activeLinkId: ""
   }) }}
 {% endblock %}
 
 {% block beforeContent %}
   {{ govukBackLink({
 text: "Back",
-href: "javascript:window.history.back()"
+href: "/cph-overview/draft/complete-clean.html"
 }) }}
 
 {% endblock %}
@@ -34,25 +45,25 @@ href: "javascript:window.history.back()"
   {% from "govuk/components/table/macro.njk" import govukTable %}
 
   <!-- <main class="govuk-main-wrapper" id="main-content" role="main"> -->
-  <form class="form" action="/new-form/organisation-name" method="post">
+  <form class="form" action="/cph-overview/draft/organisational-details/overview/form-name-changed" method="post">
 
     {% from "govuk/components/input/macro.njk" import govukInput %}
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         {{ govukInput({
-      label: {
-      text: "Enter a name for your form",
-      classes: "govuk-label--l",
-      isPageHeading: true
-      },
+  label: {
+    text: "Enter a name for your form",
+    classes: "govuk-label--l",
+    isPageHeading: true
+  },
   hint: {
     text: "Use an appropriate name for your form. You cannot change the form name once your form is live"
   },
-
-      id: "form-name",
-      name: "formName"
-      }) }}
+  id: "form-name",
+  name: "formName",
+  value: "Apply for a county parish holding number in England"
+}) }}
 
         {{ govukButton({
       text: "Continue"

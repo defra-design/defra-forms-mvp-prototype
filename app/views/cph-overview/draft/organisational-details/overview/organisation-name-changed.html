@@ -19,11 +19,11 @@
       id: "library"
      },
     {
-      href: "/cph-overview/closed/01.html",
+      href: "/cph-overview/draft/complete-clean.html",
       text: "Overview",
       id: "overview"
      },{
-         href: "/editor0",
+         href: "/editor/0",
     text: 'Editor',
     id: 'editor'
     }],
@@ -40,26 +40,26 @@ href: "/library.html"
 {% endblock %}
 
 {% block content %}
-  {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
-      {# {% set html %}
-  <h3 class="govuk-notification-banner__heading">
-    Form closed successfully
-  </h3>
-{% endset %}
 
+      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
-{{ govukNotificationBanner({
+      {% set html %}
+      <h3 class="govuk-notification-banner__heading">
+        Lead organisation has been changed
+      </h3>
+      {% endset %}
+
+      {{ govukNotificationBanner({
   html: html,
   type: "success"
-}) }} #}
+}) }}
+
       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
       <h1 class="govuk-heading-l">
-        Apply for a county parish holding number in England
+        New form name
       </h1>
 
       <dl class="govuk-summary-list">
@@ -68,45 +68,46 @@ href: "/library.html"
             Status
           </dt>
           <dd class="govuk-summary-list__value">
-            <strong class="govuk-tag govuk-tag--pink">
-              Closed
+            <strong class="govuk-tag govuk-tag--orange">
+              Draft
             </strong>
           </dd>
         </div>
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Closed on
+            Updated
           </dt>
           <dd class="govuk-summary-list__value">
             22 Mar 2024 by Chris Smith
           </dd>
 
         </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Created
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p class="govuk-body">11 Oct 2023 by Waylon Brady</p>
+          </dd>
 
+        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Preview link
           </dt>
           <dd class="govuk-summary-list__value" style="padding-right:0!important;">
-            <a href="https://preview.submit-a-form-to-defra.gov.uk/closed/apply-for-a county-parish-holding-number/service-unavailable" class="govuk-link" rel="noreferrer noopener" target="_blank">https://preview.submit-a-form-to-defra.gov.uk/closed/apply-for-a county-parish-holding-number/service-unavailable</a>
+            <a href="https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number" class="govuk-link" rel="noreferrer noopener" target="_blank">https://preview.submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number</a>
           </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Closure redirect link
-          </dt>
-          <dd class="govuk-summary-list__value" style="padding-right:0!important;">
-            <a href="https://submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number/service-unavailable" class="govuk-link" rel="noreferrer noopener" target="_blank">https://submit-a-form-to-defra.gov.uk/apply-for-a county-parish-holding-number/service-unavailable</a>
-          </dd>
+        </dd>
 
-        </div>
-      </dl>
+      </div>
+    </dl>
 
-      <h2 class="govuk-heading-m govuk-!-padding-top-4">
-        Where submitted forms are sent
-      </h2>
-      {{ govukSummaryList({
+    <h2 class="govuk-heading-m govuk-!-padding-top-4">
+      Where submitted forms are sent
+    </h2>
+    {{ govukSummaryList({
   rows: [
     {
       key: {
@@ -128,15 +129,15 @@ href: "/library.html"
   ]
 }) }}
 
-      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-      <h2 class="govuk-heading-m govuk-!-padding-top-2">
-        Contact details for support
-      </h2>
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+    <h2 class="govuk-heading-m govuk-!-padding-top-2">
+      Contact details for support
+    </h2>
 
-      <p class="govuk-body">You must provide at least one way for users to get help.</p>
-      <p class="govuk-body">The contact details are shown in the footer of every page of the form.</p>
+    <p class="govuk-body">You must provide at least one way for users to get help.</p>
+    <p class="govuk-body">The contact details are shown in the footer of every page of the form.</p>
 
-      {{ govukSummaryList({
+    {{ govukSummaryList({
   rows: [
     {
       key: {
@@ -201,10 +202,10 @@ href: "/library.html"
   ]
 }) }}
 
-      <h2 class="govuk-heading-m govuk-!-padding-top-2">
-        What happens next
-      </h2>
-      {{ govukSummaryList({
+    <h2 class="govuk-heading-m govuk-!-padding-top-2">
+      What happens next
+    </h2>
+    {{ govukSummaryList({
   rows: [
     {
       key: {
@@ -226,10 +227,10 @@ href: "/library.html"
   ]
 }) }}
 
-      <h2 class="govuk-heading-m govuk-!-padding-top-2">
-        Data protection
-      </h2>
-      {{ govukSummaryList({
+    <h2 class="govuk-heading-m govuk-!-padding-top-2">
+      Data protection
+    </h2>
+    {{ govukSummaryList({
   rows: [
     {
       key: {
@@ -251,19 +252,28 @@ href: "/library.html"
   ]
 }) }}
 
-      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-      <h2 class="govuk-heading-m govuk-!-padding-top-2">Organisation details</h2>
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+    <h2 class="govuk-heading-m govuk-!-padding-top-2">Organisation details</h2>
 
-      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
-      {{ govukSummaryList({
+    {{ govukSummaryList({
   rows: [
     {
       key: {
         text: "Form name"
       },
       value: {
-        text: "Apply for a county parish holding number in England"
+        text: "New form name"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "form name"
+          }
+        ]
       }
     },
     {
@@ -271,7 +281,7 @@ href: "/library.html"
         text: "Lead organisation"
       },
       value: {
-        text: "Center for Environment, Fisheries and Aquaculture Science - Cefas"
+        text: "Defra"
       },
       actions: {
         items: [
@@ -293,7 +303,7 @@ href: "/library.html"
       actions: {
         items: [
           {
-            href: "#",
+            href: "/cph-overview/draft/organisational-details/team-name.html",
             text: "Change",
             visuallyHiddenText: "team name"
           }
@@ -320,36 +330,38 @@ href: "/library.html"
   ]
 }) }}
 
+  </div>
+
+  <div class="govuk-grid-column-one-third-from-desktop">
+
+    <div style="background-color: #f3f2f1; padding: 15px;">
+      <h2 class="govuk-heading-m">Manage form</h2>
+
+      <a href="/editor/0.html">
+        <button class="gem-c-button govuk-button gem-c-button-publishing--secondary-quiet" style="width: 100%; margin-bottom: 15px;" type="submit">Edit draft</button>
+        <!-- <button class="gem-c-button govuk-button gem-c-button-publishing--secondary snipcss0-3-3-4" style="width: 100%; margin-bottom: 15px;" type="submit">Edit draft</button> -->
+      </a>
+
+      <a href="/cph-overview/manage-form/make-draft-live/passed-validation.html">
+        <button type="submit" class="govuk-button" data-module="govuk-button" style="width: 100%; margin-bottom: 15px;">
+          Make draft live
+        </button>
+      </a>
+
+      <!-- <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" style="width: 100%;margin-bottom: 15px;"> Close live form </button> -->
+      <a href="#" class="govuk-link">Delete draft</a>
+
     </div>
 
-    <div class="govuk-grid-column-one-third-from-desktop">
-
-      <div style="background-color: #f3f2f1; padding: 15px;">
-        <h2 class="govuk-heading-m">Manage form</h2>
-
-        <a href="/cph-overview/closed+draft/01">
-          <button type="submit" class="govuk-button" data-module="govuk-button" style="width: 100%; margin-bottom: 15px;">
-            Create draft to edit
-          </button>
-        </a>
-
-        <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" style="width: 100%;margin-bottom: 15px;">
-          Re-open closed form
-        </button>
-        <!-- <a href="#" class="govuk-link" style="color: #d4351c;">Delete draft</a> -->
-
-      </div>
-
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      <h2 class="govuk-heading-m">Internal notes</h2>
-      {{ govukButton({
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    <h2 class="govuk-heading-m">Internal notes</h2>
+    {{ govukButton({
       text: "Add internal note",
+      href: "",
       classes: "govuk-button--secondary"
     }) }}
 
-      {%- from "moj/components/timeline/macro.njk" import mojTimeline -%}
-
-      {{ mojTimeline({
+    {{ mojTimeline({
             items: [
               {
                 label: {
@@ -357,20 +369,20 @@ href: "/library.html"
                 },
                 text: "Updated the email address input field to include a more sophisticated validation check, reducing the incidence of users entering incorrect email formats.",
                 datetime: {
-                  timestamp: "2019-06-07T12:32:00.000Z",
+                  timestamp: "2024-05-14T10:15:00.000Z",
                   type: "datetime"
                 },
                 byline: {
                   text: "Chris Smith"
                 }
               },
-              {
+                            {
                 label: {
                   text:  "New form created"
                 },
-                text: "Name of form: Report a dead wild bird. Lead organisation: Defra. SME/Policy team: Policy directorate.",
+                text: "Created this forms as requested by Policy Team.",
                 datetime: {
-                  timestamp: "2019-06-07T12:32:00.000Z",
+                  timestamp: "2024-05-13T12:32:00.000Z",
                   type: "datetime"
                 },
                 byline: {
@@ -380,8 +392,8 @@ href: "/library.html"
             ]
           }) }}
 
-    </div>
   </div>
+</div>
 </div>
 
 {% endblock %}

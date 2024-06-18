@@ -1,0 +1,102 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template –
+  {{ serviceName }}
+  – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+      {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      <h1 class="govuk-heading-l">Page title or question label</h1>
+      <p class="govuk-body">Guidance</p>
+
+      <form action="/form-handler" method="post" novalidate="novalidate">
+
+        <div class="govuk-form-group">
+          <div class="govuk-form-group">
+            <h2 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--m" for="file-upload-1">
+                Upload files
+              </label>
+            </h2>
+            <p class="govuk-body govuk-!-font-weight-bold" aria-live="polite">10MB of 100MB used</p>
+
+            <div id="file-upload-1-hint" class="govuk-hint">
+              Hint text hint text
+            </div>
+            <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file" aria-describedby="file-upload-1-hint">
+          </div>
+        </div>
+
+        <h2 class="govuk-heading-m">Uploaded files</h2>
+        <p class="govuk-body" aria-live="polite">1 of 2 files uploaded</p>
+
+        <p class="govuk-body govuk-!-display-none" id="refreshPageProgress">
+          <a href="#" class="govuk-link">Refresh page to update file upload progress</a>
+        </p>
+
+        <div class="govuk-summary-list">
+          <!-- First Row -->
+          <div class="govuk-summary-list__row">
+            <div class="govuk-summary-list__key govuk-!-width-full govuk-!-font-weight-bold;">
+              <a href="#" class="govuk-link">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</a>
+            </div>
+            <div class="govuk-summary-list__value govuk-!-width-one-third">
+              10MB
+            </div>
+            <div class="govuk-summary-list__value govuk-!-width-one-third">
+              <strong class="govuk-tag govuk-tag--yellow">
+                Uploading
+              </strong>
+            </div>
+            <div class="govuk-summary-list__actions">
+              <a href="#" class="govuk-link govuk-!-width-one-quarter">Remove</a>
+              <span class="govuk-visually-hidden">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</span>
+            </div>
+          </div>
+
+          <!-- Second Row (Copied from First Row) -->
+          <div class="govuk-summary-list__row">
+            <div class="govuk-summary-list__key govuk-!-width-full govuk-!-font-weight-bold;">
+              <a href="#" class="govuk-link">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</a>
+            </div>
+            <div class="govuk-summary-list__value govuk-!-width-one-third">
+              10MB
+            </div>
+            <div class="govuk-summary-list__value govuk-!-width-one-third">
+              <strong class="govuk-tag govuk-tag--green">
+                Uploaded
+              </strong>
+            </div>
+            <div class="govuk-summary-list__actions">
+              <a href="#" class="govuk-link govuk-!-width-one-quarter">Remove</a>
+              <span class="govuk-visually-hidden">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</span>
+            </div>
+          </div>
+        </div>
+
+        {{ govukButton({
+        text: "Continue"
+      }) }}
+      </form>
+
+      <p class="govuk-body">
+        <a href="/file-upload/questions/page5.html" class="govuk-link govuk-link--no-visited-state">Demo the page once the file has uploaded</a>
+      </p>
+    </div>
+
+  </div>
+{% endblock %}

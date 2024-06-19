@@ -19,26 +19,16 @@
     <div class="govuk-grid-column-two-thirds">
       {% from "govuk/components/button/macro.njk" import govukButton %}
       {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-l" for="file-upload-1">Upload proof of address</h1>
 
-      <h1 class="govuk-heading-l">Page title or question label</h1>
-      <p class="govuk-body">Guidance</p>
+        <div id="file-upload-1-hint" class="govuk-hint">
+          Upload 5 files in PDF, JPEG or Excel. You can upload original or scanned copies. The maximum file size for each file is 100MB.
+        </div>
 
-      <form action="/file-upload/questions/page2" method="post" novalidate="novalidate">
+        <form action="/file-upload/questions/page2" method="post" novalidate="novalidate">
 
-        <div class="govuk-form-group">
-          <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--m" for="file-upload-1">
-                Upload files
-              </label>
-            </h1>
-            <p class="govuk-body" aria-live="polite">0MB of 100MB used</p>
-
-            <div id="file-upload-1-hint" class="govuk-hint">
-              Hint text hint text
-            </div>
-            <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file" aria-describedby="file-upload-1-hint">
-          </div>
+          <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file" aria-describedby="file-upload-1-hint">
 
         </div>
 
@@ -96,6 +86,9 @@
     </div>
 
   </form>
+
+  <hr class="govuk-section-break govuk-section-break--m">
+
   <p class="govuk-body">
     <a href="/file-upload/yes-js/page2.html" class="govuk-link govuk-link--no-visited-state">Demo (with JS) what happens to a page after adding a file from native file browser</a>
   </p>

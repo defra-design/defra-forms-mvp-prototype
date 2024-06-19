@@ -32,7 +32,7 @@
                 Upload files
               </label>
             </h2>
-            <p class="govuk-body govuk-!-font-weight-bold" aria-live="polite">20MB of 100MB used</p>
+            <p class="govuk-body" aria-live="polite">0MB of 100MB used</p>
 
             <div id="file-upload-1-hint" class="govuk-hint">
               Hint text hint text
@@ -42,14 +42,13 @@
         </div>
 
         <h2 class="govuk-heading-m">Uploaded files</h2>
-        <p class="govuk-body" aria-live="polite">2 of 2 files uploaded</p>
+        <p class="govuk-body" aria-live="polite">0 of 1 files uploaded</p>
 
         <p class="govuk-body govuk-!-display-none" id="refreshPageProgress">
           <a href="#" class="govuk-link">Refresh page to update file upload progress</a>
         </p>
 
         <div class="govuk-summary-list">
-          <!-- First Row -->
           <div class="govuk-summary-list__row">
             <div class="govuk-summary-list__key govuk-!-width-full govuk-!-font-weight-bold;">
               <a href="#" class="govuk-link">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</a>
@@ -58,8 +57,8 @@
               10MB
             </div>
             <div class="govuk-summary-list__value govuk-!-width-one-third">
-              <strong class="govuk-tag govuk-tag--green">
-                Uploaded
+              <strong class="govuk-tag govuk-tag--yellow">
+                Uploading
               </strong>
             </div>
             <div class="govuk-summary-list__actions">
@@ -68,30 +67,17 @@
             </div>
           </div>
 
-          <!-- Second Row (Copied from First Row) -->
-          <div class="govuk-summary-list__row">
-            <div class="govuk-summary-list__key govuk-!-width-full govuk-!-font-weight-bold;">
-              <a href="#" class="govuk-link">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</a>
-            </div>
-            <div class="govuk-summary-list__value govuk-!-width-one-third">
-              10MB
-            </div>
-            <div class="govuk-summary-list__value govuk-!-width-one-third">
-              <strong class="govuk-tag govuk-tag--green">
-                Uploaded
-              </strong>
-            </div>
-            <div class="govuk-summary-list__actions">
-              <a href="#" class="govuk-link govuk-!-width-one-quarter">Remove</a>
-              <span class="govuk-visually-hidden">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</span>
-            </div>
-          </div>
         </div>
 
         {{ govukButton({
         text: "Continue"
       }) }}
       </form>
+
+      <p class="govuk-body">
+        <a href="/file-upload/questions/page3.html" class="govuk-link govuk-link--no-visited-state">Demo the page once the file has uploaded</a>
+      </p>
+
     </div>
   </div>
 {% endblock %}

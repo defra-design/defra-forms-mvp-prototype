@@ -32,7 +32,7 @@
                 Upload files
               </label>
             </h1>
-            <p class="govuk-body govuk-!-font-weight-bold" aria-live="polite">0MB of 100MB used</p>
+            <p class="govuk-body" aria-live="polite">0MB of 100MB used</p>
 
             <div id="file-upload-1-hint" class="govuk-hint">
               Hint text hint text
@@ -45,8 +45,8 @@
         <h2 class="govuk-heading-m">Uploaded files</h1>
         <p class="govuk-body" aria-live="polite">0 files uploaded</p>
 
-        <p class="govuk-body govuk-!-display-none" id="refreshPageProgress">
-          <a href="#" class="govuk-link">Refresh page to update file upload progress</a>
+        <p class="govuk-body govuk-body govuk-!-display-none" id="refreshPageProgress">
+          <a href="." class="govuk-link">Refresh page to update file upload progress</a>
         </p>
         {#
         {{ govukSummaryList({
@@ -97,8 +97,13 @@
 
   </form>
   <p class="govuk-body">
-    <a href="/file-upload/questions/page2.html" class="govuk-link govuk-link--no-visited-state">Demo what happens to a page after adding a file from native file browser</a>
+    <a href="/file-upload/questions/page2.html" class="govuk-link govuk-link--no-visited-state">Demo (with JS) what happens to a page after adding a file from native file browser</a>
   </p>
+
+  <p class="govuk-body">
+    <a href="/file-upload/no-js/page2.html" class="govuk-link govuk-link--no-visited-state">Demo (without JS) what happens to a page after adding a file from native file browser</a>
+  </p>
+
 </div>
 </div>
 

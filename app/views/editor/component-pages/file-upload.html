@@ -101,7 +101,7 @@
 
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
-      {{ govukInput({
+      {# {{ govukInput({
   label: {
     text: "Component name",
     classes: "govuk-label",
@@ -112,7 +112,7 @@
   },
   id: "event-name",
   name: "eventName"
-}) }}
+}) }} #}
 
       {{ govukCheckboxes({
 
@@ -126,34 +126,6 @@
     }
   ]
 
-}) }}
-
-      <h2 class="govuk-heading-m">
-        Additional settings
-      </h2>
-
-      {{ govukInput({
-  label: {
-    text: "Minimum number of files"
-  },
-  hint: {
-    text: "The minimum number of files users can upload"
-  },
-  classes: "govuk-input--width-3",
-  id: "min-length",
-  name: "minLength"
-}) }}
-
-      {{ govukInput({
-  label: {
-    text: "Maximum number of files"
-  },
-  hint: {
-    text: "The maximum number of files users can upload"
-  },
-  classes: "govuk-input--width-3",
-  id: "max-length",
-  name: "maxLength"
 }) }}
 
       <div class="govuk-button-group govuk-!-padding-top-4">

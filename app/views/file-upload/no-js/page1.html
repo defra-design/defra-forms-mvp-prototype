@@ -22,7 +22,7 @@
       <div class="govuk-form-group govuk-!-margin-bottom-2">
         <h1 class="govuk-heading-l" for="file-upload-1">Upload proof of address</h1>
 
-        <form action="/file-upload/no-js/page2" method="post" enctype="multipart/form-data" novalidate="novalidate">
+        <form action="/file-upload/no-js/page2" method="get">
           {{ govukFileUpload({
             id: "file-upload-1",
             name: "file-upload-1",

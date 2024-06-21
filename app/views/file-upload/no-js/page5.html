@@ -18,23 +18,38 @@
     <div class="govuk-grid-column-two-thirds">
       {% from "govuk/components/button/macro.njk" import govukButton %}
       {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
-      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
       <div class="govuk-form-group govuk-!-margin-bottom-2">
         <h1 class="govuk-heading-l" for="file-upload-1">Upload proof of address</h1>
 
-        <div id="file-upload-1-hint" class="govuk-hint">
-          Upload 5 files in PDF, JPEG or Excel. You can upload original or scanned copies. The maximum file size for each file is 100MB.
-        </div>
+        <form action="/file-upload/yes-js/page2" method="post" enctype="multipart/form-data" novalidate="novalidate">
+          {{ govukFileUpload({
+            id: "file-upload-1",
+            name: "file-upload-1",
+            classes: 'govuk-file-upload',
+            label: {
+              text: "",
+              classes: ''
+            },
+            hint: {
+              text: "Upload up to 2 files in PDF, JPEG, or Excel format. You can upload original or scanned copies. The maximum file size for each file is 100MB."
+            }
+          }) }}
 
-        <input type="file" style="display: none;" class="govuk-file-upload" data-module="govuk-file-upload" id="file-upload-1" name="file-upload-1">
-        <label for="file-upload-1" class="govuk-button govuk-button--secondary" tabindex="0">
-          Upload another proof of address
-        </label>
-
-        {# <input class="govuk-file-upload govuk-button govuk-button--secondary" id="file-upload-1" name="file-upload-1" type="file" aria-describedby="file-upload-1-hint"> #}
+          {{ govukButton({
+            text: 'Upload file',
+            classes: 'govuk-button--secondary govuk-!-margin-top-4',
+            attributes: {
+              'data-module': 'govuk-button'
+            }
+          }) }}
+        </form>
       </div>
+    </div>
+  </div>
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
       <form action="/form-handler" method="post" novalidate="novalidate">
         <div class="govuk-form-group">
 
@@ -46,46 +61,37 @@
           <p class="govuk-body" id="refreshPageProgress">
             <a href="#" class="govuk-link">Refresh page to update file upload progress</a>
           </p>
-
-          <div class="govuk-summary-list">
+          <dl class="govuk-summary-list govuk-summary-list--long-key">
             <!-- First Row -->
             <div class="govuk-summary-list__row">
-              <div class="govuk-summary-list__key govuk-!-width-full govuk-!-font-weight-bold;">
+              <dt class="govuk-summary-list__key">
                 <a href="#" class="govuk-link">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</a>
-              </div>
-              <div class="govuk-summary-list__value govuk-!-width-one-third">
-                10MB
-              </div>
-              <div class="govuk-summary-list__value govuk-!-width-one-third">
-                <strong class="govuk-tag govuk-tag--green">
-                  Uploaded
-                </strong>
-              </div>
-              <div class="govuk-summary-list__actions">
+              </dt>
+              <dd class="govuk-summary-list__value">10MB</dd>
+              <dd class="govuk-summary-list__value">
+                <strong class="govuk-tag govuk-tag--green">Uploaded</strong>
+              </dd>
+              <dd class="govuk-summary-list__actions">
                 <a href="#" class="govuk-link govuk-!-width-one-quarter">Remove</a>
                 <span class="govuk-visually-hidden">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</span>
-              </div>
+              </dd>
             </div>
 
-            <!-- Second Row (Copied from First Row) -->
+            <!-- Second Row -->
             <div class="govuk-summary-list__row">
-              <div class="govuk-summary-list__key govuk-!-width-full govuk-!-font-weight-bold;">
+              <dt class="govuk-summary-list__key">
                 <a href="#" class="govuk-link">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</a>
-              </div>
-              <div class="govuk-summary-list__value govuk-!-width-one-third">
-                10MB
-              </div>
-              <div class="govuk-summary-list__value govuk-!-width-one-third">
-                <strong class="govuk-tag govuk-tag--green">
-                  Uploaded
-                </strong>
-              </div>
-              <div class="govuk-summary-list__actions">
+              </dt>
+              <dd class="govuk-summary-list__value">10MB</dd>
+              <dd class="govuk-summary-list__value">
+                <strong class="govuk-tag govuk-tag--green">Uploaded</strong>
+              </dd>
+              <dd class="govuk-summary-list__actions">
                 <a href="#" class="govuk-link govuk-!-width-one-quarter">Remove</a>
                 <span class="govuk-visually-hidden">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</span>
-              </div>
+              </dd>
             </div>
-          </div>
+          </dl>
 
           {{ govukButton({
         text: "Continue"

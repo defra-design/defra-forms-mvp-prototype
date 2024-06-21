@@ -1505,3 +1505,27 @@ code.lang-md {
   border-right: 1px solid #0b0c0c;
 }
 
+
+.icon-file-download {
+  width: 30px;
+  height: 39px;
+  background-image: url("/assets/images/icon-file-download.png");
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 20 / 10),
+only screen and (min-device-pixel-ratio: 2),
+only screen and (min-resolution: 192dpi),
+only screen and (min-resolution: 2dppx) {
+  .icon-file-download {
+    background-image: url("/assets/images/icon-file-download.png");
+    background-size: 100%;
+  }
+}
+
+.icon {
+  display: inline-block;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}

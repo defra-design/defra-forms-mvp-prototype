@@ -15,6 +15,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       {% from "govuk/components/button/macro.njk" import govukButton %}
       {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
 
@@ -58,22 +59,6 @@
       </p>
 
       <dl class="govuk-summary-list govuk-summary-list--long-key">
-        <!-- First Row -->
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            <a href="#" class="govuk-link">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</a>
-          </dt>
-          <dd class="govuk-summary-list__value">10MB</dd>
-          <dd class="govuk-summary-list__value">
-            <strong class="govuk-tag govuk-tag--green">Uploaded</strong>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="#" class="govuk-link govuk-!-width-one-quarter">Remove</a>
-            <span class="govuk-visually-hidden">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</span>
-          </dd>
-        </div>
-
-        <!-- Second Row -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             <a href="#" class="govuk-link">file_name-goes-here.file_name-goes-here-over-as-many-lines-as-needed.jpg</a>

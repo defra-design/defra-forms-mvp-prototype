@@ -22,7 +22,7 @@
       <div class="govuk-form-group govuk-!-margin-bottom-2">
         <h1 class="govuk-heading-l" for="file-upload-1">Upload proof of address</h1>
 
-        <form action="/file-upload/yes-js/page2" method="post" enctype="multipart/form-data" novalidate="novalidate">
+        <form action="/file-upload/no-js/page2" method="post" enctype="multipart/form-data" novalidate="novalidate">
           {{ govukFileUpload({
             id: "file-upload-1",
             name: "file-upload-1",
@@ -62,13 +62,9 @@
     </div>
   </div>
 
-  {# <hr class="govuk-section-break govuk-section-break--m">
+  <hr class="govuk-section-break govuk-section-break--m">
 
   <p class="govuk-body">
-    <a href="/file-upload/yes-js/page2.html" class="govuk-link govuk-link--no-visited-state">Demo (with JS) what happens to a page after adding a file from native file browser</a>
+    <a href="/file-upload/no-js/page2.html" class="govuk-link govuk-link--no-visited-state">Simulate auto-refresh of the page</a>
   </p>
-
-  <p class="govuk-body">
-    <a href="/file-upload/no-js/page2.html" class="govuk-link govuk-link--no-visited-state">Demo (without JS) what happens to a page after adding a file from native file browser</a>
-  </p> #}
 {% endblock %}

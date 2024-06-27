@@ -171,50 +171,50 @@
               heading: { text: "Organisation" },
               content: {
                 html: '
-                  <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset">
-                      <legend class="govuk-fieldset__legend">Select all organisations that apply</legend>
-                      <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region" name="region" type="checkbox" value="1000">
-                          <label class="govuk-label govuk-checkboxes__label" for="region">Animal and Plant Health Agency - APHA</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-2" name="region" type="checkbox" value="1001">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-2">Centre for Environment, Fisheries and Aquaculture Science - Cefas</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-3" name="region" type="checkbox" value="1002">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-3">Defra</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-4" name="region" type="checkbox" value="1003">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-4">Environment agency</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-5" name="region" type="checkbox" value="1004">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-5">Forrestry commision</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-6" name="region" type="checkbox" value="1005">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-6">Marine Management Organisation - MMO</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-7" name="region" type="checkbox" value="1006">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-7">Natural England</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-8" name="region" type="checkbox" value="1007">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-8">Rural Payments Agency - RPA</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Veterinary Medicines Directorate - VMD</label>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
-                '
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend">Select an organisation</legend>
+    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="region" name="region" type="radio" value="1000">
+        <label class="govuk-label govuk-radios__label" for="region">Animal and Plant Health Agency - APHA</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="region-2" name="region" type="radio" value="1001">
+        <label class="govuk-label govuk-radios__label" for="region-2">Centre for Environment, Fisheries and Aquaculture Science - Cefas</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="region-3" name="region" type="radio" value="1002">
+        <label class="govuk-label govuk-radios__label" for="region-3">Defra</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="region-4" name="region" type="radio" value="1003">
+        <label class="govuk-label govuk-radios__label" for="region-4">Environment Agency</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="region-5" name="region" type="radio" value="1004">
+        <label class="govuk-label govuk-radios__label" for="region-5">Forestry Commission</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="region-6" name="region" type="radio" value="1005">
+        <label class="govuk-label govuk-radios__label" for="region-6">Marine Management Organisation - MMO</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="region-7" name="region" type="radio" value="1006">
+        <label class="govuk-label govuk-radios__label" for="region-7">Natural England</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="region-8" name="region" type="radio" value="1007">
+        <label class="govuk-label govuk-radios__label" for="region-8">Rural Payments Agency - RPA</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="region-9" name="region" type="radio" value="1008">
+        <label class="govuk-label govuk-radios__label" for="region-9">Veterinary Medicines Directorate - VMD</label>
+      </div>
+    </div>
+  </fieldset>
+</div>'
+
               }
             },
             {
@@ -229,6 +229,7 @@
                           <input class="govuk-checkboxes__input" id="state-draft" name="state" type="checkbox" value="draft">
                           <label class="govuk-label govuk-checkboxes__label" for="state-draft">Draft</label>
                         </div>
+
                         <div class="govuk-checkboxes__item">
                           <input class="govuk-checkboxes__input" id="state-published" name="state" type="checkbox" value="published">
                           <label class="govuk-label govuk-checkboxes__label" for="state-published">Live</label>

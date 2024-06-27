@@ -97,151 +97,104 @@
 
                 <h3 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-1">Advanced search</h3>
                 <p class="govuk-body">Apply additional filters</p>
+                {% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+                {% from "govuk/components/radios/macro.njk" import govukRadios %}
+                {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+                {% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+                {% from "govuk/components/radios/macro.njk" import govukRadios %}
+                {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+                {% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+                {% from "govuk/components/radios/macro.njk" import govukRadios %}
+                {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
                 {{ govukAccordion({
-          id: "search-filters-advanced",
-          items: [
-            {
-              heading: { text: "Authors" },
-              content: {
-                html: '
-                  <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset">
-                      <legend class="govuk-fieldset__legend">Select all authors that apply</legend>
-                      <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region" name="region" type="checkbox" value="1000">
-                          <label class="govuk-label govuk-checkboxes__label" for="region">All authors</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-2" name="region" type="checkbox" value="1001">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-2">Me (Chris Smith)</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-3" name="region" type="checkbox" value="1002">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-3">Moshe Pitt</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-4" name="region" type="checkbox" value="1003">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-4">Alexandria Beard</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-5" name="region" type="checkbox" value="1004">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-5">Nathanael Booker</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-6" name="region" type="checkbox" value="1005">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-6">Judson Palmer</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-7" name="region" type="checkbox" value="1006">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-7">Juniper Perry</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-8" name="region" type="checkbox" value="1007">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-8">Eddie Barnett</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Saylor O’Neal</label>
-                        </div>
-                         <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Waylon Brady</label>
-                        </div>
-                           <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Angie Porter</label>
-                        </div>
-                              <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Enrique Chase</label>
-                        </div>
-                             <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
-                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Rhett Calhoun</label>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
-                '
-              }
-            },
-            {
-              heading: { text: "Organisation" },
-              content: {
-                html: '
-<div class="govuk-form-group">
-  <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend">Select an organisation</legend>
-    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="region" name="region" type="radio" value="1000">
-        <label class="govuk-label govuk-radios__label" for="region">Animal and Plant Health Agency - APHA</label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="region-2" name="region" type="radio" value="1001">
-        <label class="govuk-label govuk-radios__label" for="region-2">Centre for Environment, Fisheries and Aquaculture Science - Cefas</label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="region-3" name="region" type="radio" value="1002">
-        <label class="govuk-label govuk-radios__label" for="region-3">Defra</label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="region-4" name="region" type="radio" value="1003">
-        <label class="govuk-label govuk-radios__label" for="region-4">Environment Agency</label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="region-5" name="region" type="radio" value="1004">
-        <label class="govuk-label govuk-radios__label" for="region-5">Forestry Commission</label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="region-6" name="region" type="radio" value="1005">
-        <label class="govuk-label govuk-radios__label" for="region-6">Marine Management Organisation - MMO</label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="region-7" name="region" type="radio" value="1006">
-        <label class="govuk-label govuk-radios__label" for="region-7">Natural England</label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="region-8" name="region" type="radio" value="1007">
-        <label class="govuk-label govuk-radios__label" for="region-8">Rural Payments Agency - RPA</label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="region-9" name="region" type="radio" value="1008">
-        <label class="govuk-label govuk-radios__label" for="region-9">Veterinary Medicines Directorate - VMD</label>
-      </div>
-    </div>
-  </fieldset>
-</div>'
+  id: "search-filters-advanced",
+  items: [
+    {
+      heading: { text: "Authors" },
+      content: {
+        html: govukCheckboxes({
+          name: "authors",
+            classes: "govuk-checkboxes--small",
 
-              }
-            },
-            {
-              heading: { text: "State" },
-              content: {
-                html: '
-                  <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset">
-                      <legend class="govuk-fieldset__legend">Select all states that apply</legend>
-                      <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="state-draft" name="state" type="checkbox" value="draft">
-                          <label class="govuk-label govuk-checkboxes__label" for="state-draft">Draft</label>
-                        </div>
-
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="state-published" name="state" type="checkbox" value="published">
-                          <label class="govuk-label govuk-checkboxes__label" for="state-published">Live</label>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
-                '
-              }
+          fieldset: {
+            legend: {
+              text: "Select all authors that apply",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend"
             }
+          },
+          items: [
+            { value: "1000", text: "All authors" },
+            { value: "1001", text: "Me (Chris Smith)" },
+            { value: "1002", text: "Moshe Pitt" },
+            { value: "1003", text: "Alexandria Beard" },
+            { value: "1004", text: "Nathanael Booker" },
+            { value: "1005", text: "Judson Palmer" },
+            { value: "1006", text: "Juniper Perry" },
+            { value: "1007", text: "Eddie Barnett" },
+            { value: "1008", text: "Saylor O’Neal" },
+            { value: "1009", text: "Waylon Brady" },
+            { value: "1010", text: "Angie Porter" },
+            { value: "1011", text: "Enrique Chase" },
+            { value: "1012", text: "Rhett Calhoun" }
           ]
-        }) }}
+        }) | safe
+      }
+    },
+    {
+      heading: { text: "Organisation" },
+      content: {
+        html: govukRadios({
+          name: "organisation",
+           classes: "govuk-radios--small",
+
+          fieldset: {
+            legend: {
+              text: "Select an organisation",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            { value: "1000", text: "Animal and Plant Health Agency - APHA" },
+            { value: "1001", text: "Centre for Environment, Fisheries and Aquaculture Science - Cefas" },
+            { value: "1002", text: "Defra" },
+            { value: "1003", text: "Environment Agency" },
+            { value: "1004", text: "Forestry Commission" },
+            { value: "1005", text: "Marine Management Organisation - MMO" },
+            { value: "1006", text: "Natural England" },
+            { value: "1007", text: "Rural Payments Agency - RPA" },
+            { value: "1008", text: "Veterinary Medicines Directorate - VMD" }
+          ]
+        }) | safe
+      }
+    },
+    {
+      heading: { text: "State" },
+      content: {
+        html: govukCheckboxes({
+          name: "states",
+           classes: "govuk-checkboxes--small",
+
+          fieldset: {
+            legend: {
+              text: "Select all states that apply",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend"
+            }
+          },
+          items: [
+            { value: "draft", text: "Draft" },
+            { value: "published", text: "Live" }
+          ]
+        }) | safe
+      }
+    }
+  ]
+}) | safe }}
 
                 <div id="search-buttons--header" class="govuk-button-group govuk-!-margin-bottom-4">
                   <button type="submit" class="govuk-button" data-module="govuk-button">Apply filters</button>

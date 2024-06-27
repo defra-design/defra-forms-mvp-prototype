@@ -1,9 +1,4 @@
 {
-    "cSpell.words": [
-        "behaviour",
-        "Organisation"
-    ],
-    "cSpell.enableFiletypes": [
-        "njk"
-    ]
+  "cSpell.words": ["behaviour", "Organisation"],
+  "cSpell.enableFiletypes": ["njk"]
 }

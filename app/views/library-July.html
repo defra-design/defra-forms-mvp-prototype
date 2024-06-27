@@ -1,0 +1,411 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/pagination/macro.njk" import govukPagination %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [{
+      href: "/",
+      text: "Forms library",
+      id: "form-library"
+    }],
+    activeLinkId: "form-library"
+  }) }}
+{% endblock %}
+
+{% set formLibrary = require("data/form-library.json") %}
+
+{% set titleSearch = data["titleSearch"] %}
+{% set filterBy = null %}
+{% set sortBy = "updated.date" %}
+{% set sortReverse = true %}
+
+{% switch data["sort"] %}
+{% case "updated-oldest" %}
+  {% set sortBy = "updated.date" %}
+  {% set sortReverse = false %}
+  {% case "status" %}
+    {% set sortBy = "status" %}
+    {% set sortReverse = false %}
+    {% case "published-newest" %}
+      {% set filterBy = "published" %}
+      {% set sortBy = "published.date" %}
+      {% set sortReverse = true %}
+      {% case "published-oldest" %}
+        {% set filterBy = "published" %}
+        {% set sortBy = "published.date" %}
+        {% set sortReverse = false %}
+        {% endswitch %}
+
+        {% set formItems = formLibrary.items %}
+
+        {% if titleSearch %}
+          {% set formItems = formItems | selectattr("name", "search", titleSearch) %}
+        {% endif %}
+
+        {% if filterBy %}
+          {% set formItems = formItems | selectattr(filterBy) %}
+        {% endif %}
+
+        {% set formItems = formItems | sort(attribute = sortBy, reverse = sortReverse) %}
+
+        {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
+        {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 
+          1 %}
+
+        {% block beforeContent %}{% endblock %}
+
+        {% block content %}
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+              <h1 class="govuk-heading-xl">Forms library</h1>
+              {{ govukButton({
+        text: "Create new form",
+        href: "/new-form/form-name.html"
+      }) }}
+            </div>
+          </div>
+
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third-from-desktop">
+              <div id="search-filters" aria-describedby="search-filters-heading" class="app-search__filters">
+                <h2 id="search-filters-heading" class="govuk-heading-l govuk-!-margin-bottom-4">Search</h2>
+                <form method="get" action="">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="search-field-title-search">Form name</label>
+                    <input class="govuk-input" id="search-field-title-search" name="titleSearch" type="text" value="{{ data['titleSearch'] }}">
+                  </div>
+                  <div id="search-buttons--header" class="govuk-button-group govuk-!-margin-bottom-4">
+                    <button type="submit" class="govuk-button" data-module="govuk-button">Apply filters</button>
+                    <a href="/roles#search-filters" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">Clear filters</a>
+                  </div>
+                  <!-- Advanced search options... -->
+                </form>
+
+                <h3 class="govuk-heading-m govuk-!-margin-top-8 govuk-!-margin-bottom-1">Advanced search</h3>
+                <p class="govuk-body">Apply additional filters</p>
+
+                {{ govukAccordion({
+          id: "search-filters-advanced",
+          items: [
+            {
+              heading: { text: "Authors" },
+              content: {
+                html: '
+                  <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                      <legend class="govuk-fieldset__legend">Select all authors that apply</legend>
+                      <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region" name="region" type="checkbox" value="1000">
+                          <label class="govuk-label govuk-checkboxes__label" for="region">All authors</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-2" name="region" type="checkbox" value="1001">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-2">Me (Chris Smith)</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-3" name="region" type="checkbox" value="1002">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-3">Moshe Pitt</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-4" name="region" type="checkbox" value="1003">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-4">Alexandria Beard</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-5" name="region" type="checkbox" value="1004">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-5">Nathanael Booker</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-6" name="region" type="checkbox" value="1005">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-6">Judson Palmer</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-7" name="region" type="checkbox" value="1006">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-7">Juniper Perry</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-8" name="region" type="checkbox" value="1007">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-8">Eddie Barnett</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Saylor O’Neal</label>
+                        </div>
+                         <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Waylon Brady</label>
+                        </div>
+                           <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Angie Porter</label>
+                        </div>
+                              <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Enrique Chase</label>
+                        </div>
+                             <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Rhett Calhoun</label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                '
+              }
+            },
+            {
+              heading: { text: "Organisation" },
+              content: {
+                html: '
+                  <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                      <legend class="govuk-fieldset__legend">Select all organisations that apply</legend>
+                      <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region" name="region" type="checkbox" value="1000">
+                          <label class="govuk-label govuk-checkboxes__label" for="region">Animal and Plant Health Agency - APHA</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-2" name="region" type="checkbox" value="1001">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-2">Centre for Environment, Fisheries and Aquaculture Science - Cefas</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-3" name="region" type="checkbox" value="1002">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-3">Defra</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-4" name="region" type="checkbox" value="1003">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-4">Environment agency</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-5" name="region" type="checkbox" value="1004">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-5">Forrestry commision</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-6" name="region" type="checkbox" value="1005">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-6">Marine Management Organisation - MMO</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-7" name="region" type="checkbox" value="1006">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-7">Natural England</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-8" name="region" type="checkbox" value="1007">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-8">Rural Payments Agency - RPA</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="region-9" name="region" type="checkbox" value="1008">
+                          <label class="govuk-label govuk-checkboxes__label" for="region-9">Veterinary Medicines Directorate - VMD</label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                '
+              }
+            },
+            {
+              heading: { text: "State" },
+              content: {
+                html: '
+                  <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                      <legend class="govuk-fieldset__legend">Select all states that apply</legend>
+                      <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="state-draft" name="state" type="checkbox" value="draft">
+                          <label class="govuk-label govuk-checkboxes__label" for="state-draft">Draft</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="state-published" name="state" type="checkbox" value="published">
+                          <label class="govuk-label govuk-checkboxes__label" for="state-published">Live</label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                '
+              }
+            }
+          ]
+        }) }}
+
+                <div id="search-buttons--header" class="govuk-button-group govuk-!-margin-bottom-4">
+                  <button type="submit" class="govuk-button" data-module="govuk-button">Apply filters</button>
+                  <a href="/roles#search-filters" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">Clear filters</a>
+                </div>
+
+              </div>
+            </div>
+
+            <div id="search-results" aria-describedby="search-results-heading" class="app-search__results govuk-grid-column-two-thirds-from-desktop">
+
+              <h2 id="search-results-heading" class="govuk-heading-m">
+                <span class="govuk-visually-hidden">Search results</span>
+                {{ formItems.length }}
+                forms
+              </h2>
+
+              <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+              <div class="app-field-group">
+                <div class="app-field-group__item">
+                  <input type="hidden" name="page" value="1">
+
+                  {{ govukSelect({
+            id: "sort",
+            name: "sort",
+            label: {
+              text: "Sort by",
+              classes: "app-field-group__label"
+            },
+            classes: "app-field-group__input",
+            items: [
+              {
+                value: "updated-newest",
+                text: "Updated (newest)",
+                selected: true
+              },
+              {
+                value: "updated-oldest",
+                text: "Updated (oldest)"
+              },
+              {
+                value: "status",
+                text: "Status"
+              },
+              {
+                value: "published-newest",
+                text: "Form name (A to Z)"
+              },
+              {
+                value: "published-oldest",
+                text: "Form name (Z to A)"
+              }
+            ],
+            value: data["sort"]
+          }) }}
+                </div>
+                <div class="app-field-group__item">
+                  {{ govukButton({
+            text: "Sort forms",
+            classes: "govuk-button--secondary app-field-group__button"
+          }) }}
+                </div>
+              </div>
+
+              {% set formsByPage = (formItems | sort(attribute = sortBy, reverse = sortReverse)if sortBy else 
+                formItems) | slice(25) %}
+
+              {% set formRowsMobile = [] %}
+              {% set formRowsDesktop = [] %}
+
+              {% for formItem in formsByPage[pageCurrent - 1] %}
+                {% set formHref = formItem.href if formItem.href else "/form-designer-v2/" + formItem.path %}
+
+                {% set formName %}
+                <a href="{{ formHref }}" class="govuk-link govuk-link--no-visited-state">{{ formItem.name }}</a>
+                {% endset %}
+
+                {% set formUpdated %}
+                <span class="app-display-until-desktop">Updated</span>{{ formItem.updated.date | govukDate("truncate") }}<br>
+                by
+                {{ formItem.updated.name }}
+                {% endset %}
+
+                {% set formNameUpdated %}
+                {{ formName | safe }}
+                <p class="govuk-!-margin-top-2 govuk-!-margin-bottom-1">{{ formUpdated | safe }}</p>
+                {% endset %}
+
+                {% set formStatus %}
+                {% set tagDraft = govukTag({ text: "Draft", classes: "govuk-tag--orange govuk-!-margin-bottom-1" }) %}
+                {% set tagLive = govukTag({ text: "Live", classes: "govuk-tag--green govuk-!-margin-top-1" }) %}
+
+                {% switch formItem.status %}
+                {% case "draft" %}
+                  {{ tagDraft }}
+                  {% case "draft-live" %}
+                    {{ tagDraft }}
+                    {{ tagLive }}
+                    {% case "live" %}
+                      {{ tagLive }}
+                      {% endswitch %}
+                      {% endset %}
+
+                      {% set formRowsMobile = (formRowsMobile.push([
+                        {
+                          html: formNameUpdated
+                        }, {
+                          html: formStatus
+                        }
+                      ]), formRowsMobile) %}
+
+                      {% set formRowsDesktop = (formRowsDesktop.push([
+                        {
+                          html: formName
+                        }, {
+                          html: formUpdated
+                        }, {
+                          html: formStatus
+                        }
+                      ]), formRowsDesktop) %}
+                    {% endfor %}
+
+                    {{ govukTable({
+        classes: "app-display-until-desktop",
+        head: [
+          { text: "Name", classes: "govuk-!-width-three-quarters" },
+          { text: "Status" }
+        ],
+        rows: formRowsMobile
+      }) }}
+
+                    {{ govukTable({
+        classes: "app-display-from-desktop",
+        head: [
+          { text: "Name", classes: "govuk-!-width-one-half" },
+          { text: "Last updated" },
+          { text: "Status" }
+        ],
+        rows: formRowsDesktop
+      }) }}
+
+                    {% set pageItems = [] %}
+                    {% for forms in formsByPage %}
+                      {% set isPrevious = loop.index - pageCurrent == -1 %}
+                      {% set isUpcoming = loop.index >= pageCurrent and loop.index - pageCurrent <= 2 %}
+
+                      {% if loop.first or loop.last or isPrevious or isUpcoming %}
+                        {% set pageItems = (pageItems.push({
+                          number: loop.index,
+                          href: "?page=" + loop.index,
+                          current: loop.index == pageCurrent
+                        }), pageItems) %}
+                      {% else %}
+                        {% set pageItems = (pageItems.push({ellipsis: true}), pageItems) %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {{ govukPagination({
+        previous: { href: "?page=" + (pageCurrent - 1) } if pageCurrent > 1,
+        next: { href: "?page=" + (pageCurrent + 1) } if pageCurrent < pageCount,
+        items: pageItems
+      }) }}
+                  </div>
+                </div>
+              </div>
+
+            {% endblock %}

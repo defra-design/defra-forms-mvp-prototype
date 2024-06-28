@@ -46,15 +46,26 @@
       <h1 class="govuk-heading-l">
         Add page
       </h1>
+      <h2 class="govuk-heading-m">
+        Page types
+      </h2>
+      <p class="govuk-body">You can choose between 3 page types.</p>
+      <p class="govuk-body">Use:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>start pages to start a form (you can only use 1 start page for your form)</li>
+        <li>question pages to request information, like a UK address</li>
+        <li>summary pages at the end of a section or form.</li>
+      </ul>
+      <p class="govuk-body">For example, use a summary page to let users check their answers before submitting the form.</p>
 
       {{ govukSelect({
   id: "location",
   name: "location",
   label: {
-    text: "Select a page type"
-   },
-  hint: {
-    text: "Select a Start Page to start a form, a Question Page to request information, and a Summary Page at the end of a section or form. For example, use a Summary to let users check their answers to questions before they submit the form"
+    text: "Select a page type",
+        classes: "govuk-label--s"
+
+
   },
   items: [
     {
@@ -81,7 +92,8 @@
   id: "location",
   name: "location",
   label: {
-    text: "Link from (optional)"
+    text: "Link from (optional)",
+    classes: "govuk-label--s"
    },
   hint: {
     text: "Add a link to this page from a different page in the form"
@@ -111,7 +123,9 @@
 
       {{ govukInput({
   label: {
-    text: "Page title"
+    text: "Page title",
+        classes: "govuk-label--s"
+
   },
   id: "event-name",
   name: "eventName"
@@ -122,7 +136,9 @@
   items: [
     {
       value: "optionalComponent",
+
       text: "Hide page title",
+
        hint: {
         text: "Tick this box if you want to use the component's 'Question label' as the page title"
       }
@@ -135,7 +151,9 @@
   id: "location",
   name: "location",
   label: {
-    text: "Section (optional)"
+    text: "Section (optional)",
+        classes: "govuk-label--s"
+
   },
   hint: {
     text: "Use sections to split a form. For example, to add a section per applicant. The section title appears above the page title or question label. However, if these titles are the same, the form will only show the page title."

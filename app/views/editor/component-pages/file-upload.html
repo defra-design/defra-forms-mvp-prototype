@@ -2,7 +2,7 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set pageName = "Overview - Apply for a county parish holding number in England" %}
+{% set pageName = "File upload - Apply for a county parish holding number in England" %}
 
 {% block header %}
   {{ serviceHeader({
@@ -47,18 +47,18 @@
       </h1>
       {{ govukInput({
   label: {
-    text: "Short label",
-    classes: "govuk-label",
+    text: "Title",
+    classes: "govuk-label--m",
     isPageHeading: true
   },
   hint: {
-    text: "For example, ‘Upload proof of address’. This is also used for generating error messages"
+    text: "For example, ‘upload your methodology statement’"
   },
   id: "event-name",
   name: "eventName"
 }) }}
 
-      {{ govukInput({
+      {# {{ govukInput({
   label: {
     text: "Question label (optional)",
     classes: "govuk-label",
@@ -69,7 +69,7 @@
   },
   id: "event-name",
   name: "eventName"
-}) }}
+}) }} #}
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
       <h2 class="govuk-heading-m">
@@ -92,7 +92,7 @@
   id: "more-detail",
   label: {
     text: "What hint text do you want to show?",
-    classes: "govuk-label",
+    classes: "govuk-label--m",
     isPageHeading: false
   }
 }) }}
@@ -131,7 +131,7 @@
       <div class="govuk-button-group govuk-!-padding-top-4">
         <a href="/editor/2.html">
           <button type="submit" class="govuk-button govuk-button" data-module="govuk-button">
-            Save
+            Save and continue
           </button>
         </a>
         <a href="/cph-overview/closed-success">

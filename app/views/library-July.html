@@ -106,6 +106,7 @@
             items: [
               {
                 heading: { text: "Authors" },
+                expanded: data["author"] | length > 0,
                 content: {
                   html: govukCheckboxes({
                     name: "author",
@@ -124,6 +125,7 @@
               },
               {
                 heading: { text: "Organisation" },
+                expanded: data["organisation"] | length > 0,
                 content: {
                   html: govukCheckboxes({
                     name: "organisation",
@@ -142,6 +144,7 @@
               },
               {
                 heading: { text: "State" },
+                expanded: data["status"] | length > 0,
                 content: {
                   html: govukCheckboxes({
                     name: "status",

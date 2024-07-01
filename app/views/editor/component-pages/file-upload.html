@@ -50,9 +50,7 @@
     text: "Title",
     classes: "govuk-label--m",
     isPageHeading: true
-  },
-  hint: {
-    text: "For example, ‘Upload your methodology statement’"
+
   },
   id: "event-name",
   name: "eventName"
@@ -76,12 +74,12 @@
         Hint text
       </h1>
 
-      <p class="govuk-body">Tell users:</p>
+      <p class="govuk-body">Add any information you want to show to users. Like:</p>
       <ul class="govuk-list govuk-list--bullet">
         <li>how many files they need to upload</li>
         <li>what file types you accept (Word, PDF, JPEG, Excel)</li>
-        <li>if there’s a minimum or maximum file size
-        </li>
+        <li>any file types you cannot accept</li>
+        <li>if there’s a minimum or maximum file size</li>
         <li>if you accept original or scanned copies</li>
       </ul>
 
@@ -128,7 +126,155 @@
 
 }) }}
 
-      <div class="govuk-button-group govuk-!-padding-top-4">
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+
+      {% set documentsHtml %}
+      {{ govukCheckboxes({
+  name: "contactByDocuments",
+  items: [
+    {
+      value: "documents",
+      text: "Documents"
+    }
+  ]
+}) }}
+      {% endset -%}
+
+      {% set imagesHtml %}
+      {{ govukCheckboxes({
+  name: "contactByImages",
+  items: [
+    {
+      value: "images",
+      text: "Images"
+    }
+  ]
+}) }}
+      {% endset -%}
+
+      {% set tabularHtml %}
+      {{ govukCheckboxes({
+  name: "contactByTabular",
+  items: [
+    {
+      value: "tabular",
+      text: "Tabular data"
+    }
+  ]
+}) }}
+      {% endset -%}
+
+      {% set documentslHtml %}
+      {{ govukCheckboxes({
+  name: "documentsOptions",
+  items: [
+    {
+      value: "documents",
+      text: "PDF"
+    },
+    {
+      value: "doc",
+      text: "DOC"
+    },
+    {
+      value: "docx",
+      text: "DOCX"
+    },
+    {
+      value: "odt",
+      text: "ODT"
+    },
+     {
+      value: "txt",
+      text: "TXT"
+    }
+  ]
+}) }}
+      {% endset -%}
+
+      {% set imagesHtml %}
+      {{ govukCheckboxes({
+  name: "imagesOptions",
+  items: [
+    {
+      value: "jpeg",
+      text: "JPEG"
+    },
+    {
+      value: "jpg",
+      text: "JPG"
+    },
+    {
+      value: "png",
+      text: "PNG"
+    }
+  ]
+}) }}
+      {% endset -%}
+
+      {% set tabularHtml %}
+      {{ govukCheckboxes({
+  name: "tabularOptions",
+  items: [
+    {
+      value: "xls",
+      text: "XLS"
+    },
+    {
+      value: "xlsx",
+      text: "XLSX"
+    },
+    {
+      value: "csv",
+      text: "CSV"
+    },
+    {
+      value: "ods",
+      text: "ODS"
+    }
+  ]
+}) }}
+      {% endset -%}
+
+      {{ govukCheckboxes({
+  name: "contact",
+  fieldset: {
+    legend: {
+      text: "Select the file types you accept",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    text: "We need this information so that we can format validation messages correctly. This information is not shown to your users"
+  },
+  items: [
+    {
+      value: "documents",
+      text: "Documents",
+      conditional: {
+        html: documentslHtml
+      }
+    },
+    {
+      value: "images",
+      text: "Images",
+      conditional: {
+        html: imagesHtml
+      }
+    },
+    {
+      value: "tabular",
+      text: "Tabular data",
+      conditional: {
+        html: tabularHtml
+      }
+    }
+  ]
+}) }}
+
+      <div class="govuk-button-group ">
         <a href="/editor/2.html">
           <button type="submit" class="govuk-button govuk-button" data-module="govuk-button">
             Save and continue

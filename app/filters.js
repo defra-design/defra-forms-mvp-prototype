@@ -1,6 +1,5 @@
 const { resolve } = require('path')
 const { cwd } = require('process')
-const { run } = require('node-jq')
 
 //
 // For guidance on how to create filters see:

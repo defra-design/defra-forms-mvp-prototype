@@ -106,7 +106,7 @@
             items: [
               {
                 heading: { text: "Authors" },
-                expanded: data["author"] | length > 0,
+                expanded: data["author"] | length > 1 or (data["author"] | length === 1 and data["author"][0] !== ""),
                 content: {
                   html: govukCheckboxes({
                     name: "author",

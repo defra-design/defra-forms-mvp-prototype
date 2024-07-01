@@ -288,65 +288,69 @@
           ]), formRowsDesktop) %}
         {% endfor %}
 
-        {{ govukTable({
-          classes: "app-display-until-desktop",
-          head: [
-            {
-              text: "Name",
-              classes: "govuk-!-width-three-quarters"
-            },
-            {
-              text: "Status"
-            }
-          ],
-          rows: formRowsMobile
-        }) }}
+        {% if formsByPage[pageCurrent - 1] | length %}
+          {{ govukTable({
+            classes: "app-display-until-desktop",
+            head: [
+              {
+                text: "Name",
+                classes: "govuk-!-width-three-quarters"
+              },
+              {
+                text: "Status"
+              }
+            ],
+            rows: formRowsMobile
+          }) }}
 
-        {{ govukTable({
-          classes: "app-display-from-desktop",
-          head: [
-            {
-              text: "Name",
-              classes: "govuk-!-width-one-half"
-            },
-            {
-              text: "Last updated"
-            },
-            {
-              text: "Status"
-            }
-          ],
-          rows: formRowsDesktop
-        }) }}
+          {{ govukTable({
+            classes: "app-display-from-desktop",
+            head: [
+              {
+                text: "Name",
+                classes: "govuk-!-width-one-half"
+              },
+              {
+                text: "Last updated"
+              },
+              {
+                text: "Status"
+              }
+            ],
+            rows: formRowsDesktop
+          }) }}
 
-        {% set pageItems = [] %}
+          {% set pageItems = [] %}
 
-        {% for forms in formsByPage %}
-          {% set isPrevious = loop.index - pageCurrent == -1 %}
-          {% set isUpcoming = loop.index >= pageCurrent and loop.index - pageCurrent <= 2 %}
+          {% for forms in formsByPage %}
+            {% set isPrevious = loop.index - pageCurrent == -1 %}
+            {% set isUpcoming = loop.index >= pageCurrent and loop.index - pageCurrent <= 2 %}
 
-          {% if loop.first or loop.last or isPrevious or isUpcoming %}
-            {% set pageItems = (pageItems.push({
-              number: loop.index,
-              href: "?page=" + loop.index,
-              current: loop.index == pageCurrent
-            }), pageItems) %}
-          {% else %}
-            {% set pageItems = (pageItems.push({
-              ellipsis: true
-            }), pageItems) %}
+            {% if loop.first or loop.last or isPrevious or isUpcoming %}
+              {% set pageItems = (pageItems.push({
+                number: loop.index,
+                href: "?page=" + loop.index,
+                current: loop.index == pageCurrent
+              }), pageItems) %}
+            {% else %}
+              {% set pageItems = (pageItems.push({
+                ellipsis: true
+              }), pageItems) %}
+            {% endif %}
+          {% endfor %}
+
+          {% if pageCount > 1 %}
+            {{ govukPagination({
+              previous: {
+                href: "?page=" + (pageCurrent - 1)
+              } if pageCurrent > 1,
+              next: {
+                href: "?page=" + (pageCurrent + 1)
+              } if pageCurrent < pageCount,
+              items: pageItems
+            }) }}
           {% endif %}
-        {% endfor %}
-
-        {{ govukPagination({
-          previous: {
-            href: "?page=" + (pageCurrent - 1)
-          } if pageCurrent > 1,
-          next: {
-            href: "?page=" + (pageCurrent + 1)
-          } if pageCurrent < pageCount,
-          items: pageItems
-        }) }}
+        {% endif %}
       </main>
     </div>
   </form>

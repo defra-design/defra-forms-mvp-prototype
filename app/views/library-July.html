@@ -44,6 +44,10 @@
 {% set formItems = formLibrary.items | selectattr(filterBy) if filterBy else formLibrary.items %}
 {% set formItems = formItems | sort(attribute="updated.date", reverse=true) %}
 
+{% if data["author"] or data["name"] or data["organisation"] or data["state"] %}
+  {% set formItems = formItems | search(data) %}
+{% endif %}
+
 {% set pageCount = (formItems.length / 25) | round(0, "ceil") %}
 {% set pageCurrent = data["page"] | abs if data["page"] and data["page"] | abs <= pageCount else 1 %}
 

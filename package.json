@@ -13,7 +13,6 @@
     "govuk-frontend": "^5.4.0",
     "govuk-one-login-service-header": "github:govuk-one-login/service-header",
     "govuk-prototype-kit": "^13.16.2",
-    "hmrc-frontend": "^6.22.0",
-    "node-jq": "^4.4.0"
+    "hmrc-frontend": "^6.22.0"
   }
 }

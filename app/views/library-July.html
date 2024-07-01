@@ -20,6 +20,9 @@
 {% endblock %}
 
 {% set formLibrary = require("data/form-library.json") %}
+{% set formAuthor = require("data/form-author.json") %}
+{% set formOrganisation = require("data/form-organisation.json") %}
+{% set formStatus = require("data/form-status.json") %}
 
 {% switch data["sort"] %}
   {% case "updated-oldest" %}
@@ -110,21 +113,8 @@
                         isPageHeading: false
                       }
                     },
-                    items: [
-                      { value: "1000", text: "All authors" },
-                      { value: "1001", text: "Me (Chris Smith)" },
-                      { value: "1002", text: "Moshe Pitt" },
-                      { value: "1003", text: "Alexandria Beard" },
-                      { value: "1004", text: "Nathanael Booker" },
-                      { value: "1005", text: "Judson Palmer" },
-                      { value: "1006", text: "Juniper Perry" },
-                      { value: "1007", text: "Eddie Barnett" },
-                      { value: "1008", text: "Saylor O’Neal" },
-                      { value: "1009", text: "Waylon Brady" },
-                      { value: "1010", text: "Angie Porter" },
-                      { value: "1011", text: "Enrique Chase" },
-                      { value: "1012", text: "Rhett Calhoun" }
-                    ]
+                    items: formAuthor.items,
+                    values: data["author"] or [""]
                   }) | safe
                 }
               },
@@ -141,17 +131,8 @@
                         isPageHeading: false
                       }
                     },
-                    items: [
-                      { value: "1000", text: "Animal and Plant Health Agency - APHA" },
-                      { value: "1001", text: "Centre for Environment, Fisheries and Aquaculture Science - Cefas" },
-                      { value: "1002", text: "Defra" },
-                      { value: "1003", text: "Environment Agency" },
-                      { value: "1004", text: "Forestry Commission" },
-                      { value: "1005", text: "Marine Management Organisation - MMO" },
-                      { value: "1006", text: "Natural England" },
-                      { value: "1007", text: "Rural Payments Agency - RPA" },
-                      { value: "1008", text: "Veterinary Medicines Directorate - VMD" }
-                    ]
+                    items: formOrganisation.items,
+                    values: data["organisation"]
                   }) | safe
                 }
               },
@@ -169,10 +150,8 @@
                         classes: "govuk-fieldset__legend"
                       }
                     },
-                    items: [
-                      { value: "draft", text: "Draft" },
-                      { value: "published", text: "Live" }
-                    ]
+                    items: formStatus.items,
+                    values: data["status"]
                   }) | safe
                 }
               }

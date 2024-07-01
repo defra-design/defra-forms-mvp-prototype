@@ -131,13 +131,13 @@
               {
                 heading: { text: "Organisation" },
                 content: {
-                  html: govukRadios({
+                  html: govukCheckboxes({
                     name: "organisation",
-                    classes: "govuk-radios--small",
+                    classes: "govuk-checkboxes--small",
 
                     fieldset: {
                       legend: {
-                        text: "Select an organisation",
+                        text: "Select all organisations that apply",
                         isPageHeading: false
                       }
                     },

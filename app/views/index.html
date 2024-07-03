@@ -22,6 +22,17 @@
       <p class="govuk-body">Pages are constantly being iterated. To see previous versions,
         <a href="http://defra-forms-design-history-18deac2f53ea.herokuapp.com/" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">see our Design History (opens in new tab)</a>.</p>
 
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            View a flow chart of the entire forms designer
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2F1A9Tthy0CJeqp2rGNSKRjH%2FDefra-Form-Builder-flows%3Fnode-id%3D5168-92050%26t%3DLK1rrlnrOaSzQEyr-1" allowfullscreen="allowfullscreen"></iframe>
+        </div>
+      </details>
+
       {{ govukAccordion({
   id: "accordion-with-summary-sections",
   items: [
@@ -41,7 +52,8 @@
             <li>
               <a class="govuk-link govuk-link--no-visited-state" href="/onboarding/sign-out-confirmation.html" rel="noreferrer noopener" target="_blank">Sign out</a>
             </li>
-        </ul>'
+        </ul>
+        '
       }
     },
      {

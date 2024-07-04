@@ -2,7 +2,7 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set pageName = "Add internal note - Apply for a county parish holding number in England" %}
+{% set pageName = "Overview - Apply for a county parish holding number in England" %}
 
 {% block header %}
   {{ serviceHeader({
@@ -42,16 +42,7 @@ href: "/library.html"
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      {% set html %}
-      <h3 class="govuk-notification-banner__heading">
-        Link to a privacy notice has been added
-      </h3>
-      {% endset %}
 
-      {{ govukNotificationBanner({
-  html: html,
-  type: "success"
-}) }}
       <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
       {# {% set html %}
   <h3 class="govuk-notification-banner__heading">
@@ -345,12 +336,12 @@ href: "/library.html"
     <div style="background-color: #f3f2f1; padding: 15px;">
       <h2 class="govuk-heading-m">Manage form</h2>
 
-      <a href="/editor0.html">
+      <a href="/editor/0.html">
         <button class="gem-c-button govuk-button gem-c-button-publishing--secondary-quiet" style="width: 100%; margin-bottom: 15px;" type="submit">Edit draft</button>
         <!-- <button class="gem-c-button govuk-button gem-c-button-publishing--secondary snipcss0-3-3-4" style="width: 100%; margin-bottom: 15px;" type="submit">Edit draft</button> -->
       </a>
 
-      <a href="/cph-overview/make-draft-live-confirmation-question.html">
+      <a href="/cph-overview/manage-form/make-draft-live/passed-validation.html">
         <button type="submit" class="govuk-button" data-module="govuk-button" style="width: 100%; margin-bottom: 15px;">
           Make draft live
         </button>

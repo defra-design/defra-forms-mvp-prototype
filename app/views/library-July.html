@@ -31,14 +31,12 @@
   {% case "status" %}
     {% set sortBy = "status" %}
     {% set sortReverse = false %}
-  {% case "published-newest" %}
-    {% set filterBy = "published" %}
-    {% set sortBy = "published.date" %}
-    {% set sortReverse = true %}
-  {% case "published-oldest" %}
-    {% set filterBy = "published" %}
-    {% set sortBy = "published.date" %}
+  {% case "name-ascending" %}
+    {% set sortBy = "name" %}
     {% set sortReverse = false %}
+  {% case "name-descending" %}
+    {% set sortBy = "name" %}
+    {% set sortReverse = true %}
 {% endswitch %}
 
 {% set formItems = formLibrary.items | selectattr(filterBy) if filterBy else formLibrary.items %}
@@ -208,11 +206,11 @@
                   text: "Status"
                 },
                 {
-                  value: "published-newest",
+                  value: "name-ascending",
                   text: "Form name (A to Z)"
                 },
                 {
-                  value: "published-oldest",
+                  value: "name-descending",
                   text: "Form name (Z to A)"
                 }
               ],

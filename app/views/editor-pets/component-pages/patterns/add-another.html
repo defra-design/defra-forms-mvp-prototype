@@ -1,0 +1,88 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Overview - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
+      href: "/cph-overview/draft/complete-clean.html",
+      text: "Overview",
+      id: "overview"
+     },{
+         href: "/editor-pets/0.html",
+    text: 'Editor',
+    id: 'editor'
+    }],
+    activeLinkId: "/"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Name the item you want people to add
+      </h1>
+
+      <p class="govuk-body">
+        The item name is used for the check your answers heading, confirmation page and the ‘Add another’ button.</p>
+      <p class="govuk-body">
+        For example, if your service lets people apply for a pet passport for many pets at a time, the item name might be "pet".
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li class="govuk-body">Add another pet</li>
+        <li class="govuk-body">Check your answers for your pet</li>
+        <li class="govuk-body">Are you sure you want to remove your pet?</li>
+      </ul>
+
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+
+      {{ govukInput({
+  label: {
+    text: "Enter the item name",
+    classes: "govuk-label--m govuk-!-padding-top-2",
+    isPageHeading: true
+  },
+  hint: {
+    text: "Keep the name short and descriptive"
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+
+      <form class="form" action="/editor-pets/component-pages/patterns/0" method="post">
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

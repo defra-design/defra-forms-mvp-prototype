@@ -2,7 +2,7 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set pageName = "Overview - Apply for a county parish holding number in England" %}
+{% set pageName = "Give your question set a name - Apply for a county parish holding number in England" %}
 
 {% block header %}
   {{ serviceHeader({
@@ -44,26 +44,26 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        Name the item you want people to add
+        Give your question set a name
       </h1>
 
       <p class="govuk-body">
-        The item name is used for the check your answers heading, confirmation page and the ‘Add another’ button.</p>
+        The question set name is used for the check your answers heading, confirmation page and the ‘Add another’ button.</p>
       <p class="govuk-body">
-        For example, if your service lets people apply for a pet passport for many pets at a time, the item name might be "pet".
+        For example, if your questions are for people applying for a pet passport for their pet, the name of the question set might be "pet".
       </p>
 
       <ul class="govuk-list govuk-list--bullet">
-        <li class="govuk-body">Add another pet</li>
         <li class="govuk-body">Check your answers for your pet</li>
         <li class="govuk-body">Are you sure you want to remove your pet?</li>
+        <li class="govuk-body">Add another pet</li>
       </ul>
 
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
       {{ govukInput({
   label: {
-    text: "Enter the item name",
+    text: "Enter a name for your question set",
     classes: "govuk-label--m govuk-!-padding-top-2",
     isPageHeading: true
   },

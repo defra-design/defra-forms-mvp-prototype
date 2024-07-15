@@ -43,7 +43,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        Single line text box component
+        Number component
       </h1>
       {{ govukInput({
   label: {
@@ -89,25 +89,12 @@
 
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
-      {{ govukInput({
-  label: {
-    text: "Component name",
-    classes: "govuk-label",
-    isPageHeading: true
-  },
-  hint: {
-    text: "Speak to a Defra Forms team developer before changing the component name. It’s automatically generated and must not contain spaces."
-  },
-  id: "event-name",
-  name: "eventName"
-}) }}
-
       {{ govukCheckboxes({
 
   items: [
     {
       value: "optionalComponent",
-      text: "Make single line text box component field optional",
+      text: "Make number component field optional",
        hint: {
         text: "Tick this box if you do not need to complete this field to progress through the form"
       }
@@ -130,32 +117,16 @@
 
 }) }} #}
 
-      {{ govukCheckboxes({
-
-  items: [
-    {
-      value: "disableChanging",
-      text: "Disable changing from summary",
-       hint: {
-        text: "Tick this box if you want the change button to be removed for this field on the summary screen."
-      }
-    }
-  ]
-
-}) }}
-
-      {% from "govuk/components/details/macro.njk" import govukDetails %}
-
       <h2 class="govuk-heading-m">
         Additional settings
       </h2>
 
       {{ govukInput({
   label: {
-    text: "Min length"
+    text: "Min"
   },
   hint: {
-    text: "Specifies the minimum number of characters users can enter"
+    text: "Specifies the lowest number users can enter"
   },
   classes: "govuk-input--width-3",
   id: "min-length",
@@ -164,10 +135,10 @@
 
       {{ govukInput({
   label: {
-    text: "Max length"
+    text: "Prefix"
   },
   hint: {
-    text: "Specifies the maximum number of characters users can enter"
+    text: "Specifies the prefix of the field"
   },
   classes: "govuk-input--width-3",
   id: "max-length",
@@ -176,10 +147,10 @@
 
       {{ govukInput({
   label: {
-    text: "Max words"
+    text: "Suffix"
   },
   hint: {
-    text: "Specifies the maximum number of words users can enter"
+    text: "Specifies the suffix of the field"
   },
   classes: "govuk-input--width-3",
   id: "max-words",
@@ -188,10 +159,10 @@
 
       {{ govukInput({
   label: {
-    text: "Length"
+    text: "Max"
   },
   hint: {
-    text: "Specifies the exact character length users must enter. Using this setting negates any values you set for Min length or Max length"
+    text: "Specifies the highest number users can enter"
   },
   classes: "govuk-input--width-3",
   id: "length",
@@ -200,26 +171,14 @@
 
       {{ govukInput({
   label: {
-    text: "Regex"
+    text: "Precision"
   },
   hint: {
-    text: "Specifies a regular expression to validate users' inputs. Use JavaScript syntax."
+    text: "Specifies the number of decimal places users can enter. For example, to allow users to enter numbers with up to two decimal places, set this to 2"
   },
-  classes: "govuk-input",
-  id: "regex",
-  name: "regex"
-}) }}
-
-      {{ govukInput({
-  label: {
-    text: "Autocomplete"
-  },
-  hint: {
-    text: "Add the autocomplete attribute to this field. For example, 'on' or 'given-name'."
-  },
-  classes: "govuk-input",
-  id: "autcomplete",
-  name: "autocomplete"
+  classes: "govuk-input--width-3",
+  id: "length",
+  name: "length"
 }) }}
 
       {{ govukInput({
@@ -235,7 +194,7 @@
 }) }}
 
       <div class="govuk-button-group govuk-!-padding-top-4">
-        <a href="/editor-pets/1.html">
+        <a href="/editor-pets/component-pages/patterns/3.html">
           <button type="submit" class="govuk-button govuk-button" data-module="govuk-button">
             Save
           </button>

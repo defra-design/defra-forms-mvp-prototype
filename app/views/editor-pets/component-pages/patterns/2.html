@@ -67,7 +67,7 @@
       <div class="govuk-button-group">
         {{ govukButton({
         text: "Add page",
-        href: "/editor-pets/component-pages/patterns/add-page1.html"
+        href: "/editor-pets/add-page3.html"
       }) }}
         {{ govukButton({
     text: "Submit question set",
@@ -109,10 +109,10 @@
             <div class="govuk-grid-row horizontal-stack">
 
               {# first page visualiser #}
-              {# <div class="govuk-grid-column-full-width">
+              <div class="govuk-grid-column-full-width">
                 <div id="/page-1" title="/page-1" style="border-style: solid;  width: 240px;">
                   <div class="page__heading">
-                    <h3>What is your full name?</h3>
+                    <h3>What is your pet’s name?</h3>
                     <div class="page-linkage__drag-area" draggable="true"></div>
                     <div class="govuk-input__wrapper" style="margin-top: 20px; ">
                       <input class="govuk-input govuk-input--width-full" id="cost" name="cost" type="text" spellcheck="false">
@@ -131,15 +131,17 @@
                     </button>
                   </div>
                 </div>
-              </div> #}
+              </div>
 
-              {# next page visualiser #}
-              {# <div class="govuk-grid-column-full-width">
+              {# first page visualiser #}
+              <div class="govuk-grid-column-full-width">
                 <div id="/page-1" title="/page-1" style="border-style: solid;  width: 240px;">
                   <div class="page__heading">
-                    <h3>Summary</h3>
+                    <h3>What is their species?</h3>
                     <div class="page-linkage__drag-area" draggable="true"></div>
-                    <div class="govuk-input__wrapper" style="margin-top: 20px;"></div>
+                    <div class="govuk-input__wrapper" style="margin-top: 20px; ">
+                      <input class="govuk-input govuk-input--width-full" id="cost" name="cost" type="text" spellcheck="false">
+                    </div>
                   </div>
                   <div class="component-list"></div>
                   <div class="page__actions" style="background-color: black;">
@@ -153,28 +155,52 @@
                       <a href="draft/preview/custom-reference.html" class="govuk-link govuk-link--inverse" rel="noreferrer noopener" target="_blank" title="Preview">Preview</a>
                     </button>
                   </div>
-                </div> #}
+                </div>
+
+              </div>
 
             </div>
+          </div>
+        </div>
+      </div>
 
+      {# <div id="/page-1" title="/page-1" style="width: 35%; border-style: solid;">
+        <div class="page__heading">
+          <h3>What is your full name</h3>
+          <div class="page-linkage__drag-area" draggable="true"></div>
+          <div class="govuk-input__wrapper" style="margin-top: 20px;">
+            <input class="govuk-input govuk-input--width-full" id="cost" name="cost" type="text" spellcheck="false">
+          </div>
+        </div>
+
+        <div class="component-list"></div>
+        <div class="page__actions" style="background-color: black;">
+          <button title="Edit page">
+            <a href="/" class="govuk-link govuk-link govuk-link--inverse" title="Edit page">Edit page</a>
+          </button>
+          <button title="Add component">
+            <a href="/editor-pets/component-pages/add.html" class="govuk-link govuk-link govuk-link--inverse" title="Add component">Add component</a>
+          </button>
+          <button title="Preview">
+            <a href="draft/preview/custom-reference.html" class="govuk-link govuk-link govuk-link--inverse" rel="noreferrer noopener" target="_blank" title="Preview">Preview</a>
+          </button>
+        </div>
+      </div> #}
+
+    {% endblock %}
+
+    <form class="form" action="/path/of/next/page" method="post"></form>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>govuk-grid-column-two-thirds</p>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-half">
+            <p>govuk-grid-column-one-half</p>
+          </div>
+          <div class="govuk-grid-column-one-half">
+            <p>govuk-grid-column-one-half</p>
           </div>
         </div>
       </div>
     </div>
-  {% endblock %}
-
-  <form class="form" action="/path/of/next/page" method="post"></form>
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>govuk-grid-column-two-thirds</p>
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-half">
-          <p>govuk-grid-column-one-half</p>
-        </div>
-        <div class="govuk-grid-column-one-half">
-          <p>govuk-grid-column-one-half</p>
-        </div>
-      </div>
-    </div>
-  </div>

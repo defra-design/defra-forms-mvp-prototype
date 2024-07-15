@@ -65,13 +65,17 @@
           <h1 class="govuk-heading-l">
             Take your pets abroad
             <span class="govuk-caption-m govuk-!-padding-top-2">Last updated at 11:32</span>
+
           </h1>
+          <p class="govuk-body-s govuk-!-padding-top-0">Add a page to your form first and then add a question. As a guide, you should use one question per page.</p>
+
           <div class="govuk-grid-row">
-            <div class="govuk-grid-column-one-half">
+            <div class="govuk-grid-column-two-thirds">
               {{ govukButton({
         text: "Add page",
         href: "/editor-pets/add-page2.html"
       }) }}
+
             </div>
           </div>
         </div>
@@ -217,6 +221,35 @@
                   </div>
 
                 </div>
+
+                <img src="/images/113.png">
+
+                {# next page visualiser #}
+                <div class="govuk-grid-column-full-width">
+                  <div id="/page-1" title="/page-1" style="border-style: solid;  width: 240px;">
+                    <div class="page__heading">
+                      <h3>How many pets are you taking abroad?</h3>
+                      <div class="page-linkage__drag-area" draggable="true"></div>
+                      <div class="govuk-input__wrapper" style="margin-top: 20px;">
+
+                        <input class="govuk-input govuk-input--width-full" id="cost" name="cost" type="text" spellcheck="false">
+                      </div>
+                    </div>
+                    <div class="component-list"></div>
+                    <div class="page__actions" style="background-color: black;">
+                      <button title="Edit page">
+                        <a href="/" class="govuk-link govuk-link--inverse" title="Edit page">Edit page</a>
+                      </button>
+                      <button title="Add component">
+                        <a href="/editor-pets/component-pages/add.html" class="govuk-link govuk-link--inverse" title="Add component">Add component</a>
+                      </button>
+                      <button title="Preview">
+                        <a href="draft/preview/custom-reference.html" class="govuk-link govuk-link--inverse" rel="noreferrer noopener" target="_blank" title="Preview">Preview</a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
                 {# next page visualiser #}
                 <div class="govuk-grid-column-full-width">
                   <div id="/page-1" title="/page-1" style="border-style: solid;  width: 240px;">

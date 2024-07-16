@@ -117,11 +117,14 @@
 
 }) }} #}
 
-      <h2 class="govuk-heading-m">
-        Additional settings
-      </h2>
-
-      {{ govukInput({
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Additional settings
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          {{ govukInput({
   label: {
     text: "Min"
   },
@@ -133,7 +136,7 @@
   name: "minLength"
 }) }}
 
-      {{ govukInput({
+          {{ govukInput({
   label: {
     text: "Prefix"
   },
@@ -145,7 +148,7 @@
   name: "maxLength"
 }) }}
 
-      {{ govukInput({
+          {{ govukInput({
   label: {
     text: "Suffix"
   },
@@ -157,7 +160,7 @@
   name: "maxWords"
 }) }}
 
-      {{ govukInput({
+          {{ govukInput({
   label: {
     text: "Max"
   },
@@ -169,7 +172,7 @@
   name: "length"
 }) }}
 
-      {{ govukInput({
+          {{ govukInput({
   label: {
     text: "Precision"
   },
@@ -181,7 +184,7 @@
   name: "length"
 }) }}
 
-      {{ govukInput({
+          {{ govukInput({
   label: {
     text: "Classes"
   },
@@ -192,6 +195,8 @@
   id: "classes",
   name: "classes"
 }) }}
+        </div>
+      </details>
 
       <div class="govuk-button-group govuk-!-padding-top-4">
         <a href="/editor-pets/4.html">

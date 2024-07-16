@@ -212,8 +212,15 @@
               </div>
 
               {# next page visualiser #}
+              <script>
+                window.onload = function () {
+                  document
+                    .getElementById('pets-box')
+                    .focus();
+                };
+              </script>
               <div class="govuk-grid-column-full-width">
-                <div id="/page-1" title="/page-1" style="border-style: solid;  width: 240px; box-shadow: 5px 10px #888888; ">
+                <div id="pets-box" title="/page-1" tabindex="0" style="border-style: solid; width: 240px; box-shadow: 5px 10px #888888;">
                   <div class="page__heading">
                     <h3>Pets</h3>
                     <div class="page-linkage__drag-area" draggable="true" style="padding-bottom: 40px;"></div>

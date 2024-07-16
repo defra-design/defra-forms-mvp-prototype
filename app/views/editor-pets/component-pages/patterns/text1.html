@@ -89,7 +89,7 @@
 
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
-      {{ govukInput({
+      {# {{ govukInput({
   label: {
     text: "Component name",
     classes: "govuk-label",
@@ -100,7 +100,7 @@
   },
   id: "event-name",
   name: "eventName"
-}) }}
+}) }} #}
 
       {{ govukCheckboxes({
 
@@ -144,11 +144,14 @@
 
 }) }}
 
-      <h2 class="govuk-heading-m">
-        Additional settings
-      </h2>
-
-      {{ govukInput({
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Additional settings
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          {{ govukInput({
   label: {
     text: "Min length"
   },
@@ -160,7 +163,7 @@
   name: "minLength"
 }) }}
 
-      {{ govukInput({
+          {{ govukInput({
   label: {
     text: "Max length"
   },
@@ -172,7 +175,7 @@
   name: "maxLength"
 }) }}
 
-      {{ govukInput({
+          {{ govukInput({
   label: {
     text: "Max words"
   },
@@ -184,7 +187,7 @@
   name: "maxWords"
 }) }}
 
-      {{ govukInput({
+          {{ govukInput({
   label: {
     text: "Length"
   },
@@ -196,7 +199,7 @@
   name: "length"
 }) }}
 
-      {{ govukInput({
+          {{ govukInput({
   label: {
     text: "Regex"
   },
@@ -208,7 +211,7 @@
   name: "regex"
 }) }}
 
-      {{ govukInput({
+          {{ govukInput({
   label: {
     text: "Autocomplete"
   },
@@ -220,7 +223,7 @@
   name: "autocomplete"
 }) }}
 
-      {{ govukInput({
+          {{ govukInput({
   label: {
     text: "Classes"
   },
@@ -231,6 +234,8 @@
   id: "classes",
   name: "classes"
 }) }}
+        </div>
+      </details>
 
       <div class="govuk-button-group govuk-!-padding-top-4">
         <a href="/editor-pets/component-pages/patterns/1.html">

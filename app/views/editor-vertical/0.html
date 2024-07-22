@@ -4,30 +4,35 @@
 
 {% set pageName = "Editor - Apply for a county parish holding number in England" %}
 
+{% set containerClasses = "app-width-container--full-width" %}
 {% block header %}
   {{ serviceHeader({
     organisationName: "Defra",
     productName: "Forms Designer",
     serviceName: "",
+    containerClasses: containerClasses,
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/onboarding/sign-out-confirmation",
     navigationItems: [
-    {
-      href: "/library.html",
-      text: "Forms library",
-      id: "library"
-     },
-    {
-      href: "/cph-overview/draft/complete-clean.html",
-      text: "Overview",
-      id: "overview"
-     },{
-         href: "/editor-pets/0",
-    text: 'Editor',
-    id: 'editor'
-    }],
-    activeLinkId: "editor"
+      {
+        href: "/library.html",
+        text: "Forms library",
+        id: "library"
+      },
+      {
+        href: "/cph-overview/draft/complete-clean.html",
+        text: "Overview",
+        id: "overview"
+      },
+      {
+        href: "/editor-pets/0",
+        text: "Editor",
+        id: "editor"
+      }
+    ],
+    activeLinkId: "editor",
+
   }) }}
 {% endblock %}
 
@@ -129,7 +134,8 @@
   ]
 }) }}
 
-      {{ govukSummaryList({
+      <div class="custom-summary-list">
+        {{ govukSummaryList({
   card: {
     title: {
       text: "2. What is your address?"
@@ -156,6 +162,15 @@
       },
       value: {
         html: "UK address"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "age"
+          }
+        ]
       }
     },
     {
@@ -174,9 +189,10 @@
         html: "2. What is your address?"
       }
     }
-
   ]
 }) }}
+      </div>
+
     {% endblock %}
 
     <form class="form" action="/path/of/next/page" method="post"></form>

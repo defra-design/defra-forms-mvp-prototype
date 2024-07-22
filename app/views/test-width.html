@@ -1,0 +1,117 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template –
+  {{ serviceName }}
+  – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <style>
+
+    @media (min-width: 768px) {
+      .design-system-two-col-layout {
+        display: flex;
+      }
+    }
+  </style>
+
+  <div class="container-fluid">
+    <div class="row design-system-two-col-layout">
+      <aside id="design-system-menu" class="col-sm-4 col-md-3 col-lg-2 design-system-menu">
+
+        <!-- Side nav include -->
+        <div id="sticky-anchor" style="height: 0px;"></div>
+        <div class="design-system-side-nav">
+
+          <ul>
+            <li class="">
+              <a href="/campaigns/overview.html">Odddverview</a>
+            </li>
+            <li class="">
+              <a href="/campaigns/campaign-blockquote.html">Blockquotes</a>
+            </li>
+            <li class="active">
+              <a href="/campaigns/full-width-banner.html">Full width banner</a>
+            </li>
+            <li class="">
+              <a href="/campaigns/campaign-header.html">Header</a>
+            </li>
+            <li class="">
+              <a href="/campaigns/highlighted-text.html">Highlighted text</a>
+            </li>
+            <li class="">
+              <a href="/campaigns/campaign-icon-panel.html">Icon panel</a>
+            </li>
+            <li class="">
+              <a href="/campaigns/campaign-images.html">Images</a>
+            </li>
+            <li class="">
+              <a href="/campaigns/image-panel.html">Image panel</a>
+            </li>
+            <li class="">
+              <a href="/campaigns/campaign-logo-panel.html">Logo panel</a>
+            </li>
+            <li class="">
+              <a href="/campaigns/pods.html">Pods</a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </aside>
+      <div id="design-system-content" class="col-sm-8 col-md-9 col-lg-10 design-system-content">
+        <!-- <a id="toggle-design-system-menu" href="#">Close</a>-->
+        <a href="/campaigns" class="link-back link-back-guide">Back to campaigns</a>
+
+        <div class="page-header-section">
+          <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl">Two-thirds column</h1>
+            <p class="govuk-body">This is a paragraph inside a two-thirdsph inside a two-thirdsph inside a two-thirdsph inside a two-thirdsph inside a two-thirdsph inside a two-thirds wide column</p>
+          </div>
+          <div class="govuk-grid-column-one-third">
+            <h2 class="govuk-heading-m">One-third column</h2>
+            <p class="govuk-body">This is a paragraph inside a one-third wide column</p>
+          </div>
+        </div>
+
+        <div class="example">
+
+          <span class="example-title">Example</span>
+
+          <div class="campaign-banner">
+            <picture>
+              <source media="(max-width: 768px)" srcset="https://via.placeholder.com/768x432">
+              <source media="(max-width: 1024px)" srcset="https://via.placeholder.com/1024x400">
+              <source media="(min-width: 1025px)" srcset="https://via.placeholder.com/1600x400">
+              <img src="./full-width-banner_files/1600x400" alt="">
+            </picture>
+          </div>
+
+        </div>
+
+        <div class="code-snippet">
+          <h3 class="heading-mark-up">HTML Snippet
+            <span class="sr-only">for full width banner</span></h3>
+          <pre class="  language-markup"><code id="snippet-full-width-banner" class="line-numbers  language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>campaign-banner<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>picture</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">media</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(max-width: 768px)<span class="token punctuation">"</span></span> <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://via.placeholder.com/768x432<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">media</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(max-width: 1024px)<span class="token punctuation">"</span></span> <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://via.placeholder.com/1024x400<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">media</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(min-width: 1025px)<span class="token punctuation">"</span></span> <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://via.placeholder.com/1600x400<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://via.placeholder.com/1600x400<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>picture</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+          <button class="clipboard" data-clipboard-target="#snippet-full-width-banner">
+            Copy
+            <span class="sr-only">HTML snippet for full width banner</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

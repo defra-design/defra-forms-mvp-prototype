@@ -56,6 +56,15 @@ $defra-link-colour-hover: govuk-shade($defra-link-colour, 50%);
   }
 }
 
+.app-width-container--full-width {
+  max-width: none;
+
+  @include govuk-media-query($and: "(min-width: #{($govuk-page-width + $govuk-gutter * 2)})") {
+    margin-right: $govuk-gutter;
+    margin-left: $govuk-gutter;
+  }
+}
+
 // Hide duplicate pagination ellipses
 .govuk-pagination__item--ellipses + .govuk-pagination__item--ellipses {
   display: none;

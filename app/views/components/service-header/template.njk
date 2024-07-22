@@ -27,6 +27,7 @@ Component options:
   - accountLink (string): Option to overwrite the default One Login Home link. Defaults to "https://home.account.gov.uk/"
   - signOutLink (string): Option to overwrite the default signed out page. Defaults to "https://home.account.gov.uk/sign-out"
   - homepageLink (string): Option to overwrite the default GOV.UK link. Defaults to "https://home.account.gov.uk/"
+  - containerClasses (string): Classes that can be added to the inner container, useful if you want to make the header full width (optional)
 #}
 
 {%- set accountLink = params.accountLink if params.accountLink else "https://home.account.gov.uk/" -%}
@@ -49,7 +50,7 @@ Component options:
 {%- endmacro -%}
 <header class="cross-service-header" role="banner" data-module="one-login-header">
   <div class="one-login-header" data-one-login-header-nav>
-    <div class="one-login-header__container govuk-width-container">
+    <div class="one-login-header__container govuk-width-container {%- if params.containerClasses %} {{ params.containerClasses }}{% endif %}">
       <div class="one-login-header__logo">
         <a href="{{ homepageLink }}" class="one-login-header__link one-login-header__link--homepage">
           <span class="one-login-header__logotype">
@@ -123,7 +124,7 @@ Component options:
   {% if params.serviceName or params.navigationItems %}
   <!-- Start of service navigation -->
   <div class="service-header" data-one-login-header-nav>
-    <div class="govuk-width-container">
+    <div class="govuk-width-container {%- if params.containerClasses %} {{ params.containerClasses }}{% endif %}">
       <div class="service-header__container">
         {%- if params.serviceName %}
         <!-- The name of your service goes here -->

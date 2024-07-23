@@ -1,0 +1,180 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Editor - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    containerClasses: containerClasses,
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+      {
+        href: "/library.html",
+        text: "Forms library",
+        id: "library"
+      },
+      {
+        href: "/cph-overview/draft/complete-clean.html",
+        text: "Overview",
+        id: "overview"
+      },
+      {
+        href: "/editor-pets/0",
+        text: 'Editor',
+        id: 'editor'
+      }
+    ],
+    activeLinkId: "editor"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <style>
+
+    .gem-c-cards__list-item {
+      border-top: 1px solid #b1b4b6;
+      margin: 0;
+      padding: 5px 0 20px;
+    }
+
+    .gem-c-cards__list-item-wrapper {
+      padding: 10px 30px 10px 0;
+      position: relative;
+    }
+
+    .gem-c-cards__sub-heading {
+      margin-bottom: 10px;
+    }
+
+    .gem-c-cards__description {
+      margin: 0 -30px 0 0;
+    }
+
+    .gem-c-cards__link:before {
+      border-right: 3px solid #1d70b8;
+      border-top: 3px solid #1d70b8;
+      content: "";
+      height: 7px;
+      position: absolute;
+      right: 5px;
+      top: 15px;
+      -webkit-transform: translateY(0) rotate(45deg) scale(1);
+      -ms-transform: translateY(0) rotate(45deg) scale(1);
+      transform: translateY(0) rotate(45deg) scale(1);
+      width: 7px;
+    }
+
+    .gem-c-cards__link:hover:before {
+      border-color: #003078;
+    }
+
+    .gem-c-cards__link:after {
+      bottom: 0;
+      content: "";
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  </style>
+
+  <div class="govuk-grid-row" style="border-right: solid 1px #f3f2f1; height: 100%;border-bottom: solid 1px #f3f2f1;">
+    <div class="govuk-grid-row" style="height: 100%;">
+      <div class="govuk-grid-column-one-half" style="background-color: #f3f2f1;  height: 100%;">
+        {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+        {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Your form",
+      href: "/editor-vertical/dynamic/questions.html"
+    },
+    {
+      text: "Choose a component",
+      href: null
+    }
+  ]
+}) }}
+        <span class="govuk-caption-l">Question 2</span>
+
+        <h2 class="govuk-heading-l">Choose a component for this question</h2>
+
+        <li class="gem-c-cards__list-item" style=" list-style:none;">
+          <div class="gem-c-cards__list-item-wrapper">
+            <h3 class="gem-c-cards__sub-heading govuk-heading-s">
+              <a class="govuk-link gem-c-cards__link govuk-link--no-visited-state" href="/editor-vertical/dynamic/dates.html">Date</a>
+            </h3>
+            <p class="govuk-body gem-c-cards__description">Request a day, month and year</p>
+          </div>
+        </li>
+
+        <li class="gem-c-cards__list-item" style=" list-style:none;">
+          <div class="gem-c-cards__list-item-wrapper">
+            <h3 class="gem-c-cards__sub-heading govuk-heading-s">
+              <a class="govuk-link gem-c-cards__link govuk-link--no-visited-state" href="">UK address</a>
+            </h3>
+            <p class="govuk-body gem-c-cards__description">Request a street address, town or city and postcode for an address in the UK</p>
+          </div>
+        </li>
+
+      </div>
+
+      <div class="govuk-grid-column-one-half" style=";border-top: solid 1px #f3f2f1; height: 100%;
+        ">
+        {% from "govuk/components/header/macro.njk" import govukHeader %}
+
+        {{ govukHeader({
+            homepageUrl: "#",
+            serviceName: "Apply for a county parish holding certificate",
+            serviceUrl: "#"
+          }) }}
+        <!-- Existing Date Input Field -->
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+        <div>
+          {{ govukTag({
+              text: "Preview of question",
+              classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-2"
+            }) }}
+        </div>
+
+        <p class="govuk-body">Add a component first. As a guide, you should use one component per page.</p>
+
+        <!-- New Fieldset with Dynamic Legend -->
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Update legend text dynamically
+      document
+        .getElementById('dynamic-input')
+        .addEventListener('input', function () {
+          var inputText = this.value;
+          document
+            .getElementById('dynamic-legend')
+            .textContent = inputText;
+        });
+
+      // Update hint text dynamically
+      document
+        .getElementById('hint-input')
+        .addEventListener('input', function () {
+          var hintText = this.value;
+          document
+            .getElementById('passport-issued-hint')
+            .textContent = hintText;
+        });
+    });
+  </script>
+{% endblock %}
+
+<form class="form" action="/path/of/next/page" method="post"></form>

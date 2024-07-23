@@ -4,11 +4,14 @@
 
 {% set pageName = "Editor - Apply for a county parish holding number in England" %}
 
+{% set containerClasses = "app-width-container--full-width" %}
 {% block header %}
   {{ serviceHeader({
     organisationName: "Defra",
     productName: "Forms Designer",
     serviceName: "",
+        containerClasses: containerClasses,
+
     accountName: "Chris Smith",
     homepageLink: "/",
     signOutLink: "/onboarding/sign-out-confirmation",
@@ -30,59 +33,93 @@
     activeLinkId: "editor"
   }) }}
 {% endblock %}
-
 {% block content %}
-  <div class="govuk-grid-row" style="border: solid 1px black;">
+
+  <div class="govuk-grid-row" style="border: solid 1px #b1b4b6;">
     <div class="govuk-grid-column-full">
-      <p>govuk-grid-column-two-thirds</p>
+      {# <p class="govuk-body">govuk-body</p> #}
+
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-third">
-          <div class="govuk-grid-column-one-third govuk-!-padding-left-0">
-            {%- from "moj/components/side-navigation/macro.njk" import mojSideNavigation -%}
-            {{ mojSideNavigation({
-        label: 'Side navigation',
-        classes: 'govuk-!-padding-top-0',
-        items: [{
-          text: 'Conditions',
-          href: '/editor-pets/conditions/existing0.html',
-          active: false
-        }, {
-          text: 'Sections',
-          href: '#2'
-        }, {
-          text: 'Lists',
-          href: '#3'
-        }, {
-          text: 'Links',
-          href: '#4'
-        }, {
-          text: 'Summary behaviour',
-          href: '#5'
-        }]
-      }) }}
+        <div class="govuk-grid-column-one-quarter" style="background-color: #f3f2f1; padding-top: 30px;">
+          {%- from "moj/components/side-navigation/macro.njk" import mojSideNavigation -%}
+          {% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+
+          <h2 class="govuk-heading-m">Form components</h2>
+          {%- from "moj/components/side-navigation/macro.njk" import mojSideNavigation -%}
+
+          <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-one-third"></div>
+
           </div>
+
         </div>
-        <div class="govuk-grid-column-two-thirds">
-          <p>govuk-grid-column-oneoneoneoneoneoneoneoneoneoneoneoneoneoneoneone-half</p>
+
+        <div class="govuk-grid-column-one-half" style="padding-top: 30px; ">
+          {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+          <div>
+            {{govukTag({
+          text: "Preview of page",
+          classes: "govuk-tag--yellow govuk-!-margin-bottom-2"
+        })}}
+          </div>
+
+          {{ govukDateInput({
+  id: "passport-issued",
+  namePrefix: "passport-issued",
+  fieldset: {
+    legend: {
+      text: "When was your passport issued?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    text: "For example, 27 3 2007"
+  }
+}) }}
         </div>
-      </div>
-    </div>
-  </div>
 
-{% endblock %}
+        <div class="govuk-grid-column-one-quarter" style="background-color: #f3f2f1; padding-top: 30px;">
+          {{ govukAccordion({
+            id: "accordion-default",
+            items: [
+              {
+                heading: {
+                  text: "Writing well for the web"
+                },
+                content: {
+                  html: '<p class="govuk-body">This is the content for Writing well for the web.</p>'
+                }
+              },
+              {
+                heading: {
+                  text: "Writing well for specialists"
+                },
+                content: {
+                  html: '<p class="govuk-body">This is the content for Writing well for specialists.</p>'
+                }
+              },
+              {
+                heading: {
+                  text: "Know your audience"
+                },
+                content: {
+                  html: '<p class="govuk-body">This is the content for Know your audience.</p>'
+                }
+              },
+              {
+                heading: {
+                  text: "How people read"
+                },
+                content: {
+                  html: '<p class="govuk-body">This is the content for How people read.</p>'
+                }
+              }
+            ]
+          }) }}
+        </div>
 
-<form class="form" action="/path/of/next/page" method="post"></form>
+      {% endblock %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <p>govuk-grid-column-two-thirds</p>
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-one-half">
-        <p>govuk-grid-column-one-half</p>
-      </div>
-      <div class="govuk-grid-column-one-half">
-        <p>govuk-grid-column-one-half</p>
-      </div>
-    </div>
-  </div>
-</div>
+      <form class="form" action="/path/of/next/page" method="post"></form>

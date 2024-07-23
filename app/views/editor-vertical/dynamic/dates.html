@@ -1,0 +1,257 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Editor - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    containerClasses: containerClasses,
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+      {
+        href: "/library.html",
+        text: "Forms library",
+        id: "library"
+      },
+      {
+        href: "/cph-overview/draft/complete-clean.html",
+        text: "Overview",
+        id: "overview"
+      },
+      {
+        href: "/editor-pets/0",
+        text: 'Editor',
+        id: 'editor'
+      }
+    ],
+    activeLinkId: "editor"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row" style="border-right: solid 1px #f3f2f1; height: 100%;border-bottom: solid 1px #f3f2f1;">
+    <div class="govuk-grid-row" style="height: 100%;">
+      <div class="govuk-grid-column-one-half" style="background-color: #f3f2f1; height: 100%;">
+        {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+        {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+        {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Your form",
+      href: "/editor-vertical/dynamic/questions.html"
+    },
+    {
+      text: "Choose a component",
+      href: "/editor-vertical/dynamic/add-component.html"
+    },
+    {
+      text: "Date",
+      href: null
+    }
+  ]
+}) }}
+        <span class="govuk-caption-l">Question 2</span>
+
+        <h2 class="govuk-heading-l">Ask users for a date</h2>
+
+        {{ govukAccordion({
+  id: "accordion-default",
+  items: [
+    {
+      expanded: true,
+      heading: {
+        text: "Basic settings"
+      },
+
+                content: {
+                  html: '<form>
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-label--m" for="dynamic-input">Question label</label>
+                            <input class="govuk-input" id="dynamic-input" name="dynamic-input" type="text">
+                          </div>
+
+                          <div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--m" for="event-name">
+      Short label
+    </label>
+  </h1>
+  <input class="govuk-input" id="event-name" name="eventName" type="text">
+</div>
+
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-label--m" for="hint-input">Enter hint text:</label>
+                            <textarea class="govuk-textarea" rows="5" id="hint-input" name="hint-input" aria-describedby="hint-input-hint"></textarea>
+                          </div>
+                        </form>
+
+                        <div class="govuk-form-group">
+                         <fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+    <h1 class="govuk-fieldset__heading">Make this question required?</h1>
+  </legend>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+      <label class="govuk-label govuk-checkboxes__label" for="waste">Yes, make it required</label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+      <label class="govuk-label govuk-checkboxes__label" for="waste-2">No, make it optional</label>
+    </div>
+  </div>
+</fieldset>
+
+                        </div>'
+                }
+              },
+              {
+                heading: {
+                  text: "Routes",
+                  classes: "govuk-label govuk-label--l"
+                },
+                summary: {
+                  text: "Decide where users go after answering this question."
+                },
+                content: {
+                  html: '<div class="govuk-form-group">
+                          <label class="govuk-label govuk-label--m" for="sort">From</label>
+                          <div id="sort-hint" class="govuk-hint">Add a link to this page from a different page in the form</div>
+                          <select class="govuk-select" id="sort" name="sort">
+                           <option value="choose" selected>Select a question</option>
+                            <option value="published">Recently published</option>
+                            <option value="updated">Recently updated</option>
+                            <option value="views">Most views</option>
+                            <option value="comments">Most comments</option>
+                          </select>
+                        </div>
+
+                        <div class="govuk-form-group">
+                          <label class="govuk-label govuk-label--m" for="sort">Goes to</label>
+                          <div id="sort-hint" class="govuk-hint">Which question users are taken to after answering this question</div>
+                          <select class="govuk-select" id="sort" name="sort">
+                           <option value="choose" selected>Select a question</option>
+                            <option value="published">Select a question</option>
+                            <option value="updated">Recently updated</option>
+                            <option value="views">Most views</option>
+                            <option value="comments">Most comments</option>
+                          </select>
+                        </div>
+                        <h2 class="govuk-heading-m">Conditions</h2>
+                        <p class="govuk-body">Change where users go depending on their answer to this question.</p>
+                        <button type="submit" class="govuk-button" data-module="govuk-button">Add conditions</button>'
+                }
+              },
+              {
+                heading: {
+                  text: "Add guidance (optional)"
+                },
+                summary: {
+                  text: "Only add guidance if you need to give a longer explanation of how to answer the question."
+                },
+                content: {
+                  html: '<p class="govuk-body">This is the content for How people read.</p>'
+                }
+              }
+            ]
+          }) }}
+
+        {% from "govuk/components/button/macro.njk" import govukButton %}
+        <div class="govuk-button-group">
+          {{ govukButton({
+              text: "Save question"
+            }) }}
+          <a class="govuk-link" href="#">Add another component</a>
+        </div>
+      </div>
+
+      <div class="govuk-grid-column-one-half" style="border-top: solid 1px #f3f2f1; height: 100%;
+        ">
+        {% from "govuk/components/header/macro.njk" import govukHeader %}
+
+        {{ govukHeader({
+            homepageUrl: "#",
+            serviceName: "Apply for a county parish holding certificate",
+            serviceUrl: "#"
+          }) }}
+        <!-- Existing Date Input Field -->
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+        <div>
+          {{ govukTag({
+              text: "Preview of question",
+              classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-2"
+            }) }}
+        </div>
+
+        <!-- New Fieldset with Dynamic Legend -->
+        <form>
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l" id="dynamic-legend">
+              Question label
+            </legend>
+            <div class="govuk-form-group">
+              <div id="passport-issued-hint" class="govuk-hint">For example, 27 3 2007</div>
+              <div id="passport-expiry" class="govuk-date-input" data-module="govuk-date-input">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-expiry-day">Day</label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-expiry-day" name="passport-expiry-day" type="text" pattern="[0-9]*">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-expiry-month">Month</label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-expiry-month" name="passport-expiry-month" type="text" pattern="[0-9]*">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-expiry-year">Year</label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-expiry-year" name="passport-expiry-year" type="text" pattern="[0-9]*">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Update legend text dynamically
+    document
+      .getElementById('dynamic-input')
+      .addEventListener('input', function () {
+        var inputText = this.value;
+        document
+          .getElementById('dynamic-legend')
+          .textContent = inputText;
+      });
+
+    // Update hint text dynamically
+    document
+      .getElementById('hint-input')
+      .addEventListener('input', function () {
+        var hintText = this.value;
+        document
+          .getElementById('passport-issued-hint')
+          .textContent = hintText;
+      });
+  });
+</script>
+{% endblock %}
+
+<form class="form" action="/path/of/next/page" method="post"></form>

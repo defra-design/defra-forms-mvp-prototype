@@ -1,0 +1,294 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Editor - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    containerClasses: containerClasses,
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+      {
+        href: "/library.html",
+        text: "Forms library",
+        id: "library"
+      },
+      {
+        href: "/cph-overview/draft/complete-clean.html",
+        text: "Overview",
+        id: "overview"
+      },
+      {
+        href: "/editor-pets/0",
+        text: 'Editor',
+        id: 'editor'
+      }
+    ],
+    activeLinkId: "editor"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row" style="border-right: solid 1px #f3f2f1; height: 100%;border-bottom: solid 1px #f3f2f1;">
+    <div class="govuk-grid-row" style="height: 100%;">
+      <div class="govuk-grid-column-one-half" style="background-color: #f3f2f1; height: 100%;">
+        {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+        {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+        {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Your form",
+      href: "/editor-vertical/dynamic/questions.html"
+    },
+    {
+      text: "Choose a component",
+      href: "/editor-vertical/dynamic/add-component.html"
+    },
+    {
+      text: "Date",
+      href: null
+    }
+  ]
+}) }}
+        <span class="govuk-caption-l">Question 2</span>
+
+        <h2 class="govuk-heading-l">Ask users for a date</h2>
+
+        {{ govukAccordion({
+  id: "accordion-default",
+  items: [
+    {
+      expanded: true,
+      heading: {
+        text: "Basic settings"
+      },
+
+                content: {
+                  html: '<form>
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l" id="dynamic-legend">
+      Question label
+    </legend>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="dynamic-error-input">Enter the error message:</label>
+      <input class="govuk-input" id="dynamic-error-input" name="dynamic-error-input" type="text">
+    </div>
+    <div class="govuk-form-group">
+      <div id="passport-issued-hint" class="govuk-hint">For example, 27 3 2007</div>
+      <div id="passport-expiry" class="govuk-date-input" data-module="govuk-date-input">
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="passport-expiry-day">Day</label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-expiry-day" name="passport-expiry-day" type="text" pattern="[0-9]*">
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="passport-expiry-month">Month</label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-expiry-month" name="passport-expiry-month" type="text" pattern="[0-9]*">
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="passport-expiry-year">Year</label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-expiry-year" name="passport-expiry-year" type="text" pattern="[0-9]*">
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+<div class="govuk-form-group govuk-form-group--error">
+  <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint passport-issued-error">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        When was your passport issued?
+      </h1>
+    </legend>
+    <div id="passport-issued-hint" class="govuk-hint">
+      For example, 27 3 2007
+    </div>
+    <p id="passport-issued-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter your date of birth
+    </p>
+    <div class="govuk-date-input" id="passport-issued">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+            Day
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="passport-issued-day" name="passport-issued-day" type="text" value="6" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+            Month
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="passport-issued-month" name="passport-issued-month" type="text" value="3" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+            Year
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="passport-issued-year" name="passport-issued-year" type="text" value="2076" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+                      '
+                }
+              },
+              {
+                heading: {
+                  text: "Error messages",
+                  classes: "govuk-label govuk-label--l"
+                },
+                summary: {
+                  text: "Show an error message next to the field and in the error summary when there is a validation error."
+                },
+                content: {
+                  html: '<div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--m" for="event-name">
+      Short label for error messages
+    </label>
+  </h1>
+   <div id="account-number-hint" class="govuk-hint">
+  Short labels are used in error messages, such as ‘Enter a <span style="outline: 3px black dotted; padding: 1.2px;">date of birth</span>’.
+</div>
+
+  <input class="govuk-input" id="event-name" name="eventName" type="text">
+</div>'
+                }
+              },
+              {
+                heading: {
+                  text: "Add guidance (optional)"
+                },
+                summary: {
+                  text: "Only add guidance if you need to give a longer explanation of how to answer the question."
+                },
+                content: {
+                  html: '<p class="govuk-body">This is the content for How people read.</p>'
+                }
+              }
+            ]
+          }) }}
+
+        {% from "govuk/components/button/macro.njk" import govukButton %}
+        <div class="govuk-button-group">
+          {{ govukButton({
+              text: "Save question"
+            }) }}
+          <a class="govuk-link" href="#">Add another component</a>
+        </div>
+      </div>
+
+      <div class="govuk-grid-column-one-half" style="border-top: solid 1px #f3f2f1; height: 100%;
+        ">
+        {% from "govuk/components/header/macro.njk" import govukHeader %}
+
+        {{ govukHeader({
+            homepageUrl: "#",
+            serviceName: "Apply for a county parish holding certificate",
+            serviceUrl: "#"
+          }) }}
+        <!-- Existing Date Input Field -->
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+        <div>
+          {{ govukTag({
+              text: "Preview of question",
+              classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-2"
+            }) }}
+        </div>
+
+        <!-- New Fieldset with Dynamic Legend -->
+        <form>
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l" id="dynamic-legend">
+              Question label
+            </legend>
+            <div class="govuk-form-group">
+              <div id="passport-issued-hint" class="govuk-hint">For example, 27 3 2007</div>
+              <div id="passport-expiry" class="govuk-date-input" data-module="govuk-date-input">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-expiry-day">Day</label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-expiry-day" name="passport-expiry-day" type="text" pattern="[0-9]*">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-expiry-month">Month</label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-expiry-month" name="passport-expiry-month" type="text" pattern="[0-9]*">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-expiry-year">Year</label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-expiry-year" name="passport-expiry-year" type="text" pattern="[0-9]*">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get the dynamic error input field and the error message element
+    var dynamicErrorInput = document.getElementById('dynamic-error-input');
+    var errorMessageElement = document.getElementById('passport-issued-error');
+
+    // Add event listener to the input field to update the error message dynamically
+    dynamicErrorInput.addEventListener('input', function () {
+      var inputText = this.value;
+      // Update the error message with the input text
+      errorMessageElement.innerHTML = '<span class="govuk-visually-hidden">Error:</span> Enter ' + inputText;
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Update legend text dynamically
+    document
+      .getElementById('dynamic-input')
+      .addEventListener('input', function () {
+        var inputText = this.value;
+        document
+          .getElementById('dynamic-legend')
+          .textContent = inputText;
+      });
+
+    // Update hint text dynamically
+    document
+      .getElementById('hint-input')
+      .addEventListener('input', function () {
+        var hintText = this.value;
+        document
+          .getElementById('passport-issued-hint')
+          .textContent = hintText;
+      });
+  });
+</script>
+{% endblock %}
+
+<form class="form" action="/path/of/next/page" method="post"></form>

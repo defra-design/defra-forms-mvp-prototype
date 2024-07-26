@@ -58,19 +58,19 @@
           <div class="govuk-grid-row" style="display: flex; border-bottom: solid 1px #f3f2f1;">
 
             <!-- Main Content Column -->
-            <div class="govuk-grid-column-full" style="flex: 1 1 50%; overflow-y: auto;">
+            <div class="govuk-grid-column-one-half" style="flex: 1 1 50%; overflow-y: auto;">
 
               <!-- Summary Card 1 -->
               <details class="govuk-details">
                 <summary class="govuk-details__summary">
                   <span class="govuk-details__summary-text">
-                    Question 1: When did you lose your passport?
+                    Page 1: When did you lose your passport?
                   </span>
                 </summary>
                 <div class="govuk-summary-card" style="border-left: solid 4px #008938!important; outline-color: transparent; border: 1px solid transparent;">
                   <div class="govuk-summary-card__title-wrapper">
                     <h2 class="govuk-summary-card__title">
-                      Question 1: What's your full name?
+                      Page 1: When did you lose your passport?
                     </h2>
                     <ul class="govuk-summary-card__actions">
                       <li class="govuk-summary-card__action">
@@ -120,7 +120,15 @@
                               '</div>' +
                             '</div>' +
                           '</fieldset>' +
-                        '</div>'
+                        '</div>
+
+                                              <a class="govuk-link" href="#" id="add-question" name="addQuestion">Add another question to this page</a>
+
+                                              <div id="dynamic-content-container"></div>
+
+
+
+                        '
                     }
                   },
                   {
@@ -182,7 +190,7 @@
             </div>
 
             <!-- Sidebar Column -->
-            <div class="govuk-grid-column-one-third" style="outline: solid 1px #f3f2f1; height: 100%; position: sticky; top: 0;">
+            <div class="govuk-grid-column-one-half" style="outline: solid 1px #f3f2f1; height: 100%; position: sticky; top: 0;">
               {% from "govuk/components/header/macro.njk" import govukHeader %}
               {{ govukHeader({
           homepageUrl: null,
@@ -626,6 +634,43 @@
               .remove('minimized');
             maximizeBtn.style.display = 'none';
             minimizeBtn.style.display = 'block';
+          });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+          var addQuestionLink = document.getElementById('add-question');
+          var dynamicContentContainer = document.getElementById('dynamic-content-container');
+
+          addQuestionLink.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+            // Create the new content
+            var newContent = `
+        <h2 class="govuk-heading-l">Choose a component for this question</h2>
+
+        <ul>
+          <li class="gem-c-cards__list-item" style="list-style:none;">
+            <div class="gem-c-cards__list-item-wrapper">
+              <h3 class="gem-c-cards__sub-heading govuk-heading-s">
+                <a class="govuk-link gem-c-cards__link govuk-link--no-visited-state" href="/editor-vertical/dynamic/dates.html">Date</a>
+              </h3>
+              <p class="govuk-body gem-c-cards__description">Request a day, month and year</p>
+            </div>
+          </li>
+
+          <li class="gem-c-cards__list-item" style="list-style:none;">
+            <div class="gem-c-cards__list-item-wrapper">
+              <h3 class="gem-c-cards__sub-heading govuk-heading-s">
+                <a class="govuk-link gem-c-cards__link govuk-link--no-visited-state" href="#">UK address</a>
+              </h3>
+              <p class="govuk-body gem-c-cards__description">Request a street address, town or city and postcode for an address in the UK</p>
+            </div>
+          </li>
+        </ul>
+      `;
+
+            // Append the new content to the container
+            dynamicContentContainer.innerHTML = newContent;
           });
         });
       </script>

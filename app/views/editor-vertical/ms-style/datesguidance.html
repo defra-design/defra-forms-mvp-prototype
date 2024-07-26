@@ -130,9 +130,48 @@
               text: "Only add guidance if you need to give a longer explanation of how to answer the question."
             },
             content: {
-              html: '<button type="submit" class="govuk-button govuk-button--inverse" href="/editor-vertical/dynamic/guidance.html" data-module="govuk-button">
-  Add guidance
-</button>'
+              html: '
+
+              <dl class="govuk-summary-list">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Page heading
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Passport expiry
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Guidance text
+    </dt>
+    <dd class="govuk-summary-list__value">
+
+<p class="govuk-body">The issuance date of your passport is typically located on the data page of your passport book. It is usually printed in a format such as DD/MM/YYYY (e.g., 12/03/2020).</p>
+<p class="govuk-body">
+Additional tips:
+
+<p class="govuk-body">
+* look for a sticker or stamp in your passport that indicates the issuance date
+<p/>
+<p class="govuk-body">
+* contact the issuing authority directly for assistance.</p>
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
+    </dd>
+  </div>
+
+</dl>
+
+
+
+
+
+         <a class="govuk-link" href="#">Delete guidance</a>'
             }
           }
         ]
@@ -146,6 +185,10 @@
         <a class="govuk-link" href="#">Add another component</a>
       </div>
     </div>
+
+
+
+
 
     <div class="govuk-grid-column-one-half" style=" outline: solid 1px #f3f2f1;
             height: 100%;
@@ -169,9 +212,22 @@
 
       <!-- New Fieldset with Dynamic Legend -->
       <form>
+       <h1 class="govuk-heading-l">
+        Passport expiry
+      </h1>
+
+    <p class="govuk-body">The issuance date of your passport is typically located on the data page of your passport book. It is usually printed in a format such as DD/MM/YYYY (e.g., 12/03/2020).</p>
+<p class="govuk-body">
+Additional tips:
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>look for a sticker or stamp in your passport that indicates the issuance date</li>
+ <li>
+contact the issuing authority directly for assistance.</li>
+</ul>
         <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l" id="dynamic-legend">
-            Question label
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="dynamic-legend">
+            When did your passport expire?
           </legend>
           <div class="govuk-form-group">
             <div id="passport-issued-hint" class="govuk-hint">For example, 27 3 2007</div>

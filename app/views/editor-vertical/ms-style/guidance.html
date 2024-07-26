@@ -1,0 +1,218 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Guidance - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    containerClasses: containerClasses,
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+      {
+        href: "/library.html",
+        text: "Forms library",
+        id: "library"
+      },
+      {
+        href: "/cph-overview/draft/complete-clean.html",
+        text: "Overview",
+        id: "overview"
+      },
+      {
+        href: "/editor-pets/0",
+        text: 'Editor',
+        id: 'editor'
+      }
+    ],
+    activeLinkId: "editor"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row" style="display: flex; border-bottom: solid 1px #f3f2f1;">
+    <div class="govuk-grid-column-one-half" style="background-color: #f3f2f1; flex: 1 1 50%; overflow-y: auto;">
+      {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+      {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+      {{ govukBreadcrumbs({
+        items: [
+          {
+            text: "Your form",
+            href: "/editor-vertical/dynamic/questions.html"
+          },
+          {
+            text: "Choose a component",
+            href: "/editor-vertical/dynamic/add-component.html"
+          },
+          {
+            text: "Date",
+            href: "/editor-vertical/dynamic/dates.html"
+          },
+           {
+            text: "Guidance",
+            href: null
+          }
+
+        ]
+      }) }}
+
+      <span class="govuk-caption-l">Question 2</span>
+
+      <h2 class="govuk-heading-l">Guidance</h2>
+      <p class="govuk-body">Use guidance if you need to:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>explain how to answer the question in more detail</li>
+        <li>format your content with paragraphs, headings, lists or links</li>
+      </ul>
+
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+
+      {{ govukInput({
+        label: {
+          text: "Give your page a heading",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        },
+        hint: {
+          text: "When you add guidance your question will no longer be the main page heading, so you need to use a different one. Use a heading that’s a statement rather than a question - for example, Interview needs’."
+        },
+        id: "page-heading-input",
+        name: "pageHeading"
+      }) }}
+
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+      {{ govukTextarea({
+        name: "guidanceText",
+        id: "guidance-textarea",
+        label: {
+          text: "Add guidance text",
+          classes: "govuk-label--m",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Use markdown if you need to format your guidance content. Formatting help can be found below"
+        }
+      }) }}
+
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save",
+          href: "/editor-vertical/dynamic/datesguidance.html"
+        }) }}
+
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+    </div>
+
+    <div class="govuk-grid-column-one-half" style="outline: solid 1px #f3f2f1; height: 100%; position: sticky; top: 0;">
+      {% from "govuk/components/header/macro.njk" import govukHeader %}
+
+      {{ govukHeader({
+        homepageUrl: "#",
+        serviceName: "Apply for a county parish holding certificate",
+        serviceUrl: "#"
+      }) }}
+
+      <!-- Existing Date Input Field -->
+      {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+      <div>
+        {{ govukTag({
+          text: "Preview of question",
+          classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-2"
+        }) }}
+      </div>
+
+      <!-- New Fieldset with Dynamic Legend -->
+      <form>
+        <h1 class="govuk-heading-l" id="dynamic-heading">
+          Page heading
+        </h1>
+        <p class="govuk-body" id="dynamic-guidance">
+          Guidance text.
+        </p>
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="dynamic-legend">
+            Question label
+          </legend>
+          <div class="govuk-form-group">
+            <div id="passport-issued-hint" class="govuk-hint">For example, 27 3 2007</div>
+            <div id="passport-expiry" class="govuk-date-input" data-module="govuk-date-input">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-expiry-day">Day</label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-expiry-day" name="passport-expiry-day" type="text" pattern="[0-9]*">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-expiry-month">Month</label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-expiry-month" name="passport-expiry-month" type="text" pattern="[0-9]*">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="passport-expiry-year">Year</label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-expiry-year" name="passport-expiry-year" type="text" pattern="[0-9]*">
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+
+
+  <script>
+
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Update page heading dynamically
+      document
+        .getElementById('page-heading-input')
+        .addEventListener('input', function () {
+          var pageHeadingText = this.value;
+          document
+            .getElementById('dynamic-heading')
+            .textContent = pageHeadingText;
+        });
+
+      // Update guidance text dynamically
+      document
+        .getElementById('guidance-textarea')
+        .addEventListener('input', function () {
+          var guidanceText = this.value;
+          document
+            .getElementById('dynamic-guidance')
+            .textContent = guidanceText;
+        });
+
+      // Existing code for other dynamic updates
+      document
+        .getElementById('event-name')
+        .addEventListener('input', function () {
+          var errorText = this.value;
+          document
+            .getElementById('error-dynamic-text')
+            .textContent = errorText;
+        });
+    });
+  </script>
+{% endblock %}
+
+<form class="form" action="/path/of/next/page" method="post"></form>

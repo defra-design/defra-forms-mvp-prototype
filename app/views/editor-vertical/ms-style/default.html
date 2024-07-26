@@ -1,0 +1,818 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Add page - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
+      href: "/cph-overview/draft/complete-clean.html",
+      text: "Overview",
+      id: "overview"
+     },{
+         href: "/editor-pets/0.html",
+    text: 'Editor',
+    id: 'editor'
+    }],
+    activeLinkId: "/"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <!-- Open -->
+    <div class="govuk-grid-column-three-quarters">
+      <!-- Open -->
+
+      <div id="radio-container">
+        <!-- Open -->
+        {{ govukRadios({
+            idPrefix: "sort",
+            classes: "govuk-radios govuk-radios--inline",
+            name: "example",
+            fieldset: {
+                legend: {
+                    classes: "govuk-fieldset__legend--l",
+                    isPageHeading: true,
+                    text: "Choose a type of question"
+                }
+            },
+            items: [
+                {
+                    value: "choice",
+                    text: "Choice"
+                },
+                {
+                    value: "text",
+                    text: "Text"
+                },
+                {
+                    value: "date",
+                    text: "Date"
+                },
+                {
+                    value: "address",
+                    text: "Address"
+                },
+                {
+                    value: "phone",
+                    text: "Phone number"
+                },
+                {
+                    value: "files",
+                    text: "File upload"
+                }
+            ]
+        }) }}
+      </div>
+      <!-- Close radio-container -->
+
+      <div id="ticket-panel" class="hidden">
+        <!-- Open -->
+        {%- from "moj/components/ticket-panel/macro.njk" import mojTicketPanel -%}
+
+        <span class="govuk-caption-xl">Apply for a county parish holding certificate</span>
+        <h1 class="govuk-heading-xl">Form editor</h1>
+
+        {{ mojTicketPanel({
+            attributes: {
+                'aria-label': 'Sub navigation 1'
+            },
+            items: [{
+                html: '
+     <div class="sticky-form-group">
+<div class="moj-page-header-actions"> <!-- Open -->
+
+  <div class="moj-page-header-actions__title"> <!-- Open -->
+    <h1 class="govuk-heading-m">Question 1</h1>
+  </div> <!-- Close moj-page-header-actions__title -->
+
+  <div class="moj-page-header-actions__actions"> <!-- Open -->
+
+    <div class="moj-button-menu"> <!-- Open -->
+      <div class="moj-button-menu__wrapper"> <!-- Open -->
+
+        <button type="submit" class="app-back-to-top moj-button-menu__item moj-page-header-actions__action" data-module="govuk-button"> <a class="govuk-link govuk-link--no-visited-state app-back-to-top__link" href="#top">
+    <svg role="presentation" focusable="true" class="app-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17">
+      <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+    </svg>
+  </a>
+        </button>
+
+        <button type="submit" class="app-back-to-top moj-button-menu__item moj-page-header-actions__action" data-module="govuk-button"> <a class="govuk-link govuk-link--no-visited-state app-back-to-top__link" href="#top">
+    <svg role="presentation" focusable="true" class="app-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17" style=" transform: rotate(180deg);">
+      <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+    </svg>
+  </a>
+        </button>
+
+ <a class="govuk-link moj-button-menu__item moj-page-header-actions__action govuk-link--no-visited-state app-back-to-top__link" href="#top">
+     <a href="#" class="govuk-link" rel="noreferrer noopener" target="_blank">link text (opens in new tab)</a>
+  </a>
+
+
+
+      </div> <!-- Close moj-button-menu__wrapper -->
+    </div> <!-- Close moj-button-menu -->
+
+  </div> <!-- Close moj-page-header-actions__actions -->
+
+</div> <!-- Close moj-page-header-actions -->
+
+
+        <div class="govuk-form-group"> <!-- Open -->
+            <h1 class="govuk-label-wrapper">
+                <label id="event-name" for="event-name" class="govuk-label govuk-label--l editable" contenteditable="true" aria-label="Edit the event name label" style="background-color: white; padding: 10px;">
+                    Question
+                </label>
+            </h1>
+            <div id="event-name-hint" class="govuk-hint editable" contenteditable="true" aria-label="Edit the hint for the event name" style="background-color: white; padding: 10px; margin-top:10px;"> <!-- Open -->
+                Hint text (optional)
+            </div> <!-- Close event-name-hint -->
+            <input class="govuk-input" id="short-answer" name="shortAnswer" type="text" readonly>
+        </div> <!-- Close govuk-form-group -->
+    </div>
+
+
+
+
+
+
+<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default"> <!-- Open -->
+
+<!-- Basic Settings Section -->
+
+  <!-- Error Messages Section -->
+  <div class="govuk-accordion__section"> <!-- Open -->
+    <div class="govuk-accordion__section-header"> <!-- Open -->
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+          Settings
+        </span>
+      </h2>
+    </div> <!-- Close govuk-accordion__section-header -->
+    <div id="accordion-default-content-1" class="govuk-accordion__section-content" style="  expanded: true;"> <!-- Open -->
+
+    <div class="govuk-form-group"> <!-- Open -->
+  <fieldset class="govuk-fieldset"> <!-- Open -->
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h1 class="govuk-fieldset__heading ">
+        Basics
+      </h1>
+    </legend>
+    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes"> <!-- Open -->
+      <div class="govuk-checkboxes__item"> <!-- Open -->
+        <input class="govuk-checkboxes__input" id="optional" name="optional" type="checkbox" value="optional">
+        <label class="govuk-label govuk-checkboxes__label" for="optional">
+          Optional
+        </label>
+      </div> <!-- Close govuk-checkboxes__item -->
+      <div class="govuk-checkboxes__item"> <!-- Open -->
+        <input class="govuk-checkboxes__input" id="long-answer" name="longAnswer" type="checkbox" value="longAnswer">
+        <label class="govuk-label govuk-checkboxes__label" for="long-answer">
+          Long answer
+        </label>
+      </div> <!-- Close govuk-checkboxes__item -->
+    </div> <!-- Close govuk-checkboxes -->
+  </fieldset> <!-- Close govuk-fieldset -->
+</div> <!-- Close govuk-form-group -->
+    </div> <!-- Close accordion-default-content-1 -->
+  </div> <!-- Close govuk-accordion__section -->
+
+  <!-- Error Messages Section -->
+  <div class="govuk-accordion__section"> <!-- Open -->
+    <div class="govuk-accordion__section-header"> <!-- Open -->
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+          Error messages
+        </span>
+      </h2>
+    </div> <!-- Close govuk-accordion__section-header -->
+    <div id="accordion-default-content-2" class="govuk-accordion__section-content"> <!-- Open -->
+      <div class="govuk-form-group"> <!-- Open -->
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--m" for="short-label">
+      Short label for error messages
+    </label>
+  </h1>
+  <div id="short-label-hint" class="govuk-hint"> <!-- Open -->
+    Short labels are used in error messages, such as ‘Enter a <span style="outline: 3px black dotted; padding: 1.2px;">date of birth</span>’.
+  </div> <!-- Close short-label-hint -->
+  <input class="govuk-input govuk-input--width-20" id="short-label" name="shortLabel" type="text">
+</div> <!-- Close govuk-form-group -->
+
+
+       <button id="render-error-button" type="button">Render with Error</button>
+
+
+        <div id="error-message-container" class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--m" for="error-message">
+                    Error Message
+                </label>
+            </h1>
+            <div id="error-message-hint" class="govuk-hint">
+                Error messages are displayed here.
+            </div>
+            <div id="error-message" class="govuk-error-message">
+                <!-- Error message will be inserted here -->
+            </div>
+        </div>
+
+        <div class="govuk-form-group govuk-form-group--error">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="event-name">
+      What is the name of the event?
+    </label>
+  </h1>
+  <div id="event-name-hint" class="govuk-hint">
+    The name you’ll use on promotional material
+  </div>
+  <p id="event-name-error" class="govuk-error-message">
+    <span class="govuk-visually-hidden">Error:</span> Enter an event name
+  </p>
+  <input class="govuk-input govuk-input--error" id="event-name" name="eventName" type="text" aria-describedby="event-name-hint event-name-error">
+</div>
+
+
+    </div> <!-- Close accordion-default-content-2 -->
+  </div> <!-- Close govuk-accordion__section -->
+
+  <!-- Add Guidance Section -->
+  <div class="govuk-accordion__section"> <!-- Open -->
+    <div class="govuk-accordion__section-header"> <!-- Open -->
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+          Add guidance (optional)
+        </span>
+      </h2>
+    </div> <!-- Close govuk-accordion__section-header -->
+    <div id="accordion-default-content-3" class="govuk-accordion__section-content"> <!-- Open -->
+      <a href="/editor-vertical/dynamic/guidance.html" class="govuk-button govuk-button--inverse" data-module="govuk-button">
+        Add guidance
+      </a>
+    </div> <!-- Close accordion-default-content-3 -->
+  </div> <!-- Close govuk-accordion__section -->
+</div> <!-- Close govuk-accordion -->
+    ',
+                attributes: {
+                    'aria-label': 'Section 1'
+                },
+                classes: 'moj-ticket-panel__content--green'
+            }]
+        }) }}
+
+        <div class="defra-filter--action">
+          <!-- Open -->
+          <button id="defra-filter--button" class="govuk-button govuk-button--secondary" type="button" aria-expanded="false">
+            <span id="button-text" class="defra-filter--button-content">Add next question</span>
+            <span id="button-icon" class="defra-filter__icon">
+              <!-- Default icon (plus sign) -->
+
+            </span>
+          </button>
+          <div id="defra-filter--box" class="defra-filter--box hidden">
+            <!-- Open -->
+            <!-- Content goes here -->
+            <div id="radio-container">
+              <!-- Open -->
+              {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+              {{ govukRadios({
+  idPrefix: "sort",
+  classes: "govuk-radios--small govuk-radios--inline",
+  name: "example",
+  fieldset: {
+    legend: {
+      text: "Choose a type of question",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "choice",
+      text: "Choice",
+      hint: {
+        text: "Select if the question requires choosing from predefined options."
+      }
+    },
+    {
+      value: "text",
+      text: "Text",
+      hint: {
+        text: "Select if the question requires a free text response."
+      }
+    },
+    {
+      value: "date",
+      text: "Date",
+      hint: {
+        text: "Select if the question requires a date input."
+      }
+    },
+    {
+      value: "address",
+      text: "Address",
+      hint: {
+        text: "Select if the question requires an address input."
+      }
+    },
+    {
+      value: "phone",
+      text: "Phone number",
+      hint: {
+        text: "Select if the question requires a phone number input."
+      }
+    },
+    {
+      value: "files",
+      text: "File upload",
+      hint: {
+        text: "Select if the question requires a file upload."
+      }
+    }
+  ]
+}) }}
+
+            </div>
+            <!-- Close radio-container -->
+          </div>
+          <!-- Close defra-filter--box -->
+        </div>
+        <!-- Close defra-filter--action -->
+
+      </div>
+      <!-- Close govuk-grid-column-one-half -->
+    </div>
+
+    <div class="govuk-grid-row">
+      <!-- Open -->
+      <div class="govuk-grid-column-one-half">
+        <!-- Open -->
+        ,,,,
+
+      </div>
+      <!-- Close govuk-grid-column-one-half -->
+    </div>
+    <!-- Close govuk-grid-row -->
+
+    <script>
+      document
+        .getElementById('render-error-button')
+        .addEventListener('click', function () {
+          // Get the current content from the editable fields
+          const eventName = document
+            .getElementById('event-name')
+            .textContent;
+          const eventHint = document
+            .getElementById('event-name-hint')
+            .textContent;
+
+          // Create the new HTML structure with error message formatting
+          const newHTML = `
+      <div class="govuk-form-group govuk-form-group--error"> <!-- Open -->
+        <h1 class="govuk-label-wrapper">
+          <label id="event-name" for="event-name" class="govuk-label govuk-label--l" style="background-color: white; padding: 10px;">
+            ${eventName}
+          </label>
+        </h1>
+        <div id="event-name-hint" class="govuk-hint" style="background-color: white; padding: 10px; margin-top:10px;">
+          ${eventHint}
+        </div> <!-- Close event-name-hint -->
+        <div id="event-name-error-message" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span>
+          <p>There is a problem with the event name</p>
+        </div>
+        <input class="govuk-input govuk-input--error" id="short-answer" name="shortAnswer" type="text">
+      </div> <!-- Close govuk-form-group -->
+    `;
+
+          // Replace the existing content with the new HTML
+          const formGroupContainer = document.querySelector('.govuk-form-group');
+          formGroupContainer.innerHTML = newHTML;
+        });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        // Get references to the elements
+        var shortLabelInput = document.getElementById('short-label');
+        var eventNameError = document.getElementById('event-name-error');
+
+        // Function to update the error message
+        function updateErrorMessage() {
+          var shortLabelText = shortLabelInput
+            .value
+            .trim();
+          if (shortLabelText) {
+            eventNameError.innerHTML = `<span class="govuk-visually-hidden">Error:</span> Enter  ${shortLabelText}`;
+          } else {
+            eventNameError.innerHTML = `<span class="govuk-visually-hidden">Error:</span> Enter an event name`;
+          }
+        }
+
+        // Add event listener to the input
+        shortLabelInput.addEventListener('input', updateErrorMessage);
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        // Existing code
+        var radios = document.querySelectorAll('input[name="example"]');
+        var radioContainer = document.getElementById('radio-container');
+        var ticketPanel = document.getElementById('ticket-panel');
+        var longAnswerCheckbox = document.getElementById('long-answer');
+        var optionalCheckbox = document.getElementById('optional');
+        var eventNameLabel = document.getElementById('event-name');
+
+        // Store a reference to the original input element
+        var originalInput = document.createElement('input');
+        originalInput.className = 'govuk-input';
+        originalInput.id = 'short-answer';
+        originalInput.name = 'shortAnswer';
+        originalInput.type = 'text';
+        originalInput.setAttribute('readonly', true);
+
+        var shortAnswerInput = document.getElementById('short-answer');
+        // Store the original label text
+        var originalLabelText = eventNameLabel
+          .textContent
+          .trim();
+
+        radios.forEach(function (radio) {
+          radio.addEventListener('change', function () {
+            radioContainer
+              .classList
+              .add('hidden');
+            ticketPanel
+              .classList
+              .remove('hidden');
+          });
+        });
+
+        longAnswerCheckbox.addEventListener('change', function () {
+          if (longAnswerCheckbox.checked) {
+            var textarea = document.createElement('textarea');
+            textarea.className = 'govuk-textarea';
+            textarea.id = 'short-answer';
+            textarea.name = 'shortAnswer';
+            textarea.setAttribute('readonly', true);
+
+            shortAnswerInput
+              .parentNode
+              .replaceChild(textarea, shortAnswerInput);
+            shortAnswerInput = textarea; // Update reference
+          } else {
+            // Replace textarea with the original input
+            shortAnswerInput
+              .parentNode
+              .replaceChild(originalInput.cloneNode(true), shortAnswerInput);
+            shortAnswerInput = document.getElementById('short-answer'); // Update reference
+          }
+        });
+
+        optionalCheckbox.addEventListener('change', function () {
+          var currentText = eventNameLabel
+            .textContent
+            .trim();
+          if (optionalCheckbox.checked) {
+            // Append suffix if not already present
+            if (!currentText.endsWith(' (optional)')) {
+              eventNameLabel.textContent = currentText + ' (optional)';
+            }
+          } else {
+            // Remove suffix if present
+            if (currentText.endsWith(' (optional)')) {
+              eventNameLabel.textContent = currentText.slice(0, - ' (optional)'.length);
+            }
+          }
+        });
+
+        // Make sure the correct initial state is set for "Optional" checkbox
+        if (optionalCheckbox.checked) {
+          eventNameLabel.textContent = originalLabelText + ' (optional)';
+        } else {
+          eventNameLabel.textContent = originalLabelText;
+        }
+
+        // JavaScript to manage the visibility of the second grid row
+        var secondGridRow = document.querySelector('.govuk-grid-row:nth-of-type(2)');
+
+        // Check if there's a saved state in local storage
+        if (localStorage.getItem('secondGridRowVisible') === 'true') {
+          secondGridRow
+            .classList
+            .remove('hidden');
+        } else {
+          secondGridRow
+            .classList
+            .add('hidden');
+        }
+
+        // Toggle visibility on some action (e.g., a button click)
+        var toggleButton = document.getElementById('toggle-second-grid-row');
+        if (toggleButton) {
+          toggleButton.addEventListener('click', function () {
+            if (secondGridRow.classList.contains('hidden')) {
+              secondGridRow
+                .classList
+                .remove('hidden');
+              localStorage.setItem('secondGridRowVisible', 'true');
+            } else {
+              secondGridRow
+                .classList
+                .add('hidden');
+              localStorage.setItem('secondGridRowVisible', 'false');
+            }
+          });
+        }
+
+        // Ensure editable elements are correctly focused
+        var editables = document.querySelectorAll('.editable');
+        editables.forEach(function (editable) {
+          editable.addEventListener('mousedown', function (event) {
+            if (event.detail === 1) { // Only prevent default on single click
+              event.preventDefault(); // Prevent default behavior on mousedown to keep focus on editable
+              editable.focus(); // Ensure the editable element gains focus
+            }
+          });
+        });
+
+        // Prevent label clicks from focusing the input
+        var label = document.querySelector('label[for="event-name"]');
+        if (label) {
+          label.addEventListener('click', function (event) {
+            event.preventDefault();
+          });
+        }
+
+        // Manage toggle for the additional content section
+        var button = document.getElementById('defra-filter--button');
+        var box = document.getElementById('defra-filter--box');
+        var buttonText = document.getElementById('button-text');
+        var buttonIcon = document.getElementById('button-icon');
+
+        // SVG for the plus icon
+        var plusIcon = `
+        <!-- SVG for plus icon -->
+    `;
+
+        // SVG for the X icon
+        var closeIcon = `
+        <!-- SVG for close icon -->
+    `;
+
+        button.addEventListener('click', function () {
+          var isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+          // Toggle aria-expanded attribute
+          button.setAttribute('aria-expanded', !isExpanded);
+
+          if (isExpanded) {
+            // Collapse state
+            box
+              .classList
+              .add('hidden');
+            buttonText.textContent = 'Add next question';
+            buttonIcon.innerHTML = plusIcon; // Show plus icon when collapsed
+          } else {
+            // Expand state
+            box
+              .classList
+              .remove('hidden');
+            buttonText.textContent = 'Close';
+            buttonIcon.innerHTML = closeIcon; // Show close (X) icon when expanded
+          }
+        });
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        // Handle the rendering of the error message
+        document
+          .getElementById('render-error-message')
+          .addEventListener('click', function () {
+            var shortLabelInput = document
+              .getElementById('short-label')
+              .value;
+            var errorMessageContainer = document.getElementById('error-message');
+
+            if (shortLabelInput) {
+              errorMessageContainer.textContent = `Enter a ${shortLabelInput}`;
+            } else {
+              errorMessageContainer.textContent = 'Enter a valid input'; // Fallback message
+            }
+          });
+      });
+    </script>
+
+    <style>
+      .sticky-form-group {
+        position: -webkit-sticky;
+        /* For Safari */
+        position: sticky;
+        top: 0;
+        /* Stick to the top of the viewport */
+        background-color: #f3f2f1;
+        /* Background color to ensure it’s readable */
+        z-index: 1000;
+        /* Keeps it above other content */
+        border-bottom: 3px solid #ddd;
+        /* Optional: Border for visual separation */
+        padding: 10px;
+        /* Optional: Padding for spacing */
+        box-shadow: 0 1px 2.5px rgba(0, 0, 0, 0.15);
+        /* Adds a subtle shadow */
+      }
+
+      .editable:focus {
+        outline: 3px solid #fd0;
+        outline-offset: 0;
+        box-shadow: inset 0 0 0 2px;
+      }
+
+      .horizontal-block {
+        display: flex;
+        align-items: center;
+        border: 2px solid #1d70b8;
+        /* GOV.UK blue */
+        padding: 10px;
+        margin: 10px 0;
+      }
+
+      .horizontal-block__text {
+        flex-grow: 1;
+        font-size: 1rem;
+      }
+
+      .horizontal-block__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        border: 2px solid #1d70b8;
+        /* GOV.UK blue */
+        border-radius: 50%;
+        color: #1d70b8;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .tooltip-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: var(--ic-space-md);
+      }
+
+      /* Chris Harding (14.06.23) - Styling fixes to the 'Show filters' button to address the misalignment that can occur for users viewing between 641px and 852px width */
+      @media (min-width: 641px) {
+
+        .defra-filter--open .govuk-button {
+          height: 70px;
+          padding-bottom: 30px;
+        }
+
+        .defra-filter--content {
+          margin-top: -10px;
+        }
+
+      }
+
+      @media (min-width: 693px) and (max-width: 768px) {
+        .defra-filter--open .defra-filter__icon {
+          top: 25px !important;
+        }
+      }
+
+      @media (min-width: 641px) and (max-width: 692px) {
+
+        .defra-filter--action .govuk-button {
+          padding-right: 20px;
+        }
+
+        .defra-filter__icon {
+          display: none;
+        }
+
+      }
+
+      #defra-filter--button {
+        margin-top: inherit;
+      }
+      /* This is a unique pixel width for 'dashboard-submitted.html' (e.g. users with >1 submitted applications) */
+      @media (min-width: 641px) and (max-width: 852px) {
+        #defra-filter--button {
+          margin-top: 55px;
+        }
+      }
+      @media (min-width: 853px) {
+        #defra-filter--button {
+          margin-top: 30px;
+        }
+      }
+
+      /* Chris Harding (26.08.22) - Keep consistent spacing inside the bottom of the tabs panel (2xpx) */
+      .search-and-filters-no-results-list {
+        margin-bottom: 0;
+      }
+      /* FILTERS AND SEARCH (END) */
+
+      .defra-filter--action .defra-filter__icon {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        width: 16px;
+        height: 16px;
+        margin-top: -8px;
+      }
+      .defra-filter--action .defra-filter__icon:before {
+        content: "";
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 25%;
+        height: 25%;
+        margin: auto;
+        border: 2px solid transparent;
+        background-color: #0b0c0c;
+      }
+      .defra-filter--action .defra-filter__icon:after {
+        content: "";
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 25%;
+        height: 25%;
+        margin: auto;
+        border: 2px solid transparent;
+        background-color: #0b0c0c;
+      }
+      .defra-filter--action .defra-filter__icon:before {
+        width: 100%;
+      }
+      .defra-filter--action .defra-filter__icon:after {
+        height: 100%;
+      }
+
+      .defra-filter--box {
+        margin-top: 10px;
+        /* Adjust spacing as needed */
+        padding: 15px;
+        border: 1px solid #ccc;
+        /* Light grey border */
+        background-color: #f9f9f9;
+        /* Light grey background */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        /* Optional shadow */
+        position: relative;
+        /* Ensures the box appears below the button */
+        top: 100%;
+        /* Places the box below the button */
+        left: 0;
+        right: 0;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .close-icon,
+      .plus-icon {
+        transition: transform 0.3s;
+      }
+
+      .close-icon {
+        transform: rotate(45deg);
+        /* Rotate the X icon to create a cross */
+      }
+    </style>
+
+  {% endblock %}

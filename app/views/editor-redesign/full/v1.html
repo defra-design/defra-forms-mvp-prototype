@@ -2,9 +2,11 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set pageName = "Your questions - Apply for a county parish holding number in England" %}
+{% set pageName = "Editor - Apply for a county parish holding number in England" %}
 
+{% set containerClasses = "app-width-container--full-width" %}
 {% block header %}
+
   {{ serviceHeader({
     organisationName: "Defra",
     productName: "Forms Designer",
@@ -17,20 +19,20 @@
       {
         href: "/library.html",
         text: "Forms library",
-        id: "nav-library"
+        id: "library"
       },
       {
         href: "/cph-overview/draft/complete-clean.html",
         text: "Overview",
-        id: "nav-overview"
+        id: "overview"
       },
       {
         href: "/editor-pets/0",
-        text: 'Editor',
-        id: 'nav-editor'
+        text: "Editor",
+        id: "editor"
       }
     ],
-    activeLinkId: "nav-editor"
+    activeLinkId: "editor"
   }) }}
 {% endblock %}
 
@@ -43,8 +45,8 @@
           <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds-from-desktop">
               <span class="govuk-caption-l" style="color: #ffffff;">Apply for a county parish holding certificate</span>
-              <h1 class="govuk-heading-xl app-masthead__title">Your questions</h1>
-              <p class="app-masthead__description">Manage the questions in this form.</p>
+              <h1 class="govuk-heading-xl app-masthead__title">Form pages</h1>
+              <p class="app-masthead__description">Manage the pages in this form.</p>
               <a href="/get-started/" role="button" draggable="false" class="govuk-button govuk-button--inverse govuk-!-margin-top-6 govuk-!-margin-bottom-0 govuk-button--start" data-module="govuk-button">
                 Preview form
               </a>
@@ -91,64 +93,71 @@
                   {
                     expanded: true,
                     heading: {
-                      text: "Basic settings"
+                      text: "Question details"
                     },
-                    content: {
-                      html: '<form>' +
-                        '<div class="govuk-form-group">' +
-                          '<label class="govuk-label govuk-label--m" for="question-label-input">Question label</label>' +
-                          '<input class="govuk-input" id="question-label-input" name="question-label" type="text">' +
-                        '</div>' +
-                        '<div class="govuk-form-group">' +
-                          '<label class="govuk-label govuk-label--m" for="hint-text-input">Enter hint text:</label>' +
-                          '<textarea class="govuk-textarea" rows="2" id="hint-text-input" name="hint-text" aria-describedby="hint-text-hint"></textarea>' +
-                        '</div>' +
-                        '</form>' +
-                        '<div class="govuk-form-group">' +
-                          '<fieldset class="govuk-fieldset">' +
-                            '<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">' +
-                              '<h1 class="govuk-fieldset__heading">More options</h1>' +
-                            '</legend>' +
-                            '<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">' +
-                              '<div class="govuk-checkboxes__item">' +
-                                '<input class="govuk-checkboxes__input" id="optional" name="optional" type="checkbox" value="optional">' +
-                                '<label class="govuk-label govuk-checkboxes__label" for="optional">Optional</label>' +
-                              '</div>' +
-                              '<div class="govuk-checkboxes__item">' +
-                                '<input class="govuk-checkboxes__input" id="month-year-checkbox" name="date-format" type="checkbox" value="monthyear">' +
-                                '<label class="govuk-label govuk-checkboxes__label" for="month-year-checkbox">Month and year only</label>' +
-                              '</div>' +
-                            '</div>' +
-                          '</fieldset>' +
-                        '</div>
+                   content: {
+  html: '<form>' +
+    '<strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-2">' +
+      'Question 1' +
+    '</strong>' +
+    '<div class="govuk-form-group">' +
+      '<label class="govuk-label govuk-label--m" for="question-label-input">Question 1 label</label>' +
+      '<input class="govuk-input" id="question-label-input" name="question-label" type="text">' +
+    '</div>' +
+    '<div class="govuk-form-group">' +
+      '<label class="govuk-label govuk-label--m" for="hint-text-input">Question 1 hint text</label>' +
+      '<textarea class="govuk-textarea" rows="2" id="hint-text-input" name="hint-text" aria-describedby="hint-text-hint"></textarea>' +
+    '</div>' +
+    '</form>' +
+    '<div class="govuk-form-group">' +
+      '<fieldset class="govuk-fieldset">' +
+        '<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">' +
+          '<h1 class="govuk-fieldset__heading">More options</h1>' +
+        '</legend>' +
+        '<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">' +
+          '<div class="govuk-checkboxes__item">' +
+            '<input class="govuk-checkboxes__input" id="optional" name="optional" type="checkbox" value="optional">' +
+            '<label class="govuk-label govuk-checkboxes__label" for="optional">Optional</label>' +
+          '</div>' +
+          '<div class="govuk-checkboxes__item">' +
+            '<input class="govuk-checkboxes__input" id="month-year-checkbox" name="date-format" type="checkbox" value="monthyear">' +
+            '<label class="govuk-label govuk-checkboxes__label" for="month-year-checkbox">Month and year only</label>' +
+          '</div>' +
+        '</div>' +
+      '</fieldset>' +
+    '</div>' +
+    '
+    <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Error message for question 1
+    </span>
+  </summary>
+  <div class="govuk-details__text">
 
-                                              <a class="govuk-link" href="#" id="add-question" name="addQuestion">Add another question to this page</a>
+    <div class="govuk-form-group">' +
+      '<h1 class="govuk-label-wrapper">' +
+        '<label class="govuk-label govuk-label--m" for="error-label-input">Short label for error messages</label>' +
+      '</h1>' +
+      '<div id="error-label-hint" class="govuk-hint">Short labels are used in error messages, such as ‘Enter a <span style="outline: 3px black dotted; padding: 1.2px;">date of birth</span>’.</div>' +
+      '<input class="govuk-input govuk-!-width-one-half" id="error-label-input" name="error-label" type="text">
+</details>' +
+    '
 
-                                              <div id="dynamic-content-container"></div>
+  <a href="/get-started/" role="button" draggable="false" class="govuk-button govuk-button--inverse govuk-!-margin-top-6 govuk-!-margin-bottom-0 govuk-button--start" data-module="govuk-button" id="add-question" name="addQuestion">
+                Add another question to this page
+              </a>
+
+
+      <div id="dynamic-content-container"></div>
 
 
 
                         '
                     }
                   },
-                  {
-                    heading: {
-                      text: "Error messages",
-                      classes: "govuk-label govuk-label--l"
-                    },
-                    summary: {
-                      text: "Show an error message next to the field and in the error summary when there is a validation error."
-                    },
-                    content: {
-                      html: '<div class="govuk-form-group">' +
-                        '<h1 class="govuk-label-wrapper">' +
-                          '<label class="govuk-label govuk-label--m" for="error-label-input">Short label for error messages</label>' +
-                        '</h1>' +
-                        '<div id="error-label-hint" class="govuk-hint">Short labels are used in error messages, such as ‘Enter a <span style="outline: 3px black dotted; padding: 1.2px;">date of birth</span>’.</div>' +
-                        '<input class="govuk-input" id="error-label-input" name="error-label" type="text">' +
-                      '</div>'
-                    }
-                  },
+
+
                   {
                     heading: {
                       text: "Add guidance (optional)"
@@ -201,7 +210,7 @@
               {% from "govuk/components/tag/macro.njk" import govukTag %}
               <div>
                 {{ govukTag({
-            text: "Preview of question",
+            text: "Preview of page 1",
             classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-2"
           }) }}
               </div>
@@ -214,11 +223,11 @@
                 <div class="govuk-form-group">
                   <fieldset class="govuk-fieldset" role="group">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="date-input-legend">
-                      Question label
+                      Question 1 label
                     </legend>
                     <div class="govuk-form-group">
                       <div id="date-input-hint" class="govuk-hint">
-                        For example, 27 3 2007
+                        Question 1 hint text
                       </div>
                       <div class="govuk-date-input" id="date-input" data-module="govuk-date-input">
                         <div class="govuk-date-input__item" id="day-input-wrapper">
@@ -646,13 +655,14 @@
 
             // Create the new content
             var newContent = `
-        <h2 class="govuk-heading-m" style="margin-top: 30px;">Choose a component for this question</h2>
+        <h2 class="govuk-heading-m" style="margin-top: 30px;">Choose type of question</h2>
 
         <ul class="gem-c-cards__list gem-c-cards__list--two-column-desktop">
           <li class="gem-c-cards__list-item" style="list-style:none;">
             <div class="gem-c-cards__list-item-wrapper">
               <h3 class="gem-c-cards__sub-heading govuk-heading-s">
-                <a class="govuk-link gem-c-cards__link govuk-link--no-visited-state" href="/editor-vertical/dynamic/dates.html">Date</a>
+              <a class="govuk-link gem-c-cards__link govuk-link--no-visited-state" href="" id="date-link">Date</a>
+
               </h3>
               <p class="govuk-body gem-c-cards__description">Request a day, month and year</p>
             </div>

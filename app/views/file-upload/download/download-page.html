@@ -104,7 +104,10 @@
   name: "email",
   type: "email",
   autocomplete: "email",
-  spellcheck: false
+  spellcheck: false,
+    errorMessage: {
+    text: "This is not the email address the file was sent to. To confirm the file was meant for your team, enter the email address the file was sent to."
+  }
 }) }}
 
           {% from "govuk/components/button/macro.njk" import govukButton %}

@@ -1,0 +1,1291 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Your questions - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  <!-- Service header with navigation and user account information -->
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    containerClasses: containerClasses,
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+      {
+        href: "/library.html",
+        text: "Forms library",
+        id: "nav-library"
+      },
+      {
+        href: "/cph-overview/draft/complete-clean.html",
+        text: "Overview",
+        id: "nav-overview"
+      },
+      {
+        href: "/editor-pets/0",
+        text: 'Editor',
+        id: 'nav-editor'
+      }
+    ],
+    activeLinkId: "nav-editor"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full-from-desktop">
+      <!-- Masthead section with title and description -->
+      <div class="app-masthead">
+        <div class="app-width-container">
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+              <span class="govuk-caption-l" style="color: #ffffff;">Apply for a county parish holding certificate</span>
+              <h1 class="govuk-heading-xl app-masthead__title">Form pages</h1>
+              <p class="app-masthead__description">Manage the pages in this form.</p>
+              <a href="/get-started/" role="button" draggable="false" class="govuk-button govuk-button--inverse govuk-!-margin-top-6 govuk-!-margin-bottom-0 govuk-button--start" data-module="govuk-button">
+                Preview form
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Sub navigation for the form sections #}
+      <nav class="moj-sub-navigation" aria-label="Sub navigation">
+        <ul class="moj-sub-navigation__list" id="nav-list1">
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" aria-current="page">Your pages</a>
+          </li>
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" href="#" id="groups">Page groups</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="govuk-grid-row">
+        <!-- Main Content Column -->
+        <div class="govuk-grid-column-two-thirds " style="flex: 1 1 75%; overflow-y: auto;">
+
+          <!-- Summary Card 1 -->
+          {# <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Page 1: When did you lose your passport?
+              </span>
+            </summary> #}
+          <div class="govuk-summary-card" style="border-left: solid 4px #008938!important; outline-color: transparent; border: 1px solid transparent;">
+            <div class="govuk-summary-card__title-wrapper">
+              <h2 class="govuk-summary-card__title">
+                Page 1: When did you lose your passport?
+              </h2>
+              <ul class="govuk-summary-card__actions">
+                <li class="govuk-summary-card__action">
+                  <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden">
+                      of University of Gloucestershire (University of Gloucestershire)</span></a>
+                </li>
+                <li class="govuk-summary-card__action">
+                  <a class="govuk-link" href="#">Preview<span class="govuk-visually-hidden">
+                      from University of Gloucestershire (University of Gloucestershire)</span></a>
+                </li>
+              </ul>
+            </div>
+            <hr class="govuk-section-break govuk-section-break--visible" style="width: auto;">
+            <div class="govuk-summary-card__content" style="background-color: #f3f2f1;">
+
+              {# Sub navigation for the question details #}
+              <nav class="moj-sub-navigation" aria-label="Sub navigation">
+                <ul class="moj-sub-navigation__list" id="nav-list2">
+                  <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" aria-current="page" href="#question-1">Question 1</a>
+                  </li>
+                  <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" href="#" id="add-question">Add question</a>
+                  </li>
+                </ul>
+              </nav>
+              <div>
+                <p class="govuk-body">
+                  <a href="#" id="toggle-container-link" class="govuk-link govuk-link--no-visited-state">Expand</a>
+                </p>
+              </div>
+              <form>
+                <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-2">Question 1</strong>
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-label--m" for="question-label-input">Question 1 label</label>
+                  <input class="govuk-input" id="question-label-input" name="question-label" type="text">
+                </div>
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-label--m" for="hint-text-input">Question 1 hint text</label>
+                  <textarea class="govuk-textarea" rows="2" id="hint-text-input" name="hint-text" aria-describedby="hint-text-hint"></textarea>
+                </div>
+              </form>
+
+              {# Additional settings for the question #}
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h1 class="govuk-fieldset__heading">Additional settings</h1>
+                  </legend>
+                  <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="optional" name="optional" type="checkbox" value="optional">
+                      <label class="govuk-label govuk-checkboxes__label" for="optional">Make question optional</label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                      <input class="govuk-checkboxes__input" id="month-year-checkbox" name="date-format" type="checkbox" value="monthyear">
+                      <label class="govuk-label govuk-checkboxes__label" for="month-year-checkbox">Ask for month and year only</label>
+                    </div>
+                  </div>
+                </fieldset>
+
+                {# Error message container for the question #}
+
+                <div class="govuk-form-group govuk-!-margin-top-4">
+                  <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--m" for="error-label-input">Short label for error messages</label>
+                  </h1>
+                  <div id="error-label-hint" class="govuk-hint">Short labels are used in error messages, such as ‘Enter a
+                    <span style="outline: 3px black dotted; padding: 1.2px;">date of birth</span>’.</div>
+                  <input class="govuk-input" id="error-label-input" name="error-label" type="text">
+                </div>
+              </div>
+
+              {{ govukButton({
+              text: "Add another question to this page",
+              classes: "govuk-button--inverse govuk-!-width-full",
+              id: "add-question-button"
+            }) }}
+
+              {# Add a new div to act as a container for the dynamically added content #}
+              <div id="dynamic-question-container"></div>
+
+              {% from "govuk/components/button/macro.njk" import govukButton %}
+
+              {# Dynamic content container for additional questions and sections #}
+              <div id="dynamic-content-container">
+                {{ govukAccordion({
+    id: "accordion-default",
+    headingLevel: 2,
+    classes: "custom-accordion-class",
+    attributes: {
+      'data-example-attribute': 'example-value'
+    },
+    rememberExpanded: true,
+    hideAllSectionsText: "Hide all sections",
+    hideSectionText: "Hide",
+    hideSectionAriaLabelText: "Hide this section",
+    showAllSectionsText: "Show all sections",
+    showSectionText: "Show",
+    showSectionAriaLabelText: "Show this section",
+
+  items: [
+    {
+      heading: {
+        text: "Add guidance (optional)"
+      },
+      summary: {
+        text: "Only add guidance if you need to give a longer explanation of how to answer questions on this page."
+      },
+      content: {
+        html: '
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--m" for="page-heading-input">Give your page a heading</label>
+            <span id="page-heading-input-hint" class="govuk-hint">When you add guidance your question will no longer be the main page heading, so you need to use a different one. Use a heading that’s a statement rather than a question - for example, Interview needs.</span>
+            <input class="govuk-input" id="page-heading-input" name="pageHeading" type="text" aria-describedby="page-heading-input-hint">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--m" for="guidance-textarea">Add guidance text</label>
+            <span id="guidance-textarea-hint" class="govuk-hint">Use markdown if you need to format your guidance content. Formatting help can be found below.</span>
+            <textarea class="govuk-textarea" id="guidance-textarea" name="guidanceText" rows="5" aria-describedby="guidance-textarea-hint"></textarea>
+          </div>
+        '
+      }
+    },
+    {
+      heading: {
+        text: "Question limits (optional)"
+      },
+      summary: {
+        text: "Set limits on the types of answers you will accept from users."
+      },
+      content: {
+        html: '<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">
+       Select one or more limits for user answers. Answers must be:
+      </h2>
+    </legend>
+
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-past" name="contact-past" type="checkbox" value="past" data-aria-controls="conditional-contact-past">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-past">In the past</label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-past">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="latest-date">Max days in the past</label>
+          <span id="latest-date-hint" class="govuk-hint">Determines the earliest date users can enter</span>
+          <input class="govuk-input govuk-input--width-3" id="latest-date" name="maxDate" type="text">
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="todaydate-past" name="date" type="checkbox" value="todaydate">
+            <label class="govuk-label govuk-checkboxes__label" for="todaydate-past">Accept todays date</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-future" name="contact-future" type="checkbox" value="future" data-aria-controls="conditional-contact-future">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-future">In the future</label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-future">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="latest-date-future">Max days in the future</label>
+          <span id="latest-date-future-hint" class="govuk-hint">Determines the latest date users can enter</span>
+          <input class="govuk-input govuk-input--width-3" id="latest-date-future" name="maxDate" type="text">
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="todaydate-future" name="date" type="checkbox" value="todaydate">
+            <label class="govuk-label govuk-checkboxes__label" for="todaydate-future">Accept todays date</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-betweenDates" name="contact-betweenDates" type="checkbox" value="betweenDates" data-aria-controls="conditional-contact-betweenDates">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-betweenDates">Between two dates</label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-betweenDates">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="first-date">First date</label>
+          <div class="govuk-date-input" id="first-date" data-module="govuk-date-input">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="first-date-day">Day</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="first-date-day" name="first-date-day" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="first-date-month">Month</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="first-date-month" name="first-date-month" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="first-date-year">Year</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="first-date-year" name="first-date-year" type="text" inputmode="numeric">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="second-date">Second date</label>
+          <div class="govuk-date-input" id="second-date" data-module="govuk-date-input">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="second-date-day">Day</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="second-date-day" name="second-date-day" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="second-date-month">Month</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="second-date-month" name="second-date-month" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="second-date-year">Year</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="second-date-year" name="second-date-year" type="text" inputmode="numeric">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-sameafterDate" name="contact-sameafterDate" type="checkbox" value="sameafterDate" data-aria-controls="conditional-contact-sameafterDate">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-sameafterDate">Same as or after another date</label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-sameafterDate">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="same-after-Date">Enter date it must be the same as or after</label>
+          <div class="govuk-date-input" id="same-after-Date" data-module="govuk-date-input">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="sameafterDate-day">Day</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="sameafterDate-day" name="sameafterDate-day" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="sameafterDate-month">Month</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="sameafterDate-month" name="sameafterDate-month" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="sameafterDate-year">Year</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="sameafterDate-year" name="sameafterDate-year" type="text" inputmode="numeric">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="todaydate-sameafter" name="date" type="checkbox" value="todaydate">
+            <label class="govuk-label govuk-checkboxes__label" for="todaydate-sameafter">Accept todays date</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-samebeforeDate" name="contact-samebeforeDate" type="checkbox" value="samebeforeDate" data-aria-controls="conditional-contact-samebeforeDate">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-samebeforeDate">Same as or before another date</label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-samebeforeDate">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="same-before-Date">Enter date it must be the same as or before</label>
+          <div class="govuk-date-input" id="same-before-Date" data-module="govuk-date-input">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="samebeforeDate-day">Day</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="samebeforeDate-day" name="samebeforeDate-day" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="samebeforeDate-month">Month</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="samebeforeDate-month" name="samebeforeDate-month" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="samebeforeDate-year">Year</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="samebeforeDate-year" name="samebeforeDate-year" type="text" inputmode="numeric">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="todaydate-samebefore" name="date" type="checkbox" value="todaydate">
+            <label class="govuk-label govuk-checkboxes__label" for="todaydate-samebefore">Accept todays date</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-beforeDate" name="contact-beforeDate" type="checkbox" value="beforeDate" data-aria-controls="conditional-contact-beforeDate">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-beforeDate">Before another date</label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-beforeDate">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="before-Date">Enter date it must be before</label>
+          <div class="govuk-date-input" id="before-Date" data-module="govuk-date-input">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="beforeDate-day">Day</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="beforeDate-day" name="beforeDate-day" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="beforeDate-month">Month</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="beforeDate-month" name="beforeDate-month" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="beforeDate-year">Year</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="beforeDate-year" name="beforeDate-year" type="text" inputmode="numeric">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-afterDate" name="contact-afterDate" type="checkbox" value="afterDate" data-aria-controls="conditional-contact-afterDate">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-afterDate">After another date</label>
+      </div>
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-afterDate">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="after-Date">Enter date it must be after</label>
+          <div class="govuk-date-input" id="after-Date" data-module="govuk-date-input">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="afterDate-day">Day</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="afterDate-day" name="afterDate-day" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="afterDate-month">Month</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="afterDate-month" name="afterDate-month" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="afterDate-year">Year</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="afterDate-year" name="afterDate-year" type="text" inputmode="numeric">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </fieldset>
+</div>
+'
+      }
+    }
+  ]
+}) }}
+
+                {% from "govuk/components/button/macro.njk" import govukButton %}
+                <div class="govuk-button-group" style="margin-top: 0px;">
+                  {{ govukButton({
+                      text: "Save page"
+                    }) }}
+                  <a class="govuk-link" href="#">Delete page</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Sidebar Column -->
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half" style="outline: solid 1px #f3f2f1; height: 100%; position: sticky; top: 0; padding: 20px; min-width: 300px; max-width: 300px;">
+          {% from "govuk/components/header/macro.njk" import govukHeader %}
+          {{ govukHeader({
+            homepageUrl: null,
+            serviceName: null
+          }) }}
+
+          <!-- Preview Section -->
+          {% from "govuk/components/tag/macro.njk" import govukTag %}
+          <div>
+            {{ govukTag({
+              text: "Preview of page 1",
+              classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-2"
+            }) }}
+          </div>
+
+          <!-- Dynamic Legend Fieldset for the question preview -->
+          <form>
+            <h1 class="govuk-heading-l" id="dynamic-heading"></h1>
+            <p class="govuk-body" id="guidance-paragraph"></p>
+
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" role="group">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="date-input-legend">
+                  Question 1 label
+                </legend>
+                <div class="govuk-form-group">
+                  <div id="date-input-hint" class="govuk-hint">
+                    Question 1 hint text
+                  </div>
+                  <div class="govuk-date-input" id="date-input" data-module="govuk-date-input">
+                    <div class="govuk-date-input__item" id="day-input-wrapper">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-day">
+                          Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day" name="date-day" type="numeric">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item" id="month-input-wrapper">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-month">
+                          Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month" name="date-month" type="text" pattern="[0-9]*">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item" id="year-input-wrapper">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-year">
+                          Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year" name="date-year" type="text" pattern="[0-9]*">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </form>
+
+          <!-- Error Messages Section for the question preview -->
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                View error messages
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+
+              <!-- Error Messages Section using govuk-error-summary -->
+
+              <div class="govuk-error-summary" data-module="govuk-error-summary">
+
+                <h2 class="govuk-error-summary__title">
+                  There is a problem
+                </h2>
+                {# <div class="govuk-error-summary__body"> #}
+                <ul class="govuk-list govuk-error-summary__list">
+                  <li>
+                    <a id="date-input-error" class="govuk-error-message">
+                      <span class="govuk-visually-hidden" id="date-input-error">Error:</span>
+                      Enter
+                      <span id="error-dynamic-text">date of birth</span>
+                    </a>
+                  </li>
+                </ul>
+              </details>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<style>
+.app-masthead {
+padding-top: 20px;
+padding-bottom: 20px;
+margin-bottom: 20px;
+border-bottom: 1px solid #008938;
+color: #fff;
+background-color: #008938;
+}
+
+.app-masthead__title {
+color: #fff;
+margin-bottom: 20px;
+}
+
+.app-masthead__description {
+font-family: "GDS Transport", arial, sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+font-weight: 400;
+font-size: 1.3125rem;
+line-height: 1.1904761905;
+margin-bottom: 0;
+}
+
+.app-masthead__image {
+display: none;
+}
+
+@media (min-width: 40.0625em) {
+.app-masthead {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+}
+
+.app-masthead__title {
+  margin-bottom: 30px;
+}
+
+.app-masthead__description {
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+}
+
+@media (min-width: 48.0625em) {
+.app-masthead__image {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+}
+}
+
+.govuk-summary-card__content.minimized {
+display: none;
+}
+
+.govuk-summary-card__title-wrapper.minimized {
+border-bottom: 1px solid #ccc;
+}
+
+.govuk-button-group {
+margin-top: 15px;
+}
+
+/* NHS ACCORDION */
+.accordion-controls {
+text-align: right;
+}
+
+.accordion-expand-all {
+display: inline;
+background: transparent;
+border-width: 0;
+font-size: 16px;
+color: #005EA5;
+cursor: pointer;
+}
+
+.accordion .accordion-section[aria-expanded="false"] .accordion-section-body {
+display: none;
+}
+
+.accordion.with-js {
+border-bottom-width: 1px;
+border-bottom-color: #bfc1c3;
+border-bottom-style: solid;
+}
+
+.accordion.with-js .accordion-section {
+border-top-width: 1px;
+border-top-color: #bfc1c3;
+border-top-style: solid;
+}
+
+.accordion.with-js h2 {
+margin-top: 0;
+margin-bottom: 0;
+}
+
+.accordion.with-js .accordion-section-header {
+cursor: pointer;
+position: relative;
+padding-top: 14px;
+padding-bottom: 12px;
+}
+
+.accordion.with-js .accordion-section-header h2 {
+color: #005EA5;
+}
+
+.accordion.with-js .accordion-section-header:hover {
+background-color: #f8f8f8;
+}
+
+.accordion.with-js .icon {
+position: absolute;
+top: 50%;
+right: 15px;
+height: 16px;
+width: 16px;
+margin-top: -8px;
+background: url("/src/images/icon-plus-minus.svg"), linear-gradient(transparent, transparent);
+background-repeat: no-repeat;
+background-position: 0 -16px;
+}
+
+.accordion.with-js .accordion-section[aria-expanded="true"] .icon {
+background-position: 0 0;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+var optionalCheckbox = document.getElementById('optional');
+var questionLabelInput = document.getElementById('question-label-input');
+var dateInputLegend = document.getElementById('date-input-legend');
+var hintTextInput = document.getElementById('hint-text-input');
+var errorLabelInput = document.getElementById('error-label-input');
+var monthYearCheckbox = document.getElementById('month-year-checkbox');
+var dayFieldWrapper = document.getElementById('day-input-wrapper');
+
+// Function to update the labels with the suffix "(optional)"
+function updateLabels() {
+  var suffix = optionalCheckbox.checked
+    ? ' (optional)'
+    : '';
+  var questionLabelText = questionLabelInput.value;
+  var dateLegendText = dateInputLegend.textContent;
+
+  questionLabelInput.value = questionLabelText.replace(/\s*\(optional\)$/, '') + suffix;
+  dateInputLegend.textContent = dateLegendText.replace(/\s*\(optional\)$/, '') + suffix;
+}
+
+// Add event listener to the optional checkbox
+optionalCheckbox.addEventListener('change', updateLabels);
+
+// Add event listener to the question label input to update dynamically
+questionLabelInput.addEventListener('input', function () {
+  dateInputLegend.textContent = this.value + (
+    optionalCheckbox.checked
+    ? ' (optional)'
+    : '');
+});
+
+// Update hint text dynamically
+hintTextInput.addEventListener('input', function () {
+  var hintText = this.value;
+  document
+    .getElementById('date-input-hint')
+    .textContent = hintText;
+});
+
+// Update error message dynamically
+errorLabelInput.addEventListener('input', function () {
+  var errorText = this.value;
+  document
+    .getElementById('error-dynamic-text')
+    .textContent = errorText;
+});
+
+// Function to toggle the display of the day input field
+function updateDateFields() {
+  if (monthYearCheckbox.checked) {
+    dayFieldWrapper.style.display = 'none';
+  } else {
+    dayFieldWrapper.style.display = 'inline-block';
+  }
+}
+
+// Initialize fields based on checkbox state
+updateDateFields();
+
+// Add event listener for checkbox change
+monthYearCheckbox.addEventListener('change', updateDateFields);
+
+// Initial call to set the labels based on the current state
+updateLabels();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+var pageHeadingInput = document.getElementById('page-heading-input');
+var dynamicHeading = document.getElementById('dynamic-heading');
+
+// Function to update the dynamic heading
+function updateHeading() {
+  dynamicHeading.textContent = pageHeadingInput.value;
+}
+
+// Add event listener to the page heading input
+pageHeadingInput.addEventListener('input', updateHeading);
+
+// Initial call to set the heading based on the current input value
+updateHeading();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+var guidanceTextarea = document.getElementById('guidance-textarea');
+var guidanceParagraph = document.getElementById('guidance-paragraph');
+
+// Function to update the guidance paragraph
+function updateGuidanceParagraph() {
+  guidanceParagraph.textContent = guidanceTextarea.value;
+}
+
+// Add event listener to the guidance textarea
+guidanceTextarea.addEventListener('input', updateGuidanceParagraph);
+
+// Initial call to set the paragraph based on the current textarea value
+updateGuidanceParagraph();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+var minimizeBtn = document.getElementById('minimize-btn');
+var maximizeBtn = document.getElementById('maximize-btn');
+var content = document.querySelector('.govuk-summary-card__content');
+var titleWrapper = document.querySelector('.govuk-summary-card__title-wrapper');
+
+// Function to minimize content
+function minimizeContent() {
+  content
+    .classList
+    .add('minimized');
+  titleWrapper
+    .classList
+    .add('minimized');
+  minimizeBtn.style.display = 'none';
+  maximizeBtn.style.display = 'block';
+}
+
+// Function to maximize content
+function maximizeContent() {
+  content
+    .classList
+    .remove('minimized');
+  titleWrapper
+    .classList
+    .remove('minimized');
+  minimizeBtn.style.display = 'block';
+  maximizeBtn.style.display = 'none';
+}
+
+minimizeBtn.addEventListener('click', minimizeContent);
+maximizeBtn.addEventListener('click', maximizeContent);
+
+// Initialize buttons based on content state
+function initializeButtons() {
+  if (content.classList.contains('minimized')) {
+    minimizeBtn.style.display = 'none';
+    maximizeBtn.style.display = 'block';
+  } else {
+    minimizeBtn.style.display = 'block';
+    maximizeBtn.style.display = 'none';
+  }
+}
+
+initializeButtons();
+});
+document.addEventListener('DOMContentLoaded', function () {
+var addQuestionButton = document.getElementById('add-question-button');
+var dynamicQuestionContainer = document.getElementById('dynamic-question-container');
+var navList = document.getElementById('nav-list2');
+
+addQuestionButton.addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent the default button behavior
+
+  // Create a unique ID for the new content to make it easier to remove
+  var newContentId = 'new-content-' + Date.now();
+
+  // Create the new content
+  var newContent = `
+      <div class="govuk-form-group" id="${newContentId}">
+        <fieldset class="govuk-fieldset" aria-describedby="new-question-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">Select the type of question to add to this page</h2>
+          </legend>
+          <div id="new-question-hint" class="govuk-hint">
+            Select one option.
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="question-type-date" name="question-type" type="radio" value="date">
+              <label class="govuk-label govuk-radios__label" for="question-type-date">Date</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="question-type-address" name="question-type" type="radio" value="address">
+              <label class="govuk-label govuk-radios__label" for="question-type-address">UK address</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="govuk-button-group">
+          <button type="submit" id="continue-button" class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+          <a class="govuk-link" id="cancel-button-${newContentId}" href="#">Cancel</a>
+        </div>
+      </div>
+    `;
+
+  // Append the new content to the container
+  dynamicQuestionContainer.insertAdjacentHTML('beforeend', newContent);
+
+  // Add an event listener to the new Cancel button
+  var cancelButton = document.getElementById('cancel-button-' + newContentId);
+  cancelButton.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent the default link behavior
+    var contentToRemove = document.getElementById(newContentId);
+    contentToRemove.remove(); // Remove the new content
+  });
+
+  // Add an event listener to the Continue button
+  var continueButton = document.getElementById('continue-button');
+  continueButton.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent the default button behavior
+
+    // Check which radio button is selected
+    var selectedType = document
+      .querySelector('input[name="question-type"]:checked')
+      .value;
+    if (selectedType === 'date') {
+      // Add a new navigation item link for "Question 2"
+      var newNavItem = document.createElement('li');
+      newNavItem
+        .classList
+        .add('moj-sub-navigation__item');
+      newNavItem.innerHTML = `
+          <a class="moj-sub-navigation__link" aria-current="page" href="#question-2">Question 2</a>
+        `;
+      navList.appendChild(newNavItem);
+
+      // Update the container with a fresh new version for "Question 2"
+      dynamicQuestionContainer.innerHTML = `
+          <form>
+            <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-2">Question 2</strong>
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--m" for="question-label-input-2">Question 2 label</label>
+              <input class="govuk-input" id="question-label-input-2" name="question-label" type="text">
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--m" for="hint-text-input-2">Question 2 hint text</label>
+              <textarea class="govuk-textarea" rows="2" id="hint-text-input-2" name="hint-text" aria-describedby="hint-text-hint"></textarea>
+            </div>
+          </form>
+
+          {# Additional settings for the question #}
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">Additional settings</h1>
+              </legend>
+              <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="optional-2" name="optional" type="checkbox" value="optional">
+                  <label class="govuk-label govuk-checkboxes__label" for="optional-2">Make question optional</label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="month-year-checkbox-2" name="date-format" type="checkbox" value="monthyear">
+                  <label class="govuk-label govuk-checkboxes__label" for="month-year-checkbox-2">Ask for month and year only</label>
+                </div>
+              </div>
+            </fieldset>
+
+            {# Error message container for the question #}
+
+            <div class="govuk-form-group govuk-!-margin-top-4">
+              <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--m" for="error-label-input-2">Short label for error messages</label>
+              </h1>
+              <div id="error-label-hint-2" class="govuk-hint">Short labels are used in error messages, such as ‘Enter a
+                <span style="outline: 3px black dotted; padding: 1.2px;">date of birth</span>’.</div>
+              <input class="govuk-input" id="error-label-input-2" name="error-label" type="text">
+            </div>
+          </div>
+
+          {% from "govuk/components/button/macro.njk" import govukButton %}
+
+          {# Dynamic content container for additional questions and sections #}
+          <div id="dynamic-content-container-2">
+            {{ govukAccordion({
+              id: "accordion-question-2",
+              headingLevel: 2,
+              classes: "custom-accordion-class",
+              attributes: {
+                'data-example-attribute': 'example-value'
+              },
+              rememberExpanded: true,
+              hideAllSectionsText: "Hide all sections",
+              hideSectionText: "Hide",
+              hideSectionAriaLabelText: "Hide this section",
+              showAllSectionsText: "Show all sections",
+              showSectionText: "Show",
+              showSectionAriaLabelText: "Show this section",
+
+              items: [
+                {
+                  heading: {
+                    text: "Add guidance (optional)"
+                  },
+                  summary: {
+                    text: "Only add guidance if you need to give a longer explanation of how to answer questions on this page."
+                  },
+                  content: {
+                    html: '
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-label--m" for="page-heading-input-2">Give your page a heading</label>
+                        <span id="page-heading-input-hint-2" class="govuk-hint">When you add guidance your question will no longer be the main page heading, so you need to use a different one. Use a heading that’s a statement rather than a question - for example, Interview needs.</span>
+                        <input class="govuk-input" id="page-heading-input-2" name="pageHeading" type="text" aria-describedby="page-heading-input-hint-2">
+                      </div>
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-label--m" for="guidance-textarea-2">Add guidance text</label>
+                        <span id="guidance-textarea-hint-2" class="govuk-hint">Use markdown if you need to format your guidance content. Formatting help can be found below.</span>
+                        <textarea class="govuk-textarea" id="guidance-textarea-2" name="guidanceText" rows="5" aria-describedby="guidance-textarea-hint-2"></textarea>
+                      </div>
+                    '
+                  }
+                },
+                {
+                  heading: {
+                    text: "Question limits (optional)"
+                  },
+                  summary: {
+                    text: "Set limits on the types of answers you will accept from users."
+                  },
+                  content: {
+                    html: '<div class="govuk-form-group">
+                      <fieldset class="govuk-fieldset" aria-describedby="contact-hint-2">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                          <h2 class="govuk-fieldset__heading">
+                           Select one or more limits for user answers. Answers must be:
+                          </h2>
+                        </legend>
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="contact-past-2" name="contact-past" type="checkbox" value="past" data-aria-controls="conditional-contact-past-2">
+                            <label class="govuk-label govuk-checkboxes__label" for="contact-past-2">In the past</label>
+                          </div>
+                          <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-past-2">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label" for="latest-date-2">Max days in the past</label>
+                              <span id="latest-date-hint-2" class="govuk-hint">Determines the earliest date users can enter</span>
+                              <input class="govuk-input govuk-input--width-3" id="latest-date-2" name="maxDate" type="text">
+                            </div>
+                            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                              <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="todaydate-past-2" name="date" type="checkbox" value="todaydate">
+                                <label class="govuk-label govuk-checkboxes__label" for="todaydate-past-2">Accept todays date</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="contact-future-2" name="contact-future" type="checkbox" value="future" data-aria-controls="conditional-contact-future-2">
+                            <label class="govuk-label govuk-checkboxes__label" for="contact-future-2">In the future</label>
+                          </div>
+                          <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-future-2">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label" for="latest-date-future-2">Max days in the future</label>
+                              <span id="latest-date-future-hint-2" class="govuk-hint">Determines the latest date users can enter</span>
+                              <input class="govuk-input govuk-input--width-3" id="latest-date-future-2" name="maxDate" type="text">
+                            </div>
+                            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                              <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="todaydate-future-2" name="date" type="checkbox" value="todaydate">
+                                <label class="govuk-label govuk-checkboxes__label" for="todaydate-future-2">Accept todays date</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="contact-betweenDates-2" name="contact-betweenDates" type="checkbox" value="betweenDates" data-aria-controls="conditional-contact-betweenDates-2">
+                            <label class="govuk-label govuk-checkboxes__label" for="contact-betweenDates-2">Between two dates</label>
+                          </div>
+                          <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-betweenDates-2">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label" for="first-date-2">First date</label>
+                              <div class="govuk-date-input" id="first-date-2" data-module="govuk-date-input">
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="first-date-day-2">Day</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="first-date-day-2" name="first-date-day-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="first-date-month-2">Month</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="first-date-month-2" name="first-date-month-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="first-date-year-2">Year</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="first-date-year-2" name="first-date-year-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="govuk-form-group">
+                              <label class="govuk-label" for="second-date-2">Second date</label>
+                              <div class="govuk-date-input" id="second-date-2" data-module="govuk-date-input">
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="second-date-day-2">Day</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="second-date-day-2" name="second-date-day-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="second-date-month-2">Month</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="second-date-month-2" name="second-date-month-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="second-date-year-2">Year</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="second-date-year-2" name="second-date-year-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="contact-sameafterDate-2" name="contact-sameafterDate" type="checkbox" value="sameafterDate" data-aria-controls="conditional-contact-sameafterDate-2">
+                            <label class="govuk-label govuk-checkboxes__label" for="contact-sameafterDate-2">Same as or after another date</label>
+                          </div>
+                          <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-sameafterDate-2">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label" for="same-after-Date-2">Enter date it must be the same as or after</label>
+                              <div class="govuk-date-input" id="same-after-Date-2" data-module="govuk-date-input">
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="sameafterDate-day-2">Day</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="sameafterDate-day-2" name="sameafterDate-day-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="sameafterDate-month-2">Month</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="sameafterDate-month-2" name="sameafterDate-month-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="sameafterDate-year-2">Year</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="sameafterDate-year-2" name="sameafterDate-year-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                              <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="todaydate-sameafter-2" name="date" type="checkbox" value="todaydate">
+                                <label class="govuk-label govuk-checkboxes__label" for="todaydate-sameafter-2">Accept todays date</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="contact-samebeforeDate-2" name="contact-samebeforeDate" type="checkbox" value="samebeforeDate" data-aria-controls="conditional-contact-samebeforeDate-2">
+                            <label class="govuk-label govuk-checkboxes__label" for="contact-samebeforeDate-2">Same as or before another date</label>
+                          </div>
+                          <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-samebeforeDate-2">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label" for="same-before-Date-2">Enter date it must be the same as or before</label>
+                              <div class="govuk-date-input" id="same-before-Date-2" data-module="govuk-date-input">
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="samebeforeDate-day-2">Day</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="samebeforeDate-day-2" name="samebeforeDate-day-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="samebeforeDate-month-2">Month</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="samebeforeDate-month-2" name="samebeforeDate-month-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="samebeforeDate-year-2">Year</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="samebeforeDate-year-2" name="samebeforeDate-year-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                              <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="todaydate-samebefore-2" name="date" type="checkbox" value="todaydate">
+                                <label class="govuk-label govuk-checkboxes__label" for="todaydate-samebefore-2">Accept todays date</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="contact-beforeDate-2" name="contact-beforeDate" type="checkbox" value="beforeDate" data-aria-controls="conditional-contact-beforeDate-2">
+                            <label class="govuk-label govuk-checkboxes__label" for="contact-beforeDate-2">Before another date</label>
+                          </div>
+                          <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-beforeDate-2">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label" for="before-Date-2">Enter date it must be before</label>
+                              <div class="govuk-date-input" id="before-Date-2" data-module="govuk-date-input">
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="beforeDate-day-2">Day</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="beforeDate-day-2" name="beforeDate-day-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="beforeDate-month-2">Month</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="beforeDate-month-2" name="beforeDate-month-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="beforeDate-year-2">Year</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="beforeDate-year-2" name="beforeDate-year-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="contact-afterDate-2" name="contact-afterDate" type="checkbox" value="afterDate" data-aria-controls="conditional-contact-afterDate-2">
+                            <label class="govuk-label govuk-checkboxes__label" for="contact-afterDate-2">After another date</label>
+                          </div>
+                          <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-afterDate-2">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label" for="after-Date-2">Enter date it must be after</label>
+                              <div class="govuk-date-input" id="after-Date-2" data-module="govuk-date-input">
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="afterDate-day-2">Day</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="afterDate-day-2" name="afterDate-day-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="afterDate-month-2">Month</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="afterDate-month-2" name="afterDate-month-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                                <div class="govuk-date-input__item">
+                                  <div class="govuk-form-group">
+                                    <label class="govuk-label govuk-date-input__label" for="afterDate-year-2">Year</label>
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="afterDate-year-2" name="afterDate-year-2" type="text" inputmode="numeric">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </fieldset>
+                    </div>'
+                  }
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: "Add another question to this page",
+              classes: "govuk-button--inverse govuk-!-width-full",
+              id: "add-question-button"
+            }) }}
+
+            {# Add a new div to act as a container for the dynamically added content #}
+            <div id="dynamic-question-container"></div>
+
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+            {% from "govuk/components/button/macro.njk" import govukButton %}
+            <div class="govuk-button-group" style="margin-top: 0px;">
+              {{ govukButton({
+                text: "Save page"
+              }) }}
+              <a class="govuk-link" href="#">Delete page</a>
+            </div>
+          </div>
+        `;
+
+      // Remove the current content and append the new content
+      dynamicQuestionContainer.innerHTML = newContent;
+
+      // Scroll to the new question section
+      var newQuestionSection = document.querySelector('[aria-current="page"]');
+      if (newQuestionSection) {
+        newQuestionSection.scrollIntoView({behavior: 'smooth'});
+      }
+    }
+  });
+});
+});
+</script>
+
+{% endblock %}
+
+<form class="form" action="/path/of/next/page" method="post"></form>

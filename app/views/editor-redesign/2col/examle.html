@@ -1,0 +1,47 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+
+    <div class="app-example">
+        <span class="app-example__new-window">
+            <a href="{{ exampleHref }}" target="_blank">Open this example in a new window</a>
+        </span>
+        <iframe class="app-example__frame" scrolling="auto" frameborder="0" height="{{ height }}" src="{{ exampleHref }}"></iframe>
+    </div>
+
+    <div class="app-tabs">
+        <ul class="app-tabs__list">
+            <li class="app-tabs__list-item">
+                <a class="app-tabs__tab" href="#html{{'-' + params.example + '-' + id}}">HTML</a>
+            </li>
+            <li class="app-tabs__list-item">
+                <a class="app-tabs__tab" href="#nunjucks{{'-' + params.example + '-' + id}}">Nunjucks</a>
+            </li>
+            {% if showJsCode %}
+                <li class="app-tabs__list-item">
+                    <a class="app-tabs__tab" href="#js{{'-' + params.example + '-' + id}}">JavaScript</a>
+                </li>
+            {% endif %}
+        </ul>
+
+        <div class="app-tabs__panel app-js-hidden" id="html{{ '-' + params.example + '-' + id}}" data-module="app-copy">
+            {{ htmlCode | indent(6) | safe }}
+        </div>
+
+        {% if showJsCode %}
+            <div class="app-tabs__panel app-js-hidden" id="js{{ '-' + params.example + '-' + id}}" data-module="app-copy">
+                {{ jsCode | indent(6) | safe }}
+            </div>
+        {% endif %}
+
+        <div class="app-tabs__panel app-js-hidden" id="nunjucks{{ '-' + params.example + '-' + id}}" data-module="app-copy">
+            {{ nunjucksCode | indent(6) | safe }}
+
+            {% if argumentsHref %}
+                You can configure this component using the
+                <a href="{{ argumentsHref }}">Nunjucks macro arguments</a>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

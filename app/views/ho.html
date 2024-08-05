@@ -1,0 +1,80 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template –
+  {{ serviceName }}
+  – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <a href="#1" onclick="history.go(-1); return false;" class="govuk-back-link">Back</a>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        2 vehicles found
+      </h1>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--l" for="event-name">
+          What is the name of the event?
+        </label>
+
+        <div>
+          <input class="govuk-input" id="event-name" name="eventName" type="text" placeholder="Type the event name">
+          <p id="event-display" class="govuk-body-l"></p>
+        </div>
+
+        <style>
+          .highlight {
+            background-color: #FFE5CC;
+            border-bottom: 2px solid #FFB266;
+
+            &::after,
+            &::before {
+              clip-path: inset(100%);
+              clip: rect(1px, 1px, 1px, 1px);
+              height: 1px;
+              overflow: hidden;
+              position: absolute;
+              white-space: nowrap;
+              width: 1px;
+            }
+
+            &::before {
+              content: " [highlight start] ";
+            }
+
+            &::after {
+              content: " [highlight end] ";
+            }
+          }
+        </style>
+
+        <script>
+          // Select the input and display elements
+          const eventInput = document.getElementById('event-name');
+          const eventDisplay = document.getElementById('event-display');
+
+          // Add an event listener for input changes
+          eventInput.addEventListener('input', function () {
+            // Update the display element's text content
+            eventDisplay.textContent = eventInput.value;
+          });
+
+          // Add a focus event listener to the input to apply the highlight class
+          eventInput.addEventListener('focus', function () {
+            eventDisplay
+              .classList
+              .add('highlight');
+          });
+
+          // Add a blur event listener to remove the highlight class
+          eventInput.addEventListener('blur', function () {
+            eventDisplay
+              .classList
+              .remove('highlight');
+          });
+        </script>
+
+      {% endblock %}

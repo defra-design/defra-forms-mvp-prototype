@@ -1,0 +1,107 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template –
+  {{ serviceName }}
+  – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="app-example-wrapper">
+    <div class="app-example app-example--tabs">
+      <div class="app-example__toolbar">
+        <a class="app-example__new-window" href="/components/date-input/default/" target="_blank">
+          Open this example in a new tab
+          <span class="govuk-visually-hidden">: date input</span>
+        </a>
+      </div>
+      <iframe title="Date input example" data-module="app-example-frame" class="app-example__frame app-example__frame--resizable app-example__frame--s" src="/components/date-input/default/index.html" loading="eager" id="iFrameResizer0" style="overflow: auto; height: 250px;"></iframe>
+    </div>
+    <div id="example-tabs" class="app-tabs" role="tablist">
+      {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+      {% from "govuk/components/table/macro.njk" import govukTable %}
+
+      {% set errorsHtml %}
+      <h2 class="govuk-heading-l">Past week</h2>
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+      {{ govukButton({
+      text: "Save and continue"
+    }) }}
+      {% endset %}
+
+      {{ govukTabs({
+      id: "example-tabs",
+      idPrefix: "example",
+      items: [
+        {
+          id: "error-messages-tab",
+          label: "Error messages",
+          panel: {
+            html: errorsHtml
+          },
+          attributes: {
+            'aria-selected': 'false',
+            'role': 'tab',
+            'tabindex': '0',
+            'aria-controls': 'panel-error-messages',
+            'aria-expanded': 'false'
+          }
+        }
+      ]
+    }) }}
+
+      <!-- Manually add a panel for illustration -->
+      <div id="panel-error-messages" role="tabpanel" hidden="hidden">
+        {{ errorsHtml }}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const tabs = document.querySelectorAll('[role="tab"]');
+      const panels = document.querySelectorAll('[role="tabpanel"]');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function (event) {
+          event.preventDefault();
+          const isSelected = tab.getAttribute('aria-selected') === 'true';
+
+          if (isSelected) {
+            // Close currently open tab
+            tab.setAttribute('aria-selected', 'false');
+            tab.setAttribute('aria-expanded', 'false');
+            const panelId = tab.getAttribute('aria-controls');
+            const panel = document.getElementById(panelId);
+            if (panel) {
+              panel.setAttribute('hidden', 'true');
+            }
+          } else {
+            // Open the selected tab
+            // First close any open tabs
+            tabs.forEach(t => {
+              t.setAttribute('aria-selected', 'false');
+              t.setAttribute('aria-expanded', 'false');
+              const panelId = t.getAttribute('aria-controls');
+              const panel = document.getElementById(panelId);
+              if (panel) {
+                panel.setAttribute('hidden', 'true');
+              }
+            });
+
+            // Then open the clicked tab
+            tab.setAttribute('aria-selected', 'true');
+            tab.setAttribute('aria-expanded', 'true');
+            const panelId = tab.getAttribute('aria-controls');
+            const panel = document.getElementById(panelId);
+            if (panel) {
+              panel.removeAttribute('hidden');
+            }
+          }
+        });
+      });
+    });
+  </script>
+
+{% endblock %}

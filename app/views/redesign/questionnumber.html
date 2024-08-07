@@ -67,6 +67,7 @@
   href: "javascript:window.history.back()"
 }) }}
             {% endblock %}
+
             {{ govukRadios({
   name: "pagetype",
   fieldset: {
@@ -81,14 +82,14 @@
       value: "1",
       text: "1 question",
       hint: {
-        text: "Asking just one question per page helps users understand what you’re asking them to do, and focus on the specific question and its answer"
+        text: "This is recommended"
       }
     },
     {
       value: "morethan1",
       text: "More than 1 question",
           hint: {
-        text: "Sometimes it makes sense to group a number of related questions on the same page"
+        text: "If you need to ask for multiple related things on a page, like a passport number and expiry date"
       }
     },
 
@@ -97,8 +98,11 @@
     },
     {
       value: "guidance",
-      text: "Guidance only"
-    }
+      text: "Guidance page only",
+      hint: {
+        text: "If you need to add guidance without asking a question"
+      }      }
+
   ]
 }) }}
 

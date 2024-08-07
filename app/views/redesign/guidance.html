@@ -106,7 +106,7 @@
                                     <!-- Guidance Section -->
                                     <div class="govuk-form-group">
                                         <h2 class="govuk-heading-l">Guidance</h2>
-                                        {# <p class="govuk-body">Only add guidance if you need to give a longer explanation of how to answer the question.</p> #}
+                                        <p class="govuk-body">Add guidance and hyperlinks to the page.</p>
 
                                         {{ govukLabel({
                                         for: "page-heading-input",
@@ -116,7 +116,7 @@
 
                                         {{ govukHint({
                                         id: "page-heading-input-hint",
-                                        text: "The page title goes above the question heading/title on the top of the page. Make sure the page heading is different from the question heading/title"
+                                        text: "Page headings should be a statement and not a question. For example, ‘Passport information’"
                                     }) }}
 
                                         {{ govukInput({
@@ -136,7 +136,7 @@
 
                                         {{ govukHint({
                                         id: "guidance-textarea-hint",
-                                        text: "Use markdown if you need to format your guidance content. Formatting help can be found below."
+                                        text: "Use markdown to format the content"
                                     }) }}
 
                                         {{ govukTextarea({

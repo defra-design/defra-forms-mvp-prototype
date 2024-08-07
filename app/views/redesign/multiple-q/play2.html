@@ -79,11 +79,10 @@
             }) }}
 
             <div class="govuk-grid-row">
-                <div class="govuk-grid-column-one-half" id="container" style="flex: 1 1 75%; overflow-y: auto;">
+                <div class="govuk-grid-column-one-half" id="container" style="flex: 1 1 75%; overflow-y: auto;" data-original-content="true">
 
-                    {# SUMMARY CARD 1 #}
-
-                    <div class="govuk-summary-card" style="border-left: solid 4px #008938!important; outline-color: transparent; border: 1px solid transparent;">
+                    <!-- Original Content -->
+                    <div class="govuk-summary-card" id="original-content" style="display: block;">
                         <div class="govuk-summary-card__title-wrapper" tabindex="0">
                             <h2 class="govuk-summary-card__title">Page 1</h2>
                             <ul class="govuk-summary-card__actions">
@@ -108,536 +107,48 @@
                                     </li>
                                 </ul>
                             </nav>
-
-                            <a href="#" id="toggle-container-link" class="moj-organisation-nav__link govuk-link govuk-link--no-visited-state" style="margin-bottom: 0!important;">Expand</a>
-
-                            <div id="question2settings" class="govuk-modal" style="display: none;">
-
-                                <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-2" style="white-space: nowrap;">Question 2 (date)</strong>
-                                <div id="question2settings" class="govuk-modal" style="display: none;">
-                                    <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-2" style="white-space: nowrap;">Question 2 (date)</strong>
-
-                                    <div class="govuk-form-group">
-                                        {{ govukInput({
-        label: {
-            text: "Question 2 label",
-            classes: "govuk-label--m"
-        },
-        id: "question-label-input-2",
-        name: "question-label-2",
-        classes: "govuk-input",
-        input: {
-            type: "text",
-            attributes: {
-                "aria-labelledby": "question-label-input-2-label"
-            }
-        }
-    }) }}
-                                    </div>
-
-                                    <div class="govuk-form-group">
-                                        {{ govukTextarea({
-        label: {
-            text: "Question 2 hint text",
-            classes: "govuk-label--m"
-        },
-        id: "hint-text-input-2",
-        name: "hint-text-2",
-        rows: 2,
-        classes: "govuk-textarea",
-        describedBy: "hint-text-hint-2"
-    }) }}
-                                    </div>
-
-                                </div>
-
-                                <div class="govuk-form-group">
-                                    <fieldset class="govuk-fieldset">
-                                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                                            <h1 class="govuk-fieldset__heading">Question settings</h1>
-                                        </legend>
-                                        {{ govukCheckboxes({
-                                            idPrefix: "question-settings-2",
-                                            classes: "govuk-checkboxes--small",
-                                            items: [
-                                                {
-                                                    value: "optional",
-                                                    text: "Optional",
-                                                    id: "optional-2",
-                                                    name: "optional-2"
-                                                },
-                                                {
-                                                    value: "monthyear",
-                                                    text: "Month and year only",
-                                                    id: "month-year-checkbox-2",
-                                                    name: "date-format-2"
-                                                }
-                                            ]
-                                        }) }}
-                                    </fieldset>
-                                </div>
-
-                                <div class="govuk-form-group">
-                                    {{ govukInput({
-                                        label: {
-                                            text: "Add a short label for error messages",
-                                            classes: "govuk-label--m"
-                                        },
-                                        hint: {
-                                            text: "Short labels are used in error messages. For example, if the short label is ‘date of birth’ the error message looks like ‘Enter a valid date of birth’ or ‘Date of birth too far in the past’."
-                                        },
-                                        id: "error-label-input-2",
-                                        name: "error-label-2",
-                                        classes: "govuk-input",
-                                        input: {
-                                            type: "text",
-                                            attributes: {
-                                                "aria-describedby": "error-label-hint-2"
-                                            }
-                                        }
-                                    }) }}
-                                </div>
-                            </div>
-
-                            <div class="govuk-modal" style="display: none;">
-
-                                <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-2">Question 2 (Date)</strong>
-
-                                <div class="govuk-form-group">
-                                    {{ govukInput({
-                                        label: {
-                                            text: "Question 2 label",
-                                            classes: "govuk-label--m"
-                                        },
-                                        id: "question-label-input-2",
-                                        name: "question-label-2",
-                                        classes: "govuk-input",
-                                        input: {
-                                            type: "text",
-                                            attributes: {
-                                                "aria-labelledby": "question-label-input-2-label"
-                                            }
-                                        }
-                                    }) }}
-                                </div>
-
-                                <div class="govuk-form-group">
-                                    {{ govukTextarea({
-                                        label: {
-                                            text: "Question 2 hint text",
-                                            classes: "govuk-label--m"
-                                        },
-                                        id: "hint-text-input-2",
-                                        name: "hint-text-2",
-                                        rows: 2,
-                                        classes: "govuk-textarea",
-                                        describedBy: "hint-text-hint-2"
-                                    }) }}
-                                </div>
-
-                                <div class="govuk-form-group">
-                                    <fieldset class="govuk-fieldset">
-                                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                                            <h1 class="govuk-fieldset__heading">Additional settings</h1>
-                                        </legend>
-                                        {{ govukCheckboxes({
-                                            classes: "govuk-checkboxes--small",
-                                            items: [
-                                                {
-                                                    value: "optional",
-                                                    text: "Optional",
-                                                    id: "optional-2",
-                                                    name: "optional-2"
-                                                },
-                                                {
-                                                    value: "required",
-                                                    text: "Required",
-                                                    id: "required-2",
-                                                    name: "required-2"
-                                                }
-                                            ]
-                                        }) }}
-                                    </fieldset>
-                                </div>
-
-                                {{ govukDetails({
-                                    summaryText: "Error message for question 2",
-                                    html: '
-                                        <div class="govuk-form-group">
-                                            <label class="govuk-label govuk-label--m" for="error-label-input-2">Add a short label for error messages</label>
-                                            <div id="error-label-hint-2" class="govuk-hint">Short labels are used in error messages, such as ‘Enter text’.</div>
-                                            <input class="govuk-input" id="error-label-input-2" name="error-label-2" type="text" aria-describedby="error-label-hint-2">
-                                        </div>
-                                    '
-                                }) }}
-                            </div>
-
-                            <div class="govuk-form-group govuk-!-margin-bottom-0 ">
-                                <div id="choose-question-type-modal" class="govuk-modal" style="display: none;">
-                                    <div class="govuk-modal__dialog">
-                                        {{ govukRadios({
-                                            idPrefix: "question-type",
-                                            name: "questionType",
-                                            classes: "govuk-radios",
-                                            fieldset: {
-                                                legend: {
-                                                    text: "What information do you need from users?",
-                                                    isPageHeading: true,
-                                                    classes: "govuk-fieldset__legend--m"
-                                                }
-                                            },
-                                            hint: {
-                                                text: "You can ask for more information later"
-                                            },
-                                            items: [
-                                                {
-                                                    value: "text",
-                                                    text: "Written answer",
-                                                    hint: {
-                                                        text: "A short or long answer as text or number"
-                                                    },
-                                                    id: "question-type-text"
-                                                },
-                                                {
-                                                    value: "date",
-                                                    text: "Date",
-                                                    hint: {
-                                                        text: "A day, month and year or month and year only"
-                                                    },
-                                                    id: "question-type-date",
-                                                    name: "questionType"
-                                                },
-                                                {
-                                                    value: "address",
-                                                    text: "UK address",
-                                                    hint: {
-                                                        text: "A street address, town or city and postcode"
-                                                    },
-                                                    id: "question-type-uk-address"
-                                                },
-                                                {
-                                                    value: "phone",
-                                                    text: "Phone number",
-                                                    hint: {
-                                                        text: "A text box that users can enter numbers and some symbols into, such as '+'"
-                                                    },
-                                                    id: "question-type-phone"
-                                                },
-                                                {
-                                                    value: "file",
-                                                    text: "1 file or multiple files",
-                                                    hint: {
-                                                        text: "Users can select and upload any type of file"
-                                                    },
-                                                    id: "question-type-file-upload"
-                                                },
-                                                {
-                                                    divider: "or"
-                                                },
-                                                {
-                                                    value: "list",
-                                                    text: "A list of options that users can choose from",
-                                                    id: "question-type-select-list"
-                                                }
-                                            ]
-                                        }) }}
-                                    </div>
-
-                                    <div class="govuk-modal__footer">
-                                        <div class="govuk-button-group">
-                                            <button id="add-selected-question" class="govuk-button" type="button">Continue</button>
-                                            <a class="govuk-link" href="#" id="cancel-add-question">Cancel</a>
-                                        </div>
-                                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="govuk-grid-row" id="page-settings-container-1">
-                                <div class="govuk-grid-column-full" id="question-1">
-                                    {{ govukInput({
-                                        label: {
-                                            text: "Page heading",
-                                            classes: "govuk-label--m govuk-!-margin-top-0 ",
-                                            isPageHeading: false
-                                        },
-                                        hint: {
-                                            html: "Page headings should be a statement and not a question. For example, ‘Passport information’"
-                                        },
-                                        id: "page-heading-input",
-                                        name: "pageHeading",
-                                        classes: "govuk-input ",
-                                        describedBy: "page-heading-input-hint",
-                                        input: {
-                                            type: "text",
-                                             id: "page-heading-input"
-                                        }
-                                    }) }}
-
-                                    {{ govukTextarea({
-                                        label: {
-                                            text: "Guidance text (optional)",
-                                            classes: "govuk-label--m"
-                                        },
-                                        hint: {
-                                            text: "Use markdown to format the content"
-                                        },
-                                        id: "guidance-textarea",
-                                        name: "guidanceText",
-                                        classes: "govuk-textarea",
-                                        rows: 5,
-                                        describedBy: "guidance-textarea-hint"
-                                    }) }}
-
-                                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-                                    <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-2">Question 1 (date)</strong>
-
-                                    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
-                                    <div class="govuk-form-group ">
-                                        {{ govukInput({
-                                        label: {
-                                            text: "Question",
-                                            classes: "govuk-label--m"
-                                        },
-                                        id: "question-label-input",
-                                        name: "question-label",
-                                        classes: "govuk-input",
-                                        input: {
-                                            type: "text"
-                                        }
-                                    }) }}
-
-                                    </div>
-                                    <div class="govuk-form-group">
-                                        {{ govukTextarea({
-                                        label: {
-                                            text: "Hint text (optional)",
-                                            classes: "govuk-label--m"
-                                        },
-                                        id: "hint-text-input",
-                                        name: "hintTextInput",
-                                        classes: "govuk-textarea",
-                                        rows: 2
-                                    }) }}
-                                    </div>
-
-                                    <div class="govuk-form-group">
-                                        <fieldset class="govuk-fieldset">
-                                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                                                <h1 class="govuk-fieldset__heading">Question settings</h1>
-                                            </legend>
-                                            {{ govukCheckboxes({
-                                                idPrefix: "additional-settings",
-                                                classes: "govuk-checkboxes--small",
-                                                items: [
-                                                    {
-                                                        id: "optional",
-                                                        name: "optional",
-                                                        value: "optional",
-                                                        text: "Make this question optional",
-                                                        checked: false
-                                                    },
-                                                    {
-                                                        id: "month-year-checkbox",
-                                                        name: "date-format",
-                                                        value: "monthyear",
-                                                        text: "Ask for month and year only",
-                                                        checked: false
-                                                    }
-                                                ]
-                                            }) }}
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="govuk-form-group">
-                                        {{ govukInput({
-                                            label: {
-                                                text: "Add a short label for error messages",
-                                                classes: "govuk-label--m"
-                                            },
-                                            hint: {
-                                                text: "If the short label is ‘date of birth’ the error message is ‘Enter a valid date of birth’."
-                                            },
-                                            id: "error-label-input",
-                                            name: "error-label",
-                                            classes: "govuk-input",
-                                            input: {
-                                                type: "text"
-                                            }
-                                        }) }}
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div id="dynamic-content-container"></div>
-
-                            <div id="new-questions-container"></div>
-
-                            {{ govukAccordion({
-                                            id: "accordion-default",
-                                            headingLevel: 3,
-                                            classes: "custom-accordion-class",
-                                            attributes: {
-                                                "data-attribute": "example"
-                                            },
-                                            rememberExpanded: true,
-                                            hideAllSectionsText: "Collapse answer limits",
-                                            hideSectionText: "Collapse",
-                                            hideSectionAriaLabelText: "Collapse answer limits",
-                                            showAllSectionsText: "Expand to set answer limits",
-                                            showSectionText: "Expand",
-                                            showSectionAriaLabelText: "Expand this section",
-                                            items: [
-                                                {
-                                                    heading: {
-                                                        text: "Set answer limits (optional)"
-                                                    },
-                                                    summary: {
-                                                        text: "Set limits on the answers you will accept from users."
-                                                    },
-                                                    content: {
-                                                        html: govukCheckboxes({
-                                                            idPrefix: "contact",
-                                                            name: "contact",
-                                                            items: [
-                                                                {
-                                                                    value: "betweenDates",
-                                                                    text: "Between two dates",
-                                                                    id: "contact-betweenDates",
-                                                                    conditional: {
-                                                                        html: govukDateInput({
-                                                                            id: "first-date",
-                                                                            namePrefix: "first-date",
-                                                                            fieldset: {
-                                                                                legend: {
-                                                                                    text: "First date",
-                                                                                    classes: "govuk-fieldset__legend--m"
-                                                                                }
-                                                                            },
-                                                                            items: [
-                                                                                {
-                                                                                    name: "day",
-                                                                                    classes: "govuk-input--width-2",
-                                                                                    attributes: {
-                                                                                        inputmode: "numeric"
-                                                                                    }
-                                                                                },
-                                                                                {
-                                                                                    name: "month",
-                                                                                    classes: "govuk-input--width-2",
-                                                                                    attributes: {
-                                                                                        inputmode: "numeric"
-                                                                                    }
-                                                                                },
-                                                                                {
-                                                                                    name: "year",
-                                                                                    classes: "govuk-input--width-4",
-                                                                                    attributes: {
-                                                                                        inputmode: "numeric"
-                                                                                    }
-                                                                                }
-                                                                            ]
-                                                                        }) + govukDateInput({
-                                                                            id: "second-date",
-                                                                            namePrefix: "second-date",
-                                                                            fieldset: {
-                                                                                legend: {
-                                                                                    text: "Second date",
-                                                                                    classes: "govuk-fieldset__legend--m"
-                                                                                }
-                                                                            },
-                                                                            items: [
-                                                                                {
-                                                                                    name: "day",
-                                                                                    classes: "govuk-input--width-2",
-                                                                                    attributes: {
-                                                                                        inputmode: "numeric"
-                                                                                    }
-                                                                                },
-                                                                                {
-                                                                                    name: "month",
-                                                                                    classes: "govuk-input--width-2",
-                                                                                    attributes: {
-                                                                                        inputmode: "numeric"
-                                                                                    }
-                                                                                },
-                                                                                {
-                                                                                    name: "year",
-                                                                                    classes: "govuk-input--width-4",
-                                                                                    attributes: {
-                                                                                        inputmode: "numeric"
-                                                                                    }
-                                                                                }
-                                                                            ]
-                                                                        })
-                                                                    }
-                                                                }
-                                                            ]
-                                                        })
-                                                    },
-                                                    expanded: false
-                                                }
-                                            ]
-                                        }) }}
-
-                            <div class="external-content" id="external-content-1">
-                                <h2 class="govuk-heading-m">Page settings</h2>
-                                <div id="summary-list">
-                                    {{ govukSummaryList({
-                                  rows: [
-                                    {
-                                      key: {
-                                        text: "Page type"
-                                      },
-                                      value: {
-                                        text: "More than 1 question"
-                                      },
-                                      actions: {
-                                        items: [
-                                          {
-                                            href: "#",
-                                            text: "Change",
-                                            visuallyHiddenText: "name"
-                                          }
-                                        ]
-                                      }
-                                    },
-                                    {
-                                      key: {
-                                        text: "Information requested for question 1"
-                                      },
-                                      value: {
-                                        text: "Date"
-                                      },
-                                      actions: {
-                                        items: [
-                                          {
-                                            href: "#",
-                                            text: "Change",
-                                            visuallyHiddenText: "q1"
-                                          }
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                }) }}
-                                </div>
-                            </div>
-
-                            <div class="govuk-button-group">
-                                {{ govukButton({
-                                    text: "Save changes"
-                                }) }}
-                                <a class="govuk-link" href="#">Delete page</a>
-                            </div>
-
-                            <div id="new-questions-container"></div>
                         </div>
                     </div>
 
+                    <!-- New Content -->
+                    <div class="govuk-summary-card" id="new-content" style="display: none;">
+                        <div class="govuk-summary-card__title-wrapper" tabindex="0">
+                            <h2 class="govuk-summary-card__title">1. Passport details</h2>
+                            <ul class="govuk-summary-card__actions">
+                                <li class="govuk-summary-card__action">
+                                    <a class="govuk-link" href="#">Edit<span class="govuk-visually-hidden">Edit this page</span></a>
+                                </li>
+                                <li class="govuk-summary-card__action">
+                                    <a class="govuk-link" href="#">Preview<span class="govuk-visually-hidden">Preview this page</span></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <hr class="govuk-section-break govuk-section-break--visible" style="width: auto;">
+                        <div class="govuk-summary-card__content" style="background-color: #f3f2f1;">
+                            {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+                            {{ govukSummaryList({
+                                rows: [
+                                    {
+                                        key: {
+                                            text: "Question 1"
+                                        },
+                                        value: {
+                                            text: "Issue date"
+                                        }
+                                    },
+                                    {
+                                        key: {
+                                            text: "Question 2"
+                                        },
+                                        value: {
+                                            html: "Expiry date"
+                                        }
+                                    }
+                                ]
+                            }) }}
+                        </div>
+                    </div>
                 </div>
 
                 <div class="govuk-grid-column-one-half" id="second-container" style="outline: solid 1px #f3f2f1; height: 100%; position: sticky; top: 0; padding: 20px; ">
@@ -786,6 +297,10 @@
                     <script>
                         document.addEventListener('DOMContentLoaded', function () {
                             // Initialize variables
+                            const container = document.getElementById('container');
+                            const originalContent = document.getElementById('original-content');
+                            const newContent = document.getElementById('new-content');
+
                             const optionalCheckbox = document.getElementById('optional');
                             const questionLabelInput = document.getElementById('question-label-input');
                             const dateInputLegend = document.getElementById('date-input-legend');
@@ -806,11 +321,28 @@
                             const newQuestionsContainer = document.getElementById('new-questions-container');
                             const secondContainer = document.getElementById('second-container');
                             const toggleContainerLink = document.getElementById('toggle-container-link');
-                            const container = document.getElementById('container');
                             const buttonRow = document.getElementById('button-row');
                             const summaryList = document.getElementById('summary-list');
 
                             let questionCount = 1;
+
+                            // Toggle content when the container is clicked
+                            container.addEventListener('click', function () {
+                                const isOriginal = container.getAttribute('data-original-content') === 'true';
+
+                                if (isOriginal) {
+                                    // Hide original content and show new content
+                                    originalContent.style.display = 'none';
+                                    newContent.style.display = 'block';
+                                } else {
+                                    // Show original content and hide new content
+                                    originalContent.style.display = 'block';
+                                    newContent.style.display = 'none';
+                                }
+
+                                // Toggle the data attribute
+                                container.setAttribute('data-original-content', !isOriginal);
+                            });
 
                             // Function to add and remove highlight class based on focus and blur events
                             function applyHighlightOnFocus(inputElementId, targetElementId) {

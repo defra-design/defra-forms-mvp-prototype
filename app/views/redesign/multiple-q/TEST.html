@@ -781,6 +781,12 @@
                                 content: " [highlight end] ";
                             }
                         }
+
+                        /* Custom styles to align condensed content with title */
+                        .govuk-summary-card__condensed-content {
+                            margin-left: 0;
+                            padding-left: 0;
+                        }
                     </style>
 
                     <script>
@@ -1184,26 +1190,26 @@
                             }
 
                             // Summary cards functionality
+                            // Summary cards functionality
+
+                            // Summary cards functionality
                             const summaryCards = document.querySelectorAll('.govuk-summary-card');
 
                             summaryCards.forEach(function (card) {
                                 const titleWrapper = card.querySelector('.govuk-summary-card__title-wrapper');
                                 const content = card.querySelector('.govuk-summary-card__content');
+                                const condensedContent = createCondensedContent(card);
+
+                                // Initially hide the full content and show the condensed content
+                                content.style.display = 'none';
+                                card.insertBefore(condensedContent, content);
 
                                 titleWrapper.setAttribute('tabindex', '0');
                                 titleWrapper.setAttribute('role', 'button');
                                 titleWrapper.setAttribute('aria-expanded', 'false');
 
                                 titleWrapper.addEventListener('click', function () {
-                                    if (content.style.display === 'none' || content.style.display === '') {
-                                        content.style.display = 'block';
-                                        titleWrapper.setAttribute('aria-expanded', 'true');
-                                        secondContainer.style.display = 'block';
-                                    } else {
-                                        content.style.display = 'none';
-                                        titleWrapper.setAttribute('aria-expanded', 'false');
-                                        secondContainer.style.display = 'none';
-                                    }
+                                    toggleCardContent(card, titleWrapper, content, condensedContent);
                                 });
 
                                 titleWrapper.addEventListener('keydown', function (event) {
@@ -1213,6 +1219,57 @@
                                     }
                                 });
                             });
+
+                            function createCondensedContent(card) {
+                                const condensed = document.createElement('div');
+                                condensed.className = 'govuk-summary-card__condensed-content';
+
+                                const hr = document.createElement('hr');
+                                hr.className = 'govuk-section-break govuk-section-break--visible';
+                                hr.style.width = 'auto';
+
+                                const summaryList = document.createElement('div');
+                                summaryList.className = 'govuk-summary-list';
+                                summaryList.style.backgroundColor = '#f3f2f1';
+
+                                // Create summary rows based on the questions in the full content
+                                const questions = card.querySelectorAll('.govuk-summary-list__row');
+                                questions.forEach((question, index) => {
+                                    const row = document.createElement('div');
+                                    row.className = 'govuk-summary-list__row';
+
+                                    // Correct the structure of HTML elements
+                                    row.innerHTML = `
+                <dt class="govuk-summary-list__key">Question ${index + 1}</dt>
+                <dd class="govuk-summary-list__value">
+                    ${question
+                                        .querySelector('.govuk-summary-list__value')
+                                        .textContent}
+                </dd>
+            `;
+
+                                    summaryList.appendChild(row);
+                                });
+
+                                condensed.appendChild(hr);
+                                condensed.appendChild(summaryList);
+
+                                return condensed;
+                            }
+
+                            function toggleCardContent(card, titleWrapper, fullContent, condensedContent) {
+                                const isExpanded = titleWrapper.getAttribute('aria-expanded') === 'true';
+
+                                if (isExpanded) {
+                                    fullContent.style.display = 'none';
+                                    condensedContent.style.display = 'block';
+                                    titleWrapper.setAttribute('aria-expanded', 'false');
+                                } else {
+                                    fullContent.style.display = 'block';
+                                    condensedContent.style.display = 'none';
+                                    titleWrapper.setAttribute('aria-expanded', 'true');
+                                }
+                            }
 
                             const focusElement = document.getElementById("highlight-card");
 

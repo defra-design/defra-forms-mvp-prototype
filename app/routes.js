@@ -63,3 +63,42 @@ router.post("/overview-answer", function (request, response) {
       break;
   }
 });
+
+// ROUTES FOR THE REDESIGN
+
+router.post("/page-type-answer", function (request, response) {
+  // Retrieve the page type from session data
+  const pagetype = request.session.data["pagetype"];
+
+  // Check the page type and redirect accordingly
+  switch (pagetype) {
+    case "guidance":
+      response.redirect("/redesign/guidance");
+      break;
+    case "1":
+      response.redirect("/redesign/single-q/info-type");
+      break;
+    case "morethan1":
+      response.redirect("/redesign/multiple-q/info-type");
+      break;
+    default:
+      response.redirect("/redesign/404");
+      break;
+  }
+});
+
+router.post("/info-type-2-answer", function (request, response) {
+  // Retrieve the page type from session data
+  const infotype2 = request.session.data["infotype2"];
+
+  // Check the page type and redirect accordingly
+  switch (infotype2) {
+    case "date":
+      response.redirect("/redesign/multiple-q/page1");
+      break;
+    // Add other cases as needed
+    default:
+      response.redirect("/error"); // Add a default case to handle unexpected values
+      break;
+  }
+});

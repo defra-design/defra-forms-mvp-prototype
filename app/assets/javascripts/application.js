@@ -19,27 +19,27 @@ class Example {
   constructor($module) {
     if (
       !($module instanceof HTMLIFrameElement) ||
-      !document.body.classList.contains("govuk-frontend-supported")
+      !document.body.classList.contains('govuk-frontend-supported')
     ) {
-      return;
+      return
     }
 
-    this.$module = $module;
+    this.$module = $module
 
     // Initialise asap for eager iframes or browsers which don't support lazy loading
-    if (!("loading" in this.$module) || this.$module.loading !== "lazy") {
-      return iFrameResize({ scrolling: "omit" }, this.$module);
+    if (!('loading' in this.$module) || this.$module.loading !== 'lazy') {
+      return iFrameResize({ scrolling: 'omit' }, this.$module)
     }
 
-    this.$module.addEventListener("load", () => {
+    this.$module.addEventListener('load', () => {
       try {
-        iFrameResize({ scrolling: "omit" }, this.$module);
+        iFrameResize({ scrolling: 'omit' }, this.$module)
       } catch (error) {
         if (error instanceof Error) {
-          console.error(error.message);
+          console.error(error.message)
         }
       }
-    });
+    })
   }
 }
 
@@ -60,31 +60,31 @@ class AppTabs {
   constructor($module) {
     if (
       !($module instanceof HTMLElement) ||
-      !document.body.classList.contains("govuk-frontend-supported")
+      !document.body.classList.contains('govuk-frontend-supported')
     ) {
-      return this;
+      return this
     }
 
-    this.$module = $module;
-    this.$mobileTabs = this.$module.querySelectorAll(".js-tabs__heading a");
-    this.$desktopTabs = this.$module.querySelectorAll(".js-tabs__item a");
-    this.$panels = this.$module.querySelectorAll(".js-tabs__container");
+    this.$module = $module
+    this.$mobileTabs = this.$module.querySelectorAll('.js-tabs__heading a')
+    this.$desktopTabs = this.$module.querySelectorAll('.js-tabs__item a')
+    this.$panels = this.$module.querySelectorAll('.js-tabs__container')
 
     // Enhance mobile tabs into buttons
-    this.enhanceMobileTabs();
+    this.enhanceMobileTabs()
 
     // Add bindings to desktop tabs
     this.$desktopTabs.forEach(($tab) => {
-      $tab.addEventListener("click", (event) => this.onClick(event));
-    });
+      $tab.addEventListener('click', (event) => this.onClick(event))
+    })
 
     // Reset all tabs and panels to closed state
     // We also add all our default ARIA goodness here
-    this.resetTabs();
+    this.resetTabs()
 
     // Show the first panel already open if the `open` attribute is present
-    if (this.$module.hasAttribute("data-open")) {
-      this.openPanel(this.$panels[0].id);
+    if (this.$module.hasAttribute('data-open')) {
+      this.openPanel(this.$panels[0].id)
     }
   }
 
@@ -94,33 +94,33 @@ class AppTabs {
    * @param {Event} event - Click event
    */
   onClick(event) {
-    event.preventDefault();
+    event.preventDefault()
 
-    const $currentTab = event.target;
+    const $currentTab = event.target
     if (!($currentTab instanceof HTMLElement)) {
-      return;
+      return
     }
 
-    const panelId = $currentTab.getAttribute("aria-controls");
+    const panelId = $currentTab.getAttribute('aria-controls')
     if (!panelId) {
-      return;
+      return
     }
 
-    const $panel = this.getPanel(panelId);
+    const $panel = this.getPanel(panelId)
     const isTabAlreadyOpen =
-      $currentTab.getAttribute("aria-expanded") === "true";
+      $currentTab.getAttribute('aria-expanded') === 'true'
 
     if (!$panel) {
-      throw new Error(`Invalid example ID given: ${panelId}`);
+      throw new Error(`Invalid example ID given: ${panelId}`)
     }
 
     // If the panel that's been called is already open, close it.
     // Otherwise, close all panels and open the one requested.
     if (isTabAlreadyOpen) {
-      this.closePanel(panelId);
+      this.closePanel(panelId)
     } else {
-      this.resetTabs();
-      this.openPanel(panelId);
+      this.resetTabs()
+      this.openPanel(panelId)
     }
   }
 
@@ -134,22 +134,20 @@ class AppTabs {
     // Loop through mobile tabs...
     this.$mobileTabs.forEach(($tab) => {
       // ...construct a button equivalent of each anchor...
-      const $button = document.createElement("button");
-      $button.setAttribute("aria-controls", $tab.getAttribute("aria-controls"));
-      $button.setAttribute("data-track", $tab.getAttribute("data-track"));
-      $button.classList.add("app-tabs__heading-button");
-      $button.innerHTML = $tab.innerHTML;
+      const $button = document.createElement('button')
+      $button.setAttribute('aria-controls', $tab.getAttribute('aria-controls'))
+      $button.setAttribute('data-track', $tab.getAttribute('data-track'))
+      $button.classList.add('app-tabs__heading-button')
+      $button.innerHTML = $tab.innerHTML
       // ...bind controls...
-      $button.addEventListener("click", (event) => this.onClick(event));
+      $button.addEventListener('click', (event) => this.onClick(event))
       // ...and replace the anchor with the button
-      $tab.parentElement.appendChild($button);
-      $tab.parentElement.removeChild($tab);
-    });
+      $tab.parentElement.appendChild($button)
+      $tab.parentElement.removeChild($tab)
+    })
 
     // Replace the value of $mobileTabs with the new buttons
-    this.$mobileTabs = this.$module.querySelectorAll(
-      ".js-tabs__heading button"
-    );
+    this.$mobileTabs = this.$module.querySelectorAll('.js-tabs__heading button')
   }
 
   /**
@@ -158,10 +156,10 @@ class AppTabs {
   resetTabs() {
     this.$panels.forEach(($panel) => {
       // We don't want to hide the panel if there are no tabs present to show it
-      if (!$panel.classList.contains("js-tabs__container--no-tabs")) {
-        this.closePanel($panel.id);
+      if (!$panel.classList.contains('js-tabs__container--no-tabs')) {
+        this.closePanel($panel.id)
       }
-    });
+    })
   }
 
   /**
@@ -171,16 +169,16 @@ class AppTabs {
    */
   openPanel(panelId) {
     if (!panelId) {
-      return;
+      return
     }
 
-    const $panel = this.getPanel(panelId);
+    const $panel = this.getPanel(panelId)
     if (!$panel) {
-      return;
+      return
     }
 
-    const $mobileTab = this.getMobileTab(panelId);
-    const $desktopTab = this.getDesktopTab(panelId);
+    const $mobileTab = this.getMobileTab(panelId)
+    const $desktopTab = this.getDesktopTab(panelId)
 
     // Panels can exist without associated tabs–for example if there's a single
     // panel that's open by default–so make sure they actually exist before use
@@ -190,13 +188,13 @@ class AppTabs {
       $desktopTab &&
       $desktopTab.parentElement
     ) {
-      $mobileTab.setAttribute("aria-expanded", "true");
-      $mobileTab.parentElement.classList.add("app-tabs__heading--current");
-      $desktopTab.setAttribute("aria-expanded", "true");
-      $desktopTab.parentElement.classList.add("app-tabs__item--current");
+      $mobileTab.setAttribute('aria-expanded', 'true')
+      $mobileTab.parentElement.classList.add('app-tabs__heading--current')
+      $desktopTab.setAttribute('aria-expanded', 'true')
+      $desktopTab.parentElement.classList.add('app-tabs__item--current')
     }
 
-    $panel.removeAttribute("hidden");
+    $panel.removeAttribute('hidden')
   }
 
   /**
@@ -206,16 +204,16 @@ class AppTabs {
    */
   closePanel(panelId) {
     if (!panelId) {
-      return;
+      return
     }
 
-    const $panel = this.getPanel(panelId);
+    const $panel = this.getPanel(panelId)
     if (!$panel) {
-      return;
+      return
     }
 
-    const $mobileTab = this.getMobileTab(panelId);
-    const $desktopTab = this.getDesktopTab(panelId);
+    const $mobileTab = this.getMobileTab(panelId)
+    const $desktopTab = this.getDesktopTab(panelId)
 
     // Panels can exist without associated tabs–for example if there's a single
     // panel that's open by default–so make sure they actually exist before use
@@ -225,13 +223,13 @@ class AppTabs {
       $desktopTab &&
       $desktopTab.parentElement
     ) {
-      $mobileTab.setAttribute("aria-expanded", "false");
-      $mobileTab.parentElement.classList.remove("app-tabs__heading--current");
-      $desktopTab.setAttribute("aria-expanded", "false");
-      $desktopTab.parentElement.classList.remove("app-tabs__item--current");
+      $mobileTab.setAttribute('aria-expanded', 'false')
+      $mobileTab.parentElement.classList.remove('app-tabs__heading--current')
+      $desktopTab.setAttribute('aria-expanded', 'false')
+      $desktopTab.parentElement.classList.remove('app-tabs__item--current')
     }
 
-    $panel.setAttribute("hidden", "hidden");
+    $panel.setAttribute('hidden', 'hidden')
   }
 
   /**
@@ -241,13 +239,13 @@ class AppTabs {
    * @returns {HTMLButtonElement | null} Mobile tab button
    */
   getMobileTab(panelId) {
-    let result = null;
+    let result = null
     this.$mobileTabs.forEach(($tab) => {
-      if ($tab.getAttribute("aria-controls") === panelId) {
-        result = $tab;
+      if ($tab.getAttribute('aria-controls') === panelId) {
+        result = $tab
       }
-    });
-    return result;
+    })
+    return result
   }
 
   /**
@@ -257,11 +255,11 @@ class AppTabs {
    * @returns {HTMLAnchorElement | null} Desktop tab link
    */
   getDesktopTab(panelId) {
-    const $desktopTabContainer = this.$module.querySelector(".app-tabs");
+    const $desktopTabContainer = this.$module.querySelector('.app-tabs')
     if ($desktopTabContainer) {
-      return $desktopTabContainer.querySelector(`[aria-controls="${panelId}"]`);
+      return $desktopTabContainer.querySelector(`[aria-controls="${panelId}"]`)
     }
-    return null;
+    return null
   }
 
   /**
@@ -271,7 +269,7 @@ class AppTabs {
    * @returns {HTMLElement | null} Tab panel
    */
   getPanel(panelId) {
-    return document.getElementById(panelId);
+    return document.getElementById(panelId)
   }
 }
 

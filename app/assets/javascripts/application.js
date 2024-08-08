@@ -2,7 +2,6 @@
 // For guidance on how to add JavaScript see:
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
 //
-import iFrameResize from "iframe-resizer/js/iframeResizer.js";
 
 /**
  * Example component
@@ -273,10 +272,23 @@ class AppTabs {
   }
 }
 
+// Find all tabs + initialise
+const $tabs = document.querySelectorAll('[data-module="app-tabs"]')
+$tabs.forEach(($tabs) => {
+  new AppTabs($tabs)
+})
 
+// Find all example frames
 const $examples = document.querySelectorAll(
   '[data-module="app-example-frame"]'
 );
-$examples.forEach(($example) => {
-  new Example($example);
-});
+
+if ($examples.length) {
+  import('/plugin-assets/iframe-resizer/js/iframeResizer.min.js')
+    .then(() => {
+      // Initialise example frames
+      $examples.forEach(($example) => {
+        new Example($example);
+      });
+    })
+}

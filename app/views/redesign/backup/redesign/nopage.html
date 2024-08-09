@@ -2,7 +2,7 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set pageName = "Number of questions - Apply for a county parish holding number in England" %}
+{% set pageName = "Add a page - Apply for a county parish holding number in England" %}
 
 {% block header %}
     {{ serviceHeader({
@@ -48,72 +48,26 @@
                             <a class="moj-sub-navigation__link" aria-current="page" href="#your-pages">Pages</a>
                         </li>
                         {# <li class="moj-sub-navigation__item">
-                        <a class="moj-sub-navigation__link" href="#" id="groups"></a>
-                    </li> #}
+                            <a class="moj-sub-navigation__link" href="#" id="groups"></a>
+                        </li> #}
                     </ul>
 
                 </div>
             </nav>
 
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-one-half" id="container">
+            <form class="form" action="/redesign/questionnumber" method="post">
 
-                    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-one-half" id="container" style="flex: 1 1 75%; overflow-y: auto;">
 
-                    <form class="form" action="/page-type-answer" method="post">
-                        {% block beforeContent %}
-                            {{ govukBackLink({
-                        text: "Back",
-                        href: "javascript:window.history.back()"
-                    }) }}
-                        {% endblock %}
+                        <h2 class="govuk-heading-l">Add a new page</h2>
+                        <p class="govuk-body-l">Add a page first then add a question. You can add more than one question to each page.</p>
 
-                        <div class="govuk-form-group" id="question-page-radio-group">
-                            {{ govukRadios({
-                            name: "pagetype",
-                            fieldset: {
-                                legend: {
-                                    text: "How many questions will you add to this page?",
-                                    isPageHeading: true,
-                                    classes: "govuk-fieldset__legend--l"
-                                }
-                            },
-                            items: [
-                                {
-                                    value: "1",
-                                    text: "1 question",
-                                    hint: {
-                                        text: "This is recommended"
-                                    }
-                                },
-                                {
-                                    value: "morethan1",
-                                    text: "More than 1 question",
-                                    hint: {
-                                        text: "If you need to ask for multiple related things on a page, like a passport number and expiry date"
-                                    }
-                                },
-                                {
-                                    divider: "or"
-                                },
-                                {
-                                    value: "guidance",
-                                    text: "Guidance page only",
-                                    hint: {
-                                        text: "If you need to add guidance without asking a question"
-                                    }
-                                }
-                            ],
-                            attributes: {
-                                id: "question-page-radio-group"
-                            }
-                        }) }}
+                        {% from "govuk/components/button/macro.njk" import govukButton %}
 
-                            {{ govukButton({
-                            text: "Save and continue"
-                        }) }}
-
-                        </form>
+                        {{ govukButton({
+  text: "Add a new page"
+}) }}
 
                         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
@@ -146,22 +100,6 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </form>
 
-                <script>
-                    // Wait for the DOM to fully load
-                    document.addEventListener('DOMContentLoaded', function () {
-                        // Get the radio group element by its ID
-                        const radioGroup = document.getElementById('question-page-radio-group');
-
-                        // Check if the element exists and scroll it into view
-                        if (radioGroup) {
-                            radioGroup.scrollIntoView({behavior: 'smooth', block: 'center'});
-                        } else {
-                            console.error("Radio group element not found.");
-                        }
-                    });
-                </script>
-
-            {% endblock %}
+                {% endblock %}

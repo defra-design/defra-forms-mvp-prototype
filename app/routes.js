@@ -79,7 +79,7 @@ router.post("/page-type-answer", function (request, response) {
       response.redirect("/redesign/single/info-type");
       break;
     case "morethan1":
-      response.redirect("/redesign/multi/info-type");
+      response.redirect("/redesign/Multi/info-type.html");
       break;
     default:
       response.redirect("/redesign/404");

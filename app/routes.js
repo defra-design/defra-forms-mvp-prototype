@@ -73,10 +73,10 @@ router.post("/page-type-answer", function (request, response) {
   // Check the page type and redirect accordingly
   switch (pagetype) {
     case "guidance":
-      response.redirect("/redesign/guidance/edit");
+      response.redirect("/redesign/guidance/edit.html");
       break;
     case "1":
-      response.redirect("/redesign/single/info-type");
+      response.redirect("/redesign/single/info-type.html");
       break;
     case "morethan1":
       response.redirect("/redesign/Multi/info-type.html");
@@ -94,7 +94,7 @@ router.post("/info-type-2-answer", function (request, response) {
   // Check the page type and redirect accordingly
   switch (infotype2) {
     case "date":
-      response.redirect("/redesign/multi/edit");
+      response.redirect("/redesign/Multi/edit.html");
       break;
     // Add other cases as needed
     default:
@@ -110,7 +110,7 @@ router.post("/info-type-1-answer", function (request, response) {
   // Check the page type and redirect accordingly
   switch (infotype2) {
     case "date":
-      response.redirect("/redesign/single/edit");
+      response.redirect("/redesign/single/edit.html");
       break;
     // Add other cases as needed
     default:

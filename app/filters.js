@@ -1,5 +1,6 @@
 const { resolve } = require('path')
 const { cwd } = require('process')
+const slug = require('slug')
 
 //
 // For guidance on how to create filters see:
@@ -63,6 +64,10 @@ addFilter(
     return items
   }
 )
+
+addFunction('slugify', (string) => {
+  return slug(string, { lower: true })
+})
 
 /**
  * @typedef {typeof import('./data/form-library.json')} FormLibrary

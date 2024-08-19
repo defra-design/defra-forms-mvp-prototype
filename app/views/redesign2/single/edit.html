@@ -611,28 +611,12 @@ activeLinkId: "nav-editor"
 
       <!-- Right Column for Additional Content -->
       <div class="govuk-grid-column-one-half" id="second-container"
-        style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px;   box-shadow: 5px 10px #008938; ">
-        <!-- Additional Content Here -->
-        <!-- New HTML content for before element -->
-        <div id="before-content">
-          <p class="govuk-body-s" style="margin-bottom: 0;">
-            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
-              target="_blank">Preview this
-              page in a new
-              tab</a>
-          </p>
-        </div>
-
-
+        style="outline: solid 1px #f3f2f1; height: 100%; position: sticky; top: 0; padding: 20px; ">
         <!-- Additional Content Here -->
         <div class="additional-content">
           <!-- Right Column for Preview -->
           <!-- Header Template Usage -->
-          {{ govukHeader({
-          homepageUrl: null,
-          serviceName: null,
-          classes: "govuk-!-margin-top-8"
-          }) }}
+          {{ govukHeader({ homepageUrl: null, serviceName: null }) }}
           <div>
             <!-- Tag for Preview -->
             {{ govukTag({ text: "Preview of page 1", classes: "govuk-tag--yellow govuk-!-margin-bottom-2
@@ -849,7 +833,6 @@ activeLinkId: "nav-editor"
                   const onceRadio = document.querySelector('input[value="once"]'); // Reference to the "Once" radio button
                   const addAnotherSetButton = document.getElementById('add-another-set-button');
                   const onceButton = document.getElementById('once-button');
-
 
 
 
@@ -1852,39 +1835,6 @@ activeLinkId: "nav-editor"
                 .highlight {
                   background-color: #FFE5CC;
                   border-bottom: 2px solid #FFB266;
-                }
-
-                #before-content {
-                  position: absolute;
-                  top: 0;
-                  left: 10 !important;
-                  right: 0;
-                  /* Ensure the right side is aligned with the container edge */
-                  width: 100%;
-                  padding: 10px !important;
-
-
-
-                  /* Remove padding to avoid affecting the width */
-                  box-sizing: border-box;
-                  /* Ensure content, padding, and borders are within width */
-                  z-index: 1;
-                  border-bottom: 1px solid #008938;
-                  padding-left: 10px;
-                  /* Add padding-left specifically for content */
-                }
-
-                #second-container {
-                  padding: 0;
-                  /* Ensure no padding on the container itself */
-                  box-sizing: border-box;
-                  /* Ensure container handles padding/border correctly */
-                }
-
-                #second-container>* {
-                  padding-left: 0px;
-                  z-index: 2;
-                  /* Ensure content is above the #before-content */
                 }
               </style>
 

@@ -7,133 +7,131 @@
 {% set guidancePlaceholder = "Guidance" %}
 
 {% block header %}
-{{ serviceHeader({
-organisationName: "Defra",
-productName: "Forms Designer",
-serviceName: "",
-containerClasses: containerClasses,
-accountName: "Chris Smith",
-homepageLink: "/",
-signOutLink: "/onboarding/sign-out-confirmation",
-navigationItems: [
-{ href: "/library.html", text: "Forms library", id: "nav-library" },
-{ href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
-{ href: "/editor-pets/0", text: "Editor", id: "nav-editor" }
-],
-activeLinkId: "nav-editor"
-}) }}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    containerClasses: containerClasses,
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+      { href: "/library.html", text: "Forms library", id: "nav-library" },
+      { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
+      { href: "/editor-pets/0", text: "Editor", id: "nav-editor" }
+    ],
+    activeLinkId: "nav-editor"
+  }) }}
 {% endblock %}
 
 {% block content %}
-<!-- Main Grid Row -->
-<div class="govuk-grid-row">
-  <!-- Full Width Column -->
-  <div class="govuk-grid-column-full">
-    <!-- Masthead Section -->
-    <div class="app-masthead">
-      <div class="app-width-container">
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-full">
-            <!-- Caption and Heading -->
-            <span class="govuk-caption-l" style="color: #ffffff;">Apply for a county parish holding certificate</span>
-            <h1 class="govuk-heading-xl app-masthead__title">Form pages</h1>
-            <p class="app-masthead__description">Create and manage the pages in this form.</p>
-            <!-- Preview Form Button -->
-            <a href="/get-started/" role="button" draggable="false"
-              class="govuk-button govuk-button--inverse govuk-!-margin-top-6 govuk-!-margin-bottom-0 govuk-button--start"
-              data-module="govuk-button">
-              Preview form
-            </a>
+  <!-- Main Grid Row -->
+  <div class="govuk-grid-row">
+    <!-- Full Width Column -->
+    <div class="govuk-grid-column-full">
+      <!-- Masthead Section -->
+      <div class="app-masthead">
+        <div class="app-width-container">
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+              <!-- Caption and Heading -->
+              <span class="govuk-caption-l" style="color: #ffffff;">Apply for a county parish holding certificate</span>
+              <h1 class="govuk-heading-xl app-masthead__title">Form pages</h1>
+              <p class="app-masthead__description">Create and manage the pages in this form.</p>
+              <!-- Preview Form Button -->
+              <a href="/get-started/" role="button" draggable="false" class="govuk-button govuk-button--inverse govuk-!-margin-top-6 govuk-!-margin-bottom-0 govuk-button--start" data-module="govuk-button">
+                Preview form
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Sub Navigation -->
-    <nav class="moj-sub-navigation" aria-label="Sub navigation">
-      <div class="moj-sub-navigation__container">
-        <ul class="moj-sub-navigation__list" id="nav-list1">
-          <!-- Pages Link -->
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="#your-pages">Pages</a>
-          </li>
-          <!-- Placeholder for Groups Link -->
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="#" id="groups"></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+      <!-- Sub Navigation -->
+      <nav class="moj-sub-navigation" aria-label="Sub navigation">
+        <div class="moj-sub-navigation__container">
+          <ul class="moj-sub-navigation__list" id="nav-list1">
+            <!-- Pages Link -->
+            <li class="moj-sub-navigation__item">
+              <a class="moj-sub-navigation__link" aria-current="page" href="#your-pages">Pages</a>
+            </li>
+            <!-- Placeholder for Groups Link -->
+            <li class="moj-sub-navigation__item">
+              <a class="moj-sub-navigation__link" href="#" id="groups"></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-    <!-- Page Header Actions using Template -->
-    {{ mojPageHeaderActions({
-    heading: {
-    text: 'Pages'
-    },
-    items: [{
-    text: 'Add page',
-    href: "/redesign/questionnumber",
-    classes: 'govuk-button'
-    },
-    {
-    text: 'Re-order pages',
-    href: "/redesign/reorder",
-    classes: 'govuk-button--secondary'
-    }],
-    attributes: {
-    id: 'page-header',
-    name: 'page-header'
-    }
-    }) }}
+      <!-- Page Header Actions using Template -->
+      {{ mojPageHeaderActions({
+            heading: {
+                text: 'Pages'
+            },
+            items: [{
+                text: 'Add page',
+                href: "/redesign/questionnumber",
+                classes: 'govuk-button'
+            }, {
+                text: 'Finish editing',
+                classes: 'govuk-button--secondary'
+            },
+            {
+                text: 'Re-order pages',
+                href: "/redesign/reorder",
+                classes: 'govuk-button--secondary'
+            }],
+            attributes: {
+                id: 'page-header',
+                name: 'page-header'
+            }
+        }) }}
 
-    <!-- Pages Section -->
-    <div class="govuk-grid-row">
-      <!-- Left Column for Form Controls -->
-      <div class="govuk-grid-column-one-half" id="container" style="flex: 1 1 75%; overflow-y: auto;">
-        <!-- Accordion for Page 1 -->
-        <div class="govuk-accordion custom-accordion-class custom-background-padding" data-module="govuk-accordion"
-          id="accordion-with-summary-sections">
-          <!-- Accordion Section -->
-          <div class="govuk-accordion__section govuk-accordion__section--expanded">
-            <!-- Section Header -->
-            <div class="govuk-accordion__section-header">
-              <h2 class="govuk-accordion__section-heading">
-                <button class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-1">
-                  Page 1:
-                  <span id="page-1-heading-text"></span>
-                </button>
-              </h2>
-              <!-- Summary List -->
-              {# <div class="govuk-accordion__section-summary govuk-body"
-                id="accordion-with-summary-sections-summary-1"> #}
+      <!-- Pages Section -->
+      <div class="govuk-grid-row">
+        <!-- Left Column for Form Controls -->
+        <div class="govuk-grid-column-one-half" id="container" style="flex: 1 1 75%; overflow-y: auto;">
+          <!-- Accordion for Page 1 -->
+          <div class="govuk-accordion custom-accordion-class custom-background-padding" data-module="govuk-accordion" id="accordion-with-summary-sections">
+            <!-- Accordion Section -->
+            <div class="govuk-accordion__section govuk-accordion__section--expanded">
+              <!-- Section Header -->
+              <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading">
+                  <button class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-1">
+                    Page 1:
+                    <span id="page-1-heading-text"></span>
+                  </button>
+                </h2>
+                <!-- Summary List -->
+                {# <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-1"> #}
                 <!-- Summary List Content -->
                 {# {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
-                {{ govukSummaryList({
-                rows: [
-                {
-                key: {
-                text: "Question 1"
-                },
-                value: {
-                text: "Issue date"
-                }
-                },
-                {
-                key: {
-                text: "Question 2"
-                },
-                value: {
-                text: "Expiry date"
-                }
-                }
-                ]
-                }) }} #}
+                  {{ govukSummaryList({
+                                    rows: [
+                                        {
+                                        key: {
+                                            text: "Question 1"
+                                        },
+                                        value: {
+                                            text: "Issue date"
+                                        }
+                                        },
+                                        {
+                                        key: {
+                                            text: "Question 2"
+                                        },
+                                        value: {
+                                            text: "Expiry date"
+                                        }
+                                        }
+                                    ]
+                                    }) }} #}
               </div>
 
               <!-- Accordion Section Content -->
-              <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content"
-                style="padding-top:0!important">
+                            <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content" style="padding-top:0!important">
                 <!-- Question Settings Container -->
                 <div class="govuk-grid-row" id="page-settings-container-1">
                   <div class="govuk-grid-column-full" id="question-1">
@@ -146,71 +144,71 @@ activeLinkId: "nav-editor"
                           {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
                           {{ govukRadios({
-                          idPrefix: "question-type",
-                          name: "questionType",
-                          classes: "govuk-radios",
-                          fieldset: {
+                        idPrefix: "question-type",
+                        name: "questionType",
+                        classes: "govuk-radios",
+                        fieldset: {
                           legend: {
-                          text: "What information do you need from users?",
-                          isPageHeading: true,
-                          classes: "govuk-fieldset__legend--m"
+                            text: "What information do you need from users?",
+                            isPageHeading: true,
+                            classes: "govuk-fieldset__legend--m"
                           }
-                          },
-                          hint: {
+                        },
+                        hint: {
                           text: "You can ask for more information later"
-                          },
-                          items: [
+                        },
+                        items: [
                           {
-                          value: "text",
-                          text: "Written answer",
-                          hint: {
-                          text: "A short or long answer as text or number"
-                          },
-                          id: "question-type-text"
-                          },
-                          {
-                          value: "date",
-                          text: "Date",
-                          hint: {
-                          text: "A day, month and year or month and year only"
-                          },
-                          id: "question-type-date",
-                          name: "questionType"
+                            value: "text",
+                            text: "Written answer",
+                            hint: {
+                              text: "A short or long answer as text or number"
+                            },
+                            id: "question-type-text"
                           },
                           {
-                          value: "address",
-                          text: "UK address",
-                          hint: {
-                          text: "A street address, town or city and postcode"
-                          },
-                          id: "question-type-uk-address"
-                          },
-                          {
-                          value: "phone",
-                          text: "Phone number",
-                          hint: {
-                          text: "A text box that users can enter numbers and some symbols into, such as '+'"
-                          },
-                          id: "question-type-phone"
+                            value: "date",
+                            text: "Date",
+                            hint: {
+                              text: "A day, month and year or month and year only"
+                            },
+                            id: "question-type-date",
+                            name: "questionType"
                           },
                           {
-                          value: "file",
-                          text: "1 file or multiple files",
-                          hint: {
-                          text: "Users can select and upload any type of file"
-                          },
-                          id: "question-type-file-upload"
-                          },
-                          {
-                          divider: "or"
+                            value: "address",
+                            text: "UK address",
+                            hint: {
+                              text: "A street address, town or city and postcode"
+                            },
+                            id: "question-type-uk-address"
                           },
                           {
-                          value: "list",
-                          text: "A list of options that users can choose from",
-                          id: "question-type-select-list"
+                            value: "phone",
+                            text: "Phone number",
+                            hint: {
+                              text: "A text box that users can enter numbers and some symbols into, such as '+'"
+                            },
+                            id: "question-type-phone"
+                          },
+                          {
+                            value: "file",
+                            text: "1 file or multiple files",
+                            hint: {
+                              text: "Users can select and upload any type of file"
+                            },
+                            id: "question-type-file-upload"
+                          },
+                          {
+                            divider: "or"
+                          },
+                          {
+                            value: "list",
+                            text: "A list of options that users can choose from",
+                            id: "question-type-select-list"
                           }
-                          ]
-                          }) }}
+                        ]
+                      }) }}
 
                           <div class="govuk-button-group">
                             <button id="continue-button" class="govuk-button" type="button">Continue</button>
@@ -229,86 +227,39 @@ activeLinkId: "nav-editor"
 
                         <!-- Page Heading Input -->
                         {{ govukInput({
-                        label: {
-                        text: "Page heading",
-                        classes: "govuk-label--m govuk-!-margin-top-0 ",
-                        isPageHeading: false
-                        },
-                        hint: {
-                        html: "Page headings should be a statement and not a question. For example, ‘Passport
-                        information’"
-                        },
-                        id: "page-heading-input",
-                        name: "pageHeading",
-                        classes: "govuk-input ",
-                        describedBy: "page-heading-input-hint",
-                        input: {
-                        type: "text",
-                        id: "page-heading-input"
-                        }
-                        }) }}
+                                                label: {
+                                                    text: "Page heading",
+                                                    classes: "govuk-label--m govuk-!-margin-top-0 ",
+                                                    isPageHeading: false
+                                                },
+                                                hint: {
+                                                    html: "Page headings should be a statement and not a question. For example, ‘Passport information’"
+                                                },
+                                                id: "page-heading-input",
+                                                name: "pageHeading",
+                                                classes: "govuk-input ",
+                                                describedBy: "page-heading-input-hint",
+                                                input: {
+                                                    type: "text",
+                                                    id: "page-heading-input"
+                                                }
+                                            }) }}
 
                         <!-- Guidance Text Textarea -->
                         {{ govukTextarea({
-                        label: {
-                        text: "Guidance text",
-                        classes: "govuk-label--m"
-                        },
-                        hint: {
-                        text: "Use Markdown to format the content or add hyperlinks"
-                        },
-                        id: "guidance-textarea",
-                        name: "guidanceText",
-                        classes: "govuk-textarea",
-                        rows: 5,
-                        describedBy: "guidance-textarea-hint"
-                        }) }}
-
-                        {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
-
-                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
-                        {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
-                        {{ govukSummaryList({
-                        rows: [
-                        {
-                        key: {
-                        text: "Page type"
-                        },
-                        value: {
-                        text: "Guidance"
-                        },
-                        actions: {
-                        items: [
-                        {
-                        href: "#",
-                        text: "Change",
-                        visuallyHiddenText: "date of birth"
-                        }
-                        ]
-                        }
-                        }
-                        ]
-                        }) }}
-
-
-
-                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
-                        {% from "govuk/components/button/macro.njk" import govukButton %}
-
-                        <div class="govuk-button-group">
-                          {{ govukButton({
-                          text: "Save changes"
-                          }) }}
-
-                          {{ govukButton({
-                          text: "Delete page",
-                          classes: "govuk-button--warning"
-                          }) }}
-                        </div>
+                                                label: {
+                                                    text: "Guidance text",
+                                                    classes: "govuk-label--m"
+                                                },
+                                                hint: {
+                                                    text: "Use Markdown to format the content or add hyperlinks"
+                                                },
+                                                id: "guidance-textarea",
+                                                name: "guidanceText",
+                                                classes: "govuk-textarea",
+                                                rows: 5,
+                                                describedBy: "guidance-textarea-hint"
+                                            }) }}
 
                         {# DIV BEFORE THE END OF THE QUESTION-1-CONTENT #}
                       </div>
@@ -327,8 +278,7 @@ activeLinkId: "nav-editor"
         </div>
 
         <!-- Right Column for Additional Content -->
-        <div class="govuk-grid-column-one-half" id="second-container"
-          style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px;   box-shadow: 5px 10px #008938; ">
+        <div class="govuk-grid-column-one-half" id="second-container" style="outline: solid 1px #f3f2f1; height: 100%; position: sticky; top: 0; padding: 20px; ">
           <!-- Additional Content Here -->
           <div class="additional-content">
             <!-- Right Column for Preview -->
@@ -336,52 +286,50 @@ activeLinkId: "nav-editor"
             {{ govukHeader({ homepageUrl: null, serviceName: null }) }}
             <div>
               <!-- Tag for Preview -->
-              {{ govukTag({ text: "Preview of page 1", classes: "govuk-tag--yellow govuk-!-margin-bottom-2
-              govuk-!-margin-top-2" }) }}
+              {{ govukTag({ text: "Preview of page 1", classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-2" }) }}
               <!-- Form for Preview -->
               <form>
                 <!-- Dynamic Heading -->
-                <h1 class="govuk-heading-xl" id="dynamic-heading">{{ headingPlaceholder }}</h1>
+                <h1 class="govuk-heading-l" id="dynamic-heading">{{ headingPlaceholder }}</h1>
                 <!-- Guidance Paragraph -->
                 <p class="govuk-body" id="guidance-paragraph"></p>
 
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
-    </div>
-  </div>
-
-  <!-- End Pages Section -->
-  <!-- Section Break -->
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-half">
-      <h2 class="govuk-heading-m">End pages</h2>
-
-      <!-- Summary Card for Check Answers Page -->
-      <div class="govuk-summary-card" style="border-left: solid 10px #b1b4b6!important; ">
-        <div class="govuk-summary-card__title-wrapper" tabindex="0">
-          <h2 class="govuk-summary-card__title">Check answers page</h2>
-          <!-- Edit and Preview Actions -->
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <a class="govuk-link" href="#">Edit<span class="govuk-visually-hidden">Edit check answers page</span></a>
-            </li>
-            <li class="govuk-summary-card__action">
-              <a class="govuk-link" href="#">Preview<span class="govuk-visually-hidden">Preview check answers
-                  page</span></a>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
-  </div>
+
+    <!-- End Pages Section -->
+    <!-- Section Break -->
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <h2 class="govuk-heading-m">End pages</h2>
+
+        <!-- Summary Card for Check Answers Page -->
+        <div class="govuk-summary-card" style="border-left: solid 10px #b1b4b6!important; ">
+          <div class="govuk-summary-card__title-wrapper" tabindex="0">
+            <h2 class="govuk-summary-card__title">Check answers page</h2>
+            <!-- Edit and Preview Actions -->
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action">
+                <a class="govuk-link" href="#">Edit<span class="govuk-visually-hidden">Edit check answers page</span></a>
+              </li>
+              <li class="govuk-summary-card__action">
+                <a class="govuk-link" href="#">Preview<span class="govuk-visually-hidden">Preview check answers page</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -576,7 +524,7 @@ activeLinkId: "nav-editor"
               targetContent.style.display = 'block';
 
               // Scroll smoothly to the content
-              window.scrollTo({ top: targetContent.offsetTop, behavior: 'smooth' });
+              window.scrollTo({top: targetContent.offsetTop, behavior: 'smooth'});
 
               // Update aria-current attribute
               updateAriaCurrent(event.target);
@@ -744,7 +692,7 @@ activeLinkId: "nav-editor"
       // Scroll the accordion into view on page load
       const accordion = document.getElementById('accordion-with-summary-sections');
       if (accordion) {
-        accordion.scrollIntoView({ behavior: 'smooth' });
+        accordion.scrollIntoView({behavior: 'smooth'});
       }
     });
   </script>
@@ -786,4 +734,4 @@ activeLinkId: "nav-editor"
     }
   </style>
 
-  {% endblock %}
+{% endblock %}

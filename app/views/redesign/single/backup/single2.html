@@ -122,16 +122,16 @@ activeLinkId: "nav-editor"
                 <div class="govuk-grid-column-full" id="question-1">
                   <div class="govuk-summary-card__content" style="background-color: #f3f2f1;margin-bottom: 0;">
                     <!-- Sub Navigation for Question -->
-                    <nav class="moj-sub-navigation" style="display: none;" aria-label="Sub navigation">
+                    <nav class="moj-sub-navigation" aria-label="Sub navigation">
                       <ul class="moj-sub-navigation__list" id="nav-list2">
                         <!-- Question Link -->
                         <li class="moj-sub-navigation__item">
                           <a class="moj-sub-navigation__link" aria-current="page" href="#question-1">Question 1</a>
                         </li>
                         <!-- Add Question Link -->
-                        <li class="moj-sub-navigation__item">
-                          <a class="moj-sub-navigation__link" href="#" id="add-question"></a>
-                        </li>
+                        {# <li class="moj-sub-navigation__item">
+                          <a class="moj-sub-navigation__link" href="#" id="add-question">Add another question</a>
+                        </li> #}
                       </ul>
                     </nav>
 
@@ -218,8 +218,26 @@ activeLinkId: "nav-editor"
 
                     <!-- Default Content for Question 1 -->
                     <div id="question-1-content" class="question-content" style="margin-top: 10px;">
-                      <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-2">Question 1
-                        (date)</strong>
+                      <!-- Page Heading Input -->
+
+
+                      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+                      {% from "govuk/components/input/macro.njk" import govukInput %}
+
+                      {% set emailHtml %}
+                      {{ govukInput({
+                      id: "contact-by-email",
+                      name: "contactByEmail",
+                      type: "email",
+                      autocomplete: "email",
+                      spellcheck: false,
+                      classes: "govuk-!-width-one-third",
+                      label: {
+                      text: "Email address"
+                      }
+                      }) }}
+                      {% endset -%}
+
 
 
                       {% set morethan1Html %}
@@ -308,7 +326,11 @@ activeLinkId: "nav-editor"
                       ]
                       }) }}
 
-
+                      <!-- Section Break -->
+                      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                      <!-- Question Tag -->
+                      <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-2">Question 1
+                        (date)</strong>
 
                       <!-- Question and Hint Text Inputs -->
                       <div class="govuk-form-group">
@@ -381,6 +403,8 @@ activeLinkId: "nav-editor"
                         }) }}
                       </div>
 
+
+                      <!-- Guidance content optional -->
                       <details class="govuk-details">
                         <summary class="govuk-details__summary">
                           <span class="govuk-details__summary-text">
@@ -388,7 +412,6 @@ activeLinkId: "nav-editor"
                           </span>
                         </summary>
                         <div class="govuk-details__text">
-                          <!-- Page Heading Input -->
                           {{ govukInput({
                           label: {
                           text: "Page heading",
@@ -517,20 +540,6 @@ activeLinkId: "nav-editor"
                         </div>
                       </details>
 
-
-
-
-
-
-                      {% from "govuk/components/radios/macro.njk" import govukRadios %}
-                      {% from "govuk/components/input/macro.njk" import govukInput %}
-
-
-
-
-
-
-
                       {% from "govuk/components/button/macro.njk" import govukButton %}
                       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
@@ -545,7 +554,7 @@ activeLinkId: "nav-editor"
                       text: "Page type"
                       },
                       value: {
-                      text: "1 question"
+                      text: "More than 1 question"
                       },
                       actions: {
                       items: [
@@ -576,7 +585,6 @@ activeLinkId: "nav-editor"
                       }
                       ]
                       }) }}
-
 
                       <hr class="govuk-section-break govuk-section-break--m ">
 
@@ -611,28 +619,12 @@ activeLinkId: "nav-editor"
 
       <!-- Right Column for Additional Content -->
       <div class="govuk-grid-column-one-half" id="second-container"
-        style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px;   box-shadow: 5px 10px #008938; ">
-        <!-- Additional Content Here -->
-        <!-- New HTML content for before element -->
-        <div id="before-content">
-          <p class="govuk-body-s" style="margin-bottom: 0;">
-            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
-              target="_blank">Preview this
-              page in a new
-              tab</a>
-          </p>
-        </div>
-
-
+        style="outline: solid 1px #f3f2f1; height: 100%; position: sticky; top: 0; padding: 20px; ">
         <!-- Additional Content Here -->
         <div class="additional-content">
           <!-- Right Column for Preview -->
           <!-- Header Template Usage -->
-          {{ govukHeader({
-          homepageUrl: null,
-          serviceName: null,
-          classes: "govuk-!-margin-top-8"
-          }) }}
+          {{ govukHeader({ homepageUrl: null, serviceName: null }) }}
           <div>
             <!-- Tag for Preview -->
             {{ govukTag({ text: "Preview of page 1", classes: "govuk-tag--yellow govuk-!-margin-bottom-2
@@ -652,7 +644,7 @@ activeLinkId: "nav-editor"
               <!-- Date Input Group -->
               <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" role="group">
-                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l" id="date-input-legend">Question 1
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="date-input-legend">Question 1
                   </legend>
                   <div class="govuk-form-group">
                     <!-- Date Input Hint -->
@@ -755,7 +747,7 @@ activeLinkId: "nav-editor"
     <!-- Summary Card for Check Answers Page -->
     <!-- Accordion for Page 1 -->
     <div class="govuk-accordion custom-accordion-class custom-background-padding-end-pages"
-      data-module="govuk-accordion" id="accordion-with-summary-sections2">
+      data-module="govuk-accordion" id="accordion-with-summary-sections">
       <!-- Accordion Section -->
       <div class="govuk-accordion__section">
         <!-- Section Header -->
@@ -778,7 +770,7 @@ activeLinkId: "nav-editor"
         </div>
 
         <!-- Accordion Section Content -->
-        <div id="accordion-with-summary-sections-content-2" class="govuk-accordion__section-content"
+        <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content"
           style="padding-top:0!important">
           <!-- Question Settings Container -->
           <div class="govuk-grid-row" id="page-settings-container-1">
@@ -797,7 +789,7 @@ activeLinkId: "nav-editor"
     <!-- Summary Card for Check Answers Page -->
     <!-- Accordion for Page 1 -->
     <div class="govuk-accordion custom-accordion-class custom-background-padding-end-pages"
-      data-module="govuk-accordion" id="accordion-with-summary-sections2">
+      data-module="govuk-accordion" id="accordion-with-summary-sections">
       <!-- Accordion Section -->
       <div class="govuk-accordion__section">
         <!-- Section Header -->
@@ -808,7 +800,7 @@ activeLinkId: "nav-editor"
             </button>
           </h2>
           <!-- Summary List -->
-          <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-2">
+          <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-1">
             <!-- Summary List Content -->
             {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
@@ -820,7 +812,7 @@ activeLinkId: "nav-editor"
         </div>
 
         <!-- Accordion Section Content -->
-        <div id="accordion-with-summary-sections-content-2" class="govuk-accordion__section-content"
+        <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content"
           style="padding-top:0!important">
           <!-- Question Settings Container -->
           <div class="govuk-grid-row" id="page-settings-container-1">
@@ -849,7 +841,6 @@ activeLinkId: "nav-editor"
                   const onceRadio = document.querySelector('input[value="once"]'); // Reference to the "Once" radio button
                   const addAnotherSetButton = document.getElementById('add-another-set-button');
                   const onceButton = document.getElementById('once-button');
-
 
 
 
@@ -969,12 +960,12 @@ activeLinkId: "nav-editor"
                       const questionContent = questionContents[questionId];
 
                       // Validate page heading
-                      // if (!pageHeadingInput.value.trim()) {
-                      //   isValid = false;
-                      //   const errorMessage = 'Page heading is required.';
-                      //   displayFieldError(pageHeadingInput, errorMessage);
-                      //   errors.push({ text: errorMessage, href: 'page-heading-input' });
-                      // }
+                      if (!pageHeadingInput.value.trim()) {
+                        isValid = false;
+                        const errorMessage = 'Page heading is required.';
+                        displayFieldError(pageHeadingInput, errorMessage);
+                        errors.push({ text: errorMessage, href: 'page-heading-input' });
+                      }
 
                       // Validate question label
                       const questionLabelInput = questionContent.querySelector('.govuk-input[name="question-label"]');
@@ -1655,8 +1646,6 @@ activeLinkId: "nav-editor"
                 });
 
 
-
-
               </script>
 
 
@@ -1772,7 +1761,7 @@ activeLinkId: "nav-editor"
                   }
 
                   // Define the placeholder text
-                  const headingPlaceholder = "";
+                  const headingPlaceholder = "Page heading";
                   const guidancePlaceholder = "";
 
                   const pageHeadingInput = document.getElementById('page-heading-input');
@@ -1852,39 +1841,6 @@ activeLinkId: "nav-editor"
                 .highlight {
                   background-color: #FFE5CC;
                   border-bottom: 2px solid #FFB266;
-                }
-
-                #before-content {
-                  position: absolute;
-                  top: 0;
-                  left: 10 !important;
-                  right: 0;
-                  /* Ensure the right side is aligned with the container edge */
-                  width: 100%;
-                  padding: 10px !important;
-
-
-
-                  /* Remove padding to avoid affecting the width */
-                  box-sizing: border-box;
-                  /* Ensure content, padding, and borders are within width */
-                  z-index: 1;
-                  border-bottom: 1px solid #008938;
-                  padding-left: 10px;
-                  /* Add padding-left specifically for content */
-                }
-
-                #second-container {
-                  padding: 0;
-                  /* Ensure no padding on the container itself */
-                  box-sizing: border-box;
-                  /* Ensure container handles padding/border correctly */
-                }
-
-                #second-container>* {
-                  padding-left: 0px;
-                  z-index: 2;
-                  /* Ensure content is above the #before-content */
                 }
               </style>
 

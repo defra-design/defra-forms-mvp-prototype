@@ -329,11 +329,26 @@ activeLinkId: "nav-editor"
         <!-- Right Column for Additional Content -->
         <div class="govuk-grid-column-one-half" id="second-container"
           style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px;   box-shadow: 5px 10px #008938; ">
+
+
+          <!-- New HTML content for before element -->
+          <div id="before-content">
+            <p class="govuk-body-s" style="margin-bottom: 0;">
+              <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                target="_blank">Preview this page in a new
+                tab</a>
+            </p>
+          </div>
+
           <!-- Additional Content Here -->
           <div class="additional-content">
             <!-- Right Column for Preview -->
             <!-- Header Template Usage -->
-            {{ govukHeader({ homepageUrl: null, serviceName: null }) }}
+            {{ govukHeader({
+            homepageUrl: null,
+            serviceName: null,
+            classes: "govuk-!-margin-top-8"
+            }) }}
             <div>
               <!-- Tag for Preview -->
               {{ govukTag({ text: "Preview of page 1", classes: "govuk-tag--yellow govuk-!-margin-bottom-2
@@ -371,7 +386,8 @@ activeLinkId: "nav-editor"
           <!-- Edit and Preview Actions -->
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
-              <a class="govuk-link" href="#">Edit<span class="govuk-visually-hidden">Edit check answers page</span></a>
+              <a class="govuk-link" href="#">Edit<span class="govuk-visually-hidden">Edit check answers
+                  page</span></a>
             </li>
             <li class="govuk-summary-card__action">
               <a class="govuk-link" href="#">Preview<span class="govuk-visually-hidden">Preview check answers
@@ -783,6 +799,39 @@ activeLinkId: "nav-editor"
       &::after {
         content: " [highlight end] ";
       }
+    }
+
+    #before-content {
+      position: absolute;
+      top: 0;
+      left: 10 !important;
+      right: 0;
+      /* Ensure the right side is aligned with the container edge */
+      width: 100%;
+      padding: 10px !important;
+
+
+
+      /* Remove padding to avoid affecting the width */
+      box-sizing: border-box;
+      /* Ensure content, padding, and borders are within width */
+      z-index: 1;
+      border-bottom: 1px solid #008938;
+      padding-left: 10px;
+      /* Add padding-left specifically for content */
+    }
+
+    #second-container {
+      padding: 0;
+      /* Ensure no padding on the container itself */
+      box-sizing: border-box;
+      /* Ensure container handles padding/border correctly */
+    }
+
+    #second-container>* {
+      padding-left: 0px;
+      z-index: 2;
+      /* Ensure content is above the #before-content */
     }
   </style>
 

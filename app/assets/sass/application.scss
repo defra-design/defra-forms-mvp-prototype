@@ -1916,21 +1916,21 @@ code.lang-md {
   text-align: right;
 }
 
-/* Ensure cursor changes to pointer on hover */
-.govuk-summary-card__title-wrapper {
-  cursor: pointer;
-}
+// /* Ensure cursor changes to pointer on hover */
+// .govuk-summary-card__title-wrapper {
+//   cursor: pointer;
+// }
 
-/* Add focus styles */
-.govuk-summary-card__title-wrapper:active,
-.govuk-summary-card__title-wrapper:focus {
-  outline: 3px solid transparent;
-  color: #0b0c0c;
-  background-color: #ffdd00;
-  box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
-  text-decoration: none;
-  -webkit-box-decoration-break: clone;
-}
+// /* Add focus styles */
+// .govuk-summary-card__title-wrapper:active,
+// .govuk-summary-card__title-wrapper:focus {
+//   outline: 3px solid transparent;
+//   color: #0b0c0c;
+//   background-color: #ffdd00;
+//   box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+//   text-decoration: none;
+//   -webkit-box-decoration-break: clone;
+// }
 
 .moj-sub-navigation__container {
   display: flex;
@@ -2049,4 +2049,49 @@ code.lang-md {
 .js-enabled .sticky-element--hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+.app-header--full-width-border {
+  border-bottom: 10px solid #1f70b8;
+}
+
+.x-govuk-masthead {
+  background-color: #008531 !important;
+  /* Replace this with your desired color */
+}
+
+.highlight {
+  background-color: #ffe5cc;
+  border-bottom: 2px solid #ffb266;
+}
+
+#before-content {
+  position: absolute;
+  top: 0;
+  left: 10 !important;
+  right: 0;
+  /* Ensure the right side is aligned with the container edge */
+  width: 100%;
+  padding: 10px !important;
+
+  /* Remove padding to avoid affecting the width */
+  box-sizing: border-box;
+  /* Ensure content, padding, and borders are within width */
+  z-index: 1;
+  border-bottom: 1px solid #008938;
+  padding-left: 10px;
+  /* Add padding-left specifically for content */
+}
+
+#second-container {
+  padding: 0;
+  /* Ensure no padding on the container itself */
+  box-sizing: border-box;
+  /* Ensure container handles padding/border correctly */
+}
+
+#second-container > * {
+  padding-left: 0px;
+  z-index: 2;
+  /* Ensure content is above the #before-content */
 }

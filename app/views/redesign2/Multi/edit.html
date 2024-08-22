@@ -1216,168 +1216,168 @@ activeLinkId: "nav-editor"
                   // Function to update the "Add another [question set name]" button
                   function updateAddAnotherSetButton() {
                     const setName = setNameInput.value.trim();
-
-                    addAnotherSetButton.textContent = `Add another ${setName}`;
-                    addAnotherSetButton.disabled = false;
-                  } else {
-                    addAnotherSetButton.textContent = "Add another [question set name]";
-                    addAnotherSetButton.disabled = true;
+                    if (moreThanOnceRadio.checked && setName) {
+                      addAnotherSetButton.textContent = `Add another ${setName}`;
+                      addAnotherSetButton.disabled = false;
+                    } else {
+                      addAnotherSetButton.textContent = "Add another [question set name]";
+                      addAnotherSetButton.disabled = true;
+                    }
                   }
-                }
 
                   // Event listener for when the "More than once" radio button is selected
                   moreThanOnceRadio.addEventListener('change', function () {
-                  if (moreThanOnceRadio.checked) {
-                    updateAddAnotherSetButton();
-                  }
-                });
-                // Initial call to set the button state and text on page load
-                updateAddAnotherSetButton();
-
-                // Function to add and remove highlight class based on focus and blur events
-                function applyHighlightOnFocus(inputElementId, targetElementId) {
-                  const inputElement = document.getElementById(inputElementId);
-                  const targetElement = document.getElementById(targetElementId);
-
-                  if (inputElement && targetElement) {
-                    inputElement.addEventListener('focus', function () {
-                      targetElement.classList.add('highlight');
-                    });
-
-                    inputElement.addEventListener('blur', function () {
-                      targetElement.classList.remove('highlight');
-                    });
-                  } else {
-                    console.error(`Element not found: ${inputElementId} or ${targetElementId}`);
-                  }
-                }
-
-
-
-                // Function to show caption when "More than once" is selected
-                function showCaptionWithPlaceholder() {
-                  dynamicCaption.textContent = "Question set name"; // Set the initial placeholder
-                  dynamicCaption.style.display = "block"; // Ensure the caption is visible
-                }
-
-
-
-
-
-
-
-
-
-                // Function to capitalize the first letter of the first word
-                function capitalizeFirstWord(text) {
-                  return text.charAt(0).toUpperCase() + text.slice(1);
-                }
-
-                // Function to update the dynamic caption and heading with the user's input
-                function updateDynamicCaptionAndHeading() {
-                  const setName = setNameInput.value.trim() || "";
-                  const capitalizedSetName = capitalizeFirstWord(setName); // Capitalize only the first word
-                  dynamicCaption.textContent = setName ? `${capitalizedSetName} 1` : "";
-                }
-
-                // Event listener for when the set-name input changes
-                setNameInput.addEventListener('input', updateDynamicCaptionAndHeading);
-
-                // Initial call to set the dynamic caption and heading on page load
-                updateDynamicCaptionAndHeading();
-
-
-                // Event listener for when the "More than once" radio button is selected
-                moreThanOnceRadio.addEventListener('change', function () {
-                  if (moreThanOnceRadio.checked) {
-                    showCaptionWithPlaceholder(); // Show the caption with the placeholder
-                  }
-                });
-
-
-
-                // Event listener to update dynamic-caption and dynamic-heading on input change
-                setNameInput.addEventListener('input', updateDynamicCaptionAndHeading);
-
-                // Initial call to set the dynamic caption and heading on page load
-                updateDynamicCaptionAndHeading();
-
-                // Apply the highlight effect to the set-name input
-                applyHighlightOnFocus('set-name', 'dynamic-caption');
-
-
-                // Initially hide the "Add another [question set name]" button
-                addAnotherSetButton.style.display = '';
-
-                // Function to update the "Add another [question set name]" button
-                function updateAddAnotherSetButton() {
-                  const setName = setNameInput.value.trim();
-                  if (moreThanOnceRadio.checked && setName) {
-                    addAnotherSetButton.textContent = `Add another ${setName}`;
-                    addAnotherSetButton.disabled = false;
-                    addAnotherSetButton.style.display = 'inline-block'; // Show the button
-                  } else {
-                    addAnotherSetButton.textContent = "Add another [question set name]";
-                    addAnotherSetButton.disabled = true;
-                    addAnotherSetButton.style.display = ''; // Hide the button
-                  }
-                }
-
-                // Event listeners for dynamic behavior
-                setNameInput.addEventListener('input', updateAddAnotherSetButton);
-                moreThanOnceRadio.addEventListener('change', function () {
+                    if (moreThanOnceRadio.checked) {
+                      updateAddAnotherSetButton();
+                    }
+                  });
+                  // Initial call to set the button state and text on page load
                   updateAddAnotherSetButton();
-                  addAnotherSetButton.style.display = 'inline-block'; // Ensure the button is shown
-                });
-                onceRadio.addEventListener('change', function () {
-                  addAnotherSetButton.disabled = true;
-                  addAnotherSetButton.textContent = "Add another [question set name]";
-                  addAnotherSetButton.style.display = 'none'; // Hide the button
-                });
 
-                // Initialize button state on page load
-                updateAddAnotherSetButton();
+                  // Function to add and remove highlight class based on focus and blur events
+                  function applyHighlightOnFocus(inputElementId, targetElementId) {
+                    const inputElement = document.getElementById(inputElementId);
+                    const targetElement = document.getElementById(targetElementId);
+
+                    if (inputElement && targetElement) {
+                      inputElement.addEventListener('focus', function () {
+                        targetElement.classList.add('highlight');
+                      });
+
+                      inputElement.addEventListener('blur', function () {
+                        targetElement.classList.remove('highlight');
+                      });
+                    } else {
+                      console.error(`Element not found: ${inputElementId} or ${targetElementId}`);
+                    }
+                  }
 
 
 
-                // Define the placeholder text
-                const headingPlaceholder = "Page heading";
-                const guidancePlaceholder = "";
+                  // Function to show caption when "More than once" is selected
+                  function showCaptionWithPlaceholder() {
+                    dynamicCaption.textContent = "Question set name"; // Set the initial placeholder
+                    dynamicCaption.style.display = "block"; // Ensure the caption is visible
+                  }
 
-                const guidanceTextarea = document.getElementById('guidance-textarea');
-                const dynamicHeading = document.getElementById('dynamic-heading');
-                const guidanceParagraph = document.getElementById('guidance-paragraph');
 
-                // Apply highlight function to input-target pairs
-                applyHighlightOnFocus('question-label-input', 'date-input-legend');
-                applyHighlightOnFocus('hint-text-input', 'date-input-hint');
-                applyHighlightOnFocus('optional', 'date-input-legend');
-                applyHighlightOnFocus('page-heading-input', 'dynamic-heading');
-                applyHighlightOnFocus('guidance-textarea', 'guidance-paragraph');
 
-                // Function to update the dynamic heading based on the input
-                function updateHeading() {
-                  dynamicHeading.textContent = pageHeadingInput.value.trim() || headingPlaceholder;
-                }
 
-                // Event listener to update heading on input change
-                pageHeadingInput.addEventListener('input', updateHeading);
-                updateHeading();
 
-                // Function to update guidance paragraph based on the textarea input
-                function updateGuidanceParagraph() {
-                  guidanceParagraph.textContent = guidanceTextarea.value.trim() || guidancePlaceholder;
-                }
 
-                // Event listener to update guidance paragraph on input change
-                guidanceTextarea.addEventListener('input', updateGuidanceParagraph);
-                updateGuidanceParagraph();
 
-                // Function to append the date input section for new questions
-                function appendDateInputSection(questionCount) {
-                  const dateInputSection = document.createElement('div');
-                  dateInputSection.classList.add('govuk-form-group');
-                  dateInputSection.innerHTML = `
+
+
+                  // Function to capitalize the first letter of the first word
+                  function capitalizeFirstWord(text) {
+                    return text.charAt(0).toUpperCase() + text.slice(1);
+                  }
+
+                  // Function to update the dynamic caption and heading with the user's input
+                  function updateDynamicCaptionAndHeading() {
+                    const setName = setNameInput.value.trim() || "";
+                    const capitalizedSetName = capitalizeFirstWord(setName); // Capitalize only the first word
+                    dynamicCaption.textContent = setName ? `${capitalizedSetName} 1` : "";
+                  }
+
+                  // Event listener for when the set-name input changes
+                  setNameInput.addEventListener('input', updateDynamicCaptionAndHeading);
+
+                  // Initial call to set the dynamic caption and heading on page load
+                  updateDynamicCaptionAndHeading();
+
+
+                  // Event listener for when the "More than once" radio button is selected
+                  moreThanOnceRadio.addEventListener('change', function () {
+                    if (moreThanOnceRadio.checked) {
+                      showCaptionWithPlaceholder(); // Show the caption with the placeholder
+                    }
+                  });
+
+
+
+                  // Event listener to update dynamic-caption and dynamic-heading on input change
+                  setNameInput.addEventListener('input', updateDynamicCaptionAndHeading);
+
+                  // Initial call to set the dynamic caption and heading on page load
+                  updateDynamicCaptionAndHeading();
+
+                  // Apply the highlight effect to the set-name input
+                  applyHighlightOnFocus('set-name', 'dynamic-caption');
+
+
+                  // Initially hide the "Add another [question set name]" button
+                  addAnotherSetButton.style.display = '';
+
+                  // Function to update the "Add another [question set name]" button
+                  function updateAddAnotherSetButton() {
+                    const setName = setNameInput.value.trim();
+                    if (moreThanOnceRadio.checked && setName) {
+                      addAnotherSetButton.textContent = `Add another ${setName}`;
+                      addAnotherSetButton.disabled = false;
+                      addAnotherSetButton.style.display = 'inline-block'; // Show the button
+                    } else {
+                      addAnotherSetButton.textContent = "Add another [question set name]";
+                      addAnotherSetButton.disabled = true;
+                      addAnotherSetButton.style.display = ''; // Hide the button
+                    }
+                  }
+
+                  // Event listeners for dynamic behavior
+                  setNameInput.addEventListener('input', updateAddAnotherSetButton);
+                  moreThanOnceRadio.addEventListener('change', function () {
+                    updateAddAnotherSetButton();
+                    addAnotherSetButton.style.display = 'inline-block'; // Ensure the button is shown
+                  });
+                  onceRadio.addEventListener('change', function () {
+                    addAnotherSetButton.disabled = true;
+                    addAnotherSetButton.textContent = "Add another [question set name]";
+                    addAnotherSetButton.style.display = 'none'; // Hide the button
+                  });
+
+                  // Initialize button state on page load
+                  updateAddAnotherSetButton();
+
+
+
+                  // Define the placeholder text
+                  const headingPlaceholder = "Page heading";
+                  const guidancePlaceholder = "";
+
+                  const guidanceTextarea = document.getElementById('guidance-textarea');
+                  const dynamicHeading = document.getElementById('dynamic-heading');
+                  const guidanceParagraph = document.getElementById('guidance-paragraph');
+
+                  // Apply highlight function to input-target pairs
+                  applyHighlightOnFocus('question-label-input', 'date-input-legend');
+                  applyHighlightOnFocus('hint-text-input', 'date-input-hint');
+                  applyHighlightOnFocus('optional', 'date-input-legend');
+                  applyHighlightOnFocus('page-heading-input', 'dynamic-heading');
+                  applyHighlightOnFocus('guidance-textarea', 'guidance-paragraph');
+
+                  // Function to update the dynamic heading based on the input
+                  function updateHeading() {
+                    dynamicHeading.textContent = pageHeadingInput.value.trim() || headingPlaceholder;
+                  }
+
+                  // Event listener to update heading on input change
+                  pageHeadingInput.addEventListener('input', updateHeading);
+                  updateHeading();
+
+                  // Function to update guidance paragraph based on the textarea input
+                  function updateGuidanceParagraph() {
+                    guidanceParagraph.textContent = guidanceTextarea.value.trim() || guidancePlaceholder;
+                  }
+
+                  // Event listener to update guidance paragraph on input change
+                  guidanceTextarea.addEventListener('input', updateGuidanceParagraph);
+                  updateGuidanceParagraph();
+
+                  // Function to append the date input section for new questions
+                  function appendDateInputSection(questionCount) {
+                    const dateInputSection = document.createElement('div');
+                    dateInputSection.classList.add('govuk-form-group');
+                    dateInputSection.innerHTML = `
     <fieldset class="govuk-fieldset" role="group">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="date-input-legend-${questionCount}">Question ${questionCount}</legend>
       <div class="govuk-form-group">
@@ -1429,57 +1429,57 @@ activeLinkId: "nav-editor"
             </details>
     `;
 
-                  // Find the "once-button" element
-                  const onceButton = document.getElementById('once-button');
+                    // Find the "once-button" element
+                    const onceButton = document.getElementById('once-button');
 
-                  // Insert the date input section before the "once-button" element
-                  if (onceButton) {
-                    onceButton.parentNode.insertBefore(dateInputSection, onceButton);
-                  } else {
-                    console.error('"once-button" element not found.');
+                    // Insert the date input section before the "once-button" element
+                    if (onceButton) {
+                      onceButton.parentNode.insertBefore(dateInputSection, onceButton);
+                    } else {
+                      console.error('"once-button" element not found.');
+                    }
+
+                    const questionLabelInput = document.getElementById(`dynamic-question-label-${questionCount}`);
+                    const questionLegend = document.getElementById(`date-input-legend-${questionCount}`);
+
+                    if (questionLabelInput && questionLegend) {
+                      questionLabelInput.addEventListener('input', function () {
+                        questionLegend.textContent = this.value.trim() || `Question ${questionCount}`;
+                      });
+
+                      applyHighlightOnFocus(`dynamic-question-label-${questionCount}`, `date-input-legend-${questionCount}`);
+                    } else {
+                      console.error(`Input or Legend element not found for question ${questionCount}`);
+                    }
                   }
 
-                  const questionLabelInput = document.getElementById(`dynamic-question-label-${questionCount}`);
-                  const questionLegend = document.getElementById(`date-input-legend-${questionCount}`);
 
-                  if (questionLabelInput && questionLegend) {
-                    questionLabelInput.addEventListener('input', function () {
-                      questionLegend.textContent = this.value.trim() || `Question ${questionCount}`;
+                  // Function to check if the accordion section is expanded
+                  function checkAccordionSectionExpanded() {
+                    const section = document.querySelector('#accordion-with-summary-sections .govuk-accordion__section');
+                    const isExpanded = section.classList.contains('govuk-accordion__section--expanded');
+
+                    secondContainer.style.display = isExpanded ? 'block' : 'none';
+                  }
+
+                  // Add event listeners for accordion interactions
+                  const accordionShowAllButton = document.querySelector('.govuk-accordion__show-all');
+                  const accordionSectionButtons = document.querySelectorAll('.govuk-accordion__section-button'); // Use correct class
+
+                  if (accordionShowAllButton) {
+                    accordionShowAllButton.addEventListener('click', function () {
+                      setTimeout(checkAccordionSectionExpanded, 10);
                     });
-
-                    applyHighlightOnFocus(`dynamic-question-label-${questionCount}`, `date-input-legend-${questionCount}`);
-                  } else {
-                    console.error(`Input or Legend element not found for question ${questionCount}`);
                   }
-                }
 
-
-                // Function to check if the accordion section is expanded
-                function checkAccordionSectionExpanded() {
-                  const section = document.querySelector('#accordion-with-summary-sections .govuk-accordion__section');
-                  const isExpanded = section.classList.contains('govuk-accordion__section--expanded');
-
-                  secondContainer.style.display = isExpanded ? 'block' : 'none';
-                }
-
-                // Add event listeners for accordion interactions
-                const accordionShowAllButton = document.querySelector('.govuk-accordion__show-all');
-                const accordionSectionButtons = document.querySelectorAll('.govuk-accordion__section-button'); // Use correct class
-
-                if (accordionShowAllButton) {
-                  accordionShowAllButton.addEventListener('click', function () {
-                    setTimeout(checkAccordionSectionExpanded, 10);
+                  accordionSectionButtons.forEach(function (sectionButton) {
+                    sectionButton.addEventListener('click', function () {
+                      setTimeout(checkAccordionSectionExpanded, 10);
+                    });
                   });
-                }
 
-                accordionSectionButtons.forEach(function (sectionButton) {
-                  sectionButton.addEventListener('click', function () {
-                    setTimeout(checkAccordionSectionExpanded, 10);
-                  });
-                });
-
-                // Initialize state on page load
-                checkAccordionSectionExpanded();
+                  // Initialize state on page load
+                  checkAccordionSectionExpanded();
                 });
 
 

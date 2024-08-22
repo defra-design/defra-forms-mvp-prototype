@@ -262,7 +262,7 @@ activeLinkId: "nav-editor"
                                   answer
                                   questions</h1>
                               </legend>
-                              <div id="dob-hint" class="govuk-hint">The maximum limit should be no more than 25</div>
+                              <div id="dob-hint" class="govuk-hint">The range must be between 2 and 25</div>
                               <div class="govuk-date-input" id="dob">
                                 <div class="govuk-date-input__item">
                                   <div class="govuk-form-group">
@@ -771,11 +771,11 @@ activeLinkId: "nav-editor"
 
             errorSummary.innerHTML =
               `<h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
-                  <div class="govuk-error-summary__body">
-                    <ul class="govuk-list govuk-error-summary__list">
-                      ${errorListItems}
-                    </ul>
-                  </div>`;
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                ${errorListItems}
+              </ul>
+            </div>`;
 
             // Insert the error summary after the sub-navigation
             const subNavigation = navList.parentNode; // Get the nav element
@@ -863,11 +863,11 @@ activeLinkId: "nav-editor"
 
           successBanner.innerHTML =
             `<div class="govuk-notification-banner__header">
-                  <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
-                </div>
-                <div class="govuk-notification-banner__content">
-                  <h3 class="govuk-notification-banner__heading">Changes saved</h3>
-                </div>`;
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <h3 class="govuk-notification-banner__heading">Changes saved</h3>
+          </div>`;
 
           // Insert the success banner after the sub-navigation
           const subNavigation = navList.parentNode; // Get the nav element
@@ -911,10 +911,10 @@ activeLinkId: "nav-editor"
             if (moreThanOnceRadio.checked) {
               // Append the Repeater tag after the heading text
               pageHeadingTextSpan.innerHTML += `
-              <span class="govuk-tag govuk-tag--purple" style="margin-left: 8px;">
-                Repeater
-              </span>
-            `;
+        <span class="govuk-tag govuk-tag--purple" style="margin-left: 8px;">
+          Repeater
+        </span>
+      `;
             }
           }
         }
@@ -976,84 +976,84 @@ activeLinkId: "nav-editor"
             if (questionType === 'date') {
               // Specific content for the Date Question
               newQuestionContent = `<div id="${questionContentId}" class="question-section">
-                  <!-- Question Tag -->
-                  <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-2">Question ${questionCount} (date)</strong>
+            <!-- Question Tag -->
+            <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-2">Question ${questionCount} (date)</strong>
 
-                  <!-- Question and Hint Text Inputs -->
-                  <div class="govuk-form-group">
-                      <label for="dynamic-question-label-${questionCount}" class="govuk-label govuk-label--m">Question</label>
-                      <input class="govuk-input" id="dynamic-question-label-${questionCount}" name="question-label" type="text">
-                  </div>
-                  <div class="govuk-form-group">
-                      <label for="dynamic-hint-text-${questionCount}" class="govuk-label govuk-label--m">Hint text (optional)</label>
-                      <textarea class="govuk-textarea" id="dynamic-hint-text-${questionCount}" name="hintTextInput" rows="2"></textarea>
-                  </div>
+            <!-- Question and Hint Text Inputs -->
+            <div class="govuk-form-group">
+                <label for="dynamic-question-label-${questionCount}" class="govuk-label govuk-label--m">Question</label>
+                <input class="govuk-input" id="dynamic-question-label-${questionCount}" name="question-label" type="text">
+            </div>
+            <div class="govuk-form-group">
+                <label for="dynamic-hint-text-${questionCount}" class="govuk-label govuk-label--m">Hint text (optional)</label>
+                <textarea class="govuk-textarea" id="dynamic-hint-text-${questionCount}" name="hintTextInput" rows="2"></textarea>
+            </div>
 
-                  <!-- Question Settings -->
-                  <div class="govuk-form-group">
-                      <fieldset class="govuk-fieldset">
-                          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="date-input-setting-${questionCount}">Question ${questionCount} settings</legend>
-                          <!-- Checkbox for Additional Settings -->
-                          <div class="govuk-checkboxes govuk-checkboxes--small">
-                              <div class="govuk-checkboxes__item">
-                                  <input class="govuk-checkboxes__input" id="dynamic-optional-${questionCount}" name="optional" type="checkbox" value="optional">
-                                  <label class="govuk-label govuk-checkboxes__label" for="dynamic-optional-${questionCount}">Make this question optional</label>
-                              </div>
+            <!-- Question Settings -->
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="date-input-setting-${questionCount}">Question ${questionCount} settings</legend>
+                    <!-- Checkbox for Additional Settings -->
+                    <div class="govuk-checkboxes govuk-checkboxes--small">
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="dynamic-optional-${questionCount}" name="optional" type="checkbox" value="optional">
+                            <label class="govuk-label govuk-checkboxes__label" for="dynamic-optional-${questionCount}">Make this question optional</label>
+                        </div>
 
-                          </div>
-                      </fieldset>
-                  </div>
+                    </div>
+                </fieldset>
+            </div>
 
-                  <!-- Error Message Label Input -->
-                  <div class="govuk-form-group">
-                      <label for="dynamic-error-label-${questionCount}" class="govuk-label govuk-label--m">Add a short label for error messages</label>
-                      <span class="govuk-hint">If the short label is ‘date of birth’ the error message is ‘Enter a valid date of birth’.</span>
-                      <input class="govuk-input" id="dynamic-error-label-${questionCount}" name="error-label" type="text">
-                  </div>
+            <!-- Error Message Label Input -->
+            <div class="govuk-form-group">
+                <label for="dynamic-error-label-${questionCount}" class="govuk-label govuk-label--m">Add a short label for error messages</label>
+                <span class="govuk-hint">If the short label is ‘date of birth’ the error message is ‘Enter a valid date of birth’.</span>
+                <input class="govuk-input" id="dynamic-error-label-${questionCount}" name="error-label" type="text">
+            </div>
 
-                  <!-- Answer Limits -->
-                  <details class="govuk-details">
-                      <summary class="govuk-details__summary">
-                          <span class="govuk-details__summary-text">
-                              Set answer limits (optional)
-                          </span>
-                      </summary>
-                      <div class="govuk-details__text">
-                          <!-- Checkbox for Answer Limits -->
-                          <div class="govuk-checkboxes">
-                              <div class="govuk-checkboxes__item">
-                                  <input class="govuk-checkboxes__input" id="dynamic-betweenDates-${questionCount}" name="contact" type="checkbox" value="betweenDates">
-                                  <label class="govuk-label govuk-checkboxes__label" for="dynamic-betweenDates-${questionCount}">Answer must be between two dates</label>
-                              </div>
-                          </div>
-                      </div>
-                  </details>
+            <!-- Answer Limits -->
+            <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        Set answer limits (optional)
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    <!-- Checkbox for Answer Limits -->
+                    <div class="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="dynamic-betweenDates-${questionCount}" name="contact" type="checkbox" value="betweenDates">
+                            <label class="govuk-label govuk-checkboxes__label" for="dynamic-betweenDates-${questionCount}">Answer must be between two dates</label>
+                        </div>
+                    </div>
+                </div>
+            </details>
 
-                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+              <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-                     <div class="govuk-button-group">
-                      <button class="govuk-button" id="save-changes-button" type="button">Save changes</button>
+               <div class="govuk-button-group">
+                <button class="govuk-button" id="save-changes-button" type="button">Save changes</button>
 
-                                  <p class="govuk-body">
-                                    <a href="#" class="govuk-link govuk-link--no-visited-state">Delete question</a>
-                                  </p>
+                            <p class="govuk-body">
+                              <a href="#" class="govuk-link govuk-link--no-visited-state">Delete question</a>
+                            </p>
 
-                  </div>
+            </div>
 
 
-              </div>`;
+        </div>`;
             } else if (questionType === 'text') {
               newQuestionContent = `
-              <div id="${questionContentId}" class="question-section" style="display: none; padding: 10px; margin-bottom: 10px;">
-                <h3>New Text Question Content</h3>
-                <p>This is the content for a new Text Question.</p>
-              </div>`;
+        <div id="${questionContentId}" class="question-section" style="display: none; padding: 10px; margin-bottom: 10px;">
+          <h3>New Text Question Content</h3>
+          <p>This is the content for a new Text Question.</p>
+        </div>`;
             } else {
               newQuestionContent = `
-              <div id="${questionContentId}" class="question-section" style="display: none; padding: 10px;  margin-bottom: 10px;">
-                <h3>Unknown Question Type</h3>
-                <p>Unknown content type selected.</p>
-              </div>`;
+        <div id="${questionContentId}" class="question-section" style="display: none; padding: 10px;  margin-bottom: 10px;">
+          <h3>Unknown Question Type</h3>
+          <p>Unknown content type selected.</p>
+        </div>`;
             }
 
             const newQuestionsContainer = document.createElement('div');
@@ -1364,56 +1364,56 @@ activeLinkId: "nav-editor"
           const dateInputSection = document.createElement('div');
           dateInputSection.classList.add('govuk-form-group');
           dateInputSection.innerHTML = `
-          <fieldset class="govuk-fieldset" role="group">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="date-input-legend-${questionCount}">Question ${questionCount}</legend>
+    <fieldset class="govuk-fieldset" role="group">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="date-input-legend-${questionCount}">Question ${questionCount}</legend>
+      <div class="govuk-form-group">
+        <div id="date-input-hint-${questionCount}" class="govuk-hint"></div>
+        <div class="govuk-date-input" id="date-input" data-module="govuk-date-input">
+          <div class="govuk-date-input__item" id="day-input-wrapper-${questionCount}">
             <div class="govuk-form-group">
-              <div id="date-input-hint-${questionCount}" class="govuk-hint"></div>
-              <div class="govuk-date-input" id="date-input" data-module="govuk-date-input">
-                <div class="govuk-date-input__item" id="day-input-wrapper-${questionCount}">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="date-day-${questionCount}">Day</label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day-${questionCount}" name="date-day-${questionCount}" type="text">
-                  </div>
-                </div>
-                <div class="govuk-date-input__item" id="month-input-wrapper-${questionCount}">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="date-month-${questionCount}">Month</label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month-${questionCount}" name="date-month-${questionCount}" type="text" pattern="[0-9]*">
-                  </div>
-                </div>
-                <div class="govuk-date-input__item" id="year-input-wrapper-${questionCount}">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="date-year-${questionCount}">Year</label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year-${questionCount}" name="date-year-${questionCount}" type="text" pattern="[0-9]*">
-                  </div>
+              <label class="govuk-label govuk-date-input__label" for="date-day-${questionCount}">Day</label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day-${questionCount}" name="date-day-${questionCount}" type="text">
+            </div>
+          </div>
+          <div class="govuk-date-input__item" id="month-input-wrapper-${questionCount}">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="date-month-${questionCount}">Month</label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month-${questionCount}" name="date-month-${questionCount}" type="text" pattern="[0-9]*">
+            </div>
+          </div>
+          <div class="govuk-date-input__item" id="year-input-wrapper-${questionCount}">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="date-year-${questionCount}">Year</label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year-${questionCount}" name="date-year-${questionCount}" type="text" pattern="[0-9]*">
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+      <details class="govuk-details govuk-!-padding-top-5" >
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">Error messages for this question</span>
+              </summary>
+              <div class="govuk-details__text">
+                <!-- Error Messages Section -->
+                <div class="govuk-error-summary" data-module="govuk-error-summary">
+                  <h2 class="govuk-error-summary__title">
+                    There is a problem
+                  </h2>
+                  <ul class="govuk-list govuk-error-summary__list">
+                    <li>
+                      <a id="date-input-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden" id="date-input-error">Error:</span>
+                        Enter
+                        <span id="error-dynamic-text">date of birth</span>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
-            </div>
-          </fieldset>
-
-            <details class="govuk-details govuk-!-padding-top-5" >
-                    <summary class="govuk-details__summary">
-                      <span class="govuk-details__summary-text">Error messages for this question</span>
-                    </summary>
-                    <div class="govuk-details__text">
-                      <!-- Error Messages Section -->
-                      <div class="govuk-error-summary" data-module="govuk-error-summary">
-                        <h2 class="govuk-error-summary__title">
-                          There is a problem
-                        </h2>
-                        <ul class="govuk-list govuk-error-summary__list">
-                          <li>
-                            <a id="date-input-error" class="govuk-error-message">
-                              <span class="govuk-visually-hidden" id="date-input-error">Error:</span>
-                              Enter
-                              <span id="error-dynamic-text">date of birth</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </details>
-          `;
+            </details>
+    `;
 
           // Find the "once-button" element
           const onceButton = document.getElementById('once-button');
@@ -1691,21 +1691,21 @@ activeLinkId: "nav-editor"
 
     <style>
       /* .custom-background-padding {
-                        background-color: #f3f2f1;
-                        border-left: 10px solid #008938;
-                        padding: 15px;
-                      }
+                  background-color: #f3f2f1;
+                  border-left: 10px solid #008938;
+                  padding: 15px;
+                }
 
-                      .custom-background-padding-end-pages {
-                        background-color: #f3f2f1;
-                        border-left: 10px solid #b1b4b6;
-                        padding: 15px;
-                      }
+                .custom-background-padding-end-pages {
+                  background-color: #f3f2f1;
+                  border-left: 10px solid #b1b4b6;
+                  padding: 15px;
+                }
 
-                      .govuk-summary-card__content {
-                        background-color: #f3f2f1;
-                        padding: 15px 15px 15px 0;
-                      } */
+                .govuk-summary-card__content {
+                  background-color: #f3f2f1;
+                  padding: 15px 15px 15px 0;
+                } */
 
       .highlight {
         background-color: #FFE5CC;

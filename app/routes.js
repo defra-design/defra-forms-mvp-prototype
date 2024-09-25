@@ -64,7 +64,7 @@ router.post("/overview-answer", function (request, response) {
   }
 });
 
-// ROUTES FOR THE REDESIGN
+// ROUTES FOR THE REDESIGN ITERATION 1
 
 router.post("/page-type-answer", function (request, response) {
   // Retrieve the page type from session data
@@ -87,9 +87,9 @@ router.post("/page-type-answer", function (request, response) {
   }
 });
 
-router.post("/info-type-2-answer", function (request, response) {
+router.post("/info-type-1-answer", function (request, response) {
   // Retrieve the page type from session data
-  const infotype2 = request.session.data["infotype2"];
+  const infotype2 = request.session.data["infotype1"];
 
   // Check the page type and redirect accordingly
   switch (infotype2) {
@@ -115,6 +115,66 @@ router.post("/info-type-1-answer", function (request, response) {
     // Add other cases as needed
     default:
       response.redirect("/error"); // Add a default case to handle unexpected values
+      break;
+  }
+});
+
+// ROUTES FOR THE REDESIGN iteration 2
+
+router.post("/page-type-answer-2", function (request, response) {
+  // Retrieve the page type from session data
+  const pagetype = request.session.data["pagetype2"];
+
+  // Check the page type and redirect accordingly
+  switch (pagetype) {
+    case "guidance":
+      response.redirect("/october/guidance/edit.html");
+      break;
+    case "1":
+      response.redirect("/october/single/settings.html");
+      break;
+    case "morethan1":
+      response.redirect("/october/Multi/edit.html");
+      break;
+    default:
+      response.redirect("/redesign/404");
+      break;
+  }
+});
+
+router.post("/info-type-2-answer", function (request, response) {
+  // Retrieve the page type from session data
+  const infotype2 = request.session.data["infotype2"];
+
+  // Check the page type and redirect accordingly
+  switch (infotype2) {
+    case "date":
+      response.redirect("/october/single/edit.html");
+      break;
+    case "text":
+      response.redirect("/october/single/edit.html");
+      break;
+    default:
+      response.redirect("/error");
+      break;
+  }
+});
+
+router.post("/response-type-answer", function (request, response) {
+  // Retrieve the page type from session data
+  const pagetype = request.session.data["responseType"];
+
+  // Check the page type and redirect accordingly
+  switch (pagetype) {
+    case "once":
+      response.redirect("/october/single/edit-default/overview.html");
+      break;
+    case "morethan1":
+      response.redirect("/october/morethan1.html");
+      break;
+
+    default:
+      response.redirect("/redesign/404");
       break;
   }
 });

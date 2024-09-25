@@ -1,0 +1,256 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Heading or question goes here
+      </h1>
+
+      <form class="form" action="/path/of/next/page" method="post">
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+
+                          <!-- Question and Hint Text Inputs -->
+                          <div class="govuk-form-group">
+                            {{ govukInput({
+                            label: {
+                            text: "Question",
+                            classes: "govuk-label--m"
+                            },
+                            id: "question-label-input",
+                            name: "question-label",
+                            classes: "govuk-input",
+                            input: {
+                            type: "text"
+                            }
+                            }) }}
+                          </div>
+                          <div class="govuk-form-group">
+                            {{ govukTextarea({
+                            label: {
+                            text: "Hint text (optional)",
+                            classes: "govuk-label--m"
+                            },
+                            id: "hint-text-input",
+                            name: "hintTextInput",
+                            classes: "govuk-textarea",
+                            rows: 2
+                            }) }}
+                          </div>
+
+                          <!-- Question Settings -->
+                          <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset">
+
+                              <!-- Checkbox for Additional Settings -->
+
+
+                              {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+                              {{ govukCheckboxes({
+                                idPrefix: "additional-settings",
+                                classes: "govuk-checkboxes--small",
+                                name: "optional",
+                                fieldset: {
+                                  legend: {
+                                    text: "Question settings",
+                                    isPageHeading: true,
+                                    classes: "govuk-fieldset__legend--m"
+                                  }
+                                },
+                                hint: {
+                                  text: "Manage how the question is displayed"
+                                },
+                                items: [
+                                  {
+                                    value: "optional",
+                                    id: "optional",
+                                    name: "optional",
+                                    text: "Make this question optional"
+                                  }
+                                ]
+                              }) }}
+
+                            </fieldset>
+                          </div>
+
+                          <!-- Error Message Label Input -->
+                          <div class="govuk-form-group">
+                            {{ govukInput({
+                            label: {
+                            text: "Short description for error messages",
+                            classes: "govuk-label--m"
+                            },
+                            hint: {
+                            text: "Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’"
+                            },
+                            id: "error-label-input",
+                            name: "error-label",
+                            classes: "govuk-input",
+                            input: {
+                            type: "text"
+                            }
+                            }) }}
+                          </div>
+
+                          <!-- Answer Limits -->
+                          <details class="govuk-details">
+                            <summary class="govuk-details__summary">
+                              <span class="govuk-details__summary-text">Set answer limits (optional)</span>
+                            </summary>
+                            <div class="govuk-details__text">
+                              <!-- Checkbox for Answer Limits -->
+                              {{ govukCheckboxes({
+                              idPrefix: "contact",
+                              name: "contact",
+                              items: [
+                              {
+                              value: "betweenDates",
+                              text: "Answer must be between two dates",
+                              id: "contact-betweenDates",
+                              conditional: {
+                              html: govukDateInput({
+                              id: "first-date",
+                              namePrefix: "first-date",
+                              fieldset: {
+                              legend: {
+                              text: "First date",
+                              classes: "govuk-fieldset__legend--m"
+                              }
+                              },
+                              items: [
+                              {
+                              name: "day",
+                              classes: "govuk-input--width-2",
+                              attributes: {
+                              inputmode: "numeric"
+                              }
+                              },
+                              {
+                              name: "month",
+                              classes: "govuk-input--width-2",
+                              attributes: {
+                              inputmode: "numeric"
+                              }
+                              },
+                              {
+                              name: "year",
+                              classes: "govuk-input--width-4",
+                              attributes: {
+                              inputmode: "numeric"
+                              }
+                              }
+                              ]
+                              }) + govukDateInput({
+                              id: "second-date",
+                              namePrefix: "second-date",
+                              fieldset: {
+                              legend: {
+                              text: "Second date",
+                              classes: "govuk-fieldset__legend--m"
+                              }
+                              },
+                              items: [
+                              {
+                              name: "day",
+                              classes: "govuk-input--width-2",
+                              attributes: {
+                              inputmode: "numeric"
+                              }
+                              },
+                              {
+                              name: "month",
+                              classes: "govuk-input--width-2",
+                              attributes: {
+                              inputmode: "numeric"
+                              }
+                              },
+                              {
+                              name: "year",
+                              classes: "govuk-input--width-4",
+                              attributes: {
+                              inputmode: "numeric"
+                              }
+                              }
+                              ]
+                              })
+                              }
+                              }
+                              ]
+                              }) }}
+                            </div>
+                          </details>
+
+                          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+                          <h2 class="govuk-heading-m">Type of written answer</h2>
+
+                          {{ govukSummaryList({
+                          rows: [
+                          {
+                          key: {
+                          text: "Written answer"
+                          },
+                          value: {
+                          text: "Long text"
+                          },
+                          actions: {
+                          items: [
+                          {
+                          href: "#",
+                          text: "Change",
+                          visuallyHiddenText: "Change type of written answer"
+                          }
+                          ]
+                          }
+                          }
+                          ]
+
+
+                          }) }}
+
+
+                            {{ govukButton({
+                            text: "Continue",
+                            id: "save-changes-button"
+                            }) }}
+
+
+                          {# DIV BEFORE THE END OF THE QUESTION-1-CONTENT #}
+                        </div>
+
+                        <!-- Placeholder for new questions -->
+                        <div id="new-questions" style="margin-top: 20px;">
+                          <!-- Each question added dynamically will go here -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

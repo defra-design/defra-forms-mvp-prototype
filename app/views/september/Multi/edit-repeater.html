@@ -324,8 +324,7 @@ activeLinkId: "nav-editor"
 
 
                               <div id="page-heading-input-hint" class="govuk-hint">
-                                Page headings should be a statement and not a question. For example, ‘Passport
-                                information’
+                                This should be a statement, not a question. For example, 'Passport information’
                               </div>
 
 
@@ -350,7 +349,7 @@ activeLinkId: "nav-editor"
 
 
                               <div id="guidance-textarea-hint" class="govuk-hint">
-                                Use Markdown to format the content or add hyperlinks
+                                You can use Markdown if you want to format the content or add links
                               </div>
 
 
@@ -376,16 +375,14 @@ activeLinkId: "nav-editor"
                                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
 
                                   <h1 class="govuk-fieldset__heading">
-                                    How many times can people answer questions on this page?
+                                    Do you need users to answer the same question repeatedly?
                                   </h1>
 
                                 </legend>
 
 
                                 <div id="responseType-hint" class="govuk-hint">
-                                  Turn the questions on this page into a set of questions that users can answer
-                                  multiple
-                                  times
+                                  For example, a microchip number for multiple pets or national grid reference for multiple sites
                                 </div>
 
 
@@ -401,7 +398,7 @@ activeLinkId: "nav-editor"
                                     <input class="govuk-radios__input" id="once" name="responseType" type="radio"
                                       checked="true" value="once">
                                     <label class="govuk-label govuk-radios__label" for="once">
-                                      Once
+                                      No, just once
                                     </label>
 
                                   </div>
@@ -417,7 +414,7 @@ activeLinkId: "nav-editor"
                                     <input class="govuk-radios__input" id="more-than-1" name="responseType" type="radio"
                                       value="morethan1" aria-controls="conditional-more-than-1" aria-expanded="false">
                                     <label class="govuk-label govuk-radios__label" for="more-than-1">
-                                      More than once
+                                      Yes, more than once
                                     </label>
 
                                   </div>
@@ -534,50 +531,32 @@ activeLinkId: "nav-editor"
 
                             </div>
 
-                            <!-- Question Settings -->
-                            <div class="govuk-form-group">
-                              <fieldset class="govuk-fieldset">
-                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                                  <h1 class="govuk-fieldset__heading">Question settings</h1>
-                                </legend>
-                                <!-- Checkbox for Additional Settings -->
+                        <!-- Question Settings -->
+                        <div class="govuk-form-group">
+                          <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                              <h1 class="govuk-fieldset__heading">Question settings</h1>
+                            </legend>
+                            <!-- Checkbox for Additional Settings -->
+                            {{ govukCheckboxes({
+                              idPrefix: "additional-settings",
+                              classes: "govuk-checkboxes--small",
+                              hint: {
+                                text: "Manage how the question is displayed"
+                              },
+                              items: [
+                                {
+                                  id: "optional",
+                                  name: "optional",
+                                  value: "optional",
+                                  text: "Make this question optional",
+                                  checked: false
+                                }
+                              ]
+                            }) }}
 
-
-
-
-
-                                <div class="govuk-form-group">
-
-                                  <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-
-
-
-
-
-
-
-
-
-
-                                    <div class="govuk-checkboxes__item">
-                                      <input class="govuk-checkboxes__input" id="optional" name="optional"
-                                        type="checkbox" value="optional">
-                                      <label class="govuk-label govuk-checkboxes__label" for="optional">
-                                        Make this question optional
-                                      </label>
-
-                                    </div>
-
-
-
-
-
-                                  </div>
-
-                                </div>
-
-                              </fieldset>
-                            </div>
+                          </fieldset>
+                        </div>
 
                             <!-- Error Message Label Input -->
                             <div class="govuk-form-group">
@@ -588,14 +567,14 @@ activeLinkId: "nav-editor"
 
                               <div class="govuk-form-group">
                                 <label class="govuk-label govuk-label--m" for="error-label-input">
-                                  Add a short label for error messages
+                                  Short description for error messages
                                 </label>
 
 
 
                                 <div id="error-label-input-hint" class="govuk-hint">
-                                  If the short label is ‘date of birth’ the error message is ‘Enter a valid date of
-                                  birth’.
+                                  Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’
+
                                 </div>
 
 
@@ -909,8 +888,9 @@ activeLinkId: "nav-editor"
                                 <div class="govuk-form-group">
                                   <label for="dynamic-error-label-2" class="govuk-label govuk-label--m">Add a short
                                     label for error messages</label>
-                                  <span class="govuk-hint">If the short label is ‘date of birth’ the error message is
-                                    ‘Enter a valid date of birth’.</span>
+                                  <span class="govuk-hint">Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’
+
+                                  </span>
                                   <input class="govuk-input" id="dynamic-error-label-2" name="error-label" type="text">
                                 </div>
 
@@ -2315,8 +2295,10 @@ activeLinkId: "nav-editor"
 
       <!-- Error Message Label Input -->
       <div class="govuk-form-group">
-          <label for="dynamic-error-label-${questionCount}" class="govuk-label govuk-label--m">Add a short label for error messages</label>
-          <span class="govuk-hint">If the short label is ‘date of birth’ the error message is ‘Enter a valid date of birth’.</span>
+          <label for="dynamic-error-label-${questionCount}" class="govuk-label govuk-label--m">Short description for error messages
+</label>
+          <span class="govuk-hint">Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’
+</span>
           <input class="govuk-input" id="dynamic-error-label-${questionCount}" name="error-label" type="text">
       </div>
 

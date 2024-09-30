@@ -89,12 +89,12 @@ router.post("/page-type-answer", function (request, response) {
 
 router.post("/info-type-1-answer", function (request, response) {
   // Retrieve the page type from session data
-  const infotype2 = request.session.data["infotype1"];
+  const infotype1 = request.session.data["infotype1"];
 
   // Check the page type and redirect accordingly
-  switch (infotype2) {
+  switch (infotype1) {
     case "date":
-      response.redirect("/september/Multi/edit.html");
+      response.redirect("/september/single/edit.html");
       break;
     // Add other cases as needed
     default:
@@ -103,14 +103,14 @@ router.post("/info-type-1-answer", function (request, response) {
   }
 });
 
-router.post("/info-type-1-answer", function (request, response) {
+router.post("/info-type-2-answer", function (request, response) {
   // Retrieve the page type from session data
-  const infotype2 = request.session.data["infotype1"];
+  const infotype2 = request.session.data["infotype2"];
 
   // Check the page type and redirect accordingly
   switch (infotype2) {
     case "date":
-      response.redirect("/september/single/edit.html");
+      response.redirect("/september/multi/edit.html");
       break;
     // Add other cases as needed
     default:
@@ -128,13 +128,13 @@ router.post("/page-type-answer-2", function (request, response) {
   // Check the page type and redirect accordingly
   switch (pagetype) {
     case "guidance":
-      response.redirect("/october/guidance/edit.html");
+      response.redirect("/september/guidance/edit.html");
       break;
     case "1":
-      response.redirect("/october/single/settings.html");
+      response.redirect("/september/single/edit.html");
       break;
     case "morethan1":
-      response.redirect("/october/Multi/edit.html");
+      response.redirect("/september/Multi/edit.html");
       break;
     default:
       response.redirect("/redesign/404");
@@ -149,10 +149,10 @@ router.post("/info-type-2-answer", function (request, response) {
   // Check the page type and redirect accordingly
   switch (infotype2) {
     case "date":
-      response.redirect("/october/single/edit.html");
+      response.redirect("/september/single/edit.html");
       break;
     case "text":
-      response.redirect("/october/single/edit.html");
+      response.redirect("/september/single/edit.html");
       break;
     default:
       response.redirect("/error");

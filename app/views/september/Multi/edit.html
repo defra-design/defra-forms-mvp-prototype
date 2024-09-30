@@ -212,8 +212,7 @@ activeLinkId: "nav-editor"
                           isPageHeading: false
                           },
                           hint: {
-                          html: "Page headings should be a statement and not a question. For example, ‘Passport
-                          information’"
+                          html: "This should be a statement, not a question. For example, 'Passport information’"
                           },
                           id: "page-heading-input",
                           name: "pageHeading",
@@ -232,7 +231,7 @@ activeLinkId: "nav-editor"
                           classes: "govuk-label--m"
                           },
                           hint: {
-                          text: "Use Markdown to format the content or add hyperlinks"
+                          text: "You can use Markdown if you want to format the content or add links"
                           },
                           id: "guidance-textarea",
                           name: "guidanceText",
@@ -306,20 +305,18 @@ activeLinkId: "nav-editor"
                           name: "responseType",
                           fieldset: {
                           legend: {
-                          text: "How many times can people answer questions on this page?",
-                          isPageHeading: true,
+                          text: "Do you need users to answer the same question repeatedly?",
+                          isPageHeading: false,
                           classes: "govuk-fieldset__legend--m"
                           }
                           },
                           hint: {
-                          text: "Turn the questions on this page into a set of questions that users can answer
-                          multiple
-                          times"
+                          text: "For example, a microchip number for multiple pets or national grid reference for multiple sites"
                           },
                           items: [
                           {
                           value: "once",
-                          text: "Once",
+                          text: "No. just once",
                           id: "once",
                           conditional: {
                           html: onceHtml
@@ -327,7 +324,7 @@ activeLinkId: "nav-editor"
                           },
                           {
                           value: "morethan1",
-                          text: "More than once",
+                          text: "Yes, more than once",
                           id: "more-than-1",
                           conditional: {
                           html: morethan1Html
@@ -378,18 +375,22 @@ activeLinkId: "nav-editor"
                               </legend>
                               <!-- Checkbox for Additional Settings -->
                               {{ govukCheckboxes({
-                              idPrefix: "additional-settings",
-                              classes: "govuk-checkboxes--small",
-                              items: [
-                              {
-                              id: "optional",
-                              name: "optional",
-                              value: "optional",
-                              text: "Make this question optional",
-                              checked: false
-                              }
-                              ]
+                                idPrefix: "additional-settings",
+                                classes: "govuk-checkboxes--small",
+                                hint: {
+                                  text: "Manage how the question is displayed"
+                                },
+                                items: [
+                                  {
+                                    id: "optional",
+                                    name: "optional",
+                                    value: "optional",
+                                    text: "Make this question optional",
+                                    checked: false
+                                  }
+                                ]
                               }) }}
+
                             </fieldset>
                           </div>
 
@@ -397,12 +398,11 @@ activeLinkId: "nav-editor"
                           <div class="govuk-form-group">
                             {{ govukInput({
                             label: {
-                            text: "Add a short label for error messages",
+                            text: "Short description for error messages",
                             classes: "govuk-label--m"
                             },
                             hint: {
-                            text: "If the short label is ‘date of birth’ the error message is ‘Enter a valid date of
-                            birth’."
+                            text: "Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’"
                             },
                             id: "error-label-input",
                             name: "error-label",
@@ -608,6 +608,7 @@ activeLinkId: "nav-editor"
 
               <!-- Guidance Paragraph -->
               <p class="govuk-body" id="guidance-paragraph"></p>
+
               <!-- Date Input Group -->
               <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" role="group">

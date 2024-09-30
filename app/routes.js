@@ -110,7 +110,7 @@ router.post("/info-type-2-answer", function (request, response) {
   // Check the page type and redirect accordingly
   switch (infotype2) {
     case "date":
-      response.redirect("/september/multi/edit.html");
+      response.redirect("/september/Multi/edit.html");
       break;
     // Add other cases as needed
     default:

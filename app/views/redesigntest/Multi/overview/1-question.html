@@ -112,6 +112,7 @@
                         <h2 class="govuk-heading-l" id="page-heading">Overview of questions</h2>
 
 
+                        <form class="form" action="/redesigntest/Multi/question-2-date/information-type" method="post">
 
                            <!-- Dynamic Summary List -->
             <div id="summary-container">
@@ -125,7 +126,7 @@
                       text: "Question 1"
                     },
                     value: {
-                      html: data['short-answer']
+                      html: data['questionLabelInputq1'] or ''
                     },
                     actions: {
                       items: [
@@ -137,11 +138,9 @@
                       ]
                     }
                   }
-
-
-
                 ]
               }) }}
+
             </div>
 
 
@@ -152,10 +151,11 @@
 
   {{ govukButton({
     text: "Add another question",
+    type: "submit",
     id: "add-question-2-button"
   }) }}
 
-
+</form>
 </div></div></div></div></div></div></div></div>
 
       <!-- Right Column for Additional Content -->
@@ -193,19 +193,109 @@
             govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
             <!-- Form for Preview -->
             <form>
-                 <!-- Dynamic Heading -->
+<!-- Dynamic Heading -->
+
+
+<div id="heading-container">
+  <span id="dynamic-caption" class="govuk-caption-l">{{ (data['setName'] or '') + ' 1' }}</span>
 
 
 
-                <div id="heading-container">
-                  <span id="dynamic-caption" class="govuk-caption-l"></span>
-                  <h1 class="govuk-heading-l" id="dynamic-heading"></h1>
-                </div>
 
-              <!-- Guidance Paragraph -->
-              <p class="govuk-body" id="guidance-paragraph"></p>
+  <h1 class="govuk-heading-l" id="dynamic-heading">{{ data['pageHeading'] or '' }}</h1>
+
+</div>
+
+<!-- Guidance Paragraph -->
+<p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 
+<div class="govuk-form-group"></div>
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h1 class="govuk-fieldset__heading">
+        {{ data['questionLabelInputq1'] or '' }}
+      </h1>
+    </legend>
+
+    <div class="govuk-radios" data-module="govuk-radios">
+      <!-- English Longhorn -->
+      <div class="govuk-radios__item">
+        <input
+          class="govuk-radios__input"
+          id="breed-1"
+          name="breed"
+          type="radio"
+          value="english-longhorn"
+        >
+        <label class="govuk-label govuk-radios__label" for="breed-1">
+          English Longhorn
+        </label>
+      </div>
+
+      <!-- Red Poll -->
+      <div class="govuk-radios__item">
+        <input
+          class="govuk-radios__input"
+          id="breed-2"
+          name="breed"
+          type="radio"
+          value="red-poll"
+        >
+        <label class="govuk-label govuk-radios__label" for="breed-2">
+          Red Poll
+        </label>
+      </div>
+
+      <!-- White Park -->
+      <div class="govuk-radios__item">
+        <input
+          class="govuk-radios__input"
+          id="breed-3"
+          name="breed"
+          type="radio"
+          value="white-park"
+        >
+        <label class="govuk-label govuk-radios__label" for="breed-3">
+          White Park
+        </label>
+      </div>
+
+      <!-- Hereford -->
+      <div class="govuk-radios__item">
+        <input
+          class="govuk-radios__input"
+          id="breed-4"
+          name="breed"
+          type="radio"
+          value="hereford"
+        >
+        <label class="govuk-label govuk-radios__label" for="breed-4">
+          Hereford
+        </label>
+      </div>
+
+      <!-- Highland -->
+      <div class="govuk-radios__item">
+        <input
+          class="govuk-radios__input"
+          id="breed-5"
+          name="breed"
+          type="radio"
+          value="highland"
+        >
+        <label class="govuk-label govuk-radios__label" for="breed-5">
+          Highland
+        </label>
+      </div>
+    </div>
+
+
+
+
+              </div>
             </form>
 
 

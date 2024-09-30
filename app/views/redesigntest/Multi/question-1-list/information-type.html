@@ -115,7 +115,7 @@
                           class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"
                         ></div>
 
-
+                        <form class="form" action="/redesigntest/Multi/question-1-list/create-list" method="post">
 
 
                         {% set dateHtml %}
@@ -187,7 +187,7 @@
                               }
                             },
                             {
-                              value: "radios",
+                              value: data ['radios'],
                               text: "Radios",
                               hint: {
                                 text: "A list for users to select one answer"
@@ -283,7 +283,7 @@
     text: "Continue",
     id: "add-question-button"
   }) }}
-
+</form>
 
 </div></div></div></div></div></div></div>
 
@@ -325,24 +325,38 @@
                  <!-- Dynamic Heading -->
 
 
+                 <div id="heading-container">
+                  <span id="dynamic-caption" class="govuk-caption-l">{{ data['setName'] or '' }}</span>
 
-                <div id="heading-container">
-                  <span id="dynamic-caption" class="govuk-caption-l"></span>
-                  <h1 class="govuk-heading-l" id="dynamic-heading"></h1>
+
+
+
+                  <h1 class="govuk-heading-l" id="dynamic-heading">{{ data['pageHeading'] or '' }}</h1>
+
                 </div>
 
-              <!-- Guidance Paragraph -->
-              <p class="govuk-body" id="guidance-paragraph"></p>
-
+            <!-- Guidance Paragraph -->
+<p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
 
             </form>
 
 
-            {{ govukButton({ text: "Continue", classes: "govuk-button
-            govuk-!-margin-top-3", id: "once-button", disabled: true }) }} {{
-            govukButton({ text: "Add another [question set name]", classes:
-            "govuk-button govuk-!-margin-top-3", id: "add-another-set-button",
-            disabled: true, attributes: { style: "display:none;" } }) }}
+            {{ govukButton({
+              value: "Continue",
+              classes: "govuk-button govuk-!-margin-top-3",
+              id: "once-button",
+              attributes: { style: "display:none;" },
+              disabled: true
+            }) }}
+
+
+
+            {{ govukButton({
+              text: "Add another cow",
+              classes: "govuk-button govuk-!-margin-top-3",
+              id: "add-another-set-button",
+              disabled: true
+            }) }}
           </div>
         </div>
       </div>

@@ -361,10 +361,7 @@ activeLinkId: "nav-editor"
                     <h2 class="govuk-summary-card__title">
 
                         Page 3: Cattle movement
-                        {{govukTag({
-                        text: "Repeater",
-                        classes: "govuk-tag--purple govuk-!-margin-left-2"
-                        })}}
+
                     </h2>
 
 
@@ -386,12 +383,19 @@ activeLinkId: "nav-editor"
                     <dl class="govuk-summary-list">
                         <div class="govuk-summary-list__row">
                             <dt class="govuk-summary-list__key">Question 1</dt>
-                            <dd class="govuk-summary-list__value">When did the cattle leave their original holding?
-                            </dd>
+                            <dd class="govuk-summary-list__value">What breed is this cow?</dd>
                         </div>
                         <div class="govuk-summary-list__row">
                             <dt class="govuk-summary-list__key">Question 2</dt>
+                            <dd class="govuk-summary-list__value">When did the cattle leave their original holding?</dd>
+                        </div>
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Question 3</dt>
                             <dd class="govuk-summary-list__value">When did the cattle arrive on your holding?</dd>
+                        </div>
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Settings</dt>
+                            <dd class="govuk-summary-list__value">Users can answer questions more than once</dd>
                         </div>
                     </dl>
                 </div>
@@ -437,6 +441,90 @@ activeLinkId: "nav-editor"
                     <p class="govuk-body" id="guidance-paragraph">Tell us when the cattle left their original
                         holding
                         and moved onto yours. This will likely be the same day.</p>
+
+
+                        <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset">
+                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                           <h1 class="govuk-fieldset__heading">
+                         What breed is this cow?
+                           </h1>
+                         </legend>
+
+                         <div class="govuk-radios" data-module="govuk-radios">
+                           <!-- English Longhorn -->
+                           <div class="govuk-radios__item">
+                             <input
+                               class="govuk-radios__input"
+                               id="breed-1"
+                               name="breed"
+                               type="radio"
+                               value="english-longhorn"
+                             >
+                             <label class="govuk-label govuk-radios__label" for="breed-1">
+                               English Longhorn
+                             </label>
+                           </div>
+
+                           <!-- Red Poll -->
+                           <div class="govuk-radios__item">
+                             <input
+                               class="govuk-radios__input"
+                               id="breed-2"
+                               name="breed"
+                               type="radio"
+                               value="red-poll"
+                             >
+                             <label class="govuk-label govuk-radios__label" for="breed-2">
+                               Red Poll
+                             </label>
+                           </div>
+
+                           <!-- White Park -->
+                           <div class="govuk-radios__item">
+                             <input
+                               class="govuk-radios__input"
+                               id="breed-3"
+                               name="breed"
+                               type="radio"
+                               value="white-park"
+                             >
+                             <label class="govuk-label govuk-radios__label" for="breed-3">
+                               White Park
+                             </label>
+                           </div>
+
+                           <!-- Hereford -->
+                           <div class="govuk-radios__item">
+                             <input
+                               class="govuk-radios__input"
+                               id="breed-4"
+                               name="breed"
+                               type="radio"
+                               value="hereford"
+                             >
+                             <label class="govuk-label govuk-radios__label" for="breed-4">
+                               Hereford
+                             </label>
+                           </div>
+
+                           <!-- Highland -->
+                           <div class="govuk-radios__item">
+                             <input
+                               class="govuk-radios__input"
+                               id="breed-5"
+                               name="breed"
+                               type="radio"
+                               value="highland"
+                             >
+                             <label class="govuk-label govuk-radios__label" for="breed-5">
+                               Highland
+                             </label>
+                           </div>
+                         </div>
+                        </div>
+
+
                     <!-- Date Input Group -->
                     <div class="govuk-form-group">
                         <fieldset class="govuk-fieldset" role="group">

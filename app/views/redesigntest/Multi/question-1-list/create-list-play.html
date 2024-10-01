@@ -899,6 +899,44 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Function to handle the removal of options
+    function handleOptionRemoval(event) {
+      if (event.target && event.target.matches('.moj-add-another__remove-button')) {
+        // Find the parent option item
+        const optionItem = event.target.closest('.moj-add-another__item');
+        if (optionItem) {
+          // Find the input within the option item
+          const input = optionItem.querySelector('input');
+          if (input) {
+            const inputId = input.id; // e.g., 'option[1][option_label]'
+            // Extract the index from the input ID
+            const matches = inputId.match(/option\[(\d+)\]\[option_label\]/);
+            if (matches) {
+              const index = matches[1];
+              // Remove the corresponding label in the preview
+              const label = document.querySelector(`label[for="listPreview-option${index}"]`);
+              if (label) {
+                // Remove the entire radio item (label and input)
+                const radioItem = label.closest('.govuk-radios__item');
+                if (radioItem) {
+                  radioItem.remove();
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Add event listener for clicks on the document
+    document.addEventListener('click', handleOptionRemoval);
+  });
+  </script>
+
+
+
+<script>
 document.addEventListener('DOMContentLoaded', function () {
   // Get the input field
   const inputElement = document.getElementById('question-label-input-q1');

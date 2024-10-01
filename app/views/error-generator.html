@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-xl">Page 1: question 1</span>
+
+      <h1 class="govuk-heading-xl">
+        Create and manage error messages
+      </h1>
+
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Question"
+            },
+            value: {
+              text: "When did the cattle arrive?"
+            }
+          },
+          {
+            key: {
+              text: "Conditions applied"
+            },
+            value: {
+              html: "<li>Must be today or in the past</li><li>Max 34 days in the past</li>
+              "
+            }
+
+          }
+        ]
+      }) }}
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="description-label">
+          Enter a description label (e.g. 'Date of birth')
+        </label>
+        <input class="govuk-input" id="description-label" name="description-label" type="text" placeholder="For example, Date of birth">
+      </div>
+
+
+      <form action="/confirmation" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Accept and send"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

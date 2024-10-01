@@ -184,7 +184,7 @@
                               value: "checkboxes",
                               text: "Checkboxes",
                               hint: {
-                                text: "Allow users to answer either ‘Yes’ or ‘No’"
+                                text: "A list for users to select multiple answers"
                               }
                             },
                             {
@@ -327,7 +327,7 @@
 
 
               <div id="heading-container">
-                <span id="dynamic-caption" class="govuk-caption-l">{{ data['setName'] or '' }}</span>
+                <span id="dynamic-caption" class="govuk-caption-l">{{ (data['setName'] or '') + ' 1' }}</span>
 
 
 
@@ -421,20 +421,18 @@
                       </label>
                     </div>
                   </div>
-
-
-
                             </div>
                           </form>
 
 
 
+        {{ govukButton({
+          text: "Add another cow",
+          classes: "govuk-button govuk-!-margin-top-3",
+          id: "add-another-set-button",
+          disabled: true
+        }) }}
 
-            {{ govukButton({ text: "Continue", classes: "govuk-button
-            govuk-!-margin-top-3", id: "once-button", disabled: true }) }} {{
-            govukButton({ text: "Add another [question set name]", classes:
-            "govuk-button govuk-!-margin-top-3", id: "add-another-set-button",
-            disabled: true, attributes: { style: "display:none;" } }) }}
           </div>
         </div>
       </div>

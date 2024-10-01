@@ -16,28 +16,114 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-l">Page 1: question 1</span>
+<h1 class="govuk-heading-l">Create and manage error messages</h1>
+
+<div class="govuk-form-group">
+  <label class="govuk-label" for="description-label">
+    Enter the description label (e.g. 'Date of birth')
+  </label>
+  <input class="govuk-input" id="description-label" name="description-label" type="text" placeholder="e.g. Date of birth">
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">Select the error type</legend>
+    <div class="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="error-nothing" name="error-type" type="radio" value="nothing" checked>
+        <label class="govuk-label govuk-radios__label" for="error-nothing">Nothing entered</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="error-incomplete" name="error-type" type="radio" value="incomplete">
+        <label class="govuk-label govuk-radios__label" for="error-incomplete">Incomplete date</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="error-incorrect" name="error-type" type="radio" value="incorrect">
+        <label class="govuk-label govuk-radios__label" for="error-incorrect">Incorrect date</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="error-future-past" name="error-type" type="radio" value="future-past">
+        <label class="govuk-label govuk-radios__label" for="error-future-past">Date must be in the past</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="error-future-today" name="error-type" type="radio" value="future-today">
+        <label class="govuk-label govuk-radios__label" for="error-future-today">Date must be today or in the past</label>
+      </div>
+      <!-- Add other error scenarios here similarly -->
+    </div>
+  </fieldset>
+</div>
+
+<div class="govuk-form-group">
+  <label class="govuk-label" for="error-message-preview">Error message preview</label>
+  <div class="govuk-body" id="error-message-preview">
+    Your error message will appear here.
+  </div>
+</div>
+
+
+
       <form class="form" action="eventName" method="post">
 
         {% from "govuk/components/input/macro.njk" import govukInput %}
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="description-label">
+            Enter the description label
+          </label>
+          <input class="govuk-input" id="description-label" name="description-label" type="text" placeholder="e.g. Date of birth">
+        </div>
 
-        {{ govukInput({
-          label: {
-            text: "What is the name of the event?",
-            classes: "govuk-label--l",
-            isPageHeading: true
-          },
-          id: "event-name",
-          value: data['eventName'],
-          name: "eventName"
-        }) }}
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="error-message-preview">
+            Error message preview
+          </label>
+          <div class="govuk-body" id="error-message-preview">
+            Your error message will appear here.
+          </div>
+        </div>
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
 
       </form>
 
     </div>
   </div>
+
+  <script>
+document.getElementById('description-label').addEventListener('input', updateErrorMessage);
+document.querySelectorAll('input[name="error-type"]').forEach(radio => {
+  radio.addEventListener('change', updateErrorMessage);
+});
+
+function updateErrorMessage() {
+  const descriptionLabel = document.getElementById('description-label').value || '[Description]';
+  const errorType = document.querySelector('input[name="error-type"]:checked').value;
+  let errorMessage = '';
+
+  switch (errorType) {
+    case 'nothing':
+      errorMessage = `Enter ${descriptionLabel}. For example, 'Enter your ${descriptionLabel.toLowerCase()}'.`;
+      break;
+    case 'incomplete':
+      errorMessage = `${descriptionLabel} must include a day, month, or year. For example, '${descriptionLabel} must include a month', '${descriptionLabel} must include a day and month', or 'Year must include 4 numbers'.`;
+      break;
+    case 'incorrect':
+      errorMessage = `${descriptionLabel} must be a real date. For example, '${descriptionLabel} must be a real date'.`;
+      break;
+    case 'future-past':
+      errorMessage = `${descriptionLabel} must be in the past. For example, '${descriptionLabel} must be in the past'.`;
+      break;
+    case 'future-today':
+      errorMessage = `${descriptionLabel} must be today or in the past. For example, '${descriptionLabel} must be today or in the past'.`;
+      break;
+    // Add cases for other error scenarios
+    default:
+      errorMessage = 'Please select an error type.';
+  }
+
+  document.getElementById('error-message-preview').textContent = errorMessage;
+}
+
+  </script>
 
 {% endblock %}

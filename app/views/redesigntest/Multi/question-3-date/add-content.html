@@ -319,6 +319,7 @@
 
 </div></div></div></div></div></div></div>
      <!-- Right Column for Additional Content -->
+
      <div
      class="govuk-grid-column-one-half-from-desktop"
      id="second-container"
@@ -331,6 +332,7 @@
        box-shadow: 5px 10px #008938;
      "
    >
+
      <!-- New HTML content for before element -->
      <div id="before-content">
        <p class="govuk-body-s" style="margin-bottom: 0">
@@ -549,68 +551,60 @@
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const domElements = {
-          questionLabelInputQ3: document.getElementById("question-label-input-q3"),
-          legendQ3: document.getElementById("date-input-legend-q3"),
-          hintTextAreaQ3: document.getElementById("hint-text-input-q3"),
-          hintDivQ3: document.getElementById("date-input-hint-q3"), // Updated to the correct hint div
-        };
+document.addEventListener("DOMContentLoaded", function () {
+    const domElements = {
+        questionLabelInputQ3: document.getElementById("question-label-input-q3"),
+        legendQ3: document.getElementById("date-input-legend-q3"),
+        hintTextAreaQ3: document.getElementById("hint-text-input-q3"),
+        hintDivQ3: document.getElementById("date-input-hint-q3"),
+    };
 
-        initializeEventListeners();
+    initializeEventListeners();
 
-        function initializeEventListeners() {
-          if (domElements.questionLabelInputQ3) {
+    function initializeEventListeners() {
+        if (domElements.questionLabelInputQ3) {
             domElements.questionLabelInputQ3.addEventListener("input", updateLegendQ3);
-          }
-          if (domElements.hintTextAreaQ3) {
+        }
+        if (domElements.hintTextAreaQ3) {
             domElements.hintTextAreaQ3.addEventListener("input", updateHintDivQ3);
-          }
         }
 
-        // Function to update the legend based on question label input for Q3
-        function updateLegendQ3() {
-          const inputValue = domElements.questionLabelInputQ3.value.trim();
-          const defaultLegend = "Question 3";
-          domElements.legendQ3.textContent = inputValue || defaultLegend;
-        }
-
-        // Function to update the hint div based on hint text input for Q3
-        function updateHintDivQ3() {
-          const hintTextValue = domElements.hintTextAreaQ3.value.trim();
-          const defaultHint = "Hint text";
-          domElements.hintDivQ3.textContent = hintTextValue || defaultHint;
-        }
-
-
-        // Apply focus/blur highlighting for the textarea and its target hint
-    applyHighlightOnFocus('hint-text-input-q3', 'dateinputhint3');
-  });
-
-
-
-        // Apply focus/blur highlighting for the textarea and its target hint
-        applyHighlightOnFocus('question-label-input-q3', '  dateinputlegendq3');
-
-
-
-
-
-  // Function to apply focus/blur highlighting (for other input pairs)
-  function applyHighlightOnFocus(inputId, targetId) {
-    const inputElement = document.getElementById(inputId);
-    const targetElement = document.getElementById(targetId);
-
-    if (inputElement && targetElement) {
-      inputElement.addEventListener('focus', function () {
-        targetElement.classList.add('highlight');
-      });
-
-      inputElement.addEventListener('blur', function () {
-        targetElement.classList.remove('highlight');
-      });
+        // Apply focus/blur highlighting
+        applyHighlightOnFocus("question-label-input-q3", "date-input-legend-q3");
+        applyHighlightOnFocus("hint-text-input-q3", "date-input-hint-q3");
     }
-  }
+
+    // Function to update the legend based on question label input for Q3
+    function updateLegendQ3() {
+        const inputValue = domElements.questionLabelInputQ3.value.trim();
+        const defaultLegend = "Question 3";
+        domElements.legendQ3.textContent = inputValue || defaultLegend;
+    }
+
+    // Function to update the hint div based on hint text input for Q3
+    function updateHintDivQ3() {
+        const hintTextValue = domElements.hintTextAreaQ3.value.trim();
+        const defaultHint = "Hint text";
+        domElements.hintDivQ3.textContent = hintTextValue || defaultHint;
+    }
+
+    // Function to apply focus/blur highlighting for input/textarea and corresponding target
+    function applyHighlightOnFocus(inputId, targetId) {
+        const inputElement = document.getElementById(inputId);
+        const targetElement = document.getElementById(targetId);
+
+        if (inputElement && targetElement) {
+            inputElement.addEventListener("focus", function () {
+                targetElement.classList.add("highlight");
+            });
+
+            inputElement.addEventListener("blur", function () {
+                targetElement.classList.remove("highlight");
+            });
+        }
+    }
+});
+
     </script>
 
 
@@ -659,6 +653,8 @@
         z-index: 2;
         /* Ensure content is above the #before-content */
       }
+
+
     </style>
 
     {% endblock %}

@@ -346,32 +346,31 @@
 <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
 
 
-              <div id="radio-list">
+<div id="radio-list">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h1 class="govuk-fieldset__heading" id="question-label-legend-q1">
+        Question
+      </h1>
+    </legend>
 
-                <fieldset class="govuk-fieldset">
-                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    <h1 class="govuk-fieldset__heading" id="question-label-legend-q1">
-                      Question
-                    </h1>
-                  </legend>
-                {{ govukRadios({
-                  name: "listPreview",
-                  id:"question-label-legend-q1",
-                  fieldset: {
-                    legend: {
-                      text: "",
-                      id: "question-label-legend-q1",
-                      isPageHeading: false,
-                      classes: "govuk-fieldset__legend--m"
-                    }
-                  },
-                  hint: {
-                    text: ""
-                  },
+    <!-- Custom radios without govuk-form-group -->
+    <fieldset class="govuk-fieldset" aria-describedby="listPreview-hint">
 
-                  items: []
-                }) }}
-              </div>
+      <div id="listPreview-hint" class="govuk-hint"></div>
+
+      <div class="govuk-radios" data-module="govuk-radios">
+        <!-- Dynamically generated radio items go here -->
+        <div class="govuk-radios__item">
+          {# <input class="govuk-radios__input" id="listPreview-option0" name="listPreview" type="radio" value="option0">
+          <label class="govuk-label govuk-radios__label" for="listPreview-option0">Option 1</label> #}
+        </div>
+        <!-- More radio options as needed -->
+      </div>
+    </fieldset>
+  </fieldset>
+</div>
+
             </form>
 
 

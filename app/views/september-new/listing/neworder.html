@@ -88,7 +88,7 @@ activeLinkId: "nav-editor"
 </style>
 
 
-<form class="form" action="/september/questionnumber" method="post">
+<form class="form" action="/september-new/questionnumber" method="post">
 
 
 
@@ -361,7 +361,10 @@ activeLinkId: "nav-editor"
                     <h2 class="govuk-summary-card__title">
 
                         Page 3: Cattle movement
-
+                        {{govukTag({
+                        text: "Repeater",
+                        classes: "govuk-tag--purple govuk-!-margin-left-2"
+                        })}}
                     </h2>
 
 
@@ -390,17 +393,10 @@ activeLinkId: "nav-editor"
                             <dt class="govuk-summary-list__key">Question 2</dt>
                             <dd class="govuk-summary-list__value">When did the cattle arrive on your holding?</dd>
                         </div>
-                        <div class="govuk-summary-list__row">
-                            <dt class="govuk-summary-list__key">Settings</dt>
-                            <dd class="govuk-summary-list__value">Users can answer questions more than once</dd>
-                        </div>
                     </dl>
                 </div>
             </div>
         </div>
-
-
-
 
 
 

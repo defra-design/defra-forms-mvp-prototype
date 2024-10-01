@@ -1,0 +1,156 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Add a page - Apply for a county parish holding number in England" %}
+
+{% block header %}
+{{ serviceHeader({
+organisationName: "Defra",
+productName: "Forms Designer",
+serviceName: "",
+containerClasses: containerClasses,
+accountName: "Chris Smith",
+homepageLink: "/",
+signOutLink: "/onboarding/sign-out-confirmation",
+navigationItems: [
+{ href: "/library.html", text: "Forms library", id: "nav-library" },
+{ href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
+{ href: "/editor-pets/0", text: "Editor", id: "nav-editor" }
+],
+activeLinkId: "nav-editor"
+}) }}
+
+<div class="x-govuk-masthead x-govuk-masthead--large">
+    <div class="govuk-width-container">
+        {{ govukBackLink({
+        classes: "govuk-back-link--inverse",
+        text: "Back to overview",
+        href: "#"
+        }) }}
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+            style="border-bottom:1px solid white; margin-bottom: 0;">
+
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds-from-desktop">
+                <h1 class="x-govuk-masthead__title">
+                    <span class="govuk-caption-l" style="color:white;">Apply for a county parish holding
+                        certificate</span>
+
+                    Add and edit pages
+                </h1>
+
+
+
+                <p class="x-govuk-masthead__description">
+                    Create and manage the pages in this form.</p>
+                <a href="/september-new/questionnumber" role="button" draggable="false"
+                    class="govuk-button govuk-button--inverse govuk-button--start" data-module="govuk-button">
+                    Get started
+                    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
+                        viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<style>
+    .app-header--full-width-border {
+        border-bottom: 10px solid #1f70b8;
+    }
+
+    .x-govuk-masthead {
+        background-color: #008531 !important;
+        /* Replace this with your desired color */
+    }
+</style>
+
+
+
+
+<form class="form" action="/september-new/questionnumber" method="post">
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds-from-desktop" id="container" style="flex: 1 1 75%; overflow-y: auto;">
+
+
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+            <h2 class="govuk-heading-m">End pages</h2>
+
+
+
+            <div class="govuk-summary-card" style="border-left: 10px solid 	#b1b4b6;">
+                <div class="govuk-summary-card__title-wrapper">
+                    <h2 class=" govuk-summary-card__title">Check your answers page
+                        <span id="page-1-heading-text"></span>
+                    </h2>
+                    <ul class="govuk-summary-card__actions">
+                        <li class="govuk-summary-card__action">
+                            <a class="govuk-link" id="editpage1" href="#">Edit<span class="govuk-visually-hidden">page
+                                    1</span></a>
+                        </li>
+
+                        <li class="govuk-summary-card__action">
+                            <a class="govuk-link" id="previewpage1" href="#">Preview<span
+                                    class="govuk-visually-hidden">page
+                                    1</span></a>
+                            <a class="govuk-link" id="closepage1" href="#" style="display: none;">Close
+                                Preview<span class="govuk-visually-hidden">page 1</span></a>
+                        </li>
+                    </ul>
+
+
+                </div>
+
+
+            </div>
+
+            <div class="govuk-summary-card" style="border-left: 10px solid 	#b1b4b6;">
+                <div class="govuk-summary-card__title-wrapper">
+                    <h2 class=" govuk-summary-card__title">Confirmation page
+                        <span id="page-1-heading-text"></span>
+                    </h2>
+                    <ul class="govuk-summary-card__actions">
+                        <li class="govuk-summary-card__action">
+                            <a class="govuk-link" id="editpage1" href="#">Edit<span class="govuk-visually-hidden">page
+                                    1</span></a>
+                        </li>
+
+                        <li class="govuk-summary-card__action">
+                            <a class="govuk-link" id="previewpage1" href="#">Preview<span
+                                    class="govuk-visually-hidden">page
+                                    1</span></a>
+                            <a class="govuk-link" id="closepage1" href="#" style="display: none;">Close
+                                Preview<span class="govuk-visually-hidden">page 1</span></a>
+                        </li>
+                    </ul>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+</form>
+
+
+
+{% endblock %}

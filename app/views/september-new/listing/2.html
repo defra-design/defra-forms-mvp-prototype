@@ -26,7 +26,7 @@ activeLinkId: "nav-editor"
         {{ govukBackLink({
         classes: "govuk-back-link--inverse",
         text: "Back to overview",
-        href: "/september/listing/neworder.html"
+        href: "#"
         }) }}
 
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
@@ -43,8 +43,8 @@ activeLinkId: "nav-editor"
                     Create and manage the pages in this form.</p> #}
                 <div class="govuk-button-group">
 
-                    <a href="" role="button" draggable="false" class="govuk-button govuk-button--inverse"
-                        data-module="govuk-button">
+                    <a href="/september/questionnumber" role="button" draggable="false"
+                        class="govuk-button govuk-button--inverse" data-module="govuk-button">
                         Add new page
 
                     </a>
@@ -88,129 +88,13 @@ activeLinkId: "nav-editor"
 </style>
 
 
-<form class="form" action="/september/questionnumber" method="post">
-
-
-
-
-
-    {# PAGE 1 NEW ORDER #}
+<form class="form" action="/september-new/questionnumber" method="post">
 
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds-from-desktop" id="container" style="flex: 1 1 75%; overflow-y: auto;">
             <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
                 <div class="govuk-summary-card__title-wrapper">
-                    <h2 class="govuk-summary-card__title">Page 1: Record the movement on
-                        <span id="page-2-heading-text"></span>
-                    </h2>
-                    <ul class="govuk-summary-card__actions">
-                        <li class="govuk-summary-card__action">
-                            <a class="govuk-link govuk-link--no-visited-state" id="editpage3" href="#">Edit<span
-                                    class="govuk-visually-hidden">page 3</span></a>
-                        </li>
-                        <li class="govuk-summary-card__action">
-                            <a class="govuk-link govuk-link--no-visited-state" id="previewpage3" href="#">Preview<span
-                                    class="govuk-visually-hidden">page 3</span></a>
-                            <a class="govuk-link govuk-link--no-visited-state" id="closepage3" href="#"
-                                style="display: none;">Close
-                                Preview<span class="govuk-visually-hidden">page 3</span></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="govuk-summary-card__content">
-                    <dl class="govuk-summary-list">
-                        <div class="govuk-summary-list__row">
-                            <dt class="govuk-summary-list__key">Guidance</dt>
-                            <dd class="govuk-summary-list__value">You must record the movement in the animal’s passport
-                                within 36 hours of its arrival. Or if the animal leaves your
-                                holding sooner than this, record the movement on and off your holding before it leaves.
-                            </dd>
-                        </div>
-
-                    </dl>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Column for page 1 -->
-        <div class="govuk-grid-column-one-third" id="second-container-page3"
-            style="display: none; outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-            <!-- New HTML content for before element -->
-            <div id="before-content">
-                <p class="govuk-body-s" style="margin-bottom: 0;">
-                    <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
-                        target="_blank">Preview this page in a new tab</a>
-                </p>
-            </div>
-
-            <!-- Additional Content Here -->
-            <div class="additional-content">
-                <!-- Close link with margin added -->
-            </div>
-
-            <!-- Header Template Usage -->
-            {{ govukHeader({
-            homepageUrl: null,
-            serviceName: null,
-            classes: "govuk-!-margin-top-8"
-            }) }}
-
-            <div>
-                <!-- Tag for Preview -->
-                {{ govukTag({ text: "Preview of page 1", classes: "govuk-tag--yellow govuk-!-margin-bottom-2
-                govuk-!-margin-top-2" }) }}
-                <!-- Form for Preview -->
-                <form>
-                    <!-- Dynamic Heading -->
-                    <div id="heading-container">
-                        <span id="dynamic-caption" class="govuk-caption-l"></span>
-                        <h1 class="govuk-heading-l" id="dynamic-heading"></h1>
-                    </div>
-
-                    <!-- Guidance Paragraph -->
-                    <p class="govuk-body" id="guidance-paragraph"></p>
-                    <!-- Date Input Group -->
-                    <div class="govuk-form-group">
-                        <fieldset class="govuk-fieldset" role="group">
-                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l" id="date-input-legend">
-                                Record the movement on
-                            </legend>
-                            <div class="govuk-form-group">
-                                <!-- Date Input Hint -->
-                                <p class="govuk-body">You must record the movement in the animal’s passport within 36
-                                    hours of its arrival. Or if the animal leaves your
-                                    holding sooner than this, record the movement on and off your holding before it
-                                    leaves.</p>
-                                {{ govukButton({
-                                text: "Continue",
-                                classes: "govuk-button govuk-!-margin-top-3",
-                                id: "once-button",
-                                disabled: true
-                                }) }}
-
-                                {{ govukButton({
-                                text: "Add another [question set name]",
-                                classes: "govuk-button govuk-!-margin-top-3",
-                                id: "add-another-set-button",
-                                disabled: true,
-                                attributes: { style: "display:none;" }
-                                }) }}
-                            </div>
-                    </div>
-
-            </div>
-        </div>
-    </div>
-
-    {# END OF PAGE 1 NEW ORDER #}
-
-
-
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds-from-desktop" id="container" style="flex: 1 1 75%; overflow-y: auto;">
-            <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
-                <div class="govuk-summary-card__title-wrapper">
-                    <h2 class="govuk-summary-card__title">Page 2: When did you buy your cattle?
+                    <h2 class="govuk-summary-card__title">Page 1: When did you buy your cattle?
                         <span id="page-1-heading-text"></span>
                     </h2>
                     <ul class="govuk-summary-card__actions">
@@ -255,7 +139,7 @@ activeLinkId: "nav-editor"
 
             <div>
                 <!-- Tag for Preview -->
-                {{ govukTag({ text: "Preview of page 2", classes: "govuk-tag--yellow govuk-!-margin-bottom-2
+                {{ govukTag({ text: "Preview of page 1", classes: "govuk-tag--yellow govuk-!-margin-bottom-2
                 govuk-!-margin-top-2" }) }}
                 <!-- Form for Preview -->
                 <form>
@@ -353,29 +237,21 @@ activeLinkId: "nav-editor"
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds-from-desktop" id="container" style="flex: 1 1 75%; overflow-y: auto;">
             <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
-
-
                 <div class="govuk-summary-card__title-wrapper">
-
-
-                    <h2 class="govuk-summary-card__title">
-
-                        Page 3: Cattle movement
-
+                    <h2 class="govuk-summary-card__title">Page 2: Cattle movement
+                        <span id="page-2-heading-text"></span>
                     </h2>
-
-
                     <ul class="govuk-summary-card__actions">
                         <li class="govuk-summary-card__action">
                             <a class="govuk-link govuk-link--no-visited-state" id="editpage2" href="#">Edit<span
-                                    class="govuk-visually-hidden">page 3</span></a>
+                                    class="govuk-visually-hidden">page 2</span></a>
                         </li>
                         <li class="govuk-summary-card__action">
                             <a class="govuk-link govuk-link--no-visited-state" id="previewpage2" href="#">Preview<span
-                                    class="govuk-visually-hidden">page 3</span></a>
+                                    class="govuk-visually-hidden">page 2</span></a>
                             <a class="govuk-link govuk-link--no-visited-state" id="closepage2" href="#"
                                 style="display: none;">Close
-                                Preview<span class="govuk-visually-hidden">page 3</span></a>
+                                Preview<span class="govuk-visually-hidden">page 2</span></a>
                         </li>
                     </ul>
                 </div>
@@ -383,26 +259,16 @@ activeLinkId: "nav-editor"
                     <dl class="govuk-summary-list">
                         <div class="govuk-summary-list__row">
                             <dt class="govuk-summary-list__key">Question 1</dt>
-                            <dd class="govuk-summary-list__value">When did the cattle leave their original holding?
-                            </dd>
+                            <dd class="govuk-summary-list__value">When did the cattle leave their original holding?</dd>
                         </div>
                         <div class="govuk-summary-list__row">
                             <dt class="govuk-summary-list__key">Question 2</dt>
                             <dd class="govuk-summary-list__value">When did the cattle arrive on your holding?</dd>
                         </div>
-                        <div class="govuk-summary-list__row">
-                            <dt class="govuk-summary-list__key">Settings</dt>
-                            <dd class="govuk-summary-list__value">Users can answer questions more than once</dd>
-                        </div>
                     </dl>
                 </div>
             </div>
         </div>
-
-
-
-
-
 
         <!-- Right Column for page 2 -->
         <div class="govuk-grid-column-one-third" id="second-container-page2"
@@ -429,19 +295,18 @@ activeLinkId: "nav-editor"
 
             <div>
                 <!-- Tag for Preview -->
-                {{ govukTag({ text: "Preview of page 3", classes: "govuk-tag--yellow govuk-!-margin-bottom-2
+                {{ govukTag({ text: "Preview of page 2", classes: "govuk-tag--yellow govuk-!-margin-bottom-2
                 govuk-!-margin-top-2" }) }}
                 <!-- Form for Preview -->
                 <form>
                     <!-- Dynamic Heading -->
                     <div id="heading-container">
-                        <span id="dynamic-caption" class="govuk-caption-l">Cow 1</span>
+                        <span id="dynamic-caption" class="govuk-caption-l"></span>
                         <h1 class="govuk-heading-l" id="dynamic-heading">Cattle movement</h1>
                     </div>
 
                     <!-- Guidance Paragraph -->
-                    <p class="govuk-body" id="guidance-paragraph">Tell us when the cattle left their original
-                        holding
+                    <p class="govuk-body" id="guidance-paragraph">Tell us when the cattle left their original holding
                         and moved onto yours. This will likely be the same day.</p>
                     <!-- Date Input Group -->
                     <div class="govuk-form-group">
@@ -575,24 +440,21 @@ activeLinkId: "nav-editor"
 text: "Continue",
 classes: "govuk-button govuk-!-margin-top-3",
 id: "once-button",
-disabled: true,
-attributes: { style: "display:none;" }
-
+disabled: true
 }) }}
 
 {{ govukButton({
 text: "Add another cow",
 classes: "govuk-button govuk-!-margin-top-3",
 id: "add-another-set-button",
-disabled: true
+disabled: true,
+attributes: { style: "display:none;" }
 }) }}
 </div>
 </div>
 </div>
 
 {# END OF PAGE 2 #}
-
-
 
 
 </form>
@@ -711,30 +573,6 @@ disabled: true
             closeButtonPage2.style.display = 'none';      // Hide the "Close Preview" button
         });
     });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        // Elements for Page 3
-        const previewButtonPage3 = document.getElementById('previewpage3');
-        const closeButtonPage3 = document.getElementById('closepage3');
-        const secondContainerPage3 = document.getElementById('second-container-page3');
-
-        // Show the right column when "Preview" is clicked on Page 3
-        previewButtonPage3.addEventListener('click', function (event) {
-            event.preventDefault();
-            secondContainerPage3.style.display = 'block';  // Show the right column
-            previewButtonPage3.style.display = 'none';     // Hide the "Preview" button
-            closeButtonPage3.style.display = 'inline';     // Show the "Close Preview" button
-        });
-
-        // Hide the right column when "Close Preview" is clicked on Page 3
-        closeButtonPage3.addEventListener('click', function (event) {
-            event.preventDefault();
-            secondContainerPage3.style.display = 'none';  // Hide the right column
-            previewButtonPage3.style.display = 'inline';  // Show the "Preview" button
-            closeButtonPage3.style.display = 'none';      // Hide the "Close Preview" button
-        });
-    });
-
 
 
 </script>

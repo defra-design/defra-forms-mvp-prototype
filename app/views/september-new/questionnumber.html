@@ -38,11 +38,11 @@ href: "javascript:window.history.back()"
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-        <form class="form" action="/redesigntest/Multi/settings" method="post">
+        <form class="form" action="/september-new/single/info-type" method="post">
 
             <div class="govuk-form-group" id="question-page-radio-group">
                 {{ govukRadios({
-                name: "pagetype2",
+                name: "pagetype",
                 fieldset: {
                 legend: {
                 text: "How many questions will you add to this page?",

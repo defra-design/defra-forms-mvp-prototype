@@ -1,0 +1,407 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Manage and Customize Error Messages – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full" style="border: #b1b4b6 solid 2px;">
+    <p>govuk-grid-column-full</p>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds" style="border: #b1b4b6 solid 2px;">
+        <h1 class="govuk-heading-xl">Create and manage error messages</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Question"
+            },
+            value: {
+              text: "When did the cattle arrive?",
+              html: '<span id="question-value">When did the cattle arrive?</span>'
+            }
+          },
+          {
+            key: {
+              text: "Conditions applied"
+            },
+            value: {
+              html: "<li>Must be today or in the past</li><li>Max 34 days in the past</li>"
+            }
+          }
+        ]
+      }) }}
+      </div>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds" style="border: #b1b4b6 solid 2px;">
+      <!-- Input Field for News Title -->
+      <div class="component-guide-preview-page">
+        <div class="component-guide-preview component-guide-preview--simple">
+          <div class="gem-c-contextual-guidance" data-module="contextual-guidance">
+            <div class="gem-c-contextual-guidance__input-field">
+              <div class="govuk-form-group">
+                <label for="news-title" class="gem-c-label govuk-label">News title</label>
+                <input aria-describedby="news-title-guidance" class="gem-c-input govuk-input" id="news-title" name="news-title" spellcheck="false" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Description Label Input -->
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="description-label">
+          Enter a description label
+        </label>
+        <input class="govuk-input" id="description-label" name="description-label" type="text">
+      </div>
+
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+      {{ govukInsetText({
+        text: "It can take up to 8 weeks to register a lasting power of attorney if there are no mistakes in the application."
+      }) }}
+
+
+
+          </div>
+
+
+
+      <div class="govuk-grid-column-one-quarter" style="border: #b1b4b6 solid 2px;">
+        <div class="gem-c-contextual-guidance__wrapper" for="news-title" id="news-title-guidance">
+          <div class="gem-c-contextual-guidance__guidance">
+            <h2 class="govuk-heading-s">Writing a short description</h2>
+            <p>The description should directly include language from the question.</p>
+            <p>For example:<br><br>
+            Label: ‘How many hours do you work a week?’<br>
+            Error message: ‘Enter how many hours you work a week’</p>
+          </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+window.GOVUK = window.GOVUK || {}
+window.GOVUK.Modules = window.GOVUK.Modules || {};
+
+(function (Modules) {
+  function ContextualGuidance ($module) {
+    // The module (HTML element) containing the contextual guidance and input
+    this.$module = $module
+
+    // The guidance element
+    this.$guidance = this.$module.querySelector('.gem-c-contextual-guidance__wrapper')
+
+    // The ID of the input field that the guidance is for
+    this.$inputId = this.$guidance.getAttribute('for')
+
+    // The input element that should trigger the guidance display
+    this.$input = this.$module.querySelector('#' + this.$inputId)
+  }
+
+  // Initialize the module: add event listeners, check if input exists
+  ContextualGuidance.prototype.init = function () {
+    if (!this.$input) return // If there's no input element, stop initializing
+    // Add a focus event listener to the input field
+    this.$input.addEventListener('focus', this.handleFocus.bind(this))
+
+    // Optionally, you can add a blur event if you want to hide guidance on blur
+    this.$input.addEventListener('blur', this.handleBlur.bind(this))
+  }
+
+  // Event handler for when the input field is focused
+  ContextualGuidance.prototype.handleFocus = function (event) {
+    this.hideAllGuidance() // Hide all other guidance elements on the page
+    this.$guidance.style.display = 'block' // Show the current guidance
+  }
+
+  // Event handler for when the input field loses focus (optional)
+  ContextualGuidance.prototype.handleBlur = function (event) {
+    this.$guidance.style.display = 'none' // Hide the current guidance
+  }
+
+  // Hide all guidance elements on the page (called when an input is focused)
+  ContextualGuidance.prototype.hideAllGuidance = function () {
+    var $guidances = document.querySelectorAll('.gem-c-contextual-guidance__wrapper')
+
+    // Loop through all guidance elements and hide them
+    for (var i = 0; i < $guidances.length; i++) {
+      $guidances[i].style.display = 'none'
+    }
+  }
+
+  // Register the ContextualGuidance module under the GOVUK.Modules namespace
+  Modules.ContextualGuidance = ContextualGuidance
+})(window.GOVUK.Modules);
+
+// Automatically initialize the module after the DOM content is loaded
+document.addEventListener('DOMContentLoaded', function () {
+  var modules = document.querySelectorAll('[data-module="contextual-guidance"]')
+
+  modules.forEach(function (module) {
+    new window.GOVUK.Modules.ContextualGuidance(module).init()
+  })
+});
+
+
+
+</script>
+
+<script>
+
+
+  let toolbarVisible = false;
+
+  // Add event listener for the "Generate Preview" button
+  document.getElementById('generate-preview-button').addEventListener('click', updateErrorMessages);
+// Add event listener for the "Auto-generate Description" button
+document.getElementById('auto-generate-button').addEventListener('click', autoGenerateDescription);
+
+// Function to auto-generate description label based on question content
+function autoGenerateDescription() {
+    const questionElement = document.getElementById('question-value');  // Updated to 'question-value'
+    if (!questionElement) {
+      console.error("Question element not found!");
+      return;
+    }
+
+    const questionText = questionElement.textContent.trim().toLowerCase();
+    let generatedLabel = generateSubject(questionText);
+
+    // Update the description label input field with the generated description
+    document.getElementById('description-label').value = generatedLabel;
+    console.log('Generated Description:', generatedLabel); // Log for debugging
+}
+
+
+// Function to map question to a subject-based phrase
+function generateSubject(question) {
+    // Lowercase the question to handle various cases
+    let lowerCaseQuestion = question.toLowerCase();
+
+    // Define a set of mappings for typical interrogative words to subject-based phrases
+    const mappings = [
+        { match: "when", replacement: "Date" },
+        { match: "where", replacement: "Location" },
+        { match: "who", replacement: "Person" },
+        { match: "what", replacement: "Details" }
+    ];
+
+    // Start by removing the question mark
+    let cleanQuestion = lowerCaseQuestion.replace("?", "");
+
+    // Remove auxiliary verbs like "did", "does", "is", etc.
+    const auxiliaryVerbs = ["did", "does", "is", "are", "was", "were", "will", "can"];
+    cleanQuestion = cleanQuestion.split(' ').filter(word => !auxiliaryVerbs.includes(word)).join(' ');
+
+    // Loop through the mappings and replace the interrogative word with its subject counterpart
+    mappings.forEach(mapping => {
+        if (cleanQuestion.startsWith(mapping.match)) {
+            cleanQuestion = cleanQuestion.replace(mapping.match, mapping.replacement);
+        }
+    });
+
+    // Capitalize the first letter of the result
+    return cleanQuestion.charAt(0).toUpperCase() + cleanQuestion.slice(1);
+}
+
+
+
+  // Function to update error message previews based on description label input
+  function updateErrorMessages() {
+    const descriptionLabel = document.getElementById('description-label').value.trim() || '[Description]';
+    const highlightedLabel = `<span class="highlight">${descriptionLabel.charAt(0).toUpperCase() + descriptionLabel.slice(1).toLowerCase()}</span>`;
+
+    // Update the preview text with highlighting
+    document.getElementById('preview-text-1').innerHTML = `${highlightedLabel} must be entered.`;
+    document.getElementById('preview-text-2').innerHTML = `${highlightedLabel} must include a day, month, or year.`;
+    document.getElementById('preview-text-3').innerHTML = `${highlightedLabel} must be a real date.`;
+
+    // Update the live preview pane as well
+    document.getElementById('live-preview-1').innerHTML = `${highlightedLabel} must be entered.`;
+    document.getElementById('live-preview-2').innerHTML = `${highlightedLabel} must include a day, month, or year.`;
+    document.getElementById('live-preview-3').innerHTML = `${highlightedLabel} must be a real date.`;
+  }
+
+  function toggleCard(cardId) {
+    const card = document.getElementById(cardId);
+    const button = card.querySelector('button');
+    const editArea = card.querySelector('.edit-area');
+    const textArea = editArea.querySelector('textarea');
+    const previewText = card.querySelector('.preview-text');
+
+    // Check the current state of the card and button text
+    if (card.classList.contains('collapsed')) {
+        // If the card is collapsed, expand it and switch to "Save changes"
+        card.classList.remove('collapsed');
+        card.classList.add('expanded');
+        button.textContent = 'Save changes';  // Change button to "Save changes"
+        editArea.style.display = 'block';  // Show the edit area
+
+        // Pre-fill the textarea with the current preview text
+        textArea.value = previewText.textContent.trim();
+
+        // Focus the textarea after expanding the card
+        textArea.focus();
+    } else {
+        // If the card is expanded, save changes and collapse it
+        const updatedText = textArea.value.trim();  // Get the updated text from textarea
+        const descriptionLabel = document.getElementById('description-label').value.trim() || '[Description]';
+        const highlightedLabel = `<span class="highlight">${descriptionLabel.charAt(0).toUpperCase() + descriptionLabel.slice(1).toLowerCase()}</span>`;
+
+        // Update the preview text with the new value and preserve the highlight
+        previewText.innerHTML = updatedText.replace(descriptionLabel, highlightedLabel);
+
+        // Collapse the card and switch to "Edit"
+        card.classList.remove('expanded');
+        card.classList.add('collapsed');
+        button.textContent = 'Edit';  // Revert button to "Edit"
+        editArea.style.display = 'none';  // Hide the edit area
+    }
+
+    // Show the floating toolbar if it's not already visible
+    if (!toolbarVisible) {
+        const toolbar = document.getElementById('floating-toolbar');
+        const previewPane = document.getElementById('preview-pane');
+        toolbar.classList.remove('hidden');
+        previewPane.classList.remove('hidden');
+        toolbarVisible = true;
+    }
+}
+
+  function applyGlobalSave() {
+    alert('All changes saved!');
+  }
+
+  function resetAll() {
+    document.querySelectorAll('textarea').forEach(el => el.value = '');
+    document.querySelectorAll('.preview-text').forEach(el => el.innerHTML = '<span class="highlight">[Description]</span> must be entered.');
+    document.querySelectorAll('[id^="live-preview-"]').forEach(el => el.innerHTML = '<span class="highlight">[Description]</span> must be entered.');
+
+
+  }
+</script>
+
+<style>
+  /* General Styling */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .highlight {
+        background-color: #ffe5cc;
+        border-bottom: 2px solid #ffb266;
+  }
+
+  /* Card Styling */
+  .card {
+    border: 1px solid #b1b4b6;
+    padding: 30px;
+    margin-bottom: 20px;
+    background-color: white;
+  }
+
+  .card.collapsed {
+    max-height: 120px;
+    overflow: hidden;
+  }
+
+  .card.expanded {
+    max-height: 600px;
+  }
+
+  /* Edit Area */
+  .edit-area {
+    margin-top: 15px;
+    display: none;
+  }
+
+  .expanded .edit-area {
+    display: block;
+  }
+
+  /* Floating Toolbar */
+  .floating-toolbar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    z-index: 100;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .floating-toolbar.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Live Preview Pane */
+  .preview-pane {
+    position: fixed;
+    right: 20px;
+    top: 100px;
+    width: 300px;
+    padding: 15px;
+    border: 1px solid #b1b4b6;
+    background-color: #f9f9f9;
+    z-index: 50;
+    transition: transform 0.5s ease;
+    transform: translateX(0);
+  }
+
+  .preview-pane.hidden {
+    transform: translateX(110%);
+  }
+
+  .preview-pane h2 {
+    margin-top: 0;
+  }
+
+  .gem-c-contextual-guidance__guidance {
+    padding-top: 25px;
+        padding-left: 0;
+        border-top: 5px solid #fd0;
+        border-left: 0;
+
+}
+
+#guidance-details {
+  margin-top: 10px;
+}
+
+.govuk-details__text {
+  display: none;
+}
+
+.govuk-details__text[aria-expanded="true"] {
+  display: block;
+}
+
+</style>
+
+{% endblock %}

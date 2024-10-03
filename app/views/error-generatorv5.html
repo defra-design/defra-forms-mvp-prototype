@@ -1,0 +1,325 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Manage and Customize Error Messages – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl">Create and manage error messages</h1>
+
+    <!-- Description label input -->
+    <div class="govuk-form-group">
+      <label class="govuk-label govuk-label--m" for="description-label">
+        Enter a description label
+      </label>
+      <input class="govuk-input" id="description-label" name="description-label" type="text" placeholder="For example, Date of birth">
+    </div>
+
+    <!-- Error message cards -->
+    <div id="error-message-cards">
+      <!-- Error 1: Nothing is entered -->
+      <div class="card collapsed" id="card-1">
+        <div class="moj-page-header-actions">
+
+          <div class="moj-page-header-actions__title">
+            <h2 class="govuk-heading-m">Nothing is entered</h2>
+          </div>
+
+          <div class="moj-page-header-actions__actions">
+
+            <div class="moj-button-menu">
+              <div class="moj-button-menu__wrapper">
+
+                <button type="button"  onclick="toggleCard('card-1')" class="govuk-button moj-button-menu__item govuk-button--secondary moj-page-header-actions__action" data-module="govuk-button">
+                  Edit
+                </button>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="preview-text" id="preview-text-1"><span class="highlight">[Description]</span> must be entered.</p>
+
+        <div class="edit-area">
+          <label class="govuk-label" for="edit-text-1">Edit message:</label>
+          <textarea class="govuk-textarea" id="edit-text-1" rows="1"></textarea>
+        </div>
+      </div>
+
+
+
+
+      <!-- Error 2: Incomplete date -->
+      <div class="card collapsed" id="card-2">
+        <h2 class="govuk-heading-m">Incomplete date</h2>
+        <p class="preview-text" id="preview-text-2"><span class="highlight">[Description]</span> must include a day, month, or year.</p>
+
+        <button type="button" onclick="toggleCard('card-2')" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Edit
+        </button>
+
+        <div class="edit-area">
+          <label class="govuk-label" for="edit-text-2">Edit message:</label>
+          <textarea class="govuk-textarea" id="edit-text-2" rows="1"></textarea>
+        </div>
+      </div>
+
+      <!-- Error 3: Incorrect Date -->
+      <div class="card collapsed" id="card-3">
+        <h2 class="govuk-heading-m">Incorrect Date</h2>
+        <p class="preview-text" id="preview-text-3"><span class="highlight">[Description]</span> must be a real date.</p>
+
+        <button type="button" onclick="toggleCard('card-3')" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Edit
+        </button>
+
+        <div class="edit-area">
+          <label class="govuk-label" for="edit-text-3">Edit message:</label>
+          <textarea class="govuk-textarea" id="edit-text-3" rows="1"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save and continue button -->
+    <form action="/confirmation" method="post" novalidate>
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+    </form>
+  </div>
+
+  <!-- Live Preview Pane -->
+  <div class="preview-pane" id="preview-pane">
+    <h2>Live Preview</h2>
+    <div id="live-preview">
+      <p><strong>Nothing is entered:</strong> <span id="live-preview-1"><span class="highlight">[Description]</span> must be entered.</span></p>
+      <p><strong>Incomplete date:</strong> <span id="live-preview-2"><span class="highlight">[Description]</span> must include a day, month, or year.</span></p>
+      <p><strong>Incorrect Date:</strong> <span id="live-preview-3"><span class="highlight">[Description]</span> must be a real date.</span></p>
+    </div>
+  </div>
+
+  <!-- Floating Toolbar -->
+  <div class="floating-toolbar hidden" id="floating-toolbar">
+    <button class="govuk-button" onclick="applyGlobalSave()">Save All</button>
+    <button class="govuk-button govuk-button--secondary" onclick="resetAll()">Reset All</button>
+  </div>
+</div>
+
+<script>
+  let toolbarVisible = false;
+
+  // Function to populate textarea with the current preview text on page load
+  function populateTextAreas() {
+    document.getElementById('edit-text-1').value = document.getElementById('preview-text-1').textContent.trim();
+    document.getElementById('edit-text-2').value = document.getElementById('preview-text-2').textContent.trim();
+    document.getElementById('edit-text-3').value = document.getElementById('preview-text-3').textContent.trim();
+  }
+
+  // Run the population function when the page loads
+  window.onload = populateTextAreas;
+
+  // Function to toggle between Edit and Save Changes
+  function toggleCard(cardId) {
+    const card = document.getElementById(cardId);
+    const button = card.querySelector('button');
+    const editArea = card.querySelector('.edit-area');
+    const textArea = editArea.querySelector('textarea');
+    const previewText = card.querySelector('.preview-text');
+
+    // If the button text is "Edit", change it to "Save changes" immediately
+    if (button.textContent === 'Edit') {
+      button.textContent = 'Save changes';  // Change button to "Save changes"
+      editArea.style.display = 'block'; // Show the edit area
+
+      // Pre-fill the textarea with the preview text
+      textArea.value = previewText.textContent.trim();  // Populate the textarea with the preview content
+    } else {
+      button.textContent = 'Edit';  // Revert button to "Edit" after saving
+      saveChanges(cardId);  // Call function to save changes
+      editArea.style.display = 'none'; // Hide the edit area
+    }
+
+    // Immediately show the edit area and expand the card
+    card.classList.toggle('collapsed');
+    card.classList.toggle('expanded');
+
+    // Show the floating toolbar if it's not already visible
+    if (!toolbarVisible) {
+      const toolbar = document.getElementById('floating-toolbar');
+      const previewPane = document.getElementById('preview-pane');
+      toolbar.classList.remove('hidden');
+      previewPane.classList.remove('hidden');
+      toolbarVisible = true;
+    }
+  }
+
+  // Function to update live preview when editing
+  function updatePreview(cardNumber) {
+    const editedText = document.getElementById('edit-text-' + cardNumber).value;
+    const previewText = document.getElementById('preview-text-' + cardNumber);
+    const livePreview = document.getElementById('live-preview-' + cardNumber);
+
+    previewText.textContent = editedText;
+    livePreview.textContent = editedText;
+  }
+
+  // Function to update error message previews based on description label input
+  document.getElementById('description-label').addEventListener('input', updateErrorMessages);
+
+  function updateErrorMessages() {
+    const descriptionLabel = document.getElementById('description-label').value.trim() || '[Description]';
+    const highlightedLabel = `<span class="highlight">${descriptionLabel.charAt(0).toUpperCase() + descriptionLabel.slice(1).toLowerCase()}</span>`;
+
+    // Update the preview text with highlighting
+    document.getElementById('preview-text-1').innerHTML = `${highlightedLabel} must be entered.`;
+    document.getElementById('preview-text-2').innerHTML = `${highlightedLabel} must include a day, month, or year.`;
+    document.getElementById('preview-text-3').innerHTML = `${highlightedLabel} must be a real date.`;
+
+    // Update the live preview pane as well
+    document.getElementById('live-preview-1').innerHTML = `${highlightedLabel} must be entered.`;
+    document.getElementById('live-preview-2').innerHTML = `${highlightedLabel} must include a day, month, or year.`;
+    document.getElementById('live-preview-3').innerHTML = `${highlightedLabel} must be a real date.`;
+
+    // Update the textareas if the description changes
+    populateTextAreas();
+  }
+
+  function applyGlobalSave() {
+    alert('All changes saved!');
+  }
+
+  function resetAll() {
+    document.querySelectorAll('textarea').forEach(el => el.value = '');
+    document.querySelectorAll('.preview-text').forEach(el => el.innerHTML = '<span class="highlight">[Description]</span> must be entered.');
+    document.querySelectorAll('[id^="live-preview-"]').forEach(el => el.innerHTML = '<span class="highlight">[Description]</span> must be entered.');
+  }
+</script>
+
+
+
+<style>
+  /* General Styling */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .highlight {
+        background-color: #ffe5cc;
+        border-bottom: 2px solid #ffb266;
+      }
+
+
+  /* Card Styling */
+  .card {
+    border: 1px solid #b1b4b6; /* GOV.UK grey border */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: white;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); Subtle shadow */
+    /* transition: all 0.4s ease; Smooth animation */
+  }
+
+  .card.collapsed {
+    max-height: 120px;
+    overflow: hidden;
+    /* transition: max-height 0.5s ease-in-out; */
+  }
+
+  .card.expanded {
+    max-height: 600px;
+  }
+
+  .customize-btn {
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #005ea5; /* GOV.UK blue */
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  .customize-btn:hover {
+    color: #003078; /* Darker on hover */
+  }
+
+  /* Edit Area */
+  .edit-area {
+    margin-top: 15px;
+    display: none;
+  }
+
+  .expanded .edit-area {
+    display: block;
+  }
+
+  /* Floating Toolbar */
+  .floating-toolbar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    z-index: 100;
+    transition: opacity 0.3s ease;
+    opacity: 1; /* Make toolbar visible */
+    pointer-events: all;
+  }
+
+  .floating-toolbar.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Button Animations */
+  .govuk-button {
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+
+  .govuk-button:active {
+    transform: scale(0.97); /* Slight shrink effect */
+  }
+
+  .govuk-button:hover {
+    background-color: #005ea5;
+  }
+
+  .govuk-button--secondary:hover {
+    background-color: #595959;
+  }
+
+  /* Live Preview Pane */
+  .preview-pane {
+    position: fixed;
+    right: 20px;
+    top: 100px;
+    width: 300px;
+    padding: 15px;
+    border: 1px solid #b1b4b6;
+    /* border-radius: 10px; */
+    background-color: #f9f9f9;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); */
+    z-index: 50;
+    transition: transform 0.5s ease;
+    transform: translateX(0); /* Visible by default */
+  }
+
+  .preview-pane.hidden {
+    transform: translateX(110%);
+  }
+
+  .preview-pane h2 {
+    margin-top: 0;
+  }
+</style>
+
+{% endblock %}

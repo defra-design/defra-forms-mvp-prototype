@@ -1,7 +1,15 @@
+<style>
+  .highlight {
+    font-weight: bold;
+    color: #00703c; /* GOV.UK green */
+    background-color: #eaf9ea; /* Light green background */
+  }
+</style>
+
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+  Create and manage error messages – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -12,56 +20,164 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
-      <span class="govuk-caption-xl">Page 1: question 1</span>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl">
+      Create and manage error messages
+    </h1>
 
-      <h1 class="govuk-heading-xl">
-        Create and manage error messages
-      </h1>
-
-
-      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Question"
-            },
-            value: {
-              text: "When did the cattle arrive?"
-            }
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Question"
           },
-          {
-            key: {
-              text: "Conditions applied"
-            },
-            value: {
-              html: "<li>Must be today or in the past</li><li>Max 34 days in the past</li>
-              "
-            }
-
+          value: {
+            text: "When did the cattle arrive?"
           }
-        ]
-      }) }}
+        },
+        {
+          key: {
+            text: "Conditions applied"
+          },
+          value: {
+            html: "<li>Must be today or in the past</li><li>Max 34 days in the past</li>"
+          }
+        }
+      ]
+    }) }}
 
-      <div class="govuk-form-group">
-        <label class="govuk-label govuk-label--m" for="description-label">
-          Enter a description label (e.g. 'Date of birth')
-        </label>
-        <input class="govuk-input" id="description-label" name="description-label" type="text" placeholder="For example, Date of birth">
+    <h2 class="govuk-heading-m">Error message previews</h2>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label govuk-label--m" for="description-label">
+        Enter a description label
+      </label>
+      <input class="govuk-input" id="description-label" name="description-label" type="text" placeholder="For example, Date of birth">
+    </div>
+
+    <!-- Preview List with Yes/No conditional reveals -->
+    <div class="govuk-summary-list">
+
+      <!-- Error 1: Nothing is entered -->
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Nothing is entered</dt>
+        <dd class="govuk-summary-list__value" id="summary-name">[Description] must be entered.</dd>
+        <dd class="govuk-summary-list__actions">
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "happyName",
+            fieldset: {
+              legend: {
+                text: "Are you happy with this error message?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes",
+                checked: true
+              },
+              {
+                value: "no",
+                text: "No",
+                conditional: {
+                  html: '<div class="govuk-form-group"><label class="govuk-label" for="custom-name">Enter your custom error message</label><input class="govuk-input" id="custom-name" name="customName" type="text" placeholder="Enter custom error message"></div>'
+                }
+              }
+            ]
+          }) }}
+        </dd>
       </div>
 
+      <!-- Error 2: Incomplete date -->
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Incomplete date</dt>
+        <dd class="govuk-summary-list__value" id="summary-dob">[Description] must include a day, month, or year.</dd>
+        <dd class="govuk-summary-list__actions">
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "happyDob",
+            fieldset: {
+              legend: {
+                text: "Are you happy with this error message?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes",
+                checked: true
+              },
+              {
+                value: "no",
+                text: "No",
+                conditional: {
+                  html: '<div class="govuk-form-group"><label class="govuk-label" for="custom-dob">Enter your custom error message</label><input class="govuk-input" id="custom-dob" name="customDob" type="text" placeholder="Enter custom error message"></div>'
+                }
+              }
+            ]
+          }) }}
+        </dd>
+      </div>
 
-      <form action="/confirmation" method="post" novalidate>
+      <!-- Error 3: Incorrect Date -->
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Incorrect Date</dt>
+        <dd class="govuk-summary-list__value" id="summary-incorrect">[Description] must be a real date.</dd>
+        <dd class="govuk-summary-list__actions">
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "happyIncorrect",
+            fieldset: {
+              legend: {
+                text: "Are you happy with this error message?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes",
+                checked: true
+              },
+              {
+                value: "no",
+                text: "No",
+                conditional: {
+                  html: '<div class="govuk-form-group"><label class="govuk-label" for="custom-incorrect">Enter your custom error message</label><input class="govuk-input" id="custom-incorrect" name="customIncorrect" type="text" placeholder="Enter custom error message"></div>'
+                }
+              }
+            ]
+          }) }}
+        </dd>
+      </div>
 
-        {{ govukButton({
-          text: "Accept and send"
-        }) }}
-
-      </form>
-
+      <!-- Repeat this for other error messages -->
     </div>
+
+    <!-- Form submission button -->
+    <form action="/confirmation" method="post" novalidate>
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+    </form>
+
   </div>
+</div>
+
+<script>
+  document.getElementById('description-label').addEventListener('input', updateErrorMessages);
+
+  function updateErrorMessages() {
+    const descriptionLabel = document.getElementById('description-label').value.trim() || '[Description]';
+    const capitalizedLabel = `<span class="highlight">${descriptionLabel.charAt(0).toUpperCase() + descriptionLabel.slice(1).toLowerCase()}</span>`;
+
+    document.getElementById('summary-name').innerHTML = `Enter ${capitalizedLabel}.`;
+    document.getElementById('summary-dob').innerHTML = `${capitalizedLabel} must include a day, month, or year.`;
+    document.getElementById('summary-incorrect').innerHTML = `${capitalizedLabel} must be a real date.`;
+  }
+</script>
 {% endblock %}

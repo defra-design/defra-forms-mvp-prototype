@@ -1,0 +1,103 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Create and manage error messages – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-xl">Create and manage error messages</h1>
+
+    <h2 class="govuk-heading-m">Error message previews (click to edit)</h2>
+
+    <!-- Description label input -->
+    <div class="govuk-form-group">
+      <label class="govuk-label govuk-label--m" for="description-label">
+        Enter a description label
+      </label>
+      <input class="govuk-input" id="description-label" name="description-label" type="text" placeholder="For example, Date of birth">
+    </div>
+
+    <!-- Error message previews with inline editing -->
+    <div class="govuk-summary-list">
+
+      <!-- Error 1: Nothing is entered -->
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Nothing is entered</dt>
+        <dd class="govuk-summary-list__value editable" id="summary-name" role="button" aria-label="Edit error message for Nothing is entered">
+          [Description] must be entered.
+        </dd>
+      </div>
+
+      <!-- Error 2: Incomplete date -->
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Incomplete date</dt>
+        <dd class="govuk-summary-list__value editable" id="summary-dob" role="button" aria-label="Edit error message for Incomplete date">
+          [Description] must include a day, month, or year.
+        </dd>
+      </div>
+
+      <!-- Error 3: Incorrect Date -->
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Incorrect Date</dt>
+        <dd class="govuk-summary-list__value editable" id="summary-incorrect" role="button" aria-label="Edit error message for Incorrect Date">
+          [Description] must be a real date.
+        </dd>
+      </div>
+
+    </div>
+
+    <!-- Save and continue button -->
+    <form action="/confirmation" method="post" novalidate>
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+    </form>
+
+  </div>
+</div>
+
+<script>
+  // Inline editing functionality
+  document.querySelectorAll('.editable').forEach(function (element) {
+    element.addEventListener('click', function () {
+      // Enter edit mode
+      const content = element.innerHTML;
+      element.setAttribute('contenteditable', 'true');
+      element.classList.add('edit-mode');
+      element.focus();
+
+      // Save on blur (lose focus)
+      element.addEventListener('blur', function () {
+        element.classList.remove('edit-mode');
+        element.setAttribute('contenteditable', 'false');
+        // Optional: save updated content (send to backend or use locally)
+        const updatedValue = element.innerHTML;
+        console.log('Updated value:', updatedValue);
+      });
+    });
+  });
+
+  // Description label dynamic update
+  document.getElementById('description-label').addEventListener('input', function () {
+    const descriptionLabel = this.value.trim() || '[Description]';
+    const capitalizedLabel = `<span class="highlight">${descriptionLabel.charAt(0).toUpperCase() + descriptionLabel.slice(1).toLowerCase()}</span>`;
+
+    document.getElementById('summary-name').innerHTML = `${capitalizedLabel} must be entered.`;
+    document.getElementById('summary-dob').innerHTML = `${capitalizedLabel} must include a day, month, or year.`;
+    document.getElementById('summary-incorrect').innerHTML = `${capitalizedLabel} must be a real date.`;
+  });
+</script>
+
+
+{% endblock %}

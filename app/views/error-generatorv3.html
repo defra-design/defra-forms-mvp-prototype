@@ -1,0 +1,180 @@
+
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Manage and Customize Error Messages – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl">Create and manage error messages</h1>
+
+    <div id="error-message-cards">
+      <!-- Error 1: Nothing is entered -->
+      <div class="card collapsed" id="card-1">
+        <h2 class="govuk-heading-m">Nothing is entered</h2>
+        <p class="preview-text" id="preview-text-1">[Description] must be entered.</p>
+        <span class="customize-btn" onclick="toggleCard('card-1')">Customize</span>
+
+        <div class="edit-area">
+          <label class="govuk-label" for="edit-text-1">Edit message:</label>
+          <textarea class="govuk-textarea" id="edit-text-1" rows="3" oninput="updatePreview(1)"></textarea>
+
+          <div class="smart-suggestions">
+            <button class="govuk-button" onclick="applySuggestion(1, 'Please enter your [Description].')">Suggestion 1</button>
+            <button class="govuk-button govuk-button--secondary" onclick="applySuggestion(1, '[Description] is required.')">Suggestion 2</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error 2: Incomplete date -->
+      <div class="card collapsed" id="card-2">
+        <h2 class="govuk-heading-m">Incomplete date</h2>
+        <p class="preview-text" id="preview-text-2">[Description] must include a day, month, or year.</p>
+        <span class="customize-btn" onclick="toggleCard('card-2')">Customize</span>
+
+        <div class="edit-area">
+          <label class="govuk-label" for="edit-text-2">Edit message:</label>
+          <textarea class="govuk-textarea" id="edit-text-2" rows="3" oninput="updatePreview(2)"></textarea>
+
+          <div class="smart-suggestions">
+            <button class="govuk-button" onclick="applySuggestion(2, '[Description] must include all parts of the date.')">Suggestion 1</button>
+            <button class="govuk-button govuk-button--secondary" onclick="applySuggestion(2, 'Please provide a complete [Description].')">Suggestion 2</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error 3: Incorrect Date -->
+      <div class="card collapsed" id="card-3">
+        <h2 class="govuk-heading-m">Incorrect Date</h2>
+        <p class="preview-text" id="preview-text-3">[Description] must be a real date.</p>
+        <span class="customize-btn" onclick="toggleCard('card-3')">Customize</span>
+
+        <div class="edit-area">
+          <label class="govuk-label" for="edit-text-3">Edit message:</label>
+          <textarea class="govuk-textarea" id="edit-text-3" rows="3" oninput="updatePreview(3)"></textarea>
+
+          <div class="smart-suggestions">
+            <button class="govuk-button" onclick="applySuggestion(3, '[Description] must be a valid date.')">Suggestion 1</button>
+            <button class="govuk-button govuk-button--secondary" onclick="applySuggestion(3, '[Description] must be entered as a valid date.')">Suggestion 2</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save and continue button -->
+    <form action="/confirmation" method="post" novalidate>
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+    </form>
+  </div>
+
+  <!-- Live Preview Pane -->
+  <div class="preview-pane">
+    <h2>Live Preview</h2>
+    <div id="live-preview">
+      <p><strong>Nothing is entered:</strong> <span id="live-preview-1">[Description] must be entered.</span></p>
+      <p><strong>Incomplete date:</strong> <span id="live-preview-2">[Description] must include a day, month, or year.</span></p>
+      <p><strong>Incorrect Date:</strong> <span id="live-preview-3">[Description] must be a real date.</span></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleCard(cardId) {
+    const card = document.getElementById(cardId);
+    card.classList.toggle('collapsed');
+    card.classList.toggle('expanded');
+  }
+
+  function updatePreview(cardNumber) {
+    const editedText = document.getElementById('edit-text-' + cardNumber).value;
+    const previewText = document.getElementById('preview-text-' + cardNumber);
+    const livePreview = document.getElementById('live-preview-' + cardNumber);
+
+    previewText.textContent = editedText;
+    livePreview.textContent = editedText;
+  }
+
+  function applySuggestion(cardNumber, suggestion) {
+    document.getElementById('edit-text-' + cardNumber).value = suggestion;
+    updatePreview(cardNumber);
+  }
+</script>
+
+<style>
+  .highlight {
+    font-weight: bold;
+    color: #00703c; /* GOV.UK green */
+    background-color: #eaf9ea; /* Light green background */
+  }
+
+  .card {
+    border: 1px solid #b1b4b6; /* GOV.UK grey border */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: #00703c; /* GOV.UK green border on hover */
+  }
+
+  .card.collapsed {
+    max-height: 100px;
+    overflow: hidden;
+  }
+
+  .card.expanded {
+    max-height: 1000px;
+  }
+
+  .customize-btn {
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #005ea5; /* GOV.UK blue */
+    font-weight: bold;
+  }
+
+  .customize-btn:hover {
+    text-decoration: underline;
+  }
+
+  .edit-area {
+    margin-top: 10px;
+    display: none;
+  }
+
+  .expanded .edit-area {
+    display: block;
+  }
+
+  .smart-suggestions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-start;
+  }
+
+  .preview-pane {
+    position: fixed;
+    right: 20px;
+    top: 100px;
+    width: 300px;
+    padding: 15px;
+    border: 1px solid #b1b4b6;
+    border-radius: 4px;
+    background-color: #f3f3f3;
+  }
+
+  .preview-pane h2 {
+    margin-top: 0;
+  }
+</style>
+
+{% endblock %}

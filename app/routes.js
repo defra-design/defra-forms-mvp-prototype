@@ -240,7 +240,7 @@ router.post("/information-type-answer1", function (req, res) {
       if (listType === "yes-no") {
         res.redirect("/redesigntest/templates/1-question/yesno/edit.html");
       } else if (listType === "checkboxes") {
-        res.redirect("/redesigntest/templates/1-question/checkboxes.html");
+        res.redirect("/redesigntest/templates/1-question/checkboxes/edit.html");
       } else if (listType === "radios") {
         res.redirect("/redesigntest/templates/1-question/radios/edit.html");
       } else if (listType === "select") {
@@ -256,5 +256,28 @@ router.post("/information-type-answer1", function (req, res) {
   } else {
     console.log("Unknown informationQuestion1, redirecting to 404.");
     res.redirect("/redesigntest/templates/404.html");
+  }
+});
+
+// ROUTES FOR THE REDESIGN November
+
+router.post("/page-type-answer-3", function (request, response) {
+  // Retrieve the page type from session data
+  const pagetype3 = request.session.data["pagetype3"];
+
+  // Check the page type and redirect accordingly
+  switch (pagetype3) {
+    case "guidance":
+      response.redirect("/september/guidance/edit.html");
+      break;
+    case "1":
+      response.redirect("/redesigntest/templates/1-question/information-type.html");
+      break;
+    case "morethan1":
+      response.redirect("/september/Multi/edit.html");
+      break;
+    default:
+      response.redirect("/redesign/404");
+      break;
   }
 });

@@ -57,6 +57,8 @@
 
 
 
+
+
                   </div>
                 </div>
               </div>
@@ -67,7 +69,7 @@
 
       <!-- Generate Preview Button -->
       <button type="button" id="generate-preview-button" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-        Generate preview
+        Generate previews
       </button>
 
 
@@ -77,10 +79,30 @@
             <div class="card collapsed" id="card-1">
               <h2 class="govuk-heading-m">Nothing is entered</h2>
               <p class="preview-text" id="preview-text-1"><span class="highlight">[Description]</span> must be entered.</p>
-              <button type="button" class="govuk-button govuk-button--secondary edit-button" data-module="govuk-button" style="display: none;" onclick="toggleCard('card-1')">
+
+              <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    Edit
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.
+                </div>
+              </details>
+              </div>
+
+
+
+
+
+
+
+
+              {# <button type="button" class="govuk-button govuk-button--secondary edit-button" data-module="govuk-button" style="display: none;" onclick="toggleCard('card-1')">
 
                 Edit
-              </button>
+              </button> #}
               <div class="edit-area">
                 <label class="govuk-label" for="edit-text-1">Edit message:</label>
                 <textarea class="govuk-textarea" id="edit-text-1" rows="1"></textarea>

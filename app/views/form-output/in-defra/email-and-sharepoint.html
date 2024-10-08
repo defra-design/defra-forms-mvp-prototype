@@ -1,0 +1,128 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Where submitted forms are sent - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
+      href: "/cph-overview/draft/complete.html",
+      text: "Overview",
+      id: "overview"
+     },{
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
+    }],
+    activeLinkId: "/"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
+
+      <span class="govuk-caption-xl">Apply for a county-parish-holding-number</span>
+      <h1 class="govuk-heading-xl">Email and SharePoint details</h1>
+
+      <div class="govuk-inset-text">
+        To receive submitted forms in a SharePoint folder, email example@example.gov.uk. Requests can take up to 8 days to process.
+      </div>
+
+
+
+      {{ govukInput({
+        label: {
+          text: "Email address for submitted forms to be sent to"
+        },
+        hint: {
+          text: "It should be a shared government email inbox and you should test it before making a form live. The email address must end with ‘gov.uk’."
+        },
+        id: "email",
+        name: "email",
+        value: data['email'],
+        type: "email",
+        autocomplete: "email",
+        spellcheck: false
+      }) }}
+
+
+
+{{ govukInput({
+  label: {
+    text: "Link to SharePoint folder"
+  },
+  hint: {
+    text: "This is a link to the folder where you want completed forms to be sent"
+  },
+  id: "email",
+  name: "email",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false
+}) }}
+
+      <div class="govuk-button-group">
+        <a href="/form-output/in-defra/sharepoint-success.html">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Save and test SharePoint connection
+          </button>
+        </a>
+        <a href="javascript:window.history.back()">
+          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Cancel
+          </button>
+        </a>
+      </div>
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-6">Your answers</h3>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Submitted forms sent to"
+            },
+            value: {
+              text: "Email and SharePoint"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+
+          }
+        ]
+      }) }}
+    </div>
+
+  </div>
+
+
+{% endblock %}

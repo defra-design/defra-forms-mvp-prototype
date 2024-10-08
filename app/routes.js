@@ -281,3 +281,14 @@ router.post("/page-type-answer-3", function (request, response) {
       break;
   }
 });
+
+
+router.post('/output-method', function(request, response) {
+
+  var outputMethod = request.session.data['outputMethod']
+  if (outputMethod == "email"){
+      response.redirect("/form-output/in-defra/email-only.html")
+  } else {
+      response.redirect("/form-output/in-defra/email-and-sharepoint.html")
+  }
+})

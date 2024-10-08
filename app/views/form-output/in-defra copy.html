@@ -1,0 +1,229 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Where submitted forms are sent - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
+      href: "/cph-overview/draft/complete.html",
+      text: "Overview",
+      id: "overview"
+     },{
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
+    }],
+    activeLinkId: "/"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
+
+      <span class="govuk-caption-xl">Apply for a county-parish-holding-number</span>
+      <h1 class="govuk-heading-xl">Where completed forms are sent</h1>
+
+      <div class="govuk-inset-text">
+        To receive submitted forms in a SharePoint folder, email example@example.gov.uk to make a request. Requests can take up to 8 days to process.
+      </div>
+
+
+      {% set emailHtml %}
+      {{ govukInput({
+        id: "contact-by-email",
+        name: "contactByEmail",
+        type: "email",
+        autocomplete: "email",
+        spellcheck: false,
+        classes: "govuk-!-width-one-third",
+        label: {
+          text: "Email address"
+        }
+      }) }}
+      {% endset -%}
+
+      {% set phoneHtml %}
+
+{{ govukInput({
+  label: {
+    text: "Email address"
+  },
+  hint: {
+    text: "It should be a shared government email inbox and you should test it before making a form live. The email address must end with ‘gov.uk’."
+  },
+  id: "email",
+  name: "email",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Link to SharePoint folder"
+  },
+  hint: {
+    text: "This is a link to the folder where you want completed forms to be sent"
+  },
+  id: "email",
+  name: "email",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false
+}) }}
+      {% endset -%}
+
+      {% set textHtml %}
+      {{ govukInput({
+        id: "contact-by-text",
+        name: "contactByText",
+        type: "tel",
+        autocomplete: "tel",
+        classes: "govuk-!-width-one-third",
+        label: {
+          text: "Mobile phone number"
+        }
+      }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+        name: "contact",
+        fieldset: {
+          legend: {
+            text: "How do you want to receive completed forms?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Select one option"
+        },
+        items: [
+          {
+            value: "email",
+            text: "Email only",
+            conditional: {
+              html: emailHtml
+            }
+          },
+          {
+            value: "phone",
+            text: "Email and SharePoint folder",
+            conditional: {
+              html: phoneHtml
+            }
+          }
+        ]
+      }) }}
+
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      <div class="govuk-button-group">
+        <a href="/cph-overview/draft/notification.html">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Save and continue
+          </button>
+        </a>
+        <a href="javascript:window.history.back()">
+          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Cancel
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        View error messages
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+      <p class="govuk-body-l">Empty string</p>
+
+      {{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Enter an email address submitted forms should be sent to",
+      href: "#"
+
+    }
+  ]
+}) }}
+
+      {{ govukInput({
+  label: {
+    text: "What email address should submitted forms be sent to?",
+    classes: "govuk-label--m",
+    isPageHeading: false
+  },
+  id: "notification-email",
+  name: "notificationEmail",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false,
+  errorMessage: {
+    text: "Enter an email address submitted forms should be sent to"
+  }
+}) }}
+
+      <p class="govuk-body-l">Incorrect format</p>
+
+      {{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Enter an email address submitted forms should be sent to in the correct format, like name@gov.uk",
+      href: "#"
+
+    }
+  ]
+}) }}
+
+      {{ govukInput({
+  label: {
+    text: "What email address should submitted forms be sent to?",
+    classes: "govuk-label--m",
+    isPageHeading: false
+  },
+  id: "notification-email",
+  name: "notificationEmail",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false,
+  errorMessage: {
+    text: "Enter an email address submitted forms should be sent to in the correct format, like name@gov.uk"
+  }
+}) }}
+
+    </div>
+  </details>
+
+{% endblock %}

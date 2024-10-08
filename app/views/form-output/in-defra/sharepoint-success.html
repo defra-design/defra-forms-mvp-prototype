@@ -1,0 +1,173 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Where submitted forms are sent - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
+      href: "/cph-overview/draft/complete.html",
+      text: "Overview",
+      id: "overview"
+     },{
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
+    }],
+    activeLinkId: "/"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{% set html %}
+  <h3 class="govuk-notification-banner__heading">
+    Successfully connected with your SharePoint folder
+  </h3>
+  <p class="govuk-body">
+    <a
+      class="govuk-notification-banner__link"
+      href="https://defra.sharepoint.com/"
+      style="word-wrap: break-word;"
+    >
+      Check your folder
+  </a>for a test file.
+    If you think there’s a problem, contact <a       class="govuk-notification-banner__link"
+    href="mailto:example@example.gov.uk">example@example.gov.uk</a>.
+  </p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html,
+  type: "success"
+}) }}
+
+
+      <span class="govuk-caption-xl">Apply for a county-parish-holding-number</span>
+      <h1 class="govuk-heading-xl">Where completed forms are sent</h1>
+
+      <div class="govuk-inset-text">
+        To receive submitted forms in a SharePoint folder, email example@example.gov.uk to make a request. Requests can take up to 8 days to process.
+      </div>
+
+
+
+
+{{ govukInput({
+  label: {
+    text: "Email address for submitted forms to be sent to"
+  },
+  hint: {
+    text: "It should be a shared government email inbox and you should test it before making a form live. The email address must end with ‘gov.uk’."
+  },
+  id: "email",
+  name: "email",
+  value: data['email'],
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Link to SharePoint folder"
+  },
+  hint: {
+    text: "This is a link to the folder where you want completed forms to be sent"
+  },
+  id: "email",
+  name: "email",
+  type: "email",
+  autocomplete: "email",
+  spellcheck: false
+}) }}
+
+      <div class="govuk-button-group">
+        <a href="/cph-overview/draft/notification.html">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Save and continue
+          </button>
+        </a>
+        <a href="javascript:window.history.back()">
+          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Test SharePoint connection again
+          </button>
+        </a>
+      </div>
+      <h3 class="govuk-heading-m govuk-!-margin-top-6">Your answers</h3>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Submitted forms sent to"
+            },
+            value: {
+              text: "Email and SharePoint"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Email address and SharePoint folder link"
+              },
+              value: {
+                html: "<ul class='govuk-list govuk-list govuk-list--spaced'>
+  <li>
+    <p class='govuk-body'>example@example.gov.uk</p>
+  </li>
+    <li>
+    <p class='govuk-body'>https://defra.sharepoint.com/teams/Team811/GOVUK/Forms/AllItems.aspx</p>
+  </li>
+</ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "date of birth"
+                    }
+                    ]
+                  }
+                }
+              ]
+      }) }}
+    </div>
+
+  </div>
+    </div>
+  </div>
+
+
+{% endblock %}

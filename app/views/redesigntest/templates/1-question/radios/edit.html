@@ -295,7 +295,7 @@
           text: "Type of information"
         },
         value: {
-          html: data ['radios']
+          html: "List: radios"
         },
         actions: {
           items: [
@@ -336,7 +336,8 @@
         {% include "/redesigntest/templates/previews/radios/edit.html" %}
       </div>
     </div>
-    <script>
+
+   <script>
       document.addEventListener('DOMContentLoaded', function () {
         // DOM Elements
         const domElements = {
@@ -954,6 +955,143 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      // DOM Elements
+      const domElements = {
+          // Existing elements
+          questionLabelInputQ1: document.getElementById('question-label-input-q1'),
+          questionLabelLegend: document.querySelector('legend[for="question-label-input-q1"]'),
+          hintTextInputQ1: document.getElementById('hint-text-inputq1'),
+          hintTextOutput: document.getElementById('hint-text-output'),
+          makeOptionalCheckbox: document.getElementById('makeOptional'),
+
+          // New elements for page heading and guidance text
+          pageHeadingInput: document.getElementById('page-heading-input'),
+          dynamicHeading: document.getElementById('dynamic-heading'),
+          guidanceTextarea: document.getElementById('guidance-textarea'),
+          guidanceParagraph: document.getElementById('guidance-paragraph')
+      };
+
+      // Initialize event listeners
+      initializeEventListeners();
+
+      function initializeEventListeners() {
+          // Update question label
+          if (domElements.questionLabelInputQ1 && domElements.questionLabelLegend) {
+              domElements.questionLabelInputQ1.addEventListener('input', updateQuestionLabel);
+          }
+
+          // Update hint text and handle placeholder
+          if (domElements.hintTextInputQ1 && domElements.hintTextOutput) {
+              domElements.hintTextInputQ1.addEventListener('input', updateHintText);
+              domElements.hintTextInputQ1.addEventListener('focus', showPlaceholderHint);
+              domElements.hintTextInputQ1.addEventListener('blur', clearPlaceholderHint);
+          }
+
+          // Update page heading and handle placeholder
+          if (domElements.pageHeadingInput && domElements.dynamicHeading) {
+              domElements.pageHeadingInput.addEventListener('input', updatePageHeading);
+              domElements.pageHeadingInput.addEventListener('focus', showPlaceholderHeading);
+              domElements.pageHeadingInput.addEventListener('blur', clearPlaceholderHeading);
+          }
+
+          // Update optional label
+          if (domElements.makeOptionalCheckbox) {
+              domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
+          }
+
+          // Update guidance text and handle placeholder
+          if (domElements.guidanceTextarea && domElements.guidanceParagraph) {
+              domElements.guidanceTextarea.addEventListener('input', updateGuidanceText);
+              domElements.guidanceTextarea.addEventListener('focus', showPlaceholderGuidance);
+              domElements.guidanceTextarea.addEventListener('blur', clearPlaceholderGuidance);
+          }
+
+          // Apply focus/blur highlighting
+          applyHighlightOnFocus(domElements.questionLabelInputQ1, domElements.questionLabelLegend);
+          applyHighlightOnFocus(domElements.hintTextInputQ1, domElements.hintTextOutput);
+          applyHighlightOnFocus(domElements.pageHeadingInput, domElements.dynamicHeading);
+          applyHighlightOnFocus(domElements.guidanceTextarea, domElements.guidanceParagraph);
+      }
+
+      function updateQuestionLabel() {
+          const suffix = domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
+          domElements.questionLabelLegend.textContent = domElements.questionLabelInputQ1.value || 'Question';
+          domElements.questionLabelLegend.textContent += suffix;
+      }
+
+      function updateHintText() {
+          domElements.hintTextOutput.textContent = domElements.hintTextInputQ1.value;
+      }
+
+      function updatePageHeading() {
+          domElements.dynamicHeading.textContent = domElements.pageHeadingInput.value;
+      }
+
+      function updateGuidanceText() {
+          domElements.guidanceParagraph.textContent = domElements.guidanceTextarea.value;
+      }
+
+      function applyHighlightOnFocus(inputElement, targetElement) {
+          if (inputElement && targetElement) {
+              inputElement.addEventListener('focus', function () {
+                  targetElement.classList.add('highlight');
+              });
+              inputElement.addEventListener('blur', function () {
+                  targetElement.classList.remove('highlight');
+              });
+
+              // If the input is already focused
+              if (document.activeElement === inputElement) {
+                  targetElement.classList.add('highlight');
+              }
+          }
+      }
+
+      // Placeholder handling for hint text
+      function showPlaceholderHint() {
+    const listPreviewHint = document.getElementById('listPreview-hint');
+    if (domElements.hintTextInputQ1 && listPreviewHint && !domElements.hintTextInputQ1.value) {
+        listPreviewHint.textContent = 'Hint text';
+    }
+}
+
+function clearPlaceholderHint() {
+    const listPreviewHint = document.getElementById('listPreview-hint');
+    if (domElements.hintTextInputQ1 && listPreviewHint && !domElements.hintTextInputQ1.value) {
+        listPreviewHint.textContent = ''; // Clear the hint text when input is empty
+    }
+}
+
+
+      // Placeholder handling for page heading
+      function showPlaceholderHeading() {
+          if (!domElements.pageHeadingInput.value) {
+              domElements.dynamicHeading.textContent = 'Page heading';
+          }
+      }
+
+      function clearPlaceholderHeading() {
+          if (!domElements.pageHeadingInput.value) {
+              domElements.dynamicHeading.textContent = '';
+          }
+      }
+
+      // Placeholder handling for guidance text
+      function showPlaceholderGuidance() {
+          if (!domElements.guidanceTextarea.value) {
+              domElements.guidanceParagraph.textContent = 'Guidance text';
+          }
+      }
+
+      function clearPlaceholderGuidance() {
+          if (!domElements.guidanceTextarea.value) {
+              domElements.guidanceParagraph.textContent = '';
+          }
+      }
+  });
+</script>
 
 
 

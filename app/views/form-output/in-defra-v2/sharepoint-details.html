@@ -1,0 +1,103 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Where submitted forms are sent - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
+      href: "/cph-overview/draft/complete.html",
+      text: "Overview",
+      id: "overview"
+     },{
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
+    }],
+    activeLinkId: "/"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
+
+    <span class="govuk-caption-xl">Apply for a county-parish-holding-number</span>
+
+{{ govukInput({
+
+label: {
+  classes: "govuk-label--l",
+
+  text: "Link to SharePoint folder"
+
+},
+hint: {
+  text: "For example, https://defra.sharepoint.com/teams/Team811/GOVUK/Forms/AllItems.aspx"
+},
+id: "email",
+name: "email",
+type: "email",
+autocomplete: "email",
+spellcheck: false
+}) }}
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      How to find your SharePoint folder link
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <ol class="govuk-list govuk-list--number">
+      <li>Go to the folder you want completed forms to be sent to</li>
+      <li>At the top of your browser, select the address bar where the URL is displayed and copy it.</li>
+      <li>Paste the URL in the field below</li>
+    </ol>
+  </div>
+</details>
+
+      <div class="govuk-button-group">
+        <a href="/form-output/in-defra-v2/check-answers.html">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Save and continue
+          </button>
+        </a>
+        <a href="javascript:window.history.back()">
+          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+            Cancel
+          </button>
+        </a>
+      </div>
+
+      <div class="govuk-inset-text">
+        To receive submitted forms in a SharePoint folder, <a class="govuk-link" href="#">contact the Defra Forms team</a> to make a request. Requests can take up to 8 days to process.
+      </div>
+
+    </div>
+
+  </div>
+
+
+{% endblock %}

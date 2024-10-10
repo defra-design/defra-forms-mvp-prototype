@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% from "components/service-header/macro.njk" import serviceHeader %}
-{% set pageName = "Overview of long answer question - Apply for a county parish holding number in England" %}
+{% set pageName = "Overview of short answer question - Apply for a county parish holding number in England" %}
 {% set headingPlaceholder = "Page heading" %}
 {% set guidancePlaceholder = "" %}
 
@@ -83,8 +83,8 @@
 
                         <h2 class="govuk-heading-l" id="page-heading">Overview of questions</h2>
 
-
-                        <form class="form" action="/redesigntest/Multi/question-2-date/information-type" method="post">
+{#
+                        <form class="form" action="/redesigntest/Multi/question-2-date/information-type" method="post"> #}
 
                            <!-- Dynamic Summary List -->
             <div id="summary-container">
@@ -98,7 +98,7 @@
                       text: "Question 1"
                     },
                     value: {
-                      html: data['questionLabelInput'] or ''
+                      html: data['questionLabelInputTextArea'] or ''
 
                     },
                     actions: {
@@ -115,6 +115,7 @@
               }) }}
 
             </div>
+
             <div class="govuk-button-group govuk-!-margin-top-6">
               <a href="/redesigntest/templates/1-question/page-type.html" class="govuk-button" role="button">
                 Create next page
@@ -126,6 +127,8 @@
 
 
             </div>
+
+
                         </form>
                       </div>
                     </div>

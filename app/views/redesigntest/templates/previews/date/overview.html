@@ -25,11 +25,11 @@
 
 
                  <div id="heading-container">
-                  <span id="dynamic-caption" class="govuk-caption-xl">{{ (data['setName'] or '') + ' 1' }}</span>          <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeading'] or '' }}</h1>
+                  <span id="dynamic-caption" class="govuk-caption-xl">{{ (data['setName'] or '') + ' 1' }}</span>          <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingDate'] or '' }}</h1>
                 </div>
 
          <!-- Guidance Paragraph -->
-        <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
+        <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceDate'] or '' }}</p>
 
 
        <!-- Date Input Group -->
@@ -39,7 +39,7 @@
     </legend>
     <div class="govuk-form-group">
       <!-- Date Input Hint -->
-      <div id="hint-text-output" name="hintTextOutput" class="govuk-hint">{{ data['hintTextInput'] or '' }}</div>
+      <div id="hint-text-output" name="hintTextOutput" class="govuk-hint">{{ data['hintTextInputDate'] or '' }}</div>
       <!-- Date Input Fields -->
       <div class="govuk-date-input" id="date-input" data-module="govuk-date-input">
         <!-- Day Input -->

@@ -98,7 +98,8 @@
                       text: "Question 1"
                     },
                     value: {
-                      html: data['questionLabelInput'] or ''
+                      html: data['questionLabelInputYesno'] or ''
+
 
                     },
                     actions: {
@@ -116,6 +117,18 @@
 
             </div>
                         </form>
+                        <div class="govuk-button-group govuk-!-margin-top-6">
+                          <a href="/redesigntest/templates/1-question/page-type.html" class="govuk-button" role="button">
+                            Create next page
+                          </a>
+
+                          <a href="/redesigntest/templates/1-question/listing/1.html" class="govuk-button govuk-button--inverse" role="button">
+                            Back to all pages
+                          </a>
+
+
+                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -136,7 +149,7 @@
         </div>
 
         <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews/email/overview.html" %}
+        {% include "/redesigntest/templates/previews/yesno/overview.html" %}
       </div>
     </div>
 

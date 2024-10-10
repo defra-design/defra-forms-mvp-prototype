@@ -27,22 +27,37 @@
          <div id="heading-container">
           <span id="dynamic-caption" class="govuk-caption-xl">{{ (data['setName'] or '') + ' 1' }}</span>
 
-          <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeading'] or '' }}</h1>
+          <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingTextarea'] or '' }}</h1>
         </div>
 
  <!-- Guidance Paragraph -->
-<p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
+<p class="govuk-body" id="guidance-paragraph">{{ data['guidanceTextarea'] or '' }}</p>
 
 
 <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
     <label class="govuk-label govuk-label--l" for="text-input-field" id="question-label-legend">
-      {{ data['questionLabelInput'] or '' }}
+      {{ data['questionLabelInputShorttext'] or '' }}
     </label>
   </h1>
   <div id="hint-text-output" class="govuk-hint">
-    {{ data['hintTextInput'] or '' }}
+    {{ data['hintTextInputShorttext'] or '' }}
 
   </div>
   <textarea class="govuk-textarea" rows="5" id="text-input-field" name="textInputField" type="text" aria-describedby="hint-text-output"></textarea>
   </div>
+
+  {{ govukButton({
+    text: "Continue",
+    classes: "govuk-button govuk-!-margin-top-3",
+    id: "once-button",
+    disabled: true
+    }) }}
+
+    {{ govukButton({
+    text: "Add another [question set name]",
+    classes: "govuk-button govuk-!-margin-top-3",
+    id: "add-another-set-button",
+    disabled: true,
+    attributes: { style: "display:none;" }
+    }) }}

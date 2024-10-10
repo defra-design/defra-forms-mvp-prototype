@@ -1,0 +1,132 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Where submitted forms are sent - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
+      href: "/cph-overview/draft/complete.html",
+      text: "Overview",
+      id: "overview"
+     },{
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
+    }],
+    activeLinkId: "/"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">We've successfully connected to the email address and SharePoint folder you entered</h1>
+
+    <p class="govuk-body">
+      <a
+        class="govuk-notification-banner__link"
+        href="https://defra.sharepoint.com/"
+        style="word-wrap: break-word;"
+      >
+        Check your folder
+    </a>for a test file.
+      If you think there’s a problem, contact <a       class="govuk-notification-banner__link"
+      href="mailto:example@example.gov.uk">the Defra Forms team</a>.
+    </p>
+
+
+
+    <h2 class="govuk-heading-m">Your answers</h2>
+
+
+
+
+
+
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: {
+            text: "Method"
+          },
+          value: {
+            text: "Email and SharePoint folder"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Email address submitted forms will be sent to"
+          },
+          value: {
+            text: "PolicyTeam@defra.gov.uk"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "date of birth"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "SharePoint folder submitted forms will be sent to"
+          },
+          value: {
+            text: "https://defra.sharepoint.com/teams/Team811/GOVUK/Forms/AllItems.aspx"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "customer reference"
+              }
+            ]
+          }
+
+
+          }
+
+      ]
+    }) }}
+
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Where submitted forms are sent - Apply for a county parish holding number in England" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+    {
+      href: "/library.html",
+      text: "Forms library",
+      id: "library"
+     },
+    {
+      href: "/cph-overview/draft/complete.html",
+      text: "Overview",
+      id: "overview"
+     },{
+         href: "/editor.html",
+    text: 'Editor',
+    id: 'editor'
+    }],
+    activeLinkId: "/"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
+
+      <span class="govuk-caption-xl">Apply for a county-parish-holding-number</span>
+
+
+
+      <form class="form" action="/output-method-v2" method="post">
+
+      {{ govukRadios({
+        name: "outputMethod",
+        fieldset: {
+          legend: {
+            text: "How do you want to receive completed forms?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Select one option"
+        },
+        items: [
+          {
+            value: "email",
+            text: "Email only",
+            conditional: {
+              html: emailHtml
+            }
+          },
+          {
+            value: "emailSharepoint",
+            text: "Email and SharePoint folder",
+            conditional: {
+              html: phoneHtml
+            }
+          }
+        ]
+      }) }}
+
+
+
+      <div class="govuk-button-group">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Save and continue
+          </button>
+
+          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" href="javascript:window.history.back()">
+Cancel      </button>
+      </div>
+
+      <div class="govuk-inset-text">
+        To receive submitted forms in a SharePoint folder, <a class="govuk-link" href="#">contact the Defra Forms team</a> to make a request. Requests can take up to 8 days to process.
+      </div>
+
+
+
+{% endblock %}

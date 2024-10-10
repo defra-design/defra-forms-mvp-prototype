@@ -84,15 +84,16 @@
                         <span class="govuk-caption-l">Page 1</span>
                         <h2 class="govuk-heading-l">Question 1</h2>
 
-                        <form method="post" id="options-form" action="/redesigntest/templates/1-question/phone/overview">
+                        <form method="post" id="options-form" action="/redesigntest/templates/1-question/shorttext/overview">
                           {% from "govuk/components/input/macro.njk" import govukInput %}
 
                           <!-- Question Label Input -->
                           <div class="govuk-form-group">
-                            <label class="govuk-label--m" for="question-label-input-phone">
+                            <label class="govuk-label--m" for="question-label-input">
                               Question
                             </label>
-                            <input class="govuk-input" id="question-label-input-phone" name="questionLabelInputPhone"  type="text" value="">                          </div>
+                            <input class="govuk-input" id="question-label-input" name="questionLabelInput" type="text" value="">
+                          </div>
 
                           <!-- Hint Text Input -->
                           {{ govukTextarea({
@@ -100,12 +101,12 @@
                               text: "Hint text (optional)",
                               classes: "govuk-label--m"
                             },
-                            id: "hint-text-input-phone",
-                            name: "hintTextInputPhone",
-                            value: data['hint-text-input-phone'],
+                            id: "hint-text-input",
+                            name: "hintTextInput",
+                            value: data['hint-text-input'],
                             classes: "govuk-textarea",
                             rows: 3,
-                            describedBy: "hint-text-input-phone"
+                            describedBy: "hint-text-input"
                           }) }}
 
                           <!-- Make Optional Checkbox -->
@@ -141,8 +142,8 @@
           text: "Page headings should be a statement and not a question. For example, ‘Passport information’",
           id: "page-heading-input-hint"
         },
-        id: "page-heading-input-phone",
-        name: "pageHeadingPhone",
+        id: "page-heading-input",
+        name: "pageHeading",
         type: "text",
         attributes: {
           'aria-describedby': "page-heading-input-hint",
@@ -160,14 +161,16 @@
           text: "Use Markdown to format the content or add hyperlinks",
           id: "guidance-textarea-hint"
         },
-        id: "guidance-phone",
-        name: "guidancePhone",
+        id: "guidance-textarea",
+        name: "guidanceText",
         rows: 5,
         attributes: {
-          'aria-describedby': "guidance-phone-hint",
+          'aria-describedby': "guidance-textarea-hint",
           'data-preview-target': '#guidance-paragraph'
         }
       }) }}
+
+    </div>
   </div>
 </details>
 
@@ -184,7 +187,7 @@
         "text": "Type of information"
       },
       "value": {
-        "html": "Phone"
+        "html": "Short written answer"
       },
       "actions": {
         "items": [
@@ -232,7 +235,7 @@
         </div>
 
         <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews/phone/edit.html" %}
+        {% include "/redesigntest/templates/previews/shorttext/edit.html" %}
       </div>
     </div>
 
@@ -243,16 +246,16 @@
           // DOM Elements
           const domElements = {
             // Existing elements
-            questionLabelInputPhone: document.getElementById('question-label-input-phone'),
+            questionLabelInput: document.getElementById('question-label-input'),
             questionLabelLegend: document.getElementById('question-label-legend'),
-            hintTextInputPhone: document.getElementById('hint-text-input-phone'),
+            hintTextInput: document.getElementById('hint-text-input'),
             hintTextOutput: document.getElementById('hint-text-output'),
             makeOptionalCheckbox: document.getElementById('make-optional'),
 
             // New elements for page heading and guidance text
-            pageHeadingInputPhone: document.getElementById('page-heading-input-phone'),
+            pageHeadingInput: document.getElementById('page-heading-input'),
             dynamicHeading: document.getElementById('dynamic-heading'),
-            guidancePhone: document.getElementById('guidance-phone'),
+            guidanceTextarea: document.getElementById('guidance-textarea'),
             guidanceParagraph: document.getElementById('guidance-paragraph')
           };
 
@@ -260,25 +263,15 @@
           initializeEventListeners();
 
           function initializeEventListeners() {
-          // Update question label
-          if (domElements.questionLabelInputPhone && domElements.questionLabelLegend) {
-            domElements.questionLabelInputPhone.addEventListener('input', updateQuestionLabel);
-          }
+            // Update question label
+            if (domElements.questionLabelInput && domElements.questionLabelLegend) {
+              domElements.questionLabelInput.addEventListener('input', updateQuestionLabel);
+            }
 
-             // Update hint text and handle placeholder
-             if (domElements.hintTextInputPhone && domElements.hintTextOutput) {
-            domElements.hintTextInputPhone.addEventListener('input', updateHintText);
-            domElements.hintTextInputPhone.addEventListener('focus', showPlaceholderHint);
-            domElements.hintTextInputPhone.addEventListener('blur', clearPlaceholderHint);
-          }
-
-              // Update page heading and handle placeholder
-          if (domElements.pageHeadingInputPhone && domElements.dynamicHeading) {
-            domElements.pageHeadingInputPhone.addEventListener('input', updatePageHeading);
-            domElements.pageHeadingInputPhone.addEventListener('focus', showPlaceholderHeading);
-
-            domElements.pageHeadingInputPhone.addEventListener('blur', clearPlaceholderHeading);
-          }
+            // Update hint text
+            if (domElements.hintTextInput && domElements.hintTextOutput) {
+              domElements.hintTextInput.addEventListener('input', updateHintText);
+            }
 
             // Update optional label
             if (domElements.makeOptionalCheckbox) {
@@ -286,41 +279,38 @@
             }
 
             // Update page heading
-            if (domElements.pageHeadingInputPhone && domElements.dynamicHeading) {
-              domElements.pageHeadingInputPhone.addEventListener('input', updatePageHeading);
+            if (domElements.pageHeadingInput && domElements.dynamicHeading) {
+              domElements.pageHeadingInput.addEventListener('input', updatePageHeading);
             }
 
-             // Update guidance text and handle placeholder
-          if (domElements.guidancePhone && domElements.guidanceParagraph) {
-            domElements.guidancePhone.addEventListener('input', updateGuidanceText);
-            domElements.guidancePhone.addEventListener('focus', showPlaceholderGuidance);
-            domElements.guidancePhone.addEventListener('blur', clearPlaceholderGuidance);
+            // Update guidance text
+            if (domElements.guidanceTextarea && domElements.guidanceParagraph) {
+              domElements.guidanceTextarea.addEventListener('input', updateGuidanceText);
+            }
+
+            // Apply focus/blur highlighting
+            applyHighlightOnFocus(domElements.questionLabelInput, domElements.questionLabelLegend);
+            applyHighlightOnFocus(domElements.hintTextInput, domElements.hintTextOutput);
+            applyHighlightOnFocus(domElements.pageHeadingInput, domElements.dynamicHeading);
+            applyHighlightOnFocus(domElements.guidanceTextarea, domElements.guidanceParagraph);
           }
 
+          function updateQuestionLabel() {
+            const suffix = domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
+            domElements.questionLabelLegend.textContent = domElements.questionLabelInput.value || 'Question';
+            domElements.questionLabelLegend.textContent += suffix;
+          }
 
+          function updateHintText() {
+            domElements.hintTextOutput.textContent = domElements.hintTextInput.value;
+          }
 
-  // Apply focus/blur highlighting
-  applyHighlightOnFocus(domElements.questionLabelInputPhone, domElements.questionLabelLegend);
-          applyHighlightOnFocus(domElements.hintTextInputPhone, domElements.hintTextOutput);
-          applyHighlightOnFocus(domElements.pageHeadingInputPhone, domElements.dynamicHeading);
-          applyHighlightOnFocus(domElements.guidancePhone, domElements.guidanceParagraph);
-        }
-        function updateQuestionLabel() {
-          const suffix = domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
-          domElements.questionLabelLegend.textContent = domElements.questionLabelInputPhone.value || 'Question';
-          domElements.questionLabelLegend.textContent += suffix;
-        }
-
-        function updateHintText() {
-          domElements.hintTextOutput.textContent = domElements.hintTextInputPhone.value;
-        }
-
-        function updatePageHeading() {
-          domElements.dynamicHeading.textContent = domElements.pageHeadingInputPhone.value;
-        }
+          function updatePageHeading() {
+            domElements.dynamicHeading.textContent = domElements.pageHeadingInput.value;
+          }
 
           function updateGuidanceText() {
-            domElements.guidanceParagraph.textContent = domElements.guidancePhone.value;
+            domElements.guidanceParagraph.textContent = domElements.guidanceTextarea.value;
           }
 
           function applyHighlightOnFocus(inputElement, targetElement) {
@@ -338,45 +328,6 @@
               }
             }
           }
-
-     // Placeholder handling for hint text
-        function showPlaceholderHint() {
-          if (!domElements.hintTextInputPhone.value) {
-            domElements.hintTextOutput.textContent = 'Hint text';
-          }
-        }
-
-        function clearPlaceholderHint() {
-          if (!domElements.hintTextInputPhone.value) {
-            domElements.hintTextOutput.textContent = '';
-          }
-        }
-
-        // Placeholder handling for page heading
-        function showPlaceholderHeading() {
-          if (!domElements.pageHeadingInputPhone.value) {
-            domElements.dynamicHeading.textContent = 'Page heading';
-          }
-        }
-
-        function clearPlaceholderHeading() {
-          if (!domElements.pageHeadingInputPhone.value) {
-            domElements.dynamicHeading.textContent = '';
-          }
-        }
-
-        // Placeholder handling for guidance text
-        function showPlaceholderGuidance() {
-          if (!domElements.guidancePhone.value) {
-            domElements.guidanceParagraph.textContent = 'Guidance text';
-          }
-        }
-
-        function clearPlaceholderGuidance() {
-          if (!domElements.guidancePhone.value) {
-            domElements.guidanceParagraph.textContent = '';
-          }
-        }
         });
         </script>
 

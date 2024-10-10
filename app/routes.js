@@ -271,7 +271,7 @@ router.post("/page-type-answer-3", function (request, response) {
       response.redirect("/september/guidance/edit.html");
       break;
     case "1":
-      response.redirect("/redesigntest/templates/1-question/information-type.html");
+      response.redirect("/redesigntest/templates/1-question/settings.html");
       break;
     case "morethan1":
       response.redirect("/september/Multi/edit.html");
@@ -291,4 +291,48 @@ router.post('/output-method', function(request, response) {
   } else {
       response.redirect("/form-output/in-defra/email-and-sharepoint.html")
   }
+})
+
+
+router.post('/output-method-v2', function(request, response) {
+
+  var outputMethodV2 = request.session.data['outputMethodV2']
+  if (outputMethodV2 == "email"){
+      response.redirect("/form-output/in-defra-v2/email-only.html")
+  } else {
+      response.redirect("/form-output/in-defra-v2/email-details.html")
+  }
+})
+
+// Destructure addFilter from govukPrototypeKit.views
+const { addFilter } = govukPrototypeKit.views
+
+const constants = require('./constants')
+
+// Define the 'appendSuffix' filter
+addFilter('appendSuffix', function(str, suffixType = 'textarea') {
+  if (typeof str !== 'string') return str // Ensure the input is a string
+
+  // Map suffix types to constants
+  const suffixMap = {
+    'textarea': constants.SUFFIX_TEXTAREA,
+    'input': constants.SUFFIX_INPUT,
+    'button': constants.SUFFIX_BUTTON,
+    'address': constants.SUFFIX_ADDRESS,
+    'checkboxes': constants.SUFFIX_CHECKBOXES,
+    'date': constants.SUFFIX_DATE,
+    'email': constants.SUFFIX_EMAIL,
+    'fileupload': constants.SUFFIX_FILEUPLOAD,
+    'phone': constants.SUFFIX_PHONE,
+    'radios': constants.SUFFIX_RADIOS,
+    'select': constants.SUFFIX_SELECT,
+    'short-text': constants.SUFFIX_SHORT_TEXT,
+    'yesno': constants.SUFFIX_YESNO,
+    // Add more mappings as needed
+  }
+
+  // Retrieve the suffix based on the suffixType
+  const suffix = suffixMap[suffixType] || ''
+
+  return `${str}${suffix}`
 })

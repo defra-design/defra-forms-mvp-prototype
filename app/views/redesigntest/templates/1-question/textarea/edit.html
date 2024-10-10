@@ -89,10 +89,10 @@
 
                           <!-- Question Label Input -->
                           <div class="govuk-form-group">
-                            <label class="govuk-label--m" for="question-label-input">
+                            <label class="govuk-label--m" for="question-label-input-textarea">
                               Question
                             </label>
-                            <input class="govuk-input" id="question-label-input" name="questionLabelInput" type="text" value="">
+                            <input class="govuk-input" id="question-label-input-textarea" name="questionLabelInputTextArea" type="text" value="">
                           </div>
 
                           <!-- Hint Text Input -->
@@ -101,12 +101,12 @@
                               text: "Hint text (optional)",
                               classes: "govuk-label--m"
                             },
-                            id: "hint-text-input",
-                            name: "hintTextInput",
-                            value: data['hint-text-input'],
+                            id: "hint-text-input-textarea",
+                            name: "hintTextInputTextarea",
+                            value: data['hint-text-input-textarea'],
                             classes: "govuk-textarea",
                             rows: 3,
-                            describedBy: "hint-text-input"
+                            describedBy: "hint-text-input-textarea"
                           }) }}
 
                           <!-- Make Optional Checkbox -->
@@ -231,8 +231,8 @@
                 text: "Page headings should be a statement and not a question. For example, ‘Passport information’",
                 id: "page-heading-input-hint"
               },
-              id: "page-heading-input",
-              name: "pageHeading",
+              id: "page-heading-input-textarea",
+              name: "pageHeadingTextarea",
               type: "text",
               attributes: {
                 'aria-describedby': "page-heading-input-hint",
@@ -251,7 +251,7 @@
                 id: "guidance-textarea-hint"
               },
               id: "guidance-textarea",
-              name: "guidanceText",
+              name: "guidanceTextarea",
               rows: 5,
               attributes: {
                 'aria-describedby': "guidance-textarea-hint",
@@ -336,14 +336,14 @@
         // DOM Elements
         const domElements = {
           // Existing elements
-          questionLabelInput: document.getElementById('question-label-input'),
+          questionLabelInputTextArea: document.getElementById('question-label-input-textarea'),
           questionLabelLegend: document.getElementById('question-label-legend'),
-          hintTextInput: document.getElementById('hint-text-input'),
+          hintTextInputTextarea: document.getElementById('hint-text-input-textarea'),
           hintTextOutput: document.getElementById('hint-text-output'),
           makeOptionalCheckbox: document.getElementById('make-optional'),
 
           // New elements for page heading and guidance text
-          pageHeadingInput: document.getElementById('page-heading-input'),
+          pageHeadingInputTextArea: document.getElementById('page-heading-input-textarea'),
           dynamicHeading: document.getElementById('dynamic-heading'),
           guidanceTextarea: document.getElementById('guidance-textarea'),
           guidanceParagraph: document.getElementById('guidance-paragraph')
@@ -354,49 +354,50 @@
 
         function initializeEventListeners() {
           // Update question label
-          if (domElements.questionLabelInput && domElements.questionLabelLegend) {
-            domElements.questionLabelInput.addEventListener('input', updateQuestionLabel);
+          if (domElements.questionLabelInputTextArea && domElements.questionLabelLegend) {
+            domElements.questionLabelInputTextArea.addEventListener('input', updateQuestionLabel);
           }
 
-          // Update hint text
-          if (domElements.hintTextInput && domElements.hintTextOutput) {
-            domElements.hintTextInput.addEventListener('input', updateHintText);
+          // Update hint text and handle placeholder
+          if (domElements.hintTextInputTextarea && domElements.hintTextOutput) {
+            domElements.hintTextInputTextarea.addEventListener('input', updateHintText);
+            domElements.hintTextInputTextarea.addEventListener('focus', showPlaceholderHint);
+            domElements.hintTextInputTextarea.addEventListener('blur', clearPlaceholderHint);
           }
 
-          // Update optional label
-          if (domElements.makeOptionalCheckbox) {
-            domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
+          // Update page heading and handle placeholder
+          if (domElements.pageHeadingInputTextArea && domElements.dynamicHeading) {
+            domElements.pageHeadingInputTextArea.addEventListener('input', updatePageHeading);
+            domElements.pageHeadingInputTextArea.addEventListener('focus', showPlaceholderHeading);
+            domElements.pageHeadingInputTextArea.addEventListener('blur', clearPlaceholderHeading);
           }
 
-          // Update page heading
-          if (domElements.pageHeadingInput && domElements.dynamicHeading) {
-            domElements.pageHeadingInput.addEventListener('input', updatePageHeading);
-          }
-
-          // Update guidance text
+          // Update guidance text and handle placeholder
           if (domElements.guidanceTextarea && domElements.guidanceParagraph) {
             domElements.guidanceTextarea.addEventListener('input', updateGuidanceText);
+            domElements.guidanceTextarea.addEventListener('focus', showPlaceholderGuidance);
+            domElements.guidanceTextarea.addEventListener('blur', clearPlaceholderGuidance);
           }
 
           // Apply focus/blur highlighting
-          applyHighlightOnFocus(domElements.questionLabelInput, domElements.questionLabelLegend);
-          applyHighlightOnFocus(domElements.hintTextInput, domElements.hintTextOutput);
-          applyHighlightOnFocus(domElements.pageHeadingInput, domElements.dynamicHeading);
+          applyHighlightOnFocus(domElements.questionLabelInputTextArea, domElements.questionLabelLegend);
+          applyHighlightOnFocus(domElements.hintTextInputTextarea, domElements.hintTextOutput);
+          applyHighlightOnFocus(domElements.pageHeadingInputTextArea, domElements.dynamicHeading);
           applyHighlightOnFocus(domElements.guidanceTextarea, domElements.guidanceParagraph);
         }
 
         function updateQuestionLabel() {
           const suffix = domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
-          domElements.questionLabelLegend.textContent = domElements.questionLabelInput.value || 'Question';
+          domElements.questionLabelLegend.textContent = domElements.questionLabelInputTextArea.value || 'Question';
           domElements.questionLabelLegend.textContent += suffix;
         }
 
         function updateHintText() {
-          domElements.hintTextOutput.textContent = domElements.hintTextInput.value;
+          domElements.hintTextOutput.textContent = domElements.hintTextInputTextarea.value;
         }
 
         function updatePageHeading() {
-          domElements.dynamicHeading.textContent = domElements.pageHeadingInput.value;
+          domElements.dynamicHeading.textContent = domElements.pageHeadingInputTextArea.value;
         }
 
         function updateGuidanceText() {
@@ -418,8 +419,52 @@
             }
           }
         }
+
+        // Placeholder handling for hint text
+        function showPlaceholderHint() {
+          if (!domElements.hintTextInputTextarea.value) {
+            domElements.hintTextOutput.textContent = 'Hint text';
+          }
+        }
+
+        function clearPlaceholderHint() {
+          if (!domElements.hintTextInputTextarea.value) {
+            domElements.hintTextOutput.textContent = '';
+          }
+        }
+
+        // Placeholder handling for page heading
+        function showPlaceholderHeading() {
+          if (!domElements.pageHeadingInputTextArea.value) {
+            domElements.dynamicHeading.textContent = 'Page heading';
+          }
+        }
+
+        function clearPlaceholderHeading() {
+          if (!domElements.pageHeadingInputTextArea.value) {
+            domElements.dynamicHeading.textContent = '';
+          }
+        }
+
+        // Placeholder handling for guidance text
+        function showPlaceholderGuidance() {
+          if (!domElements.guidanceTextarea.value) {
+            domElements.guidanceParagraph.textContent = 'Guidance text';
+          }
+        }
+
+        function clearPlaceholderGuidance() {
+          if (!domElements.guidanceTextarea.value) {
+            domElements.guidanceParagraph.textContent = '';
+          }
+        }
       });
-      </script>
+    </script>
+
+
+
+
+
 
 
     <!-- CSS for Highlighting -->

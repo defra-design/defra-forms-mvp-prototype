@@ -98,7 +98,7 @@
                       text: "Question 1"
                     },
                     value: {
-                      html: data['questionLabelInput'] or ''
+                      html: data['questionLabelInputShortText'] or ''
 
                     },
                     actions: {
@@ -117,7 +117,7 @@
             </div>
 
             <div class="govuk-button-group govuk-!-margin-top-6">
-              <a href="/redesigntest/page-type.html" class="govuk-button" role="button">
+              <a href="/redesigntest/templates/1-question/page-type.html" class="govuk-button" role="button">
                 Create next page
               </a>
 
@@ -150,7 +150,7 @@
         </div>
 
         <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews/textarea/overview.html" %}
+        {% include "/redesigntest/templates/previews/shorttext/overview.html" %}
       </div>
     </div>
 

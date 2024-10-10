@@ -38,19 +38,18 @@
 <fieldset class="govuk-fieldset">
 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
 <h1 class="govuk-fieldset__heading" id="question-label-legend-q1">
-  {{ data['questionLabelInput'] or '' }}
+  {{ data['questionLabelInputq1'] or '' }}
 </h1>
 
 </legend>
 <div id="hint-text-output" class="govuk-hint">
-  {{ data['hintTextInput'] or '' }}
+  {{ data['hintTextInputq1'] or '' }}
 
 </div>
 
 
 <!-- Custom checkboxes without govuk-form-group -->
 {% for option in data['option'] %}
-<div id="hint-text-output" class="govuk-hint">{{ data['hintTextInputq1'] or '' }}</div>
   <div class="govuk-radios__item">
     <input
       class="govuk-radios__input"
@@ -73,7 +72,7 @@
 {% endfor %}
 
 
-`;        <!-- Dynamically generated checkbox items will be inserted here -->
+        <!-- Dynamically generated checkbox items will be inserted here -->
   </div>
 </fieldset>
 </fieldset>

@@ -27,22 +27,22 @@
          <div id="heading-container">
           <span id="dynamic-caption" class="govuk-caption-xl">{{ (data['setName'] or '') + ' 1' }}</span>
 
-          <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeading'] or '' }}</h1>
+          <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingFile'] or '' }}</h1>
         </div>
 
  <!-- Guidance Paragraph -->
-<p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
+<p class="govuk-body" id="guidance-paragraph">{{ data['guidanceTextFile'] or '' }}</p>
 
 
 
 <div class="govuk-form-group"></div>
   <h1 class="govuk-label-wrapper">
     <label class="govuk-label govuk-label--l" for="text-input-field" id="question-label-legend">
-      {{ data['questionLabelInput'] or '' }}
+      {{ data['questionLabelInputFile'] or '' }}
     </label>
   </h1>
   <div id="hint-text-output" class="govuk-hint">
-    {{ data['hintTextInput'] or '' }}
+    {{ data['hintTextInputFile'] or '' }}
     </div>
 
 <div class="govuk-form-group">

@@ -48,6 +48,9 @@
 {% endblock %}
 
 {% block content %}
+
+{% set questionType = "textarea" %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <div class="govuk-grid-row">
@@ -84,15 +87,14 @@
                         <span class="govuk-caption-l">Page 1</span>
                         <h2 class="govuk-heading-l">Question 1</h2>
 
-                        <form method="post" id="options-form" action="/redesigntest/templates/1-question/Date/overview">
-                          {% from "govuk/components/input/macro.njk" import govukInput %}
+                        <form method="post" id="{{ 'options-form' | appendSuffix(textarea) }}" action="/submit">
 
                           <!-- Question Label Input -->
                           <div class="govuk-form-group">
-                            <label class="govuk-label--m" for="question-label-input-date">
+                            <label class="govuk-label--m" for="{{ 'question-label-input' | appendSuffix(textarea) }}">
                               Question
                             </label>
-                            <input class="govuk-input" id="question-label-input-date" name="questionLabelInputDate" type="text" value="">
+                            <input class="govuk-input" id="{{ 'question-label-input' | appendSuffix(textarea) }}" name="{{ 'questionLabelInput' | appendSuffix(textarea) }}" type="text" value="">
                           </div>
 
                           <!-- Hint Text Input -->
@@ -101,28 +103,16 @@
                               text: "Hint text (optional)",
                               classes: "govuk-label--m"
                             },
-                            id: "hint-text-input-date",
-                            name: "hintTextInputDate",
-                            value: data['hint-text-input-date'],
-                            classes: "govuk-textarea",
+                            id: "hint-text-input" | appendSuffix(textarea),
+                            name: "hintTextInput" | appendSuffix(textarea),
                             rows: 3,
-                            describedBy: "hint-text-input-date"
+                            describedBy: "hint-text-input" | appendSuffix(textarea),
+                            attributes: {
+                              'aria-describedby': "hint-text-input" | appendSuffix(textarea)
+                            }
                           }) }}
 
-                          <!-- Make Optional Checkbox -->
-                          <div class="govuk-form-group">
-                            <div class="govuk-checkboxes--small">
-                              <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="make-optional" name="makeOptional" type="checkbox" value="optional">
-                                <label class="govuk-label govuk-checkboxes__label" for="make-optional">
-                                  Make this question optional
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-
-
-    <!-- Answer Limits -->
+           <!-- Answer Limits -->
     <details class="govuk-details govuk-!-margin-top-6">
       <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">Set answer limits (optional)</span>
@@ -231,11 +221,13 @@
                 text: "Page headings should be a statement and not a question. For example, ‘Passport information’",
                 id: "page-heading-input-hint"
               },
-              id: "page-heading-input-date",
-              name: "pageHeadingDate",
+              id: "page-heading-input" | appendSuffix(textarea),
+
+
+              name: "pageHeading" | appendSuffix(textarea),
               type: "text",
               attributes: {
-                'aria-describedby': "page-heading-input-hint",
+                'aria-describedby': "page-heading-input-hint" | appendSuffix(textarea),
                 'data-preview-target': '#dynamic-heading'
               }
             }) }}
@@ -250,12 +242,12 @@
                 text: "Use Markdown to format the content or add hyperlinks",
                 id: "guidance-textarea-hint"
               },
-              id: "guidance-date",
-              name: "guidanceDate",
+              id: "guidance-textarea" | appendSuffix(textarea),
+              name: "guidanceText" | appendSuffix(textarea),
               rows: 5,
               attributes: {
-                'aria-describedby': "guidance-date-hint",
-                'data-preview-target': '#guidance-paragraph'
+                'aria-describedby': "guidance-textarea-hint" | appendSuffix(textarea),
+                'data-preview-target': '#guidance-paragraph' | appendSuffix(textarea)
               }
             }) }}
 
@@ -278,7 +270,7 @@
         "text": "Type of information"
       },
       "value": {
-        "html": "Date: day, month and year"
+        "html": "Long written answer"
       },
       "actions": {
         "items": [
@@ -318,152 +310,140 @@
 
       <!-- Right Column for Preview -->
       <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-        <!-- Before content -->
-        <div id="before-content">
-          <p class="govuk-body-s" style="margin-bottom: 0">
-            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
-          </p>
-        </div>
+
 
         <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews/date/edit.html" %}
+        {% include "/redesigntest/templates/previews/textarea/edit2.html" %}
       </div>
     </div>
 
     <!-- JavaScript code -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // DOM Elements
-        const domElements = {
-          // Existing elements
-          questionLabelInputDate: document.getElementById('question-label-input-date'),
-          questionLabelLegend: document.getElementById('question-label-legend'),
-          hintTextInputDate: document.getElementById('hint-text-input-date'),
-          hintTextOutput: document.getElementById('hint-text-output'),
-          makeOptionalCheckbox: document.getElementById('make-optional'),
+   <!-- JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Retrieve the suffix type from the body data attribute or default to 'textarea'
+    const suffixType = document.body.getAttribute('data-suffixType') || 'textarea';
 
-          // New elements for page heading and guidance text
-          pageHeadingInputDate: document.getElementById('page-heading-input-date'),
-          dynamicHeading: document.getElementById('dynamic-heading'),
-          guidanceDate: document.getElementById('guidance-date'),
-          guidanceParagraph: document.getElementById('guidance-paragraph')
-        };
+    // Define a mapping from suffix types to their corresponding suffix strings
+    const suffixMap = {
+      'textarea': '-textarea',
+      'input': '-input',
+      'button': '-button',
+      'address': '-address',
+      'checkboxes': '-checkboxes',
+      'date': '-date',
+      'email': '-email',
+      'fileupload': '-fileupload',
+      'phone': '-phone',
+      'radios': '-radios',
+      'select': '-select',
+      'short-text': '-short-text',
+      'yesno': '-yesno',
+      // Add more suffix mappings as needed
+    };
 
-        // Initialize event listeners
-        initializeEventListeners();
+    // Determine the actual suffix based on the suffix type
+    const appendedSuffix = suffixMap[suffixType] || '-textarea';
 
-        function initializeEventListeners() {
-          // Update question label
-          if (domElements.questionLabelInputDate && domElements.questionLabelLegend) {
-            domElements.questionLabelInputDate.addEventListener('input', updateQuestionLabel);
-          }
+    // Define the DOM elements with dynamic suffixes
+    const domElements = {
+      // Existing elements with dynamic suffix
+      optionsForm: document.getElementById(`options-form${appendedSuffix}`),
+      questionLabelInput: document.getElementById(`question-label-input${appendedSuffix}`),
+      questionLabelLegend: document.getElementById(`question-label-legend${appendedSuffix}`),
+      hintTextInput: document.getElementById(`hint-text-input${appendedSuffix}`),
+      hintTextOutput: document.getElementById(`hint-text-output${appendedSuffix}`),
+      makeOptionalCheckbox: document.getElementById(`make-optional${appendedSuffix}`),
 
-          // Update hint text and handle placeholder
-          if (domElements.hintTextInputDate && domElements.hintTextOutput) {
-            domElements.hintTextInputDate.addEventListener('input', updateHintText);
-            domElements.hintTextInputDate.addEventListener('focus', showPlaceholderHint);
-            domElements.hintTextInputDate.addEventListener('blur', clearPlaceholderHint);
-          }
+      // New elements for page heading and guidance text with dynamic suffix
+      pageHeadingInput: document.getElementById(`page-heading-input${appendedSuffix}`),
+      dynamicHeading: document.getElementById(`dynamic-heading${appendedSuffix}`),
+      guidanceTextarea: document.getElementById(`guidance-textarea${appendedSuffix}`),
+      guidanceParagraph: document.getElementById(`guidance-paragraph${appendedSuffix}`)
+    };
 
-          // Update page heading and handle placeholder
-          if (domElements.pageHeadingInputDate && domElements.dynamicHeading) {
-            domElements.pageHeadingInputDate.addEventListener('input', updatePageHeading);
-            domElements.pageHeadingInputDate.addEventListener('focus', showPlaceholderHeading);
-            domElements.pageHeadingInputDate.addEventListener('blur', clearPlaceholderHeading);
-          }
+    // Initialize event listeners
+    initializeEventListeners();
 
-          // Update guidance text and handle placeholder
-          if (domElements.guidanceDate && domElements.guidanceParagraph) {
-            domElements.guidanceDate.addEventListener('input', updateGuidanceText);
-            domElements.guidanceDate.addEventListener('focus', showPlaceholderGuidance);
-            domElements.guidanceDate.addEventListener('blur', clearPlaceholderGuidance);
-          }
+    function initializeEventListeners() {
+      // Update question label when input changes
+      if (domElements.questionLabelInput && domElements.questionLabelLegend) {
+        domElements.questionLabelInput.addEventListener('input', updateQuestionLabel);
+      }
 
-          // Apply focus/blur highlighting
-          applyHighlightOnFocus(domElements.questionLabelInputDate, domElements.questionLabelLegend);
-          applyHighlightOnFocus(domElements.hintTextInputDate, domElements.hintTextOutput);
-          applyHighlightOnFocus(domElements.pageHeadingInputDate, domElements.dynamicHeading);
-          applyHighlightOnFocus(domElements.guidanceDate, domElements.guidanceParagraph);
+      // Update hint text when input changes
+      if (domElements.hintTextInput && domElements.hintTextOutput) {
+        domElements.hintTextInput.addEventListener('input', updateHintText);
+      }
+
+      // Update optional label when checkbox state changes
+      if (domElements.makeOptionalCheckbox) {
+        domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
+      }
+
+      // Update page heading when input changes
+      if (domElements.pageHeadingInput && domElements.dynamicHeading) {
+        domElements.pageHeadingInput.addEventListener('input', updatePageHeading);
+      }
+
+      // Update guidance text when textarea changes
+      if (domElements.guidanceTextarea && domElements.guidanceParagraph) {
+        domElements.guidanceTextarea.addEventListener('input', updateGuidanceText);
+      }
+
+      // Apply focus/blur highlighting to inputs and associated labels/hints/headings/guidance
+      applyHighlightOnFocus(domElements.questionLabelInput, domElements.questionLabelLegend);
+      applyHighlightOnFocus(domElements.hintTextInput, domElements.hintTextOutput);
+      applyHighlightOnFocus(domElements.pageHeadingInput, domElements.dynamicHeading);
+      applyHighlightOnFocus(domElements.guidanceTextarea, domElements.guidanceParagraph);
+    }
+
+    // Function to update the question label text, appending '(optional)' if checkbox is checked
+    function updateQuestionLabel() {
+      const suffix = domElements.makeOptionalCheckbox && domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
+      const newText = (domElements.questionLabelInput && domElements.questionLabelInput.value) ? domElements.questionLabelInput.value : 'Question';
+      domElements.questionLabelLegend.textContent = `${newText}${suffix}`;
+    }
+
+    // Function to update the hint text output
+    function updateHintText() {
+      if (domElements.hintTextInput && domElements.hintTextOutput) {
+        domElements.hintTextOutput.textContent = domElements.hintTextInput.value;
+      }
+    }
+
+    // Function to update the dynamic heading text
+    function updatePageHeading() {
+      if (domElements.dynamicHeading && domElements.pageHeadingInput) {
+        domElements.dynamicHeading.textContent = domElements.pageHeadingInput.value;
+      }
+    }
+
+    // Function to update the guidance paragraph text
+    function updateGuidanceText() {
+      if (domElements.guidanceParagraph && domElements.guidanceTextarea) {
+        domElements.guidanceParagraph.textContent = domElements.guidanceTextarea.value;
+      }
+    }
+
+    // Function to apply highlighting on focus and remove on blur
+    function applyHighlightOnFocus(inputElement, targetElement) {
+      if (inputElement && targetElement) {
+        inputElement.addEventListener('focus', function () {
+          targetElement.classList.add('highlight');
+        });
+        inputElement.addEventListener('blur', function () {
+          targetElement.classList.remove('highlight');
+        });
+
+        // If the input is already focused when the script runs, apply highlighting
+        if (document.activeElement === inputElement) {
+          targetElement.classList.add('highlight');
         }
-
-        function updateQuestionLabel() {
-          const suffix = domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
-          domElements.questionLabelLegend.textContent = domElements.questionLabelInputDate.value || 'Question';
-          domElements.questionLabelLegend.textContent += suffix;
-        }
-
-        function updateHintText() {
-          domElements.hintTextOutput.textContent = domElements.hintTextInputDate.value;
-        }
-
-        function updatePageHeading() {
-          domElements.dynamicHeading.textContent = domElements.pageHeadingInputDate.value;
-        }
-
-        function updateGuidanceText() {
-          domElements.guidanceParagraph.textContent = domElements.guidanceDate.value;
-        }
-
-        function applyHighlightOnFocus(inputElement, targetElement) {
-          if (inputElement && targetElement) {
-            inputElement.addEventListener('focus', function () {
-              targetElement.classList.add('highlight');
-            });
-            inputElement.addEventListener('blur', function () {
-              targetElement.classList.remove('highlight');
-            });
-
-            // If the input is already focused
-            if (document.activeElement === inputElement) {
-              targetElement.classList.add('highlight');
-            }
-          }
-        }
-
-        // Placeholder handling for hint text
-        function showPlaceholderHint() {
-          if (!domElements.hintTextInputDate.value) {
-            domElements.hintTextOutput.textContent = 'Hint text';
-          }
-        }
-
-        function clearPlaceholderHint() {
-          if (!domElements.hintTextInputDate.value) {
-            domElements.hintTextOutput.textContent = '';
-          }
-        }
-
-        // Placeholder handling for page heading
-        function showPlaceholderHeading() {
-          if (!domElements.pageHeadingInputDate.value) {
-            domElements.dynamicHeading.textContent = 'Page heading';
-          }
-        }
-
-        function clearPlaceholderHeading() {
-          if (!domElements.pageHeadingInputDate.value) {
-            domElements.dynamicHeading.textContent = '';
-          }
-        }
-
-        // Placeholder handling for guidance text
-        function showPlaceholderGuidance() {
-          if (!domElements.guidanceDate.value) {
-            domElements.guidanceParagraph.textContent = 'Guidance text';
-          }
-        }
-
-        function clearPlaceholderGuidance() {
-          if (!domElements.guidanceDate.value) {
-            domElements.guidanceParagraph.textContent = '';
-          }
-        }
-      });
-    </script>
-
-
-
-
+      }
+    }
+  });
+</script>
 
 
 

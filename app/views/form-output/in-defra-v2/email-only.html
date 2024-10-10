@@ -44,27 +44,33 @@
       <!-- <h1 class="govuk-heading-xl">Apply for a county parish holding number in England</h1> -->
 
       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-      <span class="govuk-caption-xl">Apply for a county-parish-holding-number</span>
-      <h1 class="govuk-heading-xl">Email address for submitted forms</h1>
-      <p class="govuk-body">Enter an email address for submitted forms to be sent to for processing.</p>
-      <p class="govuk-body">It should be a shared government email inbox and you should test it before making a form live. The email address must end with ‘gov.uk’.</p>
+      <span class="govuk-caption-l">Apply for a county-parish-holding-number</span>
 
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
       {{ govukInput({
   label: {
-    text: "What email address should submitted forms be sent to?",
-    classes: "govuk-label--m",
-    isPageHeading: false
+    text: "Email address for submitted forms to be sent to",
+    classes: "govuk-label--l",
+    isPageHeading: true
   },
+hint: {
+  text: "Used to send submitted forms for processing. Must must end with ‘.gov.uk’ or ‘.org.uk’, like name@example.gov.uk or name@example.org.uk
+"
+},
   id: "notification-email",
   name: "notificationEmail"
+}) }}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "You should test it before making a form live."
 }) }}
 
       {% from "govuk/components/button/macro.njk" import govukButton %}
 
       <div class="govuk-button-group">
-        <a href="/cph-overview/draft/notification.html">
+        <a href="/">
           <button type="submit" class="govuk-button" data-module="govuk-button">
             Save and continue
           </button>

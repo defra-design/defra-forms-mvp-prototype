@@ -24,7 +24,7 @@
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
     {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add
-    and edit pages", href: "/september/listing/2.html" }) }}
+    and edit pages", href: "/redesigntest/listing.html" }) }}
 
     <hr
       class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
@@ -106,8 +106,6 @@
 
                         <form class="form" action="/information-type-answer1" method="post">
 
-
-
                         {% set dateHtml %}
                         {{ govukRadios({
                           name: "dateType",
@@ -142,13 +140,12 @@
                           items: [
                             {
                               value: "short-answer",
-                              name: "shortAnswer",
-                              text: "Short answer"
+                              text: "Short answer (a single line)"
+
                             },
                             {
                               value: "long-answer",
-                              name: "longAnswer",
-                              text: "Long answer"
+                              text: "Long answer (more than a single line)"
                             }
                           ]
                         }) }}
@@ -166,7 +163,6 @@
                           items: [
                             {
                               value: "yes-no",
-                              name: "yesNo",
                               text: "Yes or No",
                               hint: {
                                 text: "Allow users to answer either ‘Yes’ or ‘No’"
@@ -174,7 +170,6 @@
                             },
                             {
                               value: "checkboxes",
-                              name: "checkboxes",
                               text: "Checkboxes",
                               hint: {
                                 text: "A list for users to select multiple answers"
@@ -182,7 +177,6 @@
                             },
                             {
                               value: "radios",
-                              name: "radio",
                               text: "Radios",
                               hint: {
                                 text: "A list for users to select one answer"
@@ -190,7 +184,6 @@
                             },
                             {
                               value: "select",
-                              name: "select",
                               text: "Select",
                               hint: {
                                 text: "A drop-down list for users to select one answer"
@@ -226,7 +219,6 @@
                           },
                           {
                             value: "date",
-                            name: "date",
                             text: "Date",
                             hint: {
                               text: "A day, month and year or month and year only"
@@ -237,7 +229,6 @@
                           },
                           {
                             value: "address",
-                            name: "address",
                             text: "UK address",
                             hint: {
                               text: "A street address, town or city and postcode"
@@ -245,26 +236,23 @@
                           },
                           {
                             value: "phone",
-                            name: "phone",
                             text: "Phone number",
                             hint: {
-                              text: "A text box that users can enter numbers and some symbols into, such as '+'"
+                              text: "A UK phone number, for example, 07700 900 982 or +44 808 157 0192"
                             }
                           },
                           {
                             value: "file",
-                            name: "file",
                             text: "Supporting evidence",
                             hint: {
-                              text: "Ask users to upload documents and photos"
+                              text: "A document, for example, DOC, PDF, CSV, Excel "
                             }
                           },
                           {
                             value: "email",
-                            name: "email",
                             text: "Email address",
                             hint: {
-                              text: "A text box that users can enter their email address into"
+                              text: "An email address, for example, name@example.com"
                             }
                           },
                           {
@@ -317,258 +305,415 @@
 
         <!-- Additional Content Here -->
         <div class="additional-content">
-
           <div>
             <!-- Tag for Preview -->
-            {{ govukTag({ text: "Preview of page 2", classes: "govuk-tag--yellow
-            govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
+            <strong class="govuk-tag govuk-tag--yellow  govuk-!-margin-top-8 govuk-!-margin-bottom-3" style="max-width: 500px;">
+              Preview of  selected question
+            </strong>
+
             <!-- Form for Preview -->
             <form>
               <!-- Dynamic Heading -->
-
-
               <div id="heading-container">
-                <span id="dynamic-caption" class="govuk-caption-xl">{{ (data['setName']+ ' 1' or '')  or '' }}</span>          <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeading'] or '' }}</h1>
+                {% set setName = data['setName'] or '' %}
+                <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }} 1</span>
+                <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeading'] or '' }}</h1>
+              </div>
+
+              <div class="preview-container" id="preview-container">
+                <!-- Short Answer Preview -->
+                <div class="preview-content short-answer-preview" style="display: none;">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--l" for="short-answer">
+                      Question
+                    </label>
+                    <input class="govuk-input govuk-!-width-full" id="short-answer" name="shortAnswer" type="text">
+                  </div>
+                </div>
+                <!-- Long Answer Preview -->
+                <div class="preview-content long-answer-preview" style="display: none;">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--l" for="more-detail">
+                      Question
+                    </label>
+                    <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
+                  </div>
+                </div>
+
+                {# File Upload Preview #}
+                <div class="preview-content file-preview" style="display: none;">
+                  <div class="govuk-form-group"></div>
+                  <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="text-input-field" id="question-label-legend">
+                     Question
+                    </label>
+                  </h1>
+                  <div id="hint-text-output" class="govuk-hint">
+                    </div>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="file-upload-1">
+                    Upload a file
+                  </label>
+                  <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+                </div>
+
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                  Upload file
+                </button>
+
+                    <p class="govuk-body" aria-live="polite">1 of 2 files uploaded</p>
+
+
+
+                    <p class="govuk-body govuk-!-display-none" id="refreshPageProgress"><a href="#" class="govuk-link">Refresh page to update file upload progress</a></p>
+
+                    <dl class="govuk-summary-list govuk-summary-list--long-key">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          File2.jpg
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          <strong class="govuk-tag govuk-tag--yellow">
+                  Uploading
+                </strong>
+
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> file1.jpg</span></a>
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          File1.jpg
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          <strong class="govuk-tag govuk-tag--green">
+                  Uploaded
+                </strong>
+
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> receipt1.jpg</span></a>
+                        </dd>
+                      </div>
+                    </dl>
+                </div>
+
+                {# Date Preview #}
+
+                <div class="preview-content day-month-year-preview" style="display: none;">
+                  <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">Question</h1>
+                      </legend>
+                      <div class="govuk-date-input" id="event-date">
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="event-date-day">Day</label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-date-day" name="event-date-day" type="text" pattern="[0-9]*" inputmode="numeric">
+                          </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="event-date-month">Month</label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-date-month" name="event-date-month" type="text" pattern="[0-9]*" inputmode="numeric">
+                          </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="event-date-year">Year</label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="event-date-year" name="event-date-year" type="text" pattern="[0-9]*" inputmode="numeric">
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+
+                <div class="preview-content month-year-preview" style="display: none;">
+                  <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">Question</h1>
+                      </legend>
+                      <div class="govuk-date-input" id="event-date">
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="event-date-month">Month</label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-date-month" name="event-date-month" type="text" pattern="[0-9]*" inputmode="numeric">
+                          </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="event-date-year">Year</label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="event-date-year" name="event-date-year" type="text" pattern="[0-9]*" inputmode="numeric">
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+
+                {# Address Preview #}
+
+                <div class="preview-content address-preview" style="display: none;">
+                  <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                      <h1 class="govuk-fieldset__heading">
+                        Question
+                      </h1>
+                    </legend>
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="address-line-1">
+                        Address line 1
+                      </label>
+                      <input class="govuk-input" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1">
+                    </div>
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="address-line-2">
+                        Address line 2 (optional)
+                      </label>
+                      <input class="govuk-input" id="address-line-2" name="addressLine2" type="text" autocomplete="address-line2">
+                    </div>
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="address-town">
+                        Town or city
+                      </label>
+                      <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="addressTown" type="text" autocomplete="address-level2">
+                    </div>
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="address-postcode">
+                        Postcode
+                      </label>
+                      <input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode" type="text" autocomplete="postal-code">
+                    </div>
+                  </fieldset>
+                </div>
+
+                {# Phone Number Preview #}
+
+                <div class="preview-content phone-preview" style="display: none;">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--l" for="phone-number">
+                      Question
+                    </label>
+                    <input class="govuk-input govuk-input--width-20" id="phone-number" name="phoneNumber" type="tel" autocomplete="tel">
+                  </div>
+                </div>
+
+                {# Email Preview #}
+
+                <div class="preview-content email-preview" style="display: none;">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--l" for="email">
+                      Question
+                    </label>
+                    <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+                  </div>
+                </div>
+
+                {# Radios Preview #}
+                <div class="preview-content radios-preview" style="display: none;">
+                  <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        Question
+                      </legend>
+                      <div class="govuk-radios">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="radios-option-1" name="radios" type="radio" value="option1">
+                          <label class="govuk-label govuk-radios__label" for="radios-option-1">Option 1</label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="radios-option-2" name="radios" type="radio" value="option2">
+                          <label class="govuk-label govuk-radios__label" for="radios-option-2">Option 2</label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+
+                {# Yes-No Preview #}
+                <div class="preview-content yes-no-preview" style="display: none;">
+                  <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        Question
+                      </legend>
+                      <div class="govuk-radios">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="yesno-yes" name="yesno" type="radio" value="yes">
+                          <label class="govuk-label govuk-radios__label" for="yesno-yes">Yes</label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="yesno-no" name="yesno" type="radio" value="no">
+                          <label class="govuk-label govuk-radios__label" for="yesno-no">No</label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+
+                {# Checkboxes Preview #}
+                <div class="preview-content checkboxes-preview" style="display: none;">
+                  <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        Question
+                      </legend>
+                      <div class="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="option1">
+                          <label class="govuk-label govuk-checkboxes__label" for="waste">Option 1</label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                          <input class="govuk-checkboxes__input" id="animal" name="animal" type="checkbox" value="option2">
+                          <label class="govuk-label govuk-checkboxes__label" for="animal">Option 2</label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+
+                {# Select Preview #}
+                <div class="preview-content select-preview" style="display: none;">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--l" for="select">
+                      Question
+                    </label>
+                    <select class="govuk-select" id="select" name="select">
+                      <option value="">Please select</option>
+                      <option value="option1">Option 1</option>
+                      <option value="option2">Option 2</option>
+                    </select>
+                  </div>
+                </div>
               </div>
 
         <!-- Guidance Paragraph -->
         <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
 
+        {% set setName = data['setName'] or '' %}
+        {% set overview0 = data['overview0'] or '' %}
+
+        {% if overview0 == "morethan1" %}
+        {{ govukButton({
+          text: "Add another " ~ setName,
+          classes: "govuk-button govuk-!-margin-top-3",
+          id: "add-another-set-button",
+          disabled: true
+        }) }}
+        {% else %}
         {{ govukButton({
           text: "Continue",
           classes: "govuk-button govuk-!-margin-top-6",
           id: "once-button",
           disabled: true
-      }) }}
-
-      {{ govukButton({
-        text: "Add another " ~ data['setName'],
-        classes: "govuk-button govuk-!-margin-top-3",
-        id: "add-another-set-button",
-        disabled: true,
-        attributes: { style: "display: none;" }
-    }) }}
-
-
+        }) }}
+        {% endif %}
 
           </div>
         </div>
       </div>
     </div>
 
-   <script>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
-    const domElements = {
-      moreThanOnceRadio: document.getElementById("more-than-1"),
-      onceRadio: document.getElementById("once"),
-      addAnotherSetButton: document.getElementById("add-another-set-button"),
-      onceButton: document.getElementById("once-button"),
-      setNameInput: document.getElementById("set-name"),
-      dynamicCaption: document.getElementById("dynamic-caption"),
+    console.log("JavaScript Loaded");
 
-      // Elements from the second script
-      questionLabelInput: document.getElementById("question-label-input-1"),
-      shortTextLabel: document.getElementById("short-text-label"),
-      hintTextArea: document.getElementById("hint-text-input"),
-      hintDiv: document.getElementById("date-input-hint"),
-      errorLabelInput: document.getElementById("error-label-input"),
-      errorDynamicText: document.getElementById("error-dynamic-text"),
-      pageHeadingInput: document.getElementById("page-heading-input"),
-      guidanceTextarea: document.getElementById("guidance-textarea"),
-      dynamicHeading: document.getElementById("dynamic-heading"),
-      guidanceParagraph: document.getElementById("guidance-paragraph"),
-    };
-
-    initializeEventListeners();
-
-    function initializeEventListeners() {
-      // First script event listeners
-      domElements.moreThanOnceRadio.addEventListener("change", toggleCaptionAndButtons);
-      domElements.onceRadio.addEventListener("change", toggleCaptionAndButtons);
-      domElements.setNameInput.addEventListener("input", updateDynamicCaptionAndHeading);
-
-      // Second script event listeners
-      const inputListeners = [
-        { element: domElements.questionLabelInput, event: "input", handler: updateQuestionLabel },
-        { element: domElements.hintTextArea, event: "input", handler: updateHintText },
-        { element: domElements.errorLabelInput, event: "input", handler: updateErrorDynamicText },
-        { element: domElements.pageHeadingInput, event: "input", handler: updateHeading },
-        { element: domElements.guidanceTextarea, event: "input", handler: updateGuidanceParagraph },
-      ];
-
-      inputListeners.forEach(bindListener);
-
-      // Initialize state on page load
-      toggleCaptionAndButtons(); // Ensure correct initial state
-      updateAddAnotherSetButton();
-      updateHeading();
-      updateGuidanceParagraph();
-      applyHighlights();
-    }
-
-    // First script functionality
-    function toggleCaptionAndButtons() {
-      if (domElements.moreThanOnceRadio.checked) {
-        showCaptionWithPlaceholder();
-        domElements.addAnotherSetButton.style.display = "inline-block";
-        domElements.onceButton.style.display = "none";
-      } else if (domElements.onceRadio.checked) {
-        hideCaptionAndClearInput();
-        domElements.addAnotherSetButton.style.display = "none";
-        domElements.onceButton.style.display = "inline-block";
-      }
-
-      // Ensure the 'once-button' is always disabled unless conditions change
-      domElements.onceButton.disabled = true;
-    }
-
-    function updateDynamicCaptionAndHeading() {
-      const setName = domElements.setNameInput.value.trim();
-      domElements.dynamicCaption.textContent = setName ? `${setName} 1` : "Question set name";
-      domElements.dynamicCaption.style.display = setName ? "block" : "none";
-      updateAddAnotherSetButton(); // Ensure buttons are updated when setName changes
-    }
-
-    function updateAddAnotherSetButton() {
-      const setName = domElements.setNameInput.value.trim();
-      if (setName && domElements.moreThanOnceRadio.checked) {
-        domElements.addAnotherSetButton.textContent = `Add another ${setName}`;
-        domElements.addAnotherSetButton.disabled = false;
-      } else {
-        domElements.addAnotherSetButton.textContent = "Add another [question set name]";
-        domElements.addAnotherSetButton.disabled = true;
-      }
-
-      // Ensure that 'once-button' is kept disabled, unless 'once' is selected
-      if (domElements.onceRadio.checked) {
-        domElements.onceButton.disabled = false;
-      } else {
-        domElements.onceButton.disabled = true;
-      }
-    }
-
-    function showCaptionWithPlaceholder() {
-      domElements.dynamicCaption.textContent = "Question set name";
-      domElements.dynamicCaption.style.display = "block";
-    }
-
-    function hideCaptionAndClearInput() {
-      domElements.dynamicCaption.style.display = "none";
-    }
-
-    // Second script functionality
-    function updateQuestionLabel() {
-      setTextContent(domElements.shortTextLabel, domElements.questionLabelInput.value.trim(), "Question 1");
-    }
-
-    function updateHintText() {
-      setTextContent(domElements.hintDiv, domElements.hintTextArea.value.trim(), "");
-    }
-
-    function updateErrorDynamicText() {
-      setTextContent(domElements.errorDynamicText, domElements.errorLabelInput.value.trim(), "date of birth");
-    }
-
-    function updateHeading() {
-      setTextContent(domElements.dynamicHeading, domElements.pageHeadingInput.value.trim(), "Page heading");
-    }
-
-    function updateGuidanceParagraph() {
-      setTextContent(domElements.guidanceParagraph, domElements.guidanceTextarea.value.trim(), "");
-    }
-
-    // Generic function to update text content
-    function setTextContent(element, value, defaultValue) {
-      if (element) {
-        element.textContent = value || defaultValue;
-      }
-    }
-
-    // Helper to bind event listeners
-    function bindListener({ element, event, handler }) {
-      if (element) {
-        element.addEventListener(event, handler);
-      }
-    }
-
-    // Apply focus/blur highlights
-    function applyHighlights() {
-      const highlightPairs = [
-        { inputId: "question-label-input-1", targetId: "short-text-label" },
-        { inputId: "hint-text-input", targetId: "date-input-hint" },
-        { inputId: "optional", targetId: "date-input-legend" },
-        { inputId: "page-heading-input", targetId: "dynamic-heading" },
-        { inputId: "guidance-textarea", targetId: "guidance-paragraph" },
-        { inputId: "error-label-input", targetId: "error-dynamic-text" },
-
-        // 'set-name' input highlighting
-        { inputId: "set-name", targetId: "dynamic-caption" },
-      ];
-
-      highlightPairs.forEach(({ inputId, targetId }) => {
-        applyHighlightOnFocus(inputId, targetId);
+    // Function to show the relevant preview and hide others
+    function showPreview(selectedType) {
+      console.log("Showing preview for:", selectedType); // Debugging line
+      document.querySelectorAll(".preview-content").forEach((content) => {
+        content.classList.remove("active"); // Hide all previews
       });
+
+      const selectedPreview = document.querySelector(`.${selectedType}-preview`);
+      if (selectedPreview) {
+        console.log("Found preview to show:", selectedPreview); // Debugging line
+        selectedPreview.classList.add("active"); // Show the selected preview
+      } else {
+        console.log("No matching preview found for:", selectedType);
+      }
     }
 
-    // Helper function for applying focus and blur highlights
-    function applyHighlightOnFocus(inputElementId, targetElementId) {
-      const inputElement = document.getElementById(inputElementId);
-      const targetElement = document.getElementById(targetElementId);
+    // Listen for changes to the radio buttons in the `informationQuestion1` group
+    document.querySelectorAll("input[name='informationQuestion1']").forEach((radio) => {
+      radio.addEventListener("change", function () {
+        console.log("Radio changed:", this.value); // Debugging line
+        showPreview(this.value);
+      });
+    });
 
-      if (inputElement && targetElement) {
-        inputElement.addEventListener("focus", () => targetElement.classList.add("highlight"));
-        inputElement.addEventListener("blur", () => targetElement.classList.remove("highlight"));
-      }
+    // Listen for changes to sub-options
+    document.querySelectorAll("input[name='written'], input[name='dateType'], input[name='listType']").forEach((subRadio) => {
+      subRadio.addEventListener("change", function () {
+        console.log("Sub-option changed:", this.value); // Debugging line
+        showPreview(this.value);
+      });
+    });
+
+    // Show the preview for the initially selected radio button (if any)
+    const initialSelection = document.querySelector("input[name='informationQuestion1']:checked");
+    if (initialSelection) {
+      console.log("Initial selection found:", initialSelection.value); // Debugging line
+      showPreview(initialSelection.value);
     }
   });
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+const dynamicCaption = document.getElementById("dynamic-caption");
+const setName = dynamicCaption.getAttribute("data-setname");
 
+if (!setName) {
+dynamicCaption.style.display = "none";
+}
+});
 
+</script>
 
+<style>
+  .highlight {
+    background-color: #ffe5cc;
+    border-bottom: 2px solid #ffb266;
+  }
 
+  #before-content {
+    position: absolute;
+    top: 0;
+    left: 10 !important;
+    right: 0;
+    width: 100%;
+    padding: 10px !important;
+    box-sizing: border-box;
+    z-index: 1;
+    border-bottom: 1px solid #008938;
+    padding-left: 10px;
+  }
 
+  #second-container {
+    padding: 0;
+    box-sizing: border-box;
+  }
 
+  #second-container > * {
+    padding-left: 0px;
+    z-index: 2;
+  }
 
-    <style>
+  .preview-content {
+    display: none;
+  }
 
-      .highlight {
-        background-color: #ffe5cc;
-        border-bottom: 2px solid #ffb266;
-      }
+  .preview-content.active {
+    display: block !important;
+  }
+</style>
 
-      #before-content {
-        position: absolute;
-        top: 0;
-        left: 10 !important;
-        right: 0;
-        /* Ensure the right side is aligned with the container edge */
-        width: 100%;
-        padding: 10px !important;
-
-        /* Remove padding to avoid affecting the width */
-        box-sizing: border-box;
-        /* Ensure content, padding, and borders are within width */
-        z-index: 1;
-        border-bottom: 1px solid #008938;
-        padding-left: 10px;
-        /* Add padding-left specifically for content */
-      }
-
-      #second-container {
-        padding: 0;
-        /* Ensure no padding on the container itself */
-        box-sizing: border-box;
-        /* Ensure container handles padding/border correctly */
-      }
-
-      #second-container > * {
-        padding-left: 0px;
-        z-index: 2;
-        /* Ensure content is above the #before-content */
-      }
-    </style>
-
-    {% endblock %}
+{% endblock %}
   </div>
 </div>

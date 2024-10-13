@@ -1,0 +1,385 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Choose an overview status - Defra Forms Designer" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    homepageLink: "/",
+    signOutLink: "/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Kit of parts</h1>
+      <p class="govuk-body-l">View each page that makes up the Defra Forms Designer.</p>
+      <p class="govuk-body">Pages are constantly being iterated. To see previous versions,
+        <a href="http://defra-forms-design-history-18deac2f53ea.herokuapp.com/" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">see our Design History (opens in new tab)</a>.</p>
+
+      {{ govukAccordion({
+  id: "accordion-with-summary-sections",
+  items: [
+   {
+      heading: {
+        text: "Onboarding"
+      },
+      summary: {
+        text: "How users sign-in and sign-out of the Defra Forms Designer"
+      },
+      content: {
+        html:
+        '<ul class="govuk-list">
+            <li>
+              <a class="govuk-link govuk-link--no-visited-state" href="/onboarding/sign-in.html" rel="noreferrer noopener" target="_blank">Sign in page</a>
+            </li>
+            <li>
+              <a class="govuk-link govuk-link--no-visited-state" href="/onboarding/sign-out-confirmation.html" rel="noreferrer noopener" target="_blank">Sign out</a>
+            </li>
+        </ul>'
+      }
+    },
+     {
+      heading: {
+        text: "Forms library"
+      },
+      summary: {
+        text: "Giving users the ability sort and find forms."
+      },
+      content: {
+        html:
+        '<div id="event-name-hint" class="govuk-hint" style="margin-bottom: 30px;">
+  <a class="govuk-link govuk-link--no-visited-state" href="/library.html" rel="noreferrer noopener" target="_blank">View the forms library</a>
+</div>'
+      }
+    },
+     {
+      heading: {
+        text: "Form overview"
+      },
+      summary: {
+        text: "Each form has an overview page where the majority of actions, like making a form live, are performed."
+      },
+      content: {
+        html:
+        '<h3 class="govuk-heading-s">Draft status
+        <div id="event-name-hint" class="govuk-hint">
+    When a form is created it automatically adopt a status of ‘Draft’. In Draft status, the user can edit and make a form live.
+  </div>
+        </h3>
+
+        <ul class="govuk-list govuk-list--spaced">
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/draft/complete-clean.html" rel="noreferrer noopener" target="_blank">View a coded overview page in draft status</a>
+      </li>
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/draft/default.html" rel="noreferrer noopener" target="_blank">View an overview page in draft where contact support has not been added</a>
+      </li>
+        </ul>
+
+    <h3 class="govuk-heading-s">Live status
+        <div id="event-name-hint" class="govuk-hint">
+    When a user has provided required information, the user will then see on their Overview page, a button labelled ‘Make draft live’.
+  </div>
+        </h3>
+
+        <ul class="govuk-list govuk-list--spaced">
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/live/01.html" rel="noreferrer noopener" target="_blank">View a coded overview page in live status</a>
+
+      </li>
+        </ul>
+
+        <h3 class="govuk-heading-s">Draft and Live (creating a draft to edit)
+        <div id="event-name-hint" class="govuk-hint">
+        <ul class="govuk-list govuk-list--bullet">
+
+         <li>to avoid the complexity of creating multiple versions of the same form, users can only edit a form when it’s in ‘Draft’ status</li>
+         <li>the only way to edit a form that’s ‘Live’ is to create a ‘Draft’ version of it</li>
+         <li>once you’ve made changes to a draft version of a live form, when you make the draft version live, it replaces the existing Live form</li>
+         </ul>
+         </div>
+
+
+        <ul class="govuk-list govuk-list--spaced">
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/live+draft/01.html" rel="noreferrer noopener" target="_blank">View a coded overview page in draft and live status</a>
+
+      </li>
+        </ul>
+
+        <h3 class="govuk-heading-s">Replacing a live form with a draft
+        <div id="event-name-hint" class="govuk-hint">
+        Users are warned that making a draft live while there is already a live form means that the existing live form will be replaced with the draft.
+        </div>
+
+        <ul class="govuk-list govuk-list--spaced">
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/manage-form/make-draft-live/replace-live-form.html" rel="noreferrer noopener" target="_blank">View a coded warning page for replacing a live form</a>
+
+      </li>
+        </ul>
+
+        <h3 class="govuk-heading-s">Closing a live form
+        <div id="event-name-hint" class="govuk-hint">
+        To remove a form from live i.e., for them to not be accessible to members of the public anymore.
+        </div>
+
+        <ul class="govuk-list govuk-list--spaced">
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/manage-form/close/confirm.html" rel="noreferrer noopener" target="_blank">View a coded warning page for closing a live form</a>
+
+      </li>
+        </ul>
+        '
+      }
+    },
+        {
+      heading: {
+        text: "Support and form configuration pages"
+      },
+      summary: {
+        text: "Pages to add support content to forms. Includes, setting an email address for receiving submitted forms, telling users what happens after submitting their form and providing assisted digital channels."
+      },
+      content: {
+        html:
+        '<ul class="govuk-list govuk-list--spaced">
+               <h3 class="govuk-heading-s">Sending submitted forms to operational teams</h3>
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/support/notification-email" rel="noreferrer noopener" target="_blank">Where submitted forms are sent</a>
+      </li>
+      </ul>
+      <ul class="govuk-list govuk-list--spaced">
+       <h3 class="govuk-heading-s">Contact details for support</h3>
+        <div id="event-name-hint" class="govuk-hint">
+    In order to make a form live users need add at least one contact detail for support.
+  </div>
+       <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/add-telephone" rel="noreferrer noopener" target="_blank">Phone number for support</a>
+      </li>
+       <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/add-email" rel="noreferrer noopener" target="_blank">Email address for support</a>
+      </li>
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/add-contact-link" rel="noreferrer noopener" target="_blank">Contact link for support</a>
+      </li>
+      </ul>
+      <ul class="govuk-list govuk-list--spaced">
+       <h3 class="govuk-heading-s">What happens next</h3>
+        <div id="event-name-hint" class="govuk-hint">
+    A textarea for adding instructions to appear in confirmation pages and emails.
+  </div>
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/next-steps" rel="noreferrer noopener" target="_blank">Tell users what happens after submitting their form</a>
+      </li>
+      </ul>
+      <ul class="govuk-list govuk-list--spaced">
+             <h3 class="govuk-heading-s">Data protection</h3>
+        <div id="event-name-hint" class="govuk-hint">
+    Add a link to privacy notice that is specific to the form being created.
+  </div>
+        <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/privacy-notice" rel="noreferrer noopener" target="_blank">Link to a privacy notice</a>
+      </li>
+        </ul>
+        '
+      }
+    },
+
+    {
+      heading: {
+        text: "Editor"
+      },
+      summary: {
+        text: "The editor allows users to create and customise forms."
+      },
+      content: {
+        html:
+        '<ul class="govuk-list govuk-list--spaced">
+      <li>
+        <a class="govuk-link govuk-link--no-visited-state" href="/editor/0.html" rel="noreferrer noopener" target="_blank">View a coded editor page (does not have all functionality)</a>
+
+      </li>
+        </ul>
+        <h3 class="govuk-heading-s">Add or change conditions (branching)</h3>
+        <div id="event-name-hint" class="govuk-hint">
+    Users can add conditions to forms that can route users to specific journeys depending on question answers.
+  </div>
+  <ul class="govuk-list govuk-list--spaced">
+    <li>
+          <a class="govuk-link govuk-link--no-visited-state" href="/editor/conditions/existing0.html.html" rel="noreferrer noopener" target="_blank">View a coded page for conditions (does not have all functionality)</a>
+          </ul>
+        '
+      }
+    },
+
+    {
+      heading: {
+        text: "Component pages"
+      },
+      summary: {
+        text: "The content that appears on form pages are created by adding components to pages."
+      },
+      content: {
+        html:
+        '<div id="event-name-hint" class="govuk-hint" style="margin-bottom: 30px;">
+  <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/add.html" rel="noreferrer noopener" target="_blank">View the complete list of components</a>
+</div>
+<h3 class="govuk-heading-s">Input fields</h3>
+<ul class="govuk-list govuk-list--spaced">
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/autocomplete.html" rel="noreferrer noopener" target="_blank">Autocomplete</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/text.html" rel="noreferrer noopener" target="_blank">Text input</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/date-parts.html" rel="noreferrer noopener" target="_blank">Date parts</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/email.html" rel="noreferrer noopener" target="_blank">Email address</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/address.html" rel="noreferrer noopener" target="_blank">UK address</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/multiline.html" rel="noreferrer noopener" target="_blank">Multi-line text (textarea)</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/telephone.html" rel="noreferrer noopener" target="_blank">Telephone number</a>
+  </li>
+</ul>
+<h3 class="govuk-heading-s">Selection fields</h3>
+<ul class="govuk-list govuk-list--spaced">
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/checkboxes.html" rel="noreferrer noopener" target="_blank">Checkboxes</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/radios.html" rel="noreferrer noopener" target="_blank">Radios</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/select.html" rel="noreferrer noopener" target="_blank">Select</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/yesno.html" rel="noreferrer noopener" target="_blank">Yes/No</a>
+  </li>
+</ul>'
+       }
+    },
+
+
+    {
+      heading: {
+        text: "Policies"
+      },
+      summary: {
+        text: "Cookie, privacy, and accessibility statements."
+      },
+      content: {
+        html:
+        '
+            <p class="govuk-body">These pages will be linked to in the page footers in designer and runner, respectively.</p>
+
+        <h3 class="govuk-heading-m">Designer</h3>
+<ul class="govuk-list govuk-list--spaced">
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/policies/designer/cookies.html" rel="noreferrer noopener" target="_blank">Cookies</a>
+  </li>
+  </ul>
+
+   <h3 class="govuk-heading-m">Runner</h3>
+<ul class="govuk-list govuk-list--spaced">
+   <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/policies/runner/footer.html" rel="noreferrer noopener" target="_blank">See how links will appear in the footer</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/policies/runner/cookies.html" rel="noreferrer noopener" target="_blank">Cookies</a>
+  </li>
+   <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/policies/runner/help.html" rel="noreferrer noopener" target="_blank">Get help with your form page</a>
+  </li>
+  </ul>
+'
+      }
+        },
+
+
+    {
+      heading: {
+        text: "Error pages"
+      },
+      summary: {
+        text: "'Page Not Found' pages, 'Service Unavailable' pages, 'There is a Problem with the Service' pages."
+      },
+      content: {
+        html:
+        '
+
+   <h3 class="govuk-heading-m">Runner</h3>
+<ul class="govuk-list govuk-list--spaced">
+   <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/error-pages/runner/problem-with-the-service.html" rel="noreferrer noopener" target="_blank">There is a problem the service</a>
+  </li>
+  <li>
+    <a class="govuk-link govuk-link--no-visited-state" href="/error-pages/runner/page-not-found.html" rel="noreferrer noopener" target="_blank">Page not found</a>
+  </li>
+'
+      }
+    }
+  ]
+}) }}
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-third" style="background-color: #f3f2f1;/* height: 100vh; */padding-top: 15px;border-block-color: black;border-style: solid;">
+        <h2 class="govuk-heading-l">Use the prototype</h2>
+        {% block beforeContent %}
+          {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+        {% endblock %}
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        <form class="form" action="/overview-editor" method="post">
+
+          {{ govukRadios({
+  name: "editor",
+  value: data['editor'],
+  fieldset: {
+    legend: {
+      html: 'Which version of the editor do you want to use?',
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "old",
+      html: 'Old version based on xGov form builder'
+    },
+    {
+      value: "redesign",
+      text: "Current version of the editor being redesigned"
+
+    }
+  ]
+}) }}
+          {{ govukButton({
+  text: "Start prototype"
+}) }}
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+</div>

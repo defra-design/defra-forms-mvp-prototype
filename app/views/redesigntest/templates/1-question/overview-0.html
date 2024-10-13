@@ -105,8 +105,6 @@ activeLinkId: "nav-editor"
                     <span class="govuk-caption-l">Page 1</span>
                     <h1 class="govuk-heading-l">Overview of questions</h1>
 
-                    <p class="govuk-body">You have not added any questions to this page.</p>
-
                       {{ govukButton({
                       text: "Continue",
                       id: "continue-button"
@@ -793,7 +791,17 @@ activeLinkId: "nav-editor"
           });
         </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const dynamicCaption = document.getElementById("dynamic-caption");
+  const setName = dynamicCaption.getAttribute("data-setname");
 
+  if (!setName) {
+    dynamicCaption.style.display = "none";
+  }
+});
+
+</script>
 
 
         <style>

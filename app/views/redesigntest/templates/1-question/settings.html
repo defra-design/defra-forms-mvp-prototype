@@ -24,7 +24,7 @@
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
     {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add
-    and edit pages", href: "/september/listing/2.html" }) }}
+    and edit pages", href: "/redesigntest/listing.html" }) }}
 
     <hr
       class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
@@ -97,7 +97,7 @@
                           <span class="govuk-caption-l">Page 1</span>
                           <h1 class="govuk-heading-l">Page settings</h1>
 
-                          <form class="form" action="/redesigntest/templates/1-question/overview-0" method="post">
+                          <form class="form" action="/overview-0" method="post">
 
                           {% set morethan1Html %}
                           <div class="govuk-form-group">
@@ -133,8 +133,7 @@
                           isPageHeading: true
                           },
                           hint: {
-                          text: "Use the subject of the questions for the question set name. For example, if the
-                          questions are about pets, the question set name might be ‘pet’."
+                          text: "Use a word to describe what these questions are asking about. For example, 'cow', 'pet'. This will be used to categorise the answers, for example 'cow 1', cow 2'"
                           },
                           id: "set-name",
                           name: "setName"
@@ -142,7 +141,7 @@
                           {% endset -%}
 
                           {{ govukRadios({
-                          name: "responseType",
+                          name: "overview-0",
                           fieldset: {
                           legend: {
                           text: "How many times can people answer the question on this page?",

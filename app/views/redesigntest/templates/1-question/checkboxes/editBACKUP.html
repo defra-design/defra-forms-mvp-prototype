@@ -135,6 +135,9 @@
                           oninput: "updateHeading()"
                         }) }}
 
+
+                        question-label-input-q1
+
                         {{ govukTextarea({
                           label: {
                             text: "Hint text (optional)",
@@ -482,6 +485,125 @@
   });
 </script>
 
+
+
+{# <script>
+document.addEventListener('DOMContentLoaded', function () {
+  let optionIndex = 1;
+
+// Apply focus/blur highlights dynamically to inputs and checkbox labels
+function applyHighlightOnFocus(inputElementId, checkboxElementId) {
+  const inputElement = document.getElementById(inputElementId);
+  const checkboxLabel = document.querySelector(`label[for="${checkboxElementId}"]`);
+
+  if (inputElement && checkboxLabel) {
+    console.log(`Applying focus/blur to input: ${inputElementId}, checkboxLabel: ${checkboxElementId}`);
+
+    // Immediately highlight on focus
+    bindListener(inputElement, 'focus', () => {
+      console.log(`Focus on input: ${inputElementId}`);
+      checkboxLabel.classList.add('highlight');
+    });
+
+    // Remove highlight on blur
+    bindListener(inputElement, 'blur', () => {
+      console.log(`Blur on input: ${inputElementId}`);
+      checkboxLabel.classList.remove('highlight');
+    });
+
+    // If the input is already in focus (for safety)
+    if (document.activeElement === inputElement) {
+      checkboxLabel.classList.add('highlight');
+    }
+  } else {
+    console.log(`Could not find input or checkbox label for ${inputElementId}, ${checkboxElementId}`);
+  }
+}
+
+
+  // Add initial focus/blur behavior for the first option
+  applyHighlightOnFocus('option[0][option_label]', 'listPreview-option0');
+
+  // Set up the MutationObserver to handle dynamically added options
+  const observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (node) {
+        if (node.nodeType === 1 && node.classList.contains('moj-add-another__item')) {
+          const input = node.querySelector('input');
+          const label = node.querySelector('label.govuk-checkboxes__label'); // Ensure we only select the correct radio label
+
+          if (input && label) {
+            // Assign unique IDs to the newly added input and label
+            input.id = `option[${optionIndex}][option_label]`;
+            input.name = `option[${optionIndex}][option_label]`;
+            label.setAttribute('for', `listPreview-option${optionIndex}`);
+
+            // Apply focus/blur highlighting for the newly added input
+            applyHighlightOnFocus(input.id, `listPreview-option${optionIndex}`);
+
+            optionIndex++; // Increment option index for the next added option
+          }
+        }
+      });
+    });
+  });
+
+  // Observe the options container for dynamically added options
+  const optionsContainer = document.querySelector('#options-form');
+  if (optionsContainer) {
+    observer.observe(optionsContainer, { childList: true, subtree: true });
+  }
+
+  // Apply highlighting to the first input on page load
+  setTimeout(() => {
+    const firstInput = document.getElementById('option[0][option_label]');
+    const firstLabel = document.querySelector('label.govuk-checkboxes__label[for="listPreview-option0"]');
+
+    if (firstInput && firstLabel) {
+      applyHighlightOnFocus(firstInput.id, 'listPreview-option0');
+    }
+  }, 100);
+});
+
+
+</script> #}
+{#
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Get the input field
+  const inputElement = document.getElementById('question-label-input-checkboxes');
+  console.log('Input Element:', inputElement);  // Check if input element is found
+
+
+
+  // Get the legend field
+  const legendElement = document.getElementById('question-label-legend-checkboxes');
+  console.log('Legend Element:', legendElement);  // Check if legend element is found
+
+  // Ensure both elements exist
+  if (!inputElement || !legendElement) {
+    console.error('Input or legend element not found.');
+    return;
+  }
+
+  // Add focus and blur listeners
+  inputElement.addEventListener('focus', function () {
+    console.log('Input focused');
+    legendElement.classList.add('highlight');  // Add highlight class
+  });
+
+  inputElement.addEventListener('blur', function () {
+    console.log('Input blurred');
+    legendElement.classList.remove('highlight');  // Remove highlight class
+  });
+
+  // If input is already focused (for safety in some cases)
+  if (document.activeElement === inputElement) {
+    legendElement.classList.add('highlight');
+  }
+});
+
+</script> #}
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {

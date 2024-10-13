@@ -25,7 +25,9 @@
 
 
          <div id="heading-container">
-          <span id="dynamic-caption" class="govuk-caption-xl">{{ (data['setName'] or '') + ' 1' }}</span>
+          {% set setName = data['setName'] or '' %}
+          <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }} 1</span>
+
 
           <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingTextarea'] or '' }}</h1>
         </div>
@@ -37,27 +39,43 @@
 <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
     <label class="govuk-label govuk-label--l" for="text-input-field" id="question-label-legend">
-      {{ data['questionLabelInputShorttext'] or '' }}
+      {{ data['questionLabelInputTextArea'] or '' }}
     </label>
   </h1>
   <div id="hint-text-output" class="govuk-hint">
-    {{ data['hintTextInputShorttext'] or '' }}
+    {{ data['hintTextInputTextArea'] or '' }}
 
   </div>
   <textarea class="govuk-textarea" rows="5" id="text-input-field" name="textInputField" type="text" aria-describedby="hint-text-output"></textarea>
   </div>
 
-  {{ govukButton({
-    text: "Continue",
-    classes: "govuk-button govuk-!-margin-top-3",
-    id: "once-button",
-    disabled: true
-    }) }}
+  {% set setName = data['setName'] or '' %}
+  {% set overview0 = data['overview0'] or '' %}
 
-    {{ govukButton({
-    text: "Add another [question set name]",
+  {% if overview0 == "morethan1" %}
+  {{ govukButton({
+    text: "Add another " ~ setName,
     classes: "govuk-button govuk-!-margin-top-3",
     id: "add-another-set-button",
-    disabled: true,
-    attributes: { style: "display:none;" }
-    }) }}
+    disabled: true
+  }) }}
+  {% else %}
+  {{ govukButton({
+    text: "Continue",
+    classes: "govuk-button govuk-!-margin-top-6",
+    id: "once-button",
+    disabled: true
+  }) }}
+  {% endif %}
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+const dynamicCaption = document.getElementById("dynamic-caption");
+const setName = dynamicCaption.getAttribute("data-setname");
+
+if (!setName) {
+  dynamicCaption.style.display = "none";
+}
+});
+
+  </script>

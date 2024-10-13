@@ -24,7 +24,7 @@
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
     {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add
-    and edit pages", href: "/september/listing/2.html" }) }}
+    and edit pages", href: "/redesigntest/listing.html" }) }}
 
     <hr
       class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
@@ -204,29 +204,24 @@
       </div>
 
 
+ <!-- Make Optional Checkbox -->
+ <div class="govuk-form-group">
+  <div class="govuk-checkboxes--small">
+    <div class="govuk-checkboxes__item">
+      <input
+        class="govuk-checkboxes__input"
+        type="checkbox"
+        id="makeOptional"
+        name="makeOptional"
+        value="{{ data['optional-label-q1'] }}"
+      >
+      <label class="govuk-label govuk-checkboxes__label" for="makeOptional">
+        Make this question optional
+      </label>
+    </div>
+  </div>
+</div>
 
-<!-- Make optional -->
-
-{{ govukCheckboxes({
-  name: "makeOptional",
-  classes: "govuk-checkboxes--small",
-  fieldset: {
-    legend: {
-      text: "Manage how the question is displayed",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--m"
-    }
-
-  },
-  items: [
-    {
-      value: data["optional-label-q1"],
-      id: "makeOptional",
-       name: "makeOptional",
-      text: "Make this question optional"
-    }
-  ]
-}) }}
 
  <!-- Add guidance above this question -->
  <details class="govuk-details" data-module="govuk-details">

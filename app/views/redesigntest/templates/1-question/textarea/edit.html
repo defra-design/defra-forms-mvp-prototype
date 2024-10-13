@@ -24,7 +24,7 @@
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
     {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add
-    and edit pages", href: "/september/listing/2.html" }) }}
+    and edit pages", href: "/redesigntest/listing.html" }) }}
 
     <hr
       class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
@@ -122,94 +122,6 @@
                           </div>
 
 
-    <!-- Answer Limits -->
-    <details class="govuk-details govuk-!-margin-top-6">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">Set answer limits (optional)</span>
-      </summary>
-      <div class="govuk-details__text">
-        <!-- Checkbox for Answer Limits -->
-        {{ govukCheckboxes({
-        idPrefix: "contact",
-        name: "contact",
-        items: [
-        {
-        value: "betweenDates",
-        text: "Answer must be between two dates",
-        id: "contact-betweenDates",
-        conditional: {
-        html: govukDateInput({
-        id: "first-date",
-        namePrefix: "first-date",
-        fieldset: {
-        legend: {
-        text: "First date",
-        classes: "govuk-fieldset__legend--m"
-        }
-        },
-        items: [
-        {
-        name: "day",
-        classes: "govuk-input--width-2",
-        attributes: {
-        inputmode: "numeric"
-        }
-        },
-        {
-        name: "month",
-        classes: "govuk-input--width-2",
-        attributes: {
-        inputmode: "numeric"
-        }
-        },
-        {
-        name: "year",
-        classes: "govuk-input--width-4",
-        attributes: {
-        inputmode: "numeric"
-        }
-        }
-        ]
-        }) + govukDateInput({
-        id: "second-date",
-        namePrefix: "second-date",
-        fieldset: {
-        legend: {
-        text: "Second date",
-        classes: "govuk-fieldset__legend--m"
-        }
-        },
-        items: [
-        {
-        name: "day",
-        classes: "govuk-input--width-2",
-        attributes: {
-        inputmode: "numeric"
-        }
-        },
-        {
-        name: "month",
-        classes: "govuk-input--width-2",
-        attributes: {
-        inputmode: "numeric"
-        }
-        },
-        {
-        name: "year",
-        classes: "govuk-input--width-4",
-        attributes: {
-        inputmode: "numeric"
-        }
-        }
-        ]
-        })
-        }
-        }
-        ]
-        }) }}
-      </div>
-    </details>
-
       <!-- Add guidance above this question -->
       <details class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">
@@ -263,7 +175,53 @@
         </div>
       </details>
 
+<!-- Answer limits -->
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+     Set answer limits
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <!-- Default Content for Question 1 -->
+    <div id="question-1-content" class="question-content" style="margin-top: 10px;">
 
+      <!-- Page Heading Input -->
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Minimum character length",
+    classes: "govuk-label--m",
+    isPageHeading: false
+  },
+  classes: "govuk-input--width-3",
+  hint: {
+    text: "The minimum number of characters users can enter"
+  },
+  id: "min-characters",
+  name: "minCharacters",
+  inputmode: "numeric",
+  spellcheck: false
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Maximum character length",
+    classes: "govuk-label--m",
+    isPageHeading: false
+  },
+  classes: "govuk-input--width-3",
+  hint: {
+    text: "The maximum number of characters users can enter"
+  },
+  id: "max-characters",
+  name: "minCharacters",
+  inputmode: "numeric",
+  spellcheck: false
+}) }}
+  </div>
+</details>
 
 <!-- Section Break -->
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">

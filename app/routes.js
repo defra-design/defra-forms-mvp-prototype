@@ -46,6 +46,7 @@ router.post("/prototype-answer", function (request, response) {
       break;
   }
 });
+
 router.post("/overview-answer", function (request, response) {
   var overviewValue = request.session.data["overview"];
   switch (overviewValue) {
@@ -63,6 +64,23 @@ router.post("/overview-answer", function (request, response) {
       break;
   }
 });
+
+router.post("/overview-editor", function (request, response) {
+  var editorChoice = request.session.data["editor"];
+  switch (editorChoice) {
+    case "old":
+      response.redirect("/editor-pets/0.html");
+      break;
+    case "redesign":
+      response.redirect("/redesigntest/listing.html");
+      break;
+    default:
+      // Optionally, add a fallback in case no valid option is selected
+      response.redirect("/overview-editor");
+      break;
+  }
+});
+
 
 // ROUTES FOR THE REDESIGN ITERATION 1
 
@@ -304,35 +322,32 @@ router.post('/output-method-v2', function(request, response) {
   }
 })
 
-// Destructure addFilter from govukPrototypeKit.views
-const { addFilter } = govukPrototypeKit.views
+router.post("/question-number", function (request, response) {
+  // Retrieve the page type from session data
+  const questionnumber = request.session.data["questionnumber"];
 
-const constants = require('./constants')
-
-// Define the 'appendSuffix' filter
-addFilter('appendSuffix', function(str, suffixType = 'textarea') {
-  if (typeof str !== 'string') return str // Ensure the input is a string
-
-  // Map suffix types to constants
-  const suffixMap = {
-    'textarea': constants.SUFFIX_TEXTAREA,
-    'input': constants.SUFFIX_INPUT,
-    'button': constants.SUFFIX_BUTTON,
-    'address': constants.SUFFIX_ADDRESS,
-    'checkboxes': constants.SUFFIX_CHECKBOXES,
-    'date': constants.SUFFIX_DATE,
-    'email': constants.SUFFIX_EMAIL,
-    'fileupload': constants.SUFFIX_FILEUPLOAD,
-    'phone': constants.SUFFIX_PHONE,
-    'radios': constants.SUFFIX_RADIOS,
-    'select': constants.SUFFIX_SELECT,
-    'short-text': constants.SUFFIX_SHORT_TEXT,
-    'yesno': constants.SUFFIX_YESNO,
-    // Add more mappings as needed
+  // Check the page type and redirect accordingly
+  switch (questionnumber) {
+    case "once":
+      response.redirect("/redesigntest/templates/1-question/settings.html");
+      break;
+    case "morethan1":
+      response.redirect("");
+      break;
+    case "guidance":
+      response.redirect(""); // Adjust URL as needed for guidance-only option
+      break;
+    default:
+      response.redirect("/redesign/404");
+      break;
   }
+});
 
-  // Retrieve the suffix based on the suffixType
-  const suffix = suffixMap[suffixType] || ''
+// Run this code when a form is submitted to 'overview-0'
+router.post("/overview-0", function (req, res) {
+  // Access the value from 'overview0'
+  var overview0 = req.session.data["overview0"];
 
-  return `${str}${suffix}`
-})
+  // Send user to the ineligible page
+  res.redirect("/redesigntest/templates/1-question/overview-0.html");
+});

@@ -146,10 +146,6 @@
                             {
                               value: "long-answer",
                               text: "Long answer (more than a single line)"
-                            },
-                            {
-                              value: "numbers",
-                              text: "Numbers only"
                             }
                           ]
                         }) }}
@@ -274,7 +270,6 @@
 
   {{ govukButton({
     text: "Continue",
-    type: "submit",
     id: "add-question-button"
   }) }}
   </form>
@@ -320,13 +315,10 @@
             <form>
               <!-- Dynamic Heading -->
               <div id="heading-container">
-                {% set setName = data['setName'] or '' %}
-                <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }} 1</span>
+                {% set setName = data['setNameShorttext'] or '' %}
+                <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setNameShorttext'] or '' }} 1</span>
                 <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeading'] or '' }}</h1>
               </div>
-
-
-
 
               <div class="preview-container" id="preview-container">
                 <!-- Short Answer Preview -->
@@ -338,7 +330,6 @@
                     <input class="govuk-input govuk-!-width-full" id="short-answer" name="shortAnswer" type="text">
                   </div>
                 </div>
-
                 <!-- Long Answer Preview -->
                 <div class="preview-content long-answer-preview" style="display: none;">
                   <div class="govuk-form-group">
@@ -348,21 +339,6 @@
                     <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
                   </div>
                 </div>
-
-                 {# Number only Preview #}
-                 <div class="preview-content numbers-preview" style="display: none;">
-                 <div class="govuk-form-group">
-                  <h1 class="govuk-label-wrapper">
-                    <label class="govuk-label govuk-label--l" for="numbers-only">
-                      Question
-                    </label>
-                  </h1>
-                  <div id="numbers-hint" class="govuk-hint">
-
-                  </div>
-                  <input class="govuk-input govuk-input--width-10" id="account-number" name="accountNumber" type="text" spellcheck="false" aria-describedby="account-number-hint" inputmode="numeric">
-                </div>
-              </div>
 
                 {# File Upload Preview #}
                 <div class="preview-content file-preview" style="display: none;">
@@ -619,24 +595,25 @@
         <!-- Guidance Paragraph -->
         <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
 
-        {% set setName = data['setName'] or '' %}
-        {% set overview0 = data['overview0'] or '' %}
 
-        {% if overview0 == "morethan1" %}
-        {{ govukButton({
-          text: "Add another " ~ setName,
-          classes: "govuk-button govuk-!-margin-top-3",
-          id: "add-another-set-button",
-          disabled: true
-        }) }}
-        {% else %}
-        {{ govukButton({
-          text: "Continue",
-          classes: "govuk-button govuk-!-margin-top-6",
-          id: "once-button",
-          disabled: true
-        }) }}
-        {% endif %}
+{% set setName = data['setNameShorttext'] | default('') %}
+{% set overview0Shorttext = data['overview0Shorttext'] | default('') %}
+
+{% if overview0Shorttext == "morethan1" %}
+  {{ govukButton({
+    text: "Add another " ~ setName,
+    classes: "govuk-button govuk-!-margin-top-3",
+    id: "add-another-set-button",
+    disabled: true
+  }) }}
+{% else %}
+  {{ govukButton({
+    text: "Continue",
+    classes: "govuk-button govuk-!-margin-top-6",
+    id: "once-button",
+    disabled: true
+  }) }}
+{% endif %}
 
           </div>
         </div>
@@ -699,135 +676,6 @@ dynamicCaption.style.display = "none";
 });
 
 </script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const dynamicCaption = document.getElementById("dynamic-caption");
-
-  // Check if the element exists
-  if (!dynamicCaption) {
-    console.error("Element with id 'dynamic-caption' not found.");
-    return;
-  }
-
-  // Initial `setName` retrieved from `data-setname`
-  let originalSetName = dynamicCaption.getAttribute("data-setname");
-
-  // Function to update `data-setname` based on selected option
-  function updateSetName(suffix) {
-    // Reset to original `setName` and append new suffix
-    let updatedSetName = `${originalSetName} ${suffix}`;
-    dynamicCaption.setAttribute("data-setname", updatedSetName);
-
-    // Log for verification
-    console.log("Updated data-setname:", updatedSetName);
-  }
-
-  // Listen for changes on main selection
-  document.querySelectorAll("input[name='informationQuestion1']").forEach(option => {
-    option.addEventListener("change", function () {
-      const selectedOption = this.value;
-
-      if (selectedOption === "text") {
-        updateSetName("Text");
-      } else if (selectedOption === "date") {
-        updateSetName("Date");
-      } else if (selectedOption === "list") {
-        updateSetName("List");
-      } else {
-        updateSetName("");
-      }
-    });
-  });
-
-  // Listen for changes on sub-options to update `data-setname` further
-  document.querySelectorAll("input[name='written'], input[name='dateType'], input[name='listType']").forEach(subOption => {
-    subOption.addEventListener("change", function () {
-      const mainOption = document.querySelector("input[name='informationQuestion1']:checked");
-      const selectedSubOption = this.value;
-
-      if (mainOption && mainOption.value === "text") {
-        updateSetName(selectedSubOption === "short-answer" ? "Text Short" : "Text Long");
-      } else if (mainOption && mainOption.value === "date") {
-        updateSetName(selectedSubOption === "day-month-year" ? "Date Full" : "Date Month-Year");
-      } else if (mainOption && mainOption.value === "list") {
-        updateSetName(selectedSubOption);
-      }
-    });
-  });
-});
-
-
-</script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-  const dynamicCaption = document.getElementById("dynamic-caption");
-
-  // Verify that the element exists
-  if (!dynamicCaption) {
-    console.error("Element with id 'dynamic-caption' not found.");
-    return;
-  }
-
-  // Original display content to maintain without modification
-  const originalContent = dynamicCaption.textContent.trim();
-
-  // Function to set the appropriate data attribute based on the suffix
-  function setCustomDataAttribute(suffix) {
-    // Remove any existing custom data attributes
-    Array.from(dynamicCaption.attributes).forEach(attr => {
-      if (attr.name.startsWith("data-setname")) {
-        dynamicCaption.removeAttribute(attr.name);
-      }
-    });
-
-    // Set the new custom data attribute without changing the displayed content
-    if (suffix) {
-      const dataAttribute = `data-setname${suffix}`;
-      dynamicCaption.setAttribute(dataAttribute, originalContent);
-      console.log(`Set ${dataAttribute} with value "${originalContent}"`);
-    }
-  }
-
-  // Listener for main option changes
-  document.querySelectorAll("input[name='informationQuestion1']").forEach(option => {
-    option.addEventListener("change", function () {
-      const selectedOption = this.value;
-
-      if (selectedOption === "text") {
-        setCustomDataAttribute("Shorttext");
-      } else if (selectedOption === "date") {
-        setCustomDataAttribute("Date");
-      } else if (selectedOption === "list") {
-        setCustomDataAttribute("List");
-      } else {
-        setCustomDataAttribute("");
-      }
-    });
-  });
-
-  // Listener for sub-option changes
-  document.querySelectorAll("input[name='written'], input[name='dateType'], input[name='listType']").forEach(subOption => {
-    subOption.addEventListener("change", function () {
-      const mainOption = document.querySelector("input[name='informationQuestion1']:checked");
-      const selectedSubOption = this.value;
-
-      if (mainOption && mainOption.value === "text") {
-        setCustomDataAttribute(selectedSubOption === "short-answer" ? "Shorttext" : "Longtext");
-      } else if (mainOption && mainOption.value === "date") {
-        setCustomDataAttribute(selectedSubOption === "day-month-year" ? "DateFull" : "DateMonthYear");
-      } else if (mainOption && mainOption.value === "list") {
-        setCustomDataAttribute(selectedSubOption.charAt(0).toUpperCase() + selectedSubOption.slice(1));
-      }
-    });
-  });
-});
-
-</script>
-
-
-
 
 <style>
   .highlight {

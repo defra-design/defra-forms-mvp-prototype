@@ -242,8 +242,8 @@
           text: "Page headings should be a statement and not a question. For example, ‘Passport information’",
           id: "page-heading-input-hint"
         },
-        id: "page-heading-input",
-        name: "pageHeading",
+        id: "page-heading-input-checkboxes",
+        name: "pageHeadingCheckboxes",
         type: "text",
         attributes: {
           'aria-describedby': "page-heading-input-hint",
@@ -261,8 +261,8 @@
           text: "Use Markdown to format the content or add hyperlinks",
           id: "guidance-textarea-hint"
         },
-        id: "guidance-textarea",
-        name: "guidanceText",
+        id: "guidance-textarea-checkboxes",
+        name: "guidanceTextCheckboxes",
         rows: 5,
         attributes: {
           'aria-describedby': "guidance-textarea-hint",
@@ -296,7 +296,7 @@
         actions: {
           items: [
             {
-                                        href: "javascript:window.history.back()",
+                                        href: "/redesigntest/templates/1-question/information-type.html",
               text: "Change",
               visuallyHiddenText: "name"
             }
@@ -492,9 +492,9 @@
       hintTextInput: document.getElementById('hint-text-inputq1'),
       hintTextOutput: document.getElementById('hint-text-output'),
       makeOptionalCheckbox: document.getElementById('makeOptional'),
-      pageHeadingInput: document.getElementById('page-heading-input'),
+      pageHeadingInputCheckboxes: document.getElementById('page-heading-input-checkboxes'),
       dynamicHeading: document.getElementById('dynamic-heading'),
-      guidanceTextarea: document.getElementById('guidance-textarea'),
+      guidanceTextareaCheckboxes: document.getElementById('guidance-textarea-checkboxes'),
       guidanceParagraph: document.getElementById('guidance-paragraph')
     };
 
@@ -526,25 +526,25 @@
       }
 
       // Update page heading
-      if (domElements.pageHeadingInput && domElements.dynamicHeading) {
-        console.log("Adding event listener to pageHeadingInput");
-        domElements.pageHeadingInput.addEventListener('input', updatePageHeading);
-        applyHighlightOnFocus(domElements.pageHeadingInput, domElements.dynamicHeading);
-        domElements.pageHeadingInput.addEventListener('focus', showPlaceholderHeading);
-        domElements.pageHeadingInput.addEventListener('blur', clearPlaceholderHeading);
+      if (domElements.pageHeadingInputCheckboxes && domElements.dynamicHeading) {
+        console.log("Adding event listener to pageHeadingInputCheckboxes");
+        domElements.pageHeadingInputCheckboxes.addEventListener('input', updatePageHeading);
+        applyHighlightOnFocus(domElements.pageHeadingInputCheckboxes, domElements.dynamicHeading);
+        domElements.pageHeadingInputCheckboxes.addEventListener('focus', showPlaceholderHeading);
+        domElements.pageHeadingInputCheckboxes.addEventListener('blur', clearPlaceholderHeading);
       } else {
-        console.error("pageHeadingInput or dynamicHeading not found.");
+        console.error("pageHeadingInputCheckboxes or dynamicHeading not found.");
       }
 
       // Update guidance text
-      if (domElements.guidanceTextarea && domElements.guidanceParagraph) {
+      if (domElements.guidanceTextareaCheckboxes && domElements.guidanceParagraph) {
         console.log("Adding event listener to guidanceTextarea");
-        domElements.guidanceTextarea.addEventListener('input', updateGuidanceText);
-        applyHighlightOnFocus(domElements.guidanceTextarea, domElements.guidanceParagraph);
-        domElements.guidanceTextarea.addEventListener('focus', showPlaceholderGuidance);
-        domElements.guidanceTextarea.addEventListener('blur', clearPlaceholderGuidance);
+        domElements.guidanceTextareaCheckboxes.addEventListener('input', updateGuidanceText);
+        applyHighlightOnFocus(domElements.guidanceTextareaCheckboxes, domElements.guidanceParagraph);
+        domElements.guidanceTextareaCheckboxes.addEventListener('focus', showPlaceholderGuidance);
+        domElements.guidanceTextareaCheckboxes.addEventListener('blur', clearPlaceholderGuidance);
       } else {
-        console.error("guidanceTextarea or guidanceParagraph not found.");
+        console.error("guidanceTextareaCheckboxes or guidanceParagraph not found.");
       }
     }
 
@@ -564,12 +564,12 @@
 
     function updatePageHeading() {
       console.log("Updating page heading");
-      domElements.dynamicHeading.textContent = domElements.pageHeadingInput.value;
+      domElements.dynamicHeading.textContent = domElements.pageHeadingInputCheckboxes.value;
     }
 
     function updateGuidanceText() {
       console.log("Updating guidance text");
-      domElements.guidanceParagraph.textContent = domElements.guidanceTextarea.value;
+      domElements.guidanceParagraph.textContent = domElements.guidanceTextareaCheckboxes.value;
     }
 
     // Placeholder handling for hint text
@@ -587,26 +587,26 @@
 
     // Placeholder handling for page heading
     function showPlaceholderHeading() {
-      if (!domElements.pageHeadingInput.value) {
+      if (!domElements.pageHeadingInputCheckboxes.value) {
         domElements.dynamicHeading.textContent = 'Page heading';
       }
     }
 
     function clearPlaceholderHeading() {
-      if (!domElements.pageHeadingInput.value) {
+      if (!domElements.pageHeadingInputCheckboxes.value) {
         domElements.dynamicHeading.textContent = '';
       }
     }
 
     // Placeholder handling for guidance text
     function showPlaceholderGuidance() {
-      if (!domElements.guidanceTextarea.value) {
+      if (!domElements.guidanceTextareaCheckboxes.value) {
         domElements.guidanceParagraph.textContent = 'Guidance text';
       }
     }
 
     function clearPlaceholderGuidance() {
-      if (!domElements.guidanceTextarea.value) {
+      if (!domElements.guidanceTextareaCheckboxes.value) {
         domElements.guidanceParagraph.textContent = '';
       }
     }

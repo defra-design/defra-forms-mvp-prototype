@@ -213,6 +213,8 @@ router.post("/information-type-answer1", function (req, res) {
         res.redirect("/redesigntest/templates/1-question/shorttext/edit.html");
       } else if (writtenType === "long-answer") {
         res.redirect("/redesigntest/templates/1-question/textarea/edit.html");
+      } else if (writtenType === "numbers") {
+        res.redirect("/redesigntest/templates/1-question/numbers/edit.html");
       } else {
         res.redirect("/redesigntest/templates/1-question/default.html");
       }
@@ -220,6 +222,7 @@ router.post("/information-type-answer1", function (req, res) {
       console.log("Missing writtenType, redirecting to default.");
       res.redirect("/redesigntest/templates/1-question/default.html");
     }
+
 
   } else if (informationQuestion1 === "date") {
     const dateType = req.body["dateType"];
@@ -343,11 +346,33 @@ router.post("/question-number", function (request, response) {
   }
 });
 
-// Run this code when a form is submitted to 'overview-0'
-router.post("/overview-0", function (req, res) {
-  // Access the value from 'overview0'
-  var overview0 = req.session.data["overview0"];
+// // Run this code when a form is submitted to 'overview-0'
+// router.post("/overview-0", function (req, res) {
+//   // Access the value from 'overview0'
+//   var overview0 = req.session.data["overview0"];
 
-  // Send user to the ineligible page
-  res.redirect("/redesigntest/templates/1-question/overview-0.html");
+//   // Send user to the ineligible page
+//   res.redirect("/redesigntest/templates/1-question/overview-0.html");
+// });
+
+router.post("/overview-0-shorttext", function (req, res) {
+  // Access values from form data
+  const overview0Shorttext = req.session.data["overview0Shorttext"];
+  const setNameShorttext = req.session.data["setNameShorttext"];
+
+  // Check the value of overview0Shorttext to control redirection
+  if (overview0Shorttext === "morethan1") {
+    res.redirect("/redesigntest/templates/1-question/shorttext/overview-0");  // Adjust to your actual route
+  } else {
+    res.redirect("/some-other-page");  // Change to the appropriate alternative page
+  }
 });
+
+
+router.post("/overview-0", function (req, res) {
+  // Save form data to session
+  req.session.data["setName"] = req.body.setName || "";
+  req.session.data["overview0"] = req.body["overview0"] || "";
+  res.redirect("/redesigntest/templates/1-question/overview-0.html");  //
+});
+

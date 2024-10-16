@@ -25,7 +25,7 @@
 
       <div id="heading-container">
         {% set setName = data['setName'] or '' %}
-        <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }} 1</span>
+        <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setNameShorttext'] or '' }} 1</span>
 
 
 
@@ -37,10 +37,11 @@
 <!-- Guidance Paragraph -->
 <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
 
-{% set setName = data['setName'] | default('') %}
-{% set overview0 = data['overview0'] | default('') %}
 
-{% if overview0 == "morethan1" %}
+{% set setName = data['setNameShorttext'] | default('') %}
+{% set overview0Shorttext = data['overview0Shorttext'] | default('') %}
+
+{% if overview0Shorttext == "morethan1" %}
   {{ govukButton({
     text: "Add another " ~ setName,
     classes: "govuk-button govuk-!-margin-top-3",
@@ -55,6 +56,8 @@
     disabled: true
   }) }}
 {% endif %}
+
+
 
 
 <script>

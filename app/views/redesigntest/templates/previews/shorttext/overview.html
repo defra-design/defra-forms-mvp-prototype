@@ -23,12 +23,12 @@
 
                  <div id="heading-container">
                   {% set setName = data['setName'] or '' %}
-        <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }} 1</span>
-        <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeading'] or '' }}</h1>
+        <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setNameShorttext'] or '' }} 1</span>
+        <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingShorttext'] or '' }}</h1>
                 </div>
 
          <!-- Guidance Paragraph -->
-        <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
+        <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceShorttext'] or '' }}</p>
 
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">

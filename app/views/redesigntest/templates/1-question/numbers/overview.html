@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% from "components/service-header/macro.njk" import serviceHeader %}
-{% set pageName = "Overview of email question - Apply for a county parish holding number in England" %}
+{% set pageName = "Overview of short answer question - Apply for a county parish holding number in England" %}
 {% set headingPlaceholder = "Page heading" %}
 {% set guidancePlaceholder = "" %}
 
@@ -83,8 +83,8 @@
 
                         <h2 class="govuk-heading-l" id="page-heading">Overview of questions</h2>
 
-
-                        <form class="form" action="/redesigntest/Multi/question-2-date/information-type" method="post">
+{#
+                        <form class="form" action="/redesigntest/Multi/question-2-date/information-type" method="post"> #}
 
                            <!-- Dynamic Summary List -->
             <div id="summary-container">
@@ -98,13 +98,13 @@
                       text: "Question 1"
                     },
                     value: {
-                      html: data['questionLabelInputEmail'] or ''
+                      html: data['questionLabelInputNumbers'] or ''
 
                     },
                     actions: {
                       items: [
                         {
-                                                    href: "/redesigntest/templates/1-question/email/edit.html",
+                                                    href: "/redesigntest/templates/1-question/numbers/edit.html",
                           text: "Change",
                           visuallyHiddenText: "name"
                         }
@@ -115,18 +115,22 @@
               }) }}
 
             </div>
+
+
+          <div class="govuk-button-group govuk-!-margin-top-6">
+            <a href="/redesigntest/templates/1-question/page-type.html" class="govuk-button" role="button">
+              Create next page
+            </a>
+
+            <a href="/redesigntest/listing.html" class="govuk-button govuk-button--inverse" role="button">
+              Back to all pages
+            </a>
+
+
+          </div>
+
+
                         </form>
-                        <div class="govuk-button-group govuk-!-margin-top-6">
-                          <a href="/redesigntest/templates/1-question/page-type.html" class="govuk-button" role="button">
-                            Create next page
-                          </a>
-
-                          <a href="/redesigntest/listing.html" class="govuk-button govuk-button--inverse" role="button">
-                            Back to all pages
-                          </a>
-
-
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -147,7 +151,7 @@
         </div>
 
         <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews/email/overview.html" %}
+        {% include "/redesigntest/templates/previews/numbers/overview.html" %}
       </div>
     </div>
 

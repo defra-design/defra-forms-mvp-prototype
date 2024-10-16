@@ -97,7 +97,7 @@
                           <span class="govuk-caption-l">Page 1</span>
                           <h1 class="govuk-heading-l">Page settings</h1>
 
-                          <form class="form" action="/overview-0" method="post">
+                          <form class="form" action="/overview-0-shorttext" method="post">
 
                           {% set morethan1Html %}
                           <div class="govuk-form-group">
@@ -135,13 +135,13 @@
                           hint: {
                           text: "Use a word to describe what these questions are asking about. For example, 'cow', 'pet'. This will be used to categorise the answers, for example 'cow 1', cow 2'"
                           },
-                           id: "set-name",
-    name: "setName"
+                             id: "set-name-shorttext",
+    name: "setNameShorttext"
                           }) }}
                           {% endset -%}
 
                           {{ govukRadios({
-                          name: "overview0",
+                          name: "overview0Shorttext",
                           fieldset: {
                           legend: {
                           text: "How many times can people answer the question on this page?",
@@ -233,7 +233,7 @@
 
 
               <div id="heading-container">
-                <span id="dynamic-caption" style="display: none;" class="govuk-caption-l">{{ (data['setName'] or '') + ' 1' }}</span>
+                <span id="dynamic-caption" style="display: none;" class="govuk-caption-l">{{ (data['setNameShorttext'] or '') + ' 1' }}</span>
 
 
 
@@ -268,77 +268,77 @@
       </div>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const domElements = {
-          moreThanOnceRadio: document.getElementById("more-than-1"),
-          onceRadio: document.getElementById("once"),
-          addAnotherSetButton: document.getElementById("add-another-set-button"),
-          onceButton: document.getElementById("once-button"),
-          setName: document.getElementById("set-name"),
-          dynamicCaption: document.getElementById("dynamic-caption"),
-        };
+   <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const domElements = {
+    moreThanOnceRadio: document.getElementById("more-than-1"),
+    onceRadio: document.getElementById("once"),
+    addAnotherSetButton: document.getElementById("add-another-set-button"),
+    onceButton: document.getElementById("once-button"),
+    setNameShorttext: document.getElementById("set-name-shorttext"),
+    dynamicCaption: document.getElementById("dynamic-caption"),
+  };
 
-        initializeEventListeners();
+  initializeEventListeners();
 
-        function initializeEventListeners() {
-          domElements.moreThanOnceRadio.addEventListener("change", toggleCaptionAndButtons);
-          domElements.onceRadio.addEventListener("change", toggleCaptionAndButtons);
-          domElements.setName.addEventListener("focus", onFocusUpdate);
-          domElements.setName.addEventListener("input", updateDynamicCaptionAndButton);
-          domElements.setName.addEventListener("blur", removeButtonHighlight);
-        }
+  function initializeEventListeners() {
+    domElements.moreThanOnceRadio.addEventListener("change", toggleCaptionAndButtons);
+    domElements.onceRadio.addEventListener("change", toggleCaptionAndButtons);
+    domElements.setNameShorttext.addEventListener("focus", onFocusUpdate);
+    domElements.setNameShorttext.addEventListener("input", updateDynamicCaptionAndButton);
+    domElements.setNameShorttext.addEventListener("blur", removeButtonHighlight);
+  }
 
-        function onFocusUpdate() {
-          updateDynamicCaptionAndButton();
-          domElements.dynamicCaption.classList.add("highlight");
-        }
+  function onFocusUpdate() {
+    updateDynamicCaptionAndButton();
+    domElements.dynamicCaption.classList.add("highlight");
+  }
 
-        function updateDynamicCaptionAndButton() {
-          const setName = domElements.setName.value.trim();
+  function updateDynamicCaptionAndButton() {
+    const setNameShorttext = domElements.setNameShorttext.value.trim();
 
-          // Update dynamic caption
-          domElements.dynamicCaption.textContent = setName ? `${setName} 1` : "Question set name";
-          domElements.dynamicCaption.style.display = "block";
+    // Update dynamic caption
+    domElements.dynamicCaption.textContent = setNameShorttext ? `${setNameShorttext} 1` : "Question set name";
+    domElements.dynamicCaption.style.display = "block";
 
-          // Highlight part of 'Add another' button text
-          const highlightedText = `<span class="highlight" style="color: black;">${setName || "[question set name]"}</span>`;
-          domElements.addAnotherSetButton.innerHTML = `Add another ${highlightedText}`;
-          domElements.addAnotherSetButton.disabled = !setName && domElements.setName !== document.activeElement;
-        }
+    // Highlight part of 'Add another' button text
+    const highlightedText = `<span class="highlight" style="color: black;">${setNameShorttext || "[question set name]"}</span>`;
+    domElements.addAnotherSetButton.innerHTML = `Add another ${highlightedText}`;
+    domElements.addAnotherSetButton.disabled = !setNameShorttext && domElements.setNameShorttext !== document.activeElement;
+  }
 
-        function removeButtonHighlight() {
-          // Remove highlight from button text on blur
-          const setName = domElements.setName.value.trim();
-          domElements.addAnotherSetButton.innerHTML = `Add another ${setName || "[question set name]"}`;
-          domElements.dynamicCaption.classList.remove("highlight");
-        }
+  function removeButtonHighlight() {
+    // Remove highlight from button text on blur
+    const setNameShorttext = domElements.setNameShorttext.value.trim();
+    domElements.addAnotherSetButton.innerHTML = `Add another ${setNameShorttext || "[question set name]"}`;
+    domElements.dynamicCaption.classList.remove("highlight");
+  }
 
-        function toggleCaptionAndButtons() {
-          if (domElements.moreThanOnceRadio.checked) {
-            showCaptionWithPlaceholder();
-            domElements.addAnotherSetButton.style.display = "inline-block";
-            domElements.onceButton.style.display = "none";
-          } else if (domElements.onceRadio.checked) {
-            hideCaptionAndClearInput();
-            domElements.addAnotherSetButton.style.display = "none";
-            domElements.onceButton.style.display = "inline-block";
-          }
-          domElements.onceButton.disabled = true;
-        }
+  function toggleCaptionAndButtons() {
+    if (domElements.moreThanOnceRadio.checked) {
+      showCaptionWithPlaceholder();
+      domElements.addAnotherSetButton.style.display = "inline-block";
+      domElements.onceButton.style.display = "none";
+    } else if (domElements.onceRadio.checked) {
+      hideCaptionAndClearInput();
+      domElements.addAnotherSetButton.style.display = "none";
+      domElements.onceButton.style.display = "inline-block";
+    }
+    domElements.onceButton.disabled = true;
+  }
 
-        function showCaptionWithPlaceholder() {
-          domElements.dynamicCaption.textContent = "Question set name";
-          domElements.dynamicCaption.style.display = "block";
-        }
+  function showCaptionWithPlaceholder() {
+    domElements.dynamicCaption.textContent = "Question set name";
+    domElements.dynamicCaption.style.display = "block";
+  }
 
-        function hideCaptionAndClearInput() {
-          domElements.dynamicCaption.style.display = "none";
-          domElements.dynamicCaption.classList.remove("highlight");
-        }
-      });
+  function hideCaptionAndClearInput() {
+    domElements.dynamicCaption.style.display = "none";
+    domElements.dynamicCaption.classList.remove("highlight");
+  }
+});
 
-      </script>
+</script>
 
 
     <style>

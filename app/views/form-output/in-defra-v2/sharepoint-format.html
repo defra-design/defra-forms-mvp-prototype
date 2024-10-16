@@ -48,29 +48,45 @@
 
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
-      {{ govukInput({
-  label: {
-    text: "Email address for submitted forms to be sent to",
-    classes: "govuk-label--l",
-    isPageHeading: true
-  },
-hint: {
-  text: "Used to send submitted forms for processing. Must must end with ‘.gov.uk’ or ‘.org.uk’, like name@example.gov.uk or name@example.org.uk
-"
-},
-  id: "notification-email",
-  name: "notificationEmail"
-}) }}
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
-{{ govukInsetText({
-  text: "You should test it before making a form live."
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+  name: "sharepointFormat",
+  fieldset: {
+    legend: {
+      text: "What format do you want forms to arrive into the SharePoint folder?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    text: "Choose 'Easy to read' if you’d like an email for a human to process in a CSV file. Select 'Data only' if you need the information in a computer-friendly format (JSON) for processing or integration with other systems."
+
+  },
+  items: [
+    {
+      value: "easy",
+      text: "Easy to read CSV file
+"
+
+},
+{
+  value: "data",
+  text: "Data as a JSON for computer systems
+"
+
+}
+]
 }) }}
+
+
+
 
       {% from "govuk/components/button/macro.njk" import govukButton %}
 
       <div class="govuk-button-group">
-        <a href="/form-output/in-defra-v2/email-format.html">
+        <a href="/form-output/in-defra-v2/check-answers.html">
           <button type="submit" class="govuk-button" data-module="govuk-button">
             Save and continue
           </button>

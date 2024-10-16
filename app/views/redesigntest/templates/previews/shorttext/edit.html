@@ -26,7 +26,7 @@
 
          <div id="heading-container">
           {% set setName = data['setName'] or '' %}
-          <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }} 1</span>
+          <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setNameShorttext'] or '' }} 1</span>
 
           <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeading'] or '' }}</h1>
         </div>
@@ -48,6 +48,57 @@
   <input class="govuk-input" id="text-input-field" name="textInputField" type="text" aria-describedby="hint-text-output">
 
   </div>
+
+  <details class="govuk-details" id="error-message-preview-summary">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">Error messages for this question</span>
+    </summary>
+    <div class="govuk-details__text">
+      <!-- Error Messages Section -->
+      <div class="govuk-error-summary" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <ul class="govuk-list govuk-error-summary__list">
+          <!-- Empty input error -->
+          <li>
+
+            <a id="empty-input-error-shorttext" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>
+              Enter <span id="error-dynamic-text">[Short description]</span>
+            </a>
+          </li>
+
+          <h3 class="govuk-heading-s">If you set answer limits:</h3>
+
+          <!-- Too long input error -->
+          <li>
+            <a id="too-long-input-error-shorttext" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>
+              <span id="error-dynamic-text-long">[Short description]</span> must be
+              <span id="max-length">[max length]</span> characters or less
+            </a>
+          </li>
+          <!-- Too short input error -->
+          <li>
+            <a id="too-short-input-error-shorttext" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>
+              <span id="error-dynamic-text-short">[Short description]</span> must be
+              <span id="min-length">[min length]</span> characters or more
+            </a>
+          </li>
+          <!-- Input within range error -->
+          <li>
+            <a id="range-input-error-shorttext" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>
+              <span id="error-dynamic-text-range">[Short description]</span> must be between
+              <span id="min-length-range">[min length]</span> and
+              <span id="max-length-range">[max length]</span> characters
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
 
   {% set setName = data['setName'] or '' %}
   {% set overview0 = data['overview0'] or '' %}
@@ -78,4 +129,26 @@
   }
 });
 
+// Select the input field and the details element
+const inputField = document.getElementById("error-message-input-shorttext");
+const errorMessagePreview = document.getElementById("error-message-preview-summary");
+
+// Add event listener for focus and blur on the input field
+inputField.addEventListener("focus", () => {
+  // Set the open attribute on details to expand it
+  errorMessagePreview.setAttribute("open", "true");
+});
+
+inputField.addEventListener("blur", () => {
+  // Remove the open attribute on details to collapse it
+  errorMessagePreview.removeAttribute("open");
+});
+
+
     </script>
+
+
+
+
+
+

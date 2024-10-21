@@ -1,0 +1,530 @@
+{% extends "layouts/main.html" %}
+{% from "components/service-header/macro.njk" import serviceHeader %}
+{% set pageName = "Edit radios question - Apply for a county parish holding number in England" %}
+{% set headingPlaceholder = "Page heading" %}
+{% set guidancePlaceholder = "" %}
+{#  #}
+{% block header %}
+{{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    serviceName: "",
+    containerClasses: containerClasses,
+    accountName: "Chris Smith",
+    homepageLink: "/",
+    signOutLink: "/onboarding/sign-out-confirmation",
+    navigationItems: [
+      { href: "/library.html", text: "Forms library", id: "nav-library" },
+      { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
+      { href: "/editor-pets/0", text: "Editor", id: "nav-editor" }
+    ],
+    activeLinkId: "nav-editor"
+  }) }}
+
+<div class="x-govuk-masthead x-govuk-masthead--large">
+  <div class="govuk-width-container">
+    {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add
+    and edit pages", href: "/redesigntest/listing.html" }) }}
+
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" style="border-bottom: 1px solid white; margin-bottom: 0" />
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="x-govuk-masthead__title">
+          <span class="govuk-caption-l" style="color: white">Apply for a county parish holding certificate</span>
+          Edit page 2
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div class="govuk-grid-row">
+      <!-- Left Column for Form Controls -->
+      <div class="govuk-grid-column-one-half-from-desktop" id="container" style="flex: 1 1 75%; overflow-y: auto">
+        <div class="govuk-summary-card govuk-!-margin-top-0" style="border-left: 10px solid #008938">
+          <div class="govuk-summary-card__content govuk-!-padding-top-0" style="background-color: #f3f2f1">
+
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dd class="govuk-summary-list__value">
+                  <!-- Dynamic Summary List -->
+
+                  <!-- Question Settings Container -->
+                  <div class="govuk-grid-row" id="page-settings-container-1">
+                    <div id="question-1">
+                      <div class="govuk-summary-card__content" style="margin-bottom: 0">
+                        <!-- Sub Navigation for Question -->
+                        <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2 " aria-label="Sub navigation">
+                          <ul class="moj-sub-navigation__list" id="nav-list2">
+                            <!-- Question Link -->
+                            <li class="moj-sub-navigation__item">
+                              <a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
+                            </li>
+
+                            <li class="moj-sub-navigation__item">
+                              <a class="moj-sub-navigation__link" href="#overview-noquestions">Overview of questions</a>
+                            </li>
+
+                            <li class="moj-sub-navigation__item">
+                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Question 1</a>
+                            </li>
+
+                          </ul>
+                        </nav>
+
+                        <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
+
+
+                        <span class="govuk-caption-l">Page 1</span>
+                        <h2 class="govuk-heading-l">Question 1</h2>
+
+                          {% from "govuk/components/input/macro.njk" import govukInput %}
+
+                          <!-- List config -->
+
+                          <div class="govuk-form-group">
+
+
+                            <div>
+                                
+                                <!-- alex -->
+                                
+                                <style>
+                                    
+                                    .form-item {
+                                        display: flex;
+                                        align-items: center;
+                                        margin-bottom: 10px;
+                                    }
+                                    
+                                    .form-item input[type="text"] {
+                                        margin-right: 10px;
+                                    }
+                                    
+                                    .move-buttons, .delete-button {
+                                        display: none; /* Hide by default */
+                                    }
+                                    
+                                    .edit-mode .move-buttons,
+                                    .edit-mode .delete-button {
+                                        display: flex; /* Show when in edit mode */
+                                        flex-direction: column;
+                                    }
+                                    
+                                    .form-item button {
+                                        margin-left: 5px;
+                                    }
+                                    
+                                    #preview {
+                                        
+                                    }
+                                    
+                                    #preview-panel {
+                                      margin-top: 40px;
+                                    }
+                                    
+                                    .buttons {
+                                        margin-top: 10px;
+                                    }
+                                  
+                                </style>
+                                
+                                <div id="builder-panel">
+                                    
+                                    <!-- Input field for setting the legend text -->
+                                    <div class="settings-panel govuk-!-margin-bottom-4">
+                                        <label for="legend-input">Question legend</label>
+                                        <input class="govuk-input" type="text" id="legend-input">
+                                    </div>
+                                    
+                                    <h2 class="govuk-heading-m moj-add-another__heading" tabindex="-1">Create and edit your
+                                    list of options</h2>
+                                
+                                    <div id="form-builder"></div>
+                                    
+                                    <div class="buttons">
+                                        <button class="govuk-button" id="add-radio-button">Add Radio Button</button>
+                                        <button class="govuk-button govuk-button--secondary" id="toggle-edit-mode">Edit</button> <!-- Edit button -->
+                                    </div>
+                                </div>
+                                
+                                <!-- end alex -->
+
+                              <!-- Make Optional Checkbox -->
+                              <div class="govuk-form-group">
+                                <div class="govuk-checkboxes--small">
+                                  <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" type="checkbox" id="makeOptional" name="makeOptional" value="{{ data['optional-label-q1'] }}">
+                                    <label class="govuk-label govuk-checkboxes__label" for="makeOptional">
+                                      Make this question optional
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Add guidance above this question -->
+                              <details class="govuk-details" data-module="govuk-details">
+                                <summary class="govuk-details__summary">
+                                  <span class="govuk-details__summary-text">
+                                    Add guidance above this question (optional)
+                                  </span>
+                                </summary>
+                                <div class="govuk-details__text">
+                                  <!-- Default Content for Question 1 -->
+                                  <div id="question-1-content" class="question-content" style="margin-top: 10px;">
+
+                                    <!-- Page Heading Input -->
+                                    {{ govukInput({
+                                    label: {
+                                    text: "Page heading",
+                                    classes: "govuk-label govuk-label--m govuk-!-margin-top-0"
+                                    },
+                                    hint: {
+                                    text: "Page headings should be a statement and not a question. For example,
+                                    ‘Passport information’",
+                                    id: "page-heading-input-hint"
+                                    },
+                                    id: "page-heading-input-radios",
+                                    name: "pageHeadingInputRadios",
+                                    type: "text",
+                                    attributes: {
+                                    'aria-describedby': "page-heading-input-hint",
+                                    'data-preview-target': '#dynamic-heading'
+                                    }
+                                    }) }}
+
+                                    <!-- Guidance Text Textarea -->
+                                    {{ govukTextarea({
+                                    label: {
+                                    text: "Guidance text (optional)",
+                                    classes: "govuk-label govuk-label--m"
+                                    },
+                                    hint: {
+                                    text: "Use Markdown to format the content or add hyperlinks",
+                                    id: "guidance-textarea-hint"
+                                    },
+                                    id: "guidance-textarea-radios",
+                                    name: "guidanceTextareaRadios",
+                                    rows: 5,
+                                    attributes: {
+                                    'aria-describedby': "guidance-textarea-hint",
+                                    'data-preview-target': '#guidance-paragraph'
+                                    }
+                                    }) }}
+
+                                  </div>
+                                </div>
+                              </details>
+
+                              <div id="summary-container">
+
+                                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+                                <!-- The dynamic summary list will be populated here -->
+                                <h2 class="govuk-heading-m">Question settings</h2>
+
+                                {{ govukSummaryList({
+                                classes: "govuk-summary-list govuk-section-break govuk-section-break--visible
+                                govuk-!-margin-bottom-6 ",
+                                rows: [
+                                {
+                                key: {
+                                text: "Type of information"
+                                },
+                                value: {
+                                html: "List: radios"
+                                },
+                                actions: {
+                                items: [
+                                {
+                                href: "/redesigntest/templates/1-question/information-type.html",
+                                text: "Change",
+                                visuallyHiddenText: "name"
+                                }
+                                ]
+                                }
+                                }
+                                ]
+                                }) }}
+                              </div>
+                              <div class="">
+                                {{ govukButton({
+                                text: 'Continue',
+                                type: 'submit'
+                                }) }}
+                              </div>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Right Column for Preview -->
+  <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+    <!-- Before content -->
+    <div id="before-content">
+      <p class="govuk-body-s" style="margin-bottom: 0">
+        <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview
+          this page in a new tab</a>
+      </p>
+    </div>
+
+    <!-- Include the preview template -->
+    
+    <!-- alex preview -->
+    
+    <div class="additional-content">
+    
+    <div id="preview-panel">
+        <h3 class="govuk-heading-m">Preview</h3>
+        <div id="preview"></div>
+        <button type="button" class="govuk-button" data-module="govuk-button">
+      Save and continue
+    </button>
+    </div>
+    
+    </div>
+    
+    <!-- alex preview -->
+    
+    <script>
+      
+    const builderPanel = document.getElementById('form-builder');
+    const previewPanel = document.getElementById('preview');
+    const legendInput = document.getElementById('legend-input'); // Reference to the legend input field
+    let radioIndex = 0;
+    let radioButtons = [];
+    let isEditMode = false; // Variable to track if Edit Mode is active
+    
+    // Function to render the preview of the form without using Nunjucks
+    function renderPreview() {
+        // Clear the existing preview
+        previewPanel.innerHTML = '';
+    
+        // Create the GOV.UK style form group and fieldset
+        const formGroup = document.createElement('div');
+        formGroup.classList.add('govuk-form-group');
+    
+        const fieldset = document.createElement('fieldset');
+        fieldset.classList.add('govuk-fieldset');
+    
+        // Get the legend text from the input field and add it if not empty
+        const legendText = legendInput.value.trim();
+        if (legendText) {
+            const legend = document.createElement('legend');
+            legend.classList.add('govuk-fieldset__legend', 'govuk-fieldset__legend--l');
+    
+            const heading = document.createElement('h1');
+            heading.classList.add('govuk-fieldset__heading');
+            heading.textContent = legendText;
+    
+            legend.appendChild(heading);
+            fieldset.appendChild(legend);
+        }
+    
+        // Create the radios container
+        const radiosContainer = document.createElement('div');
+        radiosContainer.classList.add('govuk-radios');
+        radiosContainer.setAttribute('data-module', 'govuk-radios');
+    
+        // Loop through each radio button in the radioButtons array and create its HTML
+        radioButtons.forEach((radio, index) => {
+            const radioItem = document.createElement('div');
+            radioItem.classList.add('govuk-radios__item');
+    
+            const input = document.createElement('input');
+            input.classList.add('govuk-radios__input');
+            input.id = `radio-${index + 1}`;
+            input.name = 'whereDoYouLive';
+            input.type = 'radio';
+            input.value = `value-${index + 1}`;
+    
+            const label = document.createElement('label');
+            label.classList.add('govuk-label', 'govuk-radios__label');
+            label.setAttribute('for', `radio-${index + 1}`);
+            label.textContent = radio.label;
+    
+            radioItem.appendChild(input);
+            radioItem.appendChild(label);
+            radiosContainer.appendChild(radioItem);
+        });
+    
+        // Append the radios container to the fieldset and the fieldset to the form group
+        fieldset.appendChild(radiosContainer);
+        formGroup.appendChild(fieldset);
+    
+        // Add the form group to the preview panel
+        previewPanel.appendChild(formGroup);
+    }
+    
+    // Function to create the UI for a new radio button
+    function createRadioButton(labelText, index, shouldFocus = false) {
+        const div = document.createElement('div');
+        div.classList.add('form-item');
+        div.dataset.index = index;
+    
+        const labelInput = document.createElement('input');
+        labelInput.type = 'text';
+        labelInput.value = labelText;
+        labelInput.placeholder = 'Radio Label';
+        labelInput.className = "govuk-input govuk-!-margin-bottom-3";
+    
+        // Add listener to trigger the addRadioButton function when "Enter" is pressed
+        labelInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();  // Prevent default form submission behavior
+                addRadioButton();  // Trigger the add function
+            }
+        });
+    
+        const moveUpButton = document.createElement('button');
+        moveUpButton.innerText = '↑';
+        moveUpButton.classList.add('move-buttons');
+        moveUpButton.onclick = function() { moveRadioButton(index, -1); };
+    
+        const moveDownButton = document.createElement('button');
+        moveDownButton.innerText = '↓';
+        moveDownButton.classList.add('move-buttons');
+        moveDownButton.onclick = function() { moveRadioButton(index, 1); };
+    
+        const removeButton = document.createElement('button');
+        removeButton.innerText = 'Remove';
+        removeButton.classList.add('delete-button');
+        removeButton.onclick = function() { removeRadioButton(index); };
+    
+        labelInput.addEventListener('input', function() {
+            radioButtons[index].label = labelInput.value;
+            renderPreview();
+        });
+    
+        div.appendChild(labelInput);
+        const moveButtons = document.createElement('div');
+        moveButtons.classList.add('move-buttons');
+        moveButtons.appendChild(moveUpButton);
+        moveButtons.appendChild(moveDownButton);
+        div.appendChild(moveButtons);
+        div.appendChild(removeButton);
+    
+        builderPanel.appendChild(div);
+    
+        // Set focus to the new field if requested
+        if (shouldFocus) {
+            labelInput.value = '';  // Clear the text
+            labelInput.focus();     // Focus on the input
+        }
+    }
+    
+    // Function to refresh the builder panel UI (without adding extra fields)
+    function refreshBuilderUI() {
+        builderPanel.innerHTML = '';
+        radioButtons.forEach((radio, index) => {
+            createRadioButton(radio.label, index);
+        });
+    
+        // Apply edit mode class if necessary
+        if (isEditMode) {
+            document.getElementById('builder-panel').classList.add('edit-mode');
+        } else {
+            document.getElementById('builder-panel').classList.remove('edit-mode');
+        }
+    }
+    
+    // Function to add a new radio button and focus on it
+    function addRadioButton() {
+        const newRadioButton = { label: `Radio ${radioIndex + 1}` };
+        radioButtons.push(newRadioButton);
+        createRadioButton(newRadioButton.label, radioButtons.length - 1, true);  // Focus on the new field and clear the text
+        renderPreview();
+        radioIndex++;
+    }
+    
+    // Add event listener to "Add Radio Button" button
+    document.getElementById('add-radio-button').addEventListener('click', addRadioButton);
+    
+    // Function to remove a radio button
+    function removeRadioButton(index) {
+        radioButtons.splice(index, 1); // Remove the button at the specified index
+        refreshBuilderUI(); // Refresh the UI to reflect changes
+        renderPreview();    // Update the preview
+    }
+    
+    // Function to move a radio button up or down
+    function moveRadioButton(index, direction) {
+        const newIndex = index + direction;
+        if (newIndex >= 0 && newIndex < radioButtons.length) {
+            // Swap the radio buttons in the array
+            const temp = radioButtons[index];
+            radioButtons[index] = radioButtons[newIndex];
+            radioButtons[newIndex] = temp;
+    
+            // Refresh the UI and preview with the updated order
+            refreshBuilderUI();
+            renderPreview();
+        }
+    }
+    
+    // Toggle Edit Mode
+    function toggleEditMode() {
+        isEditMode = !isEditMode; // Toggle the edit mode state
+        refreshBuilderUI();       // Refresh the UI to apply edit mode
+    }
+    
+    // Add event listener to "Edit" button
+    document.getElementById('toggle-edit-mode').addEventListener('click', toggleEditMode);
+    
+    // Add event listener to legend input to update preview dynamically
+    legendInput.addEventListener('input', renderPreview);
+    
+    // Initialize the builder with one form field
+    window.onload = function() {
+        addRadioButton();  // Add the initial radio button when the page loads
+    };
+
+    
+    </script>
+    
+  </div>
+</div>
+
+<style>
+  .highlight {
+    background-color: #ffe5cc;
+    border-bottom: 2px solid #ffb266;
+  }
+
+  #before-content {
+    position: absolute;
+    top: 0;
+    left: 10 !important;
+    right: 0;
+    width: 100%;
+    padding: 10px !important;
+    box-sizing: border-box;
+    z-index: 1;
+    border-bottom: 1px solid #008938;
+    padding-left: 10px;
+  }
+
+  #second-container {
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  #second-container>* {
+    padding-left: 0px;
+    z-index: 2;
+  }
+</style>
+
+</div>
+</div>
+{% endblock %}

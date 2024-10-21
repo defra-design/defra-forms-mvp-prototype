@@ -101,7 +101,7 @@
                                     }
                                     
                                     .form-item input[type="text"] {
-                                        /*margin-right: 10px;*/
+                                        margin-right: 0;
                                     }
                                     
                                     .move-buttons, .delete-button {
@@ -129,6 +129,19 @@
                                     .buttons {
                                         margin-top: 10px;
                                     }
+                                    
+                                   /* Initially hide the edit buttons */
+                                   .move-buttons, .delete-button {
+                                       display: none;
+                                   }
+                                   
+                                   /* When in edit mode, show the buttons */
+                                   .edit-mode .move-buttons,
+                                   .edit-mode .delete-button {
+                                       display: inline-block;
+                                   }
+
+
                                   
                                 </style>
                                 
@@ -323,10 +336,10 @@
           formGroup.classList.add('govuk-form-group');
       
           // Get the page heading text from the input field and add it to the preview
-          const pageHeadingText = pageHeadingInput.value.trim();
+          const pageHeadingText = pageHeadingInput ? pageHeadingInput.value.trim() : '';
           if (pageHeadingText) {
               const pageHeading = document.createElement('h1');
-              pageHeading.classList.add('govuk-heading-xl');
+              pageHeading.classList.add('govuk-heading-l');
               pageHeading.id = 'dynamic-heading';
               pageHeading.textContent = pageHeadingText;
       
@@ -364,7 +377,7 @@
           }
       
           // Get the guidance text from the textarea and add it if not empty
-          const guidanceText = guidanceTextarea.value.trim();
+          const guidanceText = guidanceTextarea ? guidanceTextarea.value.trim() : '';
           if (guidanceText) {
               const guidance = document.createElement('p');
               guidance.classList.add('govuk-body');
@@ -477,9 +490,9 @@
       
           // Apply edit mode class if necessary
           if (isEditMode) {
-              document.getElementById('builder-panel').classList.add('edit-mode');
+              builderPanel.classList.add('edit-mode');
           } else {
-              document.getElementById('builder-panel').classList.remove('edit-mode');
+              builderPanel.classList.remove('edit-mode');
           }
       }
       
@@ -526,8 +539,11 @@
       // Add event listeners to dynamically update the preview as inputs change
       legendInput.addEventListener('input', renderPreview);
       hintInput.addEventListener('input', renderPreview);
-      pageHeadingInput.addEventListener('input', renderPreview);
-      guidanceTextarea.addEventListener('input', renderPreview);
+      if (pageHeadingInput) pageHeadingInput.addEventListener('input', renderPreview);
+      if (guidanceTextarea) guidanceTextarea.addEventListener('input', renderPreview);
+      
+      // Add event listener to "Edit" button
+      document.getElementById('toggle-edit-mode').addEventListener('click', toggleEditMode);
       
       // Initialize the builder with one form field
       window.onload = function() {

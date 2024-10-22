@@ -12,9 +12,6 @@
 {% endblock %}
 
 {% block content %}
-
-
-
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds-from-desktop">
 
@@ -30,25 +27,17 @@
   html: html
 }) }}
 
+
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
-
-
-<div class="govuk-error-summary" data-module="govuk-error-summary">
-  <div role="alert">
-    <h2 class="govuk-error-summary__title">
-      Get test emails
-    </h2>
-    <div class="govuk-error-summary__body">
-      <ul class="govuk-list govuk-error-summary__list">
-        <li>
-          <p>If you want to receive a test email,   <a href="#" class="govuk-link" rel="noreferrer noopener" target="_blank">enter the email address (opens in new tab)</a> you want form submissions to go to.
-          </p>
-        </li>
-      </ul>
-    </div>
-  </div>
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    <p>If you want to receive a test email,   <a href="#" class="govuk-link" rel="noreferrer noopener" target="_blank">enter the email address (opens in new tab)</a> you want form submissions to go to.</p>
+  </strong>
 </div>
+
 
 
             <h1 class="govuk-heading-l">Check your answers before sending your application</h1>

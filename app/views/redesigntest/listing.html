@@ -1368,10 +1368,203 @@ RADIOS
 
 
 
+{# =========================================================
+More than 1 question on a page
+========================================================= #}
+{% if data['pageHeadingInputMoreThan1'] %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">
+                    Page 6:
+                    {% if data['pageHeadingInputMoreThan1'] %}
+                        {{ data['pageHeadingInputMoreThan1'] }}
+                    {% else %}
+                        {{ data['questionLabelInputEmail'] }}
+                    {% endif %}
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpagex"
+                            href="/redesigntest/templates/1-question/multi/overview.html">Edit<span
+                                class="govuk-visually-hidden">page x</span></a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="multiq-preview" href="#">Preview<span
+                                class="govuk-visually-hidden">page 6</span></a>
+                        <a class="govuk-link close-link" data-preview="multiq-preview" style="display: none;"
+                            href="#">Close Preview<span class="govuk-visually-hidden">page 6</span></a>
+                    </li>
+                </ul>
+            </div>
 
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+
+                    {% if data['multiQuestionLabelInputShorttext'] %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 1</dt>
+                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputShorttext'] }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if data['multiQuestionLabelInputTextArea'] %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 2</dt>
+                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputTextArea'] }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if data['questionLabelInputNumbers'] %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 3</dt>
+                        <dd class="govuk-summary-list__value">{{ data['questionLabelInputNumbers'] }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if data['multiQuestionLabelInputDate'] %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 4</dt>
+                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputDate'] }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if data['multiQuestionLabelInputAddress'] %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 5</dt>
+                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputAddress'] }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if data['multiQuestionLabelInputPhone'] %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 6</dt>
+                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputPhone'] }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if data['multiQuestionLabelInputFile'] %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 7</dt>
+                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputFile'] }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if data['multiQuestionLabelInputEmail'] %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 8</dt>
+                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputEmail'] }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if data['multiQuestionLabelInputYesno'] %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 9</dt>
+                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputYesno'] }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if data['multiQuestionLabelInputCheckboxes'] %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 10</dt>
+                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputCheckboxes'] }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if data['multiQuestionLabelInputRadios'] %}
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 11</dt>
+                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputRadios'] }}</dd>
+                    </div>
+                    {% endif %}
+
+                </dl>
+            </div>
+        </div>
     </div>
-  </div>
-</form>
+
+    <div class="govuk-grid-column-one-third">
+        <div class="preview-container" style="margin-top:1px; height: 100vh;overflow-y: auto;" id="multiq-preview">
+            <div id="dynamic-preview-content-multiq">
+                <div id="before-content">
+                    <p class="govuk-body-s" style="margin-bottom: 0">
+                        <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                            target="_blank">Preview this page in a new tab</a>
+                    </p>
+                </div>
+
+                {# {% if data['multiQuestionLabelInputShorttext'] %}
+                {% include "/redesigntest/templates/previews-more-than-1-question/shorttext/for-overview.html" %}
+            {% endif %} #}
+
+
+                {% if data['multiQuestionLabelInputTextArea'] %}
+                    {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
+                {% endif %}
+
+                {% if data['questionLabelInputNumbers'] %}
+                    {% include "/redesigntest/templates/previews-more-than-1-question/numbers/for-overview.html" %}
+                {% endif %}
+
+                {% if data['multiQuestionLabelInputDate'] %}
+                    {% include "/redesigntest/templates/previews-more-than-1-question/date/for-overview.html" %}
+                {% endif %}
+
+                {% if data['multiQuestionLabelInputAddress'] %}
+                    {% include "/redesigntest/templates/previews-more-than-1-question/address/for-overview.html" %}
+                {% endif %}
+
+                {% if data['multiQuestionLabelInputPhone'] %}
+                    {% include "/redesigntest/templates/previews-more-than-1-question/phone/for-overview.html" %}
+                {% endif %}
+
+                {% if data['multiQuestionLabelInputFile'] %}
+                    {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %}
+                {% endif %}
+
+                {% if data['multiQuestionLabelInputEmail'] %}
+                    {% include "/redesigntest/templates/previews-more-than-1-question/email/for-overview.html" %}
+                {% endif %}
+
+                {% if data['multiQuestionLabelInputYesno'] %}
+                    {% include "/redesigntest/templates/previews-more-than-1-question/yesno/for-overview.html" %}
+                {% endif %}
+
+                {% if data['multiQuestionLabelInputCheckboxes'] %}
+                    {% include "/redesigntest/templates/previews-more-than-1-question/checkboxes/for-overview.html" %}
+                {% endif %}
+
+                {% if data['multiQuestionLabelInputRadios'] %}
+                    {% include "/redesigntest/templates/previews-more-than-1-question/radios/overview.html" %}
+                {% endif %}
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dynamicCaption = document.getElementById("dynamic-caption");
+        const setName = dynamicCaption.getAttribute("data-setname");
+
+        if (!setName) {
+            dynamicCaption.style.display = "none";
+        }
+    });
+</script>
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
       const previewContainers = document.querySelectorAll('.preview-container');

@@ -97,7 +97,45 @@
                           <span class="govuk-caption-l">Page 1</span>
                           <h1 class="govuk-heading-l">Page settings</h1>
 
-                          <form class="form" action="/overview-0" method="post">
+                          <form class="form" action="/settings-more-than-1-question" method="post">
+<!-- Page Heading Input -->
+{{ govukInput({
+label: {
+text: "Page heading",
+classes: "govuk-label--m govuk-!-margin-top-0",
+isPageHeading: false
+},
+hint: {
+html: "This should be a statement, not a question. For example, 'Passport information’"
+},
+id: "page-heading-input-more-than-1",
+name: "pageHeadingInputMoreThan1",
+classes: "govuk-input",
+describedBy: "page-heading-input-hint",
+input: {
+type: "text",
+value: data['page-heading-input-more-than-1'],
+id: "page-heading-input-more-than-1"
+}
+}) }}
+
+<!-- Guidance Text Textarea -->
+{{ govukTextarea({
+  label: {
+    text: "Guidance text (optional)",
+    classes: "govuk-label--m"
+  },
+  hint: {
+    text: "You can use Markdown if you want to format the content or add links"
+  },
+  id: "guidance-more-than-1",
+  name: "guidanceMoreThan1",
+  value: data['guidanceMoreThan1'],
+  classes: "govuk-textarea",
+  rows: 3,
+  describedBy: "guidance-textarea-hint"
+}) }}
+
 
                           {% set morethan1Html %}
                           <div class="govuk-form-group">
@@ -238,35 +276,176 @@
 
 
 
-                <h1 class="govuk-heading-l" id="dynamic-heading">{{ data['pageHeading'] or '' }}</h1>
+                <h1 class="govuk-heading-l" id="dynamic-heading-more-than-1">{{ data['pageHeadingInputMoreThan1'] or '' }}</h1>
 
               </div>
 
               <!-- Guidance Paragraph -->
-              <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
+              <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceMoreThan1'] or '' }}</p>
 
               {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 
-              {{ govukButton({
-                text: "Continue",
-                classes: "govuk-button govuk-!-margin-top-3",
-                id: "once-button",
-                disabled: true
-                }) }}
+              {% set setName = data['setName'] or '' %}
 
-                {{ govukButton({
-                text: "Add another [question set name]",
+              {{ govukButton({
+                html: 'Add another <span id="question-set-name-placeholder">[question set name]</span>',
                 classes: "govuk-button govuk-!-margin-top-3",
                 id: "add-another-set-button",
-                disabled: true,
-                attributes: { style: "display:none;" }
-                }) }}
+                disabled: true
+              }) }}
+
+              {{ govukButton({
+                text: "Continue",
+                classes: "govuk-button govuk-!-margin-top-6",
+                id: "once-button",
+                disabled: true
+              }) }}
+
+
+
 
           </div>
         </div>
       </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const domElements = {
+          questionLabelInputEmail: document.getElementById("question-label-input-email"),
+          questionLabelLegend: document.getElementById("question-label-legend"),
+          hintTextInputEmail: document.getElementById("hint-text-input-email"),
+          hintTextOutput: document.getElementById("hint-text-output"),
+          makeOptionalCheckbox: document.getElementById("make-optional"),
+          pageHeadingInputMoreThan1: document.getElementById("page-heading-input-more-than-1"),
+          dynamicHeading: document.getElementById("dynamic-heading-more-than-1"),
+          guidanceEmail: document.getElementById("guidance-more-than-1"),
+          guidanceParagraph: document.getElementById("guidance-paragraph"),
+          addAnotherSetButton: document.getElementById("add-another-set-button")
+        };
+
+        initializeEventListeners();
+
+        // Set default placeholders on page load
+        domElements.dynamicHeading.textContent = "Page heading";
+
+        function initializeEventListeners() {
+          // Question Label Input
+          if (domElements.questionLabelInputEmail && domElements.questionLabelLegend) {
+            domElements.questionLabelInputEmail.addEventListener("input", updateQuestionLabel);
+            applyHighlightOnFocus(domElements.questionLabelInputEmail, domElements.questionLabelLegend);
+          }
+
+          // Hint Text Input
+          if (domElements.hintTextInputEmail && domElements.hintTextOutput) {
+            domElements.hintTextInputEmail.addEventListener("input", updateHintText);
+            domElements.hintTextInputEmail.addEventListener("focus", showPlaceholderHint);
+            applyHighlightOnFocus(domElements.hintTextInputEmail, domElements.hintTextOutput);
+          }
+
+          // Page Heading Input
+          if (domElements.pageHeadingInputMoreThan1 && domElements.dynamicHeading) {
+            domElements.pageHeadingInputMoreThan1.addEventListener("input", updatePageHeading);
+            domElements.pageHeadingInputMoreThan1.addEventListener("focus", showPlaceholderHeading);
+            applyHighlightOnFocus(domElements.pageHeadingInputMoreThan1, domElements.dynamicHeading);
+          }
+
+          // Guidance Text Input with placeholder behavior on blur
+          if (domElements.guidanceEmail && domElements.guidanceParagraph) {
+            domElements.guidanceEmail.addEventListener("input", updateGuidanceText);
+            domElements.guidanceEmail.addEventListener("focus", showPlaceholderGuidance);
+            domElements.guidanceEmail.addEventListener("blur", clearPlaceholderGuidance);
+            applyHighlightOnFocus(domElements.guidanceEmail, domElements.guidanceParagraph);
+          }
+
+          // Optional Checkbox
+          if (domElements.makeOptionalCheckbox) {
+            domElements.makeOptionalCheckbox.addEventListener("change", updateQuestionLabel);
+          }
+        }
+
+        // Update Question Label with Optional Suffix
+        function updateQuestionLabel() {
+          const suffix = domElements.makeOptionalCheckbox.checked ? " (optional)" : "";
+          domElements.questionLabelLegend.textContent = domElements.questionLabelInputEmail.value || "Question";
+          domElements.questionLabelLegend.textContent += suffix;
+        }
+
+        // Update Hint Text Dynamically
+        function updateHintText() {
+          domElements.hintTextOutput.textContent = domElements.hintTextInputEmail.value || "Hint text";
+        }
+
+        // Update Page Heading Dynamically
+        function updatePageHeading() {
+          domElements.dynamicHeading.textContent = domElements.pageHeadingInputMoreThan1.value || "Page heading";
+        }
+
+        // Update Guidance Text Dynamically
+        function updateGuidanceText() {
+          domElements.guidanceParagraph.textContent = domElements.guidanceEmail.value || "Guidance text";
+        }
+
+        // Apply and Remove Highlight on Focus/Blur
+        function applyHighlightOnFocus(inputElement, targetElement) {
+          if (inputElement && targetElement) {
+            inputElement.addEventListener("focus", function () {
+              targetElement.classList.add("highlight");
+              if (!inputElement.value) {
+                targetElement.textContent = getPlaceholderText(targetElement.id);
+              }
+            });
+            inputElement.addEventListener("blur", function () {
+              targetElement.classList.remove("highlight");
+            });
+
+            // If the input is already focused
+            if (document.activeElement === inputElement) {
+              targetElement.classList.add("highlight");
+            }
+          }
+        }
+
+        // Placeholder functions to show placeholder text when empty
+        function showPlaceholderHint() {
+          if (!domElements.hintTextInputEmail.value) {
+            domElements.hintTextOutput.textContent = "Hint text";
+          }
+        }
+
+        function showPlaceholderHeading() {
+          if (!domElements.pageHeadingInputMoreThan1.value) {
+            domElements.dynamicHeading.textContent = "Page heading";
+          }
+        }
+
+        function showPlaceholderGuidance() {
+          if (!domElements.guidanceEmail.value) {
+            domElements.guidanceParagraph.textContent = "Guidance text";
+          }
+        }
+
+        // Remove guidance placeholder if the field is empty and focus is lost
+        function clearPlaceholderGuidance() {
+          if (!domElements.guidanceEmail.value) {
+            domElements.guidanceParagraph.textContent = "";
+          }
+        }
+
+        // Helper function for setting placeholder text
+        function getPlaceholderText(elementId) {
+          const placeholders = {
+            "question-label-legend": "Question",
+            "hint-text-output": "Hint text",
+            "dynamic-heading-more-than-1": "Page heading",
+            "guidance-paragraph": "Guidance text"
+          };
+          return placeholders[elementId] || "";
+        }
+      });
+    </script>
+
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -280,6 +459,7 @@
         };
 
         initializeEventListeners();
+        toggleCaptionAndButtons(); // Set initial visibility on page load
 
         function initializeEventListeners() {
           domElements.moreThanOnceRadio.addEventListener("change", toggleCaptionAndButtons);
@@ -308,7 +488,6 @@
         }
 
         function removeButtonHighlight() {
-          // Remove highlight from button text on blur
           const setName = domElements.setName.value.trim();
           domElements.addAnotherSetButton.innerHTML = `Add another ${setName || "[question set name]"}`;
           domElements.dynamicCaption.classList.remove("highlight");
@@ -319,12 +498,11 @@
             showCaptionWithPlaceholder();
             domElements.addAnotherSetButton.style.display = "inline-block";
             domElements.onceButton.style.display = "none";
-          } else if (domElements.onceRadio.checked) {
+          } else {
             hideCaptionAndClearInput();
             domElements.addAnotherSetButton.style.display = "none";
             domElements.onceButton.style.display = "inline-block";
           }
-          domElements.onceButton.disabled = true;
         }
 
         function showCaptionWithPlaceholder() {
@@ -337,8 +515,10 @@
           domElements.dynamicCaption.classList.remove("highlight");
         }
       });
+    </script>
 
-      </script>
+
+
 
 
     <style>

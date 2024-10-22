@@ -1,10 +1,10 @@
-// toggle page width 
-  
-document.addEventListener('keydown', function (event) {
+document.addEventListener('DOMContentLoaded', function() {
+  // toggle page width
+  document.addEventListener('keydown', function (event) {
 	// Check if Ctrl + Alt + ] (BracketRight) is pressed
 	if (event.ctrlKey && event.altKey && event.code === 'BracketRight') {
 	  event.preventDefault(); // Prevent any default behavior
-  
+
 	  // Select all elements with the class 'govuk-width-container'
 	  const containers = document.querySelectorAll('.govuk-width-container');
 	  
@@ -14,7 +14,7 @@ document.addEventListener('keydown', function (event) {
 	  });
 	}
   });
-  
+
   // CSS to apply the width change
   const style = document.createElement('style');
   style.textContent = `
@@ -23,3 +23,4 @@ document.addEventListener('keydown', function (event) {
 	}
   `;
   document.head.appendChild(style);
+});

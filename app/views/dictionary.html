@@ -18,12 +18,19 @@
       
       <h1 class="govuk-heading-l">Common Terms and Phrases</h1>
       
-      <ul class="govuk-list govuk-list--bullet">
-        {% for key, value in commonTerms %}
-          <li><strong>{{ key }}:</strong> {{ value }}</li>
-        {% endfor %}
-      </ul>
-
+      <dl class="govuk-summary-list">
+      {% for key, value in commonTerms %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          {{ key }}
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ value }}
+        </dd>
+      </div>
+      {% endfor %}
+      </dl>
+      
 
     </div>
   </div>

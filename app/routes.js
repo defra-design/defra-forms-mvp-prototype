@@ -376,3 +376,17 @@ router.post("/overview-0", function (req, res) {
   res.redirect("/redesigntest/templates/1-question/overview-0.html");  //
 });
 
+/* dictionary stuff */
+
+const path = require('path');
+
+// Import the JSON data for common terms
+const terms = require('./data/dictionary.json');
+
+// Middleware to make terms globally available in all routes
+router.use(function (req, res, next) {
+  res.locals.commonTerms = terms;
+  next();
+});
+
+module.exports = router;

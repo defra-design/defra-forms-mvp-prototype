@@ -122,29 +122,33 @@
                           <div class="govuk-form-group">
                             <h2 class="govuk-heading-m moj-add-another__heading" tabindex="-1">Create and edit your list of options</h2>
 
-                            <!-- Edit Button -->
-                            <div class="moj-button-action">
-                              {{ govukButton({
-                                text: 'Edit',
-                                classes: 'govuk-button--inverse ',
-                                id: 'edit-options-button',
-                                type: 'button'
-                              }) }}
-                            </div>
+
 
                             <!-- Options Container -->
                             <ol class="gem-c-reorderable-list js-enabled" id="options-container" data-module="reorderable-list">
                               <!-- Existing Options Will Be Injected Here -->
                             </ol>
 
+                            <div class="govuk-button-group">
+
                             <div class="moj-button-action">
                               {{ govukButton({
                                 text: 'Add another option',
-                                classes: 'govuk-button--inverse moj-add-another__add-button govuk-!-margin-bottom-4 govuk-!-margin-top-6 govuk-!-margin-bottom-6',
+                                classes: 'moj-add-another__add-button govuk-!-margin-bottom-4 govuk-!-margin-bottom-6',
                                 id: 'add-option-button',
                                 type: 'button'
                               }) }}
+                              </div>
+
+
+                              {{ govukButton({
+                                text: 'Re-order list',
+                                classes: 'govuk-button--inverse ',
+                                id: 'edit-options-button',
+                                type: 'button'
+                              }) }}
                             </div>
+
 
                             <!-- Make Optional Checkbox -->
                             <div class="govuk-form-group">
@@ -280,7 +284,10 @@
 <!-- Include SortableJS Library -->
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
-<!-- Your Existing Scripts -->
+<!-- Include SortableJS Library -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+<!-- Updated Scripts -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     // DOM Elements
@@ -294,8 +301,12 @@
       dynamicHeading: document.getElementById('dynamic-heading'),
       guidanceTextareaRadios: document.getElementById('guidance-textarea-radios'),
       guidanceParagraph: document.getElementById('guidance-paragraph'),
-      editOptionsButton: document.getElementById('edit-options-button')
+      editOptionsButton: document.getElementById('edit-options-button'),
+      optionsContainer: document.getElementById('options-container'),
+      radioList: document.getElementById('radio-list')
     };
+
+    let optionIndex = 0; // Start at 0 for the first option
 
     // Initialize event listeners
     initializeEventListeners();
@@ -368,7 +379,6 @@
 
     // Reordering Functionality
     function initializeOptionsReordering() {
-      let optionIndex = 0; // Start at 0 for the first option
       let editMode = false; // Track whether we're in edit mode
 
       // Function to create a new option item
@@ -412,12 +422,12 @@
           input.setAttribute('name', `options[${index}][label]`);
           input.id = `option-${index}-label`;
 
-          // Update the IDs to maintain uniqueness
-          input.id = `option-${index}-label`;
-
           // Update the corresponding preview option
           const labelValue = input.value || `Option ${index + 1}`;
           addOptionToPreview(index, labelValue);
+
+          // Re-apply the highlight on focus/blur for dynamically added options
+          applyHighlightOnFocusForOptions(input.id, `listPreview-option${index}`);
         });
 
         // Update optionIndex to match the current number of options
@@ -464,26 +474,14 @@
           updateOptionNumbers();
         });
 
-        // Apply focus/blur highlighting
-        const inputElement = item.querySelector('.option-label-input');
-        const optionNumberSpan = item.querySelector('.option-number');
-        if (inputElement && optionNumberSpan) {
-          inputElement.addEventListener('focus', () => {
-            optionNumberSpan.classList.add('highlight');
-          });
-          inputElement.addEventListener('blur', () => {
-            optionNumberSpan.classList.remove('highlight');
-          });
-          // If input is already focused
-          if (document.activeElement === inputElement) {
-            optionNumberSpan.classList.add('highlight');
-          }
-        }
-
         // Update preview when option label changes
+        const inputElement = item.querySelector('.option-label-input');
         inputElement.addEventListener('input', () => {
           updateOptionPreview(item.getAttribute('data-index'), inputElement.value);
         });
+
+        // Apply focus/blur highlighting for input and corresponding preview label
+        applyHighlightOnFocusForOptions(inputElement.id, `listPreview-option${item.getAttribute('data-index')}`);
       }
 
       // Function to update the option in the preview
@@ -517,14 +515,6 @@
         addOptionToPreview(optionIndex, labelValue);
 
         optionIndex++;
-
-        // Hide action buttons if not in edit mode
-        if (!editMode) {
-          const actions = newItem.querySelector('.gem-c-reorderable-list__actions');
-          if (actions) {
-            actions.style.display = 'none';
-          }
-        }
       });
 
       // Initialize with one option
@@ -540,7 +530,7 @@
       // Handle Edit button click
       domElements.editOptionsButton.addEventListener('click', () => {
         editMode = !editMode; // Toggle edit mode
-        domElements.editOptionsButton.textContent = editMode ? 'Done' : 'Edit';
+        domElements.editOptionsButton.textContent = editMode ? 'Save order' : 'Re-order list';
 
         // Show or hide action buttons
         const actionButtons = document.querySelectorAll('.gem-c-reorderable-list__actions');
@@ -551,206 +541,32 @@
         // Enable or disable sorting
         sortableInstance.option('disabled', !editMode);
       });
+    }
 
-      // Initially hide action buttons
-      const actionButtons = document.querySelectorAll('.gem-c-reorderable-list__actions');
-      actionButtons.forEach(actions => {
-        actions.style.display = 'none';
-      });
+    // Function to dynamically apply highlight to input and corresponding radio label
+    function applyHighlightOnFocusForOptions(inputElementId, radioElementId) {
+      const inputElement = document.getElementById(inputElementId);
+      const radioLabel = document.querySelector(`label[for="${radioElementId}"]`);
+
+      if (inputElement && radioLabel) {
+        inputElement.addEventListener('focus', function () {
+          radioLabel.classList.add('highlight');
+        });
+        inputElement.addEventListener('blur', function () {
+          radioLabel.classList.remove('highlight');
+        });
+
+        // Apply the highlight immediately if input is already focused
+        if (document.activeElement === inputElement) {
+          radioLabel.classList.add('highlight');
+        }
+      } else {
+        console.error(`Input element or corresponding radio label not found for: ${inputElementId}, ${radioElementId}`);
+      }
     }
   });
 </script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  // DOM Elements
-  const domElements = {
-    questionLabelInputRadios: document.getElementById('question-label-input-radios'),
-    questionLabelLegend: document.getElementById('question-label-legend-q1'), // Correct target element for updating and highlighting
-    hintTextInput: document.getElementById('hint-text-input-radios'),
-    hintTextOutput: document.getElementById('listPreview-hint'), // Correct target element for hint preview and highlighting
-    pageHeadingInputRadios: document.getElementById('page-heading-input-radios'), // For page heading input
-    dynamicHeading: document.getElementById('dynamic-heading'), // For page heading output
-    guidanceTextareaRadios: document.getElementById('guidance-textarea-radios'), // For guidance text input
-    guidanceParagraph: document.getElementById('guidance-paragraph') // For guidance text output
-  };
-
-  // Initialize event listeners
-  initializeEventListeners();
-  initializeOptionHighlights(); // Call the highlight initialization for options here
-
-  function initializeEventListeners() {
-    // Update and highlight question label
-    if (domElements.questionLabelInputRadios && domElements.questionLabelLegend) {
-      domElements.questionLabelInputRadios.addEventListener('input', updateQuestionLabel);
-      applyHighlightOnFocus(domElements.questionLabelInputRadios, domElements.questionLabelLegend);
-    }
-
-    // Update and highlight hint text
-    if (domElements.hintTextInput && domElements.hintTextOutput) {
-      domElements.hintTextInput.addEventListener('input', updateHintText);
-      domElements.hintTextInput.addEventListener('focus', showPlaceholderHint);
-      domElements.hintTextInput.addEventListener('blur', clearPlaceholderHint);
-      applyHighlightOnFocus(domElements.hintTextInput, domElements.hintTextOutput);
-    }
-
-    // Update and highlight page heading
-    if (domElements.pageHeadingInputRadios && domElements.dynamicHeading) {
-      domElements.pageHeadingInputRadios.addEventListener('input', updatePageHeading);
-      domElements.pageHeadingInputRadios.addEventListener('focus', showPlaceholderHeading);
-      domElements.pageHeadingInputRadios.addEventListener('blur', clearPlaceholderHeading);
-      applyHighlightOnFocus(domElements.pageHeadingInputRadios, domElements.dynamicHeading);
-    }
-
-    // Update and highlight guidance text
-    if (domElements.guidanceTextareaRadios && domElements.guidanceParagraph) {
-      domElements.guidanceTextareaRadios.addEventListener('input', updateGuidanceText);
-      domElements.guidanceTextareaRadios.addEventListener('focus', showPlaceholderGuidance);
-      domElements.guidanceTextareaRadios.addEventListener('blur', clearPlaceholderGuidance);
-      applyHighlightOnFocus(domElements.guidanceTextareaRadios, domElements.guidanceParagraph);
-    }
-  }
-
-  // Placeholder handlers, updating functions (unchanged)
-  function updateQuestionLabel() {
-    domElements.questionLabelLegend.textContent = domElements.questionLabelInputRadios.value || 'Question';
-  }
-
-  function updateHintText() {
-    domElements.hintTextOutput.textContent = domElements.hintTextInput.value.trim() || 'Hint text';
-  }
-
-  function updatePageHeading() {
-    domElements.dynamicHeading.textContent = domElements.pageHeadingInputRadios.value;
-  }
-
-  function updateGuidanceText() {
-    domElements.guidanceParagraph.textContent = domElements.guidanceTextareaRadios.value;
-  }
-
-  function applyHighlightOnFocus(inputElement, targetElement) {
-    if (inputElement && targetElement) {
-      inputElement.addEventListener('focus', function () {
-        targetElement.classList.add('highlight');
-      });
-      inputElement.addEventListener('blur', function () {
-        targetElement.classList.remove('highlight');
-      });
-      if (document.activeElement === inputElement) {
-        targetElement.classList.add('highlight');
-      }
-    }
-  }
-
-  // NEW: Highlight for option input fields and corresponding radio preview labels
-  function applyHighlightOnFocusForOptions(inputElementId, radioElementId) {
-    const inputElement = document.getElementById(inputElementId);
-    const radioLabel = document.querySelector(`label[for="${radioElementId}"]`);
-
-    if (inputElement && radioLabel) {
-      inputElement.addEventListener('focus', function () {
-        radioLabel.classList.add('highlight');
-      });
-      inputElement.addEventListener('blur', function () {
-        radioLabel.classList.remove('highlight');
-      });
-      if (document.activeElement === inputElement) {
-        radioLabel.classList.add('highlight');
-      }
-    } else {
-      console.error(`Input element or corresponding radio label not found for IDs: ${inputElementId}, ${radioElementId}`);
-    }
-  }
-
-  // Initialize event listeners for option input fields and corresponding radio preview labels
-  function initializeOptionHighlights() {
-    // Example for option-0-label -> listPreview-option0
-    applyHighlightOnFocusForOptions('option-0-label', 'listPreview-option0');
-    applyHighlightOnFocusForOptions('option-1-label', 'listPreview-option1'); // Add as needed for each option
-  }
-
-  // Placeholder handling for hint text
-  function showPlaceholderHint() {
-    if (!domElements.hintTextInput.value) {
-      domElements.hintTextOutput.textContent = 'Hint text';
-    }
-  }
-
-  function clearPlaceholderHint() {
-    if (!domElements.hintTextInput.value) {
-      domElements.hintTextOutput.textContent = '';
-    }
-  }
-
-  // Placeholder handling for page heading
-  function showPlaceholderHeading() {
-    if (!domElements.pageHeadingInputRadios.value) {
-      domElements.dynamicHeading.textContent = 'Page heading';
-    }
-  }
-
-  function clearPlaceholderHeading() {
-    if (!domElements.pageHeadingInputRadios.value) {
-      domElements.dynamicHeading.textContent = '';
-    }
-  }
-
-  // Placeholder handling for guidance text
-  function showPlaceholderGuidance() {
-    if (!domElements.guidanceTextareaRadios.value) {
-      domElements.guidanceParagraph.textContent = 'Guidance text';
-    }
-  }
-
-  function clearPlaceholderGuidance() {
-    if (!domElements.guidanceTextareaRadios.value) {
-      domElements.guidanceParagraph.textContent = '';
-    }
-  }
-});
-
-
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Function to dynamically update and highlight the corresponding radio label
-    function applyHighlightOnFocus(inputElementId, radioElementId) {
-        const inputElement = document.getElementById(inputElementId);
-        const radioLabel = document.querySelector(`label[for="${radioElementId}"]`);
-
-        if (inputElement && radioLabel) {
-            // Add highlight on focus
-            inputElement.addEventListener('focus', function () {
-                radioLabel.classList.add('highlight');
-            });
-
-            // Remove highlight on blur
-            inputElement.addEventListener('blur', function () {
-                radioLabel.classList.remove('highlight');
-            });
-
-            // If the input is already focused, apply the highlight immediately
-            if (document.activeElement === inputElement) {
-                radioLabel.classList.add('highlight');
-            }
-        } else {
-            console.error(`Input element or corresponding radio label not found for IDs: ${inputElementId}, ${radioElementId}`);
-        }
-    }
-
-    // Initialize event listeners for input fields and corresponding radio list previews
-    function initializeOptionHighlights() {
-        // Example for option-0-label -> listPreview-option0
-        applyHighlightOnFocus('option-0-label', 'listPreview-option0');
-        applyHighlightOnFocus('option-1-label', 'listPreview-option1'); // Repeat for other options as needed
-    }
-
-    // Call the initialization function
-    initializeOptionHighlights();
-});
-
-</script>
 
 
 <style>

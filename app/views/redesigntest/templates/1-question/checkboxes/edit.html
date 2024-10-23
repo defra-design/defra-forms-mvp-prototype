@@ -274,7 +274,18 @@
   </div>
 </details>
 
-
+{{ govukInput({
+  label: {
+    text: "Short description for error messages",
+    classes: "govuk-label--m",
+    isPageHeading: false
+  },
+  hint: {
+    text: "Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’"
+  },
+  id: "error-message-input-checkboxes",
+  name: "errorMessageInputCheckboxes"
+}) }}
 
 <div id="summary-container">
 
@@ -635,6 +646,96 @@
 </script>
 
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // DOM Elements
+    const domElements = {
+      multiQuestionLabelInputCheckboxes: document.getElementById('multi-question-label-input-checkboxes'),
+      errorMessageInputCheckboxes: document.getElementById('error-message-input-checkboxes'),
+      errorMessagePreviewElements: document.querySelectorAll("#error-dynamic-text, #error-dynamic-text-long, #error-dynamic-text-short, #error-dynamic-text-range"),
+      makeOptionalCheckbox: document.getElementById('make-optional'),
+      maxPastInput: document.getElementById('max-past'),
+      maxCharactersInput: document.getElementById('max-characters'),
+      minCharactersPreview: document.querySelectorAll("#min-characters, #min-length, #min-length-range"),
+      maxCharactersPreview: document.querySelectorAll("#max-characters, #max-length, #max-length-range"),
+      errorMessagePreviewSummary: document.getElementById('error-message-preview-summary') // Add the details component
+    };
+
+    // Initialize event listeners
+    initializeEventListeners();
+
+    function initializeEventListeners() {
+      // Update short description for error messages and apply highlighting
+      if (domElements.errorMessageInputCheckboxes && domElements.errorMessagePreviewElements.length) {
+        domElements.errorMessageInputCheckboxes.addEventListener('input', updateErrorMessages);
+        applyHighlightOnFocus(domElements.errorMessageInputCheckboxes, domElements.errorMessagePreviewElements);
+
+        // Activate the details component on focus and deactivate on blur
+        domElements.errorMessageInputCheckboxes.addEventListener('focus', openErrorMessagePreview);
+        domElements.errorMessageInputCheckboxes.addEventListener('blur', closeErrorMessagePreview);
+      }
+
+      // Apply focus/blur highlighting to other elements
+      applyHighlightOnFocus(domElements.multiQuestionLabelInputTextarea, document.getElementById('question-label-legend'));
+
+      // Update character limits dynamically
+      if (domElements.minCharactersInput && domElements.maxCharactersInput) {
+        domElements.minCharactersInput.addEventListener('input', updateCharacterLimits);
+        domElements.maxCharactersInput.addEventListener('input', updateCharacterLimits);
+      }
+    }
+
+    function updateErrorMessages() {
+      const shortDescription = domElements.errorMessageInputCheckboxes.value || '[Short description]';
+      domElements.errorMessagePreviewElements.forEach(element => {
+        element.textContent = shortDescription;
+      });
+    }
+
+    function updateCharacterLimits() {
+      const minCharacters = domElements.minCharactersInput.value || '[min length]';
+      const maxCharacters = domElements.maxCharactersInput.value || '[max length]';
+
+      domElements.minCharactersPreview.forEach(element => {
+        element.textContent = minCharacters;
+      });
+
+      domElements.maxCharactersPreview.forEach(element => {
+        element.textContent = maxCharacters;
+      });
+    }
+
+    function applyHighlightOnFocus(inputElement, targetElements) {
+      if (inputElement && targetElements) {
+        inputElement.addEventListener('focus', function () {
+          targetElements.forEach(target => target.classList.add('highlight'));
+        });
+        inputElement.addEventListener('blur', function () {
+          targetElements.forEach(target => target.classList.remove('highlight'));
+        });
+
+        // If the input is already focused, apply the highlight immediately
+        if (document.activeElement === inputElement) {
+          targetElements.forEach(target => target.classList.add('highlight'));
+        }
+      }
+    }
+
+    // Function to open the details component when the input is focused
+    function openErrorMessagePreview() {
+      if (domElements.errorMessagePreviewSummary) {
+        domElements.errorMessagePreviewSummary.setAttribute('open', 'open'); // Opens the details component
+      }
+    }
+
+    // Function to close the details component when the input loses focus
+    function closeErrorMessagePreview() {
+      if (domElements.errorMessagePreviewSummary) {
+        domElements.errorMessagePreviewSummary.removeAttribute('open'); // Closes the details component
+      }
+    }
+  });
+</script>
 
 
 

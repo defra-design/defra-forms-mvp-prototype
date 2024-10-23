@@ -34,6 +34,8 @@
  <!-- Guidance Paragraph -->
 <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
 
+ <div class="border-left-container-file">
+
 <div class="govuk-form-group"></div>
   <h1 class="govuk-label-wrapper">
     <label class="govuk-label govuk-label--l" for="text-input-field" id="question-label-legend">
@@ -90,6 +92,7 @@
         </dd>
       </div>
     </dl>
+    </div>
 
     {% set setName = data['setName'] or '' %}
     {% set overview0 = data['overview0'] or '' %}
@@ -121,3 +124,11 @@
 });
 
     </script>
+
+
+<style>
+  .border-left-container-file {
+    border-left: 10px solid #ffb266;
+    padding-left: 20px;
+  }
+</style>

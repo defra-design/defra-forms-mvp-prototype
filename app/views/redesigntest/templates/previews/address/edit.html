@@ -35,6 +35,7 @@
  <!-- Guidance Paragraph -->
 <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
 
+ <div class="border-left-container-address">
 
 
 <fieldset class="govuk-fieldset">
@@ -78,6 +79,9 @@
   </div>
 </fieldset>
 
+
+</div>
+
 {% set setName = data['setName'] or '' %}
         {% set overview0 = data['overview0'] or '' %}
 
@@ -109,3 +113,10 @@
     });
 
         </script>
+
+<style>
+  .border-left-container-address {
+    border-left: 10px solid #ffb266;
+    padding-left: 20px;
+  }
+</style>

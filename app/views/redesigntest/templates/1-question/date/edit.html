@@ -121,6 +121,79 @@
                             </div>
                           </div>
 
+   <!-- Add guidance above this question -->
+   <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Add guidance above this question (optional)
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      <!-- Default Content for Question 1 -->
+      <div id="question-1-content" class="question-content" style="margin-top: 10px;">
+
+        <!-- Page Heading Input -->
+        {{ govukInput({
+          label: {
+            text: "Page heading",
+            classes: "govuk-label govuk-label--m govuk-!-margin-top-0"
+          },
+          hint: {
+            text: "Page headings should be a statement and not a question. For example, ‘Passport information’",
+            id: "page-heading-input-hint"
+          },
+          id: "page-heading-input-date",
+          name: "pageHeadingDate",
+          type: "text",
+          attributes: {
+            'aria-describedby': "page-heading-input-hint",
+            'data-preview-target': '#dynamic-heading'
+          }
+        }) }}
+
+        <!-- Guidance Text Textarea -->
+        {{ govukTextarea({
+          label: {
+            text: "Guidance text (optional)",
+            classes: "govuk-label govuk-label--m"
+          },
+          hint: {
+            text: "Use Markdown to format the content or add hyperlinks",
+            id: "guidance-textarea-hint"
+          },
+          id: "guidance-date",
+          name: "guidanceDate",
+          rows: 5,
+          attributes: {
+            'aria-describedby': "guidance-date-hint",
+            'data-preview-target': '#guidance-paragraph'
+          }
+        }) }}
+
+      </div>
+    </div>
+  </details>
+
+
+
+
+
+      {{ govukInput({
+        label: {
+          text: "Short description for error messages",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        },
+        hint: {
+          text: "Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’"
+        },
+        id: "error-message-input-date",
+        name: "errorMessageInputDate"
+      }) }}
+
+
+
+    <!-- Answer Limits -->
 
     <!-- Answer Limits -->
     <details class="govuk-details govuk-!-margin-top-6">
@@ -128,141 +201,59 @@
         <span class="govuk-details__summary-text">Set answer limits (optional)</span>
       </summary>
       <div class="govuk-details__text">
-        <!-- Checkbox for Answer Limits -->
-        {{ govukCheckboxes({
-        idPrefix: "contact",
-        name: "contact",
-        items: [
-        {
-        value: "betweenDates",
-        text: "Answer must be between two dates",
-        id: "contact-betweenDates",
-        conditional: {
-        html: govukDateInput({
-        id: "first-date",
-        namePrefix: "first-date",
-        fieldset: {
-        legend: {
-        text: "First date",
-        classes: "govuk-fieldset__legend--m"
-        }
-        },
-        items: [
-        {
-        name: "day",
-        classes: "govuk-input--width-2",
-        attributes: {
-        inputmode: "numeric"
-        }
-        },
-        {
-        name: "month",
-        classes: "govuk-input--width-2",
-        attributes: {
-        inputmode: "numeric"
-        }
-        },
-        {
-        name: "year",
-        classes: "govuk-input--width-4",
-        attributes: {
-        inputmode: "numeric"
-        }
-        }
-        ]
-        }) + govukDateInput({
-        id: "second-date",
-        namePrefix: "second-date",
-        fieldset: {
-        legend: {
-        text: "Second date",
-        classes: "govuk-fieldset__legend--m"
-        }
-        },
-        items: [
-        {
-        name: "day",
-        classes: "govuk-input--width-2",
-        attributes: {
-        inputmode: "numeric"
-        }
-        },
-        {
-        name: "month",
-        classes: "govuk-input--width-2",
-        attributes: {
-        inputmode: "numeric"
-        }
-        },
-        {
-        name: "year",
-        classes: "govuk-input--width-4",
-        attributes: {
-        inputmode: "numeric"
-        }
-        }
-        ]
-        })
-        }
-        }
-        ]
-        }) }}
-      </div>
-    </details>
 
-      <!-- Add guidance above this question -->
-      <details class="govuk-details" data-module="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Add guidance above this question (optional)
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          <!-- Default Content for Question 1 -->
-          <div id="question-1-content" class="question-content" style="margin-top: 10px;">
+{{ govukInput({
+  label: {
+    text: "Max days in the past",
+    classes: "govuk-label--m",
+    isPageHeading: false
+  },
+  hint: {
+    text: "Determines the earliest date users can enter"
+  },
+  classes: "govuk-input--width-3",
 
-            <!-- Page Heading Input -->
-            {{ govukInput({
-              label: {
-                text: "Page heading",
-                classes: "govuk-label govuk-label--m govuk-!-margin-top-0"
-              },
-              hint: {
-                text: "Page headings should be a statement and not a question. For example, ‘Passport information’",
-                id: "page-heading-input-hint"
-              },
-              id: "page-heading-input-date",
-              name: "pageHeadingDate",
-              type: "text",
-              attributes: {
-                'aria-describedby': "page-heading-input-hint",
-                'data-preview-target': '#dynamic-heading'
-              }
-            }) }}
+  id: "max-past",
+  name: "maxPast",
+  inputmode: "numeric",
+  spellcheck: false
+}) }}
 
-            <!-- Guidance Text Textarea -->
-            {{ govukTextarea({
-              label: {
-                text: "Guidance text (optional)",
-                classes: "govuk-label govuk-label--m"
-              },
-              hint: {
-                text: "Use Markdown to format the content or add hyperlinks",
-                id: "guidance-textarea-hint"
-              },
-              id: "guidance-date",
-              name: "guidanceDate",
-              rows: 5,
-              attributes: {
-                'aria-describedby': "guidance-date-hint",
-                'data-preview-target': '#guidance-paragraph'
-              }
-            }) }}
+{{ govukInput({
+  label: {
+    text: "Max days in the future",
+    classes: "govuk-label--m",
+    isPageHeading: false
+  },
+  hint: {
+    text: "Determines the latest date users can enter"
+  },
+  classes: "govuk-input--width-3",
 
-          </div>
-        </div>
-      </details>
+  id: "max-future",
+  name: "maxFuture",
+  inputmode: "numeric",
+  spellcheck: false
+}) }}
 
+{{ govukInput({
+  label: {
+    text: "Classes",
+    classes: "govuk-label--m",
+    isPageHeading: false
+  },
+  hint: {
+    text: "Apply CSS classes to this question. For example, ‘govuk-input govuk-!-width-full’
+"
+  },
+  classes: "govuk-input--width-6",
+  id: "classes-date",
+  name: "classesDate",
+  spellcheck: false
+}) }}
+
+  </div>
+</details>
 
 
 <!-- Section Break -->
@@ -324,10 +315,10 @@
             <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
           </p>
         </div>
-
         <!-- Include the preview template -->
         {% include "/redesigntest/templates/previews/date/edit.html" %}
       </div>
+    </div>
     </div>
 
     <!-- JavaScript code -->
@@ -463,9 +454,118 @@
 
 
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  const errorMessageInputDate = document.getElementById('error-message-input-date');
+  const errorMessagePreviewSummary = document.getElementById('error-message-preview-summary');
+
+  if (errorMessageInputDate && errorMessagePreviewSummary) {
+    // Open details when input is focused
+    errorMessageInputDate.addEventListener('focus', function () {
+      errorMessagePreviewSummary.setAttribute('open', 'open');
+    });
+
+    // Close details when input loses focus
+    errorMessageInputDate.addEventListener('blur', function () {
+      errorMessagePreviewSummary.removeAttribute('open');
+    });
+  }
+});
+
+</script>
 
 
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // DOM Elements
+    const domElements = {
+      multiQuestionLabelInputDate: document.getElementById('multi-question-label-input-date'),
+      errorMessageInputDate: document.getElementById('error-message-input-date'),
+      errorMessagePreviewElements: document.querySelectorAll("#error-dynamic-text, #error-dynamic-text-long, #error-dynamic-text-short, #error-dynamic-text-range"),
+      makeOptionalCheckbox: document.getElementById('make-optional'),
+      maxPastInput: document.getElementById('max-past'),
+      maxCharactersInput: document.getElementById('max-characters'),
+      minCharactersPreview: document.querySelectorAll("#min-characters, #min-length, #min-length-range"),
+      maxCharactersPreview: document.querySelectorAll("#max-characters, #max-length, #max-length-range"),
+      errorMessagePreviewSummary: document.getElementById('error-message-preview-summary') // Add the details component
+    };
+
+    // Initialize event listeners
+    initializeEventListeners();
+
+    function initializeEventListeners() {
+      // Update short description for error messages and apply highlighting
+      if (domElements.errorMessageInputDate && domElements.errorMessagePreviewElements.length) {
+        domElements.errorMessageInputDate.addEventListener('input', updateErrorMessages);
+        applyHighlightOnFocus(domElements.errorMessageInputDate, domElements.errorMessagePreviewElements);
+
+        // Activate the details component on focus and deactivate on blur
+        domElements.errorMessageInputDate.addEventListener('focus', openErrorMessagePreview);
+        domElements.errorMessageInputDate.addEventListener('blur', closeErrorMessagePreview);
+      }
+
+      // Apply focus/blur highlighting to other elements
+      applyHighlightOnFocus(domElements.multiQuestionLabelInputTextarea, document.getElementById('question-label-legend'));
+
+      // Update character limits dynamically
+      if (domElements.minCharactersInput && domElements.maxCharactersInput) {
+        domElements.minCharactersInput.addEventListener('input', updateCharacterLimits);
+        domElements.maxCharactersInput.addEventListener('input', updateCharacterLimits);
+      }
+    }
+
+    function updateErrorMessages() {
+      const shortDescription = domElements.errorMessageInputDate.value || '[Short description]';
+      domElements.errorMessagePreviewElements.forEach(element => {
+        element.textContent = shortDescription;
+      });
+    }
+
+    function updateCharacterLimits() {
+      const minCharacters = domElements.minCharactersInput.value || '[min length]';
+      const maxCharacters = domElements.maxCharactersInput.value || '[max length]';
+
+      domElements.minCharactersPreview.forEach(element => {
+        element.textContent = minCharacters;
+      });
+
+      domElements.maxCharactersPreview.forEach(element => {
+        element.textContent = maxCharacters;
+      });
+    }
+
+    function applyHighlightOnFocus(inputElement, targetElements) {
+      if (inputElement && targetElements) {
+        inputElement.addEventListener('focus', function () {
+          targetElements.forEach(target => target.classList.add('highlight'));
+        });
+        inputElement.addEventListener('blur', function () {
+          targetElements.forEach(target => target.classList.remove('highlight'));
+        });
+
+        // If the input is already focused, apply the highlight immediately
+        if (document.activeElement === inputElement) {
+          targetElements.forEach(target => target.classList.add('highlight'));
+        }
+      }
+    }
+
+    // Function to open the details component when the input is focused
+    function openErrorMessagePreview() {
+      if (domElements.errorMessagePreviewSummary) {
+        domElements.errorMessagePreviewSummary.setAttribute('open', 'open'); // Opens the details component
+      }
+    }
+
+    // Function to close the details component when the input loses focus
+    function closeErrorMessagePreview() {
+      if (domElements.errorMessagePreviewSummary) {
+        domElements.errorMessagePreviewSummary.removeAttribute('open'); // Closes the details component
+      }
+    }
+  });
+</script>
 
     <!-- CSS for Highlighting -->
     <style>

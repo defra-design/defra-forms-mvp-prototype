@@ -37,6 +37,7 @@
 
 
 
+     <div class="border-left-container-checkboxes">
 
 <div id="checkbox-list">
   <fieldset class="govuk-fieldset">
@@ -60,6 +61,25 @@
       </div>
     </fieldset>
   </fieldset>
+</div>
+
+<details class="govuk-details govuk-!-margin-top-5" id="error-message-preview-summary">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">Error messages for this question</span>
+  </summary>
+  <div class="govuk-details__text">
+    <!-- Error Messages Section -->
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title">There is a problem</h2>
+      <ul class="govuk-list govuk-error-summary__list">
+        <!-- List of errors -->
+        <li><a id="empty-input-error-checkboxes" class="govuk-error-message">Select <span id="error-dynamic-text">[short description]</span></a></li>
+
+      </ul>
+    </div>
+  </div>
+</details>
+
 </div>
 
 
@@ -101,3 +121,10 @@ dynamicCaption.style.display = "none";
 });
 
 </script>
+
+<style>
+  .border-left-container-checkboxes {
+    border-left: 10px solid #ffb266;
+    padding-left: 20px;
+  }
+</style>

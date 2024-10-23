@@ -35,6 +35,7 @@
 <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
 
 
+ <div class="border-left-container-phone">
 
 <div class="govuk-form-group">
   <label class="govuk-label govuk-label--l" for="phone-number-input" id="question-label-legend">
@@ -43,6 +44,27 @@
   <div id="hint-text-output" class="govuk-hint"></div>
   <input class="govuk-input govuk-input--width-20" id="phone-number-input" name="phoneNumber" type="tel" autocomplete="tel">
 </div>
+
+
+<details class="govuk-details" id="error-message-preview-summary">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">Error messages for this question</span>
+  </summary>
+  <div class="govuk-details__text">
+    <!-- Error Messages Section -->
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title">There is a problem</h2>
+      <ul class="govuk-list govuk-error-summary__list">
+        <!-- List of errors -->
+        <li><a id="empty-input-error-shorttext" class="govuk-error-message">Enter <span id="error-dynamic-text">[short description]</span></a></li>
+
+        <li><a id="empty-input-error-shorttext" class="govuk-error-message"><span id="error-dynamic-text">[Short description]</span> must be in the correct format</a></li>
+      </ul>
+    </div>
+  </div>
+</details>
+</div>
+
 
 {% set setName = data['setName'] or '' %}
         {% set overview0 = data['overview0'] or '' %}
@@ -74,3 +96,10 @@
     });
 
         </script>
+
+<style>
+  .border-left-container-phone {
+    border-left: 10px solid #ffb266;
+    padding-left: 20px;
+  }
+</style>

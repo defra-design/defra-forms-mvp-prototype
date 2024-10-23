@@ -530,7 +530,7 @@
       // Handle Edit button click
       domElements.editOptionsButton.addEventListener('click', () => {
         editMode = !editMode; // Toggle edit mode
-        domElements.editOptionsButton.textContent = editMode ? 'Save order' : 'Re-order list';
+        domElements.editOptionsButton.textContent = editMode ? 'Save changes' : 'Re-order list';
 
         // Show or hide action buttons
         const actionButtons = document.querySelectorAll('.gem-c-reorderable-list__actions');

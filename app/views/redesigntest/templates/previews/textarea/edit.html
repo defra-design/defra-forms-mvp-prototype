@@ -1,3 +1,9 @@
+<style>
+  .border-left-container-textarea {
+    border-left: 10px solid #ffb266;
+    padding-left: 20px;
+  }
+</style>
 
  <!-- New HTML content for before element -->
  <div id="before-content">
@@ -34,6 +40,7 @@
  <!-- Guidance Paragraph -->
 <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
 
+<div class="border-left-container-textarea">
 
 <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
@@ -45,6 +52,59 @@
 
   </div>
   <textarea class="govuk-textarea" rows="5" id="text-input-field" name="textInputField" type="text" aria-describedby="hint-text-output"></textarea>
+  </div>
+
+
+  <details class="govuk-details" id="error-message-preview-summary">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">Error messages for this question</span>
+    </summary>
+    <div class="govuk-details__text">
+      <!-- Error Messages Section -->
+      <div class="govuk-error-summary" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title">There is a problem</h2>
+        <ul class="govuk-list govuk-error-summary__list">
+          <!-- Empty input error -->
+          <li>
+
+            <a id="empty-input-error-textarea" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>
+              Enter <span id="error-dynamic-text">[Short description]</span>
+            </a>
+          </li>
+
+          <h3 class="govuk-heading-s">If you set answer limits:</h3>
+
+          <!-- Too long input error -->
+          <li>
+            <a id="too-long-input-error-textarea" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>
+              <span id="error-dynamic-text-long">[Short description]</span> must be
+              <span id="max-length">[max length]</span> characters or less
+            </a>
+          </li>
+          <!-- Too short input error -->
+          <li>
+            <a id="too-short-input-error-textarea" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>
+              <span id="error-dynamic-text-short">[Short description]</span> must be
+              <span id="min-length">[min length]</span> characters or more
+            </a>
+          </li>
+          <!-- Input within range error -->
+          <li>
+            <a id="range-input-error-textarea" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>
+              <span id="error-dynamic-text-range">[Short description]</span> must be between
+              <span id="min-length-range">[min length]</span> and
+              <span id="max-length-range">[max length]</span> characters
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
   </div>
 
   {% set setName = data['setName'] or '' %}
@@ -77,3 +137,4 @@ if (!setName) {
 });
 
   </script>
+

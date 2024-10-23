@@ -34,8 +34,8 @@
  <!-- Guidance Paragraph -->
 <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>
 
-
-<div class="govuk-form-group">
+<div class="border-left-container-shorttext">
+  <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
     <label class="govuk-label govuk-label--l" for="text-input-field" id="question-label-legend">
      Question
@@ -98,6 +98,7 @@
       </div>
     </div>
   </details>
+  </div>
 
 
   {% set setName = data['setName'] or '' %}
@@ -147,7 +148,12 @@ inputField.addEventListener("blur", () => {
 
     </script>
 
-
+<style>
+  .border-left-container-shorttext {
+    border-left: 10px solid #ffb266;
+    padding-left: 20px;
+  }
+</style>
 
 
 

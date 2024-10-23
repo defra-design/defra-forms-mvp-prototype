@@ -120,18 +120,7 @@
                             </div>
                           </div>
 
-                          {{ govukInput({
-                            label: {
-                              text: "Short description for error messages",
-                              classes: "govuk-label--m",
-                              isPageHeading: false
-                            },
-                            hint: {
-                              text: "Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’"
-                            },
-                            id: "error-message-input-shorttext",
-                            name: "errorMessageInputShorttext"
-                          }) }}
+
 
  <!-- Add guidance above this question -->
  <details class="govuk-details" data-module="govuk-details">
@@ -183,6 +172,19 @@
       }) }}
   </div>
 </details>
+
+{{ govukInput({
+  label: {
+    text: "Short description for error messages",
+    classes: "govuk-label--m",
+    isPageHeading: false
+  },
+  hint: {
+    text: "Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’"
+  },
+  id: "error-message-input-shorttext",
+  name: "errorMessageInputShorttext"
+}) }}
 
 <!-- Answer limits -->
 <details class="govuk-details" data-module="govuk-details">
@@ -291,11 +293,10 @@
             <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
           </p>
         </div>
-
         <!-- Include the preview template -->
         {% include "/redesigntest/templates/previews/shorttext/edit.html" %}
-      </div>
     </div>
+  </div>
 
     <!-- JavaScript code -->
       <!-- JavaScript code -->

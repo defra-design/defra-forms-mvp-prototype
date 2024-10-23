@@ -1095,7 +1095,114 @@ function clearPlaceholderHint() {
   });
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // DOM Elements
+    const domElements = {
+        questionLabelInputRadios: document.getElementById('question-label-input-radios'),
+        questionLabelLegend: document.querySelector('legend[for="question-label-input-radios"]'),
+        hintTextInput: document.getElementById('hint-text-input-radios'),
+        hintTextOutput: document.getElementById('listPreview-hint'),
+        makeOptionalCheckbox: document.getElementById('makeOptional'),
+        pageHeadingInputRadios: document.getElementById('page-heading-input-radios'),
+        dynamicHeading: document.getElementById('dynamic-heading'),
+        guidanceTextareaRadios: document.getElementById('guidance-textarea-radios'),
+        guidanceParagraph: document.getElementById('guidance-paragraph')
+    };
 
+    // Log to check if all elements are correctly selected
+    console.log("DOM Elements:", domElements);
+
+    // Initialize event listeners
+    initializeEventListeners();
+
+    function initializeEventListeners() {
+        // Update question label
+        if (domElements.questionLabelInputRadios && domElements.questionLabelLegend) {
+            console.log("Adding event listener to questionLabelInputRadios");
+            domElements.questionLabelInputRadios.addEventListener('input', updateQuestionLabel);
+        } else {
+            console.error("questionLabelInputRadios or questionLabelLegend not found.");
+        }
+
+        // Update hint text
+        if (domElements.hintTextInput && domElements.hintTextOutput) {
+            console.log("Adding event listener to hintTextInput");
+            domElements.hintTextInput.addEventListener('input', updateHintText);
+            applyHighlightOnFocus(domElements.hintTextInput, domElements.hintTextOutput);
+        } else {
+            console.error("hintTextInput or hintTextOutput not found.");
+        }
+
+        // Update page heading
+        if (domElements.pageHeadingInputRadios && domElements.dynamicHeading) {
+            console.log("Adding event listener to pageHeadingInput");
+            domElements.pageHeadingInputRadios.addEventListener('input', updatePageHeading);
+            applyHighlightOnFocus(domElements.pageHeadingInputRadios, domElements.dynamicHeading);
+        } else {
+            console.error("pageHeadingInputRadios or dynamicHeading not found.");
+        }
+
+        // Update guidance text
+        if (domElements.guidanceTextareaRadios && domElements.guidanceParagraph) {
+            console.log("Adding event listener to guidanceTextarea");
+            domElements.guidanceTextareaRadios.addEventListener('input', updateGuidanceText);
+            applyHighlightOnFocus(domElements.guidanceTextareaRadios, domElements.guidanceParagraph);
+        } else {
+            console.error("guidanceTextareaRadios or guidanceParagraph not found.");
+        }
+
+        // Apply focus/blur highlighting for question label and legend
+        applyHighlightOnFocus(domElements.questionLabelInputRadios, domElements.questionLabelLegend);
+    }
+
+    function updateQuestionLabel() {
+        console.log("Updating question label");
+        const suffix = domElements.makeOptionalCheckbox && domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
+        domElements.questionLabelLegend.textContent = domElements.questionLabelInputRadios.value || 'Question';
+        domElements.questionLabelLegend.textContent += suffix;
+    }
+
+    function updateHintText() {
+        console.log("Updating hint text");
+        const defaultHint = "Hint text"; // Placeholder
+        domElements.hintTextOutput.textContent = domElements.hintTextInput.value.trim() || defaultHint;
+        console.log("Hint text updated to:", domElements.hintTextOutput.textContent);
+    }
+
+    function updatePageHeading() {
+        console.log("Updating page heading");
+        domElements.dynamicHeading.textContent = domElements.pageHeadingInputRadios.value;
+    }
+
+    function updateGuidanceText() {
+        console.log("Updating guidance text");
+        domElements.guidanceParagraph.textContent = domElements.guidanceTextareaRadios.value;
+    }
+
+    // Function to apply focus/blur highlights dynamically to inputs and their corresponding targets
+    function applyHighlightOnFocus(inputElement, targetElement) {
+        if (inputElement && targetElement) {
+            inputElement.addEventListener('focus', function () {
+                console.log(`Highlighting ${targetElement.id} on focus`);
+                targetElement.classList.add('highlight');
+            });
+            inputElement.addEventListener('blur', function () {
+                console.log(`Removing highlight from ${targetElement.id} on blur`);
+                targetElement.classList.remove('highlight');
+            });
+
+            // Apply highlight immediately if input is already focused
+            if (document.activeElement === inputElement) {
+                targetElement.classList.add('highlight');
+            }
+        } else {
+            console.error(`Input or target element not found for IDs: ${inputElement?.id}, ${targetElement?.id}`);
+        }
+    }
+});
+
+</script>
 
     <style>
       .highlight {

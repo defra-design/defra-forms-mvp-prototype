@@ -50,7 +50,8 @@
        </a>
 
 
-          <a href="#" class="govuk-link govuk-link--inverse">Preview form</a>
+       <a href="#" class="govuk-link govuk-link--inverse" id="preview-link" style="display: none;">Preview form</a>
+
         </div>
       </div>
     </div>
@@ -1619,20 +1620,24 @@ More than 1 question on a page
   </script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     // Count the number of <h2> elements with the class govuk-summary-card__title
     const pageTitles = document.querySelectorAll("h2.govuk-summary-card__title");
 
-    // Get the reorder button element
+    // Get the reorder button and preview form link elements
     const reorderButton = document.querySelector("#reorder-button");
+    const previewLink = document.querySelector("#preview-link");
 
-    // Show the reorder button if 2 or more titles are found
+    // Show the reorder button and preview link if 2 or more titles are found
     if (pageTitles.length >= 2) {
         reorderButton.style.display = "inline-block";
+        previewLink.style.display = "inline-block";
     } else {
         reorderButton.style.display = "none";
+        previewLink.style.display = "none";
     }
 });
+
 
   </script>
 

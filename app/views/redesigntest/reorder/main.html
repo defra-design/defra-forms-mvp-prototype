@@ -46,6 +46,7 @@ activeLinkId: "nav-editor"
                         id="save-order-button">
                         Save changes
                     </a>
+
                 </div>
             </div>
         </div>
@@ -323,6 +324,143 @@ activeLinkId: "nav-editor"
                 </div>
             </li>
             {% endif %}
+
+            {% if data['guidanceOnlyHeadingInput'] %}
+<li class="gem-c-reorderable-list__item" draggable="true">
+    <div class="gem-c-reorderable-list__wrapper">
+        <div class="gem-c-reorderable-list__content">
+            <p class="gem-c-reorderable-list__title">
+                <span class="page-number"></span>
+                {{ data['guidanceOnlyHeadingInput'] }}
+            </p>
+        </div>
+        <div class="gem-c-reorderable-list__actions">
+            <div class="govuk-form-group">
+                <label for="input-guidance" class="gem-c-label govuk-label">
+                    Position<span class="govuk-visually-hidden"> for Guidance only</span>
+                </label>
+                <input class="gem-c-input govuk-input govuk-input--width-2" id="input-guidance" inputmode="numeric"
+                    name="ordering[guidance]" spellcheck="false" type="text" value="1">
+            </div>
+            <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-up" type="button"
+                aria-label="Move &quot;Guidance only&quot; up">Up</button>
+            <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-down" type="button"
+                aria-label="Move &quot;Guidance only&quot; down">Down</button>
+        </div>
+    </div>
+</li>
+{% endif %}
+
+{% if data['pageHeadingInputMoreThan1'] %}
+<li class="gem-c-reorderable-list__item" draggable="true">
+    <div class="gem-c-reorderable-list__wrapper">
+        <div class="gem-c-reorderable-list__content">
+            <p class="gem-c-reorderable-list__title">
+                <span class="page-number"></span>
+                {{ data['pageHeadingInputMoreThan1'] }}
+            </p>
+        </div>
+        <div class="gem-c-reorderable-list__actions">
+            <div class="govuk-form-group">
+                <label for="input-morethan1" class="gem-c-label govuk-label">
+                    Position<span class="govuk-visually-hidden"> for More than 1 question on a page</span>
+                </label>
+                <input class="gem-c-input govuk-input govuk-input--width-2" id="input-morethan1" inputmode="numeric"
+                    name="ordering[morethan1]" spellcheck="false" type="text" value="1">
+            </div>
+            <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-up" type="button"
+                aria-label="Move &quot;More than 1 question on a page&quot; up">Up</button>
+            <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-down" type="button"
+                aria-label="Move &quot;More than 1 question on a page&quot; down">Down</button>
+        </div>
+    </div>
+
+    <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+
+            {% if data['multiQuestionLabelInputShorttext'] %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Question 1 </dt>
+                <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputShorttext'] }}</dd>
+            </div>
+            {% endif %}
+
+            {% if data['multiQuestionLabelInputTextArea'] %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Question 2 </dt>
+                <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputTextArea'] }}</dd>
+            </div>
+            {% endif %}
+
+            {% if data['questionLabelInputNumbers'] %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Question 3 </dt>
+                <dd class="govuk-summary-list__value">{{ data['questionLabelInputNumbers'] }}</dd>
+            </div>
+            {% endif %}
+
+            {% if data['multiQuestionLabelInputDate'] %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Question 4 </dt>
+                <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputDate'] }}</dd>
+            </div>
+            {% endif %}
+
+            {% if data['multiQuestionLabelInputAddress'] %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Question 5 </dt>
+                <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputAddress'] }}</dd>
+            </div>
+            {% endif %}
+
+            {% if data['multiQuestionLabelInputPhone'] %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Question 6 </dt>
+                <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputPhone'] }}</dd>
+            </div>
+            {% endif %}
+
+            {% if data['multiQuestionLabelInputFile'] %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Question 7 </dt>
+                <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputFile'] }}</dd>
+            </div>
+            {% endif %}
+
+            {% if data['multiQuestionLabelInputEmail'] %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Question 8 </dt>
+                <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputEmail'] }}</dd>
+            </div>
+            {% endif %}
+
+            {% if data['multiQuestionLabelInputYesno'] %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Question 9 </dt>
+                <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputYesno'] }}</dd>
+            </div>
+            {% endif %}
+
+            {% if data['multiQuestionLabelInputCheckboxes'] %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Question 10 </dt>
+                <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputCheckboxes'] }}</dd>
+            </div>
+            {% endif %}
+
+            {% if data['multiQuestionLabelInputRadios'] %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Question 11 </dt>
+                <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputRadios'] }}</dd>
+            </div>
+            {% endif %}
+
+        </dl>
+    </div>
+
+</li>
+{% endif %}
+
 
         </ol>
 

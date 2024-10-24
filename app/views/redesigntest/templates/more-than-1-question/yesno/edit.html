@@ -134,8 +134,8 @@
                             hint: {
                               text: "Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’"
                             },
-                            id: "error-message-input-shorttext",
-                            name: "errorMessageInputShorttext"
+                            id: "error-message-input-yesno",
+                            name: "errorMessageInputYesno"
                           }) }}
 
 
@@ -304,6 +304,95 @@
         }
         });
         </script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // DOM Elements
+    const domElements = {
+
+      errorMessageInputYesno: document.getElementById('error-message-input-yesno'),
+      errorMessagePreviewElements: document.querySelectorAll("#error-dynamic-text, #error-dynamic-text-long, #error-dynamic-text-short, #error-dynamic-text-range"),
+      makeOptionalCheckbox: document.getElementById('make-optional'),
+      errorMessagePreviewSummary: document.getElementById('error-message-preview-summary') // Add the details component
+    };
+
+    // Initialize event listeners
+    initializeEventListeners();
+
+    function initializeEventListeners() {
+      // Update short description for error messages and apply highlighting
+      if (domElements.errorMessageInputYesno && domElements.errorMessagePreviewElements.length) {
+        domElements.errorMessageInputYesno.addEventListener('input', updateErrorMessages);
+        applyHighlightOnFocus(domElements.errorMessageInputYesno, domElements.errorMessagePreviewElements);
+
+        // Activate the details component on focus and deactivate on blur
+        domElements.errorMessageInputYesno.addEventListener('focus', openErrorMessagePreview);
+        domElements.errorMessageInputYesno.addEventListener('blur', closeErrorMessagePreview);
+      }
+
+      // Apply focus/blur highlighting to other elements
+      applyHighlightOnFocus(domElements.multiQuestionLabelInputTextarea, document.getElementById('question-label-legend'));
+
+      // Update character limits dynamically
+      if (domElements.minCharactersInput && domElements.maxCharactersInput) {
+        domElements.minCharactersInput.addEventListener('input', updateCharacterLimits);
+        domElements.maxCharactersInput.addEventListener('input', updateCharacterLimits);
+      }
+    }
+
+    function updateErrorMessages() {
+      const shortDescription = domElements.errorMessageInputYesno.value || '[Short description]';
+      domElements.errorMessagePreviewElements.forEach(element => {
+        element.textContent = shortDescription;
+      });
+    }
+
+    function updateCharacterLimits() {
+      const minCharacters = domElements.minCharactersInput.value || '[min length]';
+      const maxCharacters = domElements.maxCharactersInput.value || '[max length]';
+
+      domElements.minCharactersPreview.forEach(element => {
+        element.textContent = minCharacters;
+      });
+
+      domElements.maxCharactersPreview.forEach(element => {
+        element.textContent = maxCharacters;
+      });
+    }
+
+    function applyHighlightOnFocus(inputElement, targetElements) {
+      if (inputElement && targetElements) {
+        inputElement.addEventListener('focus', function () {
+          targetElements.forEach(target => target.classList.add('highlight'));
+        });
+        inputElement.addEventListener('blur', function () {
+          targetElements.forEach(target => target.classList.remove('highlight'));
+        });
+
+        // If the input is already focused, apply the highlight immediately
+        if (document.activeElement === inputElement) {
+          targetElements.forEach(target => target.classList.add('highlight'));
+        }
+      }
+    }
+
+    // Function to open the details component when the input is focused
+    function openErrorMessagePreview() {
+      if (domElements.errorMessagePreviewSummary) {
+        domElements.errorMessagePreviewSummary.setAttribute('open', 'open'); // Opens the details component
+      }
+    }
+
+    // Function to close the details component when the input loses focus
+    function closeErrorMessagePreview() {
+      if (domElements.errorMessagePreviewSummary) {
+        domElements.errorMessagePreviewSummary.removeAttribute('open'); // Closes the details component
+      }
+    }
+  });
+</script>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {

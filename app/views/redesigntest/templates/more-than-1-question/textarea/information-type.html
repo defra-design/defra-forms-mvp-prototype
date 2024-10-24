@@ -299,295 +299,294 @@
 
       {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
 
-              <div class="preview-container" id="preview-container">
+      <div class="preview-container" id="preview-container">
 
-                <!-- Short Answer Preview -->
-                <div class="preview-content short-answer-preview" style="display: none;">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-label--l" for="short-answer">
-                      Question
-                    </label>
-                    <input class="govuk-input govuk-!-width-full" id="short-answer" name="shortAnswer" type="text">
-                  </div>
-                </div>
+        <!-- Short Answer Preview -->
+        <div class="preview-content short-answer-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--l" for="short-answer">
+              Question
+            </label>
+            <input class="govuk-input govuk-!-width-full" id="short-answer" name="shortAnswer" type="text">
+          </div>
+        </div>
 
-                <!-- Long Answer Preview -->
-                <div class="preview-content long-answer-preview" style="display: none;">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-label--l" for="more-detail">
-                      Question
-                    </label>
-                    <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
-                  </div>
-                </div>
+        <!-- Long Answer Preview -->
+        <div class="preview-content long-answer-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--l" for="more-detail">
+              Question
+            </label>
+            <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
+          </div>
+        </div>
 
-                 {# Number only Preview #}
-                 <div class="preview-content numbers-preview" style="display: none;">
-                 <div class="govuk-form-group">
-                  <h1 class="govuk-label-wrapper">
-                    <label class="govuk-label govuk-label--l" for="numbers-only">
-                      Question
-                    </label>
-                  </h1>
-                  <div id="numbers-hint" class="govuk-hint">
+         {# Number only Preview #}
+         <div class="preview-content numbers-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+         <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="numbers-only">
+              Question
+            </label>
+          </h1>
+          <div id="numbers-hint" class="govuk-hint">
 
-                  </div>
-                  <input class="govuk-input govuk-input--width-10" id="account-number" name="accountNumber" type="text" spellcheck="false" aria-describedby="account-number-hint" inputmode="numeric">
-                </div>
+          </div>
+          <input class="govuk-input govuk-input--width-10" id="account-number" name="accountNumber" type="text" spellcheck="false" aria-describedby="account-number-hint" inputmode="numeric">
+        </div>
+      </div>
+
+        {# File Upload Preview #}
+        <div class="preview-content file-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <div class="govuk-form-group"></div>
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="text-input-field" id="question-label-legend">
+             Question
+            </label>
+          </h1>
+          <div id="hint-text-output" class="govuk-hint">
+            </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="file-upload-1">
+            Upload a file
+          </label>
+          <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+        </div>
+
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Upload file
+        </button>
+
+            <p class="govuk-body" aria-live="polite">1 of 2 files uploaded</p>
+
+
+
+            <p class="govuk-body govuk-!-display-none" id="refreshPageProgress"><a href="#" class="govuk-link">Refresh page to update file upload progress</a></p>
+
+            <dl class="govuk-summary-list govuk-summary-list--long-key">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  File2.jpg
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <strong class="govuk-tag govuk-tag--yellow">
+          Uploading
+        </strong>
+
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> file1.jpg</span></a>
+                </dd>
               </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  File1.jpg
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <strong class="govuk-tag govuk-tag--green">
+          Uploaded
+        </strong>
 
-                {# File Upload Preview #}
-                <div class="preview-content file-preview" style="display: none;">
-                  <div class="govuk-form-group"></div>
-                  <h1 class="govuk-label-wrapper">
-                    <label class="govuk-label govuk-label--l" for="text-input-field" id="question-label-legend">
-                     Question
-                    </label>
-                  </h1>
-                  <div id="hint-text-output" class="govuk-hint">
-                    </div>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> receipt1.jpg</span></a>
+                </dd>
+              </div>
+            </dl>
+        </div>
 
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="file-upload-1">
-                    Upload a file
-                  </label>
-                  <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
-                </div>
+        {# Date Preview #}
 
-                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-                  Upload file
-                </button>
-
-                    <p class="govuk-body" aria-live="polite">1 of 2 files uploaded</p>
-
-
-
-                    <p class="govuk-body govuk-!-display-none" id="refreshPageProgress"><a href="#" class="govuk-link">Refresh page to update file upload progress</a></p>
-
-                    <dl class="govuk-summary-list govuk-summary-list--long-key">
-                      <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                          File2.jpg
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                          <strong class="govuk-tag govuk-tag--yellow">
-                  Uploading
-                </strong>
-
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                          <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> file1.jpg</span></a>
-                        </dd>
-                      </div>
-                      <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                          File1.jpg
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                          <strong class="govuk-tag govuk-tag--green">
-                  Uploaded
-                </strong>
-
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                          <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> receipt1.jpg</span></a>
-                        </dd>
-                      </div>
-                    </dl>
-                </div>
-
-                {# Date Preview #}
-
-                <div class="preview-content day-month-year-preview" style="display: none;">
+        <div class="preview-content day-month-year-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">Question</h1>
+              </legend>
+              <div class="govuk-date-input" id="event-date">
+                <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset">
-                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-fieldset__heading">Question</h1>
-                      </legend>
-                      <div class="govuk-date-input" id="event-date">
-                        <div class="govuk-date-input__item">
-                          <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="event-date-day">Day</label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-date-day" name="event-date-day" type="text" pattern="[0-9]*" inputmode="numeric">
-                          </div>
-                        </div>
-                        <div class="govuk-date-input__item">
-                          <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="event-date-month">Month</label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-date-month" name="event-date-month" type="text" pattern="[0-9]*" inputmode="numeric">
-                          </div>
-                        </div>
-                        <div class="govuk-date-input__item">
-                          <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="event-date-year">Year</label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="event-date-year" name="event-date-year" type="text" pattern="[0-9]*" inputmode="numeric">
-                          </div>
-                        </div>
-                      </div>
-                    </fieldset>
+                    <label class="govuk-label govuk-date-input__label" for="event-date-day">Day</label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-date-day" name="event-date-day" type="text" pattern="[0-9]*" inputmode="numeric">
                   </div>
                 </div>
-
-                <div class="preview-content month-year-preview" style="display: none;">
+                <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset">
-                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-fieldset__heading">Question</h1>
-                      </legend>
-                      <div class="govuk-date-input" id="event-date">
-                        <div class="govuk-date-input__item">
-                          <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="event-date-month">Month</label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-date-month" name="event-date-month" type="text" pattern="[0-9]*" inputmode="numeric">
-                          </div>
-                        </div>
-                        <div class="govuk-date-input__item">
-                          <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="event-date-year">Year</label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="event-date-year" name="event-date-year" type="text" pattern="[0-9]*" inputmode="numeric">
-                          </div>
-                        </div>
-                      </div>
-                    </fieldset>
+                    <label class="govuk-label govuk-date-input__label" for="event-date-month">Month</label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-date-month" name="event-date-month" type="text" pattern="[0-9]*" inputmode="numeric">
                   </div>
                 </div>
-
-                {# Address Preview #}
-
-                <div class="preview-content address-preview" style="display: none;">
-                  <fieldset class="govuk-fieldset">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                      <h1 class="govuk-fieldset__heading">
-                        Question
-                      </h1>
-                    </legend>
-                    <div class="govuk-form-group">
-                      <label class="govuk-label" for="address-line-1">
-                        Address line 1
-                      </label>
-                      <input class="govuk-input" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1">
-                    </div>
-                    <div class="govuk-form-group">
-                      <label class="govuk-label" for="address-line-2">
-                        Address line 2 (optional)
-                      </label>
-                      <input class="govuk-input" id="address-line-2" name="addressLine2" type="text" autocomplete="address-line2">
-                    </div>
-                    <div class="govuk-form-group">
-                      <label class="govuk-label" for="address-town">
-                        Town or city
-                      </label>
-                      <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="addressTown" type="text" autocomplete="address-level2">
-                    </div>
-                    <div class="govuk-form-group">
-                      <label class="govuk-label" for="address-postcode">
-                        Postcode
-                      </label>
-                      <input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode" type="text" autocomplete="postal-code">
-                    </div>
-                  </fieldset>
-                </div>
-
-                {# Phone Number Preview #}
-
-                <div class="preview-content phone-preview" style="display: none;">
+                <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
-                    <label class="govuk-label govuk-label--l" for="phone-number">
-                      Question
-                    </label>
-                    <input class="govuk-input govuk-input--width-20" id="phone-number" name="phoneNumber" type="tel" autocomplete="tel">
-                  </div>
-                </div>
-
-                {# Email Preview #}
-
-                <div class="preview-content email-preview" style="display: none;">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-label--l" for="email">
-                      Question
-                    </label>
-                    <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
-                  </div>
-                </div>
-
-                {# Radios Preview #}
-                <div class="preview-content radios-preview" style="display: none;">
-                  <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset">
-                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        Question
-                      </legend>
-                      <div class="govuk-radios">
-                        <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="radios-option-1" name="radios" type="radio" value="option1">
-                          <label class="govuk-label govuk-radios__label" for="radios-option-1">Option 1</label>
-                        </div>
-                        <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="radios-option-2" name="radios" type="radio" value="option2">
-                          <label class="govuk-label govuk-radios__label" for="radios-option-2">Option 2</label>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
-                </div>
-
-                {# Yes-No Preview #}
-                <div class="preview-content yes-no-preview" style="display: none;">
-                  <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset">
-                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        Question
-                      </legend>
-                      <div class="govuk-radios">
-                        <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="yesno-yes" name="yesno" type="radio" value="yes">
-                          <label class="govuk-label govuk-radios__label" for="yesno-yes">Yes</label>
-                        </div>
-                        <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="yesno-no" name="yesno" type="radio" value="no">
-                          <label class="govuk-label govuk-radios__label" for="yesno-no">No</label>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
-                </div>
-
-                {# Checkboxes Preview #}
-                <div class="preview-content checkboxes-preview" style="display: none;">
-                  <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
-                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        Question
-                      </legend>
-                      <div class="govuk-checkboxes">
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="option1">
-                          <label class="govuk-label govuk-checkboxes__label" for="waste">Option 1</label>
-                        </div>
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="animal" name="animal" type="checkbox" value="option2">
-                          <label class="govuk-label govuk-checkboxes__label" for="animal">Option 2</label>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
-                </div>
-
-                {# Select Preview #}
-                <div class="preview-content select-preview" style="display: none;">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-label--l" for="select">
-                      Question
-                    </label>
-                    <select class="govuk-select" id="select" name="select">
-                      <option value="">Please select</option>
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                    </select>
+                    <label class="govuk-label govuk-date-input__label" for="event-date-year">Year</label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="event-date-year" name="event-date-year" type="text" pattern="[0-9]*" inputmode="numeric">
                   </div>
                 </div>
               </div>
+            </fieldset>
+          </div>
+        </div>
 
+        <div class="preview-content month-year-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">Question</h1>
+              </legend>
+              <div class="govuk-date-input" id="event-date">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="event-date-month">Month</label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-date-month" name="event-date-month" type="text" pattern="[0-9]*" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="event-date-year">Year</label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="event-date-year" name="event-date-year" type="text" pattern="[0-9]*" inputmode="numeric">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        {# Address Preview #}
+
+        <div class="preview-content address-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Question
+              </h1>
+            </legend>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-line-1">
+                Address line 1
+              </label>
+              <input class="govuk-input" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1">
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-line-2">
+                Address line 2 (optional)
+              </label>
+              <input class="govuk-input" id="address-line-2" name="addressLine2" type="text" autocomplete="address-line2">
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-town">
+                Town or city
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="addressTown" type="text" autocomplete="address-level2">
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-postcode">
+                Postcode
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode" type="text" autocomplete="postal-code">
+            </div>
+          </fieldset>
+        </div>
+
+        {# Phone Number Preview #}
+
+        <div class="preview-content phone-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--l" for="phone-number">
+              Question
+            </label>
+            <input class="govuk-input govuk-input--width-20" id="phone-number" name="phoneNumber" type="tel" autocomplete="tel">
+          </div>
+        </div>
+
+        {# Email Preview #}
+
+        <div class="preview-content email-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--l" for="email">
+              Question
+            </label>
+            <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+          </div>
+        </div>
+
+        {# Radios Preview #}
+        <div class="preview-content radios-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                Question
+              </legend>
+              <div class="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="radios-option-1" name="radios" type="radio" value="option1">
+                  <label class="govuk-label govuk-radios__label" for="radios-option-1">Option 1</label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="radios-option-2" name="radios" type="radio" value="option2">
+                  <label class="govuk-label govuk-radios__label" for="radios-option-2">Option 2</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        {# Yes-No Preview #}
+        <div class="preview-content yes-no-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                Question
+              </legend>
+              <div class="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="yesno-yes" name="yesno" type="radio" value="yes">
+                  <label class="govuk-label govuk-radios__label" for="yesno-yes">Yes</label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="yesno-no" name="yesno" type="radio" value="no">
+                  <label class="govuk-label govuk-radios__label" for="yesno-no">No</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        {# Checkboxes Preview #}
+        <div class="preview-content checkboxes-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                Question
+              </legend>
+              <div class="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="option1">
+                  <label class="govuk-label govuk-checkboxes__label" for="waste">Option 1</label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="animal" name="animal" type="checkbox" value="option2">
+                  <label class="govuk-label govuk-checkboxes__label" for="animal">Option 2</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        {# Select Preview #}
+        <div class="preview-content select-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--l" for="select">
+              Question
+            </label>
+            <select class="govuk-select" id="select" name="select">
+              <option value="">Please select</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
 
               {% set setName = data['setName'] or '' %}
@@ -636,7 +635,7 @@
     }
 
     // Listen for changes to the radio buttons in the `informationQuestion1` group
-    document.querySelectorAll("input[name='informationQuestion1']").forEach((radio) => {
+    document.querySelectorAll("input[name='informationQuestion3']").forEach((radio) => {
       radio.addEventListener("change", function () {
         console.log("Radio changed:", this.value); // Debugging line
         showPreview(this.value);

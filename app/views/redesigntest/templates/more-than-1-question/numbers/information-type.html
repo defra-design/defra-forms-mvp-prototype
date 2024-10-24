@@ -104,7 +104,7 @@
                           class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"
                         ></div>
 
-                        <form class="form" action="/information-type-answer2" method="post">
+                        <form class="form" action="/information-type-answer3" method="post">
 
                         {% set dateHtml %}
                         {{ govukRadios({
@@ -199,7 +199,7 @@
                       {% endset -%}
 
                       {{ govukRadios({
-                        name: "informationQuestion2",
+                        name: "informationQuestion3",
                         fieldset: {
                           legend: {
                             text: "What information do you need from users?",
@@ -638,7 +638,7 @@
     }
 
     // Listen for changes to the radio buttons in the `informationQuestion1` group
-    document.querySelectorAll("input[name='informationQuestion2']").forEach((radio) => {
+    document.querySelectorAll("input[name='informationQuestion3']").forEach((radio) => {
       radio.addEventListener("change", function () {
         console.log("Radio changed:", this.value); // Debugging line
         showPreview(this.value);

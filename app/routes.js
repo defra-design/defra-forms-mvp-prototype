@@ -338,7 +338,7 @@ router.post("/question-number", function (request, response) {
       response.redirect("/redesigntest/templates/more-than-1-question/settings.html");
       break;
     case "guidance":
-      response.redirect(""); // Adjust URL as needed for guidance-only option
+      response.redirect("/redesigntest/templates/guidance/settings.html"); // Adjust URL as needed for guidance-only option
       break;
     default:
       response.redirect("/redesign/404");
@@ -359,6 +359,337 @@ router.post("/overview-0-shorttext", function (req, res) {
   }
 });
 
+router.post("/information-type-answer2", function (req, res) {
+  console.log("Request body:", req.body);
+
+  const informationQuestion2 = req.body["informationQuestion2"];
+  console.log("Information Question 1:", informationQuestion2);
+
+  // Handle the main options based on what the user selected
+  if (informationQuestion2 === "text") {
+    const writtenType = req.body["written"];
+    console.log("Written Type:", writtenType);
+
+    if (writtenType) {
+      if (writtenType === "short-answer") {
+        res.redirect("/redesigntest/templates/more-than-1-question/shorttext/edit.html");
+      } else if (writtenType === "long-answer") {
+        res.redirect("/redesigntest/templates/more-than-1-question/textarea/edit.html");
+      } else if (writtenType === "numbers") {
+        res.redirect("/redesigntest/templates/more-than-1-question/numbers/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing writtenType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+
+  } else if (informationQuestion1 === "date") {
+    const dateType = req.body["dateType"];
+    console.log("Date Type:", dateType);
+
+    if (dateType) {
+      if (dateType === "day-month-year") {
+        res.redirect("/redesigntest/templates/more-than-1-question/date/edit.html");
+      } else if (dateType === "month-year") {
+        res.redirect("/redesigntest/templates/more-than-1-question/date/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing dateType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+  } else if (informationQuestion2 === "address") {
+    res.redirect("/redesigntest/templates/more-than-1-question/address/edit.html");
+
+  } else if (informationQuestion2 === "phone") {
+    res.redirect("/redesigntest/templates/more-than-1-question/phone/edit.html");
+
+  } else if (informationQuestion2 === "file") {
+    res.redirect("/redesigntest/templates/more-than-1-question/fileupload/edit.html");
+
+  } else if (informationQuestion2 === "email") {
+    res.redirect("/redesigntest/templates/more-than-1-question/email/edit.html");
+
+  } else if (informationQuestion2 === "list") {
+    const listType = req.body["listType"];
+    console.log("List Type:", listType);
+
+    if (listType) {
+      if (listType === "yes-no") {
+        res.redirect("/redesigntest/templates/more-than-1-question/yesno/edit.html");
+      } else if (listType === "checkboxes") {
+        res.redirect("/redesigntest/templates/more-than-1-question/checkboxes/edit.html");
+      } else if (listType === "radios") {
+        res.redirect("/redesigntest/templates/more-than-1-question/radios/edit.html");
+      } else if (listType === "select") {
+        res.redirect("/redesigntest/templates/more-than-1-question/select/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing listType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+  } else {
+    console.log("Unknown informationQuestion1, redirecting to 404.");
+    res.redirect("/redesigntest/templates/404.html");
+  }
+});
+
+router.post("/information-type-answer3", function (req, res) {
+  console.log("Request body:", req.body);
+
+  const informationQuestion3 = req.body["informationQuestion3"];
+  console.log("Information Question 1:", informationQuestion3);
+
+  // Handle the main options based on what the user selected
+  if (informationQuestion3 === "text") {
+    const writtenType = req.body["written"];
+    console.log("Written Type:", writtenType);
+
+    if (writtenType) {
+      if (writtenType === "short-answer") {
+        res.redirect("/redesigntest/templates/more-than-1-question/shorttext/edit.html");
+      } else if (writtenType === "long-answer") {
+        res.redirect("/redesigntest/templates/more-than-1-question/textarea/edit.html");
+      } else if (writtenType === "numbers") {
+        res.redirect("/redesigntest/templates/more-than-1-question/numbers/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing writtenType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+
+  } else if (informationQuestion3 === "date") {
+    const dateType = req.body["dateType"];
+    console.log("Date Type:", dateType);
+
+    if (dateType) {
+      if (dateType === "day-month-year") {
+        res.redirect("/redesigntest/templates/more-than-1-question/date/edit.html");
+      } else if (dateType === "month-year") {
+        res.redirect("/redesigntest/templates/more-than-1-question/date/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing dateType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+  } else if (informationQuestion3 === "address") {
+    res.redirect("/redesigntest/templates/more-than-1-question/address/edit.html");
+
+  } else if (informationQuestion3 === "phone") {
+    res.redirect("/redesigntest/templates/more-than-1-question/phone/edit.html");
+
+  } else if (informationQuestion3 === "file") {
+    res.redirect("/redesigntest/templates/more-than-1-question/fileupload/edit.html");
+
+  } else if (informationQuestion3 === "email") {
+    res.redirect("/redesigntest/templates/more-than-1-question/email/edit.html");
+
+  } else if (informationQuestion3 === "list") {
+    const listType = req.body["listType"];
+    console.log("List Type:", listType);
+
+    if (listType) {
+      if (listType === "yes-no") {
+        res.redirect("/redesigntest/templates/more-than-1-question/yesno/edit.html");
+      } else if (listType === "checkboxes") {
+        res.redirect("/redesigntest/templates/more-than-1-question/checkboxes/edit.html");
+      } else if (listType === "radios") {
+        res.redirect("/redesigntest/templates/more-than-1-question/radios/edit.html");
+      } else if (listType === "select") {
+        res.redirect("/redesigntest/templates/more-than-1-question/select/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing listType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+  } else {
+    console.log("Unknown informationQuestion1, redirecting to 404.");
+    res.redirect("/redesigntest/templates/404.html");
+  }
+});
+
+router.post("/information-type-answer2", function (req, res) {
+  console.log("Request body:", req.body);
+
+  const informationQuestion2 = req.body["informationQuestion2"];
+  console.log("Information Question 1:", informationQuestion2);
+
+  // Handle the main options based on what the user selected
+  if (informationQuestion2 === "text") {
+    const writtenType = req.body["written"];
+    console.log("Written Type:", writtenType);
+
+    if (writtenType) {
+      if (writtenType === "short-answer") {
+        res.redirect("/redesigntest/templates/more-than-1-question/shorttext/edit.html");
+      } else if (writtenType === "long-answer") {
+        res.redirect("/redesigntest/templates/more-than-1-question/textarea/edit.html");
+      } else if (writtenType === "numbers") {
+        res.redirect("/redesigntest/templates/more-than-1-question/numbers/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing writtenType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+
+  } else if (informationQuestion1 === "date") {
+    const dateType = req.body["dateType"];
+    console.log("Date Type:", dateType);
+
+    if (dateType) {
+      if (dateType === "day-month-year") {
+        res.redirect("/redesigntest/templates/more-than-1-question/date/edit.html");
+      } else if (dateType === "month-year") {
+        res.redirect("/redesigntest/templates/more-than-1-question/date/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing dateType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+  } else if (informationQuestion2 === "address") {
+    res.redirect("/redesigntest/templates/more-than-1-question/address/edit.html");
+
+  } else if (informationQuestion2 === "phone") {
+    res.redirect("/redesigntest/templates/more-than-1-question/phone/edit.html");
+
+  } else if (informationQuestion2 === "file") {
+    res.redirect("/redesigntest/templates/more-than-1-question/fileupload/edit.html");
+
+  } else if (informationQuestion2 === "email") {
+    res.redirect("/redesigntest/templates/more-than-1-question/email/edit.html");
+
+  } else if (informationQuestion2 === "list") {
+    const listType = req.body["listType"];
+    console.log("List Type:", listType);
+
+    if (listType) {
+      if (listType === "yes-no") {
+        res.redirect("/redesigntest/templates/more-than-1-questionn/yesno/edit.html");
+      } else if (listType === "checkboxes") {
+        res.redirect("/redesigntest/templates/more-than-1-question/checkboxes/edit.html");
+      } else if (listType === "radios") {
+        res.redirect("/redesigntest/templates/more-than-1-question/radios/edit.html");
+      } else if (listType === "select") {
+        res.redirect("/redesigntest/templates/more-than-1-question/select/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing listType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+  } else {
+    console.log("Unknown informationQuestion1, redirecting to 404.");
+    res.redirect("/redesigntest/templates/404.html");
+  }
+});
+
+router.post("/information-type-answer3", function (req, res) {
+  console.log("Request body:", req.body);
+
+  const informationQuestion3 = req.body["informationQuestion3"];
+  console.log("Information Question 1:", informationQuestion3);
+
+  // Handle the main options based on what the user selected
+  if (informationQuestion3 === "text") {
+    const writtenType = req.body["written"];
+    console.log("Written Type:", writtenType);
+
+    if (writtenType) {
+      if (writtenType === "short-answer") {
+        res.redirect("/redesigntest/templates/more-than-1-question/shorttext/edit.html");
+      } else if (writtenType === "long-answer") {
+        res.redirect("/redesigntest/templates/more-than-1-question/textarea/edit.html");
+      } else if (writtenType === "numbers") {
+        res.redirect("/redesigntest/templates/more-than-1-question/numbers/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing writtenType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+
+  } else if (informationQuestion3 === "date") {
+    const dateType = req.body["dateType"];
+    console.log("Date Type:", dateType);
+
+    if (dateType) {
+      if (dateType === "day-month-year") {
+        res.redirect("/redesigntest/templates/more-than-1-question/date/edit.html");
+      } else if (dateType === "month-year") {
+        res.redirect("/redesigntest/templates/more-than-1-question/date/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing dateType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+  } else if (informationQuestion3 === "address") {
+    res.redirect("/redesigntest/templates/more-than-1-question/address/edit.html");
+
+  } else if (informationQuestion3 === "phone") {
+    res.redirect("/redesigntest/templates/more-than-1-question/phone/edit.html");
+
+  } else if (informationQuestion3 === "file") {
+    res.redirect("/redesigntest/templates/more-than-1-question/fileupload/edit.html");
+
+  } else if (informationQuestion3 === "email") {
+    res.redirect("/redesigntest/templates/more-than-1-question/email/edit.html");
+
+  } else if (informationQuestion3 === "list") {
+    const listType = req.body["listType"];
+    console.log("List Type:", listType);
+
+    if (listType) {
+      if (listType === "yes-no") {
+        res.redirect("/redesigntest/templates/more-than-1-question/yesno/edit.html");
+      } else if (listType === "checkboxes") {
+        res.redirect("/redesigntest/templates/more-than-1-question/checkboxes/edit.html");
+      } else if (listType === "radios") {
+        res.redirect("/redesigntest/templates/more-than-1-question/radios/edit.html");
+      } else if (listType === "select") {
+        res.redirect("/redesigntest/templates/more-than-1-question/select/edit.html");
+      } else {
+        res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+      }
+    } else {
+      console.log("Missing listType, redirecting to default.");
+      res.redirect("/redesigntest/templates/more-than-1-question/default.html");
+    }
+
+  } else {
+    console.log("Unknown informationQuestion1, redirecting to 404.");
+    res.redirect("/redesigntest/templates/404.html");
+  }
+});
 
 router.post("/overview-0", function (req, res) {
   // Save form data to session

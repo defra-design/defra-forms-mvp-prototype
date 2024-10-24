@@ -43,10 +43,13 @@
               class="govuk-button govuk-button--inverse" data-module="govuk-button">
             Add new page
           </a>
+
           <a href="/redesigntest/reorder/main.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"
-              data-module="govuk-button">
-            Re-order pages
-          </a>
+          id="reorder-button" data-module="govuk-button" style="display: none;">
+          Re-order pages
+       </a>
+
+
           <a href="#" class="govuk-link govuk-link--inverse">Preview form</a>
         </div>
       </div>
@@ -1613,6 +1616,24 @@ More than 1 question on a page
         });
       });
     });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Count the number of <h2> elements with the class govuk-summary-card__title
+    const pageTitles = document.querySelectorAll("h2.govuk-summary-card__title");
+
+    // Get the reorder button element
+    const reorderButton = document.querySelector("#reorder-button");
+
+    // Show the reorder button if 2 or more titles are found
+    if (pageTitles.length >= 2) {
+        reorderButton.style.display = "inline-block";
+    } else {
+        reorderButton.style.display = "none";
+    }
+});
+
   </script>
 
 {% endblock %}

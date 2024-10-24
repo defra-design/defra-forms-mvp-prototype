@@ -549,7 +549,7 @@
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                         Question
                       </legend>
-                      <div class="govuk-radios">
+                      <div class="govuk-radios govuk-radios--inline">
                         <div class="govuk-radios__item">
                           <input class="govuk-radios__input" id="yesno-yes" name="yesno" type="radio" value="yes">
                           <label class="govuk-label govuk-radios__label" for="yesno-yes">Yes</label>
@@ -667,7 +667,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Show the preview for the initially selected radio button (if any)
-  const initialSelection = document.querySelector("input[name='informationQuestion1']:checked");
+  const initialSelection = document.querySelector("input[name='informationQuestion3']:checked");
   if (initialSelection) {
     console.log("Initial selection found:", initialSelection.value); // Debugging line
     showPreview(initialSelection.value);
@@ -712,7 +712,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Listen for changes on main selection
-  document.querySelectorAll("input[name='informationQuestion1']").forEach(option => {
+  document.querySelectorAll("input[name='informationQuestion3']").forEach(option => {
     option.addEventListener("change", function () {
       const selectedOption = this.value;
 
@@ -731,7 +731,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Listen for changes on sub-options to update `data-setname` further
   document.querySelectorAll("input[name='written'], input[name='dateType'], input[name='listType']").forEach(subOption => {
     subOption.addEventListener("change", function () {
-      const mainOption = document.querySelector("input[name='informationQuestion1']:checked");
+      const mainOption = document.querySelector("input[name='informationQuestion3']:checked");
       const selectedSubOption = this.value;
 
       if (mainOption && mainOption.value === "text") {

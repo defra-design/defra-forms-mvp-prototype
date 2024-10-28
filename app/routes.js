@@ -695,7 +695,7 @@ router.post("/overview-0", function (req, res) {
   // Save form data to session
   req.session.data["setName"] = req.body.setName || "";
   req.session.data["overview0"] = req.body["overview0"] || "";
-  res.redirect("/redesigntest/templates/1-question/overview-0.html");  //
+  res.redirect("/redesigntest/templates/1-question/information-type.html");  //
 });
 
 /* dictionary stuff */

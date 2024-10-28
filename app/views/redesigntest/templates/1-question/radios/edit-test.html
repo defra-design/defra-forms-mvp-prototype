@@ -16,8 +16,7 @@
     navigationItems: [
       { href: "/library.html", text: "Forms library", id: "nav-library" },
       { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
-      { href: "/editor-pets/0", text: "Editor", id: "nav-editor" }
-    ],
+      { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }    ],
     activeLinkId: "nav-editor"
   }) }}
 
@@ -289,283 +288,368 @@
 
 <!-- Updated Scripts -->
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const domElements = {
+    questionLabelInputRadios: document.getElementById('question-label-input-radios'),
+    hintTextInputRadios: document.getElementById('hint-text-input-radios'),
+    hintTextOutput: document.getElementById('listPreview-hint'),
+    makeOptionalCheckbox: document.getElementById('makeOptional'),
+
+    editOptionsButton: document.getElementById('edit-options-button'),
+    optionsContainer: document.getElementById('options-container'),
+    radioList: document.getElementById('radio-list')
+  };
+
+  let optionIndex = 0; // Start at 0 for the first option
+
+  // Initialize event listeners
+  initializeEventListeners();
+
+  function initializeEventListeners() {
+    // Update question label and apply highlight to legend
+    if (domElements.questionLabelInputRadios) {
+      domElements.questionLabelInputRadios.addEventListener('input', updateQuestionLabel);
+      applyHighlightOnFocus(domElements.questionLabelInputRadios, getQuestionLabelLegend());
+    }
+
+    // Initialize the reordering functionality
+    initializeOptionsReordering();
+  }
+
+  // Dynamically fetch the legend element to ensure it exists
+  function getQuestionLabelLegend() {
+    return document.querySelector('legend[for="question-label-input-radios"]');
+  }
+
+  function updateQuestionLabel() {
+    const questionLabelLegend = getQuestionLabelLegend();
+    if (questionLabelLegend) {
+      const suffix = domElements.makeOptionalCheckbox && domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
+      questionLabelLegend.textContent = (domElements.questionLabelInputRadios.value || 'Question') + suffix;
+    }
+  }
+
+
+  function applyHighlightOnFocus(inputElement, targetElement) {
+    if (inputElement && targetElement) {
+      inputElement.addEventListener('focus', () => targetElement.classList.add('highlight'));
+      inputElement.addEventListener('blur', () => targetElement.classList.remove('highlight'));
+      if (document.activeElement === inputElement) targetElement.classList.add('highlight');
+    }
+  }
+
+  function initializeOptionsReordering() {
+    let editMode = false;
+
+    function createOptionItem(index, labelValue = '') {
+      const li = document.createElement('li');
+      li.className = 'gem-c-reorderable-list__item';
+      li.setAttribute('draggable', 'true');
+      li.setAttribute('data-index', index);
+
+      li.innerHTML = `
+        <div class="gem-c-reorderable-list__wrapper">
+          <div class="gem-c-reorderable-list__content">
+            <p class="gem-c-reorderable-list__title">
+              <span class="option-number">Option ${index + 1}:</span>
+              <input class="govuk-input option-label-input" type="text" id="option-${index}-label" name="options[${index}][label]" value="${labelValue}" placeholder="Option label">
+            </p>
+          </div>
+          <div class="gem-c-reorderable-list__actions">
+            <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-up" type="button">Up</button>
+            <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-down" type="button">Down</button>
+            <button class="gem-c-button govuk-button govuk-button--warning js-remove-option" type="button">Remove</button>
+          </div>
+        </div>
+      `;
+      return li;
+    }
+
+    function updateOptionNumbers() {
+      const items = document.querySelectorAll('#options-container .gem-c-reorderable-list__item');
+      const previewContainer = document.getElementById('radio-list');
+      previewContainer.innerHTML = '';
+
+      items.forEach((item, index) => {
+        const optionNumberSpan = item.querySelector('.option-number');
+        optionNumberSpan.textContent = `Option ${index + 1}:`;
+        item.setAttribute('data-index', index);
+        const input = item.querySelector('.option-label-input');
+        input.setAttribute('name', `options[${index}][label]`);
+        input.id = `option-${index}-label`;
+
+        const labelValue = input.value || `Option ${index + 1}`;
+        addOptionToPreview(index, labelValue);
+        applyHighlightOnFocusForOptions(input.id, `listPreview-option${index}`);
+      });
+
+      optionIndex = items.length;
+      manageUpDownButtons();
+    }
+
+    function manageUpDownButtons() {
+      const items = document.querySelectorAll('#options-container .gem-c-reorderable-list__item');
+      items.forEach((item, index) => {
+        const upButton = item.querySelector('.js-reorderable-list-up');
+        const downButton = item.querySelector('.js-reorderable-list-down');
+        upButton.style.display = index === 0 ? 'none' : 'inline-block';
+        downButton.style.display = index === items.length - 1 ? 'none' : 'inline-block';
+      });
+    }
+
+    let sortableInstance;
+    function initializeSortable() {
+      sortableInstance = new Sortable(document.getElementById('options-container'), {
+        animation: 150,
+        handle: ".gem-c-reorderable-list__wrapper",
+        draggable: ".gem-c-reorderable-list__item",
+        ghostClass: "sortable-ghost",
+        onEnd: updateOptionNumbers,
+        disabled: true
+      });
+    }
+
+    function addOptionEventListeners(item) {
+      const upButton = item.querySelector('.js-reorderable-list-up');
+      const downButton = item.querySelector('.js-reorderable-list-down');
+      const removeButton = item.querySelector('.js-remove-option');
+
+      upButton.addEventListener('click', () => {
+        const prevItem = item.previousElementSibling;
+        if (prevItem) item.parentNode.insertBefore(item, prevItem);
+        updateOptionNumbers();
+      });
+
+      downButton.addEventListener('click', () => {
+        const nextItem = item.nextElementSibling;
+        if (nextItem) item.parentNode.insertBefore(nextItem, item);
+        updateOptionNumbers();
+      });
+
+      removeButton.addEventListener('click', () => {
+        item.parentNode.removeChild(item);
+        updateOptionNumbers();
+      });
+
+      const inputElement = item.querySelector('.option-label-input');
+      inputElement.addEventListener('input', () => {
+        updateOptionPreview(item.getAttribute('data-index'), inputElement.value);
+      });
+
+      applyHighlightOnFocusForOptions(inputElement.id, `listPreview-option${item.getAttribute('data-index')}`);
+    }
+
+    function updateOptionPreview(index, value) {
+      const previewOptionLabel = document.querySelector(`label[for="listPreview-option${index}"]`);
+      if (previewOptionLabel) {
+        previewOptionLabel.textContent = value || `Option ${parseInt(index) + 1}`;
+        previewOptionLabel.classList.add('highlight');
+        setTimeout(() => previewOptionLabel.classList.remove('highlight'), 300);
+      }
+    }
+
+    function addOptionToPreview(index, labelValue) {
+      const radioList = document.getElementById('radio-list');
+      const newRadioHTML = `
+        <div class="govuk-radios__item" id="preview-option-${index}">
+          <input class="govuk-radios__input" id="listPreview-option${index}" name="listPreview" type="radio" value="option${index}">
+          <label class="govuk-label govuk-radios__label" for="listPreview-option${index}">${labelValue || `Option ${parseInt(index) + 1}`}</label>
+        </div>
+      `;
+      radioList.insertAdjacentHTML('beforeend', newRadioHTML);
+    }
+
+    document.getElementById('add-option-button').addEventListener('click', () => {
+      const newItem = createOptionItem(optionIndex);
+      document.getElementById('options-container').appendChild(newItem);
+      addOptionEventListeners(newItem);
+      addOptionToPreview(optionIndex, newItem.querySelector('.option-label-input').value);
+      optionIndex++;
+      manageUpDownButtons();
+    });
+
+    const initialItem = createOptionItem(optionIndex);
+    document.getElementById('options-container').appendChild(initialItem);
+    addOptionEventListeners(initialItem);
+    addOptionToPreview(optionIndex, '');
+    optionIndex++;
+
+    initializeSortable();
+
+    domElements.editOptionsButton.addEventListener('click', () => {
+      editMode = !editMode;
+      domElements.editOptionsButton.textContent = editMode ? 'Save changes' : 'Re-order list';
+      document.querySelectorAll('.gem-c-reorderable-list__actions').forEach(actions => {
+        actions.style.display = editMode ? 'flex' : 'none';
+      });
+      sortableInstance.option('disabled', !editMode);
+      manageUpDownButtons();
+    });
+  }
+
+  function applyHighlightOnFocusForOptions(inputElementId, radioElementId) {
+    const inputElement = document.getElementById(inputElementId);
+    const radioLabel = document.querySelector(`label[for="${radioElementId}"]`);
+    if (inputElement && radioLabel) {
+      inputElement.addEventListener('focus', () => radioLabel.classList.add('highlight'));
+      inputElement.addEventListener('blur', () => radioLabel.classList.remove('highlight'));
+      if (document.activeElement === inputElement) radioLabel.classList.add('highlight');
+    }
+  }
+});
+
+
+</script>
+
+{# TESTING #}
+
+<script>
   document.addEventListener('DOMContentLoaded', function () {
-    // DOM Elements
     const domElements = {
-      questionLabelInputRadios: document.getElementById('question-label-input-radios'),
-      questionLabelLegend: document.querySelector('legend[for="question-label-input-radios"]'),
+      questionInput: document.getElementById('question-label-input-radios'),
+      questionOutput: document.getElementById('question-label-legend-q1'),
+
       hintTextInputRadios: document.getElementById('hint-text-input-radios'),
       hintTextOutput: document.getElementById('listPreview-hint'),
-      makeOptionalCheckbox: document.getElementById('makeOptional'),
-      pageHeadingInputRadios: document.getElementById('page-heading-input-radios'),
-      dynamicHeading: document.getElementById('dynamic-heading'),
-      guidanceTextareaRadios: document.getElementById('guidance-textarea-radios'),
-      guidanceParagraph: document.getElementById('guidance-paragraph'),
-      editOptionsButton: document.getElementById('edit-options-button'),
-      optionsContainer: document.getElementById('options-container'),
-      radioList: document.getElementById('radio-list')
-    };
 
-    let optionIndex = 0; // Start at 0 for the first option
+      pageHeadingInputRadios: document.getElementById('page-heading-input-radios'),
+      pageHeadingOutput: document.getElementById('dynamic-heading-radios'),
+
+      guidanceTextareaRadios: document.getElementById('guidance-textarea-radios'),
+      guidanceOutput: document.getElementById('guidance-paragraph')
+    };
 
     // Initialize event listeners
     initializeEventListeners();
 
     function initializeEventListeners() {
-      // Update question label
-      if (domElements.questionLabelInputRadios && domElements.questionLabelLegend) {
-        domElements.questionLabelInputRadios.addEventListener('input', updateQuestionLabel);
-      }
+      const inputListeners = [
+        { element: domElements.questionInput, event: 'input', handler: updateQuestion },
+        { element: domElements.hintTextInputRadios, event: 'input', handler: updateHintText },
+        { element: domElements.pageHeadingInputRadios, event: 'input', handler: updatePageHeading },
+        { element: domElements.guidanceTextareaRadios, event: 'input', handler: updateGuidanceText }
+      ];
 
-      // Update hint text
-      if (domElements.hintTextInputRadios && domElements.hintTextOutput) {
-        domElements.hintTextInputRadios.addEventListener('input', updateHintText);
-        applyHighlightOnFocus(domElements.hintTextInputRadios, domElements.hintTextOutput);
-      }
+      inputListeners.forEach(bindListener);
 
-      // Update page heading
-      if (domElements.pageHeadingInputRadios && domElements.dynamicHeading) {
-        domElements.pageHeadingInputRadios.addEventListener('input', updatePageHeading);
-        applyHighlightOnFocus(domElements.pageHeadingInputRadios, domElements.dynamicHeading);
-      }
+      // Add focus and blur listeners for placeholders
+      domElements.hintTextInputRadios.addEventListener('focus', showPlaceholderHint);
+      domElements.hintTextInputRadios.addEventListener('blur', clearPlaceholderHint);
 
-      // Update guidance text
-      if (domElements.guidanceTextareaRadios && domElements.guidanceParagraph) {
-        domElements.guidanceTextareaRadios.addEventListener('input', updateGuidanceText);
-        applyHighlightOnFocus(domElements.guidanceTextareaRadios, domElements.guidanceParagraph);
-      }
+      domElements.pageHeadingInputRadios.addEventListener('focus', showPlaceholderHeading);
+      domElements.pageHeadingInputRadios.addEventListener('blur', clearPlaceholderHeading);
 
-      // Apply focus/blur highlighting for question label and legend
-      applyHighlightOnFocus(domElements.questionLabelInputRadios, domElements.questionLabelLegend);
+      domElements.guidanceTextareaRadios.addEventListener('focus', showPlaceholderGuidance);
+      domElements.guidanceTextareaRadios.addEventListener('blur', clearPlaceholderGuidance);
 
-      // Initialize the reordering functionality
-      initializeOptionsReordering();
+      // Apply focus/blur highlighting
+      applyHighlightOnFocus('question-label-input-radios', 'question-label-legend-q1');
+      applyHighlightOnFocus('hint-text-input-radios', 'listPreview-hint');
+      applyHighlightOnFocus('page-heading-input-radios', 'dynamic-heading-radios');
+      applyHighlightOnFocus('guidance-textarea-radios', 'guidance-paragraph');
+
+      // Initialize content on page load
+      updateQuestion();
+      updateHintText();
+      updatePageHeading();
+      updateGuidanceText();
     }
 
-    function updateQuestionLabel() {
-      const suffix = domElements.makeOptionalCheckbox && domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
-      domElements.questionLabelLegend.textContent = domElements.questionLabelInputRadios.value || 'Question';
-      domElements.questionLabelLegend.textContent += suffix;
+    function bindListener({ element, event, handler }) {
+      if (element) {
+        element.addEventListener(event, handler);
+      } else {
+        console.error(`Element not found for event listener: ${event}`);
+      }
     }
 
+    // Update the question label
+    function updateQuestion() {
+      setTextContent(domElements.questionOutput, domElements.questionInput.value.trim(), 'Question');
+    }
+
+    // Update hint text
     function updateHintText() {
-      domElements.hintTextOutput.textContent = domElements.hintTextInputRadios.value.trim() || 'Hint text';
+      setTextContent(domElements.hintTextOutput, domElements.hintTextInputRadios.value.trim());
     }
 
+    // Update page heading
     function updatePageHeading() {
-      domElements.dynamicHeading.textContent = domElements.pageHeadingInputRadios.value;
+      setTextContent(domElements.pageHeadingOutput, domElements.pageHeadingInputRadios.value.trim(), '');
     }
 
+    // Update guidance text
     function updateGuidanceText() {
-      domElements.guidanceParagraph.textContent = domElements.guidanceTextareaRadios.value;
+      setTextContent(domElements.guidanceOutput, domElements.guidanceTextareaRadios.value.trim(), '');
     }
 
-    // Function to apply focus/blur highlights dynamically to inputs and their corresponding targets
-    function applyHighlightOnFocus(inputElement, targetElement) {
-      if (inputElement && targetElement) {
-        inputElement.addEventListener('focus', function () {
-          targetElement.classList.add('highlight');
-        });
-        inputElement.addEventListener('blur', function () {
-          targetElement.classList.remove('highlight');
-        });
-
-        // Apply highlight immediately if input is already focused
-        if (document.activeElement === inputElement) {
-          targetElement.classList.add('highlight');
-        }
+    // Show placeholder for hint text only on focus
+    function showPlaceholderHint() {
+      if (!domElements.hintTextInputRadios.value.trim()) {
+        domElements.hintTextOutput.textContent = 'Hint text';
       }
     }
 
-    // Reordering Functionality
-    function initializeOptionsReordering() {
-      let editMode = false; // Track whether we're in edit mode
-
-      // Function to create a new option item
-      function createOptionItem(index, labelValue = '') {
-        const li = document.createElement('li');
-        li.className = 'gem-c-reorderable-list__item';
-        li.setAttribute('draggable', 'true');
-        li.setAttribute('data-index', index);
-
-        li.innerHTML = `
-          <div class="gem-c-reorderable-list__wrapper">
-            <div class="gem-c-reorderable-list__content">
-              <p class="gem-c-reorderable-list__title">
-                <span class="option-number">Option ${index + 1}:</span>
-                <input class="govuk-input option-label-input" type="text" id="option-${index}-label" name="options[${index}][label]" value="${labelValue}" placeholder="Option label">
-              </p>
-            </div>
-            <div class="gem-c-reorderable-list__actions">
-              <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-up" type="button">Up</button>
-              <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-down" type="button">Down</button>
-              <button class="gem-c-button govuk-button govuk-button--warning js-remove-option" type="button">Remove</button>
-            </div>
-          </div>
-        `;
-        return li;
+    // Clear placeholder for hint text on blur
+    function clearPlaceholderHint() {
+      if (!domElements.hintTextInputRadios.value.trim()) {
+        domElements.hintTextOutput.textContent = '';
       }
-
-      // Function to update option numbers and reorder preview options
-      function updateOptionNumbers() {
-        const items = document.querySelectorAll('#options-container .gem-c-reorderable-list__item');
-        const previewContainer = document.getElementById('radio-list');
-
-        // Clear the preview container
-        previewContainer.innerHTML = '';
-
-        items.forEach((item, index) => {
-          const optionNumberSpan = item.querySelector('.option-number');
-          optionNumberSpan.textContent = `Option ${index + 1}:`;
-          item.setAttribute('data-index', index);
-          const input = item.querySelector('.option-label-input');
-          input.setAttribute('name', `options[${index}][label]`);
-          input.id = `option-${index}-label`;
-
-          // Update the corresponding preview option
-          const labelValue = input.value || `Option ${index + 1}`;
-          addOptionToPreview(index, labelValue);
-
-          // Re-apply the highlight on focus/blur for dynamically added options
-          applyHighlightOnFocusForOptions(input.id, `listPreview-option${index}`);
-        });
-
-        // Update optionIndex to match the current number of options
-        optionIndex = items.length;
-      }
-
-      // Function to initialize SortableJS
-      let sortableInstance;
-      function initializeSortable() {
-        sortableInstance = new Sortable(document.getElementById('options-container'), {
-          animation: 150,
-          handle: ".gem-c-reorderable-list__wrapper",
-          draggable: ".gem-c-reorderable-list__item",
-          ghostClass: "sortable-ghost",
-          onEnd: updateOptionNumbers,
-          disabled: true // Start with sorting disabled
-        });
-      }
-
-      // Add event listeners for Up, Down, and Remove buttons
-      function addOptionEventListeners(item) {
-        const upButton = item.querySelector('.js-reorderable-list-up');
-        const downButton = item.querySelector('.js-reorderable-list-down');
-        const removeButton = item.querySelector('.js-remove-option');
-
-        upButton.addEventListener('click', () => {
-          const prevItem = item.previousElementSibling;
-          if (prevItem) {
-            item.parentNode.insertBefore(item, prevItem);
-            updateOptionNumbers();
-          }
-        });
-
-        downButton.addEventListener('click', () => {
-          const nextItem = item.nextElementSibling;
-          if (nextItem) {
-            item.parentNode.insertBefore(nextItem, item);
-            updateOptionNumbers();
-          }
-        });
-
-        removeButton.addEventListener('click', () => {
-          item.parentNode.removeChild(item);
-          updateOptionNumbers();
-        });
-
-        // Update preview when option label changes
-        const inputElement = item.querySelector('.option-label-input');
-        inputElement.addEventListener('input', () => {
-          updateOptionPreview(item.getAttribute('data-index'), inputElement.value);
-        });
-
-        // Apply focus/blur highlighting for input and corresponding preview label
-        applyHighlightOnFocusForOptions(inputElement.id, `listPreview-option${item.getAttribute('data-index')}`);
-      }
-
-      // Function to update the option in the preview
-      function updateOptionPreview(index, value) {
-        const previewOptionLabel = document.querySelector(`label[for="listPreview-option${index}"]`);
-        if (previewOptionLabel) {
-          previewOptionLabel.textContent = value || `Option ${parseInt(index) + 1}`;
-        }
-      }
-
-      // Function to add option to the preview
-      function addOptionToPreview(index, labelValue) {
-        const radioList = document.getElementById('radio-list');
-        const newRadioHTML = `
-          <div class="govuk-radios__item" id="preview-option-${index}">
-            <input class="govuk-radios__input" id="listPreview-option${index}" name="listPreview" type="radio" value="option${index}">
-            <label class="govuk-label govuk-radios__label" for="listPreview-option${index}">${labelValue || `Option ${parseInt(index) + 1}`}</label>
-          </div>
-        `;
-        radioList.insertAdjacentHTML('beforeend', newRadioHTML);
-      }
-
-      // Handle adding a new option
-      document.getElementById('add-option-button').addEventListener('click', () => {
-        const newItem = createOptionItem(optionIndex);
-        document.getElementById('options-container').appendChild(newItem);
-        addOptionEventListeners(newItem);
-
-        // Add to preview
-        const labelValue = newItem.querySelector('.option-label-input').value;
-        addOptionToPreview(optionIndex, labelValue);
-
-        optionIndex++;
-      });
-
-      // Initialize with one option
-      const initialItem = createOptionItem(optionIndex);
-      document.getElementById('options-container').appendChild(initialItem);
-      addOptionEventListeners(initialItem);
-      addOptionToPreview(optionIndex, '');
-      optionIndex++;
-
-      // Initialize SortableJS
-      initializeSortable();
-
-      // Handle Edit button click
-      domElements.editOptionsButton.addEventListener('click', () => {
-        editMode = !editMode; // Toggle edit mode
-        domElements.editOptionsButton.textContent = editMode ? 'Save changes' : 'Re-order list';
-
-        // Show or hide action buttons
-        const actionButtons = document.querySelectorAll('.gem-c-reorderable-list__actions');
-        actionButtons.forEach(actions => {
-          actions.style.display = editMode ? 'flex' : 'none';
-        });
-
-        // Enable or disable sorting
-        sortableInstance.option('disabled', !editMode);
-      });
     }
 
-    // Function to dynamically apply highlight to input and corresponding radio label
-    function applyHighlightOnFocusForOptions(inputElementId, radioElementId) {
+    // Show placeholder for page heading only on focus
+    function showPlaceholderHeading() {
+      if (!domElements.pageHeadingInputRadios.value.trim()) {
+        domElements.pageHeadingOutput.textContent = 'Page heading';
+      }
+    }
+
+    // Clear placeholder for page heading on blur
+    function clearPlaceholderHeading() {
+      if (!domElements.pageHeadingInputRadios.value.trim()) {
+        domElements.pageHeadingOutput.textContent = '';
+      }
+    }
+
+    // Show placeholder for guidance text only on focus
+    function showPlaceholderGuidance() {
+      if (!domElements.guidanceTextareaRadios.value.trim()) {
+        domElements.guidanceOutput.textContent = 'Guidance text';
+      }
+    }
+
+    // Clear placeholder for guidance text on blur
+    function clearPlaceholderGuidance() {
+      if (!domElements.guidanceTextareaRadios.value.trim()) {
+        domElements.guidanceOutput.textContent = '';
+      }
+    }
+
+    // Utility function to set text content with default
+    function setTextContent(element, value, defaultValue = '') {
+      element.textContent = value || defaultValue;
+    }
+
+    // Function to apply focus/blur highlights to inputs and their corresponding targets
+    function applyHighlightOnFocus(inputElementId, targetElementId) {
       const inputElement = document.getElementById(inputElementId);
-      const radioLabel = document.querySelector(`label[for="${radioElementId}"]`);
+      const targetElement = document.getElementById(targetElementId);
 
-      if (inputElement && radioLabel) {
-        inputElement.addEventListener('focus', function () {
-          radioLabel.classList.add('highlight');
-        });
-        inputElement.addEventListener('blur', function () {
-          radioLabel.classList.remove('highlight');
-        });
+      if (inputElement && targetElement) {
+        inputElement.addEventListener('focus', () => targetElement.classList.add('highlight'));
+        inputElement.addEventListener('blur', () => targetElement.classList.remove('highlight'));
 
-        // Apply the highlight immediately if input is already focused
+        // If input is already focused, apply the highlight immediately
         if (document.activeElement === inputElement) {
-          radioLabel.classList.add('highlight');
+          targetElement.classList.add('highlight');
         }
       } else {
-        console.error(`Input element or corresponding radio label not found for: ${inputElementId}, ${radioElementId}`);
+        console.error(`Input or target element not found: ${inputElementId}, ${targetElementId}`);
       }
     }
   });
 </script>
+
 
 
 

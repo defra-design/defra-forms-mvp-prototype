@@ -24,42 +24,49 @@
         1</span>
 
 
-      <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingCheckboxes'] or '' }}</h1>
+      <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingInputCheckboxes'] or '' }}</h1>
     </div>
 
     <!-- Guidance Paragraph -->
-    <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceTextCheckboxes'] or '' }}</p>
+    <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceTextareaRadios'] or '' }}</p>
 
 
 
 
-    <div id="checkbox-list">
+    {# <div id="checkbox-list">
       <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading" id="question-label-legend-q1">
             {{ data['questionLabelInputCheckboxes'] or '' }}
           </h1>
-        </legend>
+        </legend> #}
 
-        <!-- Custom checkboxes without govuk-form-group -->
-        <fieldset class="govuk-fieldset" aria-describedby="listPreview-hint">
-          <div id="listPreview-hint" class="govuk-hint"></div>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="listPreview-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading" id="question-label-legend-q1">
+                {{ data.questionLabelInputCheckboxes or 'Question' }}
+              </h1>
+            </legend>
+            {% if data.hintTextInputCheckboxes %}
+            <div id="listPreview-hint" class="govuk-hint">
+              {{ data.hintTextInputCheckboxes }}
+            </div>
+            {% endif %}
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes" id="checkbox-list">
+              <!-- Checkbox items will be inserted here -->
+              {% for option in data.options %}
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="listPreview-option{{ loop.index0 }}" name="listPreview" type="checkbox" value="{{ option.label }}">
+                <label class="govuk-label govuk-checkboxes__label" for="listPreview-option{{ loop.index0 }}">
+                  {{ option.label or '' }}
+                </label>
+              </div>
+              {% endfor %}
+            </div>
+          </fieldset>
+        </div>
 
-          {% for option in data['option'] %}
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="listPreview-option{{ loop.index }}" name="listPreview"
-              type="checkbox" value="{{ option['option_label'] }}">
-            <label class="govuk-label govuk-checkboxes__label" for="listPreview-option{{ loop.index }}">
-              {{ option['option_label'] or '' }}
-            </label>
-          </div>
-          {% endfor %}
-
-          `; <!-- Dynamically generated checkbox items will be inserted here -->
-    </div>
-    </fieldset>
-    </fieldset>
-  </div>
 
 
   </form>

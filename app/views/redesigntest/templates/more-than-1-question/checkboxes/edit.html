@@ -16,8 +16,7 @@
     navigationItems: [
       { href: "/library.html", text: "Forms library", id: "nav-library" },
       { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
-      { href: "/editor-pets/0", text: "Editor", id: "nav-editor" }
-    ],
+      { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }    ],
     activeLinkId: "nav-editor"
   }) }}
 
@@ -151,55 +150,38 @@
 
 
 
-                   <!-- List config -->
-
+         <!-- Updated Options Form -->
+<!-- List config -->
 <div class="govuk-form-group">
+  <h2 class="govuk-heading-m moj-add-another__heading" tabindex="-1">Create and edit your list of options</h2>
+
+<!-- Options Container -->
+<ol class="gem-c-reorderable-list js-enabled" id="options-container" data-module="reorderable-list">
+  <!-- Option items will be added here -->
+</ol>
 
 
-  <div data-module="moj-add-another">
+  <div class="govuk-button-group">
+    <div class="moj-button-action">
+      {{ govukButton({
+        text: 'Add another option',
+        classes: 'moj-add-another__add-button govuk-!-margin-bottom-4 govuk-!-margin-bottom-6',
+        id: 'add-option-button',
+        type: 'button'
+      }) }}
+    </div>
+
+    {{ govukButton({
+      text: 'Re-order list',
+      classes: 'govuk-button--inverse',
+      id: 'edit-options-button',
+      type: 'button'
+    }) }}
+
+  </div>
+</div>
 
 
-
-
-
-    <h2 class="govuk-heading-m moj-add-another__heading" tabindex="-1">Create and edit your list of options</h2>
-
-
-
-      {% call govukFieldset({
-        classes: 'moj-add-another__item',
-        legend: {
-          text: 'Option',
-          classes: 'moj-add-another__title govuk-fieldset__legend--m',
-          isPageHeading: false
-        }
-      }) %}
-
-      <div id="options-container">
-        {{ govukInput({
-          id: 'option[0][option_label]',
-          value: data ['option[0][option_label'],
-          name: 'option[0][option_label]',
-          label: {
-            html: 'Label',
-            classes: 'govuk-!-font-weight-bold'
-          },
-          attributes: {
-            'data-name': 'option[0][option_label]',
-            'data-id': 'option[0][option_label]'
-          }
-        }) }}
-      </div>
-
-      {% endcall %}
-
-      <div class="moj-button-action">
-        {{ govukButton({
-          text: 'Add another option',
-          classes: 'govuk-button--inverse moj-add-another__add-button govuk-!-margin-bottom-4 govuk-!-margin-top-6 govuk-!-margin-bottom-6',
-          id: 'add-option-button'
-        }) }}
-      </div>
 
 
 
@@ -276,7 +258,7 @@
 
     </form>
 
-</div></div></div></div></div></div></div></div></div>
+</div></div></div></div></div></div></div>
 
  <!-- Right Column for Preview -->
  <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh;overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
@@ -308,8 +290,250 @@
 </div>
 </div>
 
+<!-- Include SortableJS Library -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const domElements = {
+      questionLabelInput: document.getElementById('multi-question-label-input-checkboxes'),
+      questionLabelLegend: document.getElementById('multi-question-label-legend-checkboxes'),
+      hintTextInput: document.getElementById('multi-question-hint-text-input-checkboxes'),
+      hintTextOutput: document.getElementById('multi-question-hint-text-output-checkboxes'),
+      makeOptionalCheckbox: document.getElementById('makeOptional'),
+      optionsForm: document.getElementById('options-form'),
+      optionsContainer: document.getElementById('options-container'),
+      addOptionButton: document.getElementById('add-option-button'),
+      editOptionsButton: document.getElementById('edit-options-button'),
+      checkboxList: document.querySelector('.govuk-checkboxes')
+    };
+
+    let optionIndex = 0; // Start at 0 for the first option
+    let sortableInstance; // Declare sortableInstance here before it's used
+
+    // Initialize event listeners
+    initializeEventListeners();
+
+    function initializeEventListeners() {
+      if (domElements.questionLabelInput) {
+        domElements.questionLabelInput.addEventListener('input', updateQuestionLabel);
+        applyHighlightOnFocus(domElements.questionLabelInput, domElements.questionLabelLegend);
+      }
+
+      if (domElements.hintTextInput) {
+        domElements.hintTextInput.addEventListener('input', updateHintText);
+        applyHighlightOnFocus(domElements.hintTextInput, domElements.hintTextOutput);
+        domElements.hintTextInput.addEventListener('focus', showPlaceholderHint);
+        domElements.hintTextInput.addEventListener('blur', clearPlaceholderHint);
+      }
+
+      // Initialize the options functionality
+      initializeOptionsFunctionality();
+    }
+
+    function updateQuestionLabel() {
+      if (domElements.questionLabelLegend) {
+        const suffix = domElements.makeOptionalCheckbox && domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
+        domElements.questionLabelLegend.textContent = (domElements.questionLabelInput.value || 'Question') + suffix;
+      }
+    }
+
+    function updateHintText() {
+      if (domElements.hintTextOutput) {
+        domElements.hintTextOutput.textContent = domElements.hintTextInput.value || '';
+      }
+    }
+
+    function showPlaceholderHint() {
+      if (!domElements.hintTextInput.value) {
+        domElements.hintTextOutput.textContent = 'Hint text';
+      }
+    }
+
+    function clearPlaceholderHint() {
+      if (!domElements.hintTextInput.value) {
+        domElements.hintTextOutput.textContent = '';
+      }
+    }
+
+    function applyHighlightOnFocus(inputElement, targetElement) {
+      if (inputElement && targetElement) {
+        inputElement.addEventListener('focus', function () {
+          targetElement.classList.add('highlight');
+        });
+        inputElement.addEventListener('blur', function () {
+          targetElement.classList.remove('highlight');
+        });
+
+        if (document.activeElement === inputElement) {
+          targetElement.classList.add('highlight');
+        }
+      }
+    }
+
+    function initializeOptionsFunctionality() {
+      let editMode = false;
+
+      domElements.addOptionButton.addEventListener('click', () => {
+        const newItem = createOptionItem(optionIndex);
+        domElements.optionsContainer.appendChild(newItem);
+        addOptionEventListeners(newItem);
+        addOptionToPreview(optionIndex, '');
+        optionIndex++;
+        manageUpDownButtons();
+      });
+
+      const initialItem = createOptionItem(optionIndex);
+      domElements.optionsContainer.appendChild(initialItem);
+      addOptionEventListeners(initialItem);
+      addOptionToPreview(optionIndex, '');
+      optionIndex++;
+
+      initializeSortable();
+
+      domElements.editOptionsButton.addEventListener('click', () => {
+        editMode = !editMode;
+        domElements.editOptionsButton.textContent = editMode ? 'Save changes' : 'Re-order list';
+        document.querySelectorAll('.gem-c-reorderable-list__actions').forEach(actions => {
+          actions.style.display = editMode ? 'flex' : 'none';
+        });
+        sortableInstance.option('disabled', !editMode);
+        manageUpDownButtons();
+      });
+    }
+
+    function createOptionItem(index, labelValue = '') {
+      const li = document.createElement('li');
+      li.className = 'gem-c-reorderable-list__item';
+      li.setAttribute('draggable', 'true');
+      li.setAttribute('data-index', index);
+
+      li.innerHTML = `
+        <div class="gem-c-reorderable-list__wrapper">
+          <div class="gem-c-reorderable-list__content">
+            <p class="gem-c-reorderable-list__title">
+              <span class="option-number">Option ${index + 1}:</span>
+              <input class="govuk-input option-label-input" type="text" id="option-${index}-label" name="options[${index}][label]" value="${labelValue}" placeholder="Option label">
+            </p>
+          </div>
+          <div class="gem-c-reorderable-list__actions">
+            <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-up" type="button">Up</button>
+            <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-down" type="button">Down</button>
+            <button class="gem-c-button govuk-button govuk-button--warning js-remove-option" type="button">Remove</button>
+          </div>
+        </div>
+      `;
+      return li;
+    }
+
+    function addOptionEventListeners(item) {
+      const upButton = item.querySelector('.js-reorderable-list-up');
+      const downButton = item.querySelector('.js-reorderable-list-down');
+      const removeButton = item.querySelector('.js-remove-option');
+
+      upButton.addEventListener('click', () => {
+        const prevItem = item.previousElementSibling;
+        if (prevItem) item.parentNode.insertBefore(item, prevItem);
+        updateOptionNumbers();
+      });
+
+      downButton.addEventListener('click', () => {
+        const nextItem = item.nextElementSibling;
+        if (nextItem) item.parentNode.insertBefore(nextItem, item);
+        updateOptionNumbers();
+      });
+
+      removeButton.addEventListener('click', () => {
+        item.parentNode.removeChild(item);
+        updateOptionNumbers();
+      });
+
+      const inputElement = item.querySelector('.option-label-input');
+      inputElement.addEventListener('input', () => {
+        updateOptionPreview(item.getAttribute('data-index'), inputElement.value);
+      });
+
+      applyHighlightOnFocusForOptions(inputElement.id, `listPreview-option${item.getAttribute('data-index')}`);
+    }
+
+    function updateOptionNumbers() {
+      const items = document.querySelectorAll('#options-container .gem-c-reorderable-list__item');
+      const previewContainer = domElements.checkboxList;
+      previewContainer.innerHTML = '';
+
+      items.forEach((item, index) => {
+        const optionNumberSpan = item.querySelector('.option-number');
+        optionNumberSpan.textContent = `Option ${index + 1}:`;
+        item.setAttribute('data-index', index);
+        const input = item.querySelector('.option-label-input');
+        input.setAttribute('name', `options[${index}][label]`);
+        input.id = `option-${index}-label`;
+
+        const labelValue = input.value || `Option ${index + 1}`;
+        addOptionToPreview(index, labelValue);
+        applyHighlightOnFocusForOptions(input.id, `listPreview-option${index}`);
+      });
+
+      optionIndex = items.length;
+      manageUpDownButtons();
+    }
+
+    function manageUpDownButtons() {
+      const items = document.querySelectorAll('#options-container .gem-c-reorderable-list__item');
+      items.forEach((item, index) => {
+        const upButton = item.querySelector('.js-reorderable-list-up');
+        const downButton = item.querySelector('.js-reorderable-list-down');
+        upButton.style.display = index === 0 ? 'none' : 'inline-block';
+        downButton.style.display = index === items.length - 1 ? 'none' : 'inline-block';
+      });
+    }
+
+    function initializeSortable() {
+      sortableInstance = new Sortable(domElements.optionsContainer, {
+        animation: 150,
+        handle: ".gem-c-reorderable-list__wrapper",
+        draggable: ".gem-c-reorderable-list__item",
+        ghostClass: "sortable-ghost",
+        onEnd: updateOptionNumbers,
+        disabled: true // Disable sorting initially
+      });
+    }
+
+    function updateOptionPreview(index, value) {
+      const checkboxLabel = document.querySelector(`label[for="listPreview-option${index}"]`);
+      if (checkboxLabel) {
+        checkboxLabel.textContent = value || `Option ${index + 1}`;
+        checkboxLabel.classList.add('highlight');
+        setTimeout(() => checkboxLabel.classList.remove('highlight'), 300);
+      }
+    }
+
+    function addOptionToPreview(index, labelValue) {
+      const checkboxList = domElements.checkboxList;
+      const newCheckboxHTML = `
+        <div class="govuk-checkboxes__item" id="preview-option-${index}">
+          <input class="govuk-checkboxes__input" id="listPreview-option${index}" name="listPreview" type="checkbox" value="option${index}">
+          <label class="govuk-label govuk-checkboxes__label" for="listPreview-option${index}">${labelValue || `Option ${index + 1}`}</label>
+        </div>
+      `;
+      checkboxList.insertAdjacentHTML('beforeend', newCheckboxHTML);
+    }
+
+    function applyHighlightOnFocusForOptions(inputElementId, checkboxElementId) {
+      const inputElement = document.getElementById(inputElementId);
+      const checkboxLabel = document.querySelector(`label[for="${checkboxElementId}"]`);
+      if (inputElement && checkboxLabel) {
+        inputElement.addEventListener('focus', () => checkboxLabel.classList.add('highlight'));
+        inputElement.addEventListener('blur', () => checkboxLabel.classList.remove('highlight'));
+        if (document.activeElement === inputElement) checkboxLabel.classList.add('highlight');
+      }
+    }
+  });
+</script>
 
 
+
+
+{#
 <!-- JavaScript code -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -577,7 +801,7 @@
       }
   });
 
-    </script>
+    </script> #}
 
 
 
@@ -609,6 +833,67 @@
         padding-left: 0px;
         z-index: 2;
       }
+
+      /* Styles for the reorderable list */
+.gem-c-reorderable-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gem-c-reorderable-list__item {
+  margin-bottom: 15px;
+  border-left: 5px solid #008938;
+  outline: 1px solid #b1b4b6;
+  padding: 15px;
+  background-color: #fff;
+}
+
+.gem-c-reorderable-list__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.gem-c-reorderable-list__content {
+  flex-grow: 1;
+}
+
+.gem-c-reorderable-list__actions {
+  display: none; /* Hide by default */
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.gem-c-reorderable-list__actions .govuk-button {
+  margin-bottom: 5px;
+}
+
+.sortable-ghost {
+  opacity: 0.4;
+}
+
+.sortable-chosen {
+  background-color: #e5f5ff;
+}
+
+.highlight {
+  background-color: #ffe5cc;
+  border-bottom: 2px solid #ffb266;
+}
+
+/* Style for hover state of the list item */
+.gem-c-reorderable-list__item:hover {
+  background-color: #f0f0f0;
+  cursor: move;
+}
+
+/* Style for the chosen item (when selected) */
+.gem-c-reorderable-list__item.sortable-chosen {
+  background-color: #e5f5ff;
+  outline: 4px solid #ffdd00;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
     </style>
 
   </div>

@@ -30,7 +30,33 @@
     <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceTextareaRadios'] or '' }}</p>
 
 
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading" id="question-label-legend-q1">
+            {{ data.questionLabelInputRadios or 'Question' }}
+          </h1>
+        </legend>
+        {% if data.hintTextInputRadios %}
+        <div id="listPreview-hint" class="govuk-hint">
+          {{ data.hintTextInputRadios }}
+        </div>
+        {% endif %}
+        <div class="govuk-radios" data-module="govuk-radios">
+          {% for option in data.options %}
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="listPreview-option{{ loop.index0 }}" name="listPreview" type="radio" value="{{ option.label }}">
+            <label class="govuk-label govuk-radios__label" for="listPreview-option{{ loop.index0 }}">
+              {{ option.label or '' }}
+            </label>
+          </div>
+          {% endfor %}
+        </div>
+      </fieldset>
+    </div>
 
+
+{#
 
     <div id="radio-list">
       <fieldset class="govuk-fieldset">
@@ -45,6 +71,14 @@
 
         </div>
 
+
+        <!-- Display the options -->
+{% for option in data.options %}
+<div>
+  <input  type="radio" name="radios" id="option-{{ loop.index }}" value="{{ option.label }}">
+  <label class="govuk-label govuk-radios__label"  for="option-{{ loop.index }}">{{ option.label }}</label>
+</div>
+{% endfor %}
 
         <!-- Custom checkboxes without govuk-form-group -->
         {% for option in data['option'] %}
@@ -65,7 +99,7 @@
     </fieldset>
   </div>
 
-  </form>
+  </form> #}
 
 
 

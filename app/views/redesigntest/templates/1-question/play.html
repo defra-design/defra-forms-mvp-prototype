@@ -5,20 +5,52 @@
 {% set guidancePlaceholder = "" %}
 {#  #}
 {% block header %}
-  {{ serviceHeader({
-    organisationName: "Defra",
-    productName: "Forms Designer",
-    serviceName: "Apply for a county parish holding certificatparish holding certificatparish holding certificate",
-    containerClasses: containerClasses,
-    accountName: "Chris Smith",
-    homepageLink: "/",
-    signOutLink: "/onboarding/sign-out-confirmation",
-    navigationItems: [
+{{ serviceHeader({
+  organisationName: "Defra",
+  productName: "Forms Designer",
+  serviceName: "Apply for consent for a planned activity on a site of special scientific interest (SSSI)",
+  containerClasses: "",
+  classes: "",
+  navigationId: "service-navigation",
+  navigationItems: [
       { href: "/library.html", text: "Forms library", id: "nav-library" },
       { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
       { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }    ],
-    activeLinkId: "nav-editor"
-  }) }}
+    activeLinkId: "nav-editor",
+  attributes: {
+    "data-one-login-header-nav": ""
+  },
+  slots: {
+    start: "",
+    end: ""
+  }
+}) }}
+
+<style>
+.service-header__container {
+  display: flex;
+  align-items: flex-end; /* Align items at the bottom */
+  height: 100%;
+}
+
+.service-header__heading {
+  flex: 0 1 60%; /* Limits heading to 50% width and allows wrapping */
+  white-space: normal; /* Enables text wrapping */
+  margin: 0;
+  margin-right:auto;
+}
+
+.service-header__nav {
+  flex: 1 1 auto; /* Takes up remaining space without wrapping */
+  display: flex;
+  justify-content: flex-end; /* Aligns nav items to the right */
+  white-space: nowrap; /* Prevents nav items from wrapping */
+}
+
+
+</style>
+
+
 {#
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">

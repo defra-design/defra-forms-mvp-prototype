@@ -1,0 +1,88 @@
+
+
+  <!-- Preview Container -->
+  <div id="preview-container">
+
+    <!-- Preview Heading (Fixed) -->
+<div class="preview-item" data-id="question-0" id="preview-heading">
+  {% include "/redesigntest/templates/more-than-1-question/previews/heading.html" %}
+</div>
+
+
+  <!-- Preview Items -->
+  <div id="preview-items">
+
+    {% if data['questionLabelInputShortText'] %}
+
+    <div class="preview-item" data-id="question-1">
+      {% include "/redesigntest/templates/more-than-1-question/previews/shorttext.html" %}
+    </div>
+    {% endif %}
+
+    {% if data['questionLabelInputTextArea'] %}
+
+    <div class="preview-item" data-id="question-2">
+      {% include "/redesigntest/templates/more-than-1-question/previews/textarea.html" %}
+    </div>
+    {% endif %}
+
+    {% if data['questionLabelInputNumbers'] %}
+    <div class="preview-item" data-id="question-3">
+      {% include "/redesigntest/templates/more-than-1-question/previews/numbers.html" %}
+    </div>
+    {% endif %}
+
+    {% if data['questionLabelInputDate'] %}
+    <div class="preview-item" data-id="question-4">
+      {% include "/redesigntest/templates/more-than-1-question/previews/date.html" %}
+    </div>
+    {% endif %}
+
+    {% if data['questionLabelInputAddress'] %}
+    <div class="preview-item" data-id="question-5">
+      {% include "/redesigntest/templates/more-than-1-question/previews/address.html" %}
+    </div>
+    {% endif %}
+
+    {% if data['questionLabelInputPhone'] %}
+    <div class="preview-item" data-id="question-6">
+      {% include "/redesigntest/templates/more-than-1-question/previews/phone.html" %}
+    </div>
+    {% endif %}
+
+    {% if data['questionLabelInputFile'] %}
+    <div class="preview-item" data-id="question-7">
+      {% include "/redesigntest/templates/more-than-1-question/previews/fileupload.html" %}
+    </div>
+    {% endif %}
+
+    {% if data['questionLabelInputEmail'] %}
+    <div class="preview-item" data-id="question-8">
+      {% include "/redesigntest/templates/more-than-1-question/previews/email.html" %}
+    </div>
+    {% endif %}
+
+    {% if data['questionLabelInputYesno'] %}
+    <div class="preview-item" data-id="question-9">
+      {% include "/redesigntest/templates/more-than-1-question/previews/yesno.html" %}
+    </div>
+    {% endif %}
+
+    {% if data['questionLabelInputCheckboxes'] %}
+    <div class="preview-item" data-id="question-10">
+      {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %}
+    </div>
+    {% endif %}
+
+    {% if data['questionLabelInputRadios'] %}
+    <div class="preview-item" data-id="question-11">
+      {% include "/redesigntest/templates/more-than-1-question/previews/radios.html" %}
+    </div>
+    {% endif %}
+
+
+  </div>
+
+  </div>
+</div>
+</div>

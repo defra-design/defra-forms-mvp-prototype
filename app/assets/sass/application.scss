@@ -116,6 +116,7 @@ $defra-link-colour-hover: govuk-shade($defra-link-colour, 50%);
 @include govuk-media-query($until: tablet) {
   .service-header__heading:empty {
     display: none;
+    font-size: 19px;
   }
 }
 

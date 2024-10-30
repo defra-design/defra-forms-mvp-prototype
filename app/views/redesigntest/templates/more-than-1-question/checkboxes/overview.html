@@ -322,7 +322,24 @@
         {% include "/redesigntest/templates/previews-more-than-1-question/yesno/for-overview.html" %}
 
         <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews-more-than-1-question/checkboxes/for-overview.html" %}
+        {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %}
+
+        {% if data['setName'] %}
+        {{ govukButton({
+            text: "Add another " + (data['setName'] | lower),
+            classes: "govuk-button govuk-!-margin-top-3",
+            id: "add-another-set-button",
+            disabled: true
+        }) }}
+       {% else %}
+        {{ govukButton({
+            text: "Continue",
+            classes: "govuk-button govuk-!-margin-top-3",
+            id: "add-another-set-button",
+            disabled: true
+        }) }}
+       {% endif %}
+
       </div>
     </div>
 

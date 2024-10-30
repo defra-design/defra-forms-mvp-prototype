@@ -53,9 +53,9 @@
       <div
         class="govuk-grid-column-one-half-from-desktop"
         id="container"
-        style="flex: 1 1 75%; overflow-y: auto"
+        style="flex: 1 1 75%; overflow-y: auto;"
       >
-        <div class="govuk-summary-card govuk-!-margin-top-0" style="border-left: 10px solid #008938">
+        <div class="govuk-summary-card govuk-!-margin-top-0" style="border-left: 10px solid #008938;">
           <div
             class="govuk-summary-card__content govuk-!-padding-top-0"
             style="background-color: #f3f2f1"
@@ -90,9 +90,17 @@
 
                             <li class="moj-sub-navigation__item">
                               <a
-                                class="moj-sub-navigation__link" aria-current="page"
+                                class="moj-sub-navigation__link"
                                 href="#overview-noquestions"
-                                >Question 1</a
+                                >Overview of questions</a
+                              >
+                            </li>
+
+                            <li class="moj-sub-navigation__item">
+                              <a
+                                class="moj-sub-navigation__link" aria-current="page"
+                                href="#question2"
+                                >Question 11</a
                               >
                             </li>
 
@@ -281,58 +289,45 @@
 
 </div></div></div></div></div></div></div>
 
+
       <!-- Right Column for Additional Content -->
       <div
         class="govuk-grid-column-one-half-from-desktop"
         id="second-container"
         style="
           outline: solid 1px #008938;
-          height: 100%;
+          height: 100vh;
           position: sticky;
+          overflow-y: auto;
           top: 0;
           padding: 20px;
           box-shadow: 5px 10px #008938;
         "
       >
-        <!-- New HTML content for before element -->
-        <div id="before-content">
-          <p class="govuk-body-s" style="margin-bottom: 0">
-            <a
-              href="#"
-              class="govuk-link govuk-link--no-visited-state"
-              rel="noreferrer noopener"
-              target="_blank"
-              >Preview this page in a new tab</a
-            >
-          </p>
-        </div>
 
-        <!-- Additional Content Here -->
-        <div class="additional-content">
-          <div>
-            <!-- Tag for Preview -->
-            <strong class="govuk-tag govuk-tag--yellow  govuk-!-margin-top-8 govuk-!-margin-bottom-3" style="max-width: 500px;">
-              Preview of  selected question
-            </strong>
+      {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
+      {% include "/redesigntest/templates/previews-more-than-1-question/numbers/for-overview.html" %}
+      {% include "/redesigntest/templates/previews-more-than-1-question/date/for-overview.html" %}
 
-            <!-- Form for Preview -->
-            <form>
-              <!-- Dynamic Heading -->
-              <div id="heading-container">
+      {% include "/redesigntest/templates/previews-more-than-1-question/address/for-overview.html" %}
 
-                {% set setName = data['setName'] or '' %}
-                <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }} 1</span>
+      {% include "/redesigntest/templates/previews-more-than-1-question/phone/for-overview.html" %}
 
-                <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingInputMoreThan1'] or '' }}</h1>
-              </div>
+      {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %}
 
-        <!-- Guidance Paragraph -->
-        <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceMoreThan1'] or '' }}</p>
+      {% include "/redesigntest/templates/previews-more-than-1-question/email/for-overview.html" %}
 
+      {% include "/redesigntest/templates/more-than-1-question/previews/yesno.html" %}
+
+
+
+ <!-- Include the preview template -->
+ {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %}
 
               <div class="preview-container" id="preview-container">
+
                 <!-- Short Answer Preview -->
-                <div class="preview-content short-answer-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+                <div class="preview-content short-answer-preview" style="display: none;">
                   <div class="govuk-form-group">
                     <label class="govuk-label govuk-label--l" for="short-answer">
                       Question
@@ -428,7 +423,7 @@
 
                 {# Date Preview #}
 
-                <div class="preview-content day-month-year-preview" style="border-left: 10px solid #ffb266; padding-left: 20px;">
+                <div class="preview-content day-month-year-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
                   <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset">
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -604,7 +599,7 @@
                 </div>
 
                 {# Select Preview #}
-                <div class="preview-content select-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
+                <div class="preview-content select-preview" style="display: none;">
                   <div class="govuk-form-group">
                     <label class="govuk-label govuk-label--l" for="select">
                       Question
@@ -643,48 +638,53 @@
     </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    console.log("JavaScript Loaded");
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("JavaScript Loaded");
 
-    // Function to show the relevant preview and hide others
-    function showPreview(selectedType) {
-      console.log("Showing preview for:", selectedType); // Debugging line
-      document.querySelectorAll(".preview-content").forEach((content) => {
-        content.classList.remove("active"); // Hide all previews
-      });
-
-      const selectedPreview = document.querySelector(`.${selectedType}-preview`);
-      if (selectedPreview) {
-        console.log("Found preview to show:", selectedPreview); // Debugging line
-        selectedPreview.classList.add("active"); // Show the selected preview
-      } else {
-        console.log("No matching preview found for:", selectedType);
-      }
-    }
-
-    // Listen for changes to the radio buttons in the `informationQuestion1` group
-    document.querySelectorAll("input[name='informationQuestion3']").forEach((radio) => {
-      radio.addEventListener("change", function () {
-        console.log("Radio changed:", this.value); // Debugging line
-        showPreview(this.value);
-      });
+  // Function to show the relevant preview, hide others, and scroll into focus
+  function showPreview(selectedType) {
+    console.log("Showing preview for:", selectedType); // Debugging line
+    document.querySelectorAll(".preview-content").forEach((content) => {
+      content.classList.remove("active"); // Hide all previews
     });
 
-    // Listen for changes to sub-options
-    document.querySelectorAll("input[name='written'], input[name='dateType'], input[name='listType']").forEach((subRadio) => {
-      subRadio.addEventListener("change", function () {
-        console.log("Sub-option changed:", this.value); // Debugging line
-        showPreview(this.value);
-      });
-    });
+    const selectedPreview = document.querySelector(`.${selectedType}-preview`);
+    if (selectedPreview) {
+      console.log("Found preview to show:", selectedPreview); // Debugging line
+      selectedPreview.classList.add("active"); // Show the selected preview
 
-    // Show the preview for the initially selected radio button (if any)
-    const initialSelection = document.querySelector("input[name='informationQuestion1']:checked");
-    if (initialSelection) {
-      console.log("Initial selection found:", initialSelection.value); // Debugging line
-      showPreview(initialSelection.value);
+      // Scroll the selected preview into focus within the second container
+      selectedPreview.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+    } else {
+      console.log("No matching preview found for:", selectedType);
     }
+  }
+
+  // Listen for changes to the radio buttons in the `informationQuestion3` group
+  document.querySelectorAll("input[name='informationQuestion3']").forEach((radio) => {
+    radio.addEventListener("change", function () {
+      console.log("Radio changed:", this.value); // Debugging line
+      showPreview(this.value);
+    });
   });
+
+  // Listen for changes to sub-options
+  document.querySelectorAll("input[name='written'], input[name='dateType'], input[name='listType']").forEach((subRadio) => {
+    subRadio.addEventListener("change", function () {
+      console.log("Sub-option changed:", this.value); // Debugging line
+      showPreview(this.value);
+    });
+  });
+
+  // Show the preview for the initially selected radio button (if any)
+  const initialSelection = document.querySelector("input[name='informationQuestion1']:checked");
+  if (initialSelection) {
+    console.log("Initial selection found:", initialSelection.value); // Debugging line
+    showPreview(initialSelection.value);
+  }
+});
+
 </script>
 
 <script>

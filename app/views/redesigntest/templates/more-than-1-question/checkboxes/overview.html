@@ -94,7 +94,7 @@
                 rows: [
                   {
                     key: {
-                      text: "Question 1"
+                      text: "Question"
                     },
                     value: {
                       html: data['multiQuestionLabelInputShorttext'] or ''
@@ -275,7 +275,7 @@
             </div>
                         </form>
                         <div class="govuk-button-group govuk-!-margin-top-6">
-                          <a href="/redesigntest/templates/more-than-1-question/yesno/information-type.html" class="govuk-button" role="button">
+                          <a href="/redesigntest/templates/more-than-1-question/checkboxes/information-type.html" class="govuk-button" role="button">
                             Add next question
                           </a>
 
@@ -321,24 +321,10 @@
 
         {% include "/redesigntest/templates/previews-more-than-1-question/yesno/for-overview.html" %}
 
-        <!-- Include the preview template -->
         {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %}
 
-        {% if data['setName'] %}
-        {{ govukButton({
-            text: "Add another " + (data['setName'] | lower),
-            classes: "govuk-button govuk-!-margin-top-3",
-            id: "add-another-set-button",
-            disabled: true
-        }) }}
-       {% else %}
-        {{ govukButton({
-            text: "Continue",
-            classes: "govuk-button govuk-!-margin-top-3",
-            id: "add-another-set-button",
-            disabled: true
-        }) }}
-       {% endif %}
+  {% include "/redesigntest/templates/more-than-1-question/previews/button.html" %}
+
 
       </div>
     </div>

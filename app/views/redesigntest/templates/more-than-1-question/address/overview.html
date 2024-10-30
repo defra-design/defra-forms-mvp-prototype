@@ -69,6 +69,7 @@
                             <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
                             </li>
+
                             <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" aria-current="page"  href="#overview-noquestions">Overview of questions</a>
                             </li>
@@ -355,7 +356,7 @@
                         </form>
                         <div class="govuk-button-group govuk-!-margin-top-6">
 
-                          <a href="/redesigntest/templates/more-than-1-question/infotype.html" class="govuk-button" role="button">
+                          <a href="/redesigntest/templates/more-than-1-question/address/information-type.html" class="govuk-button" role="button">
                             Add next question
                           </a>
 
@@ -400,7 +401,7 @@
 {% endif %}
 
 {% if data['multiQuestionLabelInputTextArea'] %}
-{% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
+{% include "/redesigntest/templates/more-than-1-question/previews/textarea.html" %}
 {% endif %}
 
 {% if data['questionLabelInputNumbers'] %}
@@ -438,6 +439,8 @@
 {% if data['multiQuestionLabelInputRadios'] %}
 {% include "/redesigntest/templates/previews-more-than-1-question/radios/overview.html" %}
 {% endif %}
+
+{% include "/redesigntest/templates/more-than-1-question/previews/button.html" %}
 
 
   </div>

@@ -69,7 +69,7 @@
                               <a class="moj-sub-navigation__link" href="#overview-noquestions">Overview of questions</a>
                             </li>
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Question 1</a>
+                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Question 11</a>
                             </li>
                           </ul>
                         </nav>
@@ -77,7 +77,7 @@
                         <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
                         <span class="govuk-caption-l">Page 1</span>
-                        <h2 class="govuk-heading-l">Question 1</h2>
+                        <h2 class="govuk-heading-l">Question 11</h2>
 
                         <form method="post" id="options-form" action="/redesigntest/templates/more-than-1-question/radios/overview">
                           {% from "govuk/components/input/macro.njk" import govukInput %}
@@ -312,7 +312,7 @@
     // DOM Elements
     const domElements = {
       multiQuestionLabelInputRadios: document.getElementById('multi-question-label-input-radios'),
-      questionLabelLegend: document.getElementById('question-label-legend-q1'),
+      multiQuestionOutputRadios: document.getElementById('multi-question-output-radios'),
       hintTextInput: document.getElementById('multi-question-hint-text-input-radios'),
       multiQuestionHintTextOutputRadios: document.getElementById('multi-question-hint-text-output-radios'),
       makeOptionalCheckbox: document.getElementById('makeOptional'),
@@ -336,9 +336,9 @@
 
     function initializeEventListeners() {
       // Update question label
-      if (domElements.multiQuestionLabelInputRadios && domElements.questionLabelLegend) {
+      if (domElements.multiQuestionLabelInputRadios && domElements.multiQuestionOutputRadios) {
         domElements.multiQuestionLabelInputRadios.addEventListener('input', updateQuestionLabel);
-        applyHighlightOnFocus(domElements.multiQuestionLabelInputRadios, domElements.questionLabelLegend);
+        applyHighlightOnFocus(domElements.multiQuestionLabelInputRadios, domElements.multiQuestionOutputRadios);
       }
 
       // Update hint text
@@ -361,7 +361,7 @@
 
     function updateQuestionLabel() {
       const suffix = domElements.makeOptionalCheckbox && domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
-      domElements.questionLabelLegend.textContent = (domElements.multiQuestionLabelInputRadios.value || 'Question') + suffix;
+      domElements.multiQuestionOutputRadios.textContent = (domElements.multiQuestionLabelInputRadios.value || 'Question') + suffix;
     }
 
     function updateHintText() {

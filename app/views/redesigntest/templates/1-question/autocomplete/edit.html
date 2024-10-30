@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% from "components/service-header/macro.njk" import serviceHeader %}
-{% set pageName = "Edit radios question - Apply for a county parish holding number in England" %}
+{% set pageName = "Edit autocomplete question - Apply for a county parish holding number in England" %}
 {% set headingPlaceholder = "Page heading" %}
 {% set guidancePlaceholder = "" %}
 {#  #}
@@ -121,33 +121,17 @@
                           <div class="govuk-form-group">
                             <h2 class="govuk-heading-m moj-add-another__heading" tabindex="-1">Create and edit your list of options</h2>
 
-
-
-                            <!-- Options Container -->
-                            <ol class="gem-c-reorderable-list js-enabled" id="options-container" data-module="reorderable-list">
-                              <!-- Existing Options Will Be Injected Here -->
-                            </ol>
-
-                            <div class="govuk-button-group">
-
-                            <div class="moj-button-action">
-                              {{ govukButton({
-                                text: 'Add another option',
-                                classes: 'moj-add-another__add-button govuk-!-margin-bottom-4 govuk-!-margin-bottom-6',
-                                id: 'add-option-button',
-                                type: 'button'
-                              }) }}
-                              </div>
-
-
-                              {{ govukButton({
-                                text: 'Re-order list',
-                                classes: 'govuk-button--inverse ',
-                                id: 'edit-options-button',
-                                type: 'button'
-                              }) }}
+                            <!-- autocomplete -->
+                            
+                            <div class="govuk-form-group">
+                              <label class="govuk-label" for="csv-input">
+                                Enter options as CSV (e.g., Option 1, Option 2, Option 3)
+                              </label>
+                              <textarea id="csv-input" class="govuk-textarea" rows="10"></textarea>
+                              <div id="options-entry"></div>
                             </div>
-
+                            
+                            <!-- autocomplete -->
 
                             <!-- Make Optional Checkbox -->
                             <div class="govuk-form-group">
@@ -292,6 +276,60 @@
 
     <!-- Include the preview template -->
     {% include "/redesigntest/templates/previews/autcomplete/edit.html" %}
+    
+   
+    <script src="https://unpkg.com/accessible-autocomplete@2.0.4/dist/accessible-autocomplete.min.js"></script>
+    
+    <script>
+      
+      // Process CSV and create an array of options
+      function processCSV(csvText) {
+        return csvText
+          .split(",")
+          .map((option) => option.trim())
+          .filter((option) => option.length > 0); // Ensures no empty options
+      }
+      
+      // Initialise or reinitialise the autocomplete
+      function initialiseAutocomplete(options) {
+        // Clear the container before reinitializing
+        const container = document.querySelector("#autocomplete-container");
+        container.innerHTML = "";
+      
+        // Initialise the accessible autocomplete with the given options
+        accessibleAutocomplete({
+          element: container,
+          id: "autocomplete-input", // To match it to the label
+          source: options
+        });
+      
+        // Update a status label with a green check emoji if CSV has been successfully parsed
+        const label = document.getElementById("options-entry");
+        if (options.length > 0) {
+          label.innerHTML = "Preview updated (CSV Imported ✅)";
+        } else {
+          label.innerHTML = ""; // Reset label if no options
+        }
+      }
+      
+      // initialise the autocomplete with an empty array initially
+      initialiseAutocomplete([]);
+      
+      // Event listener for changes in the textarea
+      document.getElementById("csv-input").addEventListener("input", function () {
+        // Get CSV input from textarea
+        const csvInput = this.value;
+      
+        // Process the CSV and get options
+        const options = processCSV(csvInput);
+      
+        // Reinitialise the autocomplete with the new options
+        initialiseAutocomplete(options);
+      });
+
+      
+    </script>
+    
   </div>
 </div>
 
@@ -317,18 +355,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let optionIndex = 0; // Start at 0 for the first option
 
-  // Initialize event listeners
-  initializeEventListeners();
+  // initialise event listeners
+  initialiseEventListeners();
 
-  function initializeEventListeners() {
+  function initialiseEventListeners() {
     // Update question label and apply highlight to legend
     if (domElements.questionLabelInputRadios) {
       domElements.questionLabelInputRadios.addEventListener('input', updateQuestionLabel);
       applyHighlightOnFocus(domElements.questionLabelInputRadios, getQuestionLabelLegend());
     }
 
-    // Initialize the reordering functionality
-    initializeOptionsReordering();
+    // initialise the reordering functionality
+    initialiseOptionsReordering();
   }
 
   // Dynamically fetch the legend element to ensure it exists
@@ -353,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  function initializeOptionsReordering() {
+  function initialiseOptionsReordering() {
     let editMode = false;
 
     function createOptionItem(index, labelValue = '') {
@@ -413,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     let sortableInstance;
-    function initializeSortable() {
+    function initialiseSortable() {
       sortableInstance = new Sortable(document.getElementById('options-container'), {
         animation: 150,
         handle: ".gem-c-reorderable-list__wrapper",
@@ -489,7 +527,7 @@ document.addEventListener('DOMContentLoaded', function () {
     addOptionToPreview(optionIndex, '');
     optionIndex++;
 
-    initializeSortable();
+    initialiseSortable();
 
     domElements.editOptionsButton.addEventListener('click', () => {
       editMode = !editMode;
@@ -534,10 +572,10 @@ document.addEventListener('DOMContentLoaded', function () {
       guidanceOutput: document.getElementById('guidance-paragraph')
     };
 
-    // Initialize event listeners
-    initializeEventListeners();
+    // initialise event listeners
+    initialiseEventListeners();
 
-    function initializeEventListeners() {
+    function initialiseEventListeners() {
       const inputListeners = [
         { element: domElements.questionInput, event: 'input', handler: updateQuestion },
         { element: domElements.hintTextInputRadios, event: 'input', handler: updateHintText },
@@ -563,7 +601,7 @@ document.addEventListener('DOMContentLoaded', function () {
       applyHighlightOnFocus('page-heading-input-radios', 'dynamic-heading-radios');
       applyHighlightOnFocus('guidance-textarea-radios', 'guidance-paragraph');
 
-      // Initialize content on page load
+      // initialise content on page load
       updateQuestion();
       updateHintText();
       updatePageHeading();

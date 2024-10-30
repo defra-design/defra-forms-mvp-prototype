@@ -42,16 +42,48 @@
           {{ data.hintTextInputRadios }}
         </div>
         {% endif %}
-        <div class="govuk-radios" data-module="govuk-radios">
-          {% for option in data.options %}
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="listPreview-option{{ loop.index0 }}" name="listPreview" type="radio" value="{{ option.label }}">
-            <label class="govuk-label govuk-radios__label" for="listPreview-option{{ loop.index0 }}">
-              {{ option.label or '' }}
-            </label>
-          </div>
-          {% endfor %}
+        
+        <script src="https://unpkg.com/accessible-autocomplete@2.0.4/dist/accessible-autocomplete.min.js"></script>
+        
+        <!-- autocomplete preview -->
+        
+        <div class="govuk-form-group">
+          <label id="autocomplete-label" class="govuk-label" for="autocomplete-input">
+            Start typing to select an option
+          </label>
+          <div id="autocomplete-container"></div>
         </div>
+        
+        <!-- autocomplete preview -->
+        
+       <script>
+       // Initialise or reinitialise the autocomplete
+       function initialiseAutocomplete(options) {
+         // Clear the container before reinitializing
+         const container = document.querySelector("#autocomplete-container");
+         container.innerHTML = "";
+       
+         // Dummy options list
+         const dummyOptions = [
+         'France',
+         'Germany',
+         'United Kingdom'
+         ];
+       
+         // Initialise the accessible autocomplete with the given options
+         accessibleAutocomplete({
+         element: container,
+         id: "autocomplete-input", // To match it to the label
+         source: dummyOptions
+         });
+       }
+       
+       // Ensure that the function runs after the content is loaded
+       document.addEventListener("DOMContentLoaded", function() {
+         initialiseAutocomplete();
+       });
+       </script>
+        
       </fieldset>
     </div>
 

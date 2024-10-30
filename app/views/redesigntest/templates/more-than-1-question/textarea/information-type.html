@@ -90,9 +90,17 @@
 
                             <li class="moj-sub-navigation__item">
                               <a
-                                class="moj-sub-navigation__link" aria-current="page"
+                                class="moj-sub-navigation__link" aria-current=""
                                 href="#overview-noquestions"
                                 >Overview of questions</a
+                              >
+                            </li>
+
+                            <li class="moj-sub-navigation__item">
+                              <a
+                                class="moj-sub-navigation__link" aria-current="page"
+                                href="#question2"
+                                >Question 3</a
                               >
                             </li>
 
@@ -587,25 +595,21 @@
         </div>
       </div>
 
-
-              {% set setName = data['setName'] or '' %}
-              {% set overview0 = data['overview0'] or '' %}
-
-              {% if overview0 == "morethan1" %}
-              {{ govukButton({
-                text: "Add another " ~ setName,
-                classes: "govuk-button govuk-!-margin-top-3",
-                id: "add-another-set-button",
-                disabled: true
-              }) }}
-              {% else %}
-              {{ govukButton({
-                text: "Continue",
-                classes: "govuk-button govuk-!-margin-top-6",
-                id: "once-button",
-                disabled: true
-              }) }}
-              {% endif %}
+      {% if data['setName'] %}
+      {{ govukButton({
+          text: "Add another " + (data['setName'] | lower),
+          classes: "govuk-button govuk-!-margin-top-3",
+          id: "add-another-set-button",
+          disabled: true
+      }) }}
+     {% else %}
+      {{ govukButton({
+          text: "Continue",
+          classes: "govuk-button govuk-!-margin-top-3",
+          id: "add-another-set-button",
+          disabled: true
+      }) }}
+     {% endif %}
 
 
           </div>

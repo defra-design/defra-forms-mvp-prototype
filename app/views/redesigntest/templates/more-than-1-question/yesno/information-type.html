@@ -90,9 +90,17 @@
 
                             <li class="moj-sub-navigation__item">
                               <a
-                                class="moj-sub-navigation__link" aria-current="page"
+                                class="moj-sub-navigation__link"
                                 href="#overview-noquestions"
                                 >Overview of questions</a
+                              >
+                            </li>
+
+                            <li class="moj-sub-navigation__item">
+                              <a
+                                class="moj-sub-navigation__link" aria-current="page"
+                                href="#question2"
+                                >Question 10</a
                               >
                             </li>
 
@@ -309,9 +317,10 @@
 
       {% include "/redesigntest/templates/previews-more-than-1-question/email/for-overview.html" %}
 
-      {% include "/redesigntest/templates/previews-more-than-1-question/yesno/for-overview.html" %}
-
-
+      {% include "/redesigntest/templates/more-than-1-question/previews/yesno.html" %}
+{#
+ <!-- Include the preview template -->
+ {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %} #}
 
               <div class="preview-container" id="preview-container">
 
@@ -603,25 +612,22 @@
               </div>
 
 
-
-              {% set setName = data['setName'] or '' %}
-              {% set overview0 = data['overview0'] or '' %}
-
-              {% if overview0 == "morethan1" %}
+              {% if data['setName'] %}
               {{ govukButton({
-                text: "Add another " ~ setName,
-                classes: "govuk-button govuk-!-margin-top-3",
-                id: "add-another-set-button",
-                disabled: true
+                  text: "Add another " + (data['setName'] | lower),
+                  classes: "govuk-button govuk-!-margin-top-3",
+                  id: "add-another-set-button",
+                  disabled: true
               }) }}
-              {% else %}
+             {% else %}
               {{ govukButton({
-                text: "Continue",
-                classes: "govuk-button govuk-!-margin-top-6",
-                id: "once-button",
-                disabled: true
+                  text: "Continue",
+                  classes: "govuk-button govuk-!-margin-top-3",
+                  id: "add-another-set-button",
+                  disabled: true
               }) }}
-              {% endif %}
+             {% endif %}
+
 
 
           </div>

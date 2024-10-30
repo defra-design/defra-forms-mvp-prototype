@@ -8,7 +8,7 @@
   {{ serviceHeader({
     organisationName: "Defra",
     productName: "Forms Designer",
-    serviceName: "Apply for a county parish holding certificatparish holding certificatparish holding certificate",
+    serviceName: "",
     containerClasses: containerClasses,
     accountName: "Chris Smith",
     homepageLink: "/",
@@ -19,7 +19,7 @@
       { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }    ],
     activeLinkId: "nav-editor"
   }) }}
-{#
+
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
     {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add
@@ -38,7 +38,7 @@
           >
 
           Edit page 2
-        </h1> #}
+        </h1>
 
         {# <p class="govuk-body" style="color: white">Last saved at <time>5:24pm</time></p> #}
 
@@ -166,6 +166,7 @@
                           value: "morethan1",
                           text: "More than once",
                           id: "more-than-1",
+                          disabled: true,
                           conditional: {
                           html: morethan1Html
                           }

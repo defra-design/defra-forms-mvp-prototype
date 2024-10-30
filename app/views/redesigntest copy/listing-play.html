@@ -1,0 +1,1425 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Add and edit your pages - Apply for a county parish holding number in England" %}
+
+{% block header %}
+{{ serviceHeader({
+  organisationName: "Defra",
+  productName: "Forms Designer",
+  serviceName: "",
+  containerClasses: containerClasses,
+  accountName: "Chris Smith",
+  homepageLink: "/",
+  signOutLink: "/onboarding/sign-out-confirmation",
+  navigationItems: [
+    { href: "/library.html", text: "Forms library", id: "nav-library" },
+    { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
+    { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }
+  ],
+  activeLinkId: "nav-editor"
+}) }}
+
+<div class="x-govuk-masthead x-govuk-masthead--large">
+  <div class="govuk-width-container">
+    {{ govukBackLink({
+      classes: "govuk-back-link--inverse",
+      text: "Back to overview",
+      href: "#"
+    }) }}
+
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+        style="border-bottom:1px solid white; margin-bottom: 0;">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="x-govuk-masthead__title">
+          <span class="govuk-caption-l" style="color: white;">Apply for a county parish holding number</span>
+          Add and edit pages
+        </h1>
+        <div class="govuk-button-group">
+          <a href="/redesigntest/questionnumber.html" role="button" draggable="false"
+              class="govuk-button govuk-button--inverse" data-module="govuk-button">
+            Add new page
+          </a>
+          <a href="/redesigntest/reorder/main.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"
+              data-module="govuk-button">
+            Re-order pages
+          </a>
+          <a href="#" class="govuk-link govuk-link--inverse">Preview form</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .app-header--full-width-border {
+    border-bottom: 10px solid #1f70b8;
+  }
+
+  .x-govuk-masthead {
+    background-color: #008531 !important;
+  }
+
+  .preview-container {
+    display: none;
+    outline: solid 1px #008938;
+    position: sticky;
+    top: 0;
+    padding: 20px;
+    box-shadow: 5px 10px #008938;
+    margin-bottom: 30px;
+  }
+</style>
+
+{# Assign included templates to variables #}
+{% set shorttextPreviewContent %}
+  {% include "/redesigntest/templates/previews/shorttext/overview.html" %}
+{% endset %}
+
+{% set textareaPreviewContent %}
+  {% include "/redesigntest/templates/previews/textarea/overview.html" %}
+{% endset %}
+
+{% set datePreviewContent %}
+  {% include "/redesigntest/templates/previews/date/overview.html" %}
+{% endset %}
+
+{% set addressPreviewContent %}
+  {% include "/redesigntest/templates/previews/address/overview.html" %}
+{% endset %}
+
+{% set phonePreviewContent %}
+  {% include "/redesigntest/templates/previews/phone/overview.html" %}
+{% endset %}
+
+{% set filePreviewContent %}
+  {% include "/redesigntest/templates/previews/fileupload/overview.html" %}
+{% endset %}
+
+{% set emailPreviewContent %}
+  {% include "/redesigntest/templates/previews/email/overview.html" %}
+{% endset %}
+
+{% set radiosPreviewContent %}
+  {% include "/redesigntest/templates/previews/radios/overview.html" %}
+{% endset %}
+
+{% set yesnoPreviewContent %}
+  {% include "/redesigntest/templates/previews/yesno/overview.html" %}
+{% endset %}
+
+<form class="form" action="/september/questionnumber" method="post">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full-from-desktop" id="container" style="overflow-y: auto;">
+
+
+
+
+{# =========================================================
+SHORT ANSWER
+========================================================= #}
+
+{% if data['questionLabelInputShortText'] %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <!-- Main Content -->
+        <div class="govuk-summary-card govuk-!-margin-bottom-5" style="border-left: 10px solid #008938;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">
+                    Page 1:
+                    {% if data['pageHeadingShorttext'] %}
+                        {{ data['pageHeadingShorttext'] }}
+                    {% else %}
+                        {{ data['questionLabelInputShortText'] }}
+                    {% endif %}
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage1"
+                            href="/redesigntest/templates/1-question/shorttext/overview.html">Edit<span
+                                class="govuk-visually-hidden">page 1</span></a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="shorttext-preview" href="#">Preview<span
+                                class="govuk-visually-hidden">page 1</span></a>
+                        <a class="govuk-link close-link" data-preview="shorttext-preview" style="display: none;"
+                            href="#">Close Preview<span class="govuk-visually-hidden">page 1</span></a>
+                    </li>
+                </ul>
+            </div>
+            {% if data['pageHeadingShorttext'] %}
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 1</dt>
+                        <dd class="govuk-summary-list__value">{{ data['questionLabelInputShortText'] or '' }}</dd>
+                    </div>
+                </dl>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+        <!-- Preview Container -->
+        <div class="preview-container" style="margin-top:1px" id="shorttext-preview">
+            <div id="dynamic-preview-content-shorttext">
+                <div id="before-content">
+                    <p class="govuk-body-s" style="margin-bottom: 0">
+                        <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                            target="_blank">Preview this page in a new tab</a>
+                    </p>
+                </div>
+
+                <div class="additional-content">
+                    {{ govukTag({ text: "Preview of page 1", classes: "govuk-tag--yellow govuk-!-margin-bottom-2
+                    govuk-!-margin-top-8" }) }}
+
+                    <div id="heading-container">
+                        {% set setName = data['setName'] or '' %}
+                        <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setNameShorttext'] or '' }} 1</span>
+                        <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingShorttext'] or '' }}</h1>
+                    </div>
+
+                    <!-- Guidance Paragraph -->
+                    <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceShorttext'] or '' }}</p>
+
+                    <div class="govuk-form-group">
+                        <h1 class="govuk-label-wrapper">
+                            <label class="govuk-label govuk-label--l" for="text-input-field" id="question-label-legend">
+                                {{ data['questionLabelInputShortText'] or '' }}
+                            </label>
+                        </h1>
+                        <div id="hint-text-output" class="govuk-hint">
+                            {{ data['hintTextInput'] or '' }}
+                        </div>
+                        <input class="govuk-input" id="text-input-field" name="textInputField" type="text"
+                            aria-describedby="hint-text-output">
+                    </div>
+
+
+{% set setName = data['setNameShorttext'] | default('') %}
+{% set overview0Shorttext = data['overview0Shorttext'] | default('') %}
+
+{% if overview0Shorttext == "morethan1" %}
+  {{ govukButton({
+    text: "Add another " ~ setName,
+    classes: "govuk-button govuk-!-margin-top-3",
+    id: "add-another-set-button",
+    disabled: true
+  }) }}
+{% else %}
+  {{ govukButton({
+    text: "Continue",
+    classes: "govuk-button govuk-!-margin-top-6",
+    id: "once-button",
+    disabled: true
+  }) }}
+{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% set setName = data['setName'] or '' %}
+{% set overview0 = data['overview0'] or '' %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dynamicCaption = document.getElementById("dynamic-caption");
+        const setName = dynamicCaption.getAttribute("data-setname");
+
+        if (!setName) {
+            dynamicCaption.style.display = "none";
+        }
+    });
+</script>
+
+{% endif %}
+
+
+
+{# =========================================================
+LONG ANSWER
+========================================================= #}
+
+{% if data['questionLabelInputTextArea'] %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">
+                    Page 2:
+                    {% if data['pageHeadingTextarea'] %}
+                        {{ data['pageHeadingTextarea'] }}
+                    {% else %}
+                        {{ data['questionLabelInputTextArea'] }}
+                    {% endif %}
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage2"
+                            href="/redesigntest/templates/1-question/textarea/overview.html">Edit<span
+                                class="govuk-visually-hidden">page 2</span></a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="textarea-preview" href="#">Preview<span
+                                class="govuk-visually-hidden">page 2</span></a>
+                        <a class="govuk-link close-link" data-preview="textarea-preview" style="display: none;"
+                            href="#">Close Preview<span class="govuk-visually-hidden">page 2</span></a>
+                    </li>
+                </ul>
+            </div>
+            {% if data['pageHeadingTextarea'] %}
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 1</dt>
+                        <dd class="govuk-summary-list__value">{{ data['questionLabelInputTextArea'] or '' }}</dd>
+                    </div>
+                </dl>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+        <div class="preview-container" id="textarea-preview">
+            <div id="dynamic-preview-content-textarea">
+                <div id="before-content">
+                    <p class="govuk-body-s" style="margin-bottom: 0">
+                        <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                            target="_blank">Preview this page in a new tab</a>
+                    </p>
+                </div>
+
+                <div class="additional-content">
+                    {{ govukTag({ text: "Preview of page 2", classes: "govuk-tag--yellow govuk-!-margin-bottom-2
+                    govuk-!-margin-top-8" }) }}
+
+                    <div id="heading-container">
+                        {% set setName = data['setName'] or '' %}
+                        <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }} 1</span>
+                        <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingTextarea'] or '' }}</h1>
+                    </div>
+
+                    <!-- Guidance Paragraph -->
+                    <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceTextarea'] or '' }}</p>
+
+                    <div class="govuk-form-group">
+                        <h1 class="govuk-label-wrapper">
+                            <label class="govuk-label govuk-label--l" for="text-input-field"
+                                id="question-label-legend">
+                                {{ data['questionLabelInputTextArea'] or '' }}
+                            </label>
+                        </h1>
+                        <div id="hint-text-output" class="govuk-hint">
+                            {{ data['hintTextInputTextArea'] or '' }}
+                        </div>
+                        <textarea class="govuk-textarea" rows="5" id="text-input-field" name="textInputField"
+                            type="text" aria-describedby="hint-text-output"></textarea>
+                    </div>
+
+                    {% set setName = data['setName'] or '' %}
+                    {% set overview0 = data['overview0'] or '' %}
+
+                    {% if overview0 == "morethan1" %}
+                    {{ govukButton({
+                    text: "Add another " ~ setName,
+                    classes: "govuk-button govuk-!-margin-top-3",
+                    id: "add-another-set-button",
+                    disabled: true
+                    }) }}
+                    {% else %}
+                    {{ govukButton({
+                    text: "Continue",
+                    classes: "govuk-button govuk-!-margin-top-6",
+                    id: "once-button",
+                    disabled: true
+                    }) }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dynamicCaption = document.getElementById("dynamic-caption");
+        const setName = dynamicCaption.getAttribute("data-setname");
+
+        if (!setName) {
+            dynamicCaption.style.display = "none";
+        }
+    });
+</script>
+
+{% endif %}
+
+
+
+{# =========================================================
+DATE
+========================================================= #}
+{% if data['questionLabelInputDate'] %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <!-- Main Content -->
+        <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">
+                    Page 3:
+                    {% if data['pageHeadingDate'] %}
+                        {{ data['pageHeadingDate'] }}
+                    {% else %}
+                        {{ data['questionLabelInputDate'] }}
+                    {% endif %}
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage3" href="/redesigntest/templates/1-question/date/overview.html">
+                            Edit<span class="govuk-visually-hidden"> page 3</span>
+                        </a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="date-preview" href="#">
+                            Preview<span class="govuk-visually-hidden"> page 3</span>
+                        </a>
+                        <a class="govuk-link close-link" data-preview="date-preview" style="display: none;" href="#">
+                            Close Preview<span class="govuk-visually-hidden"> page 3</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {% if data['pageHeadingDate'] %}
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 1</dt>
+                        <dd class="govuk-summary-list__value">{{ data['questionLabelInputDate'] or '' }}</dd>
+                    </div>
+                </dl>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+        <!-- Preview Container -->
+        <div class="preview-container" id="date-preview">
+            <div id="dynamic-preview-content-date">
+                <div id="before-content">
+                    <p class="govuk-body-s" style="margin-bottom: 0">
+                        <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                            Preview this page in a new tab
+                        </a>
+                    </p>
+                </div>
+
+                <div class="additional-content">
+                    {{ govukTag({ text: "Preview of page 3", classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
+
+                    <!-- Dynamic Heading -->
+                    <div id="heading-container">
+                        {% set setName = data['setName'] or '' %}
+                        <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">
+                            {{ data['setName'] or '' }} 1
+                        </span>
+                        <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingDate'] or '' }}</h1>
+                    </div>
+
+                    <!-- Guidance Paragraph -->
+                    <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceDate'] or '' }}</p>
+
+                    <!-- Date Input Group -->
+                    <div class="govuk-form-group govuk-!-margin-top-6">
+                        <fieldset class="govuk-fieldset" role="group">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l" id="question-label-legend">
+                                {{ data['questionLabelInputDate'] or '' }}
+                            </legend>
+                            <div class="govuk-form-group">
+                                <div id="hint-text-output" class="govuk-hint">
+                                    {{ data['hintTextInputDate'] or '' }}
+                                </div>
+                                <div class="govuk-date-input" id="date-input" data-module="govuk-date-input">
+                                    <div class="govuk-date-input__item">
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label govuk-date-input__label" for="date-day">Day</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day" name="date-day" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="govuk-date-input__item">
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label govuk-date-input__label" for="date-month">Month</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month" name="date-month" type="text" pattern="[0-9]*">
+                                        </div>
+                                    </div>
+                                    <div class="govuk-date-input__item">
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label govuk-date-input__label" for="date-year">Year</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year" name="date-year" type="text" pattern="[0-9]*">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    {% set overview0 = data['overview0'] or '' %}
+
+                    {% if overview0 == "morethan1" %}
+                        {{ govukButton({
+                            text: "Add another " ~ setName,
+                            classes: "govuk-button govuk-!-margin-top-3",
+                            id: "add-another-set-button",
+                            disabled: true
+                        }) }}
+                    {% else %}
+                        {{ govukButton({
+                            text: "Continue",
+                            classes: "govuk-button govuk-!-margin-top-6",
+                            id: "once-button",
+                            disabled: true
+                        }) }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dynamicCaption = document.getElementById("dynamic-caption");
+        const setName = dynamicCaption.getAttribute("data-setname");
+
+        if (!setName) {
+            dynamicCaption.style.display = "none";
+        }
+    });
+</script>
+
+{% endif %}
+
+
+{# =========================================================
+ADDRESS
+========================================================= #}
+
+{# Address Question #}
+{% if data['questionLabelInputAddress'] %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">
+                    Page 4:
+                    {% if data['pageHeadingAddress'] %}
+                        {{ data['pageHeadingAddress'] }}
+                    {% else %}
+                        {{ data['questionLabelInputAddress'] }}
+                    {% endif %}
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage4"
+                            href="/redesigntest/templates/1-question/address/overview.html">Edit<span
+                                class="govuk-visually-hidden">page 4</span></a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="address-preview" href="#">Preview<span
+                                class="govuk-visually-hidden">page 4</span></a>
+                        <a class="govuk-link close-link" data-preview="address-preview" style="display: none;"
+                            href="#">Close Preview<span class="govuk-visually-hidden">page 4</span></a>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {% if data['pageHeadingAddress'] %}
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 1</dt>
+                        <dd class="govuk-summary-list__value">{{ data['questionLabelInputAddress'] or '' }}</dd>
+                    </div>
+                </dl>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+        <div class="preview-container" id="address-preview">
+            <div id="dynamic-preview-content-address">
+                <div id="before-content">
+                    <p class="govuk-body-s" style="margin-bottom: 0">
+                        <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                            target="_blank">Preview this page in a new tab</a>
+                    </p>
+                </div>
+
+                <div class="additional-content">
+                    {{ govukTag({ text: "Preview of page 4", classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
+
+                    <div id="heading-container">
+                        <span id="dynamic-caption" class="govuk-caption-xl">{{ (data['setName'] or '') + ' 1' }}</span>
+                        <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingAddress'] or '' }}</h1>
+                    </div>
+
+                    <!-- Guidance Paragraph -->
+                    <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceAddress'] or '' }}</p>
+
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                            <h1 class="govuk-fieldset__heading" id="question-label-legend">
+                                {{ data['questionLabelInputAddress'] or '' }}
+                            </h1>
+                            <div class="govuk-hint" id="hint-text-output">{{ data['hintTextInputAddress'] or '' }}</div>
+                        </legend>
+
+                        <!-- Address Line 1 -->
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="address-line-1">Address line 1</label>
+                            <input class="govuk-input" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1">
+                        </div>
+
+                        <!-- Address Line 2 (Optional) -->
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="address-line-2">Address line 2 (optional)</label>
+                            <input class="govuk-input" id="address-line-2" name="addressLine2" type="text" autocomplete="address-line2">
+                        </div>
+
+                        <!-- Town or City -->
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="address-town">Town or city</label>
+                            <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="addressTown" type="text" autocomplete="address-level2">
+                        </div>
+
+                        <!-- Postcode -->
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="address-postcode">Postcode</label>
+                            <input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode" type="text" autocomplete="postal-code">
+                        </div>
+                    </fieldset>
+
+                    {% set setName = data['setName'] or '' %}
+                    {% set overview0 = data['overview0'] or '' %}
+
+                    {% if overview0 == "morethan1" %}
+                    {{ govukButton({
+                        text: "Add another " ~ setName,
+                        classes: "govuk-button govuk-!-margin-top-3",
+                        id: "add-another-set-button",
+                        disabled: true
+                    }) }}
+                    {% else %}
+                    {{ govukButton({
+                        text: "Continue",
+                        classes: "govuk-button govuk-!-margin-top-6",
+                        id: "once-button",
+                        disabled: true
+                    }) }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dynamicCaption = document.getElementById("dynamic-caption");
+        const setName = dynamicCaption.getAttribute("data-setname");
+
+        if (!setName) {
+            dynamicCaption.style.display = "none";
+        }
+    });
+</script>
+{% endif %}
+
+
+{# =========================================================
+PHONE
+========================================================= #}
+{# Phone Question #}
+{% if data['questionLabelInputPhone'] %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">
+                    Page 5:
+                    {% if data['pageHeadingPhone'] %}
+                        {{ data['pageHeadingPhone'] }}
+                    {% else %}
+                        {{ data['questionLabelInputPhone'] }}
+                    {% endif %}
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage5"
+                            href="/redesigntest/templates/1-question/phone/overview.html">Edit<span
+                                class="govuk-visually-hidden">page 5</span></a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="phone-preview" href="#">Preview<span
+                                class="govuk-visually-hidden">page 5</span></a>
+                        <a class="govuk-link close-link" data-preview="phone-preview" style="display: none;"
+                            href="#">Close Preview<span class="govuk-visually-hidden">page 5</span></a>
+                    </li>
+                </ul>
+            </div>
+            {% if data['pageHeadingPhone'] %}
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 1</dt>
+                        <dd class="govuk-summary-list__value">{{ data['questionLabelInputPhone'] or '' }}</dd>
+                    </div>
+                </dl>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+        <div class="preview-container" id="phone-preview">
+            <div id="dynamic-preview-content-phone">
+                <div id="before-content">
+                    <p class="govuk-body-s" style="margin-bottom: 0">
+                        <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                            target="_blank">Preview this page in a new tab</a>
+                    </p>
+                </div>
+
+                <div class="additional-content">
+                    {{ govukTag({ text: "Preview of page 5", classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
+
+                    <div id="heading-container">
+                        {% set setName = data['setName'] or '' %}
+                        <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">
+                            {{ data['setName'] or '' }} 1
+                        </span>
+                        <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingPhone'] or '' }}</h1>
+                    </div>
+
+                    <!-- Guidance Paragraph -->
+                    <p class="govuk-body" id="guidance-paragraph">{{ data['guidancePhone'] or '' }}</p>
+
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-label--l" for="phone-number-input" id="question-label-legend">
+                            {{ data['questionLabelInputPhone'] or '' }}
+                        </label>
+                        <div id="hint-text-output" class="govuk-hint">{{ data['hintTextInputPhone'] or '' }}</div>
+                        <input class="govuk-input govuk-input--width-20" id="phone-number-input" name="phoneNumber" type="tel" autocomplete="tel">
+                    </div>
+
+                    {% set overview0 = data['overview0'] or '' %}
+
+                    {% if overview0 == "morethan1" %}
+                    {{ govukButton({
+                        text: "Add another " ~ setName,
+                        classes: "govuk-button govuk-!-margin-top-3",
+                        id: "add-another-set-button",
+                        disabled: true
+                    }) }}
+                    {% else %}
+                    {{ govukButton({
+                        text: "Continue",
+                        classes: "govuk-button govuk-!-margin-top-6",
+                        id: "once-button",
+                        disabled: true
+                    }) }}
+                    {% endif %}
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const dynamicCaption = document.getElementById("dynamic-caption");
+                            const setName = dynamicCaption.getAttribute("data-setname");
+
+                            if (!setName) {
+                                dynamicCaption.style.display = "none";
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+{# =========================================================
+FILE UPLOAD
+========================================================= #}
+{# FILES Question #}
+{% if data['questionLabelInputFile'] %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">
+                    Page 6:
+                    {% if data['pageHeadingFile'] %}
+                        {{ data['pageHeadingFile'] }}
+                    {% else %}
+                        {{ data['questionLabelInputFile'] }}
+                    {% endif %}
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage6"
+                            href="/redesigntest/templates/1-question/fileupload/overview.html">Edit<span
+                                class="govuk-visually-hidden">page 6</span></a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="file-preview" href="#">Preview<span
+                                class="govuk-visually-hidden">page 6</span></a>
+                        <a class="govuk-link close-link" data-preview="file-preview" style="display: none;"
+                            href="#">Close Preview<span class="govuk-visually-hidden">page 6</span></a>
+                    </li>
+                </ul>
+            </div>
+            {% if data['pageHeadingFile'] %}
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 1</dt>
+                        <dd class="govuk-summary-list__value">{{ data['questionLabelInputFile'] or '' }}</dd>
+                    </div>
+                </dl>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+        <div class="preview-container" id="file-preview">
+            <div id="dynamic-preview-content-file">
+                <div id="before-content">
+                    <p class="govuk-body-s" style="margin-bottom: 0">
+                        <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                            target="_blank">Preview this page in a new tab</a>
+                    </p>
+                </div>
+
+                <div class="additional-content">
+                    {{ govukTag({ text: "Preview of page 6", classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
+
+                    <div id="heading-container">
+                        {% set setName = data['setName'] or '' %}
+                        <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">
+                            {{ data['setName'] or '' }} 1
+                        </span>
+                        <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingFile'] or '' }}</h1>
+                    </div>
+
+                    <!-- Guidance Paragraph -->
+                    <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceFile'] or '' }}</p>
+
+                    <div class="govuk-form-group">
+                        <h1 class="govuk-label-wrapper">
+                            <label class="govuk-label govuk-label--l" for="text-input-field" id="question-label-legend">
+                                {{ data['questionLabelInputFile'] or '' }}
+                            </label>
+                        </h1>
+                        <div id="hint-text-output" class="govuk-hint">{{ data['hintTextInputFile'] or '' }}</div>
+
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="file-upload-1">Upload a file</label>
+                            <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+                        </div>
+
+                        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                            Upload file
+                        </button>
+
+                        <p class="govuk-body" aria-live="polite">1 of 2 files uploaded</p>
+                        <p class="govuk-body govuk-!-display-none" id="refreshPageProgress"><a href="#" class="govuk-link">Refresh page to update file upload progress</a></p>
+
+                        <dl class="govuk-summary-list govuk-summary-list--long-key">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">File2.jpg</dt>
+                                <dd class="govuk-summary-list__value"><strong class="govuk-tag govuk-tag--yellow">Uploading</strong></dd>
+                                <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> file2.jpg</span></a></dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">File1.jpg</dt>
+                                <dd class="govuk-summary-list__value"><strong class="govuk-tag govuk-tag--green">Uploaded</strong></dd>
+                                <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> file1.jpg</span></a></dd>
+                            </div>
+                        </dl>
+
+                        {% set overview0 = data['overview0'] or '' %}
+
+                        {% if overview0 == "morethan1" %}
+                        {{ govukButton({
+                            text: "Add another " ~ setName,
+                            classes: "govuk-button govuk-!-margin-top-3",
+                            id: "add-another-set-button",
+                            disabled: true
+                        }) }}
+                        {% else %}
+                        {{ govukButton({
+                            text: "Continue",
+                            classes: "govuk-button govuk-!-margin-top-6",
+                            id: "once-button",
+                            disabled: true
+                        }) }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dynamicCaption = document.getElementById("dynamic-caption");
+        const setName = dynamicCaption.getAttribute("data-setname");
+
+        if (!setName) {
+            dynamicCaption.style.display = "none";
+        }
+    });
+</script>
+{% endif %}
+
+
+
+{# =========================================================
+EMAIL
+========================================================= #}
+{# Email Question #}
+{% if data['questionLabelInputEmail'] %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">
+                    Page 6:
+                    {% if data['pageHeadingEmail'] %}
+                        {{ data['pageHeadingEmail'] }}
+                    {% else %}
+                        {{ data['questionLabelInputEmail'] }}
+                    {% endif %}
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage6"
+                            href="/redesigntest/templates/1-question/email/overview.html">Edit<span
+                                class="govuk-visually-hidden">page 6</span></a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="email-preview" href="#">Preview<span
+                                class="govuk-visually-hidden">page 6</span></a>
+                        <a class="govuk-link close-link" data-preview="email-preview" style="display: none;"
+                            href="#">Close Preview<span class="govuk-visually-hidden">page 6</span></a>
+                    </li>
+                </ul>
+            </div>
+            {% if data['pageHeadingEmail'] %}
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 1</dt>
+                        <dd class="govuk-summary-list__value">{{ data['questionLabelInputEmail'] or '' }}</dd>
+                    </div>
+                </dl>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+        <div class="preview-container" id="email-preview">
+            <div id="dynamic-preview-content-email">
+                <div id="before-content">
+                    <p class="govuk-body-s" style="margin-bottom: 0">
+                        <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                            target="_blank">Preview this page in a new tab</a>
+                    </p>
+                </div>
+
+                <div class="additional-content">
+                    {{ govukTag({ text: "Preview of page 6", classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
+
+                    <div id="heading-container">
+                        {% set setName = data['setName'] or '' %}
+                        <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">
+                            {{ data['setName'] or '' }} 1
+                        </span>
+                        <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingEmail'] or '' }}</h1>
+                    </div>
+
+                    <!-- Guidance Paragraph -->
+                    <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceEmail'] or '' }}</p>
+
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-label--l" for="email" id="question-label-legend">
+                            {{ data['questionLabelInputEmail'] or '' }}
+                        </label>
+                        <div id="hint-text-output" class="govuk-hint">{{ data['hintTextInputEmail'] or '' }}</div>
+                        <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" autocomplete="email">
+                    </div>
+
+                    {% set overview0 = data['overview0'] or '' %}
+
+                    {% if overview0 == "morethan1" %}
+                    {{ govukButton({
+                        text: "Add another " ~ setName,
+                        classes: "govuk-button govuk-!-margin-top-3",
+                        id: "add-another-set-button",
+                        disabled: true
+                    }) }}
+                    {% else %}
+                    {{ govukButton({
+                        text: "Continue",
+                        classes: "govuk-button govuk-!-margin-top-6",
+                        id: "once-button",
+                        disabled: true
+                    }) }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dynamicCaption = document.getElementById("dynamic-caption");
+        const setName = dynamicCaption.getAttribute("data-setname");
+
+        if (!setName) {
+            dynamicCaption.style.display = "none";
+        }
+    });
+</script>
+{% endif %}
+
+
+{# =========================================================
+YES / NO
+========================================================= #}
+  {# Yes/No Question #}
+  {% if data['questionLabelInputYesno'] %}
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+          <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+              <div class="govuk-summary-card__title-wrapper">
+                  <h2 class="govuk-summary-card__title">
+                      Page 8:
+                      {% if data['pageHeadingYesno'] %}
+                          {{ data['pageHeadingYesno'] }}
+                      {% else %}
+                          {{ data['questionLabelInputYesno'] }}
+                      {% endif %}
+                  </h2>
+                  <ul class="govuk-summary-card__actions">
+                      <li class="govuk-summary-card__action">
+                          <a class="govuk-link govuk-link--no-visited-state" id="editpage8"
+                              href="/redesigntest/templates/1-question/yesno/overview.html">Edit<span
+                                  class="govuk-visually-hidden">page 8</span></a>
+                      </li>
+                      <li class="govuk-summary-card__action">
+                          <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="yesno-preview" href="#">Preview<span
+                                  class="govuk-visually-hidden">page 8</span></a>
+                          <a class="govuk-link close-link" data-preview="yesno-preview" style="display: none;"
+                              href="#">Close Preview<span class="govuk-visually-hidden">page 8</span></a>
+                      </li>
+                  </ul>
+              </div>
+              {% if data['pageHeadingYesno'] %}
+              <div class="govuk-summary-card__content">
+                  <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                          <dt class="govuk-summary-list__key">Question 1</dt>
+                          <dd class="govuk-summary-list__value">{{ data['questionLabelInputYesno'] or '' }}</dd>
+                      </div>
+                  </dl>
+              </div>
+              {% endif %}
+          </div>
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+          <div class="preview-container" id="yesno-preview">
+              <div id="dynamic-preview-content-yesno">
+                  <div id="before-content">
+                      <p class="govuk-body-s" style="margin-bottom: 0">
+                          <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                              target="_blank">Preview this page in a new tab</a>
+                      </p>
+                  </div>
+
+                  <div class="additional-content">
+                      {{ govukTag({ text: "Preview of page 8", classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
+
+                      <div id="heading-container">
+                          {% set setName = data['setName'] or '' %}
+                          <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">
+                              {{ data['setName'] or '' }} 1
+                          </span>
+                          <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingYesno'] or '' }}</h1>
+                      </div>
+
+                      <!-- Guidance Paragraph -->
+                      <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceYesno'] or '' }}</p>
+
+                      <div class="govuk-form-group">
+                          <fieldset class="govuk-fieldset" aria-describedby="generic-question-hint">
+                              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                  <h1 class="govuk-label-wrapper">
+                                      <label class="govuk-label govuk-label--l" for="yesno-input" id="question-label-legend">
+                                          {{ data['questionLabelInputYesno'] or '' }}
+                                      </label>
+                                  </h1>
+                              </legend>
+                              <div id="hint-text-output" class="govuk-hint">{{ data['hintTextInputYesno'] or '' }}</div>
+                              <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                                  <div class="govuk-radios__item">
+                                      <input class="govuk-radios__input" id="yes-option" name="generic-question" type="radio" value="yes">
+                                      <label class="govuk-label govuk-radios__label" for="yes-option">Yes</label>
+                                  </div>
+                                  <div class="govuk-radios__item">
+                                      <input class="govuk-radios__input" id="no-option" name="generic-question" type="radio" value="no">
+                                      <label class="govuk-label govuk-radios__label" for="no-option">No</label>
+                                  </div>
+                              </div>
+                          </fieldset>
+                      </div>
+
+                      {% set overview0 = data['overview0'] or '' %}
+
+                      {% if overview0 == "morethan1" %}
+                      {{ govukButton({
+                          text: "Add another " ~ setName,
+                          classes: "govuk-button govuk-!-margin-top-3",
+                          id: "add-another-set-button",
+                          disabled: true
+                      }) }}
+                      {% else %}
+                      {{ govukButton({
+                          text: "Continue",
+                          classes: "govuk-button govuk-!-margin-top-6",
+                          id: "once-button",
+                          disabled: true
+                      }) }}
+                      {% endif %}
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          const dynamicCaption = document.getElementById("dynamic-caption");
+          const setName = dynamicCaption.getAttribute("data-setname");
+
+          if (!setName) {
+              dynamicCaption.style.display = "none";
+          }
+      });
+  </script>
+  {% endif %}
+
+
+{# =========================================================
+CHECKBOXES
+========================================================= #}
+ {# checkboxes Question #}
+ {% if data['questionLabelInputCheckboxes'] %}
+ <div class="govuk-grid-row">
+     <div class="govuk-grid-column-two-thirds">
+         <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+             <div class="govuk-summary-card__title-wrapper">
+                 <h2 class="govuk-summary-card__title">
+                     Page 7:
+                     {% if data['pageHeadingCheckboxes'] %}
+                         {{ data['pageHeadingCheckboxes'] }}
+                     {% else %}
+                         {{ data['questionLabelInputCheckboxes'] }}
+                     {% endif %}
+                 </h2>
+                 <ul class="govuk-summary-card__actions">
+                     <li class="govuk-summary-card__action">
+                         <a class="govuk-link govuk-link--no-visited-state" id="editpage7"
+                             href="/redesigntest/templates/1-question/checkboxes/overview.html">Edit<span
+                                 class="govuk-visually-hidden">page 7</span></a>
+                     </li>
+                     <li class="govuk-summary-card__action">
+                         <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="checkboxes-preview" href="#">Preview<span
+                                 class="govuk-visually-hidden">page 7</span></a>
+                         <a class="govuk-link close-link" data-preview="checkboxes-preview" style="display: none;"
+                             href="#">Close Preview<span class="govuk-visually-hidden">page 7</span></a>
+                     </li>
+                 </ul>
+             </div>
+             {% if data['pageHeadingCheckboxes'] %}
+             <div class="govuk-summary-card__content">
+                 <dl class="govuk-summary-list">
+                     <div class="govuk-summary-list__row">
+                         <dt class="govuk-summary-list__key">Question 1</dt>
+                         <dd class="govuk-summary-list__value">{{ data['questionLabelInputCheckboxes'] or '' }}</dd>
+                     </div>
+                 </dl>
+             </div>
+             {% endif %}
+         </div>
+     </div>
+
+     <div class="govuk-grid-column-one-third">
+         <div class="preview-container" id="checkboxes-preview">
+             <div id="dynamic-preview-content-checkboxes">
+                 <div id="before-content">
+                     <p class="govuk-body-s" style="margin-bottom: 0">
+                         <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                             target="_blank">Preview this page in a new tab</a>
+                     </p>
+                 </div>
+
+                 <div class="additional-content">
+                     {{ govukTag({ text: "Preview of page 7", classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
+
+                     <div id="heading-container">
+                         {% set setName = data['setName'] or '' %}
+                         <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">
+                             {{ data['setName'] or '' }} 1
+                         </span>
+                         <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingCheckboxes'] or '' }}</h1>
+                     </div>
+
+                     <!-- Guidance Paragraph -->
+                     <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceTextCheckboxes'] or '' }}</p>
+
+                     <div id="checkbox-list">
+                         <fieldset class="govuk-fieldset">
+                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                 <h1 class="govuk-fieldset__heading" id="question-label-legend-q1">
+                                     {{ data['questionLabelInputCheckboxes'] or '' }}
+                                 </h1>
+                             </legend>
+
+                             <div id="listPreview-hint" class="govuk-hint">{{ data['hintTextCheckboxes'] or '' }}</div>
+
+                             {% for option in data['option'] %}
+                             <div class="govuk-checkboxes__item">
+                                 <input class="govuk-checkboxes__input" id="listPreview-option{{ loop.index }}" name="listPreview"
+                                     type="checkbox" value="{{ option['option_label'] }}">
+                                 <label class="govuk-label govuk-checkboxes__label" for="listPreview-option{{ loop.index }}">
+                                     {{ option['option_label'] or '' }}
+                                 </label>
+                             </div>
+                             {% endfor %}
+                         </fieldset>
+                     </div>
+
+                     {% set overview0 = data['overview0'] or '' %}
+
+                     {% if overview0 == "morethan1" %}
+                     {{ govukButton({
+                         text: "Add another " ~ setName,
+                         classes: "govuk-button govuk-!-margin-top-3",
+                         id: "add-another-set-button",
+                         disabled: true
+                     }) }}
+                     {% else %}
+                     {{ govukButton({
+                         text: "Continue",
+                         classes: "govuk-button govuk-!-margin-top-6",
+                         id: "once-button",
+                         disabled: true
+                     }) }}
+                     {% endif %}
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+
+ <script>
+     document.addEventListener("DOMContentLoaded", function () {
+         const dynamicCaption = document.getElementById("dynamic-caption");
+         const setName = dynamicCaption.getAttribute("data-setname");
+
+         if (!setName) {
+             dynamicCaption.style.display = "none";
+         }
+     });
+ </script>
+ {% endif %}
+
+
+
+{# =========================================================
+RADIOS
+========================================================= #}
+
+      {# Radios Question #}
+{# Radios Question #}
+{% if data['questionLabelInputRadios'] %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">
+          {% if data['pageHeadingInputRadios'] %}
+            Page 7: {{ data['pageHeadingInputRadios'] }}
+          {% else %}
+            Page 7: {{ data['questionLabelInputRadios'] }}
+          {% endif %}
+        </h2>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link govuk-link--no-visited-state" id="editpage7" href="/redesigntest/templates/1-question/radios/overview.html">Edit<span class="govuk-visually-hidden">page 7</span></a>
+          </li>
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="radios-preview" href="#">Preview<span class="govuk-visually-hidden">page 7</span></a>
+            <a class="govuk-link close-link" data-preview="radios-preview" style="display: none;" href="#">Close Preview<span class="govuk-visually-hidden">page 7</span></a>
+          </li>
+        </ul>
+      </div>
+      {% if data['pageHeadingInputRadios'] %}
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Question 1</dt>
+            <dd class="govuk-summary-list__value">{{ data['questionLabelInputRadios'] or '' }}</dd>
+          </div>
+        </dl>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <div class="preview-container" id="radios-preview">
+      <div id="dynamic-preview-content-radios">
+        <div id="before-content">
+          <p class="govuk-body-s" style="margin-bottom: 0">
+            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
+          </p>
+        </div>
+
+        <div class="additional-content">
+          {{ govukTag({ text: "Preview of page 2", classes: "govuk-tag--yellow govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
+
+          <div id="heading-container">
+            {% set setName = data['setName'] or '' %}
+            <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }} 1</span>
+            <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingInputRadios'] or '' }}</h1>
+          </div>
+
+          <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceShorttext'] or '' }}</p>
+
+          <div id="radio-list">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading" id="question-label-legend-q1">
+                  {{ data['questionLabelInputRadios'] or '' }}
+                </h1>
+              </legend>
+              <div id="hint-text-output" class="govuk-hint">
+                {{ data['hintTextInputq1'] or '' }}
+              </div>
+
+              {% for option in data['option'] %}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="listPreview-option{{ loop.index0 }}" name="listPreview" type="radio" value="{{ option['option_label'] }}" {% if option['default'] %} checked {% endif %}>
+                <label class="govuk-label govuk-radios__label" for="listPreview-option{{ loop.index0 }}">
+                  {{ option['option_label'] or '' }}
+                </label>
+              </div>
+              {% endfor %}
+            </fieldset>
+          </div>
+
+          {% set setName = data['setName'] or '' %}
+          {% set overview0 = data['overview0'] or '' %}
+
+          {% if overview0 == "morethan1" %}
+            {{ govukButton({ text: "Add another " ~ setName, classes: "govuk-button govuk-!-margin-top-3", id: "add-another-set-button", disabled: true }) }}
+          {% else %}
+            {{ govukButton({ text: "Continue", classes: "govuk-button govuk-!-margin-top-6", id: "once-button", disabled: true }) }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+
+
+    </div>
+  </div>
+</form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const previewContainers = document.querySelectorAll('.preview-container');
+
+      // Function to toggle between Preview and Close Preview links
+      function togglePreviewLinks(previewId, showPreview) {
+        const previewLink = document.querySelector(`a[data-preview="${previewId}"]`);
+        const closeLink = document.querySelector(`a[data-preview="${previewId}"] + a`);
+
+        if (previewLink && closeLink) {
+          previewLink.style.display = showPreview ? "none" : "inline";
+          closeLink.style.display = showPreview ? "inline" : "none";
+        }
+      }
+
+      // Add event listeners to all preview and close links
+      document.querySelectorAll(".preview-link").forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const linkId = this.dataset.preview;
+
+          // Show the selected preview
+          const selectedPreview = document.getElementById(linkId);
+          if (selectedPreview) {
+            selectedPreview.style.display = "block"; // Show the selected preview
+          }
+
+          // Update visibility of the close link
+          togglePreviewLinks(linkId, true);
+        });
+      });
+
+      document.querySelectorAll(".close-link").forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const previewId = this.dataset.preview;
+
+          // Hide the selected preview
+          const previewContainer = document.getElementById(previewId);
+          if (previewContainer) {
+            previewContainer.style.display = "none";
+          }
+
+          // Update visibility of the links
+          togglePreviewLinks(previewId, false);
+        });
+      });
+    });
+  </script>
+
+{% endblock %}

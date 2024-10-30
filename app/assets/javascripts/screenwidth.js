@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	  // Select all elements with the class 'govuk-width-container'
 	  const containers = document.querySelectorAll('.govuk-width-container');
-	  
+
 	  // Toggle the custom class for all instances
 	  containers.forEach(container => {
 		container.classList.toggle('custom-width');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const style = document.createElement('style');
   style.textContent = `
 	.custom-width {
-	  max-width: 1400px !important;
+	  max-width: 1150px !important;
 	}
   `;
   document.head.appendChild(style);

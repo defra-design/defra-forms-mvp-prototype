@@ -4,7 +4,30 @@
 {% set headingPlaceholder = "Page heading" %}
 {% set guidancePlaceholder = "" %}
 {#  #}
+
 {% block header %}
+
+{#
+<style>
+  
+  .dxt-announcement-bar {
+    background: #fc0;
+    text-align: center;
+    padding:0.5rem;
+  }
+  
+  .dxt-announcement-bar p {
+    margin: 0;
+  }
+  
+</style>
+
+<div class="dxt-announcement-bar" role="region" aria-live="polite" aria-label="Announcement">
+    <p class="govuk-body">Status update goes in here</p>
+</div>
+#}
+
+
   {{ serviceHeader({
     organisationName: "Defra",
     productName: "Forms Designer",
@@ -119,13 +142,13 @@
                           <!-- List config -->
 
                           <div class="govuk-form-group">
-                            <h2 class="govuk-heading-m moj-add-another__heading" tabindex="-1">Create and edit your list of options</h2>
+                            <h2 class="govuk-heading-m moj-add-another__heading" tabindex="-1">Create and edit your list of autocomplete options</h2>
 
                             <!-- autocomplete -->
                             
                             <div class="govuk-form-group">
                               <label class="govuk-label" for="csv-input">
-                                Enter options as CSV (e.g., Option 1, Option 2, Option 3)
+                                Enter options separated by a comma. For example, option 1, option 2, option 3
                               </label>
                               <textarea id="csv-input" class="govuk-textarea" rows="10"></textarea>
                               <div id="options-entry"></div>

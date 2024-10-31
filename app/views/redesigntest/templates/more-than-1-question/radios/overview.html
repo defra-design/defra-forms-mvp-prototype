@@ -22,7 +22,8 @@
 
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
-    {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add and edit pages", href: "/redesigntest/listing.html" }) }}
+{{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add
+    and edit pages", href: "/redesigntest/listing.html" }) }}
 
     <hr
       class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
@@ -209,10 +210,10 @@
                           rows: [
                             {
                               key: { text: "Question 7" },
-                              value: { html: data['multiQuestionLabelInputFile'] or '' },
+                              value: { html: data['multiQuestionLabelInputEmail'] or '' },
                               actions: {
                                 items: [{
-                                  href: "/redesigntest/templates/1-question/file/edit.html",
+                                  href: "/redesigntest/templates/1-question/email/edit.html",
                                   text: "Change",
                                   visuallyHiddenText: "name",
                                   classes: "govuk-link govuk-link--no-visited-state"
@@ -230,10 +231,10 @@
                           rows: [
                             {
                               key: { text: "Question 8" },
-                              value: { html: data['multiQuestionLabelInputEmail'] or '' },
+                              value: { html: data['multiQuestionLabelInputYesno'] or '' },
                               actions: {
                                 items: [{
-                                  href: "/redesigntest/templates/1-question/email/edit.html",
+                                  href: "/redesigntest/templates/1-question/yesno/edit.html",
                                   text: "Change",
                                   visuallyHiddenText: "name",
                                   classes: "govuk-link govuk-link--no-visited-state"
@@ -251,10 +252,10 @@
                           rows: [
                             {
                               key: { text: "Question 9" },
-                              value: { html: data['multiQuestionLabelInputYesno'] or '' },
+                              value: { html: data['multiQuestionLabelInputCheckboxes'] or '' },
                               actions: {
                                 items: [{
-                                  href: "/redesigntest/templates/1-question/yesno/edit.html",
+                                  href: "/redesigntest/templates/1-question/checkboxes/edit.html",
                                   text: "Change",
                                   visuallyHiddenText: "name",
                                   classes: "govuk-link govuk-link--no-visited-state"
@@ -272,7 +273,7 @@
                           rows: [
                             {
                               key: { text: "Question 10" },
-                              value: { html: data['multiQuestionLabelInputCheckboxes'] or '' },
+                              value: { html: data['multiQuestionLabelInputRadios'] or '' },
                               actions: {
                                 items: [{
                                   href: "/redesigntest/templates/1-question/checkboxes/edit.html",
@@ -286,7 +287,7 @@
                         }) | safe }}
                       </div>
 
-                      <!-- Question 11 -->
+                      {# <!-- Question 11 -->
                       <div class="question-item govuk-summary-list__row" tabindex="-1" data-id="question-11">
                         {{ govukSummaryList({
                           classes: "govuk-summary-list",
@@ -305,11 +306,7 @@
                             }
                           ]
                         }) | safe }}
-                      </div>
-
-
-
-
+                      </div> #}
 
 </div>
 <div class="govuk-button-group govuk-!-margin-top-6">
@@ -386,27 +383,28 @@
       </div>
 
       <div class="preview-item" data-id="question-7">
-        {% include "/redesigntest/templates/more-than-1-question/previews/fileupload.html" %}
-      </div>
-
-      <div class="preview-item" data-id="question-8">
         {% include "/redesigntest/templates/more-than-1-question/previews/email.html" %}
       </div>
 
-      <div class="preview-item" data-id="question-9">
+      <div class="preview-item" data-id="question-8">
         {% include "/redesigntest/templates/more-than-1-question/previews/yesno.html" %}
       </div>
 
-      <div class="preview-item" data-id="question-10">
+      <div class="preview-item" data-id="question-9">
         {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %}
       </div>
 
-      <div class="preview-item" data-id="question-11" style="margin-top:30px;">
+      <div class="preview-item" data-id="question-10">
         {% include "/redesigntest/templates/more-than-1-question/previews/radios.html" %}
 
       </div>
+{#
+      <div class="preview-item" data-id="question-11" style="margin-top:30px;">
+        {% include "/redesigntest/templates/more-than-1-question/previews/radios.html" %}
 
-      {% include "/redesigntest/templates/more-than-1-question/previews/button.html" %}
+      </div> #}
+
+  {% include "/redesigntest/templates/more-than-1-question/previews/button.html" %}
 
 
     </div>

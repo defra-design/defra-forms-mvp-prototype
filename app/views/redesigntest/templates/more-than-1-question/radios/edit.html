@@ -21,7 +21,8 @@
 
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
-    {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add and edit pages", href: "/redesigntest/listing.html" }) }}
+{{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add
+    and edit pages", href: "/redesigntest/listing.html" }) }}
 
     <hr
       class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
@@ -69,15 +70,15 @@
                               <a class="moj-sub-navigation__link" href="#overview-noquestions">Overview of questions</a>
                             </li>
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Question 11</a>
+                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Question 10</a>
                             </li>
                           </ul>
                         </nav>
 
                         <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
-                        <span class="govuk-caption-l">Page 1</span>
-                        <h2 class="govuk-heading-l">Question 11</h2>
+                        <span class="govuk-caption-l">Page 2</span>
+                        <h2 class="govuk-heading-l">Question 10</h2>
 
                         <form method="post" id="options-form" action="/redesigntest/templates/more-than-1-question/radios/overview">
                           {% from "govuk/components/input/macro.njk" import govukInput %}
@@ -170,7 +171,7 @@
                               name: "errorMessageInput"
                             }) }}
 
-                            <!-- Add guidance above this question -->
+                            {# <!-- Add guidance above this question -->
                             <details class="govuk-details" data-module="govuk-details">
                               <summary class="govuk-details__summary">
                                 <span class="govuk-details__summary-text">
@@ -217,7 +218,7 @@
                                   }) }}
                                 </div>
                               </div>
-                            </details>
+                            </details> #}
 
                             <div id="summary-container">
                               <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
@@ -285,7 +286,7 @@
   {% include "/redesigntest/templates/previews-more-than-1-question/address/for-overview.html" %}
 
   {% include "/redesigntest/templates/previews-more-than-1-question/phone/for-overview.html" %}
-  {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %}
+  {# {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %} #}
 
   {% include "/redesigntest/templates/previews-more-than-1-question/email/for-overview.html" %}
 

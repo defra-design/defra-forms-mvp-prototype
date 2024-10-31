@@ -22,7 +22,7 @@
 
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
-    {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add
+    {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add
     and edit pages", href: "/redesigntest/listing.html" }) }}
 
     <hr
@@ -103,7 +103,7 @@
                                 class="moj-sub-navigation__link"
                                 aria-current="page"
                                 href="#question-1-information-type"
-                                >Question 10</a
+                                >Question 9</a
                               >
                             </li>
 
@@ -116,7 +116,7 @@
 
 
                         <span class="govuk-caption-l">Page 2</span>
-                        <h2 class="govuk-heading-l">Question 10</h2>
+                        <h2 class="govuk-heading-l">Question 9</h2>
 
                         <form method="post" id="options-form" action="/redesigntest/templates/more-than-1-question/checkboxes/overview">
 
@@ -277,7 +277,7 @@
   {% include "/redesigntest/templates/previews-more-than-1-question/address/for-overview.html" %}
 
   {% include "/redesigntest/templates/previews-more-than-1-question/phone/for-overview.html" %}
-  {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %}
+  {# {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %} #}
 
   {% include "/redesigntest/templates/previews-more-than-1-question/email/for-overview.html" %}
 

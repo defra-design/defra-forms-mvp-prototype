@@ -22,7 +22,7 @@
 
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
-    {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add
+    {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add
     and edit pages", href: "/redesigntest/listing.html" }) }}
 
     <hr
@@ -244,13 +244,7 @@
                               text: "A UK phone number, for example, 07700 900 982 or +44 808 157 0192"
                             }
                           },
-                          {
-                            value: "file",
-                            text: "Supporting evidence",
-                            hint: {
-                              text: "A document, for example, DOC, PDF, CSV, Excel "
-                            }
-                          },
+
                           {
                             value: "email",
                             text: "Email address",

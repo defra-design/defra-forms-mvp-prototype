@@ -22,7 +22,7 @@
 
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
-    {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add
+    {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add
     and edit pages", href: "/redesigntest/listing.html" }) }}
 
     <hr
@@ -160,21 +160,21 @@
                           id: "once",
                           conditional: {
                           html: onceHtml
-                          }
-                          },
-                          {
-                          value: "morethan1",
-                          text: "More than once",
-                          id: "more-than-1",
-                          disabled: true,
-                          conditional: {
-                          html: morethan1Html
+
                           }
                           }
                           ]
                           }) }}
 
-
+                        {# },
+                        {
+                        value: "morethan1",
+                        text: "More than once",
+                        id: "more-than-1",
+                        disabled: true,
+                        conditional: {
+                        html: morethan1Html
+                        } #}
 
                           <div class="govuk-button-group">
                             {{ govukButton({

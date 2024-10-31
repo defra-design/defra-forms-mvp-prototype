@@ -6,21 +6,23 @@
 
 {% block header %}
   {{ serviceHeader({
-    organisationName: "Defra",
-    productName: "Forms Designer",
-    serviceName: "",
-    containerClasses: containerClasses,
-    accountName: "Chris Smith",
-    homepageLink: "/",
-    signOutLink: "/onboarding/sign-out-confirmation",
-    navigationItems: [
-      { href: "/library.html", text: "Forms library", id: "nav-library" },
-      { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
-      { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }    ],
-    activeLinkId: "nav-editor"
+  organisationName: "Defra",
+  productName: "Forms Designer",
+  serviceName: "Editor: Licence to Import an Animal Pathogen/Carrier into Great Britain",
+  containerClasses: containerClasses,
+  accountName: "Chris Smith",
+  homepageLink: "/",
+  signOutLink: "/onboarding/sign-out-confirmation",
+  navigationItems: [
+  { href: "/library.html", text: "All pages", id: "nav-library" },
+
+  { href: "/redesigntest/listing", text: "Edit page 1", id: "nav-editor" } ],
+  activeLinkId: "nav-editor"
   }) }}
 
-<div class="x-govuk-masthead x-govuk-masthead--large">
+
+
+{# <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
 
     {{ govukBackLink({ classes: "govuk-back-link--inverse", text: "Back to add
@@ -44,13 +46,20 @@
       </div>
     </div>
   </div>
-</div>
+</div> #}
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
+    {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+    {# {{ govukBackLink({
+      text: "Back to all pages",
+      href: "#"
+    }) }} #}
     <div class="govuk-grid-row">
+
       <!-- Left Column for Form Controls -->
       <div class="govuk-grid-column-one-half-from-desktop" id="container" style="flex: 1 1 75%; overflow-y: auto">
         <div class="govuk-summary-card govuk-!-margin-top-0" style="border-left: 10px solid #008938">
@@ -74,7 +83,7 @@
                               <a class="moj-sub-navigation__link" href="#overview-noquestions">Overview of questions</a>
                             </li> #}
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Question 1</a>
+                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Question</a>
                             </li>
                           </ul>
                         </nav>
@@ -82,7 +91,7 @@
                         <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
                         <span class="govuk-caption-l">Page 1</span>
-                        <h2 class="govuk-heading-l">Question 1</h2>
+                        <h2 class="govuk-heading-l">Edit question 1</h2>
 
                         <form method="post" id="options-form" action="/redesigntest/templates/1-question/address/overview">
                           {% from "govuk/components/input/macro.njk" import govukInput %}

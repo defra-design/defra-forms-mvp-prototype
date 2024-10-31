@@ -118,7 +118,8 @@ id: "guidance-only-page-heading-input"
 }
 }) }}
 
-<!-- Guidance Text Textarea -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 {{ govukTextarea({
   label: {
     text: "Guidance text",
@@ -135,6 +136,42 @@ id: "guidance-only-page-heading-input"
   describedBy: "guidance-textarea-hint"
 }) }}
 
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Help with markdown
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+      <h3 class="govuk-heading-s">Headings and subheadings</h3>
+  <p class="govuk-body">Use one hash symbol followed by a space for a heading, for example:</p>
+  <pre class="formatting-example" style="background-color: white;"><code class="lang-md"># This is a heading</code></pre>
+  <p class="bottom-gutter-1-3">To add a subheading, use 2 hash symbols:</p>
+  <pre class="formatting-example" style="background-color: white;"><code class="lang-md">## This is a subheading</code></pre>
+
+  <h3 class="govuk-heading-s" id="bullets">Bullet points</h3>
+  <p class="govuk-body">Use bullet points to help words or phrases stand out in your emails and letters.</p>
+  <p class="govuk-body">Copy this example to add bullet points:</p>
+  <pre class="formatting-example" style="background-color: white;"><code class="lang-md">Introduce bullet points with a lead-in line ending in a colon:
+
+* leave one empty line space after the lead-in line
+* use an asterisk or a dash followed by a space to add an item
+* start each item with a lowercase letter, do not end with a full stop
+* leave one empty line space after the last item</code></pre>
+
+  <h3 class="govuk-heading-s" id="bullets">Numbered steps</h3>
+  <p class="govuk-body">Copy this example to add numbered steps:</p>
+  <pre class="formatting-example"style="background-color: white;"><code class="lang-md">1. Leave one empty line space before starting your list.
+2. Enter a number followed by a full stop and a space to add an item.
+3. Start each item with a capital letter and end it with a full stop.
+4. Leave one empty line space after the last item.</code></pre>
+
+  <h3 class="govuk-heading-s">Links and URLs</h3>
+  <p class="govuk-body">To convert text into a link, use square brackets around the link text and round brackets around the full URL. Make sure there are no spaces between the brackets or the link will not work. For example:</p>
+  <pre class="formatting-example" style="background-color: white;"><code class="lang-md">[Apply now](https://www.gov.uk/example)</code></pre>
+
+  </div>
+</details>
 
 
 
@@ -199,6 +236,9 @@ id: "guidance-only-page-heading-input"
                 <h1 class="govuk-heading-l" id="dynamic-heading-more-than-1">{{ data['guidanceOnlyHeadingInput'] or '' }}</h1>
 
               </div>
+
+
+
 
               <!-- Guidance Paragraph -->
               <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceOnlyGuidanceTextInput'] or '' }}</p>
@@ -433,6 +473,19 @@ id: "guidance-only-page-heading-input"
 
 
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get the textarea and the output paragraph elements
+    const textarea = document.getElementById('guidance-only-guidance-text-input');
+    const paragraph = document.getElementById('guidance-paragraph');
+
+    // Listen for input events on the textarea
+    textarea.addEventListener('input', function () {
+      // Convert the textarea content using the marked library
+      paragraph.innerHTML = marked.parse(textarea.value);
+    });
+  });
+</script>
 
 
     <style>

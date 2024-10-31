@@ -11,6 +11,20 @@ const { addFilter, addFunction } = govukPrototypeKit.views
 
 // Add your filters here
 
+// Import the marked package for Markdown parsing
+const marked = require('marked');
+
+// Define filters
+module.exports = function (env) {
+  // Define a Markdown filter
+  env.addFilter('markdown', (text) => {
+    if (text && typeof text === 'string') {
+      return marked(text);
+    }
+    return text;
+  });
+};
+
 addFunction('require', (path) => {
   try {
     return require(resolve(cwd(), 'app', path))

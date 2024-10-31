@@ -34,7 +34,7 @@ activeLinkId: "nav-editor"
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds-from-desktop">
-                <h1 class="x-govuk-masthead__title">
+                <h1 class="govuk-heading-l--inverse x-govuk-masthead__title ">
                     <span class="govuk-caption-l" style="color: white;">Apply for a county parish holding number</span>
                     Add and edit pages
                 </h1>
@@ -1902,6 +1902,11 @@ More than 1 question on a page
                             target="_blank">Preview this page in a new tab</a>
                     </p>
                 </div>
+{#
+                {% if data['multiQuestionLabelInputShorttext'] %}
+                {% include "/redesigntest/templates/previews-more-than-1-question/shorttext/overview.html" %}
+            {% endif %} #}
+
 
                 {% if data['multiQuestionLabelInputTextArea'] %}
                     {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}

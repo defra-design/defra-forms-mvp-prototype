@@ -94,7 +94,7 @@
                 rows: [
                   {
                     key: {
-                      text: "Question"
+                      text: "Question 1"
                     },
                     value: {
                       html: data['multiQuestionLabelInputShorttext'] or ''
@@ -202,7 +202,7 @@
                                     text: "Question 7"
                                   },
                                   value: {
-                                    html: data['multiQuestionLabelInputFile'] or ''
+                                    html: data['multiQuestionLabelInputEmail'] or ''
                                   },
                                   actions: {
                                     items: [
@@ -219,7 +219,7 @@
                                       text: "Question 8"
                                     },
                                     value: {
-                                      html: data['multiQuestionLabelInputEmail'] or ''
+                                      html: data['multiQuestionLabelInputYesno'] or ''
                                     },
                                     actions: {
                                       items: [
@@ -237,7 +237,7 @@
                                         text: "Question 9"
                                       },
                                       value: {
-                                        html: data['multiQuestionLabelInputYesno'] or ''
+                                        html: data['multiQuestionLabelInputCheckboxes'] or ''
                                       },
                                       actions: {
                                         items: [
@@ -245,24 +245,7 @@
                                                                       href: "/redesigntest/templates/1-question/shorttext/edit.html",
                                             text: "Change",
                                             visuallyHiddenText: "name"
-                                          }
-                                          ]
-                                        }
-                                      },
 
-                                      {
-                                        key: {
-                                          text: "Question 10"
-                                        },
-                                        value: {
-                                          html: data['multiQuestionLabelInputCheckboxes'] or ''
-                                        },
-                                        actions: {
-                                          items: [
-                                            {
-                                                                        href: "/redesigntest/templates/1-question/shorttext/edit.html",
-                                              text: "Change",
-                                              visuallyHiddenText: "name"
 
                                         }
                                         ]
@@ -314,8 +297,8 @@
 
 
         {% include "/redesigntest/templates/previews-more-than-1-question/phone/for-overview.html" %}
-
-        {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %}
+{#
+        {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %} #}
 
         {% include "/redesigntest/templates/previews-more-than-1-question/email/for-overview.html" %}
 

@@ -35,28 +35,10 @@
 
 
 
-  {% set setName = data['setName'] or '' %}
-  {% set overview0 = data['overview0'] or '' %}
+</div>
+</div>
 
-  {% if overview0 == "morethan1" %}
-  {{ govukButton({
-  text: "Add another " ~ setName,
-  classes: "govuk-button govuk-!-margin-top-3",
-  id: "add-another-set-button",
-  disabled: true
-  }) }}
-  {% else %}
-  {{ govukButton({
-  text: "Continue",
-  classes: "govuk-button govuk-!-margin-top-6",
-  id: "once-button",
-  disabled: true
-  }) }}
-  {% endif %}
-</div>
-</div>
-</div>
-</div>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {

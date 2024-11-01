@@ -31,13 +31,12 @@
     />
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds-from-desktop">
+      <div class="govuk-grid-column-full-from-desktop">
         <h1 class="x-govuk-masthead__title">
-          <span class="govuk-caption-l" style="color: white"
+          {# <span class="govuk-caption-l" style="color: white"
             >Apply for a county parish holding certificate</span
-          >
-
-          Edit page 2
+          > #}
+          Apply for a county parish holding (CPH) number
         </h1>
 
         {# <p class="govuk-body" style="color: white">Last saved at <time>5:24pm</time></p> #}
@@ -86,14 +85,14 @@
                           </ul>
                         </nav>
 
-                        <div
+                        {# <div
                           class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"
-                        ></div>
+                        ></div> #}
 
 
 
 
-                          <span class="govuk-caption-l">Page 1</span>
+                          <span class="govuk-caption-l">Page 12</span>
                           <h1 class="govuk-heading-l">Page settings</h1>
 
                           <form class="form" action="/redesigntest/templates/guidance/overview" method="post">
@@ -132,7 +131,7 @@ id: "guidance-only-page-heading-input"
   name: "guidanceOnlyGuidanceTextInput",
   value: data['guidanceOnlyGuidanceTextInput'],
   classes: "govuk-textarea",
-  rows: 3,
+  rows: 8,
   describedBy: "guidance-textarea-hint"
 }) }}
 
@@ -224,7 +223,7 @@ id: "guidance-only-page-heading-input"
 
           <div>
             <!-- Tag for Preview -->
-            {{ govukTag({ text: "Preview of page 2", classes: "govuk-tag--yellow
+            {{ govukTag({ text: "Preview of page 12", classes: "govuk-tag--yellow
             govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
             <!-- Form for Preview -->
             <form>

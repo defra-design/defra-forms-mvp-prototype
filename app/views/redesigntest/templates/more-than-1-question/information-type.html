@@ -187,9 +187,9 @@
                             },
                             {
                               value: "select",
-                              text: "Select",
+                              text: "Autocomplete",
                               hint: {
-                                text: "A drop-down list for users to select one answer"
+                                text: "A list of options revealed to users as they type"
 
                           }
                         }
@@ -599,18 +599,68 @@
 
                 {# Select Preview #}
                 <div class="preview-content select-preview" style="display: none; border-left: 10px solid #ffb266; padding-left: 20px;">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-label--l" for="select">
-                      Question
-                    </label>
-                    <select class="govuk-select" id="select" name="select">
-                      <option value="">Please select</option>
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+
+
+
+                  <!-- Include the preview template -->
+    {% include "/redesigntest/templates/previews/autcomplete/preview.html" %}
+
+
+    <script src="https://unpkg.com/accessible-autocomplete@2.0.4/dist/accessible-autocomplete.min.js"></script>
+
+    <script>
+
+      // Process CSV and create an array of options
+      function processCSV(csvText) {
+        return csvText
+          .split(",")
+          .map((option) => option.trim())
+          .filter((option) => option.length > 0); // Ensures no empty options
+      }
+
+      // Initialise or reinitialise the autocomplete
+      function initialiseAutocomplete(options) {
+        // Clear the container before reinitializing
+        const container = document.querySelector("#autocomplete-container");
+        container.innerHTML = "";
+
+        // Initialise the accessible autocomplete with the given options
+        accessibleAutocomplete({
+          element: container,
+          id: "autocomplete-input", // To match it to the label
+          source: options
+        });
+
+        // Update a status label with a green check emoji if CSV has been successfully parsed
+        const label = document.getElementById("options-entry");
+        if (options.length > 0) {
+          label.innerHTML = "Preview updated (CSV Imported ✅)";
+        } else {
+          label.innerHTML = ""; // Reset label if no options
+        }
+      }
+
+      // initialise the autocomplete with an empty array initially
+      initialiseAutocomplete([]);
+
+      // Event listener for changes in the textarea
+      document.getElementById("csv-input").addEventListener("input", function () {
+        // Get CSV input from textarea
+        const csvInput = this.value;
+
+        // Process the CSV and get options
+        const options = processCSV(csvInput);
+
+        // Reinitialise the autocomplete with the new options
+        initialiseAutocomplete(options);
+      });
+
+
+    </script>
+
+  </div>
+</div>
+
 
 
               {% if data['setName'] %}

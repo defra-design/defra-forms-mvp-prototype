@@ -287,6 +287,27 @@
                         }) | safe }}
                       </div>
 
+                           <!-- Question 10 -->
+                           <div class="question-item govuk-summary-list__row"  tabindex="-1" data-id="question-11">
+                            {{ govukSummaryList({
+                              classes: "govuk-summary-list",
+                              rows: [
+                                {
+                                  key: { text: "Question 11" },
+                                  value: { html: data['multiQuestionLabelInputAutocomplete'] or '' },
+                                  actions: {
+                                    items: [{
+                                      href: "/redesigntest/templates/1-question/checkboxes/edit.html",
+                                      text: "Change",
+                                      visuallyHiddenText: "name",
+                                      classes: "govuk-link govuk-link--no-visited-state"
+                                    }]
+                                  }
+                                }
+                              ]
+                            }) | safe }}
+                          </div>
+
                       {# <!-- Question 11 -->
                       <div class="question-item govuk-summary-list__row" tabindex="-1" data-id="question-11">
                         {{ govukSummaryList({
@@ -310,7 +331,7 @@
 
 </div>
 <div class="govuk-button-group govuk-!-margin-top-6">
-  <a href="/redesigntest/templates/more-than-1-question/autocomplete/information-type.html" class="govuk-button" role="button">
+  <a href="/redesigntest/templates/more-than-1-question/yesno/information-type.html" class="govuk-button" role="button">
     Add next question
   </a>
 
@@ -390,7 +411,7 @@
         {% include "/redesigntest/templates/more-than-1-question/previews/yesno.html" %}
       </div>
 
-      <div class="preview-item" data-id="question-9">
+      <div class="preview-item" data-id="question-9" style="margin-top:30px; margin-bottom: 30px;">
         {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %}
       </div>
 
@@ -398,11 +419,11 @@
         {% include "/redesigntest/templates/more-than-1-question/previews/radios.html" %}
 
       </div>
-{#
-      <div class="preview-item" data-id="question-11" style="margin-top:30px;">
-        {% include "/redesigntest/templates/more-than-1-question/previews/radios.html" %}
 
-      </div> #}
+      <div class="preview-item" data-id="question-11" style="margin-top:30px;">
+        {% include "/redesigntest/templates/previews-more-than-1-question/autocomplete/preview.html" %}
+
+      </div>
 
   {% include "/redesigntest/templates/more-than-1-question/previews/button.html" %}
 

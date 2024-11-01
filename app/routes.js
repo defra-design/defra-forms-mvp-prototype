@@ -265,7 +265,7 @@ router.post("/information-type-answer1", function (req, res) {
       } else if (listType === "radios") {
         res.redirect("/redesigntest/templates/1-question/radios/edit.html");
       } else if (listType === "select") {
-        res.redirect("/redesigntest/templates/1-question/select/edit.html");
+        res.redirect("/redesigntest/templates/1-question/autocomplete/edit.html");
       } else {
         res.redirect("/redesigntest/templates/1-question/default.html");
       }
@@ -289,10 +289,10 @@ router.post("/page-type-answer-3", function (request, response) {
   // Check the page type and redirect accordingly
   switch (pagetype3) {
     case "guidance":
-      response.redirect("/september/guidance/edit.html");
+      response.redirect("/redesigntest/templates/guidance/settings.html");
       break;
     case "1":
-      response.redirect("/redesigntest/templates/1-question/settings.html");
+      response.redirect("/redesigntest/templates/1-question/information-type.html");
       break;
     case "morethan1":
       response.redirect("/september/Multi/edit.html");
@@ -332,7 +332,7 @@ router.post("/question-number", function (request, response) {
   // Check the page type and redirect accordingly
   switch (questionnumber) {
     case "once":
-      response.redirect("/redesigntest/templates/1-question/settings.html");
+      response.redirect("/redesigntest/templates/1-question/information-type.html");
       break;
     case "morethan1":
       response.redirect("/redesigntest/templates/more-than-1-question/settings.html");
@@ -427,7 +427,7 @@ router.post("/information-type-answer2", function (req, res) {
       } else if (listType === "radios") {
         res.redirect("/redesigntest/templates/more-than-1-question/radios/edit.html");
       } else if (listType === "select") {
-        res.redirect("/redesigntest/templates/more-than-1-question/select/edit.html");
+        res.redirect("/redesigntest/templates/more-than-1-question/autocomplete/edit.html");
       } else {
         res.redirect("/redesigntest/templates/more-than-1-question/default.html");
       }
@@ -510,7 +510,7 @@ router.post("/information-type-answer3", function (req, res) {
       } else if (listType === "radios") {
         res.redirect("/redesigntest/templates/more-than-1-question/radios/edit.html");
       } else if (listType === "select") {
-        res.redirect("/redesigntest/templates/more-than-1-question/select/edit.html");
+        res.redirect("/redesigntest/templates/more-than-1-question/autocomplete/edit.html");
       } else {
         res.redirect("/redesigntest/templates/more-than-1-question/default.html");
       }

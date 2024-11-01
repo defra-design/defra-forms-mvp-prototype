@@ -31,13 +31,12 @@
     />
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds-from-desktop">
+      <div class="govuk-grid-column-full-from-desktop">
         <h1 class="x-govuk-masthead__title">
-          <span class="govuk-caption-l" style="color: white">
+          {# <span class="govuk-caption-l" style="color: white">
             Apply for a county parish holding certificate
-          </span>
-          Edit page 2
-        </h1>
+          </span> #}
+          Apply for a county parish holding (CPH) number        </h1>
 
         {# #}
       </div>
@@ -66,9 +65,9 @@
                         <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2 " aria-label="Sub navigation">
                           <ul class="moj-sub-navigation__list" id="nav-list2">
                             <!-- Question Link -->
-                            <li class="moj-sub-navigation__item">
+                            {# <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
-                            </li>
+                            </li> #}
                             <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" aria-current="page"  href="#overview-noquestions">Overview of questions</a>
                             </li>
@@ -78,7 +77,7 @@
 
                         <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
-                        <span class="govuk-caption-l" id="page-caption">Page 2</span>
+                        <span class="govuk-caption-l" id="page-caption">Page 4</span>
 
                         <h2 class="govuk-heading-l" id="page-heading">Overview of questions</h2>
 
@@ -97,7 +96,7 @@
                       text: "Question"
                     },
                     value: {
-                      html: data['questionLabelInputRadios'] or ''
+                      html: data['questionLabelInputAutocomplete'] or ''
 
                     },
                     actions: {
@@ -147,6 +146,8 @@
 
         <!-- Include the preview template -->
         {% include "/redesigntest/templates/previews/autcomplete/overview.html" %}
+
+
       </div>
     </div>
 {#

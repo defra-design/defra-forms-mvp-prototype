@@ -11,7 +11,7 @@
 
   <div>
     <!-- Tag for Preview -->
-    {{ govukTag({ text: "Preview of page 2", classes: "govuk-tag--yellow
+    {{ govukTag({ text: "Preview of page 4", classes: "govuk-tag--yellow
     govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
     <!-- Form for Preview -->
     <!-- Dynamic Heading -->
@@ -23,7 +23,7 @@
       <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }}
         1</span>
 
-      <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingInputRadios'] or '' }}</h1>
+      <h1 class="govuk-heading-xl" id="dynamic-heading">{{ data['pageHeadingInputAutocomplete'] or '' }}</h1>
     </div>
 
     <!-- Guidance Paragraph -->
@@ -34,42 +34,42 @@
       <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading" id="question-label-legend-q1">
-            {{ data.questionLabelInputRadios or 'Question' }}
+            {{ data.questionLabelInputAutocomplete or 'Question' }}
           </h1>
         </legend>
-        {% if data.hintTextInputRadios %}
+        {% if data.hintTextInputAutocomplete %}
         <div id="listPreview-hint" class="govuk-hint">
-          {{ data.hintTextInputRadios }}
+          {{ data.hintTextInputAutocomplete }}
         </div>
         {% endif %}
-        
+
         <script src="https://unpkg.com/accessible-autocomplete@2.0.4/dist/accessible-autocomplete.min.js"></script>
-        
+
         <!-- autocomplete preview -->
-        
+
         <div class="govuk-form-group">
           <label id="autocomplete-label" class="govuk-label" for="autocomplete-input">
             Start typing to select an option
           </label>
           <div id="autocomplete-container"></div>
         </div>
-        
+
         <!-- autocomplete preview -->
-        
+
        <script>
        // Initialise or reinitialise the autocomplete
        function initialiseAutocomplete(options) {
          // Clear the container before reinitializing
          const container = document.querySelector("#autocomplete-container");
          container.innerHTML = "";
-       
+
          // Dummy options list
          const dummyOptions = [
          'France',
          'Germany',
          'United Kingdom'
          ];
-       
+
          // Initialise the accessible autocomplete with the given options
          accessibleAutocomplete({
          element: container,
@@ -77,13 +77,13 @@
          source: dummyOptions
          });
        }
-       
+
        // Ensure that the function runs after the content is loaded
        document.addEventListener("DOMContentLoaded", function() {
          initialiseAutocomplete();
        });
        </script>
-        
+
       </fieldset>
     </div>
 

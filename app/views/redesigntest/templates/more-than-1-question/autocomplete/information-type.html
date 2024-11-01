@@ -100,10 +100,9 @@
                               <a
                                 class="moj-sub-navigation__link" aria-current="page"
                                 href="#question2"
-                                >Question 6</a
+                                >Question 10</a
                               >
                             </li>
-
 
                           </ul>
                         </nav>
@@ -305,6 +304,19 @@
       {% include "/redesigntest/templates/previews-more-than-1-question/date/for-overview.html" %}
 
       {% include "/redesigntest/templates/previews-more-than-1-question/address/for-overview.html" %}
+
+      {% include "/redesigntest/templates/previews-more-than-1-question/phone/for-overview.html" %}
+
+      {# {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %} #}
+
+      {% include "/redesigntest/templates/previews-more-than-1-question/email/for-overview.html" %}
+
+      {% include "/redesigntest/templates/more-than-1-question/previews/yesno.html" %}
+
+
+
+ <!-- Include the preview template -->
+ {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %}
 
               <div class="preview-container" id="preview-container">
 
@@ -580,43 +592,95 @@
                   </div>
                 </div>
 
-                {# Select Preview #}
-                <div class="preview-content select-preview" style="display: none;">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-label--l" for="select">
-                      Question
-                    </label>
-                    <select class="govuk-select" id="select" name="select">
-                      <option value="">Please select</option>
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+                  {# Select Preview #}
+                  <div class="preview-content select-preview" style="display: none; border-left: 10px solid #ffb266; margin-top: 30px; padding-left: 20px;">
 
 
 
-              {% if data['setName'] %}
-              {{ govukButton({
-                  text: "Add another " + (data['setName'] | lower),
-                  classes: "govuk-button govuk-!-margin-top-3",
-                  id: "add-another-set-button",
-                  disabled: true
-              }) }}
-             {% else %}
-              {{ govukButton({
-                  text: "Continue",
-                  classes: "govuk-button govuk-!-margin-top-3",
-                  id: "add-another-set-button",
-                  disabled: true
-              }) }}
-             {% endif %}
+                    <!-- Include the preview template -->
+      {% include "/redesigntest/templates/previews/autcomplete/preview.html" %}
 
+
+      <script src="https://unpkg.com/accessible-autocomplete@2.0.4/dist/accessible-autocomplete.min.js"></script>
+
+      <script>
+
+        // Process CSV and create an array of options
+        function processCSV(csvText) {
+          return csvText
+            .split(",")
+            .map((option) => option.trim())
+            .filter((option) => option.length > 0); // Ensures no empty options
+        }
+
+        // Initialise or reinitialise the autocomplete
+        function initialiseAutocomplete(options) {
+          // Clear the container before reinitializing
+          const container = document.querySelector("#autocomplete-container");
+          container.innerHTML = "";
+
+          // Initialise the accessible autocomplete with the given options
+          accessibleAutocomplete({
+            element: container,
+            id: "autocomplete-input", // To match it to the label
+            source: options
+          });
+
+          // Update a status label with a green check emoji if CSV has been successfully parsed
+          const label = document.getElementById("options-entry");
+          if (options.length > 0) {
+            label.innerHTML = "Preview updated (CSV Imported ✅)";
+          } else {
+            label.innerHTML = ""; // Reset label if no options
+          }
+        }
+
+        // initialise the autocomplete with an empty array initially
+        initialiseAutocomplete([]);
+
+        // Event listener for changes in the textarea
+        document.getElementById("csv-input").addEventListener("input", function () {
+          // Get CSV input from textarea
+          const csvInput = this.value;
+
+          // Process the CSV and get options
+          const options = processCSV(csvInput);
+
+          // Reinitialise the autocomplete with the new options
+          initialiseAutocomplete(options);
+        });
+
+
+      </script>
+
+    </div>
+  </div>
+
+
+
+                {% if data['setName'] %}
+                {{ govukButton({
+                    text: "Add another " + (data['setName'] | lower),
+                    classes: "govuk-button govuk-!-margin-top-3",
+                    id: "add-another-set-button",
+                    disabled: true
+                }) }}
+               {% else %}
+                {{ govukButton({
+                    text: "Continue",
+                    classes: "govuk-button govuk-!-margin-top-3",
+                    id: "add-another-set-button",
+                    disabled: true
+                }) }}
+               {% endif %}
+
+
+
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {

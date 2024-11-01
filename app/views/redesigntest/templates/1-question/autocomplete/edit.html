@@ -9,17 +9,17 @@
 
 {#
 <style>
-  
+
   .dxt-announcement-bar {
     background: #fc0;
     text-align: center;
     padding:0.5rem;
   }
-  
+
   .dxt-announcement-bar p {
     margin: 0;
   }
-  
+
 </style>
 
 <div class="dxt-announcement-bar" role="region" aria-live="polite" aria-label="Announcement">
@@ -54,12 +54,12 @@
     />
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds-from-desktop">
+      <div class="govuk-grid-column-full-from-desktop">
         <h1 class="x-govuk-masthead__title">
-          <span class="govuk-caption-l" style="color: white"
+          {# <span class="govuk-caption-l" style="color: white"
             >Apply for a county parish holding certificate</span
-          >
-          Edit page 2
+          > #}
+          Apply for a county parish holding (CPH) number
         </h1>
       </div>
     </div>
@@ -90,9 +90,9 @@
                           aria-label="Sub navigation">
                           <ul class="moj-sub-navigation__list" id="nav-list2">
                             <!-- Question Link -->
-                            <li class="moj-sub-navigation__item">
+                            {# <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
-                            </li>
+                            </li> #}
 
                             {# <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" href="#overview-noquestions">Overview of questions</a>
@@ -100,17 +100,17 @@
 
                             <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" aria-current="page"
-                                href="#question-1-information-type">Question 1</a>
+                                href="#question-1-information-type">Page 4</a>
                             </li>
                           </ul>
                         </nav>
 
                         <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
-                        <span class="govuk-caption-l">Page 1</span>
-                        <h2 class="govuk-heading-l">Question</h2>
+                        {# <span class="govuk-caption-l">Page 1</span> #}
+                        <h2 class="govuk-heading-l">Edit page 4</h2>
 
-                        <form method="post" id="options-form" action="/redesigntest/templates/1-question/radios/overview">
+                        <form method="post" id="options-form" action="/redesigntest/templates/1-question/autocomplete/overview">
 
                           {% from "govuk/components/input/macro.njk" import govukInput %}
 
@@ -120,9 +120,9 @@
                               classes: "govuk-label--m",
                               isPageHeading: false
                             },
-                            id: "question-label-input-radios",
-                            value: data['question-label-input-radios'],
-                            name: "questionLabelInputRadios",
+                            id: "question-label-input-autocomplete",
+                            value: data['question-label-input-autocomplete'],
+                            name: "questionLabelInputAutocomplete",
                             oninput: "updateHeading()"
                           }) }}
 
@@ -132,12 +132,12 @@
                               text: "Hint text (optional)",
                               classes: "govuk-label--m"
                             },
-                            id: "hint-text-input-radios",
-                            name: "hintTextInputRadios",
-                            value: data['hint-text-input-radios'],
+                            id: "hint-text-input-autocomplete",
+                            name: "hintTextInputAutocomplete",
+                            value: data['hint-text-input-autocomplete'],
                             classes: "govuk-textarea",
                             rows: 3,
-                            describedBy: "hint-text-input-radios"
+                            describedBy: "hint-text-input-autocomplete"
                           }) }}
 
                           <!-- List config -->
@@ -146,7 +146,7 @@
                             <h2 class="govuk-heading-m moj-add-another__heading" tabindex="-1">Create and edit your list of autocomplete options</h2>
 
                             <!-- autocomplete -->
-                            
+
                             <div class="govuk-form-group">
                               <label class="govuk-label" for="csv-input">
                                 Enter options separated by a comma. For example, option 1, option 2, option 3
@@ -154,7 +154,7 @@
                               <textarea id="csv-input" class="govuk-textarea" rows="10"></textarea>
                               <div id="options-entry"></div>
                             </div>
-                            
+
                             <!-- autocomplete -->
 
                             <!-- Make Optional Checkbox -->
@@ -175,6 +175,59 @@
                               </div>
                             </div>
 
+     <!-- Add guidance above this question -->
+     <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Add guidance above this question (optional)
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <!-- Default Content for Question 1 -->
+        <div id="question-1-content" class="question-content" style="margin-top: 10px;">
+
+          <!-- Page Heading Input -->
+          {{ govukInput({
+            label: {
+              text: "Page heading",
+              classes: "govuk-label govuk-label--m govuk-!-margin-top-0"
+            },
+            hint: {
+              text: "Page headings should be a statement and not a question. For example, ‘Passport information’",
+              id: "page-heading-input-hint"
+            },
+            id: "page-heading-input-autocomplete",
+            name: "pageHeadingInputAutocomplete",
+            type: "text",
+            attributes: {
+              'aria-describedby': "page-heading-input-hint",
+              'data-preview-target': '#dynamic-heading'
+            }
+          }) }}
+
+          <!-- Guidance Text Textarea -->
+          {{ govukTextarea({
+            label: {
+              text: "Guidance text (optional)",
+              classes: "govuk-label govuk-label--m"
+            },
+            hint: {
+              text: "Use Markdown to format the content or add hyperlinks",
+              id: "guidance-textarea-hint"
+            },
+            id: "guidance-textarea-autocomplete",
+            name: "guidanceTextareaAutocomplete",
+            rows: 5,
+            attributes: {
+              'aria-describedby': "guidance-textarea-hint",
+              'data-preview-target': '#guidance-paragraph'
+            }
+          }) }}
+
+        </div>
+      </div>
+    </details>
+
     <!-- Error Message Input -->
     {{ govukInput({
       label: {
@@ -190,58 +243,7 @@
     }) }}
 
 
-                            <!-- Add guidance above this question -->
-                            <details class="govuk-details" data-module="govuk-details">
-                              <summary class="govuk-details__summary">
-                                <span class="govuk-details__summary-text">
-                                  Add guidance above this question (optional)
-                                </span>
-                              </summary>
-                              <div class="govuk-details__text">
-                                <!-- Default Content for Question 1 -->
-                                <div id="question-1-content" class="question-content" style="margin-top: 10px;">
 
-                                  <!-- Page Heading Input -->
-                                  {{ govukInput({
-                                    label: {
-                                      text: "Page heading",
-                                      classes: "govuk-label govuk-label--m govuk-!-margin-top-0"
-                                    },
-                                    hint: {
-                                      text: "Page headings should be a statement and not a question. For example, ‘Passport information’",
-                                      id: "page-heading-input-hint"
-                                    },
-                                    id: "page-heading-input-radios",
-                                    name: "pageHeadingInputRadios",
-                                    type: "text",
-                                    attributes: {
-                                      'aria-describedby': "page-heading-input-hint",
-                                      'data-preview-target': '#dynamic-heading'
-                                    }
-                                  }) }}
-
-                                  <!-- Guidance Text Textarea -->
-                                  {{ govukTextarea({
-                                    label: {
-                                      text: "Guidance text (optional)",
-                                      classes: "govuk-label govuk-label--m"
-                                    },
-                                    hint: {
-                                      text: "Use Markdown to format the content or add hyperlinks",
-                                      id: "guidance-textarea-hint"
-                                    },
-                                    id: "guidance-textarea-radios",
-                                    name: "guidanceTextareaRadios",
-                                    rows: 5,
-                                    attributes: {
-                                      'aria-describedby': "guidance-textarea-hint",
-                                      'data-preview-target': '#guidance-paragraph'
-                                    }
-                                  }) }}
-
-                                </div>
-                              </div>
-                            </details>
 
                             <div id="summary-container">
                               <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
@@ -254,7 +256,7 @@
                                 rows: [
                                   {
                                     key: { text: "Type of information" },
-                                    value: { html: "List: radios" },
+                                    value: { html: "List: autocomplete" },
                                     actions: {
                                       items: [
                                         {
@@ -300,12 +302,12 @@
 
     <!-- Include the preview template -->
     {% include "/redesigntest/templates/previews/autcomplete/edit.html" %}
-    
-   
+
+
     <script src="https://unpkg.com/accessible-autocomplete@2.0.4/dist/accessible-autocomplete.min.js"></script>
-    
+
     <script>
-      
+
       // Process CSV and create an array of options
       function processCSV(csvText) {
         return csvText
@@ -313,20 +315,20 @@
           .map((option) => option.trim())
           .filter((option) => option.length > 0); // Ensures no empty options
       }
-      
+
       // Initialise or reinitialise the autocomplete
       function initialiseAutocomplete(options) {
         // Clear the container before reinitializing
         const container = document.querySelector("#autocomplete-container");
         container.innerHTML = "";
-      
+
         // Initialise the accessible autocomplete with the given options
         accessibleAutocomplete({
           element: container,
           id: "autocomplete-input", // To match it to the label
           source: options
         });
-      
+
         // Update a status label with a green check emoji if CSV has been successfully parsed
         const label = document.getElementById("options-entry");
         if (options.length > 0) {
@@ -335,25 +337,25 @@
           label.innerHTML = ""; // Reset label if no options
         }
       }
-      
+
       // initialise the autocomplete with an empty array initially
       initialiseAutocomplete([]);
-      
+
       // Event listener for changes in the textarea
       document.getElementById("csv-input").addEventListener("input", function () {
         // Get CSV input from textarea
         const csvInput = this.value;
-      
+
         // Process the CSV and get options
         const options = processCSV(csvInput);
-      
+
         // Reinitialise the autocomplete with the new options
         initialiseAutocomplete(options);
       });
 
-      
+
     </script>
-    
+
   </div>
 </div>
 
@@ -367,8 +369,8 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const domElements = {
-    questionLabelInputRadios: document.getElementById('question-label-input-radios'),
-    hintTextInputRadios: document.getElementById('hint-text-input-radios'),
+    questionLabelInputAutocomplete: document.getElementById('question-label-input-autocomplete'),
+    hintTextInputAutocomplete: document.getElementById('hint-text-input-autocomplete'),
     hintTextOutput: document.getElementById('listPreview-hint'),
     makeOptionalCheckbox: document.getElementById('makeOptional'),
 
@@ -384,9 +386,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function initialiseEventListeners() {
     // Update question label and apply highlight to legend
-    if (domElements.questionLabelInputRadios) {
-      domElements.questionLabelInputRadios.addEventListener('input', updateQuestionLabel);
-      applyHighlightOnFocus(domElements.questionLabelInputRadios, getQuestionLabelLegend());
+    if (domElements.questionLabelInputAutocomplete) {
+      domElements.questionLabelInputAutocomplete.addEventListener('input', updateQuestionLabel);
+      applyHighlightOnFocus(domElements.questionLabelInputAutocomplete, getQuestionLabelLegend());
     }
 
     // initialise the reordering functionality
@@ -395,14 +397,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Dynamically fetch the legend element to ensure it exists
   function getQuestionLabelLegend() {
-    return document.querySelector('legend[for="question-label-input-radios"]');
+    return document.querySelector('legend[for="question-label-input-autocomplete"]');
   }
 
   function updateQuestionLabel() {
     const questionLabelLegend = getQuestionLabelLegend();
     if (questionLabelLegend) {
       const suffix = domElements.makeOptionalCheckbox && domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
-      questionLabelLegend.textContent = (domElements.questionLabelInputRadios.value || 'Question') + suffix;
+      questionLabelLegend.textContent = (domElements.questionLabelInputAutocomplete.value || 'Question') + suffix;
     }
   }
 
@@ -583,16 +585,16 @@ document.addEventListener('DOMContentLoaded', function () {
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const domElements = {
-      questionInput: document.getElementById('question-label-input-radios'),
+      questionInput: document.getElementById('question-label-input-autocomplete'),
       questionOutput: document.getElementById('question-label-legend-q1'),
 
-      hintTextInputRadios: document.getElementById('hint-text-input-radios'),
+      hintTextInputAutocomplete: document.getElementById('hint-text-input-autocomplete'),
       hintTextOutput: document.getElementById('listPreview-hint'),
 
-      pageHeadingInputRadios: document.getElementById('page-heading-input-radios'),
+      pageHeadingInputAutocomplete: document.getElementById('page-heading-input-autocomplete'),
       pageHeadingOutput: document.getElementById('dynamic-heading-radios'),
 
-      guidanceTextareaRadios: document.getElementById('guidance-textarea-radios'),
+      guidanceTextareaAutocomplete: document.getElementById('guidance-textarea-autocomplete'),
       guidanceOutput: document.getElementById('guidance-paragraph')
     };
 
@@ -602,28 +604,28 @@ document.addEventListener('DOMContentLoaded', function () {
     function initialiseEventListeners() {
       const inputListeners = [
         { element: domElements.questionInput, event: 'input', handler: updateQuestion },
-        { element: domElements.hintTextInputRadios, event: 'input', handler: updateHintText },
-        { element: domElements.pageHeadingInputRadios, event: 'input', handler: updatePageHeading },
-        { element: domElements.guidanceTextareaRadios, event: 'input', handler: updateGuidanceText }
+        { element: domElements.hintTextInputAutocomplete, event: 'input', handler: updateHintText },
+        { element: domElements.pageHeadingInputAutocomplete, event: 'input', handler: updatePageHeading },
+        { element: domElements.guidanceTextareaAutocomplete, event: 'input', handler: updateGuidanceText }
       ];
 
       inputListeners.forEach(bindListener);
 
       // Add focus and blur listeners for placeholders
-      domElements.hintTextInputRadios.addEventListener('focus', showPlaceholderHint);
-      domElements.hintTextInputRadios.addEventListener('blur', clearPlaceholderHint);
+      domElements.hintTextInputAutocomplete.addEventListener('focus', showPlaceholderHint);
+      domElements.hintTextInputAutocomplete.addEventListener('blur', clearPlaceholderHint);
 
-      domElements.pageHeadingInputRadios.addEventListener('focus', showPlaceholderHeading);
-      domElements.pageHeadingInputRadios.addEventListener('blur', clearPlaceholderHeading);
+      domElements.pageHeadingInputAutocomplete.addEventListener('focus', showPlaceholderHeading);
+      domElements.pageHeadingInputAutocomplete.addEventListener('blur', clearPlaceholderHeading);
 
-      domElements.guidanceTextareaRadios.addEventListener('focus', showPlaceholderGuidance);
-      domElements.guidanceTextareaRadios.addEventListener('blur', clearPlaceholderGuidance);
+      domElements.guidanceTextareaAutocomplete.addEventListener('focus', showPlaceholderGuidance);
+      domElements.guidanceTextareaAutocomplete.addEventListener('blur', clearPlaceholderGuidance);
 
       // Apply focus/blur highlighting
-      applyHighlightOnFocus('question-label-input-radios', 'question-label-legend-q1');
-      applyHighlightOnFocus('hint-text-input-radios', 'listPreview-hint');
-      applyHighlightOnFocus('page-heading-input-radios', 'dynamic-heading-radios');
-      applyHighlightOnFocus('guidance-textarea-radios', 'guidance-paragraph');
+      applyHighlightOnFocus('question-label-input-autocomplete', 'question-label-legend-q1');
+      applyHighlightOnFocus('hint-text-input-autocomplete', 'listPreview-hint');
+      applyHighlightOnFocus('page-heading-input-autocomplete', 'dynamic-heading-radios');
+      applyHighlightOnFocus('guidance-textarea-autocomplete', 'guidance-paragraph');
 
       // initialise content on page load
       updateQuestion();
@@ -647,57 +649,57 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Update hint text
     function updateHintText() {
-      setTextContent(domElements.hintTextOutput, domElements.hintTextInputRadios.value.trim());
+      setTextContent(domElements.hintTextOutput, domElements.hintTextInputAutocomplete.value.trim());
     }
 
     // Update page heading
     function updatePageHeading() {
-      setTextContent(domElements.pageHeadingOutput, domElements.pageHeadingInputRadios.value.trim(), '');
+      setTextContent(domElements.pageHeadingOutput, domElements.pageHeadingInputAutocomplete.value.trim(), '');
     }
 
     // Update guidance text
     function updateGuidanceText() {
-      setTextContent(domElements.guidanceOutput, domElements.guidanceTextareaRadios.value.trim(), '');
+      setTextContent(domElements.guidanceOutput, domElements.guidanceTextareaAutocomplete.value.trim(), '');
     }
 
     // Show placeholder for hint text only on focus
     function showPlaceholderHint() {
-      if (!domElements.hintTextInputRadios.value.trim()) {
+      if (!domElements.hintTextInputAutocomplete.value.trim()) {
         domElements.hintTextOutput.textContent = 'Hint text';
       }
     }
 
     // Clear placeholder for hint text on blur
     function clearPlaceholderHint() {
-      if (!domElements.hintTextInputRadios.value.trim()) {
+      if (!domElements.hintTextInputAutocomplete.value.trim()) {
         domElements.hintTextOutput.textContent = '';
       }
     }
 
     // Show placeholder for page heading only on focus
     function showPlaceholderHeading() {
-      if (!domElements.pageHeadingInputRadios.value.trim()) {
+      if (!domElements.pageHeadingInputAutocomplete.value.trim()) {
         domElements.pageHeadingOutput.textContent = 'Page heading';
       }
     }
 
     // Clear placeholder for page heading on blur
     function clearPlaceholderHeading() {
-      if (!domElements.pageHeadingInputRadios.value.trim()) {
+      if (!domElements.pageHeadingInputAutocomplete.value.trim()) {
         domElements.pageHeadingOutput.textContent = '';
       }
     }
 
     // Show placeholder for guidance text only on focus
     function showPlaceholderGuidance() {
-      if (!domElements.guidanceTextareaRadios.value.trim()) {
+      if (!domElements.guidanceTextareaAutocomplete.value.trim()) {
         domElements.guidanceOutput.textContent = 'Guidance text';
       }
     }
 
     // Clear placeholder for guidance text on blur
     function clearPlaceholderGuidance() {
-      if (!domElements.guidanceTextareaRadios.value.trim()) {
+      if (!domElements.guidanceTextareaAutocomplete.value.trim()) {
         domElements.guidanceOutput.textContent = '';
       }
     }

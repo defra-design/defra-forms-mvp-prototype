@@ -1,47 +1,10 @@
 
- <!-- New HTML content for before element -->
- <div id="before-content">
-   <p class="govuk-body-s" style="margin-bottom: 0">
-     <a
-       href="#"
-       class="govuk-link govuk-link--no-visited-state"
-       rel="noreferrer noopener"
-       target="_blank"
-       >Preview this page in a new tab</a
-     >
-   </p>
- </div>
-
- <!-- Additional Content Here -->
- <div class="additional-content">
-
-   <div>
-     <!-- Tag for Preview -->
-     {{ govukTag({ text: "Preview of page 4", classes: "govuk-tag--yellow
-     govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
-     <!-- Form for Preview -->
-             <!-- Dynamic Heading -->
-
-
-
-             <div id="heading-container">
-              {% set setName = data['setName'] or '' %}
-              <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }} 1</span>
-
-              <h1 class="govuk-heading-xl" id="dynamic-heading-radios">{{ data['pageHeadingInputAutocomplete'] or '' }}</h1>
-            </div>
-
-     <!-- Guidance Paragraph -->
-    <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceTextareaRadios'] or '' }}</p>
-
-
-
      <div class="border-left-container-radios">
 
 <div id="radio-list">
 <fieldset class="govuk-fieldset">
 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-<h1 class="govuk-fieldset__heading" id="question-label-legend-q1">
+<h1 class="govuk-fieldset__heading" id="multi-question-label-output-autocomplete">
  Question
 </h1>
 </legend>
@@ -49,8 +12,8 @@
 <!-- Custom radios without govuk-form-group -->
 <fieldset class="govuk-fieldset" aria-describedby="listPreview-hint">
 
-  <div id="listPreview-hint" class="govuk-hint"></div>
-  <!-- autocomplete preview -->
+  <fieldset class="govuk-fieldset" aria-describedby="multi-question-listPreview-hint">
+    <div id="multi-question-listPreview-hint" name="multiQuestionListPreviewHint" class="govuk-hint"></div>  <!-- autocomplete preview -->
 
   <div class="govuk-form-group">
     <label id="autocomplete-label" class="govuk-label" for="autocomplete-input">
@@ -64,7 +27,7 @@
 </div>
 </fieldset>
 </fieldset>
-</div>
+
 
 
 <details class="govuk-details govuk-!-margin-top-5" id="error-message-preview-summary">
@@ -128,4 +91,10 @@ dynamicCaption.style.display = "none";
     border-left: 10px solid #ffb266;
     padding-left: 20px;
   }
+
+  .highlight {
+  background-color: #ffe5cc;
+  border-bottom: 2px solid #ffb266;
+}
+
 </style>

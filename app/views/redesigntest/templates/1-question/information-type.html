@@ -36,13 +36,12 @@
     />
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds-from-desktop">
+      <div class="govuk-grid-column-full-from-desktop">
         <h1 class="x-govuk-masthead__title">
-          <span class="govuk-caption-l" style="color: white"
+          {# <span class="govuk-caption-l" style="color: white"
             >Apply for a county parish holding certificate</span
-          >
-
-          Edit page 2
+          > #}
+          Apply for a county parish holding (CPH) number
         </h1>
 
       </div>
@@ -87,13 +86,13 @@
                         >
                           <ul class="moj-sub-navigation__list" id="nav-list2">
                             <!-- Question Link -->
-                            <li class="moj-sub-navigation__item">
+                            {# <li class="moj-sub-navigation__item">
                               <a
                                 class="moj-sub-navigation__link"
                                 href="/redesigntest/templates/1-question/settings"
                                 >Page settings</a
                               >
-                            </li>
+                            </li> #}
 
                             <li class="moj-sub-navigation__item">
                               <a
@@ -194,9 +193,9 @@
                             },
                             {
                               value: "select",
-                              text: "Select",
+                              text: "Autocomplete",
                               hint: {
-                                text: "A drop-down list for users to select one answer"
+                                text: "A list of options revealed to users as they type"
 
                           }
                         }
@@ -609,18 +608,68 @@
 
                 {# Select Preview #}
                 <div class="preview-content select-preview" style="display: none;">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-label--l" for="select">
-                      Question
-                    </label>
-                    <select class="govuk-select" id="select" name="select">
-                      <option value="">Please select</option>
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+
+
+                  <!-- Include the preview template -->
+    {% include "/redesigntest/templates/previews/autcomplete/preview.html" %}
+
+
+    <script src="https://unpkg.com/accessible-autocomplete@2.0.4/dist/accessible-autocomplete.min.js"></script>
+
+    <script>
+
+      // Process CSV and create an array of options
+      function processCSV(csvText) {
+        return csvText
+          .split(",")
+          .map((option) => option.trim())
+          .filter((option) => option.length > 0); // Ensures no empty options
+      }
+
+      // Initialise or reinitialise the autocomplete
+      function initialiseAutocomplete(options) {
+        // Clear the container before reinitializing
+        const container = document.querySelector("#autocomplete-container");
+        container.innerHTML = "";
+
+        // Initialise the accessible autocomplete with the given options
+        accessibleAutocomplete({
+          element: container,
+          id: "autocomplete-input", // To match it to the label
+          source: options
+        });
+
+        // Update a status label with a green check emoji if CSV has been successfully parsed
+        const label = document.getElementById("options-entry");
+        if (options.length > 0) {
+          label.innerHTML = "Preview updated (CSV Imported ✅)";
+        } else {
+          label.innerHTML = ""; // Reset label if no options
+        }
+      }
+
+      // initialise the autocomplete with an empty array initially
+      initialiseAutocomplete([]);
+
+      // Event listener for changes in the textarea
+      document.getElementById("csv-input").addEventListener("input", function () {
+        // Get CSV input from textarea
+        const csvInput = this.value;
+
+        // Process the CSV and get options
+        const options = processCSV(csvInput);
+
+        // Reinitialise the autocomplete with the new options
+        initialiseAutocomplete(options);
+      });
+
+
+    </script>
+
+  </div>
+</div>
+
+
 
         <!-- Guidance Paragraph -->
         <p class="govuk-body" id="guidance-paragraph">{{ data['guidanceText'] or '' }}</p>

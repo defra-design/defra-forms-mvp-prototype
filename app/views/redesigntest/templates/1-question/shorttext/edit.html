@@ -31,12 +31,12 @@
     />
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds-from-desktop">
+      <div class="govuk-grid-column-full-from-desktop">
         <h1 class="x-govuk-masthead__title">
-          <span class="govuk-caption-l" style="color: white">
+          {# <span class="govuk-caption-l" style="color: white">
             Apply for a county parish holding certificate
-          </span>
-          Edit page 2
+          </span> #}
+          Apply for a county parish holding (CPH) number
         </h1>
 
 
@@ -66,32 +66,34 @@
                         <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2 " aria-label="Sub navigation">
                           <ul class="moj-sub-navigation__list" id="nav-list2">
                             <!-- Question Link -->
-                            <li class="moj-sub-navigation__item">
+                            {# <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
-                            </li>
+                            </li> #}
                             {# <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" href="#overview-noquestions">Overview of questions</a>
                             </li> #}
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Question</a>
+                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Page 5</a>
                             </li>
                           </ul>
                         </nav>
 
                         <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
-                        <span class="govuk-caption-l">Page 1</span>
-                        <h2 class="govuk-heading-l">Question</h2>
+                        {# <span class="govuk-caption-l">Page 1</span> #}
+                        <h2 class="govuk-heading-l">Edit page 5</h2>
 
                         <form method="post" id="options-form" action="/redesigntest/templates/1-question/shorttext/overview">
                           {% from "govuk/components/input/macro.njk" import govukInput %}
 
-                          <!-- Question Label Input -->
-                          <div class="govuk-form-group">
-                            <label class="govuk-label--m" for="question-label-input-shorttext">
-                              Question
-                            </label>
-                            <input class="govuk-input" id="question-label-input-shorttext" name="questionLabelInputShortText"  type="text" value="">                          </div>
+                         <!-- Question Label Input -->
+<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="question-label-input-shorttext">
+    Question
+  </label>
+  <input class="govuk-input" id="question-label-input-shorttext" name="questionLabelInputShortText" type="text" value="">
+</div>
+
 
                           <!-- Hint Text Input -->
                           {{ govukTextarea({

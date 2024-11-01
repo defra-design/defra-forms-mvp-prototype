@@ -83,7 +83,7 @@
                         <span class="govuk-caption-l">Page 1</span>
                         <h2 class="govuk-heading-l">Question</h2>
 
-                        {# <form method="post" id="options-form" action="/redesigntest/templates/1-question/Date/overview"> #}
+                        <form method="post" id="options-form" action="/redesigntest/templates/1-question/date/overview">
                           {% from "govuk/components/input/macro.njk" import govukInput %}
 
                           <!-- Question Label Input -->
@@ -329,7 +329,6 @@
                           <div class="moj-button-action">
                             {{ govukButton({
                               text: 'Continue',
-                              href: "/redesigntest/templates/1-question/date/overview.html",
                               type: 'submit'
                             }) }}
                           </div>

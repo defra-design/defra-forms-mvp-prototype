@@ -31,12 +31,12 @@
     />
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds-from-desktop">
+      <div class="govuk-grid-column-full-from-desktop">
         <h1 class="x-govuk-masthead__title">
-          <span class="govuk-caption-l" style="color: white">
+          {# <span class="govuk-caption-l" style="color: white">
             Apply for a county parish holding certificate
-          </span>
-          Edit page 2
+          </span> #}
+          Apply for a county parish holding (CPH) number
         </h1>
 
 
@@ -220,8 +220,8 @@
         hint: {
           text: "Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’"
         },
-        id: "error-message-input-shorttext",
-        name: "errorMessageInputShorttext"
+        id: "error-message-input-textarea",
+        name: "errorMessageInputTextarea"
       }) }}
 
 
@@ -476,8 +476,8 @@
   document.addEventListener('DOMContentLoaded', function () {
     // DOM Elements
     const domElements = {
-      questionLabelInputShorttext: document.getElementById('question-label-input-shorttext'),
-      errorMessageInputShorttext: document.getElementById('error-message-input-shorttext'),
+      questionLabelInputTextarea: document.getElementById('question-label-input-textarea'),
+      errorMessageInputTextarea: document.getElementById('error-message-input-textarea'),
       errorMessagePreviewElements: document.querySelectorAll("#error-dynamic-text, #error-dynamic-text-long, #error-dynamic-text-short, #error-dynamic-text-range"),
       makeOptionalCheckbox: document.getElementById('make-optional'),
       minCharactersInput: document.getElementById('min-characters'),
@@ -491,13 +491,13 @@
 
     function initializeEventListeners() {
       // Update short description for error messages and apply highlighting
-      if (domElements.errorMessageInputShorttext && domElements.errorMessagePreviewElements.length) {
-        domElements.errorMessageInputShorttext.addEventListener('input', updateErrorMessages);
-        applyHighlightOnFocus(domElements.errorMessageInputShorttext, domElements.errorMessagePreviewElements);
+      if (domElements.errorMessageInputTextarea && domElements.errorMessagePreviewElements.length) {
+        domElements.errorMessageInputTextarea.addEventListener('input', updateErrorMessages);
+        applyHighlightOnFocus(domElements.errorMessageInputTextarea, domElements.errorMessagePreviewElements);
       }
 
       // Apply focus/blur highlighting to other elements
-      applyHighlightOnFocus(domElements.questionLabelInputShorttext, document.getElementById('question-label-legend'));
+      applyHighlightOnFocus(domElements.questionLabelInputTextarea, document.getElementById('question-label-legend'));
 
       // Update character limits dynamically
       if (domElements.minCharactersInput && domElements.maxCharactersInput) {
@@ -507,7 +507,7 @@
     }
 
     function updateErrorMessages() {
-      const shortDescription = domElements.errorMessageInputShorttext.value || '[Short description]';
+      const shortDescription = domElements.errorMessageInputTextarea.value || '[Short description]';
       domElements.errorMessagePreviewElements.forEach(element => {
         element.textContent = shortDescription;
       });
@@ -560,17 +560,17 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-  const errorMessageInputShorttext = document.getElementById('error-message-input-shorttext');
+  const errorMessageInputTextarea = document.getElementById('error-message-input-textarea');
   const errorMessagePreviewSummary = document.getElementById('error-message-preview-summary');
 
-  if (errorMessageInputShorttext && errorMessagePreviewSummary) {
+  if (errorMessageInputTextarea && errorMessagePreviewSummary) {
     // Open details when input is focused
-    errorMessageInputShorttext.addEventListener('focus', function () {
+    errorMessageInputTextarea.addEventListener('focus', function () {
       errorMessagePreviewSummary.setAttribute('open', 'open');
     });
 
     // Close details when input loses focus
-    errorMessageInputShorttext.addEventListener('blur', function () {
+    errorMessageInputTextarea.addEventListener('blur', function () {
       errorMessagePreviewSummary.removeAttribute('open');
     });
   }
@@ -578,6 +578,59 @@
 
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get the input field where the user types the short description
+    const inputField = document.getElementById('error-message-input-textarea');
+
+    // Check if input field exists
+    if (!inputField) {
+      console.error('Input field not found.');
+      return;
+    }
+
+    // Get the error message placeholders
+    const errorDynamicTextElements = {
+      // Error message where we use the input as-is
+      asIs: document.getElementById('error-dynamic-text'), // "Enter [Short description]"
+
+      // Error messages where we capitalize the first letter
+      capitalize: [
+        document.getElementById('error-dynamic-text-long'),
+        document.getElementById('error-dynamic-text-short'),
+        document.getElementById('error-dynamic-text-range')
+      ].filter(Boolean) // Remove any null elements
+    };
+
+    // Function to capitalize only the first letter of the input
+    function capitalizeFirstLetter(str) {
+      if (!str) return '[Short description]';
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    // Function to update error messages
+    function updateErrorMessages() {
+      const userInput = inputField.value.trim() || '[Short description]';
+
+      // For the error message where we use input as-is
+      if (errorDynamicTextElements.asIs) {
+        errorDynamicTextElements.asIs.textContent = userInput;
+      }
+
+      // For the error messages where we capitalize the first letter
+      const transformedInput = capitalizeFirstLetter(userInput);
+      errorDynamicTextElements.capitalize.forEach(function(element) {
+        element.textContent = transformedInput;
+      });
+    }
+
+    // Add event listener to the input field
+    inputField.addEventListener('input', updateErrorMessages);
+
+    // Initialize error messages on page load
+    updateErrorMessages();
+  });
+  </script>
 
 
     <!-- CSS for Highlighting -->

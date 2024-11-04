@@ -238,8 +238,8 @@
       hint: {
         text: "Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’"
       },
-      id: "error-message-input",
-      name: "errorMessageInput"
+      id: "error-message-input-autocomplete",
+      name: "errorMessageInputAutocomplete"
     }) }}
 
 
@@ -728,6 +728,42 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const errorMessageInputAutocomplete = document.getElementById('error-message-input-autocomplete');
+    const errorMessagePreviewSummary = document.getElementById('error-message-preview-summary');
+    const errorDynamicTextSpan = document.getElementById('error-dynamic-text-autocomplete');
+
+    if (errorMessageInputAutocomplete && errorMessagePreviewSummary && errorDynamicTextSpan) {
+      // Open details and highlight the span when input is focused
+      errorMessageInputAutocomplete.addEventListener('focus', function () {
+        errorMessagePreviewSummary.setAttribute('open', 'open');
+        errorDynamicTextSpan.classList.add('highlight');
+      });
+
+      // Close details and remove highlight when input loses focus
+      errorMessageInputAutocomplete.addEventListener('blur', function () {
+        errorMessagePreviewSummary.removeAttribute('open');
+        errorDynamicTextSpan.classList.remove('highlight');
+      });
+
+      // Update the span content dynamically based on user input
+      errorMessageInputAutocomplete.addEventListener('input', function () {
+        const userInput = errorMessageInputAutocomplete.value.trim();
+        errorDynamicTextSpan.textContent = userInput || '[short description]';
+      });
+
+      // Initial state: if input is already focused, open details and highlight span
+      if (document.activeElement === errorMessageInputAutocomplete) {
+        errorMessagePreviewSummary.setAttribute('open', 'open');
+        errorDynamicTextSpan.classList.add('highlight');
+      }
+    } else {
+      console.error('Required DOM elements not found.');
+    }
+  });
+</script>
+
 
 
 

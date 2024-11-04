@@ -268,8 +268,8 @@
       hint: {
         text: "Enter a short description for this question like ‘date of birth’. Short descriptions are used in error messages, for example ‘Enter a valid date of birth’"
       },
-      id: "error-message-input",
-      name: "errorMessageInput"
+      id: "error-message-input-radios",
+      name: "errorMessageInputRadios"
     }) }}
 
 
@@ -704,6 +704,62 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  const errorMessageInputRadios = document.getElementById('error-message-input-radios');
+  const errorMessagePreviewSummary = document.getElementById('error-message-preview-summary');
+
+
+  if (errorMessageInputRadios && errorMessagePreviewSummary) {
+    // Open details when input is focused
+    errorMessageInputRadios.addEventListener('focus', function () {
+      errorMessagePreviewSummary.setAttribute('open', 'open');
+    });
+
+    // Close details when input loses focus
+    errorMessageInputRadios.addEventListener('blur', function () {
+      errorMessagePreviewSummary.removeAttribute('open');
+    });
+  }
+});
+
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // DOM Elements
+  const errorMessageInputRadios = document.getElementById('error-message-input-radios');
+  const errorDynamicTextRadios = document.getElementById('error-dynamic-text-radios');
+
+  // Ensure elements exist before adding event listeners
+  if (errorMessageInputRadios && errorDynamicTextRadios) {
+    // Update the error message preview when input changes
+    errorMessageInputRadios.addEventListener('input', function () {
+      const inputValue = errorMessageInputRadios.value.trim();
+      errorDynamicTextRadios.textContent = inputValue || '[Short description]';
+    });
+
+    // Add focus/blur highlighting to the preview text
+    errorMessageInputRadios.addEventListener('focus', function () {
+      errorDynamicTextRadios.classList.add('highlight');
+    });
+
+    errorMessageInputRadios.addEventListener('blur', function () {
+      errorDynamicTextRadios.classList.remove('highlight');
+    });
+
+    // If input is already focused, apply the highlight immediately
+    if (document.activeElement === errorMessageInputRadios) {
+      errorDynamicTextRadios.classList.add('highlight');
+    }
+  } else {
+    console.error('DOM elements for error message input or preview not found.');
+  }
+});
+
+</script>
+
 
 
 

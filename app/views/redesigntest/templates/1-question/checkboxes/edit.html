@@ -856,6 +856,43 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const errorMessageInputCheckboxes = document.getElementById('error-message-input-checkboxes');
+    const errorMessagePreviewSummary = document.getElementById('error-message-preview-summary');
+    const errorDynamicTextSpan = document.getElementById('error-dynamic-text');
+
+    if (errorMessageInputCheckboxes && errorMessagePreviewSummary && errorDynamicTextSpan) {
+      // Open details and highlight the span when input is focused
+      errorMessageInputCheckboxes.addEventListener('focus', function () {
+        errorMessagePreviewSummary.setAttribute('open', 'open');
+        errorDynamicTextSpan.classList.add('highlight');
+      });
+
+      // Close details and remove highlight when input loses focus
+      errorMessageInputCheckboxes.addEventListener('blur', function () {
+        errorMessagePreviewSummary.removeAttribute('open');
+        errorDynamicTextSpan.classList.remove('highlight');
+      });
+
+      // Update the span content dynamically based on user input
+      errorMessageInputCheckboxes.addEventListener('input', function () {
+        const userInput = errorMessageInputCheckboxes.value.trim();
+        errorDynamicTextSpan.textContent = userInput || '[short description]';
+      });
+
+      // Initial state: if input is already focused, open details and highlight span
+      if (document.activeElement === errorMessageInputCheckboxes) {
+        errorMessagePreviewSummary.setAttribute('open', 'open');
+        errorDynamicTextSpan.classList.add('highlight');
+      }
+    } else {
+      console.error('Required DOM elements not found.');
+    }
+  });
+</script>
+
+
 
 
 <style>

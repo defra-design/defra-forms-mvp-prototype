@@ -334,8 +334,13 @@
             <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
           </p>
         </div>
-        <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews/shorttext/edit.html" %}
+      <!-- Include the preview template -->
+{% include "/redesigntest/templates/previews/shorttext/edit.html" %}
+
+<!-- Consolidat
+</script>
+
+
     </div>
   </div>
 
@@ -569,6 +574,61 @@
     });
   });
 </script>
+
+
+
+
+ <script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Get the input field
+  const inputField = document.getElementById('error-message-input-shorttext');
+
+  // Check if input field exists
+  if (!inputField) {
+    console.error('Input field not found.');
+    return;
+  }
+
+  // Get the error message placeholders
+  const errorDynamicTextElements = {
+    asIs: document.getElementById('error-dynamic-text'), // Use input as-is
+    capitalize: [
+      document.getElementById('error-dynamic-text-long'),
+      document.getElementById('error-dynamic-text-short'),
+      document.getElementById('error-dynamic-text-range')
+    ].filter(Boolean) // Apply capitalizeFirstLetter
+  };
+
+  // Function to capitalize only the first letter of the input
+  function capitalizeFirstLetter(str) {
+    if (!str) return '[Short description]';
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  // Function to update error messages
+  function updateErrorMessages() {
+    const userInput = inputField.value.trim() || '[Short description]';
+
+    // For the error message where we use input as-is
+    if (errorDynamicTextElements.asIs) {
+      errorDynamicTextElements.asIs.textContent = userInput;
+    }
+
+    // For the error messages where we capitalize the first letter
+    const transformedInput = capitalizeFirstLetter(userInput);
+    errorDynamicTextElements.capitalize.forEach(function(element) {
+      element.textContent = transformedInput;
+    });
+  }
+
+  // Add event listener to the input field
+  inputField.addEventListener('input', updateErrorMessages);
+
+  // Initialize error messages on page load
+  updateErrorMessages();
+});
+</script>
+
 
 
 

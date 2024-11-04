@@ -98,7 +98,7 @@
                               <a
                                 class="moj-sub-navigation__link" aria-current="page"
                                 href="#overview-noquestions"
-                                >Question</a
+                                >Page #</a
                               >
                             </li>
 
@@ -203,6 +203,9 @@
                         }) }}
                       {% endset -%}
 
+                      <span class="govuk-caption-l"
+                      >Page #</span
+                    >
                       {{ govukRadios({
                         name: "informationQuestion1",
                         fieldset: {

@@ -31,12 +31,12 @@
     />
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds-from-desktop">
+      <div class="govuk-grid-column-full-from-desktop">
         <h1 class="x-govuk-masthead__title">
-          <span class="govuk-caption-l" style="color: white">
+          {# <span class="govuk-caption-l" style="color: white">
             Apply for a county parish holding certificate
-          </span>
-          Edit page 2
+          </span> #}
+          Apply for a county parish holding (CPH) number
         </h1>
 
 
@@ -81,20 +81,18 @@
                         <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
                         <span class="govuk-caption-l">Page 2</span>
-                        <h2 class="govuk-heading-l">Question 8</h2>
+                        <h2 class="govuk-heading-l">Edit question 8</h2>
 
                         <form method="post" id="options-form" action="/redesigntest/templates/more-than-1-question/yesno/overview">
                           {% from "govuk/components/input/macro.njk" import govukInput %}
 
-                          <!-- Question Label Input -->
-                          <div class="govuk-form-group">
-                            <label class="govuk-label--m" for="multi-question-label-input-yesno">
-                              Question
-                            </label>
-                            <input class="govuk-input" id="multi-question-label-input-yesno"
-                                   name="multiQuestionLabelInputYesno"
-                                   type="text" value="">
-                        </div>
+                       <!-- Question Label Input -->
+<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="multi-question-label-input-yesno">
+    Question
+  </label>
+  <input class="govuk-input" id="multi-question-label-input-yesno" name="multiQuestionLabelInputYesno" type="text" value="">
+</div>
 
 
 

@@ -31,13 +31,12 @@
     />
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds-from-desktop">
+      <div class="govuk-grid-column-full-from-desktop">
         <h1 class="x-govuk-masthead__title">
-          <span class="govuk-caption-l" style="color: white"
+          {# <span class="govuk-caption-l" style="color: white"
             >Apply for a county parish holding certificate</span
-          >
-
-          Edit page 2
+          > #}
+          Apply for a county parish holding (CPH) number
         </h1>
 
       </div>
@@ -193,11 +192,11 @@
                                 text: "A list for users to select one answer"
                               }
                             },
-                            {
+                             {
                               value: "select",
-                              text: "Select",
+                              text: "Autocomplete",
                               hint: {
-                                text: "A drop-down list for users to select one answer"
+                                text: "A list of options revealed to users as they type"
 
                           }
                         }
@@ -205,6 +204,9 @@
                         }) }}
                       {% endset -%}
 
+                      <span class="govuk-caption-l"
+            >Page 2: question 4 </span
+          >
                       {{ govukRadios({
                         name: "informationQuestion3",
                         fieldset: {

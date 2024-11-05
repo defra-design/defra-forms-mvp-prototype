@@ -80,15 +80,15 @@
 
                         <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
-                        <span class="govuk-caption-l">Page 1</span>
-                        <h2 class="govuk-heading-l">Question</h2>
+                        <span class="govuk-caption-l">Page #</span>
+                        <h2 class="govuk-heading-l">Edit question #</h2>
 
                         <form method="post" id="options-form" action="/redesigntest/templates/1-question/textarea/overview">
                           {% from "govuk/components/input/macro.njk" import govukInput %}
 
                           <!-- Question Label Input -->
                           <div class="govuk-form-group">
-                            <label class="govuk-label--m" for="question-label-input-textarea">
+                            <label class="govuk-label govuk-label--m" for="question-label-input-textarea">
                               Question
                             </label>
                             <input class="govuk-input" id="question-label-input-textarea" name="questionLabelInputTextArea" type="text" value="">

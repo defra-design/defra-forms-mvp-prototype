@@ -333,7 +333,26 @@ activeLinkId: "nav-editor"
                 <span class="page-number"></span>
                 {{ data['guidanceOnlyHeadingInput'] }}
             </p>
+            {% if data['guidanceOnlyHeadingInput'] %}
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list" style="margin-left:0;">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Guidance</dt>
+                        <dd class="govuk-summary-list__value">
+                            {% if (data['guidanceOnlyGuidanceTextInput'] or '').length > 50 %}
+                            {{ (data['guidanceOnlyGuidanceTextInput'] or '').substring(0, 150) }}...
+                            {% else %}
+                            {{ data['guidanceOnlyGuidanceTextInput'] or '' }}
+                            {% endif %}
+                        </dd>
+
+
+                    </div>
+                </dl>
+            </div>
+            {% endif %}
         </div>
+
         <div class="gem-c-reorderable-list__actions">
             <div class="govuk-form-group">
                 <label for="input-guidance" class="gem-c-label govuk-label">
@@ -482,6 +501,11 @@ activeLinkId: "nav-editor"
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
         <style>
+
+.govuk-summary-card__content {
+    padding-left: 0;
+}
+
             /* Ensure the chosen item remains solid */
             .sortable-chosen {
                 opacity: 1 !important;

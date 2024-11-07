@@ -135,29 +135,32 @@
                       {% endset -%}
 
                       {% set writtenHtml %}
-                        {{ govukRadios({
-                          name: "written",
-                          fieldset: {
-                            legend: {
-                              text: "Type of written answer"
-                            }
+                      {{ govukRadios({
+                        name: "written",
+                        fieldset: {
+                          legend: {
+                            text: "Type of written answer"
+                          }
+                        },
+                        items: [
+                          {
+                            value: "short-answer",
+                            text: "Short answer (a single line)"
                           },
-                          items: [
-                            {
-                              value: "short-answer",
-                              text: "Short answer (a single line)"
+                          {
+                            value: "long-answer",
+                            text: "Long answer (more than a single line)"
+                          },
+                          {
+                            value: "numbers",
+                            text: "Numbers only"
+                          }
+                        ],
+                        errorMessage: {
+                          text: "Select the type of written answer you need from users"
+                        }
+                      }) }}
 
-                            },
-                            {
-                              value: "long-answer",
-                              text: "Long answer (more than a single line)"
-                            },
-                            {
-                              value: "numbers",
-                              text: "Numbers only"
-                            }
-                          ]
-                        }) }}
                       {% endset -%}
 
                       {% set list2Html %}
@@ -203,83 +206,96 @@
                         }) }}
                       {% endset -%}
 
-                      <span class="govuk-caption-l"
-                      >Page #</span
-                    >
-                      {{ govukRadios({
-                        name: "informationQuestion1",
-                        fieldset: {
-                          legend: {
-                            text: "What information do you need from users?",
-                            isPageHeading: true,
-                            classes: "govuk-fieldset__legend--l"
-                          }
-                        },
-                        hint: {
-                          text: "You can ask for more information later"
-                        },
-                        items: [
-                          {
-                            value: "text",
-                            text: "Written answer",
-                            hint: {
-                              text: "A short or long answer as text or number"
-                            },
-                            conditional: {
-                              html: writtenHtml
-                            }
-                          },
-                          {
-                            value: "date",
-                            text: "Date",
-                            hint: {
-                              text: "A day, month and year or month and year only"
-                            },
-                            conditional: {
-                              html: dateHtml
-                            }
-                          },
-                          {
-                            value: "address",
-                            text: "UK address",
-                            hint: {
-                              text: "A street address, town or city and postcode"
-                            }
-                          },
-                          {
-                            value: "phone",
-                            text: "Phone number",
-                            hint: {
-                              text: "A UK phone number, for example, 07700 900 982 or +44 808 157 0192"
-                            }
-                          },
-                          {
-                            value: "file",
-                            text: "Supporting evidence",
-                            hint: {
-                              text: "A document, for example, DOC, PDF, CSV, Excel "
-                            }
-                          },
-                          {
-                            value: "email",
-                            text: "Email address",
-                            hint: {
-                              text: "An email address, for example, name@example.com"
-                            }
-                          },
-                          {
-                            divider: "or"
-                          },
-                          {
-                            value: "list",
-                            text: "A list of options that users can choose from",
-                            conditional: {
-                              html: list2Html
-                            }
+                      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
+                      {{ govukErrorSummary({
+                        titleText: "There is a problem",
+                        errorList: [
+                          {
+                            text: "Select the type of written answer you need from users",
+                            href: "#informationQuestion1"
                           }
                         ]
                       }) }}
+
+                      <span class="govuk-caption-l"
+                      >Page #</span
+                    >
+                    {{ govukRadios({
+                      name: "informationQuestion1",
+                      fieldset: {
+                        legend: {
+                          text: "What information do you need from users?",
+                          isPageHeading: true,
+                          classes: "govuk-fieldset__legend--l"
+                        }
+                      },
+                      value: "text",
+                      hint: {
+                        text: "You can ask for more information later"
+                      },
+                      items: [
+                        {
+                          value: "text",
+                          text: "Written answer",
+                          hint: {
+                            text: "A short or long answer as text or number"
+                          },
+                          conditional: {
+                            html: writtenHtml
+                          }
+                        },
+                        {
+                          value: "date",
+                          text: "Date",
+                          hint: {
+                            text: "A day, month and year or month and year only"
+                          },
+                          conditional: {
+                            html: dateHtml
+                          }
+                        },
+                        {
+                          value: "address",
+                          text: "UK address",
+                          hint: {
+                            text: "A street address, town or city and postcode"
+                          }
+                        },
+                        {
+                          value: "phone",
+                          text: "Phone number",
+                          hint: {
+                            text: "A UK phone number, for example, 07700 900 982 or +44 808 157 0192"
+                          }
+                        },
+                        {
+                          value: "file",
+                          text: "Supporting evidence",
+                          hint: {
+                            text: "A document, for example, DOC, PDF, CSV, Excel"
+                          }
+                        },
+                        {
+                          value: "email",
+                          text: "Email address",
+                          hint: {
+                            text: "An email address, for example, name@example.com"
+                          }
+                        },
+                        {
+                          divider: "or"
+                        },
+                        {
+                          value: "list",
+                          text: "A list of options that users can choose from",
+                          conditional: {
+                            html: list2Html
+                          }
+                        }
+                      ]
+                    }) }}
+
 
   {{ govukButton({
     text: "Continue",

@@ -273,37 +273,8 @@
   spellcheck: false
 }) }}
 
-{{ govukTextarea({
-  label: {
-    text: "Regex",
-    classes: "govuk-label--m",
-    rows: 2,
-    isPageHeading: false
-  },
-  hint: {
-    text: "Specifies a regular expression to validate users’ inputs. Use JavaScript syntax"
-  },
-  id: "regex",
-  rows: "3",
-  name: "regex",
-  spellcheck: false
-}) }}
+{% include "/redesigntest/templates/content/regex-validation.html" %}
 
-{{ govukTextarea({
-  label: {
-    text: "Validation message for regex",
-    classes: "govuk-label--m",
-    rows: 2,
-    isPageHeading: false
-  },
-  hint: {
-    text: "Enter the message to display when answers don’t match your validation rules"
-  },
-  id: "regex-message",
-  rows: "2",
-  name: "regexMessage",
-  spellcheck: false
-}) }}
   </div>
 </details>
 

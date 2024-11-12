@@ -214,7 +214,7 @@
 
 {{ govukInput({
   label: {
-    text: "Short description for error messages",
+    text: "Short description",
     classes: "govuk-label--m",
     isPageHeading: false
   },
@@ -451,7 +451,7 @@
     initializeEventListeners();
 
     function initializeEventListeners() {
-      // Update short description for error messages and apply highlighting
+      // Update short description and apply highlighting
       if (domElements.errorMessageInputYesno && domElements.errorMessagePreviewElements.length) {
         domElements.errorMessageInputYesno.addEventListener('input', updateErrorMessages);
         applyHighlightOnFocus(domElements.errorMessageInputYesno, domElements.errorMessagePreviewElements);

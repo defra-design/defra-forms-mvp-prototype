@@ -213,7 +213,7 @@
 
 {{ govukInput({
   label: {
-    text: "Short description for error messages",
+    text: "Short description",
     classes: "govuk-label--m",
     isPageHeading: false
   },
@@ -452,7 +452,7 @@ applyHighlightOnFocus(domElements.questionLabelInputEmail, domElements.questionL
     initializeEventListeners();
 
     function initializeEventListeners() {
-      // Update short description for error messages and apply highlighting
+      // Update short description and apply highlighting
       if (domElements.errorMessageInputEmail && domElements.errorMessagePreviewElements.length) {
         domElements.errorMessageInputEmail.addEventListener('input', updateErrorMessages);
         applyHighlightOnFocus(domElements.errorMessageInputEmail, domElements.errorMessagePreviewElements);

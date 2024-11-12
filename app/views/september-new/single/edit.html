@@ -329,7 +329,7 @@ activeLinkId: "nav-editor"
                         <div class="govuk-form-group">
                           {{ govukInput({
                           label: {
-                          text: "Short description for error messages",
+                          text: "Short description",
                           classes: "govuk-label--m"
                           },
                           hint: {
@@ -816,7 +816,7 @@ activeLinkId: "nav-editor"
           const errorLabelInput = document.getElementById('error-label-input');
           if (errorLabelInput && !errorLabelInput.value.trim()) {
             isValid = false;
-            const errorMessage = 'Enter a short description for error messages';
+            const errorMessage = 'Enter a Short description';
             displayFieldError(errorLabelInput, errorMessage);
             errors.push({ text: errorMessage, href: 'error-label-input' });
           }

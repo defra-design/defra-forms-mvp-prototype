@@ -94,6 +94,14 @@
               <span id="max-length-range">[max length]</span> characters
             </a>
           </li>
+
+          <li>
+            <a id="regex-input-error-shorttext" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>
+              <span id="error-dynamic-text-regex">[Regex validation message]</span>
+            </a>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -121,33 +129,41 @@
   {% endif %}
 
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-  const dynamicCaption = document.getElementById("dynamic-caption");
-  const setName = dynamicCaption.getAttribute("data-setname");
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const dynamicCaption = document.getElementById("dynamic-caption");
+      const setName = dynamicCaption.getAttribute("data-setname");
 
-  if (!setName) {
-    dynamicCaption.style.display = "none";
-  }
-});
+      if (!setName) {
+        dynamicCaption.style.display = "none";
+      }
 
-// Select the input field and the details element
-const inputField = document.getElementById("error-message-input-shorttext");
-const errorMessagePreview = document.getElementById("error-message-preview-summary");
+      // Select the input fields and the details element
+      const inputField = document.getElementById("error-message-input-shorttext");
+      const regexTextarea = document.getElementById("regex-message");
+      const errorMessagePreview = document.getElementById("error-message-preview-summary");
 
-// Add event listener for focus and blur on the input field
-inputField.addEventListener("focus", () => {
-  // Set the open attribute on details to expand it
-  errorMessagePreview.setAttribute("open", "true");
-});
+      // Function to open the details element
+      function openErrorMessagePreview() {
+        errorMessagePreview.setAttribute("open", "true");
+      }
 
-inputField.addEventListener("blur", () => {
-  // Remove the open attribute on details to collapse it
-  errorMessagePreview.removeAttribute("open");
-});
+      // Function to close the details element if neither field is focused
+      function closeErrorMessagePreview() {
+        if (document.activeElement !== inputField && document.activeElement !== regexTextarea) {
+          errorMessagePreview.removeAttribute("open");
+        }
+      }
 
+      // Add event listeners for focus and blur on both input fields
+      inputField.addEventListener("focus", openErrorMessagePreview);
+      inputField.addEventListener("blur", closeErrorMessagePreview);
 
-    </script>
+      regexTextarea.addEventListener("focus", openErrorMessagePreview);
+      regexTextarea.addEventListener("blur", closeErrorMessagePreview);
+    });
+  </script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>

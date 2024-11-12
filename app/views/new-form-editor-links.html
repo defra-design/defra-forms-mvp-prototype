@@ -1,0 +1,205 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Kit of parts - Defra Forms Designer" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    homepageLink: "/",
+    signOutLink: "/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {%- from "moj/components/sub-navigation/macro.njk" import mojSubNavigation -%}
+
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Current designs',
+          href: '#1'
+        }, {
+          text: 'New form editor',
+          active: true,
+          href: '#2'
+        }]
+      }) }}
+
+      <h1 class="govuk-heading-xl">New form editor</h1>
+
+      <h2 class="govuk-heading-l">Listing page</h2>
+      <p class="govuk-body">A place to view a summary of the pages created for a specific form.</p>
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/listing.html" rel="noreferrer noopener" target="_blank">Default: no page created yet</a>
+        </li>
+        <li>
+          <a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/listing-all-card.html" rel="noreferrer noopener" target="_blank">Listing page with every type of summary card</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-l">'Type of page' selection</h2>
+      <p class="govuk-body">Routing question to tell the system whether the page you want to create will have only 1 question, multiple questions, or be a guidance-only page.</p>
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/questionnumber.html" rel="noreferrer noopener" target="_blank">Type of page selection routing question</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-l">'Information type' selection for question pages</h2>
+      <p class="govuk-body">Routing question to tell the system what information you want to ask from users.</p>
+
+      <h3 class="govuk-heading-m">'Information type' selection for single question pages</h3>
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/information-type.html" rel="noreferrer noopener" target="_blank">Information types for single question pages</a>
+        </li>
+      </ul>
+
+      <h3 class="govuk-heading-m">'Information type' selection for multiple question pages</h3>
+      <ul class="govuk-list">
+        <li>
+          {{ govukInsetText({
+            text: "After selecting that you want to create multiple question page, the first page you see is the 'Page settings' page (linked in the section below)."
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-information-type.html" rel="noreferrer noopener" target="_blank">Information types for multiple question pages</a>
+        </li>
+      </ul>
+
+      <div class="govuk-accordion" data-module="govuk-accordion" id="editor-pages-accordion">
+        <h2 class="govuk-heading-l">Links to pages separated by type of page</h2>
+        <p class="govuk-body">Configure each type of question you want to appear on the page</p>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h3 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                Single question pages
+              </span>
+              <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-1">
+                Pages to edit each type of question, overview pages
+              </div>
+            </h3>
+            <h4 class="govuk-heading-m">Editor and overview pages for pages with only 1 question</h4>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+            <ul class="govuk-list govuk-list--spaced">
+              <div class="link-container">
+                <a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/shorttext/edit.html" rel="noreferrer noopener" target="_blank">Short written answer</a>
+                <a class="govuk-link govuk-link--no-visited-state" href="/path/to/second/link" rel="noreferrer noopener" target="_blank">Second Link</a>
+              </div>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/shorttext/edit.html" rel="noreferrer noopener" target="_blank">Short written answer</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/textarea/edit.html" rel="noreferrer noopener" target="_blank">Long answer</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/numbers/edit.html" rel="noreferrer noopener" target="_blank">Numbers</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/date/edit.html" rel="noreferrer noopener" target="_blank">Date</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/address/edit.html" rel="noreferrer noopener" target="_blank">UK address</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/phone/edit.html" rel="noreferrer noopener" target="_blank">Phone number</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/fileupload/edit.html" rel="noreferrer noopener" target="_blank">Supporting evidence (file upload)</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/email/edit.html" rel="noreferrer noopener" target="_blank">Email address</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/yesno/edit.html" rel="noreferrer noopener" target="_blank">Yes or No</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/checkboxes/edit.html" rel="noreferrer noopener" target="_blank">Checkboxes</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/radios/edit.html" rel="noreferrer noopener" target="_blank">Radios</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/autocomplete/edit.html" rel="noreferrer noopener" target="_blank">Autocomplete</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h3 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+                Editor pages for each information type (multiple question pages)
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+            <ul class="govuk-list govuk-list--spaced">
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-question/shorttext/edit.html" rel="noreferrer noopener" target="_blank">Short written answer</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-question/textarea/edit.html" rel="noreferrer noopener" target="_blank">Long answer</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-question/numbers/edit.html" rel="noreferrer noopener" target="_blank">Numbers</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-question/date/edit.html" rel="noreferrer noopener" target="_blank">Date</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-question/address/edit.html" rel="noreferrer noopener" target="_blank">UK address</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-question/phone/edit.html" rel="noreferrer noopener" target="_blank">Phone number</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-question/email/edit.html" rel="noreferrer noopener" target="_blank">Email address</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-question/yesno/edit.html" rel="noreferrer noopener" target="_blank">Yes or No</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-question/checkboxes/edit.html" rel="noreferrer noopener" target="_blank">Checkboxes</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-question/radios/edit.html" rel="noreferrer noopener" target="_blank">Radios</a></li>
+              <li><a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/more-than-1-question/autocomplete/edit.html" rel="noreferrer noopener" target="_blank">Autocomplete</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-third" style="background-color: #f3f2f1;padding-top: 15px;border-block-color: black;border-style: solid;">
+        <h2 class="govuk-heading-l">Use the prototype</h2>
+        {# {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        <form class="form" action="/prototype-answer" method="post">
+          {{ govukRadios({
+            name: "prototype",
+            value: data['prototype'],
+            fieldset: {
+              legend: {
+                html: 'Where do you want to start?',
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "signIn",
+                html: 'Sign-in'
+              },
+              {
+                value: "library",
+                text: "Forms library"
+              },
+              {
+                value: "newForm",
+                text: "Create new form"
+              },
+              {
+                value: "overview",
+                text: "Overview pages"
+              },
+              {
+                value: "editor",
+                text: "Editor"
+              }
+            ]
+          }) }}
+          {{ govukButton({
+            text: "Start prototype",
+            isStartButton: true
+          }) }}
+        </form> #}
+      </div>
+    </div>
+  </div>
+
+<style>
+  .link-container {
+    display: flex;
+    align-items: left;
+    margin-bottom: 15px;
+  }
+
+  .link-container a {
+    padding: 0px 10px;
+  }
+
+  .link-container a:first-child {
+    border-right: 1px solid #ccc;
+    padding-left: 0;
+  }
+</style>
+
+{% endblock %}

@@ -112,18 +112,74 @@ $defra-link-colour-hover: govuk-shade($defra-link-colour, 50%);
   }
 }
 
+// Fix spacing below account menu at small sizes
+.cross-service-header__button {
+  padding-bottom: govuk-spacing(2);
+
+  &::before {
+    transform: translateY(-75%) rotate(135deg);
+  }
+
+  &.cross-service-header__button--open::before {
+    transform: translateY(-25%) rotate(-45deg);
+  }
+}
+
+// Allow header elements to stack at small sizes
+.one-login-header__container {
+  flex-direction: column;
+  align-items: flex-start;
+
+  @include govuk-media-query($from: tablet) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.one-login-header__logo {
+  min-width: auto;
+  max-width: none;
+  padding-bottom: govuk-spacing(1);
+
+  @include govuk-media-query($from: tablet) {
+    padding-right: govuk-spacing(3);
+    padding-bottom: govuk-spacing(2);
+  }
+
+  @include govuk-media-query($from: desktop) {
+    min-width: max-content;
+    max-width: 33.33%;
+  }
+}
+
+// Remove border and extra space from first or only navigation item
+.one-login-header__nav__list-item {
+  @include govuk-media-query($until: tablet) {
+    &:first-of-type {
+      padding-top: govuk-spacing(1);
+    }
+  }
+
+  @include govuk-media-query($from: tablet) {
+    padding: govuk-spacing(2) 0;
+    border-left: none;
+
+    & + & {
+      padding-left: govuk-spacing(5);
+      border-left: 1px solid $govuk-border-colour;
+    }
+
+    &:not(:last-child) {
+      margin-right: govuk-spacing(5);
+    }
+  }
+}
+
 // Hide empty <h2> without service header `params.pageName`
 @include govuk-media-query($until: tablet) {
   .service-header__heading:empty {
     display: none;
     font-size: 19px;
-  }
-}
-
-// Hide border from single "Sign in" navigation item
-@include govuk-media-query($from: tablet) {
-  .one-login-header__nav__list-item:only-child {
-    border-left-width: 0;
   }
 }
 

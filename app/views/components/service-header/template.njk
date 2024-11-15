@@ -1,3 +1,5 @@
+{%- from "govuk/components/tag/macro.njk" import govukTag -%}
+
 {#
 Component options:
   - organisationName (string): The name of the organisation
@@ -71,19 +73,14 @@ Component options:
               {{ params.organisationName | default("GOV.UK", true) }}
             </span>
 
-            {% if (params.productName) %}
             <span class="one-login-header__product-name">
-              {{ params.productName }}
+              {{ params.productName }} {{ govukTag({
+                text: "Prototype",
+                classes: "govuk-tag--turquoise app-tag--env"
+              }) }}
             </span>
-            {% endif %}
           </span>
         </a>
-        {%- from "govuk/components/tag/macro.njk" import govukTag -%}
-
-        {{govukTag({
-          text: "Prototype",
-          classes: "govuk-tag--turquoise"
-        })}}
 
       </div>
       <button type="button"

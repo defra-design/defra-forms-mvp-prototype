@@ -183,6 +183,21 @@ $defra-link-colour-hover: govuk-shade($defra-link-colour, 50%);
   }
 }
 
+// Customise tag to fit into header product name
+.app-tag--env {
+  margin: -2px 0 0 govuk-spacing(1);
+  vertical-align: top;
+
+  // Override product name font size
+  @include govuk-font-size($size: 16);
+
+  // Align with product name
+  @include govuk-media-query($from: tablet) {
+    margin: 0 0 0 govuk-spacing(2);
+  }
+}
+
+
 .login-nav {
   font-family: "GDS Transport", arial, sans-serif;
   -webkit-font-smoothing: antialiased;

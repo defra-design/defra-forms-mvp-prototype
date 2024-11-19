@@ -1,0 +1,185 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Redesign field status – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Field status for development
+      </h1>
+
+      <table class="govuk-table">
+          <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Field</th>
+                  <th scope="col" class="govuk-table__header">Required</th>
+                  <th scope="col" class="govuk-table__header">Validation</th>
+                  <th scope="col" class="govuk-table__header">Error Message</th>
+                  <th scope="col" class="govuk-table__header">Hint Text</th>
+                  <th scope="col" class="govuk-table__header">Status</th>
+              </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Text</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">In Progress</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Multiline Text</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Complete</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">YesNo</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">In Progress</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Date Parts</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Complete</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Month/Year</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">In Progress</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Select</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Complete</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Autocomplete</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">In Progress</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Radios</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Complete</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Checkboxes</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">In Progress</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Number</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Complete</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">UK Address</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">In Progress</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Telephone Number</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Complete</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Email Address</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">In Progress</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">HTML</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">Complete</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Inset Text</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">In Progress</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Details</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">Complete</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">List</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">No</td>
+                  <td class="govuk-table__cell">In Progress</td>
+              </tr>
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">File Upload</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Complete</td>
+              </tr>
+          </tbody>
+      </table>
+
+    </div>
+  </div>
+
+{% endblock %}

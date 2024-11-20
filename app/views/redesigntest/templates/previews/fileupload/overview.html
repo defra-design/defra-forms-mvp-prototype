@@ -1,4 +1,4 @@
-<!-- New HTML content for before element -->
+{# <!-- New HTML content for before element -->
 <div id="before-content">
   <p class="govuk-body-s" style="margin-bottom: 0">
     <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this
@@ -16,7 +16,7 @@
     <!-- Form for Preview -->
     <!-- Dynamic Heading -->
 
-
+ #}
 
     <div id="heading-container">
       {% set setName = data['setName'] or '' %}
@@ -45,10 +45,10 @@
       <label class="govuk-label" for="file-upload-1">
         Upload a file
       </label>
-      <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+      <input class="govuk-file-upload" disabled aria-disabled="true" id="file-upload-1" name="fileUpload1" type="file">
     </div>
 
-    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+    <button type="submit" disabled aria-disabled="true" class="govuk-button govuk-button--secondary" data-module="govuk-button">
       Upload file
     </button>
 
@@ -71,8 +71,7 @@
 
         </dd>
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> file1.jpg</span></a>
-        </dd>
+          <a class="govuk-link govuk-link--no-visited-state" href="#" style="color: #b1b4b6; cursor: default;" onclick="event.preventDefault(); event.stopPropagation(); this.blur(); return false;">Remove<span class="govuk-visually-hidden"> file 1.jpg</span></a>        </dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -85,8 +84,7 @@
 
         </dd>
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden"> receipt1.jpg</span></a>
-        </dd>
+          <a class="govuk-link govuk-link--no-visited-state" href="#" style="color: #b1b4b6; cursor: default;" onclick="event.preventDefault(); event.stopPropagation(); this.blur(); return false;">Remove<span class="govuk-visually-hidden"> file 2.jpg</span></a>        </dd>
       </div>
     </dl>
 

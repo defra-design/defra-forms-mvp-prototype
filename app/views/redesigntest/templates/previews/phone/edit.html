@@ -1,4 +1,4 @@
-
+{#
  <!-- New HTML content for before element -->
  <div id="before-content">
   <p class="govuk-body-s" style="margin-bottom: 0">
@@ -21,7 +21,7 @@
     govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
     <!-- Form for Preview -->
          <!-- Dynamic Heading -->
-
+ #}
 
 
          <div id="heading-container">
@@ -46,7 +46,7 @@
 </div>
 
 
-<details class="govuk-details" id="error-message-preview-summary">
+{# <details class="govuk-details" id="error-message-preview-summary">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">Error messages for this question</span>
   </summary>
@@ -63,9 +63,9 @@
     </div>
   </div>
 </details>
-</div>
+</div> #}
 
-
+{#
 {% set setName = data['setName'] or '' %}
         {% set overview0 = data['overview0'] or '' %}
 
@@ -83,7 +83,7 @@
           id: "once-button",
           disabled: true
         }) }}
-        {% endif %}
+        {% endif %} #}
 
         <script>
           document.addEventListener("DOMContentLoaded", function () {

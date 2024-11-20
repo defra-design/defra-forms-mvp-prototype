@@ -251,75 +251,90 @@
 
       {% set documentslHtml %}
       {{ govukCheckboxes({
-  name: "documentsOptions",
-  items: [
-    {
-      value: "documents",
-      text: "PDF"
-    },
-    {
-      value: "doc",
-      text: "DOC"
-    },
-    {
-      value: "docx",
-      text: "DOCX"
-    },
-    {
-      value: "odt",
-      text: "ODT"
-    },
-     {
-      value: "txt",
-      text: "TXT"
-    }
-  ]
-}) }}
-      {% endset -%}
+        name: "documentsOptions",
+        items: [
+          {
+            value: "pdf",
+            text: "PDF",
+            id: "documents-option-pdf"
+          },
+          {
+            value: "doc",
+            text: "DOC",
+            id: "documents-option-doc"
+          },
+          {
+            value: "docx",
+            text: "DOCX",
+            id: "documents-option-docx"
+          },
+          {
+            value: "odt",
+            text: "ODT",
+            id: "documents-option-odt"
+          },
+          {
+            value: "txt",
+            text: "TXT",
+            id: "documents-option-txt"
+          }
+        ]
+      }) }}
+      {% endset %}
+
 
       {% set imagesHtml %}
       {{ govukCheckboxes({
-  name: "imagesOptions",
-  items: [
-    {
-      value: "jpeg",
-      text: "JPEG"
-    },
-    {
-      value: "jpg",
-      text: "JPG"
-    },
-    {
-      value: "png",
-      text: "PNG"
-    }
-  ]
-}) }}
-      {% endset -%}
+        name: "imagesOptions",
+        items: [
+          {
+            value: "jpeg",
+            text: "JPEG",
+            id: "images-option-jpeg"
+          },
+          {
+            value: "jpg",
+            text: "JPG",
+            id: "images-option-jpg"
+          },
+          {
+            value: "png",
+            text: "PNG",
+            id: "images-option-png"
+          }
+        ]
+      }) }}
+      {% endset %}
+
 
       {% set tabularHtml %}
       {{ govukCheckboxes({
-  name: "tabularOptions",
-  items: [
-    {
-      value: "xls",
-      text: "XLS"
-    },
-    {
-      value: "xlsx",
-      text: "XLSX"
-    },
-    {
-      value: "csv",
-      text: "CSV"
-    },
-    {
-      value: "ods",
-      text: "ODS"
-    }
-  ]
-}) }}
-      {% endset -%}
+        name: "tabularOptions",
+        items: [
+          {
+            value: "xls",
+            text: "XLS",
+            id: "tabular-option-xls"
+          },
+          {
+            value: "xlsx",
+            text: "XLSX",
+            id: "tabular-option-xlsx"
+          },
+          {
+            value: "csv",
+            text: "CSV",
+            id: "tabular-option-csv"
+          },
+          {
+            value: "ods",
+            text: "ODS",
+            id: "tabular-option-ods"
+          }
+        ]
+      }) }}
+      {% endset %}
+
 
       {{ govukCheckboxes({
   name: "contact",
@@ -333,6 +348,8 @@
   items: [
     {
       value: "documents",
+      id: "top-level-documents",
+      dataGroup: "documents",
       text: "Documents",
       conditional: {
         html: documentslHtml
@@ -340,6 +357,8 @@
     },
     {
       value: "images",
+      id: "top-level-images",
+      dataGroup: "images",
       text: "Images",
       conditional: {
         html: imagesHtml
@@ -347,6 +366,8 @@
     },
     {
       value: "tabular",
+      id: "top-level-tabular",
+      dataGroup: "tabular",
       text: "Tabular data",
       conditional: {
         html: tabularHtml
@@ -471,90 +492,209 @@
         </div>
       </div>
 
-      <!-- Right Column for Preview -->
-      <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-        <!-- Before content -->
-        <div id="before-content">
-          <p class="govuk-body-s" style="margin-bottom: 0">
-            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
-          </p>
-        </div>
-
-        <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews/fileupload/edit.html" %}
+     <!-- Right Column for Preview -->
+     <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+      <!-- Before content -->
+      <div id="before-content" style=" background-color:  #cce2d8;">
+        <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px;
+  text-align: center;" > Previews
+        </p>
       </div>
-    </div>
+
+      <div style="margin-top: 60px;">
+        {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+        <div class="govuk-tabs" data-module="govuk-tabs">
+          <h2 class="govuk-tabs__title">
+            Contents
+          </h2>
+          <ul class="govuk-tabs__list">
+            <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+              <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
+            </li>
+            <li class="govuk-tabs__list-item">
+              <a class="govuk-tabs__tab" href="#tab-two">Error messages</a>
+            </li>
+          </ul>
+
+          <div class="govuk-tabs__panel" id="tab-one">
+            <!-- Page Preview Content -->
+            <p class="govuk-body-s" style="margin-bottom: 30px;">
+              <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                Preview this page in a new tab
+              </a>
+            </p>
+
+            {% include "/redesigntest/templates/previews/fileupload/edit.html" %}
+
+            <a href="#edit-page" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+              Skip to edit page
+            </a>
+          </div>
+
+          <div class="govuk-tabs__panel" id="tab-two">
+            <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+              <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                Preview error messages in a new tab
+              </a>
+            </p>
+            <!-- Error Messages Content -->
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+              <h2 class="govuk-error-summary__title">There is a problem</h2>
+              <ul class="govuk-list govuk-error-summary__list">
+                <!-- Error: No file selected -->
+                <li>
+                  <a id="no-file-selected-error" class="govuk-error-message" href="#file-upload-input">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    Select a <span id="file-type-description">[short description]</span>
+                  </a>
+                </li>
+
+                <!-- Error: Wrong file type -->
+                <li>
+                  <a id="wrong-file-type-error" class="govuk-error-message" href="#file-upload-input">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    The selected file must be a <span id="allowed-file-types">files you accept</span>
+                  </a>
+                </li>
+
+
+                <!-- Error: File too large -->
+                <li>
+                  <a id="file-too-large-error" role="presentation" class="govuk-error-message" href="#file-upload-input">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    The selected file must be smaller than <span id="max-file-size">[largest file size]</span>
+                  </a>
+                </li>
+
+                <!-- Error: File is empty -->
+                <li>
+                  <a id="file-empty-error" class="govuk-error-message" href="#file-upload-input">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    The selected file is empty
+                  </a>
+                </li>
+
+                <!-- Error: File contains a virus -->
+                <li>
+                  <a id="file-virus-error" class="govuk-error-message" href="#file-upload-input">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    The selected file contains a virus
+                  </a>
+                </li>
+
+                <!-- Error: File is password protected -->
+                <li>
+                  <a id="file-password-protected-error" class="govuk-error-message" href="#file-upload-input">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    The selected file is password protected
+                  </a>
+                </li>
+
+                <!-- Error: File could not be uploaded -->
+                <li>
+                  <a id="file-upload-problem-error" class="govuk-error-message" href="#file-upload-input">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    The selected file could not be uploaded – try again
+                  </a>
+                </li>
+
+                <!-- Error: Too many files selected -->
+                <li>
+                  <a id="too-many-files-error" class="govuk-error-message" href="#file-upload-input">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    You can only select up to <span id="max-files">1</span> file at the same time.
+                  </a>
+                </li>
+
+
+              </ul>
+            </div>
+
+              <a href="#error-message-input-shorttext" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                Skip to edit short description
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
  <!-- JavaScript code -->
  <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // DOM Elements
-    const domElements = {
-      // Existing elements
-      questionLabelInputFile: document.getElementById('question-label-input-file'),
-      questionLabelLegend: document.getElementById('question-label-legend'),
-      hintTextInputFile: document.getElementById('hint-text-input-file'),
-      hintTextOutput: document.getElementById('hint-text-output'),
-      makeOptionalCheckbox: document.getElementById('make-optional'),
+  // DOM Elements
+  const domElements = {
+    // Existing elements
+    questionLabelInputFile: document.getElementById('question-label-input-file'),
+    questionLabelLegend: document.getElementById('question-label-legend'),
+    hintTextInputFile: document.getElementById('hint-text-input-file'),
+    hintTextOutput: document.getElementById('hint-text-output'),
+    makeOptionalCheckbox: document.getElementById('make-optional'),
 
-      // New elements for page heading and guidance text
-      pageHeadingInputFile: document.getElementById('page-heading-input-file'),
-      dynamicHeading: document.getElementById('dynamic-heading'),
-      guidanceFile: document.getElementById('guidance-file'),
-      guidanceParagraph: document.getElementById('guidance-paragraph')
-    };
+    // New elements for page heading and guidance text
+    pageHeadingInputFile: document.getElementById('page-heading-input-file'),
+    dynamicHeading: document.getElementById('dynamic-heading'),
+    guidanceFile: document.getElementById('guidance-file'),
+    guidanceParagraph: document.getElementById('guidance-paragraph'),
 
-    // Initialize event listeners
-    initializeEventListeners();
+    // New elements for short description
+    errorMessageInputShorttext: document.getElementById('error-message-input-shorttext'),
+    fileTypeDescriptionSpan: document.getElementById('file-type-description'),
+  };
 
-    function initializeEventListeners() {
+  // Initialize event listeners
+  initializeEventListeners();
+
+  function initializeEventListeners() {
     // Update question label
     if (domElements.questionLabelInputFile && domElements.questionLabelLegend) {
       domElements.questionLabelInputFile.addEventListener('input', updateQuestionLabel);
     }
 
-       // Update hint text and handle placeholder
-       if (domElements.hintTextInputFile && domElements.hintTextOutput) {
+    // Update hint text and handle placeholder
+    if (domElements.hintTextInputFile && domElements.hintTextOutput) {
       domElements.hintTextInputFile.addEventListener('input', updateHintText);
       domElements.hintTextInputFile.addEventListener('focus', showPlaceholderHint);
       domElements.hintTextInputFile.addEventListener('blur', clearPlaceholderHint);
     }
 
-        // Update page heading and handle placeholder
+    // Update page heading and handle placeholder
     if (domElements.pageHeadingInputFile && domElements.dynamicHeading) {
       domElements.pageHeadingInputFile.addEventListener('input', updatePageHeading);
       domElements.pageHeadingInputFile.addEventListener('focus', showPlaceholderHeading);
-
       domElements.pageHeadingInputFile.addEventListener('blur', clearPlaceholderHeading);
     }
 
-      // Update optional label
-      if (domElements.makeOptionalCheckbox) {
-        domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
-      }
+    // Update optional label
+    if (domElements.makeOptionalCheckbox) {
+      domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
+    }
 
-      // Update page heading
-      if (domElements.pageHeadingInputFile && domElements.dynamicHeading) {
-        domElements.pageHeadingInputFile.addEventListener('input', updatePageHeading);
-      }
-
-       // Update guidance text and handle placeholder
+    // Update guidance text and handle placeholder
     if (domElements.guidanceFile && domElements.guidanceParagraph) {
       domElements.guidanceFile.addEventListener('input', updateGuidanceText);
       domElements.guidanceFile.addEventListener('focus', showPlaceholderGuidance);
       domElements.guidanceFile.addEventListener('blur', clearPlaceholderGuidance);
     }
 
+    // Update short description dynamically
+    if (domElements.errorMessageInputShorttext && domElements.fileTypeDescriptionSpan) {
+      domElements.errorMessageInputShorttext.addEventListener('input', updateFileTypeDescription);
+    }
 
-
-// Apply focus/blur highlighting
-applyHighlightOnFocus(domElements.questionLabelInputFile, domElements.questionLabelLegend);
+    // Apply focus/blur highlighting
+    applyHighlightOnFocus(domElements.questionLabelInputFile, domElements.questionLabelLegend);
     applyHighlightOnFocus(domElements.hintTextInputFile, domElements.hintTextOutput);
     applyHighlightOnFocus(domElements.pageHeadingInputFile, domElements.dynamicHeading);
     applyHighlightOnFocus(domElements.guidanceFile, domElements.guidanceParagraph);
+    applyHighlightOnFocus(domElements.errorMessageInputShorttext, domElements.fileTypeDescriptionSpan);
   }
+
   function updateQuestionLabel() {
     const suffix = domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
-    domElements.questionLabelLegend.textContent = domElements.questionLabelInputFile.value || 'Question';
+    domElements.questionLabelLegend.textContent =
+      domElements.questionLabelInputFile.value || 'Question';
     domElements.questionLabelLegend.textContent += suffix;
   }
 
@@ -566,27 +706,40 @@ applyHighlightOnFocus(domElements.questionLabelInputFile, domElements.questionLa
     domElements.dynamicHeading.textContent = domElements.pageHeadingInputFile.value;
   }
 
-    function updateGuidanceText() {
-      domElements.guidanceParagraph.textContent = domElements.guidanceFile.value;
-    }
+  function updateGuidanceText() {
+    domElements.guidanceParagraph.textContent = domElements.guidanceFile.value;
+  }
 
-    function applyHighlightOnFocus(inputElement, targetElement) {
-      if (inputElement && targetElement) {
-        inputElement.addEventListener('focus', function () {
-          targetElement.classList.add('highlight');
-        });
-        inputElement.addEventListener('blur', function () {
-          targetElement.classList.remove('highlight');
-        });
+  function updateFileTypeDescription() {
+    domElements.fileTypeDescriptionSpan.textContent =
+      domElements.errorMessageInputShorttext.value || '[short description]';
 
-        // If the input is already focused
-        if (document.activeElement === inputElement) {
-          targetElement.classList.add('highlight');
-        }
+    // Add highlight class
+    domElements.fileTypeDescriptionSpan.classList.add('highlight');
+
+    // Remove highlight after a short delay
+    setTimeout(() => {
+      domElements.fileTypeDescriptionSpan.classList.remove('highlight');
+    }, 500); // Highlight lasts for 500ms
+  }
+
+  function applyHighlightOnFocus(inputElement, targetElement) {
+    if (inputElement && targetElement) {
+      inputElement.addEventListener('focus', function () {
+        targetElement.classList.add('highlight');
+      });
+      inputElement.addEventListener('blur', function () {
+        targetElement.classList.remove('highlight');
+      });
+
+      // If the input is already focused
+      if (document.activeElement === inputElement) {
+        targetElement.classList.add('highlight');
       }
     }
+  }
 
-// Placeholder handling for hint text
+  // Placeholder handling for hint text
   function showPlaceholderHint() {
     if (!domElements.hintTextInputFile.value) {
       domElements.hintTextOutput.textContent = 'Hint text';
@@ -624,7 +777,44 @@ applyHighlightOnFocus(domElements.questionLabelInputFile, domElements.questionLa
       domElements.guidanceParagraph.textContent = '';
     }
   }
-  });
+});
+
+
+
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  // DOM elements
+  const errorMessageInput = document.getElementById('error-message-input-shorttext');
+  const fileTypeDescriptionSpan = document.getElementById('file-type-description');
+
+  /**
+   * Update the file type description dynamically and add highlight
+   */
+  function updateFileTypeDescription() {
+    if (errorMessageInput && fileTypeDescriptionSpan) {
+      // Update the span content
+      fileTypeDescriptionSpan.textContent = errorMessageInput.value || '[short description]';
+
+      // Add highlight class
+      fileTypeDescriptionSpan.classList.add('highlight');
+
+      // Remove highlight after a short delay
+      setTimeout(() => {
+        fileTypeDescriptionSpan.classList.remove('highlight');
+      }, 500); // Highlight lasts for 500ms
+    } else {
+      console.error('Error message input or file type description span not found.');
+    }
+  }
+
+  // Attach input event listener
+  if (errorMessageInput) {
+    errorMessageInput.addEventListener('input', updateFileTypeDescription);
+  }
+});
+
   </script>
 
 <!-- CSS for Highlighting -->

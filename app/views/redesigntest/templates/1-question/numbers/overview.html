@@ -70,7 +70,7 @@
                               <a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
                             </li> #}
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" aria-current="page"  href="#overview-noquestions">Overview of questions</a>
+                              <a class="moj-sub-navigation__link" aria-current="page"  id="overviewquestions" href="#overview-noquestions">Overview of questions</a>
                             </li>
 
                           </ul>
@@ -115,6 +115,14 @@
 
             </div>
 
+            <a href="#tab-one" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+              Skip to page preview
+            </a>
+
+            <a href="#tab-two" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+              Skip to error messages preview
+            </a>
+
 
           <div class="govuk-button-group govuk-!-margin-top-6">
             <a href="/redesigntest/templates/1-question/page-type.html" class="govuk-button" role="button">
@@ -124,11 +132,7 @@
             <a href="/redesigntest/listing.html" class="govuk-button govuk-button--inverse" role="button">
               Back to all pages
             </a>
-
-
           </div>
-
-
                         </form>
                       </div>
                     </div>
@@ -140,19 +144,80 @@
         </div>
       </div>
 
-      <!-- Right Column for Preview -->
-      <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-        <!-- Before content -->
-        <div id="before-content">
-          <p class="govuk-body-s" style="margin-bottom: 0">
-            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
-          </p>
-        </div>
 
-        <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews/numbers/overview.html" %}
-      </div>
-    </div>
+
+        <!-- Right Column for Preview -->
+        <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+          <!-- Before content -->
+          <div id="before-content" style=" background-color:  #cce2d8;">
+            <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px;
+      text-align: center;" > Preview
+            </p>
+          </div>
+
+          <div style="margin-top: 60px!important;">
+            {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+            <div class="govuk-tabs" data-module="govuk-tabs">
+              <h2 class="govuk-tabs__title">
+                Contents
+              </h2>
+              <ul class="govuk-tabs__list">
+                <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                  <a class="govuk-tabs__tab" id="tab-one" href="#tab-one">Page preview</a>
+                </li>
+                <li class="govuk-tabs__list-item">
+                  <a class="govuk-tabs__tab" href="#tab-two">Error messages</a>
+                </li>
+              </ul>
+
+              <div class="govuk-tabs__panel" id="tab-one">
+                <!-- Page Preview Content -->
+
+
+                <p class="govuk-body-s" style="margin-bottom: 0; border-bottom: #008938 1px;">
+                  <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                    Preview this page in a new tab
+                  </a>
+                </p>
+
+                {% include "/redesigntest/templates/previews/numbers/overview.html" %}
+
+                <a href="#overviewquestions" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                  Skip to overview of questions
+                </a>
+              </div>
+
+              <div class="govuk-tabs__panel" id="tab-two">
+                <!-- Error Messages Content -->
+
+                <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+                  <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                    Preview error messages in a new tab
+                  </a>
+                </p>
+
+                   <!-- Error Messages Section -->
+                   <div class="govuk-error-summary" data-module="govuk-error-summary">
+                    <h2 class="govuk-error-summary__title">There is a problem</h2>
+                    <ul class="govuk-list govuk-error-summary__list">
+                      <!-- List of errors -->
+                      <li><a id="empty-input-error-shorttext" class="govuk-error-message">Enter <span id="error-dynamic-text">[short description]</span></a></li>
+                      <li><a id="empty-input-error-shorttext" class="govuk-error-message"><span id="error-dynamic-text">[Short description]</span> must be a whole number</a></li>
+                      <h3 class="govuk-heading-s">If you set answer limits:</h3>
+                      <li><a id="too-long-input-error-shorttext" class="govuk-error-message"><span id="error-dynamic-text-long">[Short description]</span> must be <span id="max-length">[lowest number]</span> or more</a></li>
+                      <li><a id="too-short-input-error-shorttext" class="govuk-error-message"><span id="error-dynamic-text-short">[Short description]</span> must be <span id="min-length">[highest number]</span> or fewer</a></li>
+                    </ul>
+
+                </div>
+                <a href="#overviewquestions" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                  Skip to overview of questions
+                </a>
+              </div>
+            </div>
+
+          </div>
+
 
     <!-- JavaScript code -->
     <script>

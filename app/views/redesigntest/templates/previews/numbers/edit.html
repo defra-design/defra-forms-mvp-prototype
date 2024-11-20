@@ -1,4 +1,4 @@
-
+{#
  <!-- New HTML content for before element -->
  <div id="before-content">
   <p class="govuk-body-s" style="margin-bottom: 0">
@@ -18,7 +18,7 @@
   <div>
     <!-- Tag for Preview -->
     {{ govukTag({ text: "Preview of page 10", classes: "govuk-tag--yellow
-    govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
+    govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }} #}
     <!-- Form for Preview -->
          <!-- Dynamic Heading -->
 
@@ -49,7 +49,7 @@
 </div>
 
 
-<details class="govuk-details" id="error-message-preview-summary">
+{# <details class="govuk-details" id="error-message-preview-summary">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">Error messages for this question</span>
   </summary>
@@ -67,7 +67,7 @@
       </ul>
     </div>
   </div>
-</details>
+</details> #}
 </div>
 
 
@@ -85,7 +85,7 @@
   {% else %}
   {{ govukButton({
     text: "Continue",
-    classes: "govuk-button govuk-!-margin-top-6",
+    classes: "govuk-!-display-none govuk-button govuk-!-margin-top-6",
     id: "once-button",
     disabled: true
   }) }}

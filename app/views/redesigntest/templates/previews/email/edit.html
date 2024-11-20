@@ -1,4 +1,4 @@
-
+{#
  <!-- New HTML content for before element -->
  <div id="before-content">
   <p class="govuk-body-s" style="margin-bottom: 0">
@@ -20,7 +20,7 @@
     {{ govukTag({ text: "Preview of page 7", classes: "govuk-tag--yellow
     govuk-!-margin-bottom-2 govuk-!-margin-top-8" }) }}
     <!-- Form for Preview -->
-                 <!-- Dynamic Heading -->
+                 <!-- Dynamic Heading --> #}
 
 
 
@@ -46,7 +46,7 @@
     </div>
     <input class="govuk-input" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
   </div>
-
+{#
   <details class="govuk-details" id="error-message-preview-summary">
     <summary class="govuk-details__summary">
       <span class="govuk-details__summary-text">Error messages for this question</span>
@@ -74,8 +74,9 @@
       </div>
     </div>
   </details>
-         </div>
+         </div>         </div> #}
 
+{#
   {% set setName = data['setName'] or '' %}
         {% set overview0 = data['overview0'] or '' %}
 
@@ -93,7 +94,7 @@
           id: "once-button",
           disabled: true
         }) }}
-        {% endif %}
+        {% endif %} #}
 
         <script>
           document.addEventListener("DOMContentLoaded", function () {

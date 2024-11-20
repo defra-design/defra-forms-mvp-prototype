@@ -283,6 +283,8 @@
   </div>
 </details>
 
+<a href="#tab-two" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">Skip to error messages preview</a>
+
 <!-- Section Break -->
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
@@ -319,10 +321,12 @@
                           <!-- Submit Button -->
                           <div class="moj-button-action">
                             {{ govukButton({
-                              text: 'Continue',
+                              text: 'Save and continue',
                               type: 'submit'
                             }) }}
                           </div>
+                          <a href="#tab-one" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">Skip to page preview</a>
+
                         </form>
                       </div>
                     </div>
@@ -334,19 +338,112 @@
         </div>
       </div>
 
-      <!-- Right Column for Preview -->
-      <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-        <!-- Before content -->
-        <div id="before-content">
-          <p class="govuk-body-s" style="margin-bottom: 0">
-            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
-          </p>
+     <!-- Right Column for Preview -->
+     <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+      <!-- Before content -->
+      <div id="before-content" style=" background-color:  #cce2d8;">
+        <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px;
+  text-align: center;" > Previews
+        </p>
+      </div>
+
+      <div style="margin-top: 60px!important;">
+        {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+        <div class="govuk-tabs" data-module="govuk-tabs">
+          <h2 class="govuk-tabs__title">
+            Contents
+          </h2>
+          <ul class="govuk-tabs__list">
+            <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+              <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
+            </li>
+            <li class="govuk-tabs__list-item">
+              <a class="govuk-tabs__tab" href="#tab-two">Error messages</a>
+            </li>
+          </ul>
+
+          <div class="govuk-tabs__panel" id="tab-one">
+            <!-- Page Preview Content -->
+
+
+            <p class="govuk-body-s" style="margin-bottom: 0; border-bottom: #008938 1px;">
+              <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                Preview this page in a new tab
+              </a>
+            </p>
+
+            {% include "/redesigntest/templates/previews/textarea/edit.html" %}
+
+            <a href="#edit-page" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+              Skip to edit page
+            </a>
+          </div>
+          </div>
         </div>
 
-        <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews/textarea/edit.html" %}
+          <div class="govuk-tabs__panel" id="tab-two">
+            <!-- Error Messages Content -->
+            <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+              <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                Preview error messages in a new tab
+              </a>
+            </p>
+
+               <!-- Error Messages Section -->
+                <div class="govuk-error-summary" data-module="govuk-error-summary">
+                  <h2 class="govuk-error-summary__title">There is a problem</h2>
+                  <ul class="govuk-list govuk-error-summary__list">
+                    <!-- Empty input error -->
+                    <li>
+
+                      <a id="empty-input-error-textarea" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        Enter <span id="error-dynamic-text" style="text-transform: lowercase;"
+                        >[short description]</span>
+                      </a>
+                    </li>
+
+                    <h3 class="govuk-heading-s">If you set answer limits:</h3>
+
+                    <!-- Too long input error -->
+                    <li>
+                      <a id="too-long-input-error-textarea" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        <span id="error-dynamic-text-long"
+                        >[Short description]</span> must be
+                        <span id="max-length">[max length]</span> characters or less
+                      </a>
+                    </li>
+                    <!-- Too short input error -->
+                    <li>
+                      <a id="too-short-input-error-textarea" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        <span id="error-dynamic-text-short"
+                        >[Short description]</span> must be
+                        <span id="min-length">[min length]</span> characters or more
+                      </a>
+                    </li>
+                    <!-- Input within range error -->
+                    <li>
+                      <a id="range-input-error-textarea" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        <span id="error-dynamic-text-range"
+                        >[Short description]</span> must be between
+                        <span id="min-length-range">[min length]</span> and
+                        <span id="max-length-range">[max length]</span> characters
+                      </a>
+                    </li>
+
+
+            </div>
+            <a href="#error-message-input-textarea" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+              Skip to edit short description
+            </a>
+          </div>
+        </div>
+
       </div>
-    </div>
 
     <!-- JavaScript code -->
     <script>
@@ -480,7 +577,29 @@
       });
     </script>
 
+ <!-- SCRIPT FOR ACTIVATING THE ERROR MESSAGES TAB -->
 
+ <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const domElements = {
+      errorMessageInputTextarea: document.getElementById('error-message-input-textarea'),
+      errorMessagesTab: document.getElementById('tab_tab-two')
+    };
+
+    initializeEventListeners();
+
+    function initializeEventListeners() {
+      if (domElements.errorMessageInputTextarea && domElements.errorMessagesTab) {
+        domElements.errorMessageInputTextarea.addEventListener('focus', openErrorMessagesTab);
+      }
+    }
+
+    function openErrorMessagesTab() {
+      // Simulate a click event on the tab to activate it
+      domElements.errorMessagesTab.click();
+    }
+  });
+</script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {

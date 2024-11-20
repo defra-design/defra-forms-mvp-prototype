@@ -359,6 +359,22 @@
 	initializeEventListeners();
   
 	function initializeEventListeners() {
+	  // Event delegation for all input fields inside #options-container
+	  domElements.optionsContainer.addEventListener('blur', function (event) {
+		// Check if the blurred element is an input field
+		if (event.target && event.target.tagName === 'INPUT') {
+		  const inputValue = event.target.value.toLowerCase();
+		  console.log("Blur event triggered on input:", inputValue); // Debug log
+		  // Check if the word "demo" is typed (case-insensitive)
+		  if (inputValue === 'demo') {
+			console.log("Word 'demo' detected, reloading page with query string."); // Debug log
+			const url = new URL(window.location);
+			url.searchParams.set('animals', 'dog,cat,rat,badger,stoat');
+			window.location.href = url.toString();
+		  }
+		}
+	  }, true); // Use capture phase to catch the event
+  
 	  // Update question label
 	  if (domElements.multiQuestionLabelInputRadios && domElements.multiQuestionOutputRadios) {
 		domElements.multiQuestionLabelInputRadios.addEventListener('input', updateQuestionLabel);

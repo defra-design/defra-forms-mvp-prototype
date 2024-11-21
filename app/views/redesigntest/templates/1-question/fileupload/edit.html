@@ -609,6 +609,25 @@
 
 
               </ul>
+              <h3 class="govuk-heading-s">If you set answer limits:</h3>
+              <ul class="govuk-list govuk-error-summary__list">
+                <!-- Too long input error -->
+
+                <!-- Too short input error -->
+                <li>
+                  <a id="too-short-input-error-textarea" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    <span id="error-dynamic-text-short">You must select at least [min file count]</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a id="too-long-input-error-textarea" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    <span id="error-dynamic-text-max">You can only select up to [max file count]</span>
+                  </a>
+                </li>
+              </ul>
             </div>
 
               <a href="#error-message-input-shorttext" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">

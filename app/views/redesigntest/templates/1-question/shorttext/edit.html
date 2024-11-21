@@ -415,6 +415,25 @@
                     </a>
                   </li>
                 </ul>
+
+                <h3 class="govuk-heading-s">If you set answer limits:</h3>
+                <ul class="govuk-list govuk-error-summary__list">
+                  <!-- Too long input error -->
+                  <li>
+                    <a id="too-long-input-error-textarea" class="govuk-error-message">
+                      <span class="govuk-visually-hidden">Error:</span>
+                      <span id="error-dynamic-text-long">[Short description]</span> must be on or after <span id="max-past">[max days in the past]</span>
+                    </a>
+                  </li>
+                  <!-- Too short input error -->
+                  <li>
+                    <a id="too-short-input-error-textarea" class="govuk-error-message">
+                      <span class="govuk-visually-hidden">Error:</span>
+                      <span id="error-dynamic-text-short">[Short description]</span> must be on or before <span id="max-future">[max days in the future]</span>
+                    </a>
+                  </li>
+                </ul>
+
                 <a href="#error-message-input-shorttext" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
                   Skip to edit short description
                 </a>

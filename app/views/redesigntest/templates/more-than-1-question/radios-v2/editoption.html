@@ -66,12 +66,13 @@
 							<li class="moj-sub-navigation__item">
 							  <a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
 							</li>
+
 							<li class="moj-sub-navigation__item">
-							  <a class="moj-sub-navigation__link" href="#overview-noquestions">Edit radio option</a>
+							  <a class="moj-sub-navigation__link"  href="#question-1-information-type">Question 10</a>
 							</li>
 							<li class="moj-sub-navigation__item">
-							  <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Question 10</a>
-							</li>
+								<a class="moj-sub-navigation__link" aria-current="page" href="#overview-noquestions">Edit radio option</a>
+							  </li>
 						  </ul>
 						</nav>
 
@@ -89,7 +90,7 @@
 
 						  <!-- List config -->
 						  <div class="govuk-form-group">
-							
+
 							<div id="options-container">
 								<div class="radio-option-config">
 									<!-- Option Value (Label) -->
@@ -97,23 +98,24 @@
 										<label class="govuk-label" for="option-label">Option Label</label>
 										<input class="govuk-input" id="option-label" name="option-label" type="text" value="Dog">
 									</div>
-							
+
 									<!-- Hint Text -->
 									<div class="govuk-form-group">
 										<label class="govuk-label" for="option-hint">Hint Text</label>
 										<input class="govuk-input" id="option-hint" name="option-hint" type="text" value="I am some hint text">
 									</div>
-							
+
 									<!-- Additional Value -->
 									<div class="govuk-form-group">
 										<label class="govuk-label" for="option-value">Option value</label>
 										<input class="govuk-input" id="option-value" name="option-value" type="text" value="doguscaninus">
 									</div>
 								</div>
-							</div>
-							
+							</div>							</div>
+
+
 							<!-- Error Message Input -->
-							<div class="govuk-form-group" style="margin-top: 20px">
+							{# <div class="govuk-form-group" style="margin-top: 20px">
 							{{ govukInput({
 							  label: {
 								text: "Short description",
@@ -126,7 +128,7 @@
 							  id: "error-message-input",
 							  name: "errorMessageInput"
 							}) }}
-							</div>
+							</div> #}
 
 							{# <!-- Add guidance above this question -->
 							<details class="govuk-details" data-module="govuk-details">
@@ -194,12 +196,12 @@
 			</dl>
 		  </div>
 		</div>
-	  </div>
+
 
 	  <!-- Right Column for Preview -->
 
  <!-- Right Column for Preview -->
- <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh;overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+ {# <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh;overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;"> #}
     {# {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %} #}
 	{# {% include "/redesigntest/templates/previews-more-than-1-question/numbers/for-overview.html" %} #}
 	{# {% include "/redesigntest/templates/previews-more-than-1-question/date/for-overview.html" %} #}
@@ -210,38 +212,88 @@
 	{# {% include "/redesigntest/templates/previews-more-than-1-question/yesno/for-overview.html" %} #}
 	{# {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %} #}
 
-  <div id="border-left-container-radios" name="borderLeftContainerRadios">
+  {# <div id="border-left-container-radios" name="borderLeftContainerRadios">
 {% include "/redesigntest/templates/previews-more-than-1-question/radios/edit-v2.html" %}
 
 </div>
 </div>
-</div>
+</div> #}
+
+
+
+
+
+     <!-- Right Column for Preview -->
+	 <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+		<!-- Before content -->
+		<div id="before-content" style=" background-color:  #cce2d8;">
+		  <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px;
+	  text-align: center;" > Previews
+		  </p>
+		</div>
+
+		<div style="margin-top: 60px;">
+		  {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+		  <div class="govuk-tabs" data-module="govuk-tabs">
+			<h2 class="govuk-tabs__title">
+			  Contents
+			</h2>
+			<ul class="govuk-tabs__list">
+			  <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+				<a class="govuk-tabs__tab" href="#tab-one">Radio option preview</a>
+			  </li>
+
+			</ul>
+
+			<div class="govuk-tabs__panel" id="tab-one">
+			  <!-- Page Preview Content -->
+
+
+			  <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+				<a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+				  Preview this page in a new tab
+				</a>
+			  </p>
+
+			  {% include "/redesigntest/templates/previews-more-than-1-question/radios/edit-v2.html" %}
+
+			  <a href="#edit-page" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+				Skip to edit page
+			  </a>
+			</div>
+
+
+			</div>
+		  </div>
+
+		</div>
 
 
 <style>
-  
+
   .fauxlabel {
 	border:0;
 	text-transform: capitalize;
   }
-  
+
   .govuk-radios__item label {
 	text-transform: capitalize;
   }
-  
+
   .fauxlabel:focus, .fauxlabel:active {
 	background-color: transparent!important!important;
   }
-  
+
   .gem-c-reorderable-list .gem-c-reorderable-list__item:hover, .gem-c-reorderable-list__item:hover .fauxlabel {
 	  background-color: #fff;
 	  cursor: initial;
   }
-  
+
   .gem-c-reorderable-list__item:hover .fauxlabel:focus {
 	cursor: initial;
   }
-  
+
 </style>
 
 <!-- to populate the form with multiple animals append ?animals=dog,cat,lion,tiger,bear to the url -->
@@ -270,118 +322,151 @@
 		 optionHintInput: document.getElementById('option-hint'), // Hint text input
 		 optionValueInput: document.getElementById('option-value') // Additional value input
 	 };
- 
+
 	 // Ensure that the DOM elements exist
 	 if (!domElements.radioList || !domElements.optionLabelInput || !domElements.optionHintInput || !domElements.optionValueInput) {
 		 console.error("One or more required elements not found");
 		 return; // Exit early if the required elements are not found
 	 }
- 
-	 // Listen for changes in the input fields (for preview update)
-	 domElements.optionLabelInput.addEventListener('input', updatePreview);
-	 domElements.optionHintInput.addEventListener('input', updatePreview);
-	 domElements.optionValueInput.addEventListener('input', updatePreview);
- 
-	 // Initial preview update
-	 updatePreview();
- 
-	 // Function to update the preview based on the input values
-	 function updatePreview() {
-		 // Get values from the input fields
-		 const optionLabelValue = domElements.optionLabelInput.value.trim();
-		 const optionHintValue = domElements.optionHintInput.value.trim();
-		 const optionValue = domElements.optionValueInput.value.trim();
- 
-		 // Clear the current preview
-		 domElements.radioList.innerHTML = '';
- 
-		 // Only update if there is a value in the option label
-		 if (optionLabelValue !== '') {
-			 const newOptionHTML = `
-				 <div class="govuk-radios__item">
-					 <input class="govuk-radios__input" id="preview-option-1" name="listPreview" type="radio" value="${optionValue}" aria-describedby="preview-option-1-hint">
-					 <label class="govuk-label govuk-radios__label" for="preview-option-1">
-						 ${optionLabelValue}
-					 </label>
-					 <div id="preview-option-1-hint" class="govuk-hint govuk-radios__hint">
-						 ${optionHintValue}
-					 </div>
-				 </div>
-			 `;
-			 // Add the new radio option to the preview
-			 domElements.radioList.insertAdjacentHTML('beforeend', newOptionHTML);
-		 } else {
-			 // If the input is empty, show a placeholder message
-			 domElements.radioList.innerHTML = '<p>Please enter an option label.</p>';
-		 }
-	 }
- 
+// Listen for changes in the input fields (for preview update)
+domElements.optionLabelInput.addEventListener('input', () => {
+    updatePreview();
+    applyHighlight('.govuk-radios__label');
+});
+domElements.optionHintInput.addEventListener('input', () => {
+    updatePreview();
+    applyHighlight('.govuk-radios__hint');
+});
+domElements.optionValueInput.addEventListener('input', updatePreview);
+
+// Add focus/blur events for maintaining highlight
+domElements.optionLabelInput.addEventListener('focus', () => applyHighlight('.govuk-radios__label'));
+domElements.optionLabelInput.addEventListener('blur', () => removeHighlight('.govuk-radios__label'));
+
+domElements.optionHintInput.addEventListener('focus', () => applyHighlight('.govuk-radios__hint'));
+domElements.optionHintInput.addEventListener('blur', () => removeHighlight('.govuk-radios__hint'));
+
+// Initial preview update
+updatePreview();
+
+// Function to update the preview based on the input values
+function updatePreview() {
+    // Get values from the input fields
+    const optionLabelValue = domElements.optionLabelInput.value.trim();
+    const optionHintValue = domElements.optionHintInput.value.trim();
+    const optionValue = domElements.optionValueInput.value.trim();
+
+    // Clear the current preview
+    domElements.radioList.innerHTML = '';
+
+    // Only update if there is a value in the option label
+    if (optionLabelValue !== '') {
+        const newOptionHTML = `
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="preview-option-1" name="listPreview" type="radio" value="${optionValue}" aria-describedby="preview-option-1-hint">
+                <label class="govuk-label govuk-radios__label" for="preview-option-1">
+                    ${optionLabelValue}
+                </label>
+                <div id="preview-option-1-hint" class="govuk-hint govuk-radios__hint">
+                    ${optionHintValue}
+                </div>
+            </div>
+        `;
+        // Add the new radio option to the preview
+        domElements.radioList.insertAdjacentHTML('beforeend', newOptionHTML);
+    } else {
+        // If the input is empty, show a placeholder message
+        domElements.radioList.innerHTML = '<p>Please enter an option label.</p>';
+    }
+}
+
+// Function to apply a highlight to the preview elements
+function applyHighlight(selector) {
+    const targetElement = domElements.radioList.querySelector(selector);
+    if (targetElement) {
+        targetElement.classList.add('highlight');
+    }
+}
+
+// Function to remove a highlight from the preview elements
+function removeHighlight(selector) {
+    const targetElement = domElements.radioList.querySelector(selector);
+    if (targetElement) {
+        targetElement.classList.remove('highlight');
+    }
+}
+
+
 	 // Function to update the question label dynamically
 	 function updateQuestionLabel() {
 		 const suffix = domElements.makeOptionalCheckbox && domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
 		 domElements.multiQuestionOutputRadios.textContent = (domElements.multiQuestionLabelInputRadios.value || 'Question') + suffix;
 	 }
- 
+
 	 // Function to update the hint text dynamically
 	 function updateHintText() {
 		 domElements.multiQuestionHintTextOutputRadios.textContent = domElements.hintTextInput.value || '';
 	 }
- 
+
 	 // Function to update the error message dynamically
 	 function updateErrorMessage() {
 		 domElements.errorDynamicText.textContent = domElements.errorMessageInput.value.trim() || '[short description]';
 	 }
- 
+
 	 // Function to show placeholder hint for the input field
 	 function showPlaceholderHint() {
 		 if (!domElements.hintTextInput.value) {
 			 domElements.multiQuestionHintTextOutputRadios.textContent = 'Hint text';
 		 }
 	 }
- 
+
 	 // Function to clear placeholder hint when input field is blurred
 	 function clearPlaceholderHint() {
 		 if (!domElements.hintTextInput.value) {
 			 domElements.multiQuestionHintTextOutputRadios.textContent = '';
 		 }
 	 }
- 
+
 	 // Function to apply highlighting to focus elements
 	 function applyHighlightOnFocus(inputElement, targetElement) {
 		 if (inputElement && targetElement) {
 			 inputElement.addEventListener('focus', () => targetElement.classList.add('highlight'));
 			 inputElement.addEventListener('blur', () => targetElement.classList.remove('highlight'));
- 
+
 			 if (document.activeElement === inputElement) {
 				 targetElement.classList.add('highlight');
 			 }
 		 }
 	 }
- 
+
 	 // Listen for changes in the input fields for question label and dynamic text updates
 	 function initializeEventListeners() {
 		 if (domElements.multiQuestionLabelInputRadios && domElements.multiQuestionOutputRadios) {
 			 domElements.multiQuestionLabelInputRadios.addEventListener('input', updateQuestionLabel);
 			 applyHighlightOnFocus(domElements.multiQuestionLabelInputRadios, domElements.multiQuestionOutputRadios);
 		 }
- 
+
 		 if (domElements.hintTextInput && domElements.multiQuestionHintTextOutputRadios) {
 			 domElements.hintTextInput.addEventListener('input', updateHintText);
 			 applyHighlightOnFocus(domElements.hintTextInput, domElements.multiQuestionHintTextOutputRadios);
 			 domElements.hintTextInput.addEventListener('focus', showPlaceholderHint);
 			 domElements.hintTextInput.addEventListener('blur', clearPlaceholderHint);
 		 }
- 
+
 		 if (domElements.errorMessageInput && domElements.errorDynamicText) {
 			 domElements.errorMessageInput.addEventListener('input', updateErrorMessage);
 			 applyHighlightOnFocus(domElements.errorMessageInput, domElements.errorDynamicText);
 		 }
 	 }
- 
+
+
+
 	 // Initialize event listeners for question labels, hints, and error message updates
 	 initializeEventListeners();
  });
 </script>
+
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -401,7 +486,6 @@
   });
 
 	</script>
-
 
 <style>
   .highlight {
@@ -464,7 +548,7 @@
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
-  #before-content {
+  /* #before-content {
 	position: absolute;
 	top: 0;
 	left: 10px !important;
@@ -475,7 +559,7 @@
 	z-index: 1;
 	border-bottom: 1px solid #008938;
 	padding-left: 10px;
-  }
+  } */
 
   #second-container {
 	padding: 0;

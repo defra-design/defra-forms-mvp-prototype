@@ -20,7 +20,7 @@
             </fieldset>
           </div>
 
-          <details class="govuk-details govuk-!-margin-top-5" id="error-message-preview-summary">
+          {# <details class="govuk-details govuk-!-margin-top-5" id="error-message-preview-summary">
             <summary class="govuk-details__summary">
               <span class="govuk-details__summary-text">Error messages for this question</span>
             </summary>
@@ -34,12 +34,12 @@
                 </ul>
               </div>
             </div>
-          </details>
+          </details> #}
         </div>
 
      </form>
 
-
+{#
      {% set setName = data['setName'] or '' %}
      {% set overview0 = data['overview0'] or '' %}
 
@@ -57,11 +57,11 @@
        id: "once-button",
        disabled: true
      }) }}
-     {% endif %}
-   </div>
+     {% endif %} #}
+   {# </div>
  </div>
 </div>
-</div>
+</div> #}
 
 <script>
   /*document.addEventListener("DOMContentLoaded", function () {

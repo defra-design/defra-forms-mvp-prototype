@@ -122,16 +122,16 @@
 							</ol>
 
 							<div class="govuk-button-group">
-								
-							 
-								
+
+
+
 							  <div class="moj-button-action">
 								{{ govukButton({
 								  text: 'Add another option',
 								  classes: 'govuk-button moj-add-another__add-button govuk-!-margin-bottom-4  govuk-!-margin-bottom-6',
 								  id: 'add-option-button',
 								  type: 'button'
-								}) }} 
+								}) }}
 							  </div>
 
 							  {{ govukButton({
@@ -272,14 +272,14 @@
 
 	  <!-- Right Column for Preview -->
 
- <!-- Right Column for Preview -->
+ {# <!-- Right Column for Preview -->
  <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh;overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
   <!-- Before content -->
   <div id="before-content">
 	<p class="govuk-body-s" style="margin-bottom: 0">
 	  <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
 	</p>
-  </div>
+  </div> #}
 
 
     {# {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %} #}
@@ -292,40 +292,92 @@
 	{# {% include "/redesigntest/templates/previews-more-than-1-question/yesno/for-overview.html" %} #}
 	{# {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %} #}
 
-  <div id="border-left-container-radios" name="borderLeftContainerRadios" style="margin-top:60px">
+  {# <div id="border-left-container-radios" name="borderLeftContainerRadios" style="margin-top:60px">
 {% include "/redesigntest/templates/previews-more-than-1-question/radios/edit-v2.html" %}
 
 </div>
 </div>
-</div>
+</div> #}
+<div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+	<!-- Before content -->
+	<div id="before-content" style="background-color: #cce2d8;">
+	  <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px; text-align: center;">Previews</p>
+	</div>
+
+	<div style="margin-top: 60px;">
+	  {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+	  <div class="govuk-tabs" data-module="govuk-tabs">
+		<h2 class="govuk-tabs__title">Contents</h2>
+		<ul class="govuk-tabs__list">
+		  <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+			<a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
+		  </li>
+		  <li class="govuk-tabs__list-item">
+			<a class="govuk-tabs__tab" href="#tab-two">Error messages</a>
+		  </li>
+		</ul>
+
+		<div class="govuk-tabs__panel" id="tab-one">
+		  <!-- Page Preview Content -->
+		  <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+			<a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
+		  </p>
+
+		  {% include "/redesigntest/templates/previews-more-than-1-question/radios/edit-v2.html" %}
+
+		  <a href="#edit-page" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">Skip to edit page</a>
+		</div>
+
+		<div class="govuk-tabs__panel" id="tab-two">
+		  <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+			<a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview error messages in a new tab</a>
+		  </p>
+		  <!-- Error Messages Content -->
+		   <!-- Error Messages Section -->
+		   <div class="govuk-error-summary" data-module="govuk-error-summary">
+			<h2 class="govuk-error-summary__title">There is a problem</h2>
+			<ul class="govuk-list govuk-error-summary__list">
+			  <!-- List of errors -->
+			  <li><a id="empty-input-error-shorttext" class="govuk-error-message">Select <span id="error-dynamic-text">[short description]</span></a></li>
+			</ul>
+		  </div>
+			<a href="#error-message-input-shorttext" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">Skip to edit short description</a>
+		  </div>
+		</div>
+	  </div> <!-- Closing the govuk-tabs div -->
+
+	</div>
+  </div>
+
 
 <!-- Include SortableJS Library -->
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
 <style>
-  
+
   .fauxlabel {
 	border:0;
 	text-transform: capitalize;
   }
-  
+
   .govuk-radios__item label {
 	text-transform: capitalize;
   }
-  
+
   .fauxlabel:focus, .fauxlabel:active {
 	background-color: transparent!important!important;
   }
-  
+
   .gem-c-reorderable-list .gem-c-reorderable-list__item:hover, .gem-c-reorderable-list__item:hover .fauxlabel {
 	  background-color: #fff;
 	  cursor: initial;
   }
-  
+
   .gem-c-reorderable-list__item:hover .fauxlabel:focus {
 	cursor: initial;
   }
-  
+
 </style>
 
 <!-- to populate the form with multiple animals append ?animals=dog,cat,lion,tiger,bear to the url -->
@@ -351,13 +403,13 @@
 	  editOptionsButton: document.getElementById('edit-options-button'),
 	  radioList: document.querySelector('#radio-list .govuk-radios')
 	};
-  
+
 	// Declare sortableInstance before it's used
 	let sortableInstance;
-  
+
 	// Initialize event listeners
 	initializeEventListeners();
-  
+
 	function initializeEventListeners() {
 	  // Event delegation for all input fields inside #options-container
 	  domElements.optionsContainer.addEventListener('blur', function (event) {
@@ -374,13 +426,13 @@
 		  }
 		}
 	  }, true); // Use capture phase to catch the event
-  
+
 	  // Update question label
 	  if (domElements.multiQuestionLabelInputRadios && domElements.multiQuestionOutputRadios) {
 		domElements.multiQuestionLabelInputRadios.addEventListener('input', updateQuestionLabel);
 		applyHighlightOnFocus(domElements.multiQuestionLabelInputRadios, domElements.multiQuestionOutputRadios);
 	  }
-  
+
 	  // Update hint text
 	  if (domElements.hintTextInput && domElements.multiQuestionHintTextOutputRadios) {
 		domElements.hintTextInput.addEventListener('input', updateHintText);
@@ -388,56 +440,56 @@
 		domElements.hintTextInput.addEventListener('focus', showPlaceholderHint);
 		domElements.hintTextInput.addEventListener('blur', clearPlaceholderHint);
 	  }
-  
+
 	  if (domElements.errorMessageInput && domElements.errorDynamicText) {
 		domElements.errorMessageInput.addEventListener('input', updateErrorMessage);
 		applyHighlightOnFocus(domElements.errorMessageInput, domElements.errorDynamicText);
 	  }
-  
+
 	  // Initialize options functionality
 	  initializeOptionsFunctionality();
 	}
-  
+
 	function updateQuestionLabel() {
 	  const suffix = domElements.makeOptionalCheckbox && domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
 	  domElements.multiQuestionOutputRadios.textContent = (domElements.multiQuestionLabelInputRadios.value || 'Question') + suffix;
 	}
-  
+
 	function updateHintText() {
 	  domElements.multiQuestionHintTextOutputRadios.textContent = domElements.hintTextInput.value || '';
 	}
-  
+
 	function updateErrorMessage() {
 	  domElements.errorDynamicText.textContent = domElements.errorMessageInput.value.trim() || '[short description]';
 	}
-  
+
 	function showPlaceholderHint() {
 	  if (!domElements.hintTextInput.value) {
 		domElements.multiQuestionHintTextOutputRadios.textContent = 'Hint text';
 	  }
 	}
-  
+
 	function clearPlaceholderHint() {
 	  if (!domElements.hintTextInput.value) {
 		domElements.multiQuestionHintTextOutputRadios.textContent = '';
 	  }
 	}
-  
+
 	function applyHighlightOnFocus(inputElement, targetElement) {
 	  if (inputElement && targetElement) {
 		inputElement.addEventListener('focus', () => targetElement.classList.add('highlight'));
 		inputElement.addEventListener('blur', () => targetElement.classList.remove('highlight'));
-  
+
 		if (document.activeElement === inputElement) {
 		  targetElement.classList.add('highlight');
 		}
 	  }
 	}
-  
+
 	function initializeOptionsFunctionality() {
 	  let optionIndex = 0; // Start at 0
 	  let editMode = false;
-  
+
 	  // Add animals from query string if present
 	  const animalsFromQuery = getQueryParam('animals');
 	  if (animalsFromQuery) {
@@ -457,44 +509,44 @@
 		addOptionToPreview(optionIndex, 'dog');
 		optionIndex++; // Increment index after adding the default option
 	  }
-  
+
 	  // Add functionality for adding new options
 	  domElements.addOptionButton.addEventListener('click', () => {
 		// Redirect to add.html
 		window.location.href = 'add.html'; // This will redirect to add.html
 	  });
-  
+
 	  // Initialize sortable functionality for reordering options
 	  initializeSortable();
-  
+
 	  // Handle edit button (show/hide reordering controls and edit items)
 	  domElements.editOptionsButton.addEventListener('click', () => {
 		editMode = !editMode;
 		domElements.editOptionsButton.textContent = editMode ? 'Save changes' : 'Edit list';
-  
+
 		// Show or hide actions (up/down buttons) for reordering
 		document.querySelectorAll('.gem-c-reorderable-list__actions').forEach(actions => {
 		  actions.style.display = editMode ? 'flex' : 'none';
 		});
-  
+
 		// Show or hide elements with the class `edit-item` when toggling edit mode
 		document.querySelectorAll('.edit-item').forEach(item => {
 		  item.style.display = editMode ? 'none' : ''; // Hide when in edit mode, show when in save mode
 		});
-  
+
 		sortableInstance.option('disabled', !editMode);
 		manageUpDownButtons();
 		updatePreview(); // Ensure preview is updated when edit mode is toggled
 	  });
 	}
-  
+
 	// Function to create each option item
 	function createOptionItem(index, labelValue = '') {
 	  const li = document.createElement('li');
 	  li.className = 'gem-c-reorderable-list__item';
 	  li.setAttribute('draggable', 'true');
 	  li.setAttribute('data-index', index);
-  
+
 	  li.innerHTML = `
 		<div class="gem-c-reorderable-list__wrapper">
 		  <div class="gem-c-reorderable-list__content">
@@ -512,41 +564,41 @@
 	  `;
 	  return li;
 	}
-  
+
 	function addOptionEventListeners(item) {
 	  const upButton = item.querySelector('.js-reorderable-list-up');
 	  const downButton = item.querySelector('.js-reorderable-list-down');
 	  const removeButton = item.querySelector('.js-remove-option');
-  
+
 	  upButton.addEventListener('click', () => {
 		const prevItem = item.previousElementSibling;
 		if (prevItem) item.parentNode.insertBefore(item, prevItem);
 		updatePreview(); // Update preview after moving an option up
 	  });
-  
+
 	  downButton.addEventListener('click', () => {
 		const nextItem = item.nextElementSibling;
 		if (nextItem) item.parentNode.insertBefore(nextItem, item);
 		updatePreview(); // Update preview after moving an option down
 	  });
-  
+
 	  removeButton.addEventListener('click', () => {
 		item.parentNode.removeChild(item);
 		updatePreview(); // Update preview after removing an option
 	  });
-  
+
 	  const inputElement = item.querySelector('.option-label-input');
 	  inputElement.addEventListener('input', () => {
 		updateOptionPreview(item.getAttribute('data-index'), inputElement.value);
 	  });
-  
+
 	  applyHighlightOnFocusForOptions(inputElement.id, `listPreview-option${item.getAttribute('data-index')}`);
 	}
-  
+
 	function updatePreview() {
 	  const items = document.querySelectorAll('#options-container .gem-c-reorderable-list__item');
 	  const previewContainer = domElements.radioList;
-  
+
 	  // Clear and rebuild the preview
 	  previewContainer.innerHTML = '';
 	  items.forEach((item, index) => {
@@ -555,7 +607,7 @@
 	  });
 	  manageUpDownButtons();
 	}
-  
+
 	function manageUpDownButtons() {
 	  const items = document.querySelectorAll('#options-container .gem-c-reorderable-list__item');
 	  items.forEach((item, index) => {
@@ -565,7 +617,7 @@
 		downButton.style.display = index === items.length - 1 ? 'none' : 'inline-block';
 	  });
 	}
-  
+
 	function initializeSortable() {
 	  sortableInstance = new Sortable(domElements.optionsContainer, {
 		animation: 150,
@@ -576,7 +628,7 @@
 		disabled: true // Disable sorting initially
 	  });
 	}
-  
+
 	function updateOptionPreview(index, value) {
 	  const radioLabel = domElements.radioList.querySelector(`label[for="listPreview-option${index}"]`);
 	  if (radioLabel) {
@@ -585,7 +637,7 @@
 		setTimeout(() => radioLabel.classList.remove('highlight'), 300);
 	  }
 	}
-  
+
 	function addOptionToPreview(index, labelValue) {
 	  const radioList = domElements.radioList;
 	  const newRadioHTML = `
@@ -596,7 +648,7 @@
 	  `;
 	  radioList.insertAdjacentHTML('beforeend', newRadioHTML);
 	}
-  
+
 	function applyHighlightOnFocusForOptions(inputElementId, radioElementId) {
 	  const inputElement = document.getElementById(inputElementId);
 	  const radioLabel = domElements.radioList.querySelector(`label[for="${radioElementId}"]`);
@@ -606,7 +658,7 @@
 		if (document.activeElement === inputElement) radioLabel.classList.add('highlight');
 	  }
 	}
-  
+
 	// Function to get query parameter by name
 	function getQueryParam(name) {
 	  const urlParams = new URLSearchParams(window.location.search);
@@ -696,7 +748,7 @@
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
-  #before-content {
+  /* #before-content {
 	position: absolute;
 	top: 0;
 	left: 10px !important;
@@ -707,7 +759,7 @@
 	z-index: 1;
 	border-bottom: 1px solid #008938;
 	padding-left: 10px;
-  }
+  } */
 
   #second-container {
 	padding: 0;

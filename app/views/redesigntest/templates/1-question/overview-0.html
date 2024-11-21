@@ -106,8 +106,8 @@ activeLinkId: "nav-editor"
                     <h1 class="govuk-heading-l">Overview of questions</h1>
 
                       {{ govukButton({
-                      text: "Continue",
-                      id: "continue-button"
+                      text: "Save and continue",
+                      id: "Save and continue-button"
                       }) }}
 
                   </div>
@@ -134,7 +134,7 @@ activeLinkId: "nav-editor"
           document.addEventListener('DOMContentLoaded', function () {
             const addQuestionLink = document.getElementById('add-question');
             const questionTypeSelection = document.getElementById('question-type-selection');
-            const continueButton = document.getElementById('continue-button');
+            const Save and continueButton = document.getElementById('Save and continue-button');
             const cancelButton = document.getElementById('cancel-button');
             const navList = document.getElementById('nav-list2');
             const questionContents = {}; // Object to store content sections by question ID
@@ -628,10 +628,10 @@ activeLinkId: "nav-editor"
             // Function to toggle button visibility based on selected radio button
             function toggleButtonVisibility() {
               if (moreThanOnceRadio.checked) {
-                onceButton.style.display = 'none'; // Hide "Continue" button
+                onceButton.style.display = 'none'; // Hide "Save and continue" button
                 addAnotherSetButton.style.display = 'inline-block'; // Show "Add another [question set name]" button
               } else if (onceRadio.checked) {
-                onceButton.style.display = 'inline-block'; // Show "Continue" button
+                onceButton.style.display = 'inline-block'; // Show "Save and continue" button
                 addAnotherSetButton.style.display = 'none'; // Hide "Add another [question set name]" button
               }
             }

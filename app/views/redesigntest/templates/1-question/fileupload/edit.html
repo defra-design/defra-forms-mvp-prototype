@@ -477,7 +477,7 @@
                           <!-- Submit Button -->
                           <div class="moj-button-action">
                             {{ govukButton({
-                              text: 'Continue',
+                              text: 'Save and continue',
                               type: 'submit'
                             }) }}
                           </div>
@@ -608,6 +608,25 @@
                 </li>
 
 
+              </ul>
+              <h3 class="govuk-heading-s">If you set answer limits:</h3>
+              <ul class="govuk-list govuk-error-summary__list">
+                <!-- Too long input error -->
+
+                <!-- Too short input error -->
+                <li>
+                  <a id="too-short-input-error-textarea" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    <span id="error-dynamic-text-short">You must upload [min file count] files or more</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a id="too-long-input-error-textarea" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    <span id="error-dynamic-text-max">You can only upload [max file count] or less</span>
+                  </a>
+                </li>
               </ul>
             </div>
 

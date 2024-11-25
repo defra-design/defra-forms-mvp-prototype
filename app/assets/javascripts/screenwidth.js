@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const style = document.createElement('style');
   style.textContent = `
 	.custom-width {
-	  max-width: 1150px !important;
+	  max-width: 1300px !important;
 	}
   `;
   document.head.appendChild(style);

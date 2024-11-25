@@ -5,6 +5,19 @@
 
 // Add extra styles here
 
+// To make things wide globally
+.govuk-width-container {
+  max-width:1250px!important;
+  @include govuk-media-query(
+    $and: "(max-width: #{($govuk-page-width + $govuk-gutter * 4)})"
+  ) {
+    margin-right: $govuk-gutter;
+    margin-left: $govuk-gutter;
+  }
+}
+// ------
+
+
 $defra-brand-colour: govuk-organisation-colour(
   department-for-environment-food-rural-affairs
 );
@@ -58,10 +71,10 @@ $defra-link-colour-hover: govuk-shade($defra-link-colour, 50%);
 }
 
 .app-width-container--full-width {
-  max-width: none;
+  max-width: 1400px;
 
   @include govuk-media-query(
-    $and: "(min-width: #{($govuk-page-width + $govuk-gutter * 2)})"
+    $and: "(max-width: #{($govuk-page-width + $govuk-gutter * 2)})"
   ) {
     margin-right: $govuk-gutter;
     margin-left: $govuk-gutter;

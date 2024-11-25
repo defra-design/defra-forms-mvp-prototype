@@ -169,21 +169,18 @@ formLibrary.items %}
 
         {{ govukAccordion({
         id: "search-filters-advanced",
-
         items: [
         {
         heading: { text: "Authors" },
         expanded: data["author"] | length > 1 or (data["author"] | length === 1 and data["author"][0] !== ""),
-        expanded: true,
         content: {
         html: govukRadios({
         name: "author",
-
         classes: "govuk-radios--small",
 
         fieldset: {
         legend: {
-        text: "Select all authors that apply",
+        text: "Select an author",
         isPageHeading: false
         }
         },
@@ -384,7 +381,7 @@ formLibrary.items %}
     <p class="govuk-body">Improve your search results by removing filters.</p>
     <a href="?page=1&name=&author=&organisation=&status=&sort=updated-newest"
        class="govuk-link--no-visited-state">
-      Clear filters
+      Clear all filters
     </a>
   {% endif %}
 </main>

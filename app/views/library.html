@@ -173,8 +173,7 @@ formLibrary.items %}
         items: [
         {
         heading: { text: "Authors" },
-        expanded: data["author"] | length > 1 or (data["author"] | length === 1 and data["author"][0] !== ""),
-        expanded: true,
+        expanded: true or (data["author"] | length > 1 or (data["author"] | length == 1 and data["author"][0] != "")),
         content: {
         html: govukRadios({
         name: "author",

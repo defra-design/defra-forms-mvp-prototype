@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% from "components/service-header/macro.njk" import serviceHeader %}
-{% set pageName = "Edit radio question - Apply for a county parish holding number in England" %}
+{% set pageName = "Edit checkbox question - Apply for a county parish holding number in England" %}
 {% set headingPlaceholder = "Page heading" %}
 {% set guidancePlaceholder = "" %}
 {% block header %}
@@ -71,7 +71,7 @@
 							  <a class="moj-sub-navigation__link"  href="#question-1-information-type">Question 10</a>
 							</li>
 							<li class="moj-sub-navigation__item">
-								<a class="moj-sub-navigation__link" aria-current="page" href="#overview-noquestions">Edit radio option</a>
+								<a class="moj-sub-navigation__link" aria-current="page" href="#overview-noquestions">Edit checkbox option</a>
 							  </li>
 						  </ul>
 						</nav>
@@ -79,7 +79,7 @@
 						<div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
 						<span class="govuk-caption-l">Page 2</span>
-						<h2 class="govuk-heading-l">Edit radio option</h2>
+						<h2 class="govuk-heading-l">Edit checkbox option</h2>
 
 						<form method="post" id="options-form" action="/redesigntest/templates/more-than-1-question/radios/overview">
 						  {% from "govuk/components/input/macro.njk" import govukInput %}
@@ -111,7 +111,8 @@
 										<input class="govuk-input" id="option-value" name="option-value" type="text" value="doguscaninus">
 									</div>
 								</div>
-							</div>							</div>
+							</div>
+						</div>
 
 
 							<!-- Error Message Input -->
@@ -241,7 +242,7 @@
 			</h2>
 			<ul class="govuk-tabs__list">
 			  <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-				<a class="govuk-tabs__tab" href="#tab-one">Radio option preview</a>
+				<a class="govuk-tabs__tab" href="#tab-one">Checkbox option preview</a>
 			  </li>
 
 			</ul>
@@ -362,12 +363,12 @@ function updatePreview() {
     // Only update if there is a value in the option label
     if (optionLabelValue !== '') {
         const newOptionHTML = `
-            <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="preview-option-1" name="listPreview" type="radio" value="${optionValue}" aria-describedby="preview-option-1-hint">
-                <label class="govuk-label govuk-radios__label" for="preview-option-1">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="preview-option-1" name="listPreview" type="checkbox" value="${optionValue}" aria-describedby="preview-option-1-hint">
+                <label class="govuk-label govuk-checkboxes__label" for="preview-option-1">
                     ${optionLabelValue}
                 </label>
-                <div id="preview-option-1-hint" class="govuk-hint govuk-radios__hint">
+                <div id="preview-option-1-hint" class="govuk-hint govuk-checkboxes__hint">
                     ${optionHintValue}
                 </div>
             </div>

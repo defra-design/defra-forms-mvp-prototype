@@ -713,6 +713,123 @@ router.use(function (req, res, next) {
   next();
 });
 
+/* comments plugin */
+
+const db = require('./db'); // Adjust path to where your db.js is located
+
+// POST route to handle adding comments
+router.post('/add-comment', async (req, res) => {
+  const { project, feedback, url } = req.body;
+
+  if (!project || !feedback || !url) {
+    return res.status(400).send('Missing required fields');
+  }
+
+  const newComment = {
+    id: Date.now(),
+    project,
+    feedback,
+    url,
+    status: 'pending', // Default status
+  };
+
+  try {
+    const comments = await db.getComments();
+    comments.push(newComment);
+    await db.updateComments(comments);
+
+    console.log('New comment added:', newComment);
+    res.status(200).send('Comment added successfully');
+  } catch (err) {
+    console.error('Error adding comment:', err.message, err.stack);
+    res.status(500).send('An error occurred while adding the comment');
+  }
+});
+
+router.post('/delete-comment', async (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    console.error('Delete request is missing the comment ID');
+    return res.status(400).send('Missing comment ID');
+  }
+
+  try {
+    const comments = await db.getComments();
+    const updatedComments = comments.filter(comment => comment.id !== parseInt(id, 10));
+
+    if (comments.length === updatedComments.length) {
+      console.warn(`No comment found with ID ${id}`);
+      return res.status(404).send('Comment not found');
+    }
+
+    await db.updateComments(updatedComments);
+
+    console.log(`Comment with ID ${id} deleted successfully`);
+
+    // Redirect immediately after deletion
+    res.redirect('/view-comments');
+  } catch (err) {
+    console.error('Error deleting comment:', err.message, err.stack);
+    res.status(500).send('An error occurred while deleting the comment');
+  }
+});
+
+router.post('/mark-done', async (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    console.error('Mark done request is missing the comment ID');
+    return res.status(400).send('Missing comment ID');
+  }
+
+  try {
+    const data = await db.readData();
+
+    if (!data.comments || !Array.isArray(data.comments)) {
+      console.error('Comments data is missing or invalid');
+      return res.status(500).send('Comments data is missing or invalid');
+    }
+
+    const comment = data.comments.find(comment => comment.id === parseInt(id, 10));
+
+    if (!comment) {
+      console.warn(`No comment found with ID ${id}`);
+      return res.status(404).send('Comment not found');
+    }
+
+    comment.status = 'done'; // Update the status
+    await db.writeData(data);
+
+    console.log(`Comment with ID ${id} marked as done`);
+    res.redirect('/view-comments'); // Redirect back to the view comments page
+  } catch (err) {
+    console.error('Error in /mark-done route:', err.message, err.stack);
+    res.status(500).send('An error occurred while marking the comment as done');
+  }
+});
+
+// (Optional) Debugging route to view all comments
+router.get('/comments', (req, res) => {
+  const data = db.readData();
+  res.json(data.comments);
+});
+
+router.get('/view-comments', async (req, res) => {
+  try {
+    const comments = await db.getComments();
+
+    // Sort comments by id in descending order
+    const sortedComments = comments.sort((a, b) => b.id - a.id);
+
+    console.log('Sorted comments for view-comments:', sortedComments);
+    res.render('view-comments', { comments: sortedComments });
+  } catch (err) {
+    console.error('Error in /view-comments route:', err.message, err.stack);
+    res.status(500).send('An error occurred while loading the comments page');
+  }
+});
+
 module.exports = router;
 
 

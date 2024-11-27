@@ -566,6 +566,11 @@
 	   actions.style.display = editMode ? 'flex' : 'none';
 	 });
  
+	 // Show or hide edit-item links
+	 document.querySelectorAll('.edit-item').forEach(editItem => {
+	   editItem.style.display = editMode ? 'none' : '';
+	 });
+ 
 	 sortableInstance.option('disabled', !editMode);
 	 manageUpDownButtons(); // Update buttons based on new state
    }

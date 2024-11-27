@@ -90,35 +90,58 @@
 						  <!-- List config -->
 						  <div class="govuk-form-group">
 
-							<div id="options-container">
-								<div class="radio-option-config">
-									{% set index = (data.index | int) - 1 %}
-									{% set option = data.checkboxList[index] %}
-									
-									<form method="POST" action="/save-option">
-									  <input type="hidden" name="index" value="{{ index }}">
-									  
-									  <!-- Option Value (Label) -->
-									  <div class="govuk-form-group">
-										<label class="govuk-label" for="option-label">Option Label</label>
-										<input class="govuk-input" id="option-label" name="option-label" type="text" value="{{ option.label }}">
-									  </div>
-									
-									  <!-- Hint Text -->
-									  <div class="govuk-form-group">
-										<label class="govuk-label" for="option-hint">Hint Text</label>
-										<input class="govuk-input" id="option-hint" name="option-hint" type="text" value="{{ option.hint }}">
-									  </div>
-									
-									  <!-- Additional Value -->
-									  <div class="govuk-form-group">
-										<label class="govuk-label" for="option-value">Option Value</label>
-										<input class="govuk-input" id="option-value" name="option-value" type="text" value="{{ option.value }}">
-									  </div>
-									
-									  <!-- Submit Button -->
+							<div id="options-edit-container">
+								<div class="govuk-form-group">
+								  {% set index = (data.index | int) - 1 %}
+								  {% set option = data.checkboxList[index] %}
+								
+								  <form method="POST" action="/save-option" novalidate>
+									<input type="hidden" name="index" value="{{ index }}">
+								
+									<!-- Option Value (Label) -->
+									<div class="govuk-form-group">
+									  <label class="govuk-label" for="option-label">Option Label</label>
+									  <input
+										class="govuk-input govuk-!-width-two-thirds"
+										id="option-label"
+										name="option-label"
+										type="text"
+										value="{{ option.label }}"
+									  />
+									</div>
+								
+									<!-- Hint Text -->
+									<div class="govuk-form-group">
+									  <label class="govuk-label" for="option-hint">Hint Text</label>
+									  <span id="option-hint-hint" class="govuk-hint">
+										Provide an optional hint for this option.
+									  </span>
+									  <input
+										class="govuk-input govuk-!-width-two-thirds"
+										id="option-hint"
+										name="option-hint"
+										type="text"
+										value="{{ option.hint }}"
+									  />
+									</div>
+								
+									<!-- Additional Value -->
+									<div class="govuk-form-group">
+									  <label class="govuk-label" for="option-value">Option Value</label>
+									  <input
+										class="govuk-input govuk-!-width-two-thirds"
+										id="option-value"
+										name="option-value"
+										type="text"
+										value="{{ option.value }}"
+									  />
+									</div>
+								
+									<!-- Submit Button -->
+									<div class="govuk-form-group">
 									  <button type="submit" class="govuk-button">Save changes</button>
-									</form>
+									</div>
+								  </form>
 								</div>
 							</div>
 						</div>

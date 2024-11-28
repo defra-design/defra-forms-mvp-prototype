@@ -699,6 +699,77 @@ router.post("/overview-0", function (req, res) {
 });
 
 
+/* add checkbox list */
+
+router.post('/configure-checkbox', function (req, res) {
+  // Ensure checkboxList exists in the session
+  req.session.data.checkboxList = req.session.data.checkboxList || [];
+
+  // Create a new checkbox option
+  const checkboxOption = {
+    label: req.body.label, // Label for the checkbox
+    value: req.body.value, // Value of the checkbox
+    hint: req.body.hint,   // (Optional) hint for the checkbox
+  };
+
+  // Append the new checkbox option to the list
+  req.session.data.checkboxList.push(checkboxOption);
+
+  // Redirect to the list page
+  res.redirect('/redesigntest/templates/1-question/checkboxes/edit');
+});
+
+router.post('/save-option', (req, res) => {
+  const index = parseInt(req.body.index, 10); // Get the index from the form
+  const checkboxList = req.session.data.checkboxList; // Access the checkboxList array
+
+  if (checkboxList && checkboxList[index]) {
+    // Update the data at the specified index
+    checkboxList[index].label = req.body['option-label'];
+    checkboxList[index].hint = req.body['option-hint'];
+    checkboxList[index].value = req.body['option-value'];
+  }
+
+  // Redirect back to the list page or another appropriate page
+  res.redirect('/redesigntest/templates/1-question/checkboxes/edit');
+});
+
+/* add radio list */
+
+// Route to configure radio buttons
+router.post('/configure-radio', function (req, res) {
+  // Ensure radioList exists in the session
+  req.session.data.radioList = req.session.data.radioList || [];
+
+  // Create a new radio option
+  const radioOption = {
+    label: req.body.label, // Label for the radio button
+    value: req.body.value, // Value of the radio button
+    hint: req.body.hint,   // (Optional) hint for the radio button
+  };
+
+  // Append the new radio option to the list
+  req.session.data.radioList.push(radioOption);
+
+  // Redirect to the list page for radio buttons
+  res.redirect('/redesigntest/templates/1-question/radios/edit');
+});
+
+// Route to save the radio button option
+router.post('/save-radio-option', (req, res) => {
+  const index = parseInt(req.body.index, 10); // Get the index from the form
+  const radioList = req.session.data.radioList; // Access the radioList array
+
+  if (radioList && radioList[index]) {
+    // Update the data at the specified index
+    radioList[index].label = req.body['option-label'];
+    radioList[index].hint = req.body['option-hint'];
+    radioList[index].value = req.body['option-value'];
+  }
+
+  // Redirect back to the list page for radio buttons
+  res.redirect('/redesigntest/templates/1-question/radios/edit');
+});
 
 /* dictionary stuff */
 

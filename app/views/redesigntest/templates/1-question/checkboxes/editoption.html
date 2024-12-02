@@ -68,7 +68,7 @@
 							</li> #}
 
 							<li class="moj-sub-navigation__item">
-							  <a class="moj-sub-navigation__link"  href="#question-1-information-type">Question 10</a>
+							  <a class="moj-sub-navigation__link"  href="/redesigntest/templates/1-question/checkboxes/edit.html">Question 10</a>
 							</li>
 							<li class="moj-sub-navigation__item">
 								<a class="moj-sub-navigation__link" aria-current="page" href="#overview-noquestions">Edit checkbox option</a>
@@ -100,9 +100,13 @@
 
 									<!-- Option Value (Label) -->
 									<div class="govuk-form-group">
-									  <label class="govuk-label govuk-label--m" for="option-label">Option label</label>
+									  <label class="govuk-label govuk-label--m" for="option-label">Option text</label>
+									  <div class="govuk-hint" id="option-label-hint">
+										Enter the text that will be displayed for this option.
+									  </div>
+
 									  <input
-										class="govuk-input govuk-!-width-two-thirds"
+										class="govuk-input"
 										id="option-label"
 										name="option-label"
 										type="text"
@@ -113,11 +117,13 @@
 									<!-- Hint Text -->
 									<div class="govuk-form-group">
 									  <label class="govuk-label govuk-label--m" for="option-hint">Hint text (optional)</label>
-									  <span id="option-hint-hint" class="govuk-hint">
-										Provide an optional hint for this option.
-									  </span>
+									  <div class="govuk-hint" id="option-hint-hint">
+										Provide additional information about this option
+									  </div>
+
+
 									  <input
-										class="govuk-input govuk-!-width-two-thirds"
+										class="govuk-input"
 										id="option-hint"
 										name="option-hint"
 										type="text"
@@ -128,8 +134,9 @@
 									<!-- Additional Value -->
 									<div class="govuk-form-group">
 									  <label class="govuk-label govuk-label--m" for="option-value">Option value</label>
+									  <div class="govuk-hint">You can keep this the same as the option text unless you call it something different in your backend system</div>
 									  <input
-										class="govuk-input govuk-!-width-two-thirds"
+										class="govuk-input"
 										id="option-value"
 										name="option-value"
 										type="text"
@@ -315,7 +322,7 @@
   }
 
   .fauxlabel:focus, .fauxlabel:active {
-	background-color: transparent!important!important;
+	background-color: transparent!important;
   }
 
   .gem-c-reorderable-list .gem-c-reorderable-list__item:hover, .gem-c-reorderable-list__item:hover .fauxlabel {
@@ -331,283 +338,206 @@
 
 <!-- to populate the form with multiple animals append ?animals=dog,cat,lion,tiger,bear to the url -->
 
-<!-- Updated JavaScript -->
-<script>
- document.addEventListener('DOMContentLoaded', function () {
-	 // DOM Elements for both previous functionality and new dynamic preview
-	 const domElements = {
-		 multiQuestionLabelInputRadios: document.getElementById('multi-question-label-input-radios'),
-		 multiQuestionOutputRadios: document.getElementById('multi-question-output-radios'),
-		 hintTextInput: document.getElementById('multi-question-hint-text-input-radios'),
-		 multiQuestionHintTextOutputRadios: document.getElementById('multi-question-hint-text-output-radios'),
-		 makeOptionalCheckbox: document.getElementById('makeOptional'),
-		 pageHeadingInputRadios: document.getElementById('page-heading-input-radios'),
-		 dynamicHeading: document.getElementById('dynamic-heading'),
-		 guidanceTextareaRadios: document.getElementById('guidance-textarea-radios'),
-		 guidanceParagraph: document.getElementById('guidance-paragraph'),
-		 errorMessageInput: document.getElementById('error-message-input'),
-		 errorDynamicText: document.getElementById('error-dynamic-text'),
-		 optionsContainer: document.getElementById('options-container'),
-		 addOptionButton: document.getElementById('add-option-button'),
-		 editOptionsButton: document.getElementById('edit-options-button'),
-		 radioList: document.getElementById('radio-list'), // The preview area
-		 optionLabelInput: document.getElementById('option-label'), // Option label input
-		 optionHintInput: document.getElementById('option-hint'), // Hint text input
-		 optionValueInput: document.getElementById('option-value') // Additional value input
-	 };
+ <!-- Updated JavaScript -->
+ <script>
+	document.addEventListener('DOMContentLoaded', function () {
+	  // DOM Elements for both previous functionality and new dynamic preview
+	  const domElements = {
+		multiQuestionLabelInputRadios: document.getElementById('multi-question-label-input-radios'),
+		multiQuestionOutputRadios: document.getElementById('multi-question-output-radios'),
+		hintTextInput: document.getElementById('multi-question-hint-text-input-radios'),
+		multiQuestionHintTextOutputRadios: document.getElementById('multi-question-hint-text-output-radios'),
+		makeOptionalCheckbox: document.getElementById('makeOptional'),
+		pageHeadingInputRadios: document.getElementById('page-heading-input-radios'),
+		dynamicHeading: document.getElementById('dynamic-heading'),
+		guidanceTextareaRadios: document.getElementById('guidance-textarea-radios'),
+		guidanceParagraph: document.getElementById('guidance-paragraph'),
+		errorMessageInput: document.getElementById('error-message-input'),
+		errorDynamicText: document.getElementById('error-dynamic-text'),
+		optionsContainer: document.getElementById('options-container'),
+		addOptionButton: document.getElementById('add-option-button'),
+		editOptionsButton: document.getElementById('edit-options-button'),
+		radioList: document.getElementById('radio-list'), // The preview area
+		optionLabelInput: document.getElementById('option-label'), // Option label input
+		optionHintInput: document.getElementById('option-hint'), // Hint text input
+		optionValueInput: document.getElementById('option-value') // Additional value input
+	  };
 
-	 // Ensure that the DOM elements exist
-	 if (!domElements.radioList || !domElements.optionLabelInput || !domElements.optionHintInput || !domElements.optionValueInput) {
-		 console.error("One or more required elements not found");
-		 return; // Exit early if the required elements are not found
-	 }
-// Listen for changes in the input fields (for preview update)
-domElements.optionLabelInput.addEventListener('input', () => {
-    updatePreview();
-    applyHighlight('.govuk-radios__label');
-});
-domElements.optionHintInput.addEventListener('input', () => {
-    updatePreview();
-    applyHighlight('.govuk-radios__hint');
-});
-domElements.optionValueInput.addEventListener('input', updatePreview);
+	  // Ensure that the DOM elements exist
+	  if (!domElements.radioList || !domElements.optionLabelInput || !domElements.optionHintInput || !domElements.optionValueInput) {
+		console.error("One or more required elements not found");
+		return; // Exit early if the required elements are not found
+	  }
 
-// Add focus/blur events for maintaining highlight
-domElements.optionLabelInput.addEventListener('focus', () => applyHighlight('.govuk-radios__label'));
-domElements.optionLabelInput.addEventListener('blur', () => removeHighlight('.govuk-radios__label'));
+	  // Listen for changes in the input fields (for preview update)
+	  domElements.optionLabelInput.addEventListener('input', () => {
+		updatePreview();
+		highlightElement('label');
+	  });
+	  domElements.optionHintInput.addEventListener('input', () => {
+		updateHintPreview();
+		highlightElement('hint');
+	  });
+	  domElements.optionValueInput.addEventListener('input', updatePreview);
 
-domElements.optionHintInput.addEventListener('focus', () => applyHighlight('.govuk-radios__hint'));
-domElements.optionHintInput.addEventListener('blur', () => removeHighlight('.govuk-radios__hint'));
+	  // Add focus/blur events for maintaining highlight and placeholder
+	  domElements.optionLabelInput.addEventListener('focus', () => highlightElement('label'));
+	  domElements.optionLabelInput.addEventListener('blur', () => removeHighlight('label'));
 
-// Initial preview update
-updatePreview();
+	  domElements.optionHintInput.addEventListener('focus', () => {
+		highlightElement('hint');
+		showPlaceholderHint();
+	  });
+	  domElements.optionHintInput.addEventListener('blur', () => {
+		removeHighlight('hint');
+		removePlaceholderHint();
+	  });
 
-// Function to update the preview based on the input values
-function updatePreview() {
-    // Get values from the input fields
-    const optionLabelValue = domElements.optionLabelInput.value.trim();
-    const optionHintValue = domElements.optionHintInput.value.trim();
-    const optionValue = domElements.optionValueInput.value.trim();
+	  // Initial preview update
+	  updatePreview();
 
-    // Clear the current preview
-    domElements.radioList.innerHTML = '';
+	  // Function to update the preview based on the input values
+	  function updatePreview() {
+		const optionLabelValue = domElements.optionLabelInput.value.trim();
+		const optionValue = domElements.optionValueInput.value.trim();
 
-    // Only update if there is a value in the option label
-    if (optionLabelValue !== '') {
-        const newOptionHTML = `
-            <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="preview-option-1" name="listPreview" type="checkbox" value="${optionValue}" aria-describedby="preview-option-1-hint">
-                <label class="govuk-label govuk-checkboxes__label" for="preview-option-1">
-                    ${optionLabelValue}
-                </label>
-                <div id="preview-option-1-hint" class="govuk-hint govuk-checkboxes__hint">
-                    ${optionHintValue}
-                </div>
-            </div>
-        `;
-        // Add the new radio option to the preview
-        domElements.radioList.insertAdjacentHTML('beforeend', newOptionHTML);
-    } else {
-        // If the input is empty, show a placeholder message
-        domElements.radioList.innerHTML = '<p>Please enter an option label.</p>';
-    }
-}
+		// Clear the current preview
+		domElements.radioList.innerHTML = '';
 
-// Function to apply a highlight to the preview elements
-function applyHighlight(selector) {
-    const targetElement = domElements.radioList.querySelector(selector);
-    if (targetElement) {
-        targetElement.classList.add('highlight');
-    }
-}
+		const newOptionHTML = `
+		  <div class="govuk-checkboxes__item">
+			<input
+			  class="govuk-checkboxes__input"
+			  id="preview-option-1"
+			  name="listPreview"
+			  type="checkbox"
+			  value="${optionValue || 'default-value'}"
+			>
+			<label
+			  class="govuk-label govuk-checkboxes__label"
+			  for="preview-option-1"
+			>
+			  ${optionLabelValue || 'Option label'}
+			</label>
+			<div id="preview-option-1-hint" class="govuk-hint govuk-checkboxes__hint"></div>
+		  </div>
+		`;
+		domElements.radioList.insertAdjacentHTML('beforeend', newOptionHTML);
 
-// Function to remove a highlight from the preview elements
-function removeHighlight(selector) {
-    const targetElement = domElements.radioList.querySelector(selector);
-    if (targetElement) {
-        targetElement.classList.remove('highlight');
-    }
-}
+		updateHintPreview(); // Ensure the hint is updated correctly
+	  }
 
+	  // Function to update the hint preview
+	  function updateHintPreview() {
+		const optionHintValue = domElements.optionHintInput.value.trim();
+		const hintElement = domElements.radioList.querySelector('.govuk-checkboxes__hint');
 
-	 // Function to update the question label dynamically
-	 function updateQuestionLabel() {
-		 const suffix = domElements.makeOptionalCheckbox && domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
-		 domElements.multiQuestionOutputRadios.textContent = (domElements.multiQuestionLabelInputRadios.value || 'Question') + suffix;
-	 }
+		if (!hintElement) {
+		  console.warn("Hint element not found in the preview area.");
+		  return;
+		}
 
-	 // Function to update the hint text dynamically
-	 function updateHintText() {
-		 domElements.multiQuestionHintTextOutputRadios.textContent = domElements.hintTextInput.value || '';
-	 }
+		hintElement.textContent = optionHintValue || '';
+	  }
 
-	 // Function to update the error message dynamically
-	 function updateErrorMessage() {
-		 domElements.errorDynamicText.textContent = domElements.errorMessageInput.value.trim() || '[short description]';
-	 }
+	  // Function to highlight the appropriate preview element
+	  function highlightElement(type) {
+		const labelElement = domElements.radioList.querySelector('.govuk-checkboxes__label');
+		const hintElement = domElements.radioList.querySelector('.govuk-checkboxes__hint');
 
-	 // Function to show placeholder hint for the input field
-	 function showPlaceholderHint() {
-		 if (!domElements.hintTextInput.value) {
-			 domElements.multiQuestionHintTextOutputRadios.textContent = 'Hint text';
-		 }
-	 }
+		// Remove all highlights first
+		removeHighlight('label');
+		removeHighlight('hint');
 
-	 // Function to clear placeholder hint when input field is blurred
-	 function clearPlaceholderHint() {
-		 if (!domElements.hintTextInput.value) {
-			 domElements.multiQuestionHintTextOutputRadios.textContent = '';
-		 }
-	 }
+		// Apply highlight only to the target type
+		if (type === 'label' && labelElement) {
+		  labelElement.classList.add('highlight');
+		} else if (type === 'hint' && hintElement) {
+		  hintElement.classList.add('highlight');
+		}
+	  }
 
-	 // Function to apply highlighting to focus elements
-	 function applyHighlightOnFocus(inputElement, targetElement) {
-		 if (inputElement && targetElement) {
-			 inputElement.addEventListener('focus', () => targetElement.classList.add('highlight'));
-			 inputElement.addEventListener('blur', () => targetElement.classList.remove('highlight'));
+	  // Function to remove the highlight from the specified type
+	  function removeHighlight(type) {
+		const labelElement = domElements.radioList.querySelector('.govuk-checkboxes__label');
+		const hintElement = domElements.radioList.querySelector('.govuk-checkboxes__hint');
 
-			 if (document.activeElement === inputElement) {
-				 targetElement.classList.add('highlight');
-			 }
-		 }
-	 }
+		if (type === 'label' && labelElement) {
+		  labelElement.classList.remove('highlight');
+		} else if (type === 'hint' && hintElement) {
+		  hintElement.classList.remove('highlight');
+		}
+	  }
 
-	 // Listen for changes in the input fields for question label and dynamic text updates
-	 function initializeEventListeners() {
-		 if (domElements.multiQuestionLabelInputRadios && domElements.multiQuestionOutputRadios) {
-			 domElements.multiQuestionLabelInputRadios.addEventListener('input', updateQuestionLabel);
-			 applyHighlightOnFocus(domElements.multiQuestionLabelInputRadios, domElements.multiQuestionOutputRadios);
-		 }
+	  // Function to show placeholder hint text in the preview
+	  function showPlaceholderHint() {
+		const hintElement = domElements.radioList.querySelector('.govuk-checkboxes__hint');
+		if (hintElement && !domElements.optionHintInput.value.trim()) {
+		  hintElement.textContent = 'Hint text'; // Placeholder text
+		}
+	  }
 
-		 if (domElements.hintTextInput && domElements.multiQuestionHintTextOutputRadios) {
-			 domElements.hintTextInput.addEventListener('input', updateHintText);
-			 applyHighlightOnFocus(domElements.hintTextInput, domElements.multiQuestionHintTextOutputRadios);
-			 domElements.hintTextInput.addEventListener('focus', showPlaceholderHint);
-			 domElements.hintTextInput.addEventListener('blur', clearPlaceholderHint);
-		 }
+	  // Function to remove placeholder hint text when input is no longer in focus
+	  function removePlaceholderHint() {
+		const hintElement = domElements.radioList.querySelector('.govuk-checkboxes__hint');
+		if (hintElement && !domElements.optionHintInput.value.trim()) {
+		  hintElement.textContent = ''; // Clear placeholder text
+		}
+	  }
 
-		 if (domElements.errorMessageInput && domElements.errorDynamicText) {
-			 domElements.errorMessageInput.addEventListener('input', updateErrorMessage);
-			 applyHighlightOnFocus(domElements.errorMessageInput, domElements.errorDynamicText);
-		 }
-	 }
+	  // Additional initialization
+	  function initializeEventListeners() {
+		// Example event listener setup (if needed)
+	  }
 
+	  initializeEventListeners();
+	});
+  </script>
 
-
-	 // Initialize event listeners for question labels, hints, and error message updates
-	 initializeEventListeners();
- });
-</script>
-
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
+  <script>
+	document.addEventListener("DOMContentLoaded", function() {
 	  var secondContainer = document.getElementById("second-container");
-	  var borderLeftContainerRadios= document.getElementById("border-left-container-radios");
+	  var borderLeftContainerRadios = document.getElementById("border-left-container-radios");
 
 	  if (secondContainer && borderLeftContainerRadios) {
-		  // Scroll the `borderLeftContainerTextarea` element into view within `second-container`
-		  borderLeftContainerRadios.scrollIntoView({
-			  behavior: "smooth",
-			  block: "nearest"
-		  });
-		  console.log("Scrolled to border-left-container-textarea within second-container");
+		// Scroll the `borderLeftContainerRadios` element into view within `second-container`
+		borderLeftContainerRadios.scrollIntoView({
+		  behavior: "smooth",
+		  block: "nearest"
+		});
+		console.log("Scrolled to border-left-container-radios within second-container");
 	  } else {
-		  console.log("second-container or border-left-container-textarea not found");
+		console.log("second-container or border-left-container-radios not found");
 	  }
-  });
+	});
+  </script>
 
-	</script>
+</div>
+</div>
+</div>
+</div>
 
 <style>
-  .highlight {
-	background-color: #ffe5cc;
-	border-bottom: 2px solid #ffb266;
-  }
+.fauxlabel {
+border:0;
+text-transform: capitalize;
+}
 
-  /* Styles for the reorderable list */
-  .gem-c-reorderable-list {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-  }
+.govuk-radios__item label {
+text-transform: capitalize;
+}
 
-  .gem-c-reorderable-list__item {
-	margin-bottom: 15px;
-	border-left: 5px solid #008938;
-	outline: 1px solid #b1b4b6;
-	padding: 15px;
-	background-color: #fff;
-  }
+.fauxlabel:focus, .fauxlabel:active {
+background-color: transparent!important;
+}
 
-  .gem-c-reorderable-list__wrapper {
-	display: flex;
-	align-items: center;
-  }
+.gem-c-reorderable-list .gem-c-reorderable-list__item:hover, .gem-c-reorderable-list__item:hover .fauxlabel {
+background-color: #fff;
+cursor: initial;
+}
 
-  .gem-c-reorderable-list__content {
-	flex-grow: 1;
-  }
-
-  .gem-c-reorderable-list__actions {
-	display: none; /* Hide by default */
-	flex-direction: column;
-	margin-left: 15px;
-  }
-
-  .gem-c-reorderable-list__actions .govuk-button {
-	margin-bottom: 5px;
-  }
-
-  .sortable-ghost {
-	opacity: 0.4;
-  }
-
-  .sortable-chosen {
-	background-color: #e5f5ff;
-  }
-
-  /* Style for hover state of the list item */
-  .gem-c-reorderable-list__item:hover {
-	background-color: #f0f0f0;
-	cursor: move;
-  }
-
-  /* Style for the chosen item (when selected) */
-  .gem-c-reorderable-list__item.sortable-chosen {
-	background-color: #e5f5ff;
-	outline: 4px solid #ffdd00;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  /* #before-content {
-	position: absolute;
-	top: 0;
-	left: 10px !important;
-	right: 0;
-	width: 100%;
-	padding: 10px !important;
-	box-sizing: border-box;
-	z-index: 1;
-	border-bottom: 1px solid #008938;
-	padding-left: 10px;
-  } */
-
-  #second-container {
-	padding: 0;
-	box-sizing: border-box;
-  }
-
-  #second-container > * {
-	padding-left: 0px;
-	z-index: 2;
-  }
-
-  .border-left-container {
-	border-left: 10px solid #ffb266;
-	padding-left: 20px;
-  }
+.gem-c-reorderable-list__item:hover .fauxlabel:focus {
+cursor: initial;
+}
 </style>
-
 {% endblock %}

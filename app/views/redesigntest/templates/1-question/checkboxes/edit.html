@@ -72,7 +72,8 @@
                         <span class="govuk-caption-l">Page 2</span>
                         <h2 class="govuk-heading-l">Edit question 10</h2>
 
-                        <form method="post" id="options-form" action="/redesigntest/templates/1-question/checkboxes/overview">
+						<form method="post" id="options-form" action="/redesigntest/templates/1-question/checkboxes/overview">
+
                           {% from "govuk/components/input/macro.njk" import govukInput %}
                           {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
                           {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
@@ -189,11 +190,11 @@
                             </ol>
 
 							<div class="govuk-button-group">
-								<!-- Add Option Button -->
+								<!-- Add Another Option Button -->
 								<button
-								  type="button"
-								  class="govuk-button govuk-button moj-add-another__add-button govuk-!-margin-bottom-4 govuk-!-margin-bottom-6"
 								  id="add-option-button"
+								  type="button"
+								  class="govuk-button moj-add-another__add-button govuk-!-margin-bottom-4 govuk-!-margin-bottom-6"
 								>
 								  {% if data.checkboxList and data.checkboxList.length > 0 %}
 									Add another option
@@ -204,13 +205,14 @@
 
 								<!-- Edit List Button -->
 								<button
+								  id="edit-options-button"
 								  type="button"
 								  class="govuk-button govuk-button--inverse"
-								  id="edit-options-button"
 								>
 								  Edit list
 								</button>
 							  </div>
+
 
                             <!-- Make Optional Checkbox -->
                             <div class="govuk-form-group">

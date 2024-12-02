@@ -698,47 +698,7 @@ router.post("/overview-0", function (req, res) {
   res.redirect("/redesigntest/templates/1-question/information-type.html");  //
 });
 
-
-/* add checkbox list */
-
-
-
-router.post('/configure-checkbox', function (req, res) {
-  // Ensure checkboxList exists in the session
-  req.session.data.checkboxList = req.session.data.checkboxList || [];
-
-  // Create a new checkbox option
-  const checkboxOption = {
-    label: req.body.label, // Label for the checkbox
-    value: req.body.value, // Value of the checkbox
-    hint: req.body.hint,   // (Optional) hint for the checkbox
-  };
-
-  // Append the new checkbox option to the list
-  req.session.data.checkboxList.push(checkboxOption);
-
-  // Redirect to the list page
-  res.redirect('/redesigntest/templates/1-question/checkboxes/edit');
-});
-
-router.post('/save-option', (req, res) => {
-  const index = parseInt(req.body.index, 10); // Get the index from the form
-  const checkboxList = req.session.data.checkboxList; // Access the checkboxList array
-
-  if (checkboxList && checkboxList[index]) {
-    // Update the data at the specified index
-    checkboxList[index].label = req.body['option-label'];
-    checkboxList[index].hint = req.body['option-hint'];
-    checkboxList[index].value = req.body['option-value'];
-  }
-
-  // Redirect back to the list page or another appropriate page
-  res.redirect('/redesigntest/templates/1-question/checkboxes/edit');
-});
-
-/* add radio list */
-
-// Route to configure radio buttons
+// Route to configure radio buttons (when the user is on the add page)
 router.post('/configure-radio', function (req, res) {
   // Ensure radioList exists in the session
   req.session.data.radioList = req.session.data.radioList || [];
@@ -753,7 +713,7 @@ router.post('/configure-radio', function (req, res) {
   // Append the new radio option to the list
   req.session.data.radioList.push(radioOption);
 
-  // Redirect to the list page for radio buttons
+  // Redirect to the edit page after adding the new radio button
   res.redirect('/redesigntest/templates/1-question/radios/edit');
 });
 
@@ -769,9 +729,69 @@ router.post('/save-radio-option', (req, res) => {
     radioList[index].value = req.body['option-value'];
   }
 
-  // Redirect back to the list page for radio buttons
+  // Redirect back to the edit page for radio buttons
   res.redirect('/redesigntest/templates/1-question/radios/edit');
 });
+
+// Route to access the edit page for radio buttons
+router.get('/redesigntest/templates/1-question/radios/edit', (req, res) => {
+  const radioList = req.session.data.radioList;
+
+  // Check if the radioList is empty, redirect to the add page if so
+  if (radioList.length === 0) {
+    res.redirect('/redesigntest/templates/1-question/radios/add.html');
+  } else {
+    // Render the edit page if there are items in the list
+    res.render('radio-edit', { radioList: radioList });
+  }
+});
+
+// Route to configure checkboxes (when the user is on the add page)
+router.post('/configure-checkbox', function (req, res) {
+  // Ensure checkboxList exists in the session
+  req.session.data.checkboxList = req.session.data.checkboxList || [];
+
+  // Create a new checkbox option
+  const checkboxOption = {
+    label: req.body.label, // Label for the checkbox
+    value: req.body.value, // Value of the checkbox
+    hint: req.body.hint,   // (Optional) hint for the checkbox
+  };
+
+  // Append the new checkbox option to the list
+  req.session.data.checkboxList.push(checkboxOption);
+
+  // Redirect to the edit page after adding the new checkbox
+  res.redirect('/redesigntest/templates/1-question/checkboxes/edit');
+});
+
+// Route to save the checkbox option
+router.post('/save-option', (req, res) => {
+  const index = parseInt(req.body.index, 10); // Get the index from the form
+  const checkboxList = req.session.data.checkboxList; // Access the checkboxList array
+
+  if (checkboxList && checkboxList[index]) {
+    // Update the data at the specified index
+    checkboxList[index].label = req.body['option-label'];
+    checkboxList[index].hint = req.body['option-hint'];
+    checkboxList[index].value = req.body['option-value'];
+  }
+
+  // Redirect back to the edit page for checkboxes
+  res.redirect('/redesigntest/templates/1-question/checkboxes/edit');
+});
+
+/// Route to access the edit page for checkboxes
+router.get('/redesigntest/templates/1-question/checkboxes/edit', (req, res) => {
+  const checkboxList = req.session.data?.checkboxList || [];  // Check if the checkboxList is empty, redirect to the add page if so
+  if (checkboxList.length === 0) {
+    res.redirect('/redesigntest/templates/1-question/checkboxes/add.html');
+  } else {
+    // Render the edit page if there are items in the list
+    res.render('/redesigntest/templates/1-question/checkboxes/edit.html', { checkboxList: checkboxList });
+  }
+});
+
 
 /* dictionary stuff */
 

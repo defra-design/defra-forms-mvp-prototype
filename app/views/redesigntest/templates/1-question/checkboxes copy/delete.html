@@ -2,7 +2,7 @@
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
-{% set pageName = "Are you sure you want to delete page # - Apply for a county parish holding number in England" %}
+{% set pageName = "Number of questions - Apply for a county parish holding number in England" %}
 
 {% block header %}
 {{ serviceHeader({
@@ -23,7 +23,7 @@ activeLinkId: "nav-editor"
 
 <div class="x-govuk-masthead x-govuk-masthead--large">
     <div class="govuk-width-container">
-      {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to edit page 2", href: "javascript:window.history.back()" }) }}
+      {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to edit page 2", href: "/redesigntest/listing.html" }) }}
 
       <hr
         class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
@@ -57,10 +57,16 @@ activeLinkId: "nav-editor"
     <form class="form" action="/redesigntest/listing" method="post">
 
       <h2 class="govuk-heading-l">
-        Are you sure you want to delete page #?
+        Are you sure you want to delete page 2?
       </h2>
 
-      <p class="govuk-body govuk-!-margin-bottom-6">You cannot recover deleted pages.</p>
+      <div class="govuk-warning-text govuk-!-margin-bottom-8">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          This action is final and cannot be undone.
+        </strong>
+      </div>
 
       <div class="govuk-button-group">
         <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" data-govuk-button-init="">

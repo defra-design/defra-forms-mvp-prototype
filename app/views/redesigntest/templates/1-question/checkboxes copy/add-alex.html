@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% from "components/service-header/macro.njk" import serviceHeader %}
-{% set pageName = "Edit checkbox question - Apply for a county parish holding number in England" %}
+{% set pageName = "Add checkbox question - Apply for a county parish holding number in England" %}
 {% set headingPlaceholder = "Page heading" %}
 {% set guidancePlaceholder = "" %}
 {% block header %}
@@ -64,23 +64,25 @@
 						  <ul class="moj-sub-navigation__list" id="nav-list2">
 							<!-- Question Link -->
 							{# <li class="moj-sub-navigation__item">
-							  <a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
-							</li> #}
+								<a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
+							  </li> #}
 
-							<li class="moj-sub-navigation__item">
-							  <a class="moj-sub-navigation__link"  href="#question-1-information-type">Question 10</a>
-							</li>
-							<li class="moj-sub-navigation__item">
-								<a class="moj-sub-navigation__link" aria-current="page" href="#overview-noquestions">Edit checkbox option</a>
+							  <li class="moj-sub-navigation__item">
+								<a class="moj-sub-navigation__link"  href="#question-1-information-type">Question 10</a>
 							  </li>
+							  <li class="moj-sub-navigation__item">
+								  <a class="moj-sub-navigation__link" aria-current="page" href="#overview-noquestions">Add checkbox option</a>
+								</li>
+
 						  </ul>
 						</nav>
 
 						<div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
 						<span class="govuk-caption-l">Page 2</span>
-						<h2 class="govuk-heading-l">Edit checkbox option</h2>
+						<h2 class="govuk-heading-l">Add checkbox option</h2>
 
+						<form method="post" id="checkbox-options-form" action="/configure-checkbox">
 						  {% from "govuk/components/input/macro.njk" import govukInput %}
 						  {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 						  {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
@@ -90,62 +92,30 @@
 						  <!-- List config -->
 						  <div class="govuk-form-group">
 
-							<div id="options-edit-container">
-								<div class="govuk-form-group">
-								  {% set index = (data.index | int) - 1 %}
-								  {% set option = data.checkboxList[index] %}
-
-								  <form method="POST" action="/save-option" novalidate>
-									<input type="hidden" name="index" value="{{ index }}">
-
+							<div id="options-container">
+								<div class="radio-option-config">
 									<!-- Option Value (Label) -->
 									<div class="govuk-form-group">
-									  <label class="govuk-label govuk-label--m" for="option-label">Option label</label>
-									  <input
-										class="govuk-input govuk-!-width-two-thirds"
-										id="option-label"
-										name="option-label"
-										type="text"
-										value="{{ option.label }}"
-									  />
+										<label class="govuk-label govuk-label--s" for="option-label">Option label</label>
+										<div class="govuk-hint">The label we show the user for this option</div>
+										<input class="govuk-input" id="option-label" name="label" type="text" value="">
 									</div>
 
 									<!-- Hint Text -->
 									<div class="govuk-form-group">
-									  <label class="govuk-label govuk-label--m" for="option-hint">Hint text (optional)</label>
-									  <span id="option-hint-hint" class="govuk-hint">
-										Provide an optional hint for this option.
-									  </span>
-									  <input
-										class="govuk-input govuk-!-width-two-thirds"
-										id="option-hint"
-										name="option-hint"
-										type="text"
-										value="{{ option.hint }}"
-									  />
+										<label class="govuk-label govuk-label--s" for="option-hint">Hint text</label>
+										<div class="govuk-hint">To help the user understand the right option to choose</div>
+										<input class="govuk-input" id="option-hint" name="hint" type="text" value="">
 									</div>
 
 									<!-- Additional Value -->
 									<div class="govuk-form-group">
-									  <label class="govuk-label govuk-label--m" for="option-value">Option value</label>
-									  <input
-										class="govuk-input govuk-!-width-two-thirds"
-										id="option-value"
-										name="option-value"
-										type="text"
-										value="{{ option.value }}"
-									  />
+										<label class="govuk-label govuk-label--s" for="option-value">Option value</label>
+										<div class="govuk-hint">The content the system stores when a user chooses this option</div>
+										<input class="govuk-input" id="option-value" name="value" type="text" value="">
 									</div>
-
-									<!-- Submit Button -->
-									<div class="govuk-form-group">
-									  <button type="submit" class="govuk-button">Save changes</button>
-									</div>
-								  </form>
 								</div>
-							</div>
-						</div>
-
+							</div>	</div>
 
 							<!-- Error Message Input -->
 							{# <div class="govuk-form-group" style="margin-top: 20px">
@@ -213,14 +183,14 @@
 							</details> #}
 
 							<div class="moj-button-action">
-							  {# {{ govukButton({
-								text: 'Continue',
+							  {{ govukButton({
+								text: 'Save option',
 								type: 'submit'
-							  }) }} #}
-							  <!--<a class="govuk-button" href="edit.html">Save changes</a>-->
+							  }) }}
+							  <!--<a class="govuk-button" href="edit.html">Save option</a>-->
 							</div>
 						  </div>
-
+						</form>
 					  </div>
 					</div>
 				  </div>
@@ -251,10 +221,6 @@
 </div>
 </div>
 </div> #}
-
-
-
-
 
      <!-- Right Column for Preview -->
 	 <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
@@ -301,7 +267,6 @@
 		  </div>
 
 		</div>
-
 
 <style>
 
@@ -361,6 +326,8 @@
 		 console.error("One or more required elements not found");
 		 return; // Exit early if the required elements are not found
 	 }
+
+
 // Listen for changes in the input fields (for preview update)
 domElements.optionLabelInput.addEventListener('input', () => {
     updatePreview();
@@ -407,28 +374,32 @@ function updatePreview() {
         `;
         // Add the new radio option to the preview
         domElements.radioList.insertAdjacentHTML('beforeend', newOptionHTML);
+
+        // Reapply the highlight for the dynamically generated element
+        applyHighlight('.govuk-radios__label');
     } else {
         // If the input is empty, show a placeholder message
         domElements.radioList.innerHTML = '<p>Please enter an option label.</p>';
     }
 }
 
+
 // Function to apply a highlight to the preview elements
 function applyHighlight(selector) {
-    const targetElement = domElements.radioList.querySelector(selector);
+    // Query the element dynamically each time
+    const targetElement = document.querySelector(selector);
     if (targetElement) {
         targetElement.classList.add('highlight');
     }
 }
 
-// Function to remove a highlight from the preview elements
 function removeHighlight(selector) {
-    const targetElement = domElements.radioList.querySelector(selector);
+
+    const targetElement = document.querySelector(selector);
     if (targetElement) {
         targetElement.classList.remove('highlight');
     }
 }
-
 
 	 // Function to update the question label dynamically
 	 function updateQuestionLabel() {
@@ -492,14 +463,10 @@ function removeHighlight(selector) {
 		 }
 	 }
 
-
-
 	 // Initialize event listeners for question labels, hints, and error message updates
 	 initializeEventListeners();
  });
 </script>
-
-
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -519,6 +486,7 @@ function removeHighlight(selector) {
   });
 
 	</script>
+
 
 <style>
   .highlight {

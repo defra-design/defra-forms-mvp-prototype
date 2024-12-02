@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set containerClasses = "app-width-container--full-width" %}
+{# {% set containerClasses = "app-width-container--full-width" %} #}
 
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
@@ -25,44 +25,43 @@ activeLinkId: "nav-editor"
 
 
 
-<div class="x-govuk-masthead x-govuk-masthead--large">
 
-    <div class="govuk-width-container app-width-container--full-width">        {{ govukBackLink({
-        classes: "govuk-back-link--inverse govuk-!-margin-bottom-0",
-        text: "Back to overview",
-        href: "#"
-        }) }}
+        <div class="x-govuk-masthead x-govuk-masthead--large">
+            <div class="govuk-width-container">
+            {{ govukBackLink({
+                classes: "govuk-back-link--inverse govuk-!-margin-bottom-0",
+                text: "Back to overview",
+                href: "#"
+            }) }}
 
-        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
-            style="border-bottom:1px solid white; margin-bottom: 0;">
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+                style="border-bottom:1px solid white; margin-bottom: 0;">
 
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds-from-desktop">
-                <h1 class="govuk-heading-l--inverse x-govuk-masthead__title ">
-                    <span class="govuk-caption-l" style="color: white;">Apply for a county parish holding number</span>
-                    Add and edit pages
-                </h1>
-                <div class="govuk-button-group">
-                    <a href="/redesigntest/questionnumber.html" role="button" draggable="false"
-                        class="govuk-button govuk-button--inverse" data-module="govuk-button">
-                        Add new page
-                    </a>
+            <h1 class="govuk-heading-l--inverse x-govuk-masthead__title">
+                <span class="govuk-caption-l" style="color: white;">Apply for a county parish holding number</span>
+                Add and edit pages
+            </h1>
 
-                    <a href="/redesigntest/reorder/main.html" role="button" draggable="false"
-                        class="govuk-button govuk-button--secondary" id="reorder-button" data-module="govuk-button"
-                        style="display: none;">
-                        Re-order pages
-                    </a>
+            <div class="govuk-button-group">
+                <a href="/redesigntest/questionnumber.html" role="button" draggable="false"
+                    class="govuk-button govuk-button--inverse" data-module="govuk-button">
+                    Add new page
+                </a>
 
+                <a href="/redesigntest/reorder/main.html" role="button" draggable="false"
+                    class="govuk-button govuk-button--secondary" id="reorder-button" data-module="govuk-button"
+                    style="display: none;">
+                    Re-order pages
+                </a>
 
-                    <a href="#" class="govuk-link govuk-link--inverse" id="preview-link" style="display: none;">Preview
-                        form</a>
-
-                </div>
+                <a href="#" class="govuk-link govuk-link--inverse" id="preview-link" style="display: none;">
+                    Preview form
+                </a>
             </div>
         </div>
     </div>
 </div>
+
 
 {% endblock %}
 

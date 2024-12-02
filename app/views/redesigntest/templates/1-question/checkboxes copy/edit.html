@@ -104,48 +104,12 @@
                             describedBy: "multi-question-hint-text-input-radios"
                           }) }}
 
-
                           <!-- List config -->
                           <div class="govuk-form-group">
                             <h2 class="govuk-heading-m moj-add-another__heading" tabindex="-1">Create and edit your list of options</h2>
 
                             <!-- Options Container -->
                             <ol class="gem-c-reorderable-list js-enabled" id="options-container" data-module="reorderable-list">
-
-
-								<li class="gem-c-reorderable-list__item" draggable="true" data-index="1">
-									<div class="gem-c-reorderable-list__wrapper">
-									  <div class="gem-c-reorderable-list__content">
-										<!-- Display Paragraph with 'fauxlabel' -->
-										<p class="govuk-body fauxlabel option-label-display" id="option-0-label-display">Option label</p>
-
-										<!-- Hidden Input with Distinct Class -->
-										<input type="hidden" id="option-0-label" name="option[0][option_label]" value="Option label" class="option-label-input-hidden">
-
-										<!-- Hidden Hint Input -->
-										<input class="option-hint-input" type="hidden" id="option-1-hint" name="option[1][option_hint]" value="">
-									  </div>
-
-									  <div class="gem-c-reorderable-list__actions">
-										<button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-up" type="button" aria-label="Move option up" style="display: none;">Up</button>
-										<button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-down" type="button" aria-label="Move option down" style="display: inline-block;">Down</button>
-										<button class="gem-c-button govuk-button govuk-button--warning js-remove-option" type="button" aria-label="Remove option">Remove</button>
-
-									  </div>
-									  <div class="edit-item">
-										  <a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/checkboxes/add?index=0">
-											  Edit
-											  <span class="govuk-visually-hidden">
-												option number 1
-												 - Option label
-											  </span>
-											</a>
-
-
-								  </li>
-
-
-
                               {% for checkbox in data.checkboxList %}
                                 <li class="gem-c-reorderable-list__item" draggable="true" data-index="{{ loop.index }}">
                                   <div class="gem-c-reorderable-list__wrapper">
@@ -348,7 +312,7 @@
                                       text: "Type of information"
                                     },
                                     value: {
-                                      html: "List: checkboxes"
+                                      html: "List: radios"
                                     },
                                     actions: {
                                       items: [
@@ -408,9 +372,8 @@
                 <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
               </p>
 
-
               <!-- Ensure this included template contains the #radio-list .govuk-radios element -->
-              {% include "/redesigntest/templates/previews-more-than-1-question/checkboxes/edit-v2.html" %}
+              {% include "/redesigntest/templates/previews-more-than-1-question/radios/edit-v2.html" %}
 
               <a href="#edit-page" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">Skip to edit page</a>
             </div>
@@ -561,6 +524,8 @@
     padding-left: 20px;
   }
 </style>
+
+<!-- Consolidated and Updated JavaScript -->
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
 	  // DOM Elements
@@ -580,8 +545,6 @@
 		addOptionButton: document.getElementById('add-option-button'),
 		addOptionContainer: document.querySelector('.moj-button-action'), // Parent container
 		editOptionsButton: document.getElementById('edit-options-button'),
-		pageHeadingInputRadios: document.getElementById('page-heading-input-checkboxes'), // Update this ID based on your template
-    dynamicHeading: document.getElementById('dynamic-heading'),
 		radioList: document.querySelector('#radio-list .govuk-radios') // Ensure #radio-list exists in included template
 	  };
 
@@ -600,8 +563,6 @@
 		  applyHighlightOnFocus(domElements.multiQuestionLabelInputRadios, domElements.multiQuestionOutputRadios);
 		}
 
-
-
 		// Update hint text
 		if (domElements.hintTextInput && domElements.multiQuestionHintTextOutputRadios) {
 		  domElements.hintTextInput.addEventListener('input', updateHintText);
@@ -616,12 +577,6 @@
 		  applyHighlightOnFocus(domElements.errorMessageInput, domElements.errorDynamicText);
 		}
 
-		// Update dynamic heading
-		if (domElements.pageHeadingInputRadios) {
-		  domElements.pageHeadingInputRadios.addEventListener('input', updateDynamicHeading);
-		  applyHighlightOnFocus(domElements.pageHeadingInputRadios, domElements.dynamicHeading);
-		}
-
 		// Redirect to add.html on clicking Add Another Option
 		domElements.addOptionButton.addEventListener('click', () => {
 		  window.location.href = 'add.html';
@@ -629,12 +584,6 @@
 
 		// Handle edit mode toggle
 		domElements.editOptionsButton.addEventListener('click', toggleEditMode);
-	  }
-
-	  function updateDynamicHeading() {
-		const pageHeadingValue = domElements.pageHeadingInputRadios.value.trim();
-		const defaultHeading = "Page heading"; // Default fallback if input is empty
-		domElements.dynamicHeading.textContent = pageHeadingValue || defaultHeading;
 	  }
 
 	  function updateQuestionLabel() {
@@ -686,7 +635,6 @@
 		// Initialize sortable functionality
 		initializeSortable();
 	  }
-
 
 	  function addOptionEventListeners(item, index) {
 		const upButton = item.querySelector('.js-reorderable-list-up');
@@ -987,93 +935,6 @@
 	  }
 	});
 	</script>
-
-
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-  // DOM Elements
-  const domElements = {
-    pageHeadingInputCheckboxes: document.getElementById('page-heading-input-checkboxes'),
-    dynamicHeading: document.getElementById('dynamic-heading'),
-    guidanceTextareaRadios: document.getElementById('guidance-textarea-radios'),
-    guidanceParagraph: document.getElementById('guidance-paragraph')
-  };
-
-  // Initialize event listeners
-  initializeEventListeners();
-
-  function initializeEventListeners() {
-    // Update page heading and handle placeholder
-    if (domElements.pageHeadingInputCheckboxes && domElements.dynamicHeading) {
-      domElements.pageHeadingInputCheckboxes.addEventListener('input', updatePageHeading);
-      domElements.pageHeadingInputCheckboxes.addEventListener('focus', showPlaceholderHeading);
-      domElements.pageHeadingInputCheckboxes.addEventListener('blur', clearPlaceholderHeading);
-      applyHighlightOnFocus(domElements.pageHeadingInputCheckboxes, domElements.dynamicHeading);
-    }
-
-    // Update guidance text and handle placeholder
-    if (domElements.guidanceTextareaRadios && domElements.guidanceParagraph) {
-      domElements.guidanceTextareaRadios.addEventListener('input', updateGuidanceText);
-      domElements.guidanceTextareaRadios.addEventListener('focus', showPlaceholderGuidance);
-      domElements.guidanceTextareaRadios.addEventListener('blur', clearPlaceholderGuidance);
-      applyHighlightOnFocus(domElements.guidanceTextareaRadios, domElements.guidanceParagraph);
-    }
-  }
-
-  // Update page heading based on input
-  function updatePageHeading() {
-    domElements.dynamicHeading.textContent = domElements.pageHeadingInputCheckboxes.value.trim() || '';
-  }
-
-  // Update guidance text based on input
-  function updateGuidanceText() {
-    domElements.guidanceParagraph.textContent = domElements.guidanceTextareaRadios.value.trim() || '';
-  }
-
-  // Highlight target element on focus/blur
-  function applyHighlightOnFocus(inputElement, targetElement) {
-    if (inputElement && targetElement) {
-      inputElement.addEventListener('focus', function () {
-        targetElement.classList.add('highlight');
-      });
-      inputElement.addEventListener('blur', function () {
-        targetElement.classList.remove('highlight');
-      });
-
-      // Apply highlight if already focused
-      if (document.activeElement === inputElement) {
-        targetElement.classList.add('highlight');
-      }
-    }
-  }
-
-  // Placeholder handling for page heading
-  function showPlaceholderHeading() {
-    if (!domElements.pageHeadingInputCheckboxes.value) {
-      domElements.dynamicHeading.textContent = 'Page heading'; // Placeholder text
-    }
-  }
-
-  function clearPlaceholderHeading() {
-    if (!domElements.pageHeadingInputCheckboxes.value) {
-      domElements.dynamicHeading.textContent = '';
-    }
-  }
-
-  // Placeholder handling for guidance text
-  function showPlaceholderGuidance() {
-    if (!domElements.guidanceTextareaRadios.value) {
-      domElements.guidanceParagraph.textContent = 'Guidance text'; // Placeholder text
-    }
-  }
-
-  function clearPlaceholderGuidance() {
-    if (!domElements.guidanceTextareaRadios.value) {
-      domElements.guidanceParagraph.textContent = '';
-    }
-  }
-});
-</script>
 
 
 

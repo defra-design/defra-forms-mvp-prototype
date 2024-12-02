@@ -104,48 +104,12 @@
                             describedBy: "multi-question-hint-text-input-radios"
                           }) }}
 
-
                           <!-- List config -->
                           <div class="govuk-form-group">
                             <h2 class="govuk-heading-m moj-add-another__heading" tabindex="-1">Create and edit your list of options</h2>
 
                             <!-- Options Container -->
                             <ol class="gem-c-reorderable-list js-enabled" id="options-container" data-module="reorderable-list">
-
-
-								<li class="gem-c-reorderable-list__item" draggable="true" data-index="1">
-									<div class="gem-c-reorderable-list__wrapper">
-									  <div class="gem-c-reorderable-list__content">
-										<!-- Display Paragraph with 'fauxlabel' -->
-										<p class="govuk-body fauxlabel option-label-display" id="option-0-label-display">Option label</p>
-
-										<!-- Hidden Input with Distinct Class -->
-										<input type="hidden" id="option-0-label" name="option[0][option_label]" value="Option label" class="option-label-input-hidden">
-
-										<!-- Hidden Hint Input -->
-										<input class="option-hint-input" type="hidden" id="option-1-hint" name="option[1][option_hint]" value="">
-									  </div>
-
-									  <div class="gem-c-reorderable-list__actions">
-										<button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-up" type="button" aria-label="Move option up" style="display: none;">Up</button>
-										<button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-down" type="button" aria-label="Move option down" style="display: inline-block;">Down</button>
-										<button class="gem-c-button govuk-button govuk-button--warning js-remove-option" type="button" aria-label="Remove option">Remove</button>
-
-									  </div>
-									  <div class="edit-item">
-										  <a class="govuk-link govuk-link--no-visited-state" href="/redesigntest/templates/1-question/checkboxes/add?index=0">
-											  Edit
-											  <span class="govuk-visually-hidden">
-												option number 1
-												 - Option label
-											  </span>
-											</a>
-
-
-								  </li>
-
-
-
                               {% for checkbox in data.checkboxList %}
                                 <li class="gem-c-reorderable-list__item" draggable="true" data-index="{{ loop.index }}">
                                   <div class="gem-c-reorderable-list__wrapper">
@@ -348,7 +312,7 @@
                                       text: "Type of information"
                                     },
                                     value: {
-                                      html: "List: checkboxes"
+                                      html: "List: radios"
                                     },
                                     actions: {
                                       items: [

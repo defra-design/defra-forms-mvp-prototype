@@ -95,18 +95,19 @@
 								  {% set index = (data.index | int) - 1 %}
 								  {% set option = data.checkboxList[index] %}
 
-								  <form method="POST" action="/save-option" novalidate>
+								  <form method="post" action="/redesigntest/templates/1-question/checkboxes/edit-option">
 									<input type="hidden" name="index" value="{{ index }}">
 
-									<!-- Option Value (Label) -->
+									<!-- Option Label -->
 									<div class="govuk-form-group">
 									  <label class="govuk-label govuk-label--m" for="option-label">Option label</label>
 									  <input
 										class="govuk-input govuk-!-width-two-thirds"
 										id="option-label"
-										name="option-label"
+										name="label"
 										type="text"
 										value="{{ option.label }}"
+										required
 									  />
 									</div>
 
@@ -119,33 +120,36 @@
 									  <input
 										class="govuk-input govuk-!-width-two-thirds"
 										id="option-hint"
-										name="option-hint"
+										name="hint"
 										type="text"
 										value="{{ option.hint }}"
 									  />
 									</div>
 
-									<!-- Additional Value -->
+									<!-- Option Value -->
 									<div class="govuk-form-group">
 									  <label class="govuk-label govuk-label--m" for="option-value">Option value</label>
 									  <input
 										class="govuk-input govuk-!-width-two-thirds"
 										id="option-value"
-										name="option-value"
+										name="value"
 										type="text"
 										value="{{ option.value }}"
+										required
 									  />
 									</div>
 
 									<!-- Submit Button -->
 									<div class="govuk-form-group">
 									  <button type="submit" class="govuk-button">Save changes</button>
+									  <a href="/redesigntest/templates/1-question/checkboxes/edit" class="govuk-button govuk-button--secondary">Cancel</a>
 									</div>
-								  </form>
-								</div>
-							</div>
-						</div>
 
+
+							</div>
+						</div>						</div>
+
+					</form>
 
 							<!-- Error Message Input -->
 							{# <div class="govuk-form-group" style="margin-top: 20px">
@@ -315,7 +319,7 @@
   }
 
   .fauxlabel:focus, .fauxlabel:active {
-	background-color: transparent!important!important;
+	background-color: transparent!important;
   }
 
   .gem-c-reorderable-list .gem-c-reorderable-list__item:hover, .gem-c-reorderable-list__item:hover .fauxlabel {

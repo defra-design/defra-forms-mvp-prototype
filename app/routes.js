@@ -735,14 +735,14 @@ router.post('/save-radio-option', (req, res) => {
 
 // Route to access the edit page for radio buttons
 router.get('/redesigntest/templates/1-question/radios/edit', (req, res) => {
-  const radioList = req.session.data.radioList;
+  const radioList = req.session.data?.radioList || [];
 
   // Check if the radioList is empty, redirect to the add page if so
   if (radioList.length === 0) {
     res.redirect('/redesigntest/templates/1-question/radios/add.html');
   } else {
     // Render the edit page if there are items in the list
-    res.render('radio-edit', { radioList: radioList });
+    res.render('/redesigntest/templates/1-question/radios/edit.html', { radioList: radioList });
   }
 });
 

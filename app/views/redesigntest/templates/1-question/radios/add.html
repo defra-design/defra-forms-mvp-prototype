@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% from "components/service-header/macro.njk" import serviceHeader %}
-{% set pageName = "Add checkbox question - Apply for a county parish holding number in England" %}
+{% set pageName = "Add radio question - Apply for a county parish holding number in England" %}
 {% set headingPlaceholder = "Page heading" %}
 {% set guidancePlaceholder = "" %}
 {% block header %}
@@ -71,7 +71,7 @@
 								<a class="moj-sub-navigation__link"  href="#question-1-information-type">Question 10</a>
 							  </li>
 							  <li class="moj-sub-navigation__item">
-								  <a class="moj-sub-navigation__link" aria-current="page" href="#overview-noquestions">Add checkbox option</a>
+								  <a class="moj-sub-navigation__link" aria-current="page" href="#overview-noquestions">Add radio option</a>
 								</li>
 
 						  </ul>
@@ -80,9 +80,9 @@
 						<div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
 						<span class="govuk-caption-l">Page 2</span>
-						<h2 class="govuk-heading-l">Add checkbox option</h2>
+						<h2 class="govuk-heading-l">Add radio option</h2>
 
-						<form method="post" id="checkbox-options-form" action="/configure-radio">
+						<form method="post" id="radio-options-form" action="/configure-radio">
 						  {% from "govuk/components/input/macro.njk" import govukInput %}
 						  {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 						  {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
@@ -240,7 +240,7 @@
 			</h2>
 			<ul class="govuk-tabs__list">
 			  <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-				<a class="govuk-tabs__tab" href="#tab-one">Checkbox option preview</a>
+				<a class="govuk-tabs__tab" href="#tab-one">Radio option preview</a>
 			  </li>
 
 			</ul>

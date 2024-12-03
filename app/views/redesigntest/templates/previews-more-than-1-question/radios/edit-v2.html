@@ -1,6 +1,17 @@
 
         <!-- Include the preview template -->
         <!-- Your provided preview code -->
+
+        <div id="heading-container">
+          {# {% set setName = data['setName'] or '' %}
+          <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ setName }}">{{ data['setName'] or '' }} 1</span> #}
+
+          <h1 class="govuk-heading-xl" id="dynamic-heading-radios">{{ data['pageHeadingInputRadios'] or '' }}</h1>
+        </div>
+
+ <!-- Guidance Paragraph -->
+<p class="govuk-body" id="guidance-paragraph">{{ data['guidanceTextareaRadios'] or '' }}</p>
+
         <div class="border-left-container">
           <div id="radio-list">
             <fieldset class="govuk-fieldset">

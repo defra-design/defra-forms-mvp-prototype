@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% from "components/service-header/macro.njk" import serviceHeader %}
-{% set pageName = "Overview of radios question - Apply for a county parish holding number in England" %}
+{% set pageName = "Overview of checkboxes question - Apply for a county parish holding number in England" %}
 {% set headingPlaceholder = "Page heading" %}
 {% set guidancePlaceholder = "" %}
 
@@ -38,6 +38,8 @@
           </span> #}
           Apply for a county parish holding (CPH) number
         </h1>
+
+        {# #}
       </div>
     </div>
   </div>
@@ -76,7 +78,7 @@
 
                         <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
-                        <span class="govuk-caption-l" id="page-caption">Page 2</span>
+                        <span class="govuk-caption-l" id="page-caption">Page 9</span>
 
                         <h2 class="govuk-heading-l" id="page-heading">Overview of questions</h2>
 
@@ -95,7 +97,7 @@
                       text: "Question"
                     },
                     value: {
-                      html: data['questionLabelInputRadios'] or ''
+                      html: data['multiQuestionLabelInputRadios'] or ''
 
                     },
                     actions: {
@@ -112,24 +114,24 @@
               }) }}
 
             </div>
-          </form>
+                        </form>
+                      <div class="govuk-button-group govuk-!-margin-top-6">
+                        <a href="/redesigntest/templates/1-question/page-type.html" class="govuk-button" role="button">
+                          Create next page
+                        </a>
 
-          <div class="govuk-button-group govuk-!-margin-top-6">
-            <a href="/redesigntest/templates/1-question/information-type.html" class="govuk-button" role="button">
-              Create next page
-            </a>
+                        <a href="/redesigntest/listing.html" class="govuk-button govuk-button--inverse" role="button">
+                          Back to all pages
+                        </a>
 
-            <a href="/redesigntest/listing.html" class="govuk-button govuk-button--inverse" role="button">
-              Back to all pages
-            </a>
-
-            <p class="govuk-body">
-              <a href="/redesigntest/templates/delete.html" class="govuk-link govuk-link--no-visited-state">Delete page</a>
-            </p>
-
+                        <p class="govuk-body">
+                          <a href="/redesigntest/templates/delete.html" class="govuk-link govuk-link--no-visited-state">Delete page</a>
+                        </p>
 
 
-          </div>
+
+                      </div>
+                      </div>
                     </div>
                   </div>
                 </dd>
@@ -139,20 +141,75 @@
         </div>
       </div>
 
-      <!-- Right Column for Preview -->
-      <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-        <!-- Before content -->
-        <div id="before-content">
-          <p class="govuk-body-s" style="margin-bottom: 0">
-            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
-          </p>
+    <!-- Right Column for Preview -->
+<div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+  <!-- Before content -->
+  <div id="before-content" style="background-color: #cce2d8;">
+    <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px; text-align: center;">
+      Preview
+    </p>
+  </div>
+
+  <div style="margin-top: 60px!important;">
+    {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">Contents</h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" id="tab-one" href="#tab-one">Page preview</a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#tab-two">Error messages</a>
+        </li>
+      </ul>
+
+      <div class="govuk-tabs__panel" id="tab-one">
+        <!-- Page Preview Content -->
+        <p class="govuk-body-s" style="margin-bottom: 0; border-bottom: #008938 1px;">
+          <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+            Preview this page in a new tab
+          </a>
+        </p>
+
+        {% include "/redesigntest/templates/previews/radios/overview.html" %}
+
+        <a href="#overviewquestions" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+          Skip to overview of questions
+        </a>
+      </div>
+
+      <div class="govuk-tabs__panel" id="tab-two">
+        <!-- Error Messages Content -->
+        <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+          <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+            Preview error messages in a new tab
+          </a>
+        </p>
+
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title">There is a problem</h2>
+          <ul class="govuk-list govuk-error-summary__list">
+            <!-- Empty input error -->
+            <li>
+              <a id="empty-input-error-textarea" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span>
+                Select <span id="error-dynamic-text">[short description]</span>
+              </a>
+            </li>
+
+          </ul>
         </div>
 
-        <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews/radios/overview.html" %}
+        <a href="#overviewquestions" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+          Skip to overview of questions
+        </a>
       </div>
     </div>
-{#
+  </div>
+</div>
+
+
     <!-- JavaScript code -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
@@ -276,5 +333,5 @@
       }
     </style>
   </div>
-</div> #}
+</div>
 {% endblock %}

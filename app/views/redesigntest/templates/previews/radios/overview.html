@@ -22,14 +22,14 @@
     <!-- Legend for the Fieldset -->
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
-        {{ data['multiQuestionLabelInputRadios'] or 'Question' }}
+        {{ data['oldMultiQuestionLabelInputRadios'] or 'Question' }}
       </h1>
     </legend>
 
     <!-- Hint Text -->
-    {% if data['multiQuestionHintTextInputRadios'] %}
+    {% if data['oldMultiQuestionHintTextInputRadios'] %}
     <div id="listPreview-hint" class="govuk-hint">
-      {{ data['multiQuestionHintTextInputRadios'] }}
+      {{ data['oldMultiQuestionHintTextInputRadios'] }}
     </div>
     {% endif %}
 

@@ -355,17 +355,38 @@
 
 
 
-      <!-- Right Column for Preview -->
-      <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh;overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-        <!-- Before content -->
-        <div id="before-content">
-          <p class="govuk-body-s" style="margin-bottom: 0">
-            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
-          </p>
-        </div>
+
+   <!-- Right Column for Preview -->
+   <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh; overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+    <!-- Before content -->
+    <div id="before-content" style=" background-color:  #cce2d8;">
+      <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px;
+text-align: center;" > Previews
+      </p>
+    </div>
+
+    <div style="margin-top: 60px;">
+      {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+      <div class="govuk-tabs" data-module="govuk-tabs">
+        <h2 class="govuk-tabs__title">
+          Contents
+        </h2>
+        <ul class="govuk-tabs__list">
+          <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+            <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
+          </li>
+
+        </ul>
+
+        <div class="govuk-tabs__panel" id="tab-one">
+          <!-- Page Preview Content -->
 
 
-
+          <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+              Preview this page in a new tab
+            </a>
   <!-- Preview Container -->
   <div id="preview-container">
 

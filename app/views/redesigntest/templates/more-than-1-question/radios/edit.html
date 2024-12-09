@@ -46,7 +46,11 @@
   <div class="govuk-grid-column-full">
     <div class="govuk-grid-row">
       <!-- Left Column for Form Controls -->
-      <div class="govuk-grid-column-one-half-from-desktop" id="container" style="flex: 1 1 75%; overflow-y: auto">
+      <div
+        class="govuk-grid-column-one-half-from-desktop"
+        id="container"
+        style="flex: 1 1 75%; overflow-y: auto"
+      >
         <div class="govuk-summary-card govuk-!-margin-top-0" style="border-left: 10px solid #008938">
           <div class="govuk-summary-card__content govuk-!-padding-top-0" style="background-color: #f3f2f1">
 
@@ -95,7 +99,7 @@
                             },
                             id: "multi-question-label-input-radios",
                             value: data['multi-question-label-input-radios'],
-                            name: "multiQuestionLabelInputRadios"
+                            name: "oldMultiQuestionLabelInputRadios"
                           }) }}
 
                           <!-- Hint Text Area -->
@@ -104,12 +108,12 @@
                               text: "Hint text (optional)",
                               classes: "govuk-label--m"
                             },
-                            id: "multi-question-hint-text-input-radios",
-                            name: "multiQuestionHintTextInputRadios",
-                            value: data['multi-question-hint-text-input-radios'],
+                            id: "old-multi-question-hint-text-input-radios",
+                            name: "oldMultiQuestionHintTextInputRadios",
+                            value: data['old-multi-question-hint-text-input-radios'],
                             classes: "govuk-textarea",
                             rows: 3,
-                            describedBy: "multi-question-hint-text-input-radios"
+                            describedBy: "old-multi-question-hint-text-input-radios"
                           }) }}
 
                           <!-- List config -->
@@ -251,7 +255,7 @@
                             </div>
                             <div class="moj-button-action">
                               {{ govukButton({
-                                text: 'Continue',
+                                text: 'Save and continue',
                                 type: 'submit'
                               }) }}
                             </div>
@@ -267,39 +271,72 @@
         </div>
       </div>
 
-      <!-- Right Column for Preview -->
+      <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh;overflow-x: hidden; overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+        <!-- Before Content -->
+        <div id="before-content" style="background-color: #cce2d8;">
+          <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px; text-align: center;">
+            Previews
+          </p>
+        </div>
 
- <!-- Right Column for Preview -->
- <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh;overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-  <!-- Before content -->
-  <div id="before-content">
-    <p class="govuk-body-s" style="margin-bottom: 0">
-      <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
-    </p>
-  </div>
+        <div style="margin-top: 60px;">
+          {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+          <div class="govuk-tabs" data-module="govuk-tabs">
+            <h2 class="govuk-tabs__title">Contents</h2>
+            <ul class="govuk-tabs__list">
+              <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
+              </li>
+              <li class="govuk-tabs__list-item">
+                <a class="govuk-tabs__tab" href="#tab-two">Error messages</a>
+              </li>
+            </ul>
+
+            <!-- Tab One: Page Preview -->
+            <div class="govuk-tabs__panel" id="tab-one">
+              {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
+              {% include "/redesigntest/templates/previews-more-than-1-question/numbers/for-overview.html" %}
+              {% include "/redesigntest/templates/previews-more-than-1-question/date/for-overview.html" %}
+              {% include "/redesigntest/templates/previews-more-than-1-question/address/for-overview.html" %}
+              {% include "/redesigntest/templates/previews-more-than-1-question/phone/for-overview.html" %}
+              {# Uncomment the following line if file upload functionality is required #}
+              {# {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %} #}
+              {% include "/redesigntest/templates/previews-more-than-1-question/email/for-overview.html" %}
+              {% include "/redesigntest/templates/previews-more-than-1-question/yesno/for-overview.html" %}
+              {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %}
+
+              <div id="border-left-container-radios" name="borderLeftContainerRadios">
+                {% include "/redesigntest/templates/previews-more-than-1-question/radios/edit.html" %}
+              </div>
+            </div>
+
+            <!-- Tab Two: Error Messages -->
+            <div class="govuk-tabs__panel" id="tab-two">
+              <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+                <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                  Preview error messages in a new tab
+                </a>
+              </p>
+
+              <!-- Error Messages Section -->
+              <div class="govuk-error-summary" data-module="govuk-error-summary">
+                <h2 class="govuk-error-summary__title">There is a problem</h2>
+                <ul class="govuk-list govuk-error-summary__list">
+                  <!-- List of errors -->
+                  <li>
+                    <a id="empty-input-error-shorttext" class="govuk-error-message">
+                      Select <span id="error-dynamic-text">[short description]</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-  {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
-  {% include "/redesigntest/templates/previews-more-than-1-question/numbers/for-overview.html" %}
-  {% include "/redesigntest/templates/previews-more-than-1-question/date/for-overview.html" %}
-
-  {% include "/redesigntest/templates/previews-more-than-1-question/address/for-overview.html" %}
-
-  {% include "/redesigntest/templates/previews-more-than-1-question/phone/for-overview.html" %}
-  {# {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %} #}
-
-  {% include "/redesigntest/templates/previews-more-than-1-question/email/for-overview.html" %}
-
-  {% include "/redesigntest/templates/previews-more-than-1-question/yesno/for-overview.html" %}
-
-  {% include "/redesigntest/templates/more-than-1-question/previews/checkboxes.html" %}
-
-  <div id="border-left-container-radios" name="borderLeftContainerRadios"
-{% include "/redesigntest/templates/previews-more-than-1-question/radios/edit.html" %}
-
-</div>
-</div>
-</div>
 
 <!-- Include SortableJS Library -->
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
@@ -312,9 +349,9 @@
   document.addEventListener('DOMContentLoaded', function () {
     // DOM Elements
     const domElements = {
-      multiQuestionLabelInputRadios: document.getElementById('multi-question-label-input-radios'),
+      oldMultiQuestionLabelInputRadios: document.getElementById('multi-question-label-input-radios'),
       multiQuestionOutputRadios: document.getElementById('multi-question-output-radios'),
-      hintTextInput: document.getElementById('multi-question-hint-text-input-radios'),
+      oldMultiQuestionHintTextInputRadios: document.getElementById('old-multi-question-hint-text-input-radios'),
       multiQuestionHintTextOutputRadios: document.getElementById('multi-question-hint-text-output-radios'),
       makeOptionalCheckbox: document.getElementById('makeOptional'),
       pageHeadingInputRadios: document.getElementById('page-heading-input-radios'),
@@ -337,17 +374,17 @@
 
     function initializeEventListeners() {
       // Update question label
-      if (domElements.multiQuestionLabelInputRadios && domElements.multiQuestionOutputRadios) {
-        domElements.multiQuestionLabelInputRadios.addEventListener('input', updateQuestionLabel);
-        applyHighlightOnFocus(domElements.multiQuestionLabelInputRadios, domElements.multiQuestionOutputRadios);
+      if (domElements.oldMultiQuestionLabelInputRadios && domElements.multiQuestionOutputRadios) {
+        domElements.oldMultiQuestionLabelInputRadios.addEventListener('input', updateQuestionLabel);
+        applyHighlightOnFocus(domElements.oldMultiQuestionLabelInputRadios, domElements.multiQuestionOutputRadios);
       }
 
       // Update hint text
-      if (domElements.hintTextInput && domElements.multiQuestionHintTextOutputRadios) {
-        domElements.hintTextInput.addEventListener('input', updateHintText);
-        applyHighlightOnFocus(domElements.hintTextInput, domElements.multiQuestionHintTextOutputRadios);
-        domElements.hintTextInput.addEventListener('focus', showPlaceholderHint);
-        domElements.hintTextInput.addEventListener('blur', clearPlaceholderHint);
+      if (domElements.oldMultiQuestionHintTextInputRadios && domElements.multiQuestionHintTextOutputRadios) {
+        domElements.oldMultiQuestionHintTextInputRadios.addEventListener('input', updateHintText);
+        applyHighlightOnFocus(domElements.oldMultiQuestionHintTextInputRadios, domElements.multiQuestionHintTextOutputRadios);
+        domElements.oldMultiQuestionHintTextInputRadios.addEventListener('focus', showPlaceholderHint);
+        domElements.oldMultiQuestionHintTextInputRadios.addEventListener('blur', clearPlaceholderHint);
       }
 
       // Update error message
@@ -362,11 +399,11 @@
 
     function updateQuestionLabel() {
       const suffix = domElements.makeOptionalCheckbox && domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
-      domElements.multiQuestionOutputRadios.textContent = (domElements.multiQuestionLabelInputRadios.value || 'Question') + suffix;
+      domElements.multiQuestionOutputRadios.textContent = (domElements.oldMultiQuestionLabelInputRadios.value || 'Question') + suffix;
     }
 
     function updateHintText() {
-      domElements.multiQuestionHintTextOutputRadios.textContent = domElements.hintTextInput.value || '';
+      domElements.multiQuestionHintTextOutputRadios.textContent = domElements.oldMultiQuestionHintTextInputRadios.value || '';
     }
 
     function updateErrorMessage() {
@@ -374,13 +411,13 @@
     }
 
     function showPlaceholderHint() {
-      if (!domElements.hintTextInput.value) {
+      if (!domElements.oldMultiQuestionHintTextInputRadios.value) {
         domElements.multiQuestionHintTextOutputRadios.textContent = 'Hint text';
       }
     }
 
     function clearPlaceholderHint() {
-      if (!domElements.hintTextInput.value) {
+      if (!domElements.oldMultiQuestionHintTextInputRadios.value) {
         domElements.multiQuestionHintTextOutputRadios.textContent = '';
       }
     }

@@ -27,30 +27,12 @@
 </div>
 </fieldset>
 </fieldset>
-
-
-
-<details class="govuk-details govuk-!-margin-top-5" id="error-message-preview-summary">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">Error messages for this question</span>
-  </summary>
-  <div class="govuk-details__text">
-    <!-- Error Messages Section -->
-    <div class="govuk-error-summary" data-module="govuk-error-summary">
-      <h2 class="govuk-error-summary__title">There is a problem</h2>
-      <ul class="govuk-list govuk-error-summary__list">
-        <!-- List of errors -->
-        <li><a id="empty-input-error-shorttext" class="govuk-error-message">Select <span id="error-dynamic-text">[short description]</span></a></li>
-
-      </ul>
-    </div>
-  </div>
-</details>
 </div>
 
-     </form>
 
 
+
+<div>
      {% set setName = data['setName'] or '' %}
      {% set overview0 = data['overview0'] or '' %}
 
@@ -62,12 +44,12 @@
        disabled: true
      }) }}
      {% else %}
-     {{ govukButton({
+     {# {{ govukButton({
        text: "Continue",
        classes: "govuk-button govuk-!-margin-top-6",
        id: "once-button",
        disabled: true
-     }) }}
+     }) }} #}
      {% endif %}
    </div>
  </div>

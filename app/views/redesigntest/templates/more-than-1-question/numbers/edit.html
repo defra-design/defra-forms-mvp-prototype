@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% from "components/service-header/macro.njk" import serviceHeader %}
-{% set pageName = "Edit long answer question - Apply for a county parish holding number in England" %}
+{% set pageName = "Edit page 2 - question 3 - Apply for a county parish holding number in England" %}
 {% set headingPlaceholder = "Page heading" %}
 {% set guidancePlaceholder = "" %}
 
@@ -88,10 +88,10 @@
 
                         <!-- Question Label Input -->
 <div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="question-label-input-numbers">
+  <label class="govuk-label govuk-label--m" for="multi-question-label-input-numbers">
     Question
   </label>
-  <input class="govuk-input" id="question-label-input-numbers" name="questionLabelInputNumbers" type="text" value="">
+  <input class="govuk-input" id="multi-question-label-input-numbers" name="multiQuestionLabelInputNumbers" type="text" value="">
 </div>
 
 
@@ -101,12 +101,12 @@
                               text: "Hint text (optional)",
                               classes: "govuk-label--m"
                             },
-                            id: "hint-text-input-numbers",
-                            name: "hintTextInputNumbers",
-                            value: data['hint-text-input-numbers'],
+                            id: "multi-question-hint-text-input-numbers",
+                            name: "multiQuestionhintTextInputNumbers",
+                            value: data['multi-question-hint-text-input-numbers'],
                             classes: "govuk-textarea",
                             rows: 3,
-                            describedBy: "hint-text-input-numbers"
+                            describedBy: "multi-question-hint-text-input-numbers"
                           }) }}
 
                           <!-- Make Optional Checkbox -->
@@ -149,94 +149,95 @@
       <!-- Page Heading Input -->
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
-{{ govukInput({
-  label: {
-    text: "Lowest number users can enter",
-    classes: "govuk-label--m",
-    isPageHeading: false
-  },
-  classes: "govuk-input--width-3",
 
-  id: "min-number",
-  name: "minNumber",
-  inputmode: "numeric",
-  spellcheck: false
-}) }}
+      {{ govukInput({
+        label: {
+          text: "Lowest number users can enter (optional)",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        },
+        classes: "govuk-input--width-3",
 
-{{ govukInput({
-  label: {
-    text: "Highest number users can enter",
-    classes: "govuk-label--m",
-    isPageHeading: false
-  },
-  classes: "govuk-input--width-3",
-  id: "max-number",
-  name: "minNumber",
-  inputmode: "numeric",
-  spellcheck: false
-}) }}
+        id: "min-number",
+        name: "minNumber",
+        inputmode: "numeric",
+        spellcheck: false
+      }) }}
 
-{{ govukInput({
-  label: {
-    text: "Precision",
-    classes: "govuk-label--m",
-    isPageHeading: false
-  },
-  hint: {
-    text: "Specifies the number of decimal places users can enter. For example, to allow users to enter numbers with up to two decimal places, set this to 2"
-  },
-  classes: "govuk-input--width-3",
-  id: "precision-number",
-  name: "precisionNumber",
-  inputmode: "numeric",
-  spellcheck: false
-}) }}
+      {{ govukInput({
+        label: {
+          text: "Highest number users can enter (optional)",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        },
+        classes: "govuk-input--width-3",
+        id: "max-number",
+        name: "minNumber",
+        inputmode: "numeric",
+        spellcheck: false
+      }) }}
 
-{{ govukInput({
-  label: {
-    text: "Prefix",
-    classes: "govuk-label--m",
-    isPageHeading: false
-  },
-  hint: {
-    text: "For example, a symbol or abbreviation for the type of information you’re asking for, like, '£'"
-  },
-  classes: "govuk-input--width-5",
-  id: "prefix-number",
-  name: "prefixNumber",
-  spellcheck: false
-}) }}
+      {{ govukInput({
+        label: {
+          text: "Precision (optional)",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        },
+        hint: {
+          text: "Specifies the number of decimal places users can enter. For example, to allow users to enter numbers with up to two decimal places, set this to 2"
+        },
+        classes: "govuk-input--width-3",
+        id: "precision-number",
+        name: "precisionNumber",
+        inputmode: "numeric",
+        spellcheck: false
+      }) }}
 
-{{ govukInput({
-  label: {
-    text: "Suffix",
-    classes: "govuk-label--m",
-    isPageHeading: false
-  },
-  hint: {
-    text: "For example, a symbol or abbreviation for the type of information you’re asking for, like,'per item' or 'Kg'"
-  },
-  classes: "govuk-input--width-5",
-  id: "suffix-number",
-  name: "suffixNumber",
-  spellcheck: false
-}) }}
+      {{ govukInput({
+        label: {
+          text: "Prefix (optional)",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        },
+        hint: {
+          text: "For example, a symbol or abbreviation for the type of information you’re asking for, like, '£'"
+        },
+        classes: "govuk-input--width-5",
+        id: "prefix-number",
+        name: "prefixNumber",
+        spellcheck: false
+      }) }}
 
-{{ govukInput({
-  label: {
-    text: "Classes",
-    classes: "govuk-label--m",
-    isPageHeading: false
-  },
-  hint: {
-    text: "Apply CSS classes to this question. For example, ‘govuk-input govuk-!-width-full’
-"
-  },
-  classes: "govuk-input--width-6",
-  id: "classes-number",
-  name: "classesNumber",
-  spellcheck: false
-}) }}
+      {{ govukInput({
+        label: {
+          text: "Suffix (optional)",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        },
+        hint: {
+          text: "For example, a symbol or abbreviation for the type of information you’re asking for, like,'per item' or 'Kg'"
+        },
+        classes: "govuk-input--width-5",
+        id: "suffix-number",
+        name: "suffixNumber",
+        spellcheck: false
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Classes (optional)",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        },
+        hint: {
+          text: "Apply CSS classes to this question. For example, ‘govuk-input govuk-!-width-full’
+      "
+        },
+        classes: "govuk-input--width-6",
+        id: "classes-number",
+        name: "classesNumber",
+        spellcheck: false
+      }) }}
 
   </div>
 </details>
@@ -277,7 +278,7 @@
                           <!-- Submit Button -->
                           <div class="moj-button-action">
                             {{ govukButton({
-                              text: 'Continue',
+                              text: 'Save and continue',
                               type: 'submit'
                             }) }}
                           </div>
@@ -291,23 +292,74 @@
           </div>
         </div>
       </div>
+<!-- Right Column for Preview -->
+<div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh; overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+  <!-- Before Content -->
+  <div id="before-content" style="background-color: #cce2d8;">
+    <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px; text-align: center;">Previews</p>
+  </div>
 
-      <!-- Right Column for Preview -->
-      <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-        <!-- Before content -->
-        <div id="before-content">
-          <p class="govuk-body-s" style="margin-bottom: 0">
-            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
-          </p>
-        </div>
+  <!-- Main Content Section -->
+  <div style="margin-top: 60px;">
+    {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">Contents</h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#tab-two">Error messages</a>
+        </li>
+      </ul>
+
+      <!-- Tab One: Page Preview -->
+      <div class="govuk-tabs__panel" id="tab-one">
+        <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+          <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+            Preview this page in a new tab
+          </a>
+        </p>
+
         {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
 
         <div id="border-left-container-numbers" name="borderLeftContainerNumbers">
-        <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews-more-than-1-question/numbers/edit.html" %}
-      </div>
+          <!-- Include the preview template -->
+          {% include "/redesigntest/templates/previews-more-than-1-question/numbers/edit.html" %}
+        </div>
+      </div>      </div>
+    </div>
+
+
+      <!-- Tab Two: Error Messages -->
+      <div class="govuk-tabs__panel" id="tab-two">
+        <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+          <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+            Preview error messages in a new tab
+          </a>
+        </p>
+
+        <h2 class="govuk-heading-l">Error messages for question 3</h2>
+
+        <!-- Error Messages Section -->
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title">There is a problem</h2>
+          <ul class="govuk-list govuk-error-summary__list">
+            <!-- List of errors -->
+            <li><a id="empty-input-error-shorttext" class="govuk-error-message">Enter <span id="error-dynamic-text">[short description]</span></a></li>
+            <li><a id="empty-input-error-shorttext" class="govuk-error-message"><span id="error-dynamic-text">[Short description]</span> must be a whole number</a></li>
+            <h3 class="govuk-heading-s">If you set answer limits:</h3>
+            <li><a id="too-long-input-error-shorttext" class="govuk-error-message"><span id="error-dynamic-text-long">[Short description]</span> must be <span id="max-length">[lowest number]</span> or more</a></li>
+            <li><a id="too-short-input-error-shorttext" class="govuk-error-message"><span id="error-dynamic-text-short">[Short description]</span> must be <span id="min-length">[highest number]</span> or fewer</a></li>
+          </ul>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+
+
 
     <!-- JavaScript code -->
     <script>
@@ -315,9 +367,9 @@
         // DOM Elements
         const domElements = {
           // Existing elements
-          questionLabelInputNumbers: document.getElementById('question-label-input-numbers'),
+          questionLabelInputNumbers: document.getElementById('multi-question-label-input-numbers'),
           questionLabelLegendNumbers: document.getElementById('question-label-legend-numbers'),
-          hintTextInputNumbers: document.getElementById('hint-text-input-numbers'),
+          multiQuestionhintTextInputNumbers: document.getElementById('multi-question-hint-text-input-numbers'),
           hintTextOutputNumbers: document.getElementById('hint-text-output-numbers'),
           makeOptionalCheckbox: document.getElementById('make-optional'),
 
@@ -338,10 +390,10 @@
           }
 
           // Update hint text and handle placeholder
-          if (domElements.hintTextInputNumbers && domElements.hintTextOutputNumbers) {
-            domElements.hintTextInputNumbers.addEventListener('input', updateHintText);
-            domElements.hintTextInputNumbers.addEventListener('focus', showPlaceholderHint);
-            domElements.hintTextInputNumbers.addEventListener('blur', clearPlaceholderHint);
+          if (domElements.multiQuestionhintTextInputNumbers && domElements.hintTextOutputNumbers) {
+            domElements.multiQuestionhintTextInputNumbers.addEventListener('input', updateHintText);
+            domElements.multiQuestionhintTextInputNumbers.addEventListener('focus', showPlaceholderHint);
+            domElements.multiQuestionhintTextInputNumbers.addEventListener('blur', clearPlaceholderHint);
           }
 
           // Update page heading and handle placeholder
@@ -360,7 +412,7 @@
 
           // Apply focus/blur highlighting
           applyHighlightOnFocus(domElements.questionLabelInputNumbers, domElements.questionLabelLegendNumbers);
-          applyHighlightOnFocus(domElements.hintTextInputNumbers, domElements.hintTextOutputNumbers);
+          applyHighlightOnFocus(domElements.multiQuestionhintTextInputNumbers, domElements.hintTextOutputNumbers);
           applyHighlightOnFocus(domElements.pageHeadingInputNumbers, domElements.dynamicHeading);
           applyHighlightOnFocus(domElements.guidanceNumbers, domElements.guidanceParagraph);
         }
@@ -372,7 +424,7 @@
         }
 
         function updateHintText() {
-          domElements.hintTextOutputNumbers.textContent = domElements.hintTextInputNumbers.value;
+          domElements.hintTextOutputNumbers.textContent = domElements.multiQuestionhintTextInputNumbers.value;
         }
 
         function updatePageHeading() {
@@ -401,13 +453,13 @@
 
         // Placeholder handling for hint text
         function showPlaceholderHint() {
-          if (!domElements.hintTextInputNumbers.value) {
+          if (!domElements.multiQuestionhintTextInputNumbers.value) {
             domElements.hintTextOutputNumbers.textContent = 'Hint text';
           }
         }
 
         function clearPlaceholderHint() {
-          if (!domElements.hintTextInputNumbers.value) {
+          if (!domElements.multiQuestionhintTextInputNumbers.value) {
             domElements.hintTextOutput.textContent = '';
           }
         }

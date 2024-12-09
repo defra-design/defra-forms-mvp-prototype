@@ -67,7 +67,7 @@
                           <ul class="moj-sub-navigation__list" id="nav-list2">
                             <!-- Question Link -->
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
+                              <a class="moj-sub-navigation__link" href="/redesigntest/templates/more-than-1-question/settings.html">Page settings</a>
                             </li>
                             {# <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" href="#overview-noquestions">Overview of questions</a>
@@ -150,37 +150,40 @@
       <!-- Page Heading Input -->
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
-{{ govukInput({
-  label: {
-    text: "Minimum character length (optional)",
-    classes: "govuk-label--m",
-    isPageHeading: false
-  },
-  classes: "govuk-input--width-3",
-  hint: {
-    text: "The minimum number of characters users can enter"
-  },
-  id: "min-characters",
-  name: "minCharacters",
-  inputmode: "numeric",
-  spellcheck: false
-}) }}
+      {{ govukInput({
+        label: {
+          text: "Minimum character length (optional)",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        },
+        classes: "govuk-input--width-3",
+        hint: {
+          text: "The minimum number of characters users can enter"
+        },
+        id: "min-characters",
+        name: "minCharacters",
+        inputmode: "numeric",
+        spellcheck: false
+      }) }}
 
-{{ govukInput({
-  label: {
-    text: "Maximum character length (optional)",
-    classes: "govuk-label--m",
-    isPageHeading: false
-  },
-  classes: "govuk-input--width-3",
-  hint: {
-    text: "The maximum number of characters users can enter"
-  },
-  id: "max-characters",
-  name: "minCharacters",
-  inputmode: "numeric",
-  spellcheck: false
-}) }}
+      {{ govukInput({
+        label: {
+          text: "Maximum character length (optional)",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        },
+        classes: "govuk-input--width-3",
+        hint: {
+          text: "The maximum number of characters users can enter"
+        },
+        id: "max-characters",
+        name: "minCharacters",
+        inputmode: "numeric",
+        spellcheck: false
+      }) }}
+
+      {% include "/redesigntest/templates/answer-limits/regex.html" %}
+      {% include "/redesigntest/templates/answer-limits/classes.html" %}
   </div>
 </details>
 
@@ -220,7 +223,7 @@
                           <!-- Submit Button -->
                           <div class="moj-button-action">
                             {{ govukButton({
-                              text: 'Continue',
+                              text: 'Save and continue',
                               type: 'submit'
                             }) }}
                           </div>
@@ -235,22 +238,87 @@
         </div>
       </div>
 
-      <!-- Right Column for Preview -->
-      <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%;overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-        <!-- Before content -->
-        <div id="before-content">
-          <p class="govuk-body-s" style="margin-bottom: 0">
-            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview this page in a new tab</a>
-          </p>
-        </div>
+<!-- Right Column for Preview -->
+<div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+  <!-- Before content -->
+  <div id="before-content" style="background-color: #cce2d8;">
+    <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px; text-align: center;">Previews</p>
+  </div>
+
+  <div style="margin-top: 60px;">
+    {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">Contents</h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#tab-two">Error messages</a>
+        </li>
+      </ul>
+
+      <!-- Tab one: Page preview -->
+      <div class="govuk-tabs__panel" id="tab-one">
+        <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+          <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+            Preview this page in a new tab
+          </a>
+        </p>
 
         <div id="border-left-container-shorttext" name="borderLeftContainerShorttext">
+          <!-- Include the preview template -->
+          {% include "/redesigntest/templates/previews-more-than-1-question/shorttext/edit.html" %}
+        </div>
+      </div>
 
-        <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews-more-than-1-question/shorttext/edit.html" %}
+      <!-- Tab two: Error messages -->
+      <div class="govuk-tabs__panel" id="tab-two">
+        <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+          <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+            Preview error messages in a new tab
+          </a>
+        </p>
+
+        <h2 class="govuk-heading-l">Error messages for question 1</h2>
+
+
+        <!-- Error Messages Section -->
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title">There is a problem</h2>
+          <ul class="govuk-list govuk-error-summary__list">
+            <!-- Error messages -->
+            <li>
+              <a id="empty-input-error-shorttext" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span>
+                Enter <span id="error-dynamic-text" style="text-transform: lowercase;">[Short description]</span>
+              </a>
+            </li>
+            <h3 class="govuk-heading-s">If you set answer limits:</h3>
+            <li>
+              <a id="too-long-input-error-shorttext" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span>
+                <span id="error-dynamic-text-long">[Short description]</span> must be
+                <span id="max-length">[max length]</span> characters or less
+              </a>
+            </li>
+            <li>
+              <a id="too-short-input-error-shorttext" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span>
+                <span id="error-dynamic-text-short">[Short description]</span> must be
+                <span id="min-length">[min length]</span> characters or more
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    </div>
+  </div>
+</div>
+
+
+
 
     <!-- JavaScript code -->
       <!-- JavaScript code -->

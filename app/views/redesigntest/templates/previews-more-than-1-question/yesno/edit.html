@@ -35,8 +35,9 @@
             </div>
           </div>
         </fieldset>
-
-        <details class="govuk-details" id="error-message-preview-summary">
+</div>
+    </div>
+        {# <details class="govuk-details" id="error-message-preview-summary">
 
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">Error messages for this question</span>
@@ -52,9 +53,9 @@
               </ul>
             </div>
           </div>
-        </details>
-    </div>
-  </div>
+        </details> #}
+    {# </div>
+  </div> #}
         {% set setName = data['setName'] or '' %}
         {% set overview0 = data['overview0'] or '' %}
 
@@ -66,12 +67,12 @@
           disabled: true
         }) }}
         {% else %}
-        {{ govukButton({
+        {# {{ govukButton({
           text: "Continue",
           classes: "govuk-button govuk-!-margin-top-6",
           id: "once-button",
           disabled: true
-        }) }}
+        }) }} #}
         {% endif %}
 
         <script>

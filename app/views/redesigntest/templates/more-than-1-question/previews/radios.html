@@ -2,12 +2,12 @@
   <fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading" id="question-label-legend-q1">
-        {{ data['multiQuestionLabelInputRadios'] or '' }}
+        {{ data['oldMultiQuestionLabelInputRadios'] or '' }}
       </h1>
     </legend>
 
     <div id="hint-text-output" class="govuk-hint">
-      {{ data['multiQuestionHintTextInputRadios'] or '' }}
+      {{ data['oldMultiQuestionHintTextInputRadios'] or '' }}
     </div>
 
     {% for option in data['option'] %}

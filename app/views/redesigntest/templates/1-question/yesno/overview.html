@@ -154,12 +154,79 @@
           </p>
         </div>
 
-        <div style="margin-top: 60px;">
+        <div style="margin-top: 60px!important;">
+          {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+          <div class="govuk-tabs" data-module="govuk-tabs">
+            <h2 class="govuk-tabs__title">
+              Contents
+            </h2>
+            <ul class="govuk-tabs__list">
+              <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                <a class="govuk-tabs__tab" id="tab-one" href="#tab-one">Page preview</a>
+              </li>
+              <li class="govuk-tabs__list-item">
+                <a class="govuk-tabs__tab" href="#tab-two">Error messages</a>
+              </li>
+            </ul>
+
+            <div class="govuk-tabs__panel" id="tab-one">
+              <!-- Page Preview Content -->
+
+
+              <p class="govuk-body-s" style="margin-bottom: 0; border-bottom: #008938 1px;">
+                <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                  Preview this page in a new tab
+                </a>
+              </p>
 
         <!-- Include the preview template -->
         {% include "/redesigntest/templates/previews/yesno/overview.html" %}
+
+        <a href="#overviewquestions" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+          Skip to overview of questions
+        </a>
+      </div>      </div>      </div>
+    </div>
+  </div>
+
+
+
+      <div class="govuk-tabs__panel" id="tab-two">
+        <!-- Error Messages Content -->
+
+        <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+          <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+            Preview error messages in a new tab
+          </a>
+        </p>
+
+           <!-- Error Messages Section -->
+            <div class="govuk-error-summary" data-module="govuk-error-summary">
+              <h2 class="govuk-error-summary__title">There is a problem</h2>
+              <ul class="govuk-list govuk-error-summary__list">
+                <!-- List of errors -->
+                <li>
+                  <a
+                    id="empty-input-error-shorttext"
+                    class="govuk-error-message"
+                    href="#error-message-input-shorttext"
+                  >
+                    Select yes if <span id="error-dynamic-text">[short description is true]</span>
+                  </a>
+                </li>
+              </ul>
+
+
+        </div>
+        <a href="#overviewquestions" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+          Skip to overview of questions
+        </a>
       </div>
     </div>
+
+  </div>
+
 
     <!-- JavaScript code -->
     <script>

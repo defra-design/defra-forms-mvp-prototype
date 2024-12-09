@@ -577,8 +577,16 @@
       });
     </script>
 
- <!-- SCRIPT FOR ACTIVATING THE ERROR MESSAGES TAB -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+window.scrollTo(0, 0);
+});
 
+</script>
+
+
+ <!-- SCRIPT FOR ACTIVATING THE ERROR MESSAGES TAB -->
+{#
  <script>
   document.addEventListener('DOMContentLoaded', function () {
     const domElements = {
@@ -599,7 +607,7 @@
       domElements.errorMessagesTab.click();
     }
   });
-</script>
+</script> #}
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {

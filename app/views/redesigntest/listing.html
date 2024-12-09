@@ -3229,6 +3229,7 @@ activeLinkId: "nav-editor"
 More than 1 question on a page
 ========================================================= #}
 {% if data['pageHeadingInputMoreThan1'] %}
+</div>
 <div class="govuk-grid-row">
    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
         <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
@@ -3268,10 +3269,10 @@ More than 1 question on a page
                     </div>
                     {% endif %}
 
-                    {% if data['questionLabelInputNumbers'] %}
+                    {% if data['multiQuestionLabelInputNumbers'] %}
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">Question 3</dt>
-                        <dd class="govuk-summary-list__value">{{ data['questionLabelInputNumbers'] }}</dd>
+                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputNumbers'] }}</dd>
                     </div>
                     {% endif %}
 
@@ -3324,10 +3325,10 @@ More than 1 question on a page
                     </div>
                     {% endif %}
 
-                    {% if data['multiQuestionLabelInputRadios'] %}
+                    {% if data['oldMultiQuestionLabelInputRadios'] %}
                     <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">Question 11</dt>
-                        <dd class="govuk-summary-list__value">{{ data['multiQuestionLabelInputRadios'] }}</dd>
+                        <dd class="govuk-summary-list__value">{{ data['oldMultiQuestionLabelInputRadios'] }}</dd>
                     </div>
                     {% endif %}
 
@@ -3352,14 +3353,39 @@ More than 1 question on a page
     </div>
 
     <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
-        <div class="preview-container" style="margin-top:1px; height: 100%;overflow-y: auto;" id="multiq-preview">
+        <!-- Preview Container -->
+        <div class="preview-container govuk-!-margin-top-1" style="height: 100vh; overflow-y: auto;" id="multiq-preview">
             <div id="dynamic-preview-content-multiq">
-                <div id="before-content">
-                    <p class="govuk-body-s" style="margin-bottom: 0">
-                        <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
-                            target="_blank">Preview this page in a new tab</a>
+
+                <!-- Preview Header -->
+                <div id="before-content" style="background-color: #cce2d8; display: flex; justify-content: space-between; align-items: left;">
+                    <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 2px;">
+                        Preview of page 6
                     </p>
+                    <a href="#" id="close-before-content" class="govuk-link" style="color: #005a30;" aria-label="Close Previews">
+                        Close<span class="govuk-visually-hidden"> Previews section</span>
+                    </a>
                 </div>
+                <div style="margin-top: 60px;">
+
+                <!-- Tab Structure -->
+                <div class="govuk-tabs" data-module="govuk-tabs">
+                    <h2 class="govuk-tabs__title">Contents</h2>
+                    <ul class="govuk-tabs__list">
+                        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                            <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
+                        </li>
+
+                    </ul>
+
+                    <!-- Tab One Content -->
+                    <div class="govuk-tabs__panel" id="tab-one">
+                        <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                Preview this page in a new tab
+                            </a>
+                        </p>
+
 {#
                 {% if data['multiQuestionLabelInputShorttext'] %}
                 {% include "/redesigntest/templates/previews-more-than-1-question/shorttext/overview.html" %}
@@ -3402,7 +3428,7 @@ More than 1 question on a page
                     {% include "/redesigntest/templates/previews-more-than-1-question/checkboxes/for-overview.html" %}
                 {% endif %}
 
-                {% if data['multiQuestionLabelInputRadios'] %}
+                {% if data['oldMultiQuestionLabelInputRadios'] %}
                     {% include "/redesigntest/templates/previews-more-than-1-question/radios/overview.html" %}
                 {% endif %}
 
@@ -3410,12 +3436,7 @@ More than 1 question on a page
                        <!-- Include the preview template -->
     {% include "/redesigntest/templates/previews-more-than-1-question/autocomplete/overview.html" %}
 
-
-
-
                 {% endif %}
-
-
 
                 {% include "/redesigntest/templates/more-than-1-question/previews/button.html" %}
 
@@ -3424,6 +3445,12 @@ More than 1 question on a page
         </div>
 
     </div>
+</div>
+</div></div>
+</div>
+</div>
+
+</div>
 
 
 

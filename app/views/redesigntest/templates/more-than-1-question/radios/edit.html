@@ -44,7 +44,17 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        The pattern for creating radios on multi-question pages isn't up to date. For an accurate demo of how this would work <a href="/redesigntest/templates/1-question/radios/edit" class="govuk-link" rel="noreferrer noopener" target="_blank">try the demo on the single question pages</a>.
+      </strong>
+    </div>
+
     <div class="govuk-grid-row">
+
       <!-- Left Column for Form Controls -->
       <div
         class="govuk-grid-column-one-half-from-desktop"
@@ -271,6 +281,8 @@
         </div>
       </div>
 
+
+
       <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh;overflow-x: hidden; overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
         <!-- Before Content -->
         <div id="before-content" style="background-color: #cce2d8;">
@@ -333,8 +345,10 @@
               </div>
             </div>
           </div>
+
         </div>
-      </div>
+
+
 
 
 
@@ -613,6 +627,27 @@
     </script>
 
 
+
+<script>
+const modal = document.getElementById('info-modal');
+const openButton = document.getElementById('open-modal');
+const closeButton = document.getElementById('close-modal');
+
+// Open the modal
+openButton.addEventListener('click', function () {
+  modal.setAttribute('aria-hidden', 'false');
+  modal.style.display = 'flex'; // Show the modal
+});
+
+// Close the modal
+closeButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  modal.setAttribute('aria-hidden', 'true');
+  modal.style.display = 'none'; // Hide the modal
+});
+
+</script>
+
 <style>
   .highlight {
     background-color: #ffe5cc;
@@ -701,6 +736,21 @@
     border-left: 10px solid #ffb266;
     padding-left: 20px;
   }
+
+
+  .gem-c-intervention {
+    background-color: #f3f2f1;
+    border-left: 10px solid #00703c;
+    color: #0b0c0c;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 40.0625em){
+  .gem-c-intervention {
+    margin-bottom: 30px;
+  }
+}
 </style>
 
 {% endblock %}

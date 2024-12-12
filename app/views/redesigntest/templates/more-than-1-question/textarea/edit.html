@@ -283,12 +283,13 @@
             disabled: true
           }) }}
         {% else %}
+        {# {% else %}
           {{ govukButton({
             text: "Continue",
             classes: "govuk-button govuk-!-margin-top-3",
             id: "add-another-set-button",
             disabled: true
-          }) }}
+          }) }} #}
         {% endif %}
       </div>
 
@@ -553,7 +554,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
   </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+window.scrollTo(0, 0);
+});
 
+</script>
 
 
 

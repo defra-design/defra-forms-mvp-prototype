@@ -1,0 +1,999 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "New form editor - Defra Forms Designer" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    homepageLink: "/",
+    signOutLink: "/"
+  }) }}
+{% endblock %}
+
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+    items: [
+      {
+        text: "New form editor",
+        href: "/new-editor/home.html"
+      },
+      {
+        text: "1 question per page",
+        href: "/new-editor/1-question/summary.html"
+      },
+      {
+        text: "Question configuration",
+        href: "/new-editor/1-question/configs/home.html"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .govuk-table__cell--description {
+    width: 30%; /* Adjust width as needed for the description column */
+  }
+  .govuk-table__cell--preview {
+    width: 70%!important; /* Adjust width as needed for the preview column */
+  }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-xl">New form editor (1 question per page)</span>
+    <h1 class="govuk-heading-xl">Question configuration</h1>
+  </div>
+
+
+  <div class="govuk-grid-column-one-third">
+    <div class="gem-c-related-navigation">
+      <h2 id="related-content-heading" class="gem-c-related-navigation__main-heading">
+        Related content (links open in a new tab)
+      </h2>
+      <nav
+        role="navigation"
+        class="gem-c-related-navigation__nav-section"
+        aria-labelledby="related-content-heading">
+        <ul class="gem-c-related-navigation__link-list">
+          <li class="gem-c-related-navigation__link">
+            <a
+            class="govuk-link govuk-link gem-c-related-navigation__section-link  govuk-link gem-c-related-navigation__section-link--other"
+              href="/apply-apprenticeship"
+              rel="noreferrer noopener"
+              target="_blank">
+              Design history
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+    <div class="govuk-grid-column-two-thirds">
+
+    <h2 class="govuk-heading-l">What</h2>
+
+
+    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-1">
+              Interactions for users without Javascript
+            </span>
+          </h2>
+          <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-1">
+            <p class="govuk-body">
+              Users without JavaScript can still navigate and interact with the form builder through static links and buttons.</p>
+              <p class="govuk-body">
+              Key features like "Preview Page" and "Preview Error Messages" open the Form Runner in a new tab, providing a clear view of the configured page or error validations.</p>
+              <p class="govuk-body">
+              The "Go back to editor" link ensures seamless navigation back to the editing environment.
+            </p>
+
+          </div>
+        </div>
+        <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content">
+          <div class="govuk-body">
+            <h2 class="govuk-heading-m">Preview Panel and Page Behavior (No JS)</h2>
+
+            <h3 class="govuk-heading-s">1. Display Without Preview Panel</h3>
+            <ul class="govuk-list govuk-list--bullet">
+
+              <li>
+                <strong>Question Configuration Page:</strong> The page includes a "Preview Page" button and a "Preview Error Messages" button for static navigation.
+              </li>
+            </ul>
+
+            <h3 class="govuk-heading-s">2. Page Preview Behavior</h3>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <strong>Display Page Preview:</strong> Selecting the "Preview Page" button on the configuration page opens the Form Runner in a new tab.
+              </li>
+              <li>
+                <strong>Empty Input Behavior:</strong> If no information is entered, the Form Runner still displays the page, reflecting its default state.
+              </li>
+              <li>
+                <strong>Overview of Questions:</strong> After configuring a question, the overview page includes a "Preview Page" button, opening the preview in the Form Runner.
+              </li>
+            </ul>
+
+            <h3 class="govuk-heading-s">3. Error Messages Preview</h3>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <strong>Error Message Preview:</strong> Selecting "Preview Error Messages" opens the Form Runner to display error messages for the selected input field, including real-time validations like character limits.
+              </li>
+              <li>
+                <strong>Short Label and Answer Limits:</strong> If short label input and answer limits are defined, the Form Runner reflects these validations dynamically.
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-2">
+              Progressive enhancement with Javascript
+            </span>
+          </h2>
+          <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-2">
+            <p class="govuk-body">
+              JavaScript adds dynamic functionality, such as real-time updates to the preview panel, interactive skip links, and input field highlighting.</p>
+              <p class="govuk-body">
+
+              Users benefit from a responsive interface where content updates instantly, placeholders guide inputs, and error messages reflect real-time validation. </p>
+              <p class="govuk-body">
+
+              This ensures an enhanced, accessible experience while maintaining full functionality for users without JavaScript.</p>
+            </p>
+          </div>
+        </div>
+        <div id="accordion-with-summary-sections-content-2" class="govuk-accordion__section-content">
+
+          <div class="govuk-body">
+            <h2 class="govuk-heading-m">Relevant Features for Preview Panel</h2>
+
+            <h3 class="govuk-heading-s">1. Live Updates</h3>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <strong>Real-time Feedback:</strong>
+                Input fields for question labels, hint text, page headings, and guidance text update corresponding areas in the preview panel in real time.
+              </li>
+              <li>
+                <strong>Optional Labels:</strong>
+                Selecting the "optional" checkbox updates the preview to show the question as optional, giving immediate feedback on its appearance in the form.
+              </li>
+            </ul>
+
+            <h3 class="govuk-heading-s">2. Highlighting Active Sections</h3>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <strong>Input Field Highlighting:</strong>
+                When users focus on an input field, the related preview area is highlighted. Highlights are applied and removed based on focus and blur events, helping users understand which field they are interacting with.
+              </li>
+              <li>
+                <strong>Page Heading Pair Highlight:</strong>
+                When the page heading input box is in focus, its pair in the preview panel is highlighted.
+              </li>
+              <li>
+                <strong>Section Highlight:</strong>
+                The entire section being worked on receives a solid left border for clarity.
+              </li>
+            </ul>
+
+            <h3 class="govuk-heading-s">3. Placeholders for Context</h3>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <strong>Dynamic Placeholders:</strong>
+                Empty input fields display placeholder text in the preview panel, such as "Hint text" or "Guidance text," to guide users on the expected content.
+              </li>
+              <li>
+                <strong>Placeholder Removal:</strong>
+                If an input field remains empty after losing focus, the placeholder disappears to maintain a clean interface.
+              </li>
+              <li>
+                <strong>Guidance Text Placeholder:</strong>
+                The preview shows "Guidance text" when the guidance text input field is in focus. If the field remains empty and focus is lost, the placeholder is hidden.
+              </li>
+            </ul>
+
+            <h3 class="govuk-heading-s">4. Error Messages</h3>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <strong>Details Component:</strong>
+                Users can view potential error messages by expanding a summary section. Error messages adjust in real time based on input settings and values.
+              </li>
+              <li>
+                <strong>Automatic Expansion:</strong>
+                The error message section expands when the input field gains focus and collapses when focus is lost.
+              </li>
+              <li>
+                <strong>Default Placeholder:</strong>
+                If an input field is empty, the error message section displays a placeholder, "[Short description]," signaling the need for content.
+              </li>
+              <li>
+                <strong>Validation Feedback:</strong>
+                Error messages reflect validation rules, such as character limits, helping users understand input constraints.
+              </li>
+            </ul>
+
+            <h3 class="govuk-heading-s">5. Capitalization Rules</h3>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <strong>Automatic Capitalization:</strong>
+                If the [Short description] span is the first word in an error message, its first letter is capitalized automatically, regardless of user input.
+              </li>
+              <li>
+                <strong>Lowercase for Mid-Sentence:</strong>
+                If the [Short description] span appears later in the error message, the first letter is converted to lowercase automatically.
+              </li>
+            </ul>
+          </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">
+          Summary of Page Types
+      </caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Page Type</th>
+          <th scope="col" class="govuk-table__header govuk-table__cell--description">Description</th>
+          <th scope="col" class="govuk-table__header govuk-table__cell--preview">Preview</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <!-- Short written answer -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Short written answer</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Collects brief text or number responses with optional character limits, regex validation, and CSS classes.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="short-answer-heading">
+              <h2 id="short-answer-heading" class="govuk-visually-hidden">Short written answer preview</h2>
+              <iframe
+                src="/redesigntest/templates/1-question/shorttext/edit"
+                class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="Short written answer preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="short-answer-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Long written answer -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Long written answer</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Collects detailed text responses with optional word limits, custom textarea rows, and validation options.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="long-answer-heading">
+              <h2 id="long-answer-heading" class="govuk-visually-hidden">Long written answer preview</h2>
+              <iframe
+              src="/redesigntest/templates/1-question/textarea/edit"
+              class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="Long written answer preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="long-answer-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Numbers -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Numbers</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Captures numeric input with settings for precision, prefixes/suffixes, and optional range validation.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="numbers-heading">
+              <h2 id="numbers-heading" class="govuk-visually-hidden">Numbers preview</h2>
+              <iframe
+              src="/redesigntest/templates/1-question/numbers/edit"
+              class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="Numbers preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="numbers-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Date -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Date</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Allows users to enter day/month/year or month/year only, with validation for earliest and latest dates.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="date-heading">
+              <h2 id="date-heading" class="govuk-visually-hidden">Date preview</h2>
+              <iframe
+              src="/redesigntest/templates/1-question/date/edit"
+              class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="Date preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="date-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- UK address -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">UK address</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Collects full addresses, including street, town/city, and postcode.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="address-heading">
+              <h2 id="address-heading" class="govuk-visually-hidden">UK address preview</h2>
+              <iframe
+              src="/redesigntest/templates/1-question/address/edit"
+              class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="UK address preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="address-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Phone -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Phone</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Gathers UK phone numbers with optional CSS customization.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="phone-heading">
+              <h2 id="phone-heading" class="govuk-visually-hidden">Phone preview</h2>
+              <iframe
+              src="/redesigntest/templates/1-question/phone/edit"
+              class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="Phone preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="phone-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Supporting evidence -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Supporting evidence</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Lets users upload files with specific formats, and allows limits on file count.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="evidence-heading">
+              <h2 id="evidence-heading" class="govuk-visually-hidden">Supporting evidence preview</h2>
+              <iframe
+              src="/redesigntest/templates/1-question/fileupload/edit"
+              class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="Supporting evidence preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="evidence-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Email address -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Email address</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Captures email addresses in a structured format.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="email-heading">
+              <h2 id="email-heading" class="govuk-visually-hidden">Email address preview</h2>
+              <iframe
+              src="/redesigntest/templates/1-question/email/edit"
+              class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="Email address preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="email-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Yes/No -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Yes/No</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Presents a simple choice between yes or no.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="yesno-heading">
+              <h2 id="yesno-heading" class="govuk-visually-hidden">Yes/No preview</h2>
+              <iframe
+              src="/redesigntest/templates/1-question/yesno/edit"
+              class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="Yes/No preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="yes-no-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Checkboxes -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Checkboxes</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Allows users to select multiple options, with tools to add/edit options and custom hint text.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="checkboxes-heading">
+              <h2 id="checkboxes-heading" class="govuk-visually-hidden">Checkboxes preview</h2>
+              <iframe
+              src="/redesigntest/templates/1-question/checkboxes/edit"
+              class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="Checkboxes preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="checkboxes-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Radios -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Radios</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Provides single-choice options with the ability to add/edit options and custom hint text.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="radios-heading">
+              <h2 id="radios-heading" class="govuk-visually-hidden">Radios preview</h2>
+              <iframe
+              src="/redesigntest/templates/1-question/radios/edit"
+              class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="Radios preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="radios-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- Autocomplete -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Autocomplete</td>
+          <td class="govuk-table__cell govuk-table__cell--description">
+            Creates a list of predefined options, allowing text and values separated by a colon.
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--preview">
+            <div class="iframe-container govuk-!-margin-bottom-6" role="region" aria-labelledby="autocomplete-heading">
+              <h2 id="autocomplete-heading" class="govuk-visually-hidden">Autocomplete preview</h2>
+              <iframe
+              src="/redesigntest/templates/1-question/autocomplete/edit"
+              class="iframe-content"
+                scrolling="yes"
+                frameborder="0"
+                title="Autocomplete preview"
+                marginheight="0"
+                marginwidth="0"
+                height="400px"
+                width="100%"
+                allowfullscreen>
+              </iframe>
+              <div class="iframe-tabs" role="navigation" aria-label="Preview controls">
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab maximise-button"
+                  href="#"
+                  role="button"
+                  aria-label="Maximise preview"
+                  title="Maximise preview">
+                  Maximise
+                </a>
+                <a
+                  class="govuk-link govuk-link--no-visited-state iframe-tab"
+                  href="autocomplete-preview.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open preview in a new tab"
+                  title="Open preview in a new tab">
+                  Open in a new tab
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+</div>
+
+
+
+<style>
+  .link-container {
+    display: flex;
+    align-items: left;
+    margin-bottom: 15px;
+  }
+
+  .link-container a {
+    padding: 0px 10px;
+  }
+
+  .link-container a:first-child {
+    border-right: 1px solid #ccc;
+    padding-left: 0;
+  }
+
+
+        .govuk-card__flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px!important; /* Spacing between cards */
+}
+
+.govuk-card__flex-item {
+    flex: 1 1 calc(33.333% - 20px); /* 3 columns with spacing */
+    max-width: calc(33.333% - 20px); /* Ensure cards don't grow too wide */
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .govuk-card__flex-item {
+        flex: 1 1 calc(50% - 20px); /* 2 columns on medium screens */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .govuk-card__flex-item {
+        flex: 1 1 100%; /* 1 column on small screens */
+        max-width: 100%;
+    }
+}
+
+.govuk-card--selectable {
+    position: relative;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.govuk-card--selectable:hover {
+    background-color: #008938;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.govuk-card--selectable:hover .govuk-card__content h3,
+.govuk-card--selectable:hover .govuk-card__content p {
+    color: #fff;
+}
+
+.govuk-card--selectable a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
+.govuk-card--selectable a:focus {
+    outline: 2px solid #ffdd00; /* GOV.UK focus color */
+    background-color: initial !important;
+}
+
+
+
+.gem-c-related-navigation__section-link {
+    font-weight: bold;
+}
+
+.gem-c-related-navigation__section-link--other {
+    font-weight: normal;
+}
+
+
+
+.gem-c-related-navigation {
+    border-top: 2px solid #1d70b8;
+    margin-bottom: 60px;
+    color: #0b0c0c;
+}
+
+.gem-c-related-navigation__main-heading {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-family: "GDS Transport",arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    font-size: 1.1875rem;
+    line-height: 1.3157894737;
+}
+
+.gem-c-related-navigation__nav-section {
+    margin-bottom: 30px;
+}
+
+.gem-c-related-navigation__link-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    margin-bottom: 1.25em;
+}
+
+.gem-c-related-navigation__link {
+    list-style-type: none;
+    margin-top: 15px;
+    font-family: "GDS Transport",arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.45;
+}
+
+@media (min-width: 40.0625em){
+  .gem-c-related-navigation__link {
+    line-height: 1.28;
+  }  }
+
+  .iframe-container {
+  border: 5px solid black;
+  border-radius: 4px;
+  padding: 0;
+  overflow: hidden;
+  position: relative; /* Ensure tabs stay relative to the container */
+}
+
+.iframe-tabs {
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #ccc;
+  background-color: #f8f8f8;
+  position: absolute; /* Tabs stay positioned above the iframe */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 10px;
+}
+
+.iframe-tab {
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.iframe-tab:hover {
+  background-color: #e8e8e8;
+}
+
+.iframe-container.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+  background-color: white;
+}
+
+.iframe-container.fullscreen .iframe-tabs {
+  position: fixed; /* Keeps tabs at the top in fullscreen mode */
+  z-index: 9999;
+  background-color: white; /* Ensures visibility */
+}
+
+.iframe-container.fullscreen .iframe-content {
+  height: calc(100vh - 50px); /* Deduct tab height from viewport */
+  width: 100%;
+  border: none;
+}
+
+
+</style>
+
+<script>
+document.querySelector('.maximise-button').addEventListener('click', function (event) {
+  event.preventDefault();
+
+  const iframeContainer = document.querySelector('.iframe-container');
+  const iframe = document.querySelector('.iframe-content');
+  const button = event.target;
+
+  // Toggle fullscreen mode
+  if (iframeContainer.classList.contains('fullscreen')) {
+    iframeContainer.classList.remove('fullscreen');
+    iframe.style.height = '400px'; // Reset iframe height
+    button.textContent = 'Maximise';
+  } else {
+    iframeContainer.classList.add('fullscreen');
+    iframe.style.height = 'calc(100vh - 50px)';
+    button.textContent = 'Minimise';
+  }
+});
+
+
+</script>
+
+{% endblock %}
+

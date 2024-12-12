@@ -15,8 +15,19 @@
 
 {% block content %}
 
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/new-editor/home.html"
+    }
+  ]
+}) }}
+
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
       {%- from "moj/components/sub-navigation/macro.njk" import mojSubNavigation -%}
 
@@ -33,6 +44,144 @@
       }) }}
 
       <h1 class="govuk-heading-xl">New form editor</h1>
+
+
+      <h2 class="govuk-heading-l">General pages</h2>
+
+
+      <div class="govuk-card__flex-container">
+        <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+            <a href="/new-editor/general/listing/overview.html" aria-label="Apply for a Phytosanitary Certificate"></a>
+            <div class="govuk-card__content">
+                <h3 class="govuk-heading-m">
+                    Page listing
+                </h3>
+                <p>A place to view a summary of the pages created.</p>
+            </div>
+        </div>
+        <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+            <a href="../license" aria-label="Manage Your License"></a>
+            <div class="govuk-card__content">
+                <h3 class="govuk-heading-m">
+                    Page type selection
+                </h3>
+                <p>Determine whether the page will have a single question, multiple questions, or only show guidance.</p>
+            </div>
+        </div>
+        <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+            <a href="../reports" aria-label="View Reports"></a>
+            <div class="govuk-card__content">
+                <h3 class="govuk-heading-m">
+                    Page re-ordering
+                </h3>
+                <p>Re-order pages in your form.</p>
+            </div>
+        </div>
+
+        <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+          <a href="../account" aria-label="Apply for a Phytosanitary Certificate"></a>
+          <div class="govuk-card__content">
+              <h3 class="govuk-heading-m">
+                  Delete pages
+              </h3>
+              <p>An 'Are you sure?' page you when you select a 'Delete page' call to action.</p>
+          </div>
+      </div>
+    </div>
+
+
+
+    <h2 class="govuk-heading-l">Configuration pages with only 1 question</h2>
+
+    <div class="govuk-card__flex-container">
+      <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+          <a href="../account" aria-label="Apply for a Phytosanitary Certificate"></a>
+          <div class="govuk-card__content">
+              <h3 class="govuk-heading-m">
+                 Information type selection
+              </h3>
+              <p>Choose what information to ask from users.</p>
+          </div>
+      </div>
+
+      <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+          <a href="../license" aria-label="Manage Your License"></a>
+          <div class="govuk-card__content">
+              <h3 class="govuk-heading-m">
+                Question configuration
+              </h3>
+              <p>Configure each type of question, for example, dates, numbers, text.</p>
+          </div>
+      </div>
+
+      <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+        <a href="../license" aria-label="Manage Your License"></a>
+        <div class="govuk-card__content">
+            <h3 class="govuk-heading-m">
+              Overview of questions
+            </h3>
+            <p>After you've saved your page and question, you can see a final summary and preview of the page just created.</p>
+        </div>
+    </div>
+
+  </div>
+
+  <h2 class="govuk-heading-l">Configuration pages with more than 1 question</h2>
+
+    <div class="govuk-card__flex-container">
+      <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+          <a href="../account" aria-label="Apply for a Phytosanitary Certificate"></a>
+          <div class="govuk-card__content">
+              <h3 class="govuk-heading-m">
+                 Information type selection
+              </h3>
+              <p>Choose what information to ask from users.</p>
+          </div>
+      </div>
+
+
+      <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+        <a href="../license" aria-label="Manage Your License"></a>
+        <div class="govuk-card__content">
+            <h3 class="govuk-heading-m">
+              Page settings
+            </h3>
+            <p>Set the page heading, add guidance and determine if users can answer question of the pages repeatedly.</p>
+        </div>
+    </div>
+
+      <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+          <a href="../license" aria-label="Manage Your License"></a>
+          <div class="govuk-card__content">
+              <h3 class="govuk-heading-m">
+                Question configuration
+              </h3>
+              <p>Configure each type of question, for example, dates, numbers, text.</p>
+          </div>
+      </div>
+
+      <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+        <a href="../license" aria-label="Manage Your License"></a>
+        <div class="govuk-card__content">
+            <h3 class="govuk-heading-m">
+              Overview of questions
+            </h3>
+            <p>After you've saved your page and question, you can see a final summary and preview of the page just created.</p>
+        </div>
+    </div>
+
+      <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+        <a href="../license" aria-label="Manage Your License"></a>
+        <div class="govuk-card__content">
+            <h3 class="govuk-heading-m">
+              Question re-ordering
+            </h3>
+            <p>Re-order questions on a page.</p>
+        </div>
+    </div>
+
+  {# </div>
+
 
       <h2 class="govuk-heading-l">Listing page</h2>
       <p class="govuk-body">A place to view a summary of the pages created for a specific form.</p>
@@ -140,7 +289,7 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-third" style="background-color: #f3f2f1;padding-top: 15px;border-block-color: black;border-style: solid;">
-        <h2 class="govuk-heading-l">Use the prototype</h2>
+        <h2 class="govuk-heading-l">Use the prototype</h2> #}
         {# {% from "govuk/components/radios/macro.njk" import govukRadios %}
         <form class="form" action="/prototype-answer" method="post">
           {{ govukRadios({
@@ -181,9 +330,9 @@
             isStartButton: true
           }) }}
         </form> #}
-      </div>
+      {# </div>
     </div>
-  </div>
+  </div> #}
 
 <style>
   .link-container {
@@ -200,6 +349,63 @@
     border-right: 1px solid #ccc;
     padding-left: 0;
   }
-</style>
 
+
+        .govuk-card__flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px!important; /* Spacing between cards */
+}
+
+.govuk-card__flex-item {
+    flex: 1 1 calc(33.333% - 20px); /* 3 columns with spacing */
+    max-width: calc(33.333% - 20px); /* Ensure cards don't grow too wide */
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .govuk-card__flex-item {
+        flex: 1 1 calc(50% - 20px); /* 2 columns on medium screens */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .govuk-card__flex-item {
+        flex: 1 1 100%; /* 1 column on small screens */
+        max-width: 100%;
+    }
+}
+
+.govuk-card--selectable {
+    position: relative;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.govuk-card--selectable:hover {
+    background-color: #008938;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.govuk-card--selectable:hover .govuk-card__content h3,
+.govuk-card--selectable:hover .govuk-card__content p {
+    color: #fff;
+}
+
+.govuk-card--selectable a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
+.govuk-card--selectable a:focus {
+    outline: 2px solid #ffdd00; /* GOV.UK focus color */
+    background-color: initial !important;
+}
+
+
+</style>
 {% endblock %}

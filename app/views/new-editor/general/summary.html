@@ -1,0 +1,171 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "New form editor - Defra Forms Designer" %}
+
+{% block header %}
+  {{ serviceHeader({
+    organisationName: "Defra",
+    productName: "Forms Designer",
+    homepageLink: "/",
+    signOutLink: "/"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/new-editor/home.html"
+      },
+      {
+        text: "General pages",
+        href: "/new-editor/general/summary.html"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+
+{#
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {%- from "moj/components/sub-navigation/macro.njk" import mojSubNavigation -%}
+
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Current designs',
+          href: '#1'
+        }, {
+          text: 'New form editor',
+          active: true,
+          href: '#2'
+        }]
+      }) }} #}
+      <span class="govuk-caption-xl">New form editor</span>
+      <h1 class="govuk-heading-xl">General pages</h1>
+
+      <div class="govuk-card__flex-container">
+        <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+            <a href="/new-editor/general/listing/home.html" aria-label="Page listing page"></a>
+            <div class="govuk-card__content">
+                <h3 class="govuk-heading-m">
+                    Page listing
+                </h3>
+                <p>A place to view a summary of the pages created.</p>
+            </div>
+        </div>
+        <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+            <a class="govuk-link govuk-link--no-visited-state" href="/new-editor/general/page-type/home.html" aria-label="Page selection type"></a>
+            <div class="govuk-card__content">
+                <h3 class="govuk-heading-m">
+                    Page type selection
+                </h3>
+                <p>Determine whether the page will have a single question, multiple questions, or only show guidance.</p>
+            </div>
+        </div>
+        <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+            <a href="/new-editor/general/page-reordering/home.html" aria-label="Page re-ordering"></a>
+            <div class="govuk-card__content">
+                <h3 class="govuk-heading-m">
+                    Page re-ordering
+                </h3>
+                <p>Re-order pages in your form.</p>
+            </div>
+        </div>
+
+        <div class="govuk-card govuk-card--contained govuk-card--selectable govuk-card__flex-item">
+          <a href="/new-editor/general/delete-pages/home.html" aria-label="Delete pages"></a>
+          <div class="govuk-card__content">
+              <h3 class="govuk-heading-m">
+                  Delete pages
+              </h3>
+              <p>An 'Are you sure?' page you when you select a 'Delete page' call to action.</p>
+          </div>
+      </div>
+    </div>
+
+<style>
+  .link-container {
+    display: flex;
+    align-items: left;
+    margin-bottom: 15px;
+  }
+
+  .link-container a {
+    padding: 0px 10px;
+  }
+
+  .link-container a:first-child {
+    border-right: 1px solid #ccc;
+    padding-left: 0;
+  }
+
+
+        .govuk-card__flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px!important; /* Spacing between cards */
+}
+
+.govuk-card__flex-item {
+    flex: 1 1 calc(33.333% - 20px); /* 3 columns with spacing */
+    max-width: calc(33.333% - 20px); /* Ensure cards don't grow too wide */
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .govuk-card__flex-item {
+        flex: 1 1 calc(50% - 20px); /* 2 columns on medium screens */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .govuk-card__flex-item {
+        flex: 1 1 100%; /* 1 column on small screens */
+        max-width: 100%;
+    }
+}
+
+.govuk-card--selectable {
+    position: relative;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.govuk-card--selectable:hover {
+    background-color: #008938;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.govuk-card--selectable:hover .govuk-card__content h3,
+.govuk-card--selectable:hover .govuk-card__content p {
+    color: #fff;
+}
+
+.govuk-card--selectable a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
+.govuk-card--selectable a:focus {
+    outline: 2px solid #ffdd00; /* GOV.UK focus color */
+    background-color: initial !important;
+}
+
+
+</style>
+{% endblock %}

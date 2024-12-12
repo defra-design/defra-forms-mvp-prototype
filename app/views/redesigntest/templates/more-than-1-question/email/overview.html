@@ -134,7 +134,7 @@
                           text: "Question 3"
                         },
                         value: {
-                          html: data['questionLabelInputNumbers'] or ''
+                          html: data['multiQuestionLabelInputNumbers'] or ''
                         },
                         actions: {
                           items: [
@@ -226,11 +226,11 @@
                           <a href="/redesigntest/templates/more-than-1-question/email/information-type.html" class="govuk-button" role="button">
                             Add next question
                           </a>
+                          <button id="reorder-questions-button" class="govuk-button govuk-button--inverse" type="button">
+                            Re-order questions
+                          </button>
 
-
-
-
-                          <a href="/redesigntest/listing.html" class="govuk-button govuk-button--inverse" role="button">
+                          <a href="/redesigntest/listing.html" id="back-link-button" class="govuk-link govuk-link--no-visited-state" role="button">
                             Back to all pages
                           </a>
 

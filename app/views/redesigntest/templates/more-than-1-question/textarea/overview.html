@@ -16,34 +16,28 @@
     navigationItems: [
       { href: "/library.html", text: "Forms library", id: "nav-library" },
       { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
-      { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }    ],
+      { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }
+    ],
     activeLinkId: "nav-editor"
   }) }}
 
-<div class="x-govuk-masthead x-govuk-masthead--large">
-  <div class="govuk-width-container">
-    {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add
-    and edit pages", href: "/redesigntest/listing.html" }) }}
+  <div class="x-govuk-masthead x-govuk-masthead--large">
+    <div class="govuk-width-container">
+      {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add and edit pages", href: "/redesigntest/listing.html" }) }}
+      <hr
+        class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+        style="border-bottom: 1px solid white; margin-bottom: 0"
+      />
 
-    <hr
-      class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
-      style="border-bottom: 1px solid white; margin-bottom: 0"
-    />
-
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full-from-desktop">
-        <h1 class="x-govuk-masthead__title">
-          {# <span class="govuk-caption-l" style="color: white">
-            Apply for a county parish holding certificate
-          </span> #}
-          Apply for a county parish holding (CPH) number
-        </h1>
-
-        {# #}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full-from-desktop">
+          <h1 class="x-govuk-masthead__title">
+            Apply for a county parish holding (CPH) number
+          </h1>
+        </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock %}
 
 {% block content %}
@@ -57,104 +51,108 @@
             <dl class="govuk-summary-list">
               <div class="govuk-summary-list__row">
                 <dd class="govuk-summary-list__value">
-                  <!-- Dynamic Summary List -->
-                  <!-- Question Settings Container -->
                   <div class="govuk-grid-row" id="page-settings-container-1">
                     <div id="question-1">
                       <div class="govuk-summary-card__content" style="margin-bottom: 0">
                         <!-- Sub Navigation for Question -->
-                        <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2 " aria-label="Sub navigation">
+                        <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2" aria-label="Sub navigation">
                           <ul class="moj-sub-navigation__list" id="nav-list2">
-                            <!-- Question Link -->
                             <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
                             </li>
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" aria-current="page"  href="#overview-noquestions">Overview of questions</a>
+                              <a class="moj-sub-navigation__link" aria-current="page" href="#overview-noquestions">Overview of questions</a>
                             </li>
-
                           </ul>
                         </nav>
 
                         <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
-
                         <span class="govuk-caption-l" id="page-caption">Page 2</span>
-
                         <h2 class="govuk-heading-l" id="page-heading">Overview of questions</h2>
 
-{#
-                        <form class="form" action="/redesigntest/Multi/question-2-date/information-type" method="post"> #}
+                        <!-- Original Summary List view -->
+                        <div id="summary-container">
+                          {{ govukSummaryList({
+                            classes: "govuk-summary-list govuk-section-break govuk-section-break--visible",
+                            rows: [
+                              {
+                                key: { text: "Question 1" },
+                                value: { html: data['multiQuestionLabelInputShorttext'] or '' },
+                                actions: {
+                                  items: [
+                                    {
+                                      href: "/redesigntest/templates/1-question/shorttext/edit.html",
+                                      text: "Change",
+                                      visuallyHiddenText: "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                key: { text: "Question 2" },
+                                value: { html: data['multiQuestionLabelInputTextArea'] or '' },
+                                actions: {
+                                  items: [
+                                    {
+                                      href: "/redesigntest/templates/1-question/shorttext/edit.html",
+                                      text: "Change",
+                                      visuallyHiddenText: "name"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }) }}
+                        </div>
 
-                           <!-- Dynamic Summary List -->
-            <div id="summary-container">
-              <!-- The dynamic summary list will be populated here -->
+                        <!-- Reorder container - initially hidden -->
+                        <div id="reorder-container" style="display:none;">
+                          <ol class="gem-c-reorderable-list" id="questions-list" style="list-style:none; padding-left:0;" data-module="reorderable-list">
+                            <li class="gem-c-reorderable-list__item" draggable="true" data-index="0" data-preview-id="preview-question-0">
+                              <div class="gem-c-reorderable-list__wrapper" style="display:flex; align-items:center;">
+                                <div class="gem-c-reorderable-list__content" style="flex-grow:1;">
+                                  <p class="govuk-body fauxlabel question-label-display">
+                                    Question 1: {{ data['multiQuestionLabelInputShorttext'] or 'Short answer question 1' }}
+                                  </p>
+                                </div>
+                                <div class="gem-c-reorderable-list__actions" style="display:flex; flex-direction: column; margin-left: 15px;">
+                                  <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-up" type="button" aria-label="Move question up">Up</button>
+                                  <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-down" type="button" aria-label="Move question down">Down</button>
+                                  <button class="gem-c-button govuk-button govuk-button--warning js-remove-question" type="button" aria-label="Remove question">Remove</button>
+                                </div>
+                              </div>
+                            </li>
 
-              {{ govukSummaryList({
-                classes: "govuk-summary-list govuk-section-break govuk-section-break--visible",
-                rows: [
-                  {
-                    key: {
-                      text: "Question 1"
-                    },
-                    value: {
-                      html: data['multiQuestionLabelInputShorttext'] or ''
+                            <li class="gem-c-reorderable-list__item" draggable="true" data-index="1" data-preview-id="preview-question-1">
+                              <div class="gem-c-reorderable-list__wrapper" style="display:flex; align-items:center;">
+                                <div class="gem-c-reorderable-list__content" style="flex-grow:1;">
+                                  <p class="govuk-body fauxlabel question-label-display">
+                                    Question 2: {{ data['multiQuestionLabelInputTextArea'] or 'Short answer question 2' }}
+                                  </p>
+                                </div>
+                                <div class="gem-c-reorderable-list__actions" style="display:flex; flex-direction: column; margin-left: 15px;">
+                                  <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-up" type="button" aria-label="Move question up">Up</button>
+                                  <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-down" type="button" aria-label="Move question down">Down</button>
+                                  <button class="gem-c-button govuk-button govuk-button--warning js-remove-question" type="button" aria-label="Remove question">Remove</button>
+                                </div>
+                              </div>
+                            </li>
+                          </ol>
+                        </div>
 
-                    },
-                    actions: {
-                      items: [
-                        {
-                                                    href: "/redesigntest/templates/1-question/shorttext/edit.html",
-                          text: "Change",
-                          visuallyHiddenText: "name"
-                        }
-                        ]
-                      }
-                    },
+                        <div class="govuk-button-group govuk-!-margin-top-6" id="button-group">
+                          <a href="/redesigntest/templates/more-than-1-question/textarea/information-type.html" class="govuk-button" id="add-question-button" role="button">
+                            Add next question
+                          </a>
 
-                    {
-                      key: {
-                        text: "Question 2"
-                      },
-                      value: {
-                        html: data['multiQuestionLabelInputTextArea'] or ''
+                          <button id="reorder-questions-button" class="govuk-button govuk-button--inverse" type="button">
+                            Re-order questions
+                          </button>
 
-                      },
-                      actions: {
-                        items: [
-                          {
-                                                      href: "/redesigntest/templates/1-question/shorttext/edit.html",
-                            text: "Change",
-                            visuallyHiddenText: "name"
-                          }
-                          ]
-                        }
-
-
-                  }
-                ]
-              }) }}
-
-            </div>
-
-
-          <div class="govuk-button-group govuk-!-margin-top-6">
-            <a href="/redesigntest/templates/more-than-1-question/textarea/information-type.html" class="govuk-button" role="button">
-              Add next question
-            </a>
-
-            <button id="reorder-questions-button" class="govuk-button govuk-button--inverse" type="button">
-              Re-order questions
-            </button>
-
-            <a href="/redesigntest/listing.html" class=" class="govuk-link govuk-link--no-visited-state" role="button" role="button">
-              Back to all pages
-            </a>
-
-
-          </div>
-
-
-                        </form>
+                          <a href="/redesigntest/listing.html" id="back-link-button" class="govuk-link govuk-link--no-visited-state" role="button">
+                            Back to all pages
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -167,179 +165,367 @@
 
       <!-- Right Column for Preview -->
       <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-        <!-- Before content -->
-        <div id="before-content" style=" background-color:  #cce2d8;">
-          <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px;
-    text-align: center;" > Previews
-          </p>
+        <div id="before-content" style=" background-color: #cce2d8;">
+          <p class="govuk-body-s" style="margin-bottom:0; color:#005a30; padding:2px 8px 3px; text-align:center;">Previews</p>
         </div>
 
-        <div style="margin-top: 60px;">
+        <div style="margin-top:60px;">
           {% from "govuk/components/tabs/macro.njk" import govukTabs %}
 
           <div class="govuk-tabs" data-module="govuk-tabs">
-            <h2 class="govuk-tabs__title">
-              Contents
-            </h2>
+            <h2 class="govuk-tabs__title">Contents</h2>
             <ul class="govuk-tabs__list">
               <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
                 <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
               </li>
-
             </ul>
 
             <div class="govuk-tabs__panel" id="tab-one">
-              <!-- Page Preview Content -->
-
-
-              <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+              <p class="govuk-body-s" style="margin-bottom:30px; border-bottom:#008938 1px;">
                 <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
                   Preview this page in a new tab
                 </a>
+              </p>
 
-        <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
-        {% if data['setName'] %}
-        {{ govukButton({
-            text: "Add another " + (data['setName'] | lower),
-            classes: "govuk-button govuk-!-margin-top-3",
-            id: "add-another-set-button",
-            disabled: true
-        }) }}
-       {% else %}
-        {{ govukButton({
-            text: "Continue",
-            classes: "govuk-button govuk-!-margin-top-3",
-            id: "add-another-set-button",
-            disabled: true
-        }) }}
-       {% endif %}
-
+              {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- JavaScript code -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // DOM Elements
-        const domElements = {
-          // Existing elements
-          questionLabelInput: document.getElementById('question-label-input'),
-          questionLabelLegend: document.getElementById('question-label-legend'),
-          hintTextInput: document.getElementById('hint-text-input'),
-          hintTextOutput: document.getElementById('hint-text-output'),
-          makeOptionalCheckbox: document.getElementById('make-optional'),
-
-          // New elements for page heading and guidance text
-          pageHeadingInput: document.getElementById('page-heading-input'),
-          dynamicHeading: document.getElementById('dynamic-heading'),
-          guidanceTextarea: document.getElementById('guidance-textarea'),
-          guidanceParagraph: document.getElementById('guidance-paragraph')
-        };
-
-        // Initialize event listeners
-        initializeEventListeners();
-
-        function initializeEventListeners() {
-          // Update question label
-          if (domElements.questionLabelInput && domElements.questionLabelLegend) {
-            domElements.questionLabelInput.addEventListener('input', updateQuestionLabel);
-          }
-
-          // Update hint text
-          if (domElements.hintTextInput && domElements.hintTextOutput) {
-            domElements.hintTextInput.addEventListener('input', updateHintText);
-          }
-
-          // Update optional label
-          if (domElements.makeOptionalCheckbox) {
-            domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
-          }
-
-          // Update page heading
-          if (domElements.pageHeadingInput && domElements.dynamicHeading) {
-            domElements.pageHeadingInput.addEventListener('input', updatePageHeading);
-          }
-
-          // Update guidance text
-          if (domElements.guidanceTextarea && domElements.guidanceParagraph) {
-            domElements.guidanceTextarea.addEventListener('input', updateGuidanceText);
-          }
-
-          // Apply focus/blur highlighting
-          applyHighlightOnFocus(domElements.questionLabelInput, domElements.questionLabelLegend);
-          applyHighlightOnFocus(domElements.hintTextInput, domElements.hintTextOutput);
-          applyHighlightOnFocus(domElements.pageHeadingInput, domElements.dynamicHeading);
-          applyHighlightOnFocus(domElements.guidanceTextarea, domElements.guidanceParagraph);
-        }
-
-        function updateQuestionLabel() {
-          const suffix = domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
-          domElements.questionLabelLegend.textContent = domElements.questionLabelInput.value || 'Question';
-          domElements.questionLabelLegend.textContent += suffix;
-        }
-
-        function updateHintText() {
-          domElements.hintTextOutput.textContent = domElements.hintTextInput.value;
-        }
-
-        function updatePageHeading() {
-          domElements.dynamicHeading.textContent = domElements.pageHeadingInput.value;
-        }
-
-        function updateGuidanceText() {
-          domElements.guidanceParagraph.textContent = domElements.guidanceTextarea.value;
-        }
-
-        function applyHighlightOnFocus(inputElement, targetElement) {
-          if (inputElement && targetElement) {
-            inputElement.addEventListener('focus', function () {
-              targetElement.classList.add('highlight');
-            });
-            inputElement.addEventListener('blur', function () {
-              targetElement.classList.remove('highlight');
-            });
-
-            // If the input is already focused
-            if (document.activeElement === inputElement) {
-              targetElement.classList.add('highlight');
-            }
-          }
-        }
-      });
-      </script>
-
-
-    <!-- CSS for Highlighting -->
-    <style>
-      .highlight {
-        background-color: #ffe5cc;
-        border-bottom: 2px solid #ffb266;
-      }
-
-      #before-content {
-        position: absolute;
-        top: 0;
-        left: 10 !important;
-        right: 0;
-        width: 100%;
-        padding: 10px !important;
-        box-sizing: border-box;
-        z-index: 1;
-        border-bottom: 1px solid #008938;
-        padding-left: 10px;
-      }
-
-      #second-container {
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      #second-container > * {
-        padding-left: 0px;
-        z-index: 2;
-      }
-    </style>
   </div>
 </div>
+
+<!-- Include SortableJS -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+<style>
+  /* Enhanced highlight styling */
+  .highlight {
+    background-color: #ffe5cc; /* Light orange background */
+    border-bottom: none;
+    padding: 10px; /* Added padding to make highlight more noticeable */
+    transition: background-color 0.3s, border-bottom 0.3s, padding 0.3s;
+  }
+
+  .fauxlabel {
+    margin: 0;
+    padding: 0.5rem;
+  }
+
+
+
+  .gem-c-reorderable-list__item {
+    margin-bottom: 15px;
+    border-left: 5px solid #008938;
+    outline: 1px solid #b1b4b6;
+    padding: 15px;
+    background-color: #fff;
+    cursor: move;
+    transition: background-color 0.3s, border-left 0.3s, padding 0.3s;
+  }
+
+  .sortable-ghost {
+    opacity: 0.4;
+  }
+
+  .gem-c-reorderable-list__actions .govuk-button {
+    margin-bottom: 10px;
+  }
+
+  .sortable-chosen {
+    background-color: #e5f5ff;
+  }
+
+  /* Ensure only one highlight is active */
+  .preview-highlight {
+    background-color: #ffe5cc; /* Light orange background */
+
+    padding: 15px;
+  }
+
+  /* Style for hover state of the list item */
+  .gem-c-reorderable-list__item:hover {
+    background-color: #f0f0f0;
+    cursor: move;
+  }
+
+  /* Style for the chosen item (when selected) */
+  .gem-c-reorderable-list__item.sortable-chosen {
+    background-color: #e5f5ff;
+    outline: 4px solid #ffdd00;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  #second-container {
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  #second-container > * {
+    padding-left: 0px;
+    z-index: 2;
+  }
+
+  .border-left-container {
+    border-left: 10px solid #ffb266;
+    padding-left: 20px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let reorderMode = false;
+
+    const reorderButton = document.getElementById('reorder-questions-button');
+    const summaryContainer = document.getElementById('summary-container');
+    const reorderContainer = document.getElementById('reorder-container');
+    const addQuestionButton = document.getElementById('add-question-button');
+    const backLinkButton = document.getElementById('back-link-button');
+    const questionsList = document.getElementById('questions-list');
+
+    // Capture the preview panel and form groups
+    const previewPanel = document.querySelector('#tab-one');
+    const formGroups = Array.from(previewPanel.querySelectorAll('.govuk-form-group'));
+    // Ensure that formGroups are in the correct order corresponding to data-index
+
+    // Function to map list items to preview items
+    function getPreviewItem(previewId) {
+      return document.getElementById(previewId);
+    }
+
+    function highlightPreviewFormGroup(previewId) {
+      // Remove highlight from all preview items
+      formGroups.forEach((fg, idx) => {
+        fg.classList.remove('preview-highlight');
+      });
+
+      // Add highlight to the specific preview item
+      const fg = getPreviewItem(previewId);
+      if (fg) {
+        fg.classList.add('preview-highlight');
+      }
+    }
+
+    function unhighlightPreviewFormGroup(previewId) {
+      const fg = getPreviewItem(previewId);
+      if (fg) {
+        fg.classList.remove('preview-highlight');
+      }
+    }
+
+    const sortableInstance = new Sortable(questionsList, {
+      animation: 150,
+      handle: '.gem-c-reorderable-list__wrapper',
+      draggable: '.gem-c-reorderable-list__item',
+      disabled: true,
+      onEnd: function () {
+        manageUpDownButtons();
+        updatePreviewOrder();
+      }
+    });
+
+    reorderButton.addEventListener('click', toggleReorderMode);
+
+    function toggleReorderMode() {
+      reorderMode = !reorderMode;
+
+      if (reorderMode) {
+        summaryContainer.style.display = 'none';
+        reorderContainer.style.display = 'block';
+        addQuestionButton.style.display = 'none';
+        backLinkButton.style.display = 'none';
+        reorderButton.textContent = 'Save changes';
+        reorderButton.className = 'govuk-button govuk-button';
+        sortableInstance.option('disabled', false);
+
+        manageUpDownButtons();
+        attachFocusListeners();
+        focusFirstActionButton();
+      } else {
+        reorderContainer.style.display = 'none';
+        summaryContainer.style.display = 'block';
+        addQuestionButton.style.display = 'inline-block';
+        backLinkButton.style.display = 'inline-block';
+        reorderButton.textContent = 'Re-order questions';
+        reorderButton.className = 'govuk-button govuk-button--inverse';
+        sortableInstance.option('disabled', true);
+
+        // Remove all existing highlights when exiting reorder mode
+        removeAllHighlights();
+      }
+    }
+
+    function manageUpDownButtons() {
+      const items = Array.from(questionsList.children);
+      items.forEach((item, index) => {
+        const upButton = item.querySelector('.js-reorderable-list-up');
+        const downButton = item.querySelector('.js-reorderable-list-down');
+        if (upButton) upButton.style.display = reorderMode && index > 0 ? 'inline-block' : 'none';
+        if (downButton) downButton.style.display = reorderMode && index < items.length - 1 ? 'inline-block' : 'none';
+      });
+    }
+
+    function attachFocusListeners() {
+      const items = Array.from(questionsList.children);
+
+      // Remove existing event listeners to prevent duplicates
+      items.forEach(item => {
+        item.removeEventListener('focusin', handleItemFocusIn);
+        item.removeEventListener('focusout', handleItemFocusOut);
+      });
+
+      items.forEach((item, index) => {
+        item.addEventListener('focusin', handleItemFocusIn.bind(null, item, index));
+                item.addEventListener('focusout', handleItemFocusOut.bind(null, item, index));
+      });
+
+      // Handle focus moving outside the list entirely
+      questionsList.addEventListener('focusout', function(event) {
+        // Delay the check to allow focus to move to the new element
+        setTimeout(() => {
+          if (!questionsList.contains(document.activeElement)) {
+            // Remove highlights from all items and preview form groups
+            items.forEach((item, idx) => {
+              item.classList.remove('highlight');
+              const previewId = item.getAttribute('data-preview-id');
+              unhighlightPreviewFormGroup(previewId);
+            });
+          }
+        }, 0);
+      });
+    }
+
+    function handleItemFocusIn(item, index, event) {
+      // Remove highlight from all items
+      const allItems = Array.from(questionsList.children);
+      allItems.forEach(it => {
+        it.classList.remove('highlight');
+        const previewId = it.getAttribute('data-preview-id');
+        unhighlightPreviewFormGroup(previewId);
+      });
+
+      // Add highlight to the current item
+      item.classList.add('highlight');
+
+      // Highlight the corresponding preview form group
+      const previewId = item.getAttribute('data-preview-id');
+      highlightPreviewFormGroup(previewId);
+    }
+
+    function handleItemFocusOut(item, index, event) {
+      // Check if the newly focused element is still within this item
+      if (!item.contains(document.activeElement)) {
+        item.classList.remove('highlight');
+        const previewId = item.getAttribute('data-preview-id');
+        unhighlightPreviewFormGroup(previewId);
+      }
+    }
+
+    function focusFirstActionButton() {
+      const firstItem = questionsList.querySelector('.gem-c-reorderable-list__item');
+      if (firstItem) {
+        const buttons = firstItem.querySelectorAll('.gem-c-reorderable-list__actions .govuk-button');
+        for (let btn of buttons) {
+          if (btn.style.display !== 'none') {
+            btn.focus();
+            break;
+          }
+        }
+      }
+    }
+
+    questionsList.addEventListener('click', function (event) {
+      if (!reorderMode) return;
+      const target = event.target;
+      const item = target.closest('.gem-c-reorderable-list__item');
+      if (!item) return;
+
+      const oldIndex = Array.from(questionsList.children).indexOf(item);
+
+      if (target.classList.contains('js-reorderable-list-up')) {
+        const prevItem = item.previousElementSibling;
+        if (prevItem) {
+          questionsList.insertBefore(item, prevItem);
+          manageUpDownButtons();
+          updatePreviewOrder();
+          setTimeout(() => {
+            focusOnFirstAvailableButton(item);
+          }, 0);
+        }
+      } else if (target.classList.contains('js-reorderable-list-down')) {
+        const nextItem = item.nextElementSibling;
+        if (nextItem) {
+          questionsList.insertBefore(nextItem, item);
+          manageUpDownButtons();
+          updatePreviewOrder();
+          setTimeout(() => {
+            focusOnFirstAvailableButton(item);
+          }, 0);
+        }
+      } else if (target.classList.contains('js-remove-question')) {
+        const nextFocusableItem = item.nextElementSibling || item.previousElementSibling;
+        const previewId = item.getAttribute('data-preview-id');
+        questionsList.removeChild(item);
+        unhighlightPreviewFormGroup(previewId);
+        manageUpDownButtons();
+        updatePreviewOrder();
+
+        if (nextFocusableItem) {
+          setTimeout(() => {
+            focusOnFirstAvailableButton(nextFocusableItem);
+          }, 0);
+        } else {
+          // If no items left, remove all highlights
+          removeAllHighlights();
+        }
+      }
+    });
+
+    function focusOnFirstAvailableButton(item) {
+      if (!item) return;
+      const buttons = item.querySelectorAll('.gem-c-reorderable-list__actions .govuk-button');
+      for (let btn of buttons) {
+        if (btn.style.display !== 'none') {
+          btn.focus();
+          break;
+        }
+      }
+    }
+
+    function updatePreviewOrder() {
+      const items = Array.from(questionsList.children);
+
+      // Remove existing formGroups from DOM
+      formGroups.forEach(fg => {
+        if (fg.parentNode === previewPanel) {
+          previewPanel.removeChild(fg);
+        }
+      });
+
+      // Re-append formGroups in the new order based on data-index
+      items.forEach((li, newIndex) => {
+        const oldIndex = parseInt(li.getAttribute('data-index'), 10);
+        if (!isNaN(oldIndex) && formGroups[oldIndex]) {
+          previewPanel.appendChild(formGroups[oldIndex]);
+          // Update data-preview-id to maintain mapping
+          li.setAttribute('data-preview-id', `preview-question-${newIndex}`);
+          formGroups[oldIndex].setAttribute('id', `preview-question-${newIndex}`);
+        }
+      });
+
+      // Reattach focus listeners as formGroups have been reordered
+      attachFocusListeners();
+    }
+
+    function removeAllHighlights() {
+      const items = Array.from(questionsList.children);
+      items.forEach((item, index) => {
+        item.classList.remove('highlight');
+        const previewId = item.getAttribute('data-preview-id');
+        unhighlightPreviewFormGroup(previewId);
+      });
+    }
+  });
+</script>
 {% endblock %}

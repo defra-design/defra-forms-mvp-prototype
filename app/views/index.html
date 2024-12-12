@@ -34,6 +34,19 @@
 
       <h1 class="govuk-heading-xl">Kit of parts</h1>
 
+      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+    We've created an index for the pages in the new form editor.
+    <a class="govuk-notification-banner__link" href="/new-editor/home.html">View the index for the new form editor</a>.
+  </p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
+
 
 
       <p class="govuk-body-l">View each page that makes up the Defra Forms Designer.</p>

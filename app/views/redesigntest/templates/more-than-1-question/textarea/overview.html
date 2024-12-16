@@ -133,7 +133,17 @@
                                 <div class="gem-c-reorderable-list__actions" style="display:flex; flex-direction: column; margin-left: 15px;">
                                   <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-up" type="button" aria-label="Move question up">Up</button>
                                   <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-down" type="button" aria-label="Move question down">Down</button>
-                                  <button class="gem-c-button govuk-button govuk-button--warning js-remove-question" type="button" aria-label="Remove question">Remove</button>
+                                  <button
+                                  class="gem-c-button govuk-button govuk-button--warning js-remove-question"
+                                  type="button"
+                                  aria-label="Remove question"
+                                  title="This will delete this item"
+                                  onclick="return confirmRemove(this)"
+                                >
+                                  Remove
+                                </button>
+
+
                                 </div>
                               </div>
                             </li>
@@ -147,6 +157,10 @@
 
                           <button id="reorder-questions-button" class="govuk-button govuk-button--inverse" type="button">
                             Re-order questions
+                          </button>
+
+                          <button class="govuk-button govuk-button--inverse preview-button" type="button">
+                            <span class="preview-icon" aria-hidden="true"></span> Preview page
                           </button>
 
                           <a href="/redesigntest/listing.html" id="back-link-button" class="govuk-link govuk-link--no-visited-state" role="button">
@@ -229,6 +243,7 @@
     opacity: 0.4;
   }
 
+
   .gem-c-reorderable-list__actions .govuk-button {
     margin-bottom: 10px;
   }
@@ -271,6 +286,25 @@
     border-left: 10px solid #ffb266;
     padding-left: 20px;
   }
+
+  /* Custom styling to add the eye icon and retain GOV.UK button styles */
+.preview-button {
+  display: inline-flex; /* Align icon and text horizontally */
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Spacing between icon and text */
+  /* padding: 10px 20px; Retain button padding */
+}
+
+/* Icon placeholder styling */
+.preview-icon {
+  display: inline-block;
+  width: 20px; /* Adjust width */
+  height: 20px; /* Adjust height */
+  background-image: url('/assets/images/preview-icon.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 </style>
 
 <script>
@@ -527,5 +561,21 @@
       });
     }
   });
+</script>
+
+<script>
+function confirmRemove(button) {
+  // Find the closest parent element that contains the question label
+  const listItem = button.closest('.gem-c-reorderable-list__item');
+  const questionLabel = listItem.querySelector('.question-label-display');
+
+  // Get the text content of the question label or use a default text
+  const questionText = questionLabel ? questionLabel.textContent.trim() : 'this item';
+
+  // Show the confirm dialog with the enhanced message
+  const message = `Are you sure you want to delete "${questionText}"?\n\nYou cannot recover deleted questions.`;
+  return confirm(message);
+}
+
 </script>
 {% endblock %}

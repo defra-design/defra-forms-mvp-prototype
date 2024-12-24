@@ -26,26 +26,12 @@ activeLinkId: "lists"
 
         <div class="x-govuk-masthead x-govuk-masthead--large">
             <div class="govuk-width-container">
-            {{ govukBackLink({
-                classes: "govuk-back-link--inverse govuk-!-margin-bottom-0",
-                text: "Back to overview",
-                href: "#"
-            }) }}
-
-            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
-                style="border-bottom:1px solid white; margin-bottom: 0;">
 
             <h1 class="govuk-heading-l--inverse x-govuk-masthead__title">
                 <span class="govuk-caption-l" style="color: white;">Manage lists</span>
                 Add and edit lists
             </h1>
 
-            <div class="govuk-button-group">
-                <a href="/redesigntest/questionnumber.html" role="button" draggable="false"
-                    class="govuk-button govuk-button--inverse" data-module="govuk-button">
-                    Add new list
-                </a>
-            </div>
         </div>
     </div>
     
@@ -58,7 +44,10 @@ activeLinkId: "lists"
      <main class="govuk-main-wrapper">
        <div class="govuk-grid-row">
          <div class="govuk-grid-column-two-thirds">
-           <h1 class="govuk-heading-xl">Manage Lists</h1>
+           <h2 class="govuk-heading-l">Your lists</h2>
+           <div class="govuk-inset-text">
+             Create and manage re-usable lists of options that you can use throughout your forms in radios, checkboxes or select inputs 
+           </div>
    
            {{ govukButton({
              text: "Create new list",

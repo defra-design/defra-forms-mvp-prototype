@@ -28,8 +28,8 @@ activeLinkId: "lists"
             <div class="govuk-width-container">
             {{ govukBackLink({
                 classes: "govuk-back-link--inverse govuk-!-margin-bottom-0",
-                text: "Back to overview",
-                href: "#"
+                text: "Back to all lists",
+                href: "list-manager"
             }) }}
 
             <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
@@ -37,15 +37,9 @@ activeLinkId: "lists"
 
             <h1 class="govuk-heading-l--inverse x-govuk-masthead__title">
                 <span class="govuk-caption-l" style="color: white;">Manage lists</span>
-                Add and edit lists
+                Add a new list
             </h1>
 
-            <div class="govuk-button-group">
-                <a href="/redesigntest/questionnumber.html" role="button" draggable="false"
-                    class="govuk-button govuk-button--inverse" data-module="govuk-button">
-                    Add new list
-                </a>
-            </div>
         </div>
     </div>
     
@@ -58,7 +52,7 @@ activeLinkId: "lists"
       <main class="govuk-main-wrapper">
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
-            <h1 class="govuk-heading-xl">Create New List</h1>
+            <h2 class="govuk-heading-l">Create a new list</h2>
     
             <form method="POST" action="/redesigntest/new-list">
               {{ govukInput({
@@ -67,12 +61,16 @@ activeLinkId: "lists"
                   classes: "govuk-label--m"
                 },
                 id: "name",
-                name: "name"
+                name: "name",
+                hint: {
+                  text: "Give your list a name"
+                }
               }) }}
     
               {{ govukTextarea({
                 name: "items",
                 id: "items",
+                rows: "10",
                 label: {
                   text: "List items",
                   classes: "govuk-label--m"

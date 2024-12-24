@@ -1,0 +1,87 @@
+{% extends "layouts/main.html" %}
+{# {% set containerClasses = "app-width-container--full-width" %} #}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Manage lists" %}
+
+{% block header %}
+
+{{ serviceHeader({
+organisationName: "Defra",
+productName: "Forms Designer",
+serviceName: "",
+containerClasses: containerClasses,
+accountName: "Chris Smith",
+homepageLink: "/",
+signOutLink: "/onboarding/sign-out-confirmation",
+navigationItems: [
+{ href: "/library.html", text: "Forms library", id: "nav-library" },
+{ href: "", text: "Lists", id: "lists" },
+{ href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
+{ href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }
+],
+activeLinkId: "lists"
+}) }}
+
+        <div class="x-govuk-masthead x-govuk-masthead--large">
+            <div class="govuk-width-container">
+            {{ govukBackLink({
+                classes: "govuk-back-link--inverse govuk-!-margin-bottom-0",
+                text: "Back to overview",
+                href: "#"
+            }) }}
+
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+                style="border-bottom:1px solid white; margin-bottom: 0;">
+
+            <h1 class="govuk-heading-l--inverse x-govuk-masthead__title">
+                <span class="govuk-caption-l" style="color: white;">Manage lists</span>
+                Add and edit lists
+            </h1>
+
+            <div class="govuk-button-group">
+                <a href="/redesigntest/questionnumber.html" role="button" draggable="false"
+                    class="govuk-button govuk-button--inverse" data-module="govuk-button">
+                    Add new list
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    {% endblock %}
+    
+    <!-- manage lists -->
+    
+   {% block content %}
+   <div class="govuk-width-container">
+     <main class="govuk-main-wrapper">
+       <div class="govuk-grid-row">
+         <div class="govuk-grid-column-two-thirds">
+           <h1 class="govuk-heading-xl">Manage Lists</h1>
+   
+           {{ govukButton({
+             text: "Create new list",
+             href: "/redesigntest/new-list",
+             classes: "govuk-button--start"
+           }) }}
+   
+           {% if tableRows and tableRows.length > 0 %}
+             {{ govukTable({
+               head: [
+                 { text: "List name" },
+                 { text: "Items" },
+                 { text: "Actions" }
+               ],
+               rows: tableRows
+             }) }}
+           {% else %}
+             <p class="govuk-body">No lists available</p>
+           {% endif %}
+         </div>
+       </div>
+     </main>
+   </div>
+   {% endblock %}
+    
+    <!-- manage lists -->

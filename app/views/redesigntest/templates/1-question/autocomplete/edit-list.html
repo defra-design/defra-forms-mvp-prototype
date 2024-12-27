@@ -80,7 +80,7 @@
 
                       <!-- Predefined Lists Dropdown -->
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-label--s" for="predefined-lists">Choose a predefined list</label>
+                        <label class="govuk-label govuk-label--s" for="predefined-lists">Use a saved list of options</label>
                         <div class="govuk-select-wrapper">
                           <select class="govuk-select" id="predefined-lists">
                             <option value="">Loading lists...</option>
@@ -93,7 +93,7 @@
 
                       <!-- Text Area for Custom Input -->
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-label--s govuk-!-margin-top-4" for="csv-input">Or<br><br>Add each option on a new line</label>
+                        <label class="govuk-label govuk-label--s govuk-!-margin-top-4" for="csv-input">Or, add each option on a new line</label>
                         <div class="govuk-hint">To optionally set an input value for each item, separate the option text and value with a colon (e.g., English:en-gb).</div>
                         <textarea id="csv-input" class="govuk-textarea" rows="10"></textarea>
                         <div id="options-entry"></div>
@@ -129,6 +129,7 @@
 </div>
 
 <script src="https://unpkg.com/accessible-autocomplete@2.0.4/dist/accessible-autocomplete.min.js"></script>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const csvInput = document.getElementById('csv-input');
@@ -187,7 +188,7 @@
       fetch('/redesigntest/api/lists')
         .then(response => response.json())
         .then(data => {
-          predefinedListsSelect.innerHTML = '<option value="">Select a predefined list</option>';
+          predefinedListsSelect.innerHTML = '<option value="">Select a saved list</option>';
           data.forEach(listName => {
             const option = document.createElement('option');
             option.value = listName;
@@ -215,7 +216,7 @@
     hintInput.addEventListener('input', updatePreview);
     usePredefinedListButton.addEventListener('click', usePredefinedList);
   
-    // Initialize predefined lists and the autocomplete
+    // Initialise predefined lists and the autocomplete
     loadPredefinedLists();
     updateAutocomplete();
     updatePreview();

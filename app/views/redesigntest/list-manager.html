@@ -57,9 +57,16 @@ activeLinkId: "lists"
    
            {% if tableRows and tableRows.length > 0 %}
              {{ govukTable({
+               attributes: {
+                 'data-module': 'moj-sortable-table'
+               },
                head: [
-                 { text: "List name" },
-                 { text: "Items" },
+                 { text: "List name", attributes: {
+                     "aria-sort": "ascending"
+                   } },
+                 { text: "Items", attributes: {
+                     "aria-sort": "none"
+                   } },
                  { text: "Actions" }
                ],
                rows: tableRows
@@ -67,6 +74,8 @@ activeLinkId: "lists"
            {% else %}
              <p class="govuk-body">No lists available</p>
            {% endif %}
+           
+           
          </div>
        </div>
      </main>

@@ -934,6 +934,12 @@ router.get('/redesigntest/edit-list/:name', require('./routes/lists.js').editGet
 router.post('/redesigntest/update-list/:name', require('./routes/lists.js').editPost)
 router.post('/redesigntest/delete-list/:name', require('./routes/lists.js').delete)
 
+// New route to get predefined lists from the lists.js file
+router.get('/redesigntest/api/lists', require('./routes/lists.js').getListsAPI);
+
+// New route to get a specific list by name
+router.get('/redesigntest/api/list/:name', require('./routes/lists.js').getListAPI);
+
 module.exports = router;
 
 

@@ -2406,3 +2406,11 @@ code.lang-md {
     box-shadow: 5px 10px #008938;
     margin-bottom: 30px;
 }
+
+/* alex extra styles */
+
+.app-table--vertical-align {
+  .govuk-table__cell {
+    vertical-align: middle;
+  }
+}

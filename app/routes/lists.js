@@ -34,12 +34,13 @@ module.exports = {
 	const tableRows = Object.entries(lists).map(([name, items]) => ([
 	  { text: name },
 	  { text: `${items.length} items` },
-	  { html: `
-		<a href="/redesigntest/view-list/${name}" class="govuk-link govuk-!-margin-right-4">Preview</a>
-		<a href="/redesigntest/edit-list/${name}" class="govuk-button govuk-button--secondary govuk-!-margin-right-2 govuk-!-margin-bottom-0">Edit</a>
-		<form method="POST" action="/redesigntest/delete-list/${name}" class="govuk-!-display-inline">
-		  <button class="govuk-button govuk-button--warning govuk-!-margin-bottom-0" onclick="return confirm('Are you sure you want to delete this list?')">Delete</button>
-		</form>` }
+	  { html: `<div class="govuk-!-margin-bottom-0 govuk-!-margin-top-0">
+		  <a href="/redesigntest/view-list/${name}" class="govuk-link govuk-!-margin-right-4 govuk-!-margin-top-1" style="display:inline-block">Preview</a>
+		  <a href="/redesigntest/edit-list/${name}" class="govuk-button govuk-button--secondary govuk-!-margin-right-1 govuk-!-margin-bottom-0 govuk-!-margin-top-0">Edit</a>
+		  <form method="POST" action="/redesigntest/delete-list/${name}" class="govuk-!-display-inline">
+			<button class="govuk-button govuk-button--warning govuk-!-margin-bottom-0 govuk-!-margin-top-0">Delete</button>
+		  </form>
+		</div>` }
 	]))
 	
 	res.render('redesigntest/list-manager', { tableRows })

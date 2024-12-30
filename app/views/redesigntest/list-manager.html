@@ -57,17 +57,29 @@ activeLinkId: "lists"
    
            {% if tableRows and tableRows.length > 0 %}
              {{ govukTable({
+               classes: "app-table--vertical-align",
                attributes: {
                  'data-module': 'moj-sortable-table'
                },
                head: [
-                 { text: "List name", attributes: {
+                 { 
+                   text: "List name", 
+                   classes: "govuk-!-padding-top-2 govuk-!-padding-bottom-2",
+                   attributes: {
                      "aria-sort": "ascending"
-                   } },
-                 { text: "Items", attributes: {
+                   }
+                 },
+                 { 
+                   text: "Items",
+                   classes: "govuk-!-padding-top-2 govuk-!-padding-bottom-2", 
+                   attributes: {
                      "aria-sort": "none"
-                   } },
-                 { text: "Actions" }
+                   }
+                 },
+                 { 
+                   text: "Actions",
+                   classes: "govuk-!-padding-top-2 govuk-!-padding-bottom-2"
+                 }
                ],
                rows: tableRows
              }) }}

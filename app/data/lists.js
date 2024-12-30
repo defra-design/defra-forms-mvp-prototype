@@ -498,5 +498,29 @@ module.exports = {
     "Worcestershire County Council",
     "Wrexham County Borough Council",
     "York City Council"
+  ],
+  "Cow breeds in the UK": [
+    "Aberdeen Angus",
+    "Ayrshire",
+    "Belted Galloway",
+    "British Friesian",
+    "Charolais",
+    "Devon (Ruby Red)",
+    "Dexter",
+    "Gloucester",
+    "Guernsey",
+    "Hereford",
+    "Highland",
+    "Holstein Friesian",
+    "Jersey",
+    "Kerry",
+    "Limousin",
+    "Longhorn",
+    "Red Poll",
+    "Shorthorn (Dairy Shorthorn)",
+    "Simmental",
+    "South Devon",
+    "Welsh Black",
+    "White Park"
   ]
 }

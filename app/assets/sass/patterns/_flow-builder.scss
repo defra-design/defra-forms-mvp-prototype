@@ -182,11 +182,11 @@
   cursor: crosshair;
   
   &.left {
-    left: 0;
+    left: -1px;
   }
   
   &.right {
-    right: -6px;
+    right: -17px;
   }
 
   &:hover {

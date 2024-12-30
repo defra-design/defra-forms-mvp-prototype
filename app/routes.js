@@ -940,6 +940,9 @@ router.get('/redesigntest/api/lists', require('./routes/lists.js').getListsAPI);
 // New route to get a specific list by name
 router.get('/redesigntest/api/list/:name', require('./routes/lists.js').getListAPI);
 
+// Preview lists
+router.get('/redesigntest/view-list/:name', require('./routes/lists.js').viewGet)
+
 module.exports = router;
 
 

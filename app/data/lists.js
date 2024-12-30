@@ -227,16 +227,6 @@ module.exports = {
     "Greater Spear-nosed Bat (Phyllostomus hastatus)",
     "Eastern Tube-nosed Bat (Nyctimene robinsoni)"
   ],
-  "Planets": [
-    "Mercury",
-    "Venus",
-    "Earth",
-    "Mars",
-    "Jupiter",
-    "Saturn",
-    "Uranus",
-    "Neptune"
-  ],
   "UK Counties": [
     "Aberdeen City",
     "Aberdeenshire",

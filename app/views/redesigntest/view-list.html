@@ -23,8 +23,7 @@
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
 	<h1 class="govuk-heading-l--inverse x-govuk-masthead__title">
-	  <span class="govuk-caption-l" style="color: white;">View list</span>
-	  {{ name }}
+	  Preview list
 	</h1>
   </div>
 </div>
@@ -40,6 +39,12 @@
 
 	<div class="govuk-grid-row">
 	  <div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-l">{{ name }}</h2>
+		{{ govukButton({
+		  text: "Edit this list",
+		  href: "/redesigntest/edit-list/" + name,
+		  classes: "govuk-button--secondary govuk-!-margin-top-6"
+		}) }}
 		<div class="govuk-body">
 		  <ol class="govuk-list govuk-list--number">
 		  {% for item in items %}
@@ -47,12 +52,6 @@
 		  {% endfor %}
 		  </ol>
 		</div>
-
-		{{ govukButton({
-		  text: "Edit this list",
-		  href: "/redesigntest/edit-list/" + name,
-		  classes: "govuk-button--secondary govuk-!-margin-top-6"
-		}) }}
 	  </div>
 	</div>
   </main>

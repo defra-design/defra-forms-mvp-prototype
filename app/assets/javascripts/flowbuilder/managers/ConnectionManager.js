@@ -55,18 +55,16 @@ export class ConnectionManager {
 	const actualZoom = parseFloat(canvas.style.transform.match(/scale\(([\d.]+)\)/)?.[1] || 1);
 	const canvasRect = canvas.getBoundingClientRect();
 	
+	// Use the node's edge for the start point
+	const startX = this.temporaryStartX / actualZoom;
+	const startY = this.temporaryStartY / actualZoom;
 	const endX = (e.clientX - canvasRect.left) / actualZoom;
 	const endY = (e.clientY - canvasRect.top) / actualZoom;
 	
-	const path = calculatePath(
-	  this.temporaryStartX / actualZoom,
-	  this.temporaryStartY / actualZoom,
-	  endX,
-	  endY
-	);
-	
+	const path = calculatePath(startX, startY, endX, endY);
 	this.temporaryLine.setAttribute('d', path);
   }
+ 
  drawConnection(fromNode, toNode, zoomLevel) {
    const fromPoint = fromNode.querySelector('.connection-point.right');
    const toPoint = toNode.querySelector('.connection-point.left');
@@ -76,13 +74,14 @@ export class ConnectionManager {
 	 const actualZoom = parseFloat(canvas.style.transform.match(/scale\(([\d.]+)\)/)?.[1] || 1);
 	 
 	 const canvasRect = this.svgLayer.getBoundingClientRect();
-	 const fromRect = fromPoint.getBoundingClientRect();
-	 const toRect = toPoint.getBoundingClientRect();
+	 const fromNodeRect = fromNode.getBoundingClientRect();
+	 const toNodeRect = toNode.getBoundingClientRect();
 	 
-	 const startX = (fromRect.left - canvasRect.left + fromRect.width) / actualZoom;
-	 const startY = (fromRect.top - canvasRect.top + fromRect.height/2) / actualZoom;
-	 const endX = (toRect.left - canvasRect.left) / actualZoom;
-	 const endY = (toRect.top - canvasRect.top + toRect.height/2) / actualZoom;
+	 // Use the actual node edges instead of connection points
+	 const startX = (fromNodeRect.left - canvasRect.left + fromNodeRect.width) / actualZoom;
+	 const startY = (fromNodeRect.top - canvasRect.top + fromNodeRect.height/2) / actualZoom;
+	 const endX = (toNodeRect.left - canvasRect.left) / actualZoom;
+	 const endY = (toNodeRect.top - canvasRect.top + toNodeRect.height/2) / actualZoom;
 	 
 	 const path = createSVGElement('path');
 	 path.classList.add('connection-line');

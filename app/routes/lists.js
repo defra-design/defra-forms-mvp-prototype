@@ -65,18 +65,28 @@ module.exports = {
   },
 
   viewGet: (req, res) => {
-	delete require.cache[require.resolve('../data/lists.js')]
-	const lists = require('../data/lists.js')
-	const list = lists[req.params.name]
-	
-	if (!list) {
-	  return res.redirect('/redesigntest/list-manager')
+	try {
+	  // Clear require cache first
+	  delete require.cache[require.resolve('../data/lists.js')]
+	  
+	  // Add a small delay to ensure file is written
+	  setTimeout(() => {
+		const lists = require('../data/lists.js')
+		const list = lists[req.params.name]
+		
+		if (!list) {
+		  return res.redirect('/redesigntest/list-manager')
+		}
+  
+		res.render('redesigntest/view-list', {
+		  name: req.params.name,
+		  items: list
+		})
+	  }, 100)
+	} catch (error) {
+	  console.error('Error loading list for preview:', error)
+	  res.redirect('/redesigntest/list-manager')
 	}
-
-	res.render('redesigntest/view-list', {
-	  name: req.params.name,
-	  items: list
-	})
   },
 
   editGet: (req, res) => {

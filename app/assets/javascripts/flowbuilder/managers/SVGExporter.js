@@ -32,13 +32,39 @@ export class SVGExporter {
   createSVGStyles() {
 	const style = createSVGElement('style');
 	style.textContent = `
-	  .node { fill: #1d70b8; stroke: #1d70b8; rx: 4; }
-	  .node-question { fill: #1d70b8; }
-	  .node-condition { fill: #003078; stroke: #1d70b8; }
-	  .node-end { fill: #1d70b8; stroke: #d4351c; stroke-width: 2px; }
-	  .node-text { font-family: "GDS Transport", arial, sans-serif; fill: white; }
-	  .node-content { font-size: 12px; fill: #fff; }
-	  .connection { stroke: #1d70b8; fill: none; stroke-width: 2; }
+	  .node { 
+		fill: white; 
+		stroke: black; 
+		stroke-width: 2px;
+		rx: 4; 
+	  }
+	  .node-question { 
+		fill: white;
+		stroke: black;
+	  }
+	  .node-condition { 
+		fill: white;
+		stroke: black;
+	  }
+	  .node-end { 
+		fill: white;
+		stroke: black;
+		stroke-width: 2px;
+	  }
+	  .node-text { 
+		font-family: "GDS Transport", arial, sans-serif; 
+		fill: black;
+		font-weight: bold;
+	  }
+	  .node-content { 
+		font-size: 12px; 
+		fill: black;
+	  }
+	  .connection { 
+		stroke: black; 
+		fill: none; 
+		stroke-width: 2;
+	  }
 	`;
 	return style;
   }

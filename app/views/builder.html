@@ -1,0 +1,82 @@
+{% extends "layouts/minimal.html" %}
+
+{% block pageTitle %}
+  Flow Builder - GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+<div class="flow-builder-app">
+  <div class="flow-builder-toolbar">
+    <div class="govuk-width-container">
+      <div class="govuk-button-group">
+        <button class="floating-btn govuk-button govuk-button--small" data-type="question" draggable="true">
+          Add Page
+        </button>
+        <button class="floating-btn govuk-button govuk-button--small govuk-button--secondary" data-type="condition" draggable="true">
+          Add Condition
+        </button>
+        <button class="floating-btn govuk-button govuk-button--small govuk-button--warning" data-type="end" draggable="true">
+          Add End
+        </button>
+      </div>
+
+      <div class="govuk-button-group">
+        <button id="zoom-out" class="govuk-button govuk-button--small govuk-button--secondary" aria-label="Zoom out">-</button>
+        <span id="zoom-level" class="govuk-body-s">100%</span>
+        <button id="zoom-in" class="govuk-button govuk-button--small govuk-button--secondary" aria-label="Zoom in">+</button>
+        <button id="zoom-reset" class="govuk-button govuk-button--small govuk-button--secondary">Reset</button>
+        <input type="range" id="zoom-slider" min="25" max="200" value="100" class="govuk-!-margin-left-2">
+      </div>
+
+      <div class="govuk-button-group">
+        <button id="export-btn" class="govuk-button govuk-button--small">
+          Export
+        </button>
+        <button id="import-btn" class="govuk-button govuk-button--small govuk-button--secondary">
+          Import
+        </button>
+        <button id="export-svg-btn" class="govuk-button govuk-button--small govuk-button--secondary">
+          Export SVG
+        </button>
+      </div>
+
+      <button class="govuk-button govuk-button--small govuk-button--secondary help-button" type="button" aria-controls="help-panel" aria-expanded="false">
+        Help
+      </button>
+    </div>
+  </div>
+
+  <div class="flow-builder-container" role="application">
+    <div id="canvas" class="flow-builder-canvas" aria-label="Flow builder canvas">
+      <!-- Nodes will be added here dynamically -->
+    </div>
+  </div>
+
+  <div id="help-panel" class="help-panel govuk-body-s" hidden>
+    <h3 class="govuk-heading-s">How to use the flow builder</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Click or drag the buttons above to add nodes to the canvas</li>
+      <li>Drag nodes to reposition them</li>
+      <li>Connect nodes by dragging from the right dot to the left dot of another node</li>
+      <li>Press spacebar and drag to pan around the canvas</li>
+      <li>Use zoom controls or mouse wheel to zoom in/out</li>
+      <li>Click the delete button on a node to remove it</li>
+      <li>Export your flow to save it and import it later</li>
+      <li>Export as SVG to create an image of your flow</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+{% block bodyEnd %}
+{{ super() }}
+<script>
+  // Help panel toggle
+  document.querySelector('.help-button').addEventListener('click', function() {
+    const helpPanel = document.getElementById('help-panel');
+    const isHidden = helpPanel.hidden;
+    helpPanel.hidden = !isHidden;
+    this.setAttribute('aria-expanded', !isHidden);
+  });
+</script>
+{% endblock %}

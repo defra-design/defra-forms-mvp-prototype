@@ -29,7 +29,7 @@
 //   }
 // }
 
-
+@import "patterns/flow-builder";
 
 .govuk-width-container {
   max-width: 1300px;
@@ -2385,4 +2385,32 @@ code.lang-md {
 }
 .govuk-card__actions > .govuk-c-button {
   margin-bottom: 0;
+}
+
+/* header stuff */
+
+.app-header--full-width-border {
+    border-bottom: 10px solid #1f70b8;
+}
+
+.x-govuk-masthead {
+    background-color: #008531 !important;
+}
+
+.preview-container {
+    display: none;
+    outline: solid 1px #008938;
+    position: sticky;
+    top: 0;
+    padding: 20px;
+    box-shadow: 5px 10px #008938;
+    margin-bottom: 30px;
+}
+
+/* alex extra styles */
+
+.app-table--vertical-align {
+  .govuk-table__cell {
+    vertical-align: middle;
+  }
 }

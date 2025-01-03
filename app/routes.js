@@ -923,21 +923,6 @@ router.get('/view-comments', async (req, res) => {
   }
 });
 
-router.post('/delete-checkbox-option', (req, res) => {
-  const index = parseInt(req.body.index, 10); // Get the index of the item to delete
-  const checkboxList = req.session.data.checkboxList || []; // Retrieve the current list from the session
-
-  // Check if the index is valid and the item exists
-  if (checkboxList[index]) {
-    checkboxList.splice(index, 1); // Remove the item at the specified index
-    req.session.data.checkboxList = checkboxList; // Update the session data
-  }
-
-  // Redirect back to the edit page after deletion
-  res.redirect('/redesigntest/templates/1-question/checkboxes/edit.html');
-});
-
-
 module.exports = router;
 
 

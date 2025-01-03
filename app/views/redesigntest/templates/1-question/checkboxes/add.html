@@ -61,9 +61,9 @@
                         <!-- Sub Navigation for Question -->
                         <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2" aria-label="Sub navigation">
                           <ul class="moj-sub-navigation__list" id="nav-list2">
-                            <li class="moj-sub-navigation__item">
+                            {# <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link"  href="/redesigntest/templates/1-question/checkboxes/edit.html">Question 10</a>
-                            </li>
+                            </li> #}
                             <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" aria-current="page" href="#overview-noquestions">Add checkbox option</a>
                             </li>
@@ -112,11 +112,14 @@
                           </div>
 
 
-                          <div class="moj-button-action">
+                          <div class="govuk-button-group">
                             {{ govukButton({
                               text: 'Save option',
                               type: 'submit'
                             }) }}
+
+                            <a class="govuk-link"    href="javascript:window.history.back()"
+                            >Cancel</a>
                             <!--<a class="govuk-button" href="edit.html">Save option</a>-->
                           </div>
                         </form>

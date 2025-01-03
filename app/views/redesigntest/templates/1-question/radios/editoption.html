@@ -94,52 +94,59 @@
 								<div class="govuk-form-group">
 								  {% set index = data.index %}
 								  {% set option = data.radioList[index] %}
-								
+
 								  <form method="POST" action="/save-radio-option" novalidate>
 									<input type="hidden" name="index" value="{{ index }}">
-								
+
 									<!-- Option Value (Label) -->
 									<div class="govuk-form-group">
-									  <label class="govuk-label" for="option-label">Option label</label>
+									  <label class="govuk-label govuk-label--m" for="option-label">Option label</label>
+									  <div class="govuk-hint">Enter an option for your list
+									</div>
 									  <input
-										class="govuk-input govuk-!-width-two-thirds"
+										class="govuk-input"
 										id="option-label"
 										name="option-label"
 										type="text"
 										value="{{ option.label }}"
 									  />
 									</div>
-								
+
 									<!-- Hint Text -->
 									<div class="govuk-form-group">
-									  <label class="govuk-label" for="option-hint">Hint text</label>
+									  <label class="govuk-label govuk-label--m" for="option-hint">Hint text</label>
 									  <span id="option-hint-hint" class="govuk-hint">
 										Provide an optional hint for this option.
 									  </span>
 									  <input
-										class="govuk-input govuk-!-width-two-thirds"
+										class="govuk-input"
 										id="option-hint"
 										name="option-hint"
 										type="text"
 										value="{{ option.hint }}"
 									  />
 									</div>
-								
+
 									<!-- Additional Value -->
 									<div class="govuk-form-group">
-									  <label class="govuk-label" for="option-value">Option value</label>
+									  <label class="govuk-label govuk-label--m" for="option-value">Option value</label>
+									  <div class="govuk-hint">You can keep this the same as the option text unless you call it something different in your backend system</div>
 									  <input
-										class="govuk-input govuk-!-width-two-thirds"
+										class="govuk-input"
 										id="option-value"
 										name="option-value"
 										type="text"
 										value="{{ option.value }}"
 									  />
 									</div>
-								
+
 									<!-- Submit Button -->
-									<div class="govuk-form-group">
+									<div class="govuk-button-group">
 									  <button type="submit" class="govuk-button">Save changes</button>
+
+									  <a class="govuk-link"    href="javascript:window.history.back()"
+									  >Cancel</a>
+
 									</div>
 								  </form>
 								</div>
@@ -220,7 +227,7 @@
 							  <!--<a class="govuk-button" href="edit.html">Save changes</a>-->
 							</div>
 						  </div>
-					
+
 					  </div>
 					</div>
 				  </div>
@@ -315,7 +322,7 @@
   }
 
   .fauxlabel:focus, .fauxlabel:active {
-	background-color: transparent!important!important;
+	background-color: transparent!important;
   }
 
   .gem-c-reorderable-list .gem-c-reorderable-list__item:hover, .gem-c-reorderable-list__item:hover .fauxlabel {

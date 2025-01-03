@@ -172,12 +172,13 @@
                                     <div class="gem-c-reorderable-list__actions">
                                       <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-up" type="button" aria-label="Move option up" style="display: none;">Up</button>
                                       <button class="gem-c-button govuk-button govuk-button--secondary js-reorderable-list-down" type="button" aria-label="Move option down" style="display: inline-block;">Down</button>
-                                      <button class="gem-c-button govuk-button govuk-button--warning js-remove-option" type="button" aria-label="Remove option">Remove</button>
+                                      <a href="#" class="govuk-link govuk-link--destructive js-remove-option" role="button" aria-label="Remove option">Remove</a>
+
 
                                     </div>
                                     <div class="edit-item">
 										<a class="govuk-link govuk-link--no-visited-state" href="editoption.html?index={{ loop.index }}">
-											Edit option
+											Edit
 											<span class="govuk-visually-hidden">
 											  option number {{ loop.index }}
 											  {% if checkbox.label %} - {{ checkbox.label }}{% endif %}
@@ -367,7 +368,7 @@
                             </div>
                             <div class="moj-button-action">
                               {{ govukButton({
-                                text: 'Continue',
+                                text: 'Save and continue',
                                 type: 'submit'
                               }) }}
                             </div>
@@ -437,7 +438,7 @@
 
         </div>
       </div>
-
+      <input type="hidden" name="optionId" value="{{ optionId }}">
     </div>
   </div>
 </div>
@@ -740,14 +741,12 @@
 		  }
 		});
 
-		// Click event listener for Remove button
-		removeButton.addEventListener('click', function(event) {
-		  if (!editMode) return; // Only allow in edit mode
-		  item.parentNode.removeChild(item);
-		  removeOptionFromPreview(index);
-		  updatePreview();
-		  // No need to set focus here as the button is removed
-		});
+// Click event listener for Remove button
+removeButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default behavior
+    const optionId = removeButton.closest('.gem-c-reorderable-list__item').dataset.index;
+    const confirmationUrl = `/redesigntest/templates/1-question/checkboxes/delete-option.html?index=${index}`;
+    window.location.href = confirmationUrl;});
 
 		// Click event listener for Edit button
 		if (editButton) {

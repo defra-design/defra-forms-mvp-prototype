@@ -923,6 +923,26 @@ router.get('/view-comments', async (req, res) => {
   }
 });
 
+// import lists stuff 
+
+router.get('/redesigntest/new-list', (req, res) => {
+  res.render('redesigntest/new-list')
+})
+router.post('/redesigntest/new-list', require('./routes/lists.js').post)
+router.get('/redesigntest/list-manager', require('./routes/lists.js').get)
+router.get('/redesigntest/edit-list/:name', require('./routes/lists.js').editGet)
+router.post('/redesigntest/update-list/:name', require('./routes/lists.js').editPost)
+router.post('/redesigntest/delete-list/:name', require('./routes/lists.js').delete)
+
+// New route to get predefined lists from the lists.js file
+router.get('/redesigntest/api/lists', require('./routes/lists.js').getListsAPI);
+
+// New route to get a specific list by name
+router.get('/redesigntest/api/list/:name', require('./routes/lists.js').getListAPI);
+
+// Preview lists
+router.get('/redesigntest/view-list/:name', require('./routes/lists.js').viewGet)
+
 module.exports = router;
 
 

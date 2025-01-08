@@ -70,41 +70,75 @@
                               <a class="moj-sub-navigation__link" href="/redesigntest/templates/1-question/settings.html">Page settings</a>
                             </li> #}
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" aria-current="page"  id="overviewquestions" href="#overview-noquestions">Overview of questions</a>
+                              <a class="moj-sub-navigation__link" aria-current="page"  id="overviewquestions" href="#overview-noquestions">Page 5</a>
                             </li>
 
                           </ul>
                         </nav>
 
-                        <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
+                       <h1 class="govuk-heading-l govuk-!-margin-top-4">Edit page 5</h1>
+                        
+                        <div class="govuk-form-group">
+                          <h1 class="govuk-label-wrapper">
+                            <label class="govuk-label govuk-label--m" for="event-name">
+                              Page heading 
+                            </label>
+                          </h1>
+                          <div id="more-detail-hint" class="govuk-hint">
+                            Leave blank if you wish to use your first question as the heading
+                          </div>
+                          <input class="govuk-input" id="event-name" name="eventName" type="text">
+                        </div>
+                        
+                        <div class="govuk-form-group">
+                          <h1 class="govuk-label-wrapper">
+                            <label class="govuk-label govuk-label--m" for="more-detail">
+                              Guidance
+                            </label>
+                          </h1>
+                          <div id="more-detail-hint" class="govuk-hint">
+                            Provide instructions to support users with this page
+                          </div>
+                          <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
+                        </div>
+                        
+                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-                        <span class="govuk-caption-l" id="page-caption">Page 5</span>
-
-                        <h2 class="govuk-heading-l" id="page-heading">Overview of questions</h2>
-
+                        <h2 class="govuk-heading-m" id="page-heading">Questions</h2>
 {#
                         <form class="form" action="/redesigntest/Multi/question-2-date/information-type" method="post"> #}
 
                            <!-- Dynamic Summary List -->
+                           
+            <style>
+            
+            .bgwhite { background: white; }
+            
+            .bgwhite dt, .bgwhite dd, .bgwhite dd:last-child {
+              padding:1rem!important;
+            }
+            
+            </style>               
+                           
             <div id="summary-container">
               <!-- The dynamic summary list will be populated here -->
 
               {{ govukSummaryList({
-                classes: "govuk-summary-list govuk-section-break govuk-section-break--visible",
+                classes: "govuk-summary-list govuk-section-break govuk-section-break--visible bgwhite",
                 rows: [
                   {
                     key: {
-                      text: "Question"
+                      html: data['questionLabelInputShortText'] or ''
                     },
                     value: {
-                      html: data['questionLabelInputShortText'] or ''
+                      text: ""
 
                     },
                     actions: {
                       items: [
                         {
                                                     href: "/redesigntest/templates/1-question/shorttext/edit.html",
-                          text: "Change",
+                          text: "Edit",
                           visuallyHiddenText: "name"
                         }
                       ]

@@ -23,8 +23,23 @@ navigationItems: [
 activeLinkId: "nav-editor"
 }) }}
 
+{%- from "moj/components/sub-navigation/macro.njk" import mojSubNavigation -%}
 
+<div class="govuk-width-container">
 
+{{ mojSubNavigation({
+  label: 'Sub navigation',
+  items: [{
+    text: 'Pages',
+    href: '/redesigntest/listing',
+    active: true
+  }, {
+    text: 'Lists',
+    href: '/redesigntest/list-manager'
+  }]
+}) }}
+
+</div>
 
         <div class="x-govuk-masthead x-govuk-masthead--large">
             <div class="govuk-width-container">

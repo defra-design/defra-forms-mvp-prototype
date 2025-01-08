@@ -32,14 +32,15 @@ module.exports = {
 	delete require.cache[require.resolve('../data/lists.js')]
 	const lists = require('../data/lists.js')
 	const tableRows = Object.entries(lists).map(([name, items]) => ([
-	  { text: name },
-	  { text: `${items.length} items` },
+	  { html: `<a href="/redesigntest/edit-list/${name}" class="govuk-!-margin-right-1 govuk-!-margin-bottom-0 govuk-!-margin-top-0">${name}</a>` },
+	  //{ text: name },
+	  //{ text: `${items.length} items` },
 	  { html: `<div class="govuk-!-margin-bottom-0 govuk-!-margin-top-0">
-		  <a href="/redesigntest/view-list/${name}" class="govuk-link govuk-!-margin-right-4 govuk-!-margin-top-1" style="display:inline-block">Preview</a>
-		  <a href="/redesigntest/edit-list/${name}" class="govuk-button govuk-button--secondary govuk-!-margin-right-1 govuk-!-margin-bottom-0 govuk-!-margin-top-0">Edit</a>
+		  <!--<a href="/redesigntest/view-list/${name}" class="govuk-link govuk-!-margin-right-4 govuk-!-margin-top-1" style="display:inline-block">Preview</a>-->
+		  <!--<a href="/redesigntest/edit-list/${name}" class="govuk-button govuk-button--secondary govuk-!-margin-right-1 govuk-!-margin-bottom-0 govuk-!-margin-top-0">Edit</a>
 		  <form method="POST" action="/redesigntest/delete-list/${name}" class="govuk-!-display-inline">
 			<button class="govuk-button govuk-button--warning govuk-!-margin-bottom-0 govuk-!-margin-top-0">Delete</button>
-		  </form>
+		  </form>-->
 		</div>` }
 	]))
 	

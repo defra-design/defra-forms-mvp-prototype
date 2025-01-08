@@ -17,12 +17,29 @@ homepageLink: "/",
 signOutLink: "/onboarding/sign-out-confirmation",
 navigationItems: [
 { href: "/library.html", text: "Forms library", id: "nav-library" },
-{ href: "", text: "Lists", id: "lists" },
 { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
 { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }
 ],
-activeLinkId: "lists"
+activeLinkId: "nav-editor"
 }) }}
+
+{%- from "moj/components/sub-navigation/macro.njk" import mojSubNavigation -%}
+
+<div class="govuk-width-container">
+
+{{ mojSubNavigation({
+  label: 'Sub navigation',
+  items: [{
+    text: 'Pages',
+    href: '/redesigntest/listing'
+  }, {
+    text: 'Lists',
+    href: '/redesigntest/list-manager',
+    active: true
+  }]
+}) }}
+
+</div>
 
         <div class="x-govuk-masthead x-govuk-masthead--large">
             <div class="govuk-width-container">
@@ -57,7 +74,7 @@ activeLinkId: "lists"
             <div class="govuk-inset-text">
                 Each item will become an option in multiple choice question types
             </div>
-    
+                
             <form method="POST" action="/redesigntest/new-list">
               {{ govukInput({
                 label: {
@@ -80,7 +97,7 @@ activeLinkId: "lists"
                   classes: "govuk-label--m"
                 },
                 hint: {
-                  text: "Enter each item on a new line"
+                  text: "Enter each item on a new line. To optionally set an input value for each item, separate the option text and value with a colon (e.g English:en-gb)"
                 }
               }) }}
     

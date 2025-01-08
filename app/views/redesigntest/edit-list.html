@@ -17,12 +17,29 @@ homepageLink: "/",
 signOutLink: "/onboarding/sign-out-confirmation",
 navigationItems: [
 { href: "/library.html", text: "Forms library", id: "nav-library" },
-{ href: "", text: "Lists", id: "lists" },
 { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
 { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }
 ],
-activeLinkId: "lists"
+activeLinkId: "nav-editor"
 }) }}
+
+{%- from "moj/components/sub-navigation/macro.njk" import mojSubNavigation -%}
+
+<div class="govuk-width-container">
+
+{{ mojSubNavigation({
+  label: 'Sub navigation',
+  items: [{
+    text: 'Pages',
+    href: '/redesigntest/listing'
+  }, {
+    text: 'Lists',
+    href: '/redesigntest/list-manager',
+    active: true
+  }]
+}) }}
+
+</div>
 
         <div class="x-govuk-masthead x-govuk-masthead--large">
             <div class="govuk-width-container">
@@ -79,6 +96,9 @@ activeLinkId: "lists"
                classes: "govuk-button--secondary"
              }) }}
            </form>
+           <form method="POST" action="/redesigntest/delete-list/{{ name }}" class="govuk-!-display-inline">
+              <button class="govuk-button govuk-button--warning govuk-!-margin-bottom-0 govuk-!-margin-top-0">Delete</button>
+             </form>
          </div>
        </div>
      </main>

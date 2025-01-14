@@ -1,0 +1,233 @@
+{% extends "layouts/main.html" %}
+{# {% set containerClasses = "app-width-container--full-width" %} #}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Add and edit your pages - Apply for a county parish holding number in England" %}
+
+{% block header %}
+
+{{ serviceHeader({
+organisationName: "Defra",
+productName: "Forms Designer",
+serviceName: "",
+containerClasses: containerClasses,
+accountName: "Chris Smith",
+homepageLink: "/",
+signOutLink: "/onboarding/sign-out-confirmation",
+navigationItems: [
+{ href: "/roadmap.html", id: "roadmap", text: "Roadmap" }],
+activeLinkId: "roadmap"
+}) }}
+
+</div>
+
+        <div class="x-govuk-masthead x-govuk-masthead--large">
+            <div class="govuk-width-container">
+            {# {{ govukBackLink({
+                classes: "govuk-back-link--inverse govuk-!-margin-bottom-0",
+                text: "Back to overview",
+                href: "#"
+            }) }} #}
+
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+                style="border-bottom:1px solid white; margin-bottom: 0;">
+
+            <h1 class="govuk-heading-l--inverse x-govuk-masthead__title">
+                <span class="govuk-caption-l" style="color: white;">Digital Express Toolkit</span>
+                Feature roadmap
+            </h1>
+
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <ol class="hmrc-timeline">
+        <li class="hmrc-timeline__event">
+          <h2 class="hmrc-timeline__event-title">First release</h2>
+          <time class="hmrc-timeline__event-meta" datetime="2020-07-15">By April 2025</time>
+          <div class="hmrc-timeline__event-content">
+            {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+            {{ govukSummaryList({
+              rows: [
+              {
+                key: {
+                  text: "Accessible by default"
+                },
+                value: {
+                  text: "Navigate and build forms entirely by keyboard, receive clear screen reader announcements for key actions, and have an intuitive experience even when JavaScript is disabled."
+                }
+              },
+
+              {
+                  key: {
+                    text: "Dynamic update and preview synchronisation"
+                  },
+                  value: {
+                    text: "See changes in real time as you build your form, ensuring immediate feedback and improved confidence as you are editing."
+                  }
+                },
+                {
+                  key: {
+                    text: "Visual feedback"
+                  },
+                  value: {
+                    text: "Get immediate visual cues, such as highlights to help you know what you are editing."
+                  }
+                },
+                {
+                  key: {
+                    text: "Increased control over error messages"
+                  },
+                  value: {
+                    text: "Get more control over the error messages shown to users supplying a short description for questions."
+                  }
+                },
+                {
+                  key: {
+                    text: "Re-ordering pages"
+                  },
+                  value: {
+                    text: "Change the order of the pages in your form to restructure the flow of your form quickly and intuitively."
+                  }
+                },
+                {
+                  key: {
+                    text: "File upload"
+                  },
+                  value: {
+                    text: "Enable attachments (documents, images, or other file types) with adjustable size and format restrictions."
+                  }
+                },
+                {
+                  key: {
+                    text: "Re-ordering questions"
+                  },
+                  value: {
+                    text: "Rearrange questions within a page to refine the form’s logic and flow."
+                  }
+                },
+                {
+                  key: {
+                    text: "Add another"
+                  },
+                  value: {
+                    text: "Allows users to add multiple repeats of a question or item group, such as extra addresses or contact details."
+                  }
+                }
+              ]
+            }) }}
+
+          </div>
+        </li>
+        <li class="hmrc-timeline__event">
+          <h2 class="hmrc-timeline__event-title">Next</h2>
+          <time class="hmrc-timeline__event-meta" datetime="2020-07-14">Date to be determined</time>
+          <div class="hmrc-timeline__event-content">
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Conditional pages"
+                  },
+                  value: {
+                    text: "Moving away from graph based routing and conditional links and towards a simpler, linear routing system where conditions are set at the page level."
+                  }
+                },
+                {
+                  key: {
+                    text: "Page grouping/sections"
+                  },
+                  value: {
+                    text: "Make it clear that a page is part of a larger section or group of pages."
+                  }
+                }
+              ]
+            }) }}
+          </div>
+        </li>
+        <li class="hmrc-timeline__event">
+          <h2 class="hmrc-timeline__event-title">Later</h2>
+          <time class="hmrc-timeline__event-meta" datetime="2020-07-14">Date to be determined</time>
+          <div class="hmrc-timeline__event-content">
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Visualising page routes"
+                  },
+                  value: {
+                    text: "Provide a clearer visual distinction between page with and without page conditions."
+                  }
+                }
+              ]
+            }) }}
+          </div>
+        </li>
+      </ol>
+
+      {# <ol class="hmrc-timeline">
+        <!-- In Progress (Q1 2025) -->
+        <li class="hmrc-timeline__event">
+          <h2 class="hmrc-timeline__event-title govuk-heading-m">In Progress</h2>
+          <time class="hmrc-timeline__event-meta govuk-body" datetime="2025-01">Q1 2025</time>
+          <div class="hmrc-timeline__event-content">
+            <ul class="govuk-list govuk-list--bullet">
+              <li>Feature A – Initial rollout to closed beta users</li>
+              <li>Feature B – Improved performance and stability</li>
+              <li>Accessibility review and fixes</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Coming Soon (Q2 2025) -->
+        <li class="hmrc-timeline__event">
+          <h2 class="hmrc-timeline__event-title govuk-heading-m">Coming Soon</h2>
+          <time class="hmrc-timeline__event-meta govuk-body" datetime="2025-04">Q2 2025</time>
+          <div class="hmrc-timeline__event-content">
+            <ul class="govuk-list govuk-list--bullet">
+              <li>Feature C – Public beta release</li>
+              <li>Feature D – Integration with external data source</li>
+              <li>User research and feedback sessions</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Future Plans (Late 2025) -->
+        <li class="hmrc-timeline__event">
+          <h2 class="hmrc-timeline__event-title govuk-heading-m">Future Plans</h2>
+          <time class="hmrc-timeline__event-meta govuk-body" datetime="2025-09">Late 2025</time>
+          <div class="hmrc-timeline__event-content">
+            <ul class="govuk-list govuk-list--bullet">
+              <li>Feature E – Expanded functionality for advanced users</li>
+              <li>Feature F – Additional language support</li>
+              <li>Exploring open data and developer APIs</li>
+            </ul>
+          </div>
+        </li>
+      </ol> #}
+
+<style>
+.hmrc-timeline {
+  border-left: 5px solid #008938;
+
+}
+
+.hmrc-timeline__event-title::before
+{
+  background-color: #008938;
+}
+</style>
+
+
+{% endblock %}

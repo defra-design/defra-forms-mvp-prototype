@@ -63,12 +63,9 @@
     margin-right: auto;
     margin-left: auto;
   }
-
 }
 
-
 // ------
-
 
 $defra-brand-colour: govuk-organisation-colour(
   department-for-environment-food-rural-affairs
@@ -261,7 +258,6 @@ $defra-link-colour-hover: govuk-shade($defra-link-colour, 50%);
     margin: 0 0 0 govuk-spacing(2);
   }
 }
-
 
 .login-nav {
   font-family: "GDS Transport", arial, sans-serif;
@@ -1337,7 +1333,7 @@ code.lang-md {
   a:link,
   a:visited {
     background-color: inherit;
-    color: $govuk-link-colour;
+    color: #008531;
     display: block;
     text-decoration: none;
 
@@ -1355,7 +1351,7 @@ code.lang-md {
   }
 
   a:hover {
-    color: $govuk-link-hover-colour;
+    color: #006c2c; /* Darker green for hover state */
   }
 
   a:focus {
@@ -1369,20 +1365,20 @@ code.lang-md {
 .moj-side-navigation__item--active {
   a:link,
   a:visited {
-    border-color: $govuk-link-colour;
-    color: $govuk-link-colour;
+    border-color: #008531;
+    color: #008531;
     font-weight: bold;
   }
 
   a:hover {
-    color: $govuk-link-hover-colour;
-    border-color: $govuk-link-hover-colour;
+    color: #006c2c; /* Darker shade of #008531 for hover */
+    border-color: #006c2c; /* Match hover text color */
   }
 
   a:focus {
-    color: $govuk-focus-text-colour;
-    background-color: $govuk-focus-colour;
-    border-color: $govuk-focus-text-colour;
+    color: #ffffff; /* White text for contrast on focus */
+    background-color: #004a1d; /* Darkest shade for focus background */
+    border-color: #ffffff; /* White border for focus */
   }
 
   @include govuk-media-query($from: tablet) {
@@ -1392,8 +1388,8 @@ code.lang-md {
     }
 
     a:focus {
-      color: $govuk-focus-text-colour;
-      background-color: $govuk-focus-colour;
+      color: #ffffff; /* White text for contrast on focus */
+      background-color: #004a1d; /* Dark green for focus background */
     }
   }
 }
@@ -2233,7 +2229,6 @@ code.lang-md {
   /* Ensure content is above the #before-content */
 }
 
-
 .govuk-card__flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -2291,11 +2286,15 @@ code.lang-md {
   background-color: #008938;
 }
 
-.govuk-card--selectable:hover > .govuk-card__content > h3, .govuk-card--selectable:hover > .govuk-card__content > p, .govuk-card--selectable:hover > .govuk-card__content > h3 > a, .govuk-card--selectable:hover > .govuk-card__actions > ul > li > a {
+.govuk-card--selectable:hover > .govuk-card__content > h3,
+.govuk-card--selectable:hover > .govuk-card__content > p,
+.govuk-card--selectable:hover > .govuk-card__content > h3 > a,
+.govuk-card--selectable:hover > .govuk-card__actions > ul > li > a {
   color: #fff !important;
 }
 
-.govuk-card--selectable:hover > .govuk-card__content > h3 > a:hover, .govuk-card--selectable:hover > .govuk-card__actions > ul > li > a:hover {
+.govuk-card--selectable:hover > .govuk-card__content > h3 > a:hover,
+.govuk-card--selectable:hover > .govuk-card__actions > ul > li > a:hover {
   color: #9eceea !important;
 }
 
@@ -2390,21 +2389,21 @@ code.lang-md {
 /* header stuff */
 
 .app-header--full-width-border {
-    border-bottom: 10px solid #1f70b8;
+  border-bottom: 10px solid #1f70b8;
 }
 
 .x-govuk-masthead {
-    background-color: #008531 !important;
+  background-color: #008531 !important;
 }
 
 .preview-container {
-    display: none;
-    outline: solid 1px #008938;
-    position: sticky;
-    top: 0;
-    padding: 20px;
-    box-shadow: 5px 10px #008938;
-    margin-bottom: 30px;
+  display: none;
+  outline: solid 1px #008938;
+  position: sticky;
+  top: 0;
+  padding: 20px;
+  box-shadow: 5px 10px #008938;
+  margin-bottom: 30px;
 }
 
 /* alex extra styles */
@@ -2415,10 +2414,44 @@ code.lang-md {
   }
 }
 
-.moj-sub-navigation__link[aria-current=page]:before {
-background-color: #008938;
+.moj-sub-navigation__link[aria-current="page"]:before {
+  background-color: #008938;
 }
 
-.moj-sub-navigation__link:link, .moj-sub-navigation__link:visited {
-    color: black;
+.moj-sub-navigation__link:link,
+.moj-sub-navigation__link:visited {
+  color: black;
+}
+
+.preview-container {
+  outline: solid 1px #008938;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  padding: 20px;
+  box-shadow: 5px 10px #008938;
+}
+
+.preview-container__header {
+  background-color: #cce2d8;
+}
+
+.preview-container__title {
+  margin-bottom: 0;
+  color: #005a30;
+  padding: 2px 8px 3px;
+  text-align: center;
+}
+
+.preview-container__content {
+  margin-top: 60px;
+}
+
+.preview-container__link {
+  margin-bottom: 30px;
+  border-bottom: #008938 1px;
+}
+
+.preview-container__skip-link {
+  margin-bottom: 30px !important;
 }

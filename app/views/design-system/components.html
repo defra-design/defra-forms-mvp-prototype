@@ -1,0 +1,127 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Components – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Kit of parts - Defra Forms Designer" %}
+
+{% block header %}
+{{ serviceHeader({
+organisationName: "Defra",
+productName: "Forms Designer",
+serviceName: "Design system",
+containerClasses: containerClasses,
+homepageLink: "/design-system/home.html",
+signOutLink: "/onboarding/sign-out-confirmation",
+navigationItems: [
+{ href: "/design-system/components.html", text: "Components", id: "components" },
+{ href: "/design-system/user-journeys/home.html", text: "User journeys", id: "user-journeys" } ],
+activeLinkId: "components"
+}) }}
+
+<div class="x-govuk-masthead x-govuk-masthead--large">
+  <div class="govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full-from-desktop">
+        <h1 class="x-govuk-masthead__title">
+          Component parts for the form editor
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-width-container">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+
+      {%- from "moj/components/side-navigation/macro.njk" import
+      mojSideNavigation -%}
+
+      {%- from "moj/components/side-navigation/macro.njk" import mojSideNavigation -%}
+      {{ mojSideNavigation({
+      label: 'Side navigation',
+      sections: [
+      {
+      heading: { text: 'Question editor' },
+      items: [
+      { text: 'Configuration panels', href: '/design-system/editor/configuration-panel.html', active: false },
+      { text: 'Guided input', href: '/design-system/editor/guided-input.html', active: false },
+      { text: 'Preview panels', href: '/design-system/editor/preview-panel.html', active: false },
+      { text: 'Previews in a new tab', href: '/design-system/editor/previews-in-new-tab.html', active: false },
+      { text: 'Question borders', href: '/design-system/editor/border.html', active: false }
+      ]
+      },
+      {
+      heading: { text: 'Information types' },
+      items: [
+      { text: 'Answer limits', href: '/design-system/information-type/answer-limits.html', active: false },
+      { text: 'Configuration for each type', href: '/design-system/information-type/configuration-types.html',
+      active: false }
+      ]
+      },
+      {
+      heading: { text: 'Re-ordering' },
+      items: [
+      { text: 'Lists', href: '/design-system/reordering/lists.html', active: false },
+      { text: 'Pages', href: '/design-system/reordering/pages.html', active: false },
+      { text: 'Questions', href: '/design-system/reordering/questions.html', active: false }
+      ]
+      },
+      {
+      heading: { text: 'Deletion' },
+      items: [
+      { text: 'Pages', href: '/design-system/deletion/pages.html', active: false }
+      ]
+      },
+      {
+      heading: { text: 'Header' },
+      items: [
+      { text: 'Mastheads', href: '/design-system/header/masthead.html', active: false }
+      ]
+      }
+      ]
+      }) }}
+    </div>
+
+    <!-- Masthead (two-thirds) -->
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Components</h1>
+      <p class="govuk-body"></p>
+
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<style>
+  .moj-side-navigation__toggle {
+    background: none;
+    border: none;
+    color: #005ea5;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: auto;
+  }
+
+  .moj-side-navigation__toggle:hover {
+    text-decoration: underline;
+  }
+</style>
+
+
+{% endblock %}

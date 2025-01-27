@@ -42,18 +42,53 @@ activeLinkId: "components"
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-quarter">
-      {% from "side-navigation/macro.njk" import dwpSideNavigation %}
-
-      <h2 class="govuk-heading-m">Question editor</h2>
-      {{
-      dwpSideNavigation({
-      pageId: "side-navigation-question-editor",
-      selectedItem: "",
-      items: [
-      { text: "Configuration panels", href: "/design-system/editor/configuration-panel.html", id: "sn-config-panels" }
-      ]
-      })
-      }}
+      <nav class="dwp-side-navigation" aria-label="Side" role="navigation">
+        <ul class="dwp-side-navigation__list">
+          <li class="dwp-side-navigation__item">
+            <a id="sn-item-1" href="#sn-item-1" class="dwp-side-navigation__link">
+              Item 1
+            </a>
+          </li>
+          <li class="dwp-side-navigation__item dwp-side-navigation__item--selected">
+            <a id="sn-item-2" href="#sn-item-2" class="dwp-side-navigation__link dwp-side-navigation__link--selected"
+              aria-current="true">
+              Item 2
+            </a>
+            <ul class="dwp-side-navigation__list dwp-side-navigation__list--sub-item">
+              <li class="dwp-side-navigation__sub-item">
+                <a id="s-sn-item-1" href="#s-sn-item-1" class="dwp-side-navigation__link">
+                  subitem 1
+                </a>
+              </li>
+              <li class="dwp-side-navigation__sub-item">
+                <a id="s-sn-item-2" href="#s-sn-item-2" class="dwp-side-navigation__link">
+                  subitem 2
+                </a>
+              </li>
+              <li class="dwp-side-navigation__sub-item">
+                <a id="s-sn-item-3" href="#s-sn-item-3" class="dwp-side-navigation__link">
+                  subitem 3
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="dwp-side-navigation__item">
+            <a id="sn-item-3" href="#sn-item-3" class="dwp-side-navigation__link">
+              Item 3
+            </a>
+          </li>
+          <li class="dwp-side-navigation__item">
+            <a id="sn-item-4" href="#sn-item-4" class="dwp-side-navigation__link">
+              Item 4
+            </a>
+          </li>
+          <li class="dwp-side-navigation__item">
+            <a id="sn-item-5" href="#sn-item-5" class="dwp-side-navigation__link">
+              Item 5
+            </a>
+          </li>
+        </ul>
+      </nav>
 
 
     </div>

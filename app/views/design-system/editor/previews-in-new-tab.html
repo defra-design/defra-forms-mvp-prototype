@@ -4,8 +4,6 @@
 Previews in new tab – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-{% extends "layouts/main.html" %}
-
 {% from "components/service-header/macro.njk" import serviceHeader %}
 
 {% set pageName = "Kit of parts - Defra Forms Designer" %}
@@ -64,18 +62,22 @@ activeLinkId: "components"
                 <h2 class="govuk-caption-m govuk-!-font-weight-bold">Question editor</h2>
                 {{
                 dwpSideNavigation({
+                pageId: "side-navigation-question-editor",
                 selectedItem: "/design-system/editor/previews-in-new-tab.html",
                 items: [
-
+                { text: "Configuration panels", href: "/design-system/editor/configuration-panel.html", id:
+                "sn-config-panels" },
+                { text: "Guided input", href: "/design-system/editor/guided-input.html", id: "sn-guided-input" },
+                { text: "Preview panels", href: "/design-system/editor/preview-panel.html", id: "sn-preview-panels" },
                 { text: "Previews in a new tab", href: "/design-system/editor/previews-in-new-tab.html", id:
                 "sn-previews-new-tab"
-                }
-
+                },
+                { text: "Question borders", href: "/design-system/editor/border.html", id: "sn-question-borders" }
                 ]
                 })
                 }}
 
-                {# <h2 class="govuk-caption-m govuk-!-font-weight-bold">Information types</h2>
+                <h2 class="govuk-caption-m govuk-!-font-weight-bold">Information types</h2>
                 {{
                 dwpSideNavigation({
                 pageId: "side-navigation-information-types",
@@ -119,7 +121,7 @@ activeLinkId: "components"
                 { text: "Mastheads", href: "/design-system/header/masthead.html", id: "sn-mastheads" }
                 ]
                 })
-                }} #}
+                }}
             </nav>
         </div>
 

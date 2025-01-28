@@ -15,7 +15,7 @@ organisationName: "Defra",
 productName: "Forms Designer",
 serviceName: "Design system",
 containerClasses: containerClasses,
-homepageLink: "/design-system/home.html",
+homepageLink: "/design-system/components.html",
 signOutLink: "/onboarding/sign-out-confirmation",
 navigationItems: [
 { href: "/design-system/components.html", text: "Components", id: "components" },
@@ -43,71 +43,74 @@ activeLinkId: "components"
     <!-- Side Navigation -->
     <div class="govuk-grid-column-one-quarter">
       {% from "side-navigation/macro.njk" import dwpSideNavigation %}
+      <nav>
+        <h2 class="govuk-caption-m govuk-!-font-weight-bold">Question editor</h2>
+        {{
+        dwpSideNavigation({
+        pageId: "side-navigation-question-editor",
+        selectedItem: "",
+        items: [
+        { text: "Configuration panels", href: "/design-system/editor/configuration-panel.html", id: "sn-config-panels"
+        },
+        { text: "Guided input", href: "/design-system/editor/guided-input.html", id: "sn-guided-input" },
+        { text: "Preview panels", href: "/design-system/editor/preview-panel.html", id: "sn-preview-panels" },
+        { text: "Previews in a new tab", href: "/design-system/editor/previews-in-new-tab.html", id:
+        "sn-previews-new-tab"
+        },
+        { text: "Question borders", href: "/design-system/editor/border.html", id: "sn-question-borders" }
+        ]
+        })
+        }}
 
-      <h2 class="govuk-heading-m">Question editor</h2>
-      {{
-      dwpSideNavigation({
-      pageId: "side-navigation-question-editor",
-      selectedItem: "",
-      items: [
-      { text: "Configuration panels", href: "/design-system/editor/configuration-panel.html", id: "sn-config-panels" },
-      { text: "Guided input", href: "/design-system/editor/guided-input.html", id: "sn-guided-input" },
-      { text: "Preview panels", href: "/design-system/editor/preview-panel.html", id: "sn-preview-panels" },
-      { text: "Previews in a new tab", href: "/design-system/editor/previews-in-new-tab.html", id: "sn-previews-new-tab"
-      },
-      { text: "Question borders", href: "/design-system/editor/border.html", id: "sn-question-borders" }
-      ]
-      })
-      }}
+        <h2 class="govuk-caption-m govuk-!-font-weight-bold">Information types</h2>
+        {{
+        dwpSideNavigation({
+        pageId: "side-navigation-information-types",
+        selectedItem: "",
+        items: [
+        { text: "Answer limits", href: "/design-system/information-type/answer-limits.html", id: "sn-answer-limits" },
+        { text: "Configuration for each type", href: "/design-system/information-type/configuration-types.html", id:
+        "sn-configuration-types" }
+        ]
+        })
+        }}
 
-      <h2 class="govuk-heading-m">Information types</h2>
-      {{
-      dwpSideNavigation({
-      pageId: "side-navigation-information-types",
-      selectedItem: "",
-      items: [
-      { text: "Answer limits", href: "/design-system/information-type/answer-limits.html", id: "sn-answer-limits" },
-      { text: "Configuration for each type", href: "/design-system/information-type/configuration-types.html", id:
-      "sn-configuration-types" }
-      ]
-      })
-      }}
+        <h2 class="govuk-caption-m govuk-!-font-weight-bold">Re-ordering</h2>
+        {{
+        dwpSideNavigation({
+        pageId: "side-navigation-reordering",
+        selectedItem: "",
+        items: [
+        { text: "Lists", href: "/design-system/reordering/lists.html", id: "sn-lists" },
+        { text: "Pages", href: "/design-system/reordering/pages.html", id: "sn-pages" },
+        { text: "Questions", href: "/design-system/reordering/questions.html", id: "sn-questions" }
+        ]
+        })
+        }}
 
-      <h2 class="govuk-heading-m">Re-ordering</h2>
-      {{
-      dwpSideNavigation({
-      pageId: "side-navigation-reordering",
-      selectedItem: "",
-      items: [
-      { text: "Lists", href: "/design-system/reordering/lists.html", id: "sn-lists" },
-      { text: "Pages", href: "/design-system/reordering/pages.html", id: "sn-pages" },
-      { text: "Questions", href: "/design-system/reordering/questions.html", id: "sn-questions" }
-      ]
-      })
-      }}
+        <h2 class="govuk-caption-m govuk-!-font-weight-bold">Deletion</h2>
+        {{
+        dwpSideNavigation({
+        pageId: "side-navigation-deletion",
+        selectedItem: "",
+        items: [
+        { text: "Pages", href: "/design-system/deletion/pages.html", id: "sn-deletion-pages" }
+        ]
+        })
+        }}
 
-      <h2 class="govuk-heading-m">Deletion</h2>
-      {{
-      dwpSideNavigation({
-      pageId: "side-navigation-deletion",
-      selectedItem: "",
-      items: [
-      { text: "Pages", href: "/design-system/deletion/pages.html", id: "sn-deletion-pages" }
-      ]
-      })
-      }}
-
-      <h2 class="govuk-heading-m">Header</h2>
-      {{
-      dwpSideNavigation({
-      pageId: "side-navigation-header",
-      selectedItem: "",
-      items: [
-      { text: "Mastheads", href: "/design-system/header/masthead.html", id: "sn-mastheads" }
-      ]
-      })
-      }}
+        <h2 class="govuk-caption-m govuk-!-font-weight-bold">Header</h2>
+        {{
+        dwpSideNavigation({
+        pageId: "side-navigation-header",
+        selectedItem: "",
+        items: [
+        { text: "Mastheads", href: "/design-system/header/masthead.html", id: "sn-mastheads" }
+        ]
+        })
+        }}
     </div>
+    </nav>
 
     <!-- Main Content -->
     <div class="govuk-grid-column-two-thirds">

@@ -8,69 +8,66 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% block footer %}
 {{ govukFooter({
-  containerClasses: containerClasses,
-  navigation: [
+containerClasses: containerClasses,
+navigation: [
 
-    {
-      title: "Quick links",
-      width: "full",
-      items: [
-        {
-          href: "/index.html",
-          text: "Kit of parts"
-        },
-        {
-          href: "/new-editor/home.html.html",
-          text: "Index pages for the new editor"
-        },
-        {
-          href: "dictionary.html",
-          text: "Dictionary"
-        },
-        {
-          href: "https://github.com/defra-design/defra-forms-mvp-prototype",
-          text: "Github repo for prototype"
-        },
-        {
-          href: "/manage-prototype",
-          text: "Manage prototype"
-        },
-        {
-          href: "/manage-prototype/clear-data",
-          text: "Clear data"
-        }
-      ]
-    }
-  ]
+{
+title: "Quick links",
+width: "full",
+items: [
+{
+href: "/index.html",
+text: "Kit of parts"
+},
+
+{
+href: "dictionary.html",
+text: "Dictionary"
+},
+{
+href: "https://github.com/defra-design/defra-forms-mvp-prototype",
+text: "Github repo for prototype"
+},
+{
+href: "/manage-prototype",
+text: "Manage prototype"
+},
+{
+href: "/manage-prototype/clear-data",
+text: "Clear data"
+}
+]
+}
+]
 }) }}
 
 {% endblock %}
 
 {# {% block footer %}
-  {{ govukFooter({
-    meta: {
-      items: [{
-        href: "/cph-overview/draft.html",
-        text: "Kit of parts"
-      }, {
-        href: "dictionary.html",
-        text: "Dictionary"
-      }, {
-        href: "/cph-overview/guidance-policies",
-        text: "Restart guidance and policies"
-      }, {
-        href: "/manage-prototype/clear-data",
-        text: "Clear data"
-      }],
-      visuallyHiddenTitle: "Footer links"
-    }
-  }) }}
+{{ govukFooter({
+meta: {
+items: [{
+href: "/cph-overview/draft.html",
+text: "Kit of parts"
+}, {
+href: "dictionary.html",
+text: "Dictionary"
+}, {
+href: "/cph-overview/guidance-policies",
+text: "Restart guidance and policies"
+}, {
+href: "/manage-prototype/clear-data",
+text: "Clear data"
+}],
+visuallyHiddenTitle: "Footer links"
+}
+}) }}
 {% endblock %} #}
 
 {% block scripts %}
-  {{ super() }}
-  <script src="/public/javascripts/application.js"></script>
-  <script src="/public/javascripts/screenwidth.js"></script>
-  <script src="/public/javascripts/comments.js"></script>
-  <script src="/public/javascripts/help.js"></script>
+{{ super() }}
+<script src="/public/javascripts/application.js"></script>
+<script src="/public/javascripts/screenwidth.js"></script>
+<script src="/public/javascripts/comments.js"></script>
+<script src="/public/javascripts/help.js"></script>
 {% endblock %}

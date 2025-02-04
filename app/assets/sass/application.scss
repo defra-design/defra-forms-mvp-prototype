@@ -2338,3 +2338,39 @@ code.lang-md {
 .preview-container__skip-link {
   margin-bottom: 30px !important;
 }
+
+.dwp-side-navigation__item--selected {
+  margin: 10px 0 5px -14px;
+  padding: 5px 0 5px 10px;
+  border-left: 4px solid #008531;
+  background-color: #f3f2f1;
+}
+@media (max-width: 40.0525em) {
+  .dwp-side-navigation__item--selected {
+    margin-left: 0;
+    padding: 0 0 0 10px;
+  }
+}
+.dwp-side-navigation__item :last-child {
+  margin-bottom: 0;
+}
+.dwp-side-navigation__link {
+  font-size: 16px;
+  text-decoration: none;
+  color: #008531 !important;
+}
+.dwp-side-navigation__link:link {
+  color: #008531 !important;
+}
+.dwp-side-navigation__link:visited {
+  color: #008531 !important;
+}
+.dwp-side-navigation__link:hover {
+  color: #015f23 !important;
+}
+.dwp-side-navigation__link:active {
+  color: #0b0c0c;
+}
+.dwp-side-navigation__link:focus {
+  color: #0b0c0c;
+}

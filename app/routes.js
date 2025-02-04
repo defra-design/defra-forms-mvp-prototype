@@ -213,6 +213,8 @@ router.post("/information-type-answer1", function (req, res) {
         res.redirect("/redesigntest/templates/1-question/shorttext/edit.html");
       } else if (writtenType === "long-answer") {
         res.redirect("/redesigntest/templates/1-question/textarea/edit.html");
+      } else if (writtenType === "short-answer-nf") {
+        res.redirect("/redesigntest/templates/1-question/shorttext/edit-nf.html");
       } else if (writtenType === "numbers") {
         res.redirect("/redesigntest/templates/1-question/numbers/edit.html");
       } else {
@@ -334,6 +336,9 @@ router.post("/question-number", function (request, response) {
     case "once":
       response.redirect("/redesigntest/templates/1-question/information-type.html");
       break;
+    case "oncenf":
+    response.redirect("/redesigntest/templates/1-question/information-type-nf.html");
+    break;
     case "morethan1":
       response.redirect("/redesigntest/templates/more-than-1-question/settings.html");
       break;

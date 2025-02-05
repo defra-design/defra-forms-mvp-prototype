@@ -1,456 +1,355 @@
 {% extends "layouts/main.html" %}
 
+{% block pageTitle %}
+Components – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
 {% from "components/service-header/macro.njk" import serviceHeader %}
+{% from "side-navigation/macro.njk" import dwpSideNavigation %}
 
 {% set pageName = "Kit of parts - Defra Forms Designer" %}
 
 {% block header %}
-  {{ serviceHeader({
-    organisationName: "Defra",
-    productName: "Forms Designer",
-    homepageLink: "/",
-    signOutLink: "/"
-  }) }}
-{% endblock %}
-
-{% block content %}
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-
-              {%- from "moj/components/sub-navigation/macro.njk" import mojSubNavigation -%}
-
-{# {{ mojSubNavigation({
-  label: 'Sub navigation',
-  items: [{
-    text: 'Current designs',
-    href: '#1',
-    active: true
-  }, {
-    text: 'New form editor',
-    href: '/new-form-editor-links.html'
-  }]
-}) }} #}
-
-      <h1 class="govuk-heading-xl">Kit of parts</h1>
-
-      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
-
-{% set html %}
-  <p class="govuk-notification-banner__heading">
-    We've created an index for the pages in the new form editor.
-    <a class="govuk-notification-banner__link" href="/new-editor/home.html">View the index for the new form editor</a>.
-  </p>
-{% endset %}
-
-{{ govukNotificationBanner({
-  html: html
+{{ serviceHeader({
+organisationName: "Defra",
+productName: "Forms Designer",
+serviceName: "Design system",
+containerClasses: containerClasses,
+homepageLink: "/design-system/components.html",
+signOutLink: "/onboarding/sign-out-confirmation",
+navigationItems: [
+{ href: "/design-system/prototype-route.html", text: "Prototype", id: "prototype" },
+{ href: "/design-system/components.html", text: "Components", id: "components" },
+{ href: "/design-system/user-journeys/home.html", text: "User journeys", id: "user-journeys" }
+],
+activeLinkId: "components"
 }) }}
 
-
-
-      <p class="govuk-body-l">View each page that makes up the Defra Forms Designer.</p>
-      <p class="govuk-body">Pages are constantly being iterated. To see previous versions,
-        <a href="http://defra-forms-design-history-18deac2f53ea.herokuapp.com/" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">see our Design History (opens in new tab)</a>.</p>
-
-      <details class="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            View a flow chart of the entire forms designer
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2F1A9Tthy0CJeqp2rGNSKRjH%2FDefra-Form-Builder-flows%3Fnode-id%3D5168-92050%26t%3DLK1rrlnrOaSzQEyr-1" allowfullscreen="allowfullscreen"></iframe>
-        </div>
-      </details>
-
-      {{ govukAccordion({
-  id: "accordion-with-summary-sections",
-  items: [
-   {
-      heading: {
-        text: "Onboarding"
-      },
-      summary: {
-        text: "How users sign-in and sign-out of the Defra Forms Designer"
-      },
-      content: {
-        html:
-        '<ul class="govuk-list">
-            <li>
-              <a class="govuk-link govuk-link--no-visited-state" href="/onboarding/sign-in.html" rel="noreferrer noopener" target="_blank">Sign in page</a>
-            </li>
-            <li>
-              <a class="govuk-link govuk-link--no-visited-state" href="/onboarding/sign-out-confirmation.html" rel="noreferrer noopener" target="_blank">Sign out</a>
-            </li>
-        </ul>
-        '
-      }
-    },
-     {
-      heading: {
-        text: "Forms library"
-      },
-      summary: {
-        text: "Giving users the ability sort and find forms."
-      },
-      content: {
-        html:
-        '<div id="event-name-hint" class="govuk-hint" style="margin-bottom: 30px;">
-  <a class="govuk-link govuk-link--no-visited-state" href="/library.html" rel="noreferrer noopener" target="_blank">View the forms library</a>
-</div>'
-      }
-    },
-  {
-      heading: {
-        text: "Creating a new form"
-      },
-      summary: {
-        text: "Questions to answers before creating a new form"
-      },
-      content: {
-        html:
-        '<ul class="govuk-list govuk-list--spaced">
-      <li>
-  <a class="govuk-link govuk-link--no-visited-state" href="/new-form/form-name.html" rel="noreferrer noopener" target="_blank">Form name</a>
-  </li>
-  <li>
-  <a class="govuk-link govuk-link--no-visited-state" href="/new-form/organisation-name.html" rel="noreferrer noopener" target="_blank">Lead organisation</a>
-  </li>
-  <li>
-  <a class="govuk-link govuk-link--no-visited-state" href="/new-form/policy-sme.html" rel="noreferrer noopener" target="_blank">Team details</a>
-  </li>
-  </ul>'
-      }
-    },
-     {
-      heading: {
-        text: "Form overview"
-      },
-      summary: {
-        text: "Each form has an overview page where the majority of actions, like making a form live, are performed."
-      },
-      content: {
-        html:
-        '<h3 class="govuk-heading-s">Draft status
-        <div id="event-name-hint" class="govuk-hint">
-    When a form is created it automatically adopt a status of ‘Draft’. In Draft status, the user can edit and make a form live.
-  </div>
-        </h3>
-
-        <ul class="govuk-list govuk-list--spaced">
-      <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/draft/complete-clean.html" rel="noreferrer noopener" target="_blank">View a coded overview page in draft status</a>
-      </li>
-      <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/draft/default.html" rel="noreferrer noopener" target="_blank">View an overview page in draft where contact support has not been added</a>
-      </li>
-        </ul>
-
-    <h3 class="govuk-heading-s">Live status
-        <div id="event-name-hint" class="govuk-hint">
-    When a user has provided required information, the user will then see on their Overview page, a button labelled ‘Make draft live’.
-  </div>
-        </h3>
-
-        <ul class="govuk-list govuk-list--spaced">
-      <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/live/01.html" rel="noreferrer noopener" target="_blank">View a coded overview page in live status</a>
-
-      </li>
-        </ul>
-
-        <h3 class="govuk-heading-s">Draft and Live (creating a draft to edit)
-        <div id="event-name-hint" class="govuk-hint">
-        <ul class="govuk-list govuk-list--bullet">
-
-         <li>to avoid the complexity of creating multiple versions of the same form, users can only edit a form when it’s in ‘Draft’ status</li>
-         <li>the only way to edit a form that’s ‘Live’ is to create a ‘Draft’ version of it</li>
-         <li>once you’ve made changes to a draft version of a live form, when you make the draft version live, it replaces the existing Live form</li>
-         </ul>
-         </div>
-
-
-        <ul class="govuk-list govuk-list--spaced">
-      <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/live+draft/01.html" rel="noreferrer noopener" target="_blank">View a coded overview page in draft and live status</a>
-
-      </li>
-        </ul>
-
-        <h3 class="govuk-heading-s">Replacing a live form with a draft
-        <div id="event-name-hint" class="govuk-hint">
-        Users are warned that making a draft live while there is already a live form means that the existing live form will be replaced with the draft.
-        </div>
-
-        <ul class="govuk-list govuk-list--spaced">
-      <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/manage-form/make-draft-live/replace-live-form.html" rel="noreferrer noopener" target="_blank">View a coded warning page for replacing a live form</a>
-
-      </li>
-        </ul>
-
-        <h3 class="govuk-heading-s">Closing a live form
-        <div id="event-name-hint" class="govuk-hint">
-        To remove a form from live i.e., for them to not be accessible to members of the public anymore.
-        </div>
-
-        <ul class="govuk-list govuk-list--spaced">
-      <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/manage-form/close/confirm.html" rel="noreferrer noopener" target="_blank">View a coded warning page for closing a live form</a>
-
-      </li>
-        </ul>
-        '
-      }
-    },
-        {
-      heading: {
-        text: "Support and form configuration pages"
-      },
-      summary: {
-        text: "Pages to add support content to forms. Includes, setting an email address for receiving submitted forms, telling users what happens after submitting their form and providing assisted digital channels."
-      },
-      content: {
-        html:
-        '<ul class="govuk-list govuk-list--spaced">
-               <h3 class="govuk-heading-s">Sending submitted forms to operational teams</h3>
-      <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/cph-overview/support/notification-email" rel="noreferrer noopener" target="_blank">Where submitted forms are sent</a>
-      </li>
-      </ul>
-      <ul class="govuk-list govuk-list--spaced">
-       <h3 class="govuk-heading-s">Contact details for support</h3>
-        <div id="event-name-hint" class="govuk-hint">
-    In order to make a form live users need add at least one contact detail for support.
-  </div>
-       <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/add-telephone" rel="noreferrer noopener" target="_blank">Phone number for support</a>
-      </li>
-       <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/add-email" rel="noreferrer noopener" target="_blank">Email address for support</a>
-      </li>
-      <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/add-contact-link" rel="noreferrer noopener" target="_blank">Contact link for support</a>
-      </li>
-      </ul>
-      <ul class="govuk-list govuk-list--spaced">
-       <h3 class="govuk-heading-s">What happens next</h3>
-        <div id="event-name-hint" class="govuk-hint">
-    A textarea for adding instructions to appear in confirmation pages and emails.
-  </div>
-      <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/next-steps" rel="noreferrer noopener" target="_blank">Tell users what happens after submitting their form</a>
-      </li>
-      </ul>
-      <ul class="govuk-list govuk-list--spaced">
-             <h3 class="govuk-heading-s">Data protection</h3>
-        <div id="event-name-hint" class="govuk-hint">
-    Add a link to privacy notice that is specific to the form being created.
-  </div>
-        <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="cph-overview/support/privacy-notice" rel="noreferrer noopener" target="_blank">Link to a privacy notice</a>
-      </li>
-        </ul>
-        '
-      }
-    },
-
-    {
-      heading: {
-        text: "Editor"
-      },
-      summary: {
-        text: "The editor allows users to create and customise forms."
-      },
-      content: {
-        html:
-        '<ul class="govuk-list govuk-list--spaced">
-      <li>
-        <a class="govuk-link govuk-link--no-visited-state" href="/editor/0.html" rel="noreferrer noopener" target="_blank">View a coded editor page (does not have all functionality)</a>
-
-      </li>
-        </ul>
-        <h3 class="govuk-heading-s">Add or change conditions (branching)</h3>
-        <div id="event-name-hint" class="govuk-hint">
-    Users can add conditions to forms that can route users to specific journeys depending on question answers.
-  </div>
-  <ul class="govuk-list govuk-list--spaced">
-    <li>
-          <a class="govuk-link govuk-link--no-visited-state" href="/editor/conditions/existing0.html.html" rel="noreferrer noopener" target="_blank">View a coded page for conditions (does not have all functionality)</a>
-          </ul>
-        '
-      }
-    },
-
-    {
-      heading: {
-        text: "Component pages"
-      },
-      summary: {
-        text: "The content that appears on form pages are created by adding components to pages."
-      },
-      content: {
-        html:
-        '<div id="event-name-hint" class="govuk-hint" style="margin-bottom: 30px;">
-  <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/add.html" rel="noreferrer noopener" target="_blank">View the complete list of components</a>
-</div>
-<h3 class="govuk-heading-s">Input fields</h3>
-<ul class="govuk-list govuk-list--spaced">
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/autocomplete.html" rel="noreferrer noopener" target="_blank">Autocomplete</a>
-  </li>
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/text.html" rel="noreferrer noopener" target="_blank">Text input</a>
-  </li>
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/date-parts.html" rel="noreferrer noopener" target="_blank">Date parts</a>
-  </li>
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/email.html" rel="noreferrer noopener" target="_blank">Email address</a>
-  </li>
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/address.html" rel="noreferrer noopener" target="_blank">UK address</a>
-  </li>
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/multiline.html" rel="noreferrer noopener" target="_blank">Multi-line text (textarea)</a>
-  </li>
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/telephone.html" rel="noreferrer noopener" target="_blank">Telephone number</a>
-  </li>
-</ul>
-<h3 class="govuk-heading-s">Selection fields</h3>
-<ul class="govuk-list govuk-list--spaced">
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/checkboxes.html" rel="noreferrer noopener" target="_blank">Checkboxes</a>
-  </li>
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/radios.html" rel="noreferrer noopener" target="_blank">Radios</a>
-  </li>
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/select.html" rel="noreferrer noopener" target="_blank">Select</a>
-  </li>
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/editor/component-pages/yesno.html" rel="noreferrer noopener" target="_blank">Yes/No</a>
-  </li>
-</ul>'
-       }
-    },
-
-
-    {
-      heading: {
-        text: "Policies"
-      },
-      summary: {
-        text: "Cookie, privacy, and accessibility statements."
-      },
-      content: {
-        html:
-        '
-            <p class="govuk-body">These pages will be linked to in the page footers in designer and runner, respectively.</p>
-
-        <h3 class="govuk-heading-m">Designer</h3>
-<ul class="govuk-list govuk-list--spaced">
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/policies/designer/cookies.html" rel="noreferrer noopener" target="_blank">Cookies</a>
-  </li>
-  </ul>
-
-   <h3 class="govuk-heading-m">Runner</h3>
-<ul class="govuk-list govuk-list--spaced">
-   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/policies/runner/footer.html" rel="noreferrer noopener" target="_blank">See how links will appear in the footer</a>
-  </li>
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/policies/runner/cookies.html" rel="noreferrer noopener" target="_blank">Cookies</a>
-  </li>
-   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/policies/runner/help.html" rel="noreferrer noopener" target="_blank">Get help with your form page</a>
-  </li>
-  </ul>
-'
-      }
-        },
-
-
-    {
-      heading: {
-        text: "Error pages"
-      },
-      summary: {
-        text: "'Page Not Found' pages, 'Service Unavailable' pages, 'There is a Problem with the Service' pages."
-      },
-      content: {
-        html:
-        '
-
-   <h3 class="govuk-heading-m">Runner</h3>
-<ul class="govuk-list govuk-list--spaced">
-   <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/error-pages/runner/problem-with-the-service.html" rel="noreferrer noopener" target="_blank">There is a problem the service</a>
-  </li>
-  <li>
-    <a class="govuk-link govuk-link--no-visited-state" href="/error-pages/runner/page-not-found.html" rel="noreferrer noopener" target="_blank">Page not found</a>
-  </li>
-'
-      }
-    }
-  ]
-}) }}
-    </div>
-
-
+<div class="x-govuk-masthead x-govuk-masthead--large">
+  <div class="govuk-width-container">
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-one-third" style="background-color: #f3f2f1;padding-top: 15px;border-block-color: black;border-style: solid; margin-top: 90px;">
-        <h2 class="govuk-heading-l">Use the prototype</h2>
-
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-        <form class="form" action="/prototype-answer" method="post">
-          {{ govukRadios({
-  name: "prototype",
-  value: data['prototype'],
-  fieldset: {
-    legend: {
-      html: 'Where do you want to start?',
-      isPageHeading: false,
-      classes: "govuk-fieldset__legend--m"
-    }
-  },
-  items: [
-    {
-      value: "signIn",
-      html: 'Sign-in'
-    },
-    {
-      value: "library",
-      text: "Forms library"
-    },
-    {
-      value: "newForm",
-      text: "Create new form"
-    },
-    {
-      value: "overview",
-      text: "Overview pages"
-    },
-    {
-      value: "editor",
-      text: "Editor"
-    }
-  ]
-}) }}
-          {{ govukButton({
-  text: "Start prototype",
-    isStartButton: true
-}) }}
-        </form>
-
+      <div class="govuk-grid-column-full-from-desktop">
+        <h1 class="x-govuk-masthead__title">
+          Component parts for the form editor
+        </h1>
       </div>
     </div>
   </div>
 </div>
-
 {% endblock %}
 
+{% block content %}
+<div class="govuk-width-container">
+  <div class="govuk-grid-row">
+    <!-- Side Navigation -->
+    <div class="govuk-grid-column-one-quarter">
+      {% from "side-navigation/macro.njk" import dwpSideNavigation %}
+      <nav>
+        <h2 class="govuk-caption-m govuk-!-font-weight-bold">Question editor</h2>
+        {{
+        dwpSideNavigation({
+        pageId: "side-navigation-question-editor",
+        selectedItem: "",
+        items: [
+        { text: "Configuration panels", href: "/design-system/editor/configuration-panel.html", id: "sn-config-panels"
+        },
+        { text: "Guided input", href: "/design-system/editor/guided-input.html", id: "sn-guided-input" },
+        { text: "Preview panels", href: "/design-system/editor/preview-panel.html", id: "sn-preview-panels" },
+        { text: "Previews in a new tab", href: "/design-system/editor/previews-in-new-tab.html", id:
+        "sn-previews-new-tab"
+        },
+        { text: "Question borders", href: "/design-system/editor/border.html", id: "sn-question-borders" }
+        ]
+        })
+        }}
+
+        <h2 class="govuk-caption-m govuk-!-font-weight-bold">Information types</h2>
+        {{
+        dwpSideNavigation({
+        pageId: "side-navigation-information-types",
+        selectedItem: "",
+        items: [
+        { text: "Answer limits", href: "/design-system/information-type/answer-limits.html", id: "sn-answer-limits" },
+        { text: "Configuration for each type", href: "/design-system/information-type/configuration-types.html", id:
+        "sn-configuration-types" }
+        ]
+        })
+        }}
+
+        <h2 class="govuk-caption-m govuk-!-font-weight-bold">Re-ordering</h2>
+        {{
+        dwpSideNavigation({
+        pageId: "side-navigation-reordering",
+        selectedItem: "",
+        items: [
+        { text: "Lists", href: "/design-system/reordering/lists.html", id: "sn-lists" },
+        { text: "Pages", href: "/design-system/reordering/pages.html", id: "sn-pages" },
+        { text: "Questions", href: "/design-system/reordering/questions.html", id: "sn-questions" }
+        ]
+        })
+        }}
+
+        <h2 class="govuk-caption-m govuk-!-font-weight-bold">Deletion</h2>
+        {{
+        dwpSideNavigation({
+        pageId: "side-navigation-deletion",
+        selectedItem: "",
+        items: [
+        { text: "Pages", href: "/design-system/deletion/pages.html", id: "sn-deletion-pages" }
+        ]
+        })
+        }}
+
+        <h2 class="govuk-caption-m govuk-!-font-weight-bold">Header</h2>
+        {{
+        dwpSideNavigation({
+        pageId: "side-navigation-header",
+        selectedItem: "",
+        items: [
+        { text: "Mastheads", href: "/design-system/header/masthead.html", id: "sn-mastheads" }
+        ]
+        })
+        }}
+    </div>
+
+    </nav>
+
+    <!-- Main Content -->
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-l">Quick links</h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="https://www.figma.com/design/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?node-id=13394-310294&t=ES0UKt8LTJdYtlOX-4"
+            class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+            Figma kit of parts: detailed breakdown at a lower level
+          </a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+            Prototype: link to be updated in due course
+          </a>
+        </li>
+      </ul>
+
+      </section>
+
+      <section class="govuk-!-margin-bottom-6">
+        <h2 class="govuk-heading-l">What is the overall flow?</h2>
+        <p class="govuk-body">
+          Below is a visual illustration of the general flow. You can read more details about this flow on
+          the
+          <a href="/design-system/user-journeys/home.html" class="govuk-link govuk-link--no-visited-state"
+            rel="noreferrer noopener" target="_blank">
+            design system user journey tab
+          </a>.
+        </p>
+        <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450"
+          src="https://embed.figma.com/design/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?node-id=18388-32046&embed-host=share"
+          allowfullscreen></iframe>
+      </section>
+
+      <section class="govuk-!-margin-bottom-6">
+        <h2 class="govuk-heading-l">Types of Pages</h2>
+
+        <h3 class="govuk-heading-m">Form management pages</h3>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key"><a
+                href="https://defra-forms-mvp-prototype-6c025bd15252.herokuapp.com/design-system/reordering/pages"
+                class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Listing
+                page</a></dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">A summary of all the pages the user has created, including 'End pages' such as the
+                Check
+                Answers page. When JavaScript is enabled, users can access a quick preview of each page.</p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>Pages are represented using summary cards.</li>
+              </ul>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key"><a
+                href="https://defra-forms-mvp-prototype-6c025bd15252.herokuapp.com/design-system/reordering/pages"
+                class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Re-ordering
+                page</a></dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">Change the order of pages by moving them up or down.</p>
+            </dd>
+
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Preview form</dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">Preview the form from start to finish.</p>
+            </dd>
+          </div>
+        </dl>
+
+        <h3 class="govuk-heading-m">Form creation pages</h3>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key"><a
+                href="https://www.figma.com/design/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?node-id=13384-93382&t=KGAtImqUVLcbc5IG-4"
+                class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Page type
+                selection</a></dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">Choose to create a question or a guidance page.</p>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key"><a
+                href="https://www.figma.com/design/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?node-id=13384-89842&t=KGAtImqUVLcbc5IG-4"
+                class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Information
+                type selection</a></dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">Choose the type of question to add.</p>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key"><a
+                href="https://www.figma.com/design/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?node-id=13384-93254&t=KGAtImqUVLcbc5IG-4"
+                class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Question
+                configuration</a></dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">Configure a question that appears on a page.</p>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key"><a
+                href="https://www.figma.com/design/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?node-id=13384-90510&t=KGAtImqUVLcbc5IG-4"
+                class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Page
+                overview</a></dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">View a summary of questions, add headings and guidance, allow multiple responses,
+                and
+                re-order questions.</p>
+            </dd>
+
+          </div>
+        </dl>
+      </section>
+
+      <section class="govuk-!-margin-bottom-6">
+        <h2 class="govuk-heading-l">Progressive Enhancement</h2>
+        <p class="govuk-body">The user journeys for creating pages follow progressive enhancement principles, ensuring a
+          quality service for all users, regardless of whether JavaScript is enabled. The experience may vary slightly
+          for
+          users without JavaScript, but the outcomes remain consistent and accessible.</p>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Comparison: JavaScript enabled vs. disabled (see
+            also a <a
+              href="https://www.figma.com/design/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?node-id=18338-42163&t=KGAtImqUVLcbc5IG-4"
+              class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Figma overview
+              of visual differences</a>)
+          </caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Feature</th>
+              <th scope="col" class="govuk-table__header">When JavaScript is disabled</th>
+              <th scope="col" class="govuk-table__header">When JavaScript is enabled</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header"><a href="/design-system/editor/preview-panel.html"
+                  class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Preview
+                  panels</a></th>
+              <td class="govuk-table__cell">Preview panels are not shown together with <a
+                  href="/design-system/editor/configuration-panel.html" class="govuk-link govuk-link--no-visited-state"
+                  rel="noreferrer noopener" target="_blank">configuration panels</a>.</td>
+              <td class="govuk-table__cell">Preview panels are shown alongside <a
+                  href="/design-system/editor/configuration-panel.html" class="govuk-link govuk-link--no-visited-state"
+                  rel="noreferrer noopener" target="_blank">configuration panels</a>.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Preview buttons</th>
+              <td class="govuk-table__cell">
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>Open a preview of the question/page being created</li>
+                  <li>View the error messages for a question</li>
+                </ul>
+              </td>
+              <td class="govuk-table__cell">
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>
+                    Preview buttons are removed and replaced by skip links that are only visible when Tabbing activates
+                    it. <a
+                      href="https://www.figma.com/design/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?node-id=18338-47922&t=ES0UKt8LTJdYtlOX-4"
+                      class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank"> (See
+                      overview of
+                      this in Figma kit of parts)</a>
+                  </li>
+                  <li><a href="https://design-system.service.gov.uk/components/skip-link/"
+                      class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Skip
+                      links</a> jump users from the configuration panel to a preview tab (Page preview or Error
+                    messages)</li>
+                  <li>Skip links inside preview tabs return users to the configuration panel</li>
+                </ul>
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Preview panel styling</th>
+              <td class="govuk-table__cell">No additional styling is applied to questions in the preview panel.</td>
+              <td class="govuk-table__cell">Questions in the preview panel receive a <a
+                  href="https://defra-forms-mvp-prototype-6c025bd15252.herokuapp.com/design-system/editor/border.html"
+                  class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                  target="_blank">left-border</a>.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header"><a href="/design-system/editor/guided-input.html"
+                  class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">Guided
+                  input</a></th>
+              <td class="govuk-table__cell">No guided input or content highlighting in the preview area.</td>
+              <td class="govuk-table__cell">When users focus on an input field, the related content in the preview area
+                gets <a href="/design-system/editor/guided-input.html" class="govuk-link govuk-link--no-visited-state"
+                  rel="noreferrer noopener" target="_blank">
+                  highlighted</a>.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Re-ordering movements</th>
+              <td class="govuk-table__cell">Page reloads are required after each re-ordering action.</td>
+              <td class="govuk-table__cell">
+                <ul class="govuk-list govuk-list--bullet">
+                  <li><strong>Highlight on focus:</strong> When focus is applied to an input field or button, a
+                    highlight
+                    appears on the corresponding preview element. The highlight is removed when the focus moves away.
+                  </li>
+                  <li><strong>Types of reordering:</strong>
+                    <ul class="govuk-list govuk-list--bullet">
+                      <li>Lists (checkboxes, radios) – see <a
+                          href="https://www.figma.com/design/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?node-id=13384-93733&t=ES0UKt8LTJdYtlOX-4"
+                          class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                          target="_blank">Figma</a> and the <a href="/design-system/reordering/lists.html"
+                          class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                          target="_blank">design
+                          system</a></li>
+                      <li>Pages – see <a
+                          href="https://www.figma.com/design/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?node-id=13384-97780&t=ES0UKt8LTJdYtlOX-4"
+                          class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                          target="_blank">Figma</a> and the <a
+                          href="https://defra-forms-mvp-prototype-6c025bd15252.herokuapp.com/design-system/reordering/pages"
+                          class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                          target="_blank">design system</a></li>
+                      <li>Questions – see <a
+                          href="https://www.figma.com/design/1A9Tthy0CJeqp2rGNSKRjH/Defra-Form-Builder-flows?node-id=13384-95373&t=ES0UKt8LTJdYtlOX-4"
+                          class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                          target="_blank">Figma</a> and the <a
+                          href="https://defra-forms-mvp-prototype-6c025bd15252.herokuapp.com/design-system/reordering/questions"
+                          class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+                          target="_blank">design system</a></li>
+                    </ul>
+                  </li>
+                  <li>Specific screen reader announcements must be applied for accessibility.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
 </div>
+
+{% endblock %}

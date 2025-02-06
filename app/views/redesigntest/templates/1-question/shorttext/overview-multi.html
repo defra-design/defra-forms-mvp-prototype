@@ -76,89 +76,53 @@
                           </ul>
                         </nav>
 
-                       <h1 class="govuk-heading-l govuk-!-margin-top-4">Manage page 5</h1>
+                       <h1 class="govuk-heading-xl govuk-!-margin-top-4">Page 5</h1>
                         
-                        <div class="govuk-form-group">
-                          <h1 class="govuk-label-wrapper">
-                            <label class="govuk-label govuk-label--m" for="event-name">
-                              Page heading 
-                            </label>
-                          </h1>
-                          <div id="more-detail-hint" class="govuk-hint">
-                            Leave blank if you wish to use your first question as the heading
-                          </div>
-                          <input class="govuk-input" id="event-name" name="eventName" type="text">
-                        </div>
-                        
-                        <div class="govuk-form-group">
-                          <h1 class="govuk-label-wrapper">
-                            <label class="govuk-label govuk-label--m" for="more-detail">
-                              Guidance
-                            </label>
-                          </h1>
-                          <div id="more-detail-hint" class="govuk-hint">
-                            Provide instructions to support users with this page
-                          </div>
-                          <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
-                        </div>
-                        
-                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
-                        <h2 class="govuk-heading-m" id="page-heading">Questions</h2>
+                        <h2 class="govuk-heading-l" id="page-heading">Questions</h2>
 {#
                         <form class="form" action="/redesigntest/Multi/question-2-date/information-type" method="post"> #}
 
-                           <!-- Dynamic Summary List -->
+                           <!-- Dynamic Summary List -->             
                            
-            <style>
-            
-            .bgwhite { background: white; }
-            
-            .bgwhite dt, .bgwhite dd, .bgwhite dd:last-child {
-              padding:1rem!important;
-            }
-            
-            </style>               
-                           
-            <div id="summary-container">
-              <!-- The dynamic summary list will be populated here -->
-
-              {{ govukSummaryList({
-                classes: "govuk-summary-list govuk-section-break govuk-section-break--visible bgwhite",
-                rows: [
-                  {
-                    key: {
-                      html: data['questionLabelInputShortText'] or ''
-                    },
-                    value: {
-                      text: ""
-
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/redesigntest/templates/1-question/shorttext/edit-nf.html",
-                          text: "Edit",
-                          visuallyHiddenText: "name"
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }) }}
-
-            </div>
-
-            </form>
+                          <div id="summary-container">
+                            <!-- The dynamic summary list will be populated here -->
+              
+                            {{ govukSummaryList({
+                              classes: "govuk-summary-list govuk-section-break govuk-section-break--visible bgwhite",
+                              rows: [
+                                {
+                                  key: {
+                                    html: data['questionLabelInputShortText'] or 'Test question'
+                                  },
+                                  value: {
+                                    text: ""
+              
+                                  },
+                                  actions: {
+                                    items: [
+                                      {
+                                        href: "/redesigntest/templates/1-question/shorttext/edit-nf.html",
+                                        text: "Edit",
+                                        visuallyHiddenText: "name"
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }) }}
+              
+                          </div>
+              
+                        </form>
 
                         <div class="govuk-button-group govuk-!-margin-top-6">
                           <a href="/redesigntest/questiontype" class="govuk-button" role="button">
                             Add question
                           </a>
 
-                          <a href="/redesigntest/templates/1-question/page-type.html" class="govuk-button govuk-button--inverse" role="button">
+                          <!--<a href="/redesigntest/templates/1-question/page-type.html" class="govuk-button govuk-button--inverse" role="button">
                             Add a new page
-                          </a>
+                          </a>-->
 
                           <p class="govuk-body">
                             <a href="/redesigntest/templates/delete.html" class="govuk-link govuk-link--no-visited-state">Delete page</a>
@@ -177,6 +141,69 @@
 
 
                         </form>
+                        
+                        <h1 class="govuk-heading-l">Settings</h1>
+                        
+                        <!-- question settings -->
+                                                
+                        <div class="govuk-form-group">
+                          <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                              <h1 class="govuk-fieldset__heading">
+                                Page heading and guidance text
+                              </h1>
+                            </legend>
+                            <div id="contact-hint" class="govuk-hint">
+                              Add a page heading if you have multiple questions on a page or add guidance to help users answer questions
+                            </div>
+                            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                              <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="guidance" name="guidance" type="checkbox" value="guidance" data-aria-controls="conditional-guidance">
+                                <label class="govuk-label govuk-checkboxes__label" for="guidance">
+                                  Add a page heading, guidance or both
+                                </label>
+                              </div>
+                              <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-guidance">
+                                <div class="govuk-form-group">
+                                  <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
+                                   <div class="govuk-form-group">
+                                     <h1 class="govuk-label-wrapper">
+                                       <label class="govuk-label govuk-label--l" for="event-name">
+                                         Page heading
+                                       </label>
+                                     </h1>
+                                     <div id="event-name-hint" class="govuk-hint">
+                                       Ihis Should be a statement, not a question. For example,
+                                       'Passport information'
+                                     </div>
+                                     <input class="govuk-input" id="event-name" name="eventName" type="text" aria-describedby="event-name-hint">
+                                   </div>
+                                   <div class="govuk-form-group">
+                                     <h1 class="govuk-label-wrapper">
+                                       <label class="govuk-label govuk-label--l" for="more-detail">
+                                         Guidance text (optional)
+                                       </label>
+                                     </h1>
+                                     <div id="more-detail-hint" class="govuk-hint">
+                                       You can use Markdown if you want to format the content
+                                       or add links
+                                     </div>
+                                     <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
+                                   </div>
+                                  </fieldset>
+                                </div>
+                                
+                                
+                                </div>
+                                <a href="" class="govuk-button govuk-!-margin-top-4" role="button">
+                                  Save and update
+                                </a>
+                              </div>
+                          </fieldset>
+                        </div>
+                        
+                        <!-- question settings -->
+                        
                         
                         <!-- experimental multiple question -->
                         
@@ -246,6 +273,25 @@
                         </div>
                         
                         <!-- experiemental multiple question -->
+                        
+                        <div class="govuk-button-group govuk-!-margin-top-6">
+                          <a href="" class="govuk-button" role="button">
+                            Save changes
+                          </a>
+                        </div>
+                        
+                        <h3 class="govuk-heading-m">Page conditions</h3>
+                        
+                        <div id="condition-hint" class="govuk-hint">
+                          The selected conditions will be evaluated when the user reaches this pase. If the conditions are not met then this page will be skipped.
+                          Add conditions
+                        </div>
+                        
+                        <div class="govuk-button-group govuk-!-margin-top-6">
+                          <a href="" class="govuk-button" role="button">
+                            Add conditions
+                          </a>
+                        </div>
                         
                       </div>
                     </div>

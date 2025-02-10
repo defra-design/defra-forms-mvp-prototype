@@ -1,31 +1,30 @@
-
-
 <div class="border-left-container">
-<div class="govuk-form-group">
-  <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="text-input-field" id="multi-question-label-legend-file">
-     Question
-    </label>
-  </h1>
-  <div id="multi-question-hint-text-output-file" name="multiQuestionHintTextOutputFile" class="govuk-hint">
+  <div class="govuk-form-group">
+    <h1 class="govuk-label-wrapper">
+      <label class="govuk-label govuk-label--l" for="text-input-field" id="multi-question-label-legend-file">
+        Question
+      </label>
+    </h1>
+    <div id="multi-question-hint-text-output-file" name="multiQuestionHintTextOutputFile" class="govuk-hint">
     </div>
 
-<div class="govuk-form-group">
-  <label class="govuk-label " for="file-upload-1">
-    Upload a file
-  </label>
-  <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
-</div>
+    <div class="govuk-form-group">
+      <label class="govuk-label " for="file-upload-1">
+        Upload a file
+      </label>
+      <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+    </div>
 
-<button type="submit" class="govuk-button govuk-!-margin-top-5 govuk-button--secondary" data-module="govuk-button">
-  Upload file
-</button>
+    <button type="submit" class="govuk-button govuk-!-margin-top-5 govuk-button--secondary" data-module="govuk-button">
+      Upload file
+    </button>
 
     <p class="govuk-body" aria-live="polite">1 of 2 files uploaded</p>
 
 
 
-    <p class="govuk-body govuk-!-display-none" id="refreshPageProgress"><a href="#" class="govuk-link">Refresh page to update file upload progress</a></p>
+    <p class="govuk-body govuk-!-display-none" id="refreshPageProgress"><a href="#" class="govuk-link">Refresh page to
+        update file upload progress</a></p>
 
     <dl class="govuk-summary-list govuk-summary-list--long-key">
       <div class="govuk-summary-list__row">
@@ -34,8 +33,8 @@
         </dt>
         <dd class="govuk-summary-list__value">
           <strong class="govuk-tag govuk-tag--yellow">
-  Uploading
-</strong>
+            Uploading
+          </strong>
 
         </dd>
         <dd class="govuk-summary-list__actions">
@@ -48,8 +47,8 @@
         </dt>
         <dd class="govuk-summary-list__value">
           <strong class="govuk-tag govuk-tag--green">
-  Uploaded
-</strong>
+            Uploaded
+          </strong>
 
         </dd>
         <dd class="govuk-summary-list__actions">
@@ -57,7 +56,7 @@
         </dd>
       </div>
     </dl>
-    </div>
+  </div>
 
   {# <details class="govuk-details" id="error-message-preview-summary">
     <summary class="govuk-details__summary">
@@ -65,7 +64,7 @@
     </summary>
     <div class="govuk-details__text">
       <!-- Error Messages Section -->
-      <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div class="govuk-error-summary" data-disable-auto-focus="true">
         <h2 class="govuk-error-summary__title">There is a problem</h2>
         <ul class="govuk-list govuk-error-summary__list">
           <!-- Empty input error -->
@@ -107,8 +106,7 @@
         </ul>
       </div>
     </div>
-  </detail #}
-    </div>
+    </detail #} </div>
 
 
 
@@ -117,36 +115,36 @@
 
     {% if overview0 == "morethan1" %}
     {{ govukButton({
-      text: "Add another " ~ setName,
-      classes: "govuk-button govuk-!-margin-top-3",
-      id: "add-another-set-button",
-      disabled: true
+    text: "Add another " ~ setName,
+    classes: "govuk-button govuk-!-margin-top-3",
+    id: "add-another-set-button",
+    disabled: true
     }) }}
     {% else %}
     {{ govukButton({
-      text: "Continue",
-      classes: "govuk-button govuk-!-margin-top-6",
-      id: "once-button",
-      disabled: true
+    text: "Continue",
+    classes: "govuk-button govuk-!-margin-top-6",
+    id: "once-button",
+    disabled: true
     }) }}
     {% endif %}
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-  const dynamicCaption = document.getElementById("dynamic-caption");
-  const setName = dynamicCaption.getAttribute("data-setname");
+        const dynamicCaption = document.getElementById("dynamic-caption");
+        const setName = dynamicCaption.getAttribute("data-setname");
 
-  if (!setName) {
-    dynamicCaption.style.display = "none";
-  }
-});
+        if (!setName) {
+          dynamicCaption.style.display = "none";
+        }
+      });
 
     </script>
 
 
-<style>
-  .border-left-container {
-    border-left: 10px solid #ffb266;
-    padding-left: 20px;
-  }
-</style>
+    <style>
+      .border-left-container {
+        border-left: 10px solid #ffb266;
+        padding-left: 20px;
+      }
+    </style>

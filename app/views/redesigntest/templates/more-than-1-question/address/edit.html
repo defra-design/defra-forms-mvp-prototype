@@ -5,20 +5,20 @@
 {% set guidancePlaceholder = "" %}
 
 {% block header %}
-  {{ serviceHeader({
-    organisationName: "Defra",
-    productName: "Forms Designer",
-    serviceName: "",
-    containerClasses: containerClasses,
-    accountName: "Chris Smith",
-    homepageLink: "/",
-    signOutLink: "/onboarding/sign-out-confirmation",
-    navigationItems: [
-      { href: "/library.html", text: "Forms library", id: "nav-library" },
-      { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
-      { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }    ],
-    activeLinkId: "nav-editor"
-  }) }}
+{{ serviceHeader({
+organisationName: "Defra",
+productName: "Forms Designer",
+serviceName: "",
+containerClasses: containerClasses,
+accountName: "Chris Smith",
+homepageLink: "/",
+signOutLink: "/onboarding/sign-out-confirmation",
+navigationItems: [
+{ href: "/library.html", text: "Forms library", id: "nav-library" },
+{ href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
+{ href: "/redesigntest/listing", text: "Editor", id: "nav-editor" } ],
+activeLinkId: "nav-editor"
+}) }}
 
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
@@ -26,10 +26,8 @@
     {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add
     and edit pages", href: "/redesigntest/listing.html" }) }}
 
-    <hr
-      class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
-      style="border-bottom: 1px solid white; margin-bottom: 0"
-    />
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+      style="border-bottom: 1px solid white; margin-bottom: 0" />
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full-from-desktop">
@@ -64,7 +62,8 @@
                     <div id="question-1">
                       <div class="govuk-summary-card__content" style="margin-bottom: 0">
                         <!-- Sub Navigation for Question -->
-                        <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2 " aria-label="Sub navigation">
+                        <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2 "
+                          aria-label="Sub navigation">
                           <ul class="moj-sub-navigation__list" id="nav-list2">
                             <!-- Question Link -->
                             <li class="moj-sub-navigation__item">
@@ -74,7 +73,8 @@
                               <a class="moj-sub-navigation__link" href="#overview-noquestions">Overview of questions</a>
                             </li>
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Question 5</a>
+                              <a class="moj-sub-navigation__link" aria-current="page"
+                                href="#question-1-information-type">Question 5</a>
                             </li>
                           </ul>
                         </nav>
@@ -84,36 +84,39 @@
                         <span class="govuk-caption-l">Page 2</span>
                         <h2 class="govuk-heading-l">Question 5</h2>
 
-                        <form method="post" id="options-form" action="/redesigntest/templates/more-than-1-question/address/overview">
+                        <form method="post" id="options-form"
+                          action="/redesigntest/templates/more-than-1-question/address/overview">
                           {% from "govuk/components/input/macro.njk" import govukInput %}
-<!-- Question Label Input -->
-<div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="multi-question-label-input-address">
-    Question
-  </label>
-  <input class="govuk-input" id="multi-question-label-input-address" name="multiQuestionLabelInputAddress" type="text" value="">
-</div>
+                          <!-- Question Label Input -->
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-label--m" for="multi-question-label-input-address">
+                              Question
+                            </label>
+                            <input class="govuk-input" id="multi-question-label-input-address"
+                              name="multiQuestionLabelInputAddress" type="text" value="">
+                          </div>
 
 
                           <!-- Hint Text Input -->
                           {{ govukTextarea({
-                            label: {
-                              text: "Hint text (optional)",
-                              classes: "govuk-label--m"
-                            },
-                            id: "hint-text-input-address",
-                            name: "hintTextInputAddress",
-                            value: data['hint-text-input-address'],
-                            classes: "govuk-textarea",
-                            rows: 3,
-                            describedBy: "hint-text-input-address"
+                          label: {
+                          text: "Hint text (optional)",
+                          classes: "govuk-label--m"
+                          },
+                          id: "hint-text-input-address",
+                          name: "hintTextInputAddress",
+                          value: data['hint-text-input-address'],
+                          classes: "govuk-textarea",
+                          rows: 3,
+                          describedBy: "hint-text-input-address"
                           }) }}
 
                           <!-- Make Optional Checkbox -->
                           <div class="govuk-form-group">
                             <div class="govuk-checkboxes--small">
                               <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="make-optional" name="makeOptional" type="checkbox" value="optional">
+                                <input class="govuk-checkboxes__input" id="make-optional" name="makeOptional"
+                                  type="checkbox" value="optional">
                                 <label class="govuk-label govuk-checkboxes__label" for="make-optional">
                                   Make this question optional
                                 </label>
@@ -122,48 +125,49 @@
                           </div>
 
                           {{ govukInput({
-                            label: {
-                              text: "Short description",
-                              classes: "govuk-label--m",
-                              isPageHeading: false
-                            },
-                            hint: {
-                              text: "Enter a short description for this question like 'licence period'. Short descriptions are used in error messages and on the check your answers page."
-                            },
-                            id: "error-message-input-shorttext",
-                            name: "errorMessageInputShorttext"
+                          label: {
+                          text: "Short description",
+                          classes: "govuk-label--m",
+                          isPageHeading: false
+                          },
+                          hint: {
+                          text: "Enter a short description for this question like 'licence period'. Short descriptions
+                          are used in error messages and on the check your answers page."
+                          },
+                          id: "error-message-input-shorttext",
+                          name: "errorMessageInputShorttext"
                           }) }}
 
 
-<!-- Section Break -->
-<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                          <!-- Section Break -->
+                          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<!-- Question Settings Summary List -->
-<h2 class="govuk-heading-m">Question settings</h2>
+                          <!-- Question Settings Summary List -->
+                          <h2 class="govuk-heading-m">Question settings</h2>
 
-{{ govukSummaryList({
-  "rows": [
-    {
-      "key": {
-        "text": "Type of information"
-      },
-      "value": {
-        "html": "Address"
-      },
-      "actions": {
-        "items": [
-          {
-            "href": "/redesigntest/templates/1-question/information-type.html",
-            "text": "Change",
-            "visuallyHiddenText": " type"
-          }
-        ]
-      }
-    }
-  ]
-}) }}
+                          {{ govukSummaryList({
+                          "rows": [
+                          {
+                          "key": {
+                          "text": "Type of information"
+                          },
+                          "value": {
+                          "html": "Address"
+                          },
+                          "actions": {
+                          "items": [
+                          {
+                          "href": "/redesigntest/templates/1-question/information-type.html",
+                          "text": "Change",
+                          "visuallyHiddenText": " type"
+                          }
+                          ]
+                          }
+                          }
+                          ]
+                          }) }}
 
-<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 
                           <!-- Other form elements... -->
@@ -171,8 +175,8 @@
                           <!-- Submit Button -->
                           <div class="moj-button-action">
                             {{ govukButton({
-                              text: 'Save and continue',
-                              type: 'submit'
+                            text: 'Save and continue',
+                            type: 'submit'
                             }) }}
                           </div>
                         </form>
@@ -188,11 +192,12 @@
 
 
       <!-- Right Column for Preview -->
-      <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh; overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+      <div class="govuk-grid-column-one-half-from-desktop" id="second-container"
+        style="outline: solid 1px #008938; height: 100vh; overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
         <!-- Before content -->
         <div id="before-content" style=" background-color:  #cce2d8;">
           <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px;
-    text-align: center;" > Previews
+    text-align: center;"> Previews
           </p>
         </div>
 
@@ -222,21 +227,22 @@
                 </a>
               </p>
 
-        {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
+              {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
 
-        {% include "/redesigntest/templates/previews-more-than-1-question/numbers/for-overview.html" %}
-        <!-- Include the preview template -->
-        {% include "/redesigntest/templates/previews-more-than-1-question/date/for-overview.html" %}
-        <!-- Include the preview template -->
-         <div id="border-left-container-address" name="borderLeftContainerAddress">
-          {% include "/redesigntest/templates/previews-more-than-1-question/address/edit.html" %}
-          <a href="#edit-page" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
-            Skip to edit page
-          </a>
+              {% include "/redesigntest/templates/previews-more-than-1-question/numbers/for-overview.html" %}
+              <!-- Include the preview template -->
+              {% include "/redesigntest/templates/previews-more-than-1-question/date/for-overview.html" %}
+              <!-- Include the preview template -->
+              <div id="border-left-container-address" name="borderLeftContainerAddress">
+                {% include "/redesigntest/templates/previews-more-than-1-question/address/edit.html" %}
+                <a href="#edit-page" class="govuk-skip-link" style="margin-bottom: 30px!important;"
+                  data-module="govuk-skip-link">
+                  Skip to edit page
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
 
         <div class="govuk-tabs__panel" id="tab-two">
@@ -247,16 +253,17 @@
             </a>
           </p>
           <!-- Error Messages Content -->
-           <!-- Error Messages Section -->
-  <div class="govuk-error-summary" data-module="govuk-error-summary">
-  <h2 class="govuk-error-summary__title">There is a problem</h2>
-  <ul class="govuk-list govuk-error-summary__list">
-    <!-- List of errors -->
-    <li><a id="empty-input" class="govuk-error-message">Enter address line 1, typically the building and street</a></li>
-    <li><a id="empty-input" class="govuk-error-message">Enter town or city</span></a></li>
-    <li><a id="too-long-input" class="govuk-error-message">Enter postcode</a></li>
-  </ul>
-  </div>
+          <!-- Error Messages Section -->
+          <div class="govuk-error-summary" data-disable-auto-focus="true">
+            <h2 class="govuk-error-summary__title">There is a problem</h2>
+            <ul class="govuk-list govuk-error-summary__list">
+              <!-- List of errors -->
+              <li><a id="empty-input" class="govuk-error-message">Enter address line 1, typically the building and
+                  street</a></li>
+              <li><a id="empty-input" class="govuk-error-message">Enter town or city</span></a></li>
+              <li><a id="too-long-input" class="govuk-error-message">Enter postcode</a></li>
+            </ul>
+          </div>
 
         </div>
       </div>
@@ -264,42 +271,42 @@
     </div>
 
     <!-- JavaScript code -->
-      <!-- JavaScript code -->
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          // DOM Elements
-          const domElements = {
-            // Existing elements
-            multiQuestionLabelInputAddress: document.getElementById('multi-question-label-input-address'),
-            multiQuestionLabelLegendAddress: document.getElementById('multi-question-label-legend-address'),
-            hintTextInputAddress: document.getElementById('hint-text-input-address'),
-            multiQuestionHintTextOutputAddress: document.getElementById('multi-question-hint-text-output-address'),
-            makeOptionalCheckbox: document.getElementById('make-optional'),
+    <!-- JavaScript code -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // DOM Elements
+        const domElements = {
+          // Existing elements
+          multiQuestionLabelInputAddress: document.getElementById('multi-question-label-input-address'),
+          multiQuestionLabelLegendAddress: document.getElementById('multi-question-label-legend-address'),
+          hintTextInputAddress: document.getElementById('hint-text-input-address'),
+          multiQuestionHintTextOutputAddress: document.getElementById('multi-question-hint-text-output-address'),
+          makeOptionalCheckbox: document.getElementById('make-optional'),
 
-            // New elements for page heading and guidance text
-            pageHeadingInputAddress: document.getElementById('page-heading-input-address'),
-            dynamicHeading: document.getElementById('dynamic-heading'),
-            guidanceAddress: document.getElementById('guidance-address'),
-            guidanceParagraph: document.getElementById('guidance-paragraph')
-          };
+          // New elements for page heading and guidance text
+          pageHeadingInputAddress: document.getElementById('page-heading-input-address'),
+          dynamicHeading: document.getElementById('dynamic-heading'),
+          guidanceAddress: document.getElementById('guidance-address'),
+          guidanceParagraph: document.getElementById('guidance-paragraph')
+        };
 
-          // Initialize event listeners
-          initializeEventListeners();
+        // Initialize event listeners
+        initializeEventListeners();
 
-          function initializeEventListeners() {
+        function initializeEventListeners() {
           // Update question label
           if (domElements.multiQuestionLabelInputAddress && domElements.multiQuestionLabelLegendAddress) {
             domElements.multiQuestionLabelInputAddress.addEventListener('input', updateQuestionLabel);
           }
 
-             // Update hint text and handle placeholder
-             if (domElements.hintTextInputAddress && domElements.multiQuestionHintTextOutputAddress) {
+          // Update hint text and handle placeholder
+          if (domElements.hintTextInputAddress && domElements.multiQuestionHintTextOutputAddress) {
             domElements.hintTextInputAddress.addEventListener('input', updateHintText);
             domElements.hintTextInputAddress.addEventListener('focus', showPlaceholderHint);
             domElements.hintTextInputAddress.addEventListener('blur', clearPlaceholderHint);
           }
 
-              // Update page heading and handle placeholder
+          // Update page heading and handle placeholder
           if (domElements.pageHeadingInputAddress && domElements.dynamicHeading) {
             domElements.pageHeadingInputAddress.addEventListener('input', updatePageHeading);
             domElements.pageHeadingInputAddress.addEventListener('focus', showPlaceholderHeading);
@@ -307,17 +314,17 @@
             domElements.pageHeadingInputAddress.addEventListener('blur', clearPlaceholderHeading);
           }
 
-            // Update optional label
-            if (domElements.makeOptionalCheckbox) {
-              domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
-            }
+          // Update optional label
+          if (domElements.makeOptionalCheckbox) {
+            domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
+          }
 
-            // Update page heading
-            if (domElements.pageHeadingInputAddress && domElements.dynamicHeading) {
-              domElements.pageHeadingInputAddress.addEventListener('input', updatePageHeading);
-            }
+          // Update page heading
+          if (domElements.pageHeadingInputAddress && domElements.dynamicHeading) {
+            domElements.pageHeadingInputAddress.addEventListener('input', updatePageHeading);
+          }
 
-             // Update guidance text and handle placeholder
+          // Update guidance text and handle placeholder
           if (domElements.guidanceAddress && domElements.guidanceParagraph) {
             domElements.guidanceAddress.addEventListener('input', updateGuidanceText);
             domElements.guidanceAddress.addEventListener('focus', showPlaceholderGuidance);
@@ -326,8 +333,8 @@
 
 
 
-  // Apply focus/blur highlighting
-  applyHighlightOnFocus(domElements.multiQuestionLabelInputAddress, domElements.multiQuestionLabelLegendAddress);
+          // Apply focus/blur highlighting
+          applyHighlightOnFocus(domElements.multiQuestionLabelInputAddress, domElements.multiQuestionLabelLegendAddress);
           applyHighlightOnFocus(domElements.hintTextInputAddress, domElements.multiQuestionHintTextOutputAddress);
           applyHighlightOnFocus(domElements.pageHeadingInputAddress, domElements.dynamicHeading);
           applyHighlightOnFocus(domElements.guidanceAddress, domElements.guidanceParagraph);
@@ -346,27 +353,27 @@
           domElements.dynamicHeading.textContent = domElements.pageHeadingInputAddress.value;
         }
 
-          function updateGuidanceText() {
-            domElements.guidanceParagraph.textContent = domElements.guidanceAddress.value;
-          }
+        function updateGuidanceText() {
+          domElements.guidanceParagraph.textContent = domElements.guidanceAddress.value;
+        }
 
-          function applyHighlightOnFocus(inputElement, targetElement) {
-            if (inputElement && targetElement) {
-              inputElement.addEventListener('focus', function () {
-                targetElement.classList.add('highlight');
-              });
-              inputElement.addEventListener('blur', function () {
-                targetElement.classList.remove('highlight');
-              });
+        function applyHighlightOnFocus(inputElement, targetElement) {
+          if (inputElement && targetElement) {
+            inputElement.addEventListener('focus', function () {
+              targetElement.classList.add('highlight');
+            });
+            inputElement.addEventListener('blur', function () {
+              targetElement.classList.remove('highlight');
+            });
 
-              // If the input is already focused
-              if (document.activeElement === inputElement) {
-                targetElement.classList.add('highlight');
-              }
+            // If the input is already focused
+            if (document.activeElement === inputElement) {
+              targetElement.classList.add('highlight');
             }
           }
+        }
 
-     // Placeholder handling for hint text
+        // Placeholder handling for hint text
         function showPlaceholderHint() {
           if (!domElements.hintTextInputAddress.value) {
             domElements.multiQuestionHintTextOutputAddress.textContent = 'Hint text';
@@ -404,32 +411,32 @@
             domElements.guidanceParagraph.textContent = '';
           }
         }
-        });
-        </script>
+      });
+    </script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-window.scrollTo(0, 0);
-});
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        window.scrollTo(0, 0);
+      });
 
-</script>
+    </script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-      var secondContainer = document.getElementById("second-container");
-      var borderLeftContainerAddress= document.getElementById("border-left-container-address");
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var secondContainer = document.getElementById("second-container");
+        var borderLeftContainerAddress = document.getElementById("border-left-container-address");
 
-      if (secondContainer && borderLeftContainerAddress) {
+        if (secondContainer && borderLeftContainerAddress) {
           // Scroll the `borderLeftContainerTextarea` element into view within `second-container`
           borderLeftContainerAddress.scrollIntoView({
-              behavior: "smooth",
-              block: "nearest"
+            behavior: "smooth",
+            block: "nearest"
           });
           console.log("Scrolled to border-left-container-textarea within second-container");
-      } else {
+        } else {
           console.log("second-container or border-left-container-textarea not found");
-      }
-  });
+        }
+      });
 
     </script>
 
@@ -458,7 +465,7 @@ window.scrollTo(0, 0);
         box-sizing: border-box;
       }
 
-      #second-container > * {
+      #second-container>* {
         padding-left: 0px;
         z-index: 2;
       }

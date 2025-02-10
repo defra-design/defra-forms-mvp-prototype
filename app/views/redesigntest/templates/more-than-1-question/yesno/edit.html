@@ -5,30 +5,28 @@
 {% set guidancePlaceholder = "" %}
 
 {% block header %}
-  {{ serviceHeader({
-    organisationName: "Defra",
-    productName: "Forms Designer",
-    serviceName: "",
-    containerClasses: containerClasses,
-    accountName: "Chris Smith",
-    homepageLink: "/",
-    signOutLink: "/onboarding/sign-out-confirmation",
-    navigationItems: [
-      { href: "/library.html", text: "Forms library", id: "nav-library" },
-      { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
-      { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }    ],
-    activeLinkId: "nav-editor"
-  }) }}
+{{ serviceHeader({
+organisationName: "Defra",
+productName: "Forms Designer",
+serviceName: "",
+containerClasses: containerClasses,
+accountName: "Chris Smith",
+homepageLink: "/",
+signOutLink: "/onboarding/sign-out-confirmation",
+navigationItems: [
+{ href: "/library.html", text: "Forms library", id: "nav-library" },
+{ href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
+{ href: "/redesigntest/listing", text: "Editor", id: "nav-editor" } ],
+activeLinkId: "nav-editor"
+}) }}
 
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
     {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add
     and edit pages", href: "/redesigntest/listing.html" }) }}
 
-    <hr
-      class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
-      style="border-bottom: 1px solid white; margin-bottom: 0"
-    />
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+      style="border-bottom: 1px solid white; margin-bottom: 0" />
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full-from-desktop">
@@ -63,7 +61,8 @@
                     <div id="question-1">
                       <div class="govuk-summary-card__content" style="margin-bottom: 0">
                         <!-- Sub Navigation for Question -->
-                        <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2 " aria-label="Sub navigation">
+                        <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2 "
+                          aria-label="Sub navigation">
                           <ul class="moj-sub-navigation__list" id="nav-list2">
                             <!-- Question Link -->
                             <li class="moj-sub-navigation__item">
@@ -73,7 +72,8 @@
                               <a class="moj-sub-navigation__link" href="#overview-noquestions">Overview of questions</a>
                             </li>
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1-information-type">Question 8</a>
+                              <a class="moj-sub-navigation__link" aria-current="page"
+                                href="#question-1-information-type">Question 8</a>
                             </li>
                           </ul>
                         </nav>
@@ -83,38 +83,41 @@
                         <span class="govuk-caption-l">Page 2</span>
                         <h2 class="govuk-heading-l">Edit question 8</h2>
 
-                        <form method="post" id="options-form" action="/redesigntest/templates/more-than-1-question/yesno/overview">
+                        <form method="post" id="options-form"
+                          action="/redesigntest/templates/more-than-1-question/yesno/overview">
                           {% from "govuk/components/input/macro.njk" import govukInput %}
 
-                       <!-- Question Label Input -->
-<div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="multi-question-label-input-yesno">
-    Question
-  </label>
-  <input class="govuk-input" id="multi-question-label-input-yesno" name="multiQuestionLabelInputYesno" type="text" value="">
-</div>
+                          <!-- Question Label Input -->
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-label--m" for="multi-question-label-input-yesno">
+                              Question
+                            </label>
+                            <input class="govuk-input" id="multi-question-label-input-yesno"
+                              name="multiQuestionLabelInputYesno" type="text" value="">
+                          </div>
 
 
 
                           <!-- Hint Text Input -->
                           {{ govukTextarea({
-                            label: {
-                              text: "Hint text (optional)",
-                              classes: "govuk-label--m"
-                            },
-                            id: "multi-question-hint-text-input-yesno",
-                            name: "multiQuestionHintTextInputYesno",
-                            value: data['multi-question-hint-text-input-yesno'],
-                            classes: "govuk-textarea",
-                            rows: 3,
-                            describedBy: "multi-question-hint-text-input-yesno"
+                          label: {
+                          text: "Hint text (optional)",
+                          classes: "govuk-label--m"
+                          },
+                          id: "multi-question-hint-text-input-yesno",
+                          name: "multiQuestionHintTextInputYesno",
+                          value: data['multi-question-hint-text-input-yesno'],
+                          classes: "govuk-textarea",
+                          rows: 3,
+                          describedBy: "multi-question-hint-text-input-yesno"
                           }) }}
 
                           <!-- Make Optional Checkbox -->
                           <div class="govuk-form-group">
                             <div class="govuk-checkboxes--small">
                               <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="make-optional" name="makeOptional" type="checkbox" value="optional">
+                                <input class="govuk-checkboxes__input" id="make-optional" name="makeOptional"
+                                  type="checkbox" value="optional">
                                 <label class="govuk-label govuk-checkboxes__label" for="make-optional">
                                   Make this question optional
                                 </label>
@@ -123,48 +126,49 @@
                           </div>
 
                           {{ govukInput({
-                            label: {
-                              text: "Short description",
-                              classes: "govuk-label--m",
-                              isPageHeading: false
-                            },
-                            hint: {
-                              text: "Enter a short description for this question like 'licence period'. Short descriptions are used in error messages and on the check your answers page."
-                            },
-                            id: "error-message-input-yesno",
-                            name: "errorMessageInputYesno"
+                          label: {
+                          text: "Short description",
+                          classes: "govuk-label--m",
+                          isPageHeading: false
+                          },
+                          hint: {
+                          text: "Enter a short description for this question like 'licence period'. Short descriptions
+                          are used in error messages and on the check your answers page."
+                          },
+                          id: "error-message-input-yesno",
+                          name: "errorMessageInputYesno"
                           }) }}
 
 
-<!-- Section Break -->
-<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                          <!-- Section Break -->
+                          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<!-- Question Settings Summary List -->
-<h2 class="govuk-heading-m">Question settings</h2>
+                          <!-- Question Settings Summary List -->
+                          <h2 class="govuk-heading-m">Question settings</h2>
 
-{{ govukSummaryList({
-  "rows": [
-    {
-      "key": {
-        "text": "Type of information"
-      },
-      "value": {
-        "html": "List: yes or no"
-      },
-      "actions": {
-        "items": [
-          {
-            "href": "/redesigntest/templates/1-question/information-type.html",
-            "text": "Change",
-            "visuallyHiddenText": " type"
-          }
-        ]
-      }
-    }
-  ]
-}) }}
+                          {{ govukSummaryList({
+                          "rows": [
+                          {
+                          "key": {
+                          "text": "Type of information"
+                          },
+                          "value": {
+                          "html": "List: yes or no"
+                          },
+                          "actions": {
+                          "items": [
+                          {
+                          "href": "/redesigntest/templates/1-question/information-type.html",
+                          "text": "Change",
+                          "visuallyHiddenText": " type"
+                          }
+                          ]
+                          }
+                          }
+                          ]
+                          }) }}
 
-<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 
                           <!-- Other form elements... -->
@@ -172,8 +176,8 @@
                           <!-- Submit Button -->
                           <div class="moj-button-action">
                             {{ govukButton({
-                              text: 'Save and continue',
-                              type: 'submit'
+                            text: 'Save and continue',
+                            type: 'submit'
                             }) }}
                           </div>
                         </form>
@@ -187,117 +191,120 @@
         </div>
       </div>
 
- <!-- Right Column for Preview -->
-<div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100vh; overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
-  <!-- Before content -->
-  <div id="before-content" style=" background-color:  #cce2d8;">
-    <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px;
-text-align: center;" > Previews
-    </p>
-  </div>
+      <!-- Right Column for Preview -->
+      <div class="govuk-grid-column-one-half-from-desktop" id="second-container"
+        style="outline: solid 1px #008938; height: 100vh; overflow-y: auto; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+        <!-- Before content -->
+        <div id="before-content" style=" background-color:  #cce2d8;">
+          <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px;
+text-align: center;"> Previews
+          </p>
+        </div>
 
-  <div style="margin-top: 60px;">
-    {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+        <div style="margin-top: 60px;">
+          {% from "govuk/components/tabs/macro.njk" import govukTabs %}
 
-    <div class="govuk-tabs" data-module="govuk-tabs">
-      <h2 class="govuk-tabs__title">
-        Contents
-      </h2>
-      <ul class="govuk-tabs__list">
-        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-          <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
-        </li>
-        <li class="govuk-tabs__list-item">
-          <a class="govuk-tabs__tab" href="#tab-two">Error messages</a>
-        </li>
-      </ul>
+          <div class="govuk-tabs" data-module="govuk-tabs">
+            <h2 class="govuk-tabs__title">
+              Contents
+            </h2>
+            <ul class="govuk-tabs__list">
+              <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
+              </li>
+              <li class="govuk-tabs__list-item">
+                <a class="govuk-tabs__tab" href="#tab-two">Error messages</a>
+              </li>
+            </ul>
 
-      <div class="govuk-tabs__panel" id="tab-one">
-
-
-
-    {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
-    {% include "/redesigntest/templates/previews-more-than-1-question/numbers/for-overview.html" %}
-    {% include "/redesigntest/templates/previews-more-than-1-question/date/for-overview.html" %}
-
-    {% include "/redesigntest/templates/previews-more-than-1-question/address/for-overview.html" %}
-
-    {% include "/redesigntest/templates/previews-more-than-1-question/phone/for-overview.html" %}
-    {# {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %} #}
-
-    {% include "/redesigntest/templates/previews-more-than-1-question/email/for-overview.html" %}
-
-    <div id="border-left-container-yesno" name="borderLeftContainerYesno">
-    {% include "/redesigntest/templates/previews-more-than-1-question/yesno/edit.html" %}
-  </div></div>
-</div>
-</div>
-
-<div class="govuk-tabs__panel" id="tab-two">
-
-  <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
-    <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
-      Preview error messages in a new tab
-    </a>
-  </p>
-  <!-- Error Messages Content -->
-   <!-- Error Messages Section -->
-<div class="govuk-error-summary" data-module="govuk-error-summary">
-<h2 class="govuk-error-summary__title">There is a problem</h2>
-<ul class="govuk-list govuk-error-summary__list">
-  <!-- List of errors -->
-  <li><a id="empty-input-error-yesno" class="govuk-error-message">Select yes if <span id="error-dynamic-text">[short description is true]</span></a></li>
-
-</ul>
-</div>
-
-</div>
-</div>
-
-</div>
+            <div class="govuk-tabs__panel" id="tab-one">
 
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          // DOM Elements
-          const domElements = {
-            // Existing elements
-            multiQuestionLabelInputYesno: document.getElementById('multi-question-label-input-yesno'),
-            multiQuestionLabelLegendYesno: document.getElementById('multi-question-label-legend-yesno'),
-            multiQuestionHintTextInputYesno: document.getElementById('multi-question-hint-text-input-yesno'),
-            multiQuestionHintTextOutputYesno: document.getElementById('multi-question-hint-text-output-yesno'),
-            makeOptionalCheckbox: document.getElementById('make-optional'),
 
-            // New elements for page heading and guidance text
-            pageHeadingInputYesno: document.getElementById('page-heading-input-yesno'),
-            dynamicHeading: document.getElementById('dynamic-heading'),
-            guidanceYesno: document.getElementById('guidance-yesno'),
-            guidanceParagraph: document.getElementById('guidance-paragraph')
-          };
+              {% include "/redesigntest/templates/previews-more-than-1-question/textarea/overview.html" %}
+              {% include "/redesigntest/templates/previews-more-than-1-question/numbers/for-overview.html" %}
+              {% include "/redesigntest/templates/previews-more-than-1-question/date/for-overview.html" %}
 
-          // Initialize event listeners
-          initializeEventListeners();
+              {% include "/redesigntest/templates/previews-more-than-1-question/address/for-overview.html" %}
 
-          function initializeEventListeners() {
+              {% include "/redesigntest/templates/previews-more-than-1-question/phone/for-overview.html" %}
+              {# {% include "/redesigntest/templates/previews-more-than-1-question/fileupload/for-overview.html" %} #}
+
+              {% include "/redesigntest/templates/previews-more-than-1-question/email/for-overview.html" %}
+
+              <div id="border-left-container-yesno" name="borderLeftContainerYesno">
+                {% include "/redesigntest/templates/previews-more-than-1-question/yesno/edit.html" %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="govuk-tabs__panel" id="tab-two">
+
+          <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+              Preview error messages in a new tab
+            </a>
+          </p>
+          <!-- Error Messages Content -->
+          <!-- Error Messages Section -->
+          <div class="govuk-error-summary" data-disable-auto-focus="true">
+            <h2 class="govuk-error-summary__title">There is a problem</h2>
+            <ul class="govuk-list govuk-error-summary__list">
+              <!-- List of errors -->
+              <li><a id="empty-input-error-yesno" class="govuk-error-message">Select yes if <span
+                    id="error-dynamic-text">[short description is true]</span></a></li>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // DOM Elements
+        const domElements = {
+          // Existing elements
+          multiQuestionLabelInputYesno: document.getElementById('multi-question-label-input-yesno'),
+          multiQuestionLabelLegendYesno: document.getElementById('multi-question-label-legend-yesno'),
+          multiQuestionHintTextInputYesno: document.getElementById('multi-question-hint-text-input-yesno'),
+          multiQuestionHintTextOutputYesno: document.getElementById('multi-question-hint-text-output-yesno'),
+          makeOptionalCheckbox: document.getElementById('make-optional'),
+
+          // New elements for page heading and guidance text
+          pageHeadingInputYesno: document.getElementById('page-heading-input-yesno'),
+          dynamicHeading: document.getElementById('dynamic-heading'),
+          guidanceYesno: document.getElementById('guidance-yesno'),
+          guidanceParagraph: document.getElementById('guidance-paragraph')
+        };
+
+        // Initialize event listeners
+        initializeEventListeners();
+
+        function initializeEventListeners() {
           // Update question label
           if (domElements.multiQuestionLabelInputYesno && domElements.multiQuestionLabelLegendYesno) {
             domElements.multiQuestionLabelInputYesno.addEventListener('input', updateQuestionLabel);
           }
 
-             // Update hint text and handle placeholder
-             if (domElements.multiQuestionHintTextInputYesno && domElements.multiQuestionHintTextOutputYesno) {
+          // Update hint text and handle placeholder
+          if (domElements.multiQuestionHintTextInputYesno && domElements.multiQuestionHintTextOutputYesno) {
             domElements.multiQuestionHintTextInputYesno.addEventListener('input', updateHintText);
             domElements.multiQuestionHintTextInputYesno.addEventListener('focus', showPlaceholderHint);
             domElements.multiQuestionHintTextInputYesno.addEventListener('blur', clearPlaceholderHint);
           }
 
-            // Update optional label
-            if (domElements.makeOptionalCheckbox) {
-              domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
-            }
+          // Update optional label
+          if (domElements.makeOptionalCheckbox) {
+            domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
+          }
 
-  // Apply focus/blur highlighting
-  applyHighlightOnFocus(domElements.multiQuestionLabelInputYesno, domElements.multiQuestionLabelLegendYesno);
+          // Apply focus/blur highlighting
+          applyHighlightOnFocus(domElements.multiQuestionLabelInputYesno, domElements.multiQuestionLabelLegendYesno);
           applyHighlightOnFocus(domElements.multiQuestionHintTextInputYesno, domElements.multiQuestionHintTextOutputYesno);
 
         }
@@ -312,23 +319,23 @@ text-align: center;" > Previews
           domElements.multiQuestionHintTextOutputYesno.textContent = domElements.multiQuestionHintTextInputYesno.value;
         }
 
-          function applyHighlightOnFocus(inputElement, targetElement) {
-            if (inputElement && targetElement) {
-              inputElement.addEventListener('focus', function () {
-                targetElement.classList.add('highlight');
-              });
-              inputElement.addEventListener('blur', function () {
-                targetElement.classList.remove('highlight');
-              });
+        function applyHighlightOnFocus(inputElement, targetElement) {
+          if (inputElement && targetElement) {
+            inputElement.addEventListener('focus', function () {
+              targetElement.classList.add('highlight');
+            });
+            inputElement.addEventListener('blur', function () {
+              targetElement.classList.remove('highlight');
+            });
 
-              // If the input is already focused
-              if (document.activeElement === inputElement) {
-                targetElement.classList.add('highlight');
-              }
+            // If the input is already focused
+            if (document.activeElement === inputElement) {
+              targetElement.classList.add('highlight');
             }
           }
+        }
 
-     // Placeholder handling for hint text
+        // Placeholder handling for hint text
         function showPlaceholderHint() {
           if (!domElements.multiQuestionHintTextInputYesno.value) {
             domElements.multiQuestionHintTextOutputYesno.textContent = 'Hint text';
@@ -341,114 +348,114 @@ text-align: center;" > Previews
           }
 
         }
-        });
-        </script>
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // DOM Elements
-    const domElements = {
-
-      errorMessageInputYesno: document.getElementById('error-message-input-yesno'),
-      errorMessagePreviewElements: document.querySelectorAll("#error-dynamic-text, #error-dynamic-text-long, #error-dynamic-text-short, #error-dynamic-text-range"),
-      makeOptionalCheckbox: document.getElementById('make-optional'),
-      errorMessagePreviewSummary: document.getElementById('error-message-preview-summary') // Add the details component
-    };
-
-    // Initialize event listeners
-    initializeEventListeners();
-
-    function initializeEventListeners() {
-      // Update short description and apply highlighting
-      if (domElements.errorMessageInputYesno && domElements.errorMessagePreviewElements.length) {
-        domElements.errorMessageInputYesno.addEventListener('input', updateErrorMessages);
-        applyHighlightOnFocus(domElements.errorMessageInputYesno, domElements.errorMessagePreviewElements);
-
-        // Activate the details component on focus and deactivate on blur
-        domElements.errorMessageInputYesno.addEventListener('focus', openErrorMessagePreview);
-        domElements.errorMessageInputYesno.addEventListener('blur', closeErrorMessagePreview);
-      }
-
-      // Apply focus/blur highlighting to other elements
-      applyHighlightOnFocus(domElements.multiQuestionLabelInputTextarea, document.getElementById('question-label-legend'));
-
-      // Update character limits dynamically
-      if (domElements.minCharactersInput && domElements.maxCharactersInput) {
-        domElements.minCharactersInput.addEventListener('input', updateCharacterLimits);
-        domElements.maxCharactersInput.addEventListener('input', updateCharacterLimits);
-      }
-    }
-
-    function updateErrorMessages() {
-      const shortDescription = domElements.errorMessageInputYesno.value || '[Short description]';
-      domElements.errorMessagePreviewElements.forEach(element => {
-        element.textContent = shortDescription;
       });
-    }
+    </script>
 
-    function updateCharacterLimits() {
-      const minCharacters = domElements.minCharactersInput.value || '[min length]';
-      const maxCharacters = domElements.maxCharactersInput.value || '[max length]';
 
-      domElements.minCharactersPreview.forEach(element => {
-        element.textContent = minCharacters;
-      });
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // DOM Elements
+        const domElements = {
 
-      domElements.maxCharactersPreview.forEach(element => {
-        element.textContent = maxCharacters;
-      });
-    }
+          errorMessageInputYesno: document.getElementById('error-message-input-yesno'),
+          errorMessagePreviewElements: document.querySelectorAll("#error-dynamic-text, #error-dynamic-text-long, #error-dynamic-text-short, #error-dynamic-text-range"),
+          makeOptionalCheckbox: document.getElementById('make-optional'),
+          errorMessagePreviewSummary: document.getElementById('error-message-preview-summary') // Add the details component
+        };
 
-    function applyHighlightOnFocus(inputElement, targetElements) {
-      if (inputElement && targetElements) {
-        inputElement.addEventListener('focus', function () {
-          targetElements.forEach(target => target.classList.add('highlight'));
-        });
-        inputElement.addEventListener('blur', function () {
-          targetElements.forEach(target => target.classList.remove('highlight'));
-        });
+        // Initialize event listeners
+        initializeEventListeners();
 
-        // If the input is already focused, apply the highlight immediately
-        if (document.activeElement === inputElement) {
-          targetElements.forEach(target => target.classList.add('highlight'));
+        function initializeEventListeners() {
+          // Update short description and apply highlighting
+          if (domElements.errorMessageInputYesno && domElements.errorMessagePreviewElements.length) {
+            domElements.errorMessageInputYesno.addEventListener('input', updateErrorMessages);
+            applyHighlightOnFocus(domElements.errorMessageInputYesno, domElements.errorMessagePreviewElements);
+
+            // Activate the details component on focus and deactivate on blur
+            domElements.errorMessageInputYesno.addEventListener('focus', openErrorMessagePreview);
+            domElements.errorMessageInputYesno.addEventListener('blur', closeErrorMessagePreview);
+          }
+
+          // Apply focus/blur highlighting to other elements
+          applyHighlightOnFocus(domElements.multiQuestionLabelInputTextarea, document.getElementById('question-label-legend'));
+
+          // Update character limits dynamically
+          if (domElements.minCharactersInput && domElements.maxCharactersInput) {
+            domElements.minCharactersInput.addEventListener('input', updateCharacterLimits);
+            domElements.maxCharactersInput.addEventListener('input', updateCharacterLimits);
+          }
         }
-      }
-    }
 
-    // Function to open the details component when the input is focused
-    function openErrorMessagePreview() {
-      if (domElements.errorMessagePreviewSummary) {
-        domElements.errorMessagePreviewSummary.setAttribute('open', 'open'); // Opens the details component
-      }
-    }
+        function updateErrorMessages() {
+          const shortDescription = domElements.errorMessageInputYesno.value || '[Short description]';
+          domElements.errorMessagePreviewElements.forEach(element => {
+            element.textContent = shortDescription;
+          });
+        }
 
-    // Function to close the details component when the input loses focus
-    function closeErrorMessagePreview() {
-      if (domElements.errorMessagePreviewSummary) {
-        domElements.errorMessagePreviewSummary.removeAttribute('open'); // Closes the details component
-      }
-    }
-  });
-</script>
+        function updateCharacterLimits() {
+          const minCharacters = domElements.minCharactersInput.value || '[min length]';
+          const maxCharacters = domElements.maxCharactersInput.value || '[max length]';
+
+          domElements.minCharactersPreview.forEach(element => {
+            element.textContent = minCharacters;
+          });
+
+          domElements.maxCharactersPreview.forEach(element => {
+            element.textContent = maxCharacters;
+          });
+        }
+
+        function applyHighlightOnFocus(inputElement, targetElements) {
+          if (inputElement && targetElements) {
+            inputElement.addEventListener('focus', function () {
+              targetElements.forEach(target => target.classList.add('highlight'));
+            });
+            inputElement.addEventListener('blur', function () {
+              targetElements.forEach(target => target.classList.remove('highlight'));
+            });
+
+            // If the input is already focused, apply the highlight immediately
+            if (document.activeElement === inputElement) {
+              targetElements.forEach(target => target.classList.add('highlight'));
+            }
+          }
+        }
+
+        // Function to open the details component when the input is focused
+        function openErrorMessagePreview() {
+          if (domElements.errorMessagePreviewSummary) {
+            domElements.errorMessagePreviewSummary.setAttribute('open', 'open'); // Opens the details component
+          }
+        }
+
+        // Function to close the details component when the input loses focus
+        function closeErrorMessagePreview() {
+          if (domElements.errorMessagePreviewSummary) {
+            domElements.errorMessagePreviewSummary.removeAttribute('open'); // Closes the details component
+          }
+        }
+      });
+    </script>
 
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-      var secondContainer = document.getElementById("second-container");
-      var borderLeftContainerYesno= document.getElementById("border-left-container-yesno");
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var secondContainer = document.getElementById("second-container");
+        var borderLeftContainerYesno = document.getElementById("border-left-container-yesno");
 
-      if (secondContainer && borderLeftContainerYesno) {
+        if (secondContainer && borderLeftContainerYesno) {
           // Scroll the `borderLeftContainerTextarea` element into view within `second-container`
           borderLeftContainerYesno.scrollIntoView({
-              behavior: "smooth",
-              block: "nearest"
+            behavior: "smooth",
+            block: "nearest"
           });
           console.log("Scrolled to border-left-container-textarea within second-container");
-      } else {
+        } else {
           console.log("second-container or border-left-container-textarea not found");
-      }
-  });
+        }
+      });
 
     </script>
 
@@ -477,7 +484,7 @@ text-align: center;" > Previews
         box-sizing: border-box;
       }
 
-      #second-container > * {
+      #second-container>* {
         padding-left: 0px;
         z-index: 2;
       }

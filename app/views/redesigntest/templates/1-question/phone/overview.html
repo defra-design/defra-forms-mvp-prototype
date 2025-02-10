@@ -5,30 +5,28 @@
 {% set guidancePlaceholder = "" %}
 
 {% block header %}
-  {{ serviceHeader({
-    organisationName: "Defra",
-    productName: "Forms Designer",
-    serviceName: "",
-    containerClasses: containerClasses,
-    accountName: "Chris Smith",
-    homepageLink: "/",
-    signOutLink: "/onboarding/sign-out-confirmation",
-    navigationItems: [
-      { href: "/library.html", text: "Forms library", id: "nav-library" },
-      { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
-      { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }    ],
-    activeLinkId: "nav-editor"
-  }) }}
+{{ serviceHeader({
+organisationName: "Defra",
+productName: "Forms Designer",
+serviceName: "",
+containerClasses: containerClasses,
+accountName: "Chris Smith",
+homepageLink: "/",
+signOutLink: "/onboarding/sign-out-confirmation",
+navigationItems: [
+{ href: "/library.html", text: "Forms library", id: "nav-library" },
+{ href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
+{ href: "/redesigntest/listing", text: "Editor", id: "nav-editor" } ],
+activeLinkId: "nav-editor"
+}) }}
 
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
     {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add
     and edit pages", href: "/redesigntest/listing.html" }) }}
 
-    <hr
-      class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
-      style="border-bottom: 1px solid white; margin-bottom: 0"
-    />
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+      style="border-bottom: 1px solid white; margin-bottom: 0" />
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full-from-desktop">
@@ -63,14 +61,16 @@
                     <div id="question-1">
                       <div class="govuk-summary-card__content" style="margin-bottom: 0">
                         <!-- Sub Navigation for Question -->
-                        <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2 " aria-label="Sub navigation">
+                        <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2 "
+                          aria-label="Sub navigation">
                           <ul class="moj-sub-navigation__list" id="nav-list2">
                             <!-- Question Link -->
                             {# <li class="moj-sub-navigation__item">
                               <a class="moj-sub-navigation__link" href="#question-1">Page settings</a>
                             </li> #}
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" aria-current="page"  id="overviewquestions" href="#overview-noquestions">Overview of questions</a>
+                              <a class="moj-sub-navigation__link" aria-current="page" id="overviewquestions"
+                                href="#overview-noquestions">Overview of questions</a>
                             </li>
 
                           </ul>
@@ -85,63 +85,67 @@
 
                         <form class="form" action="/redesigntest/Multi/question-2-date/information-type" method="post">
 
-                           <!-- Dynamic Summary List -->
-            <div id="summary-container">
-              <!-- The dynamic summary list will be populated here -->
+                          <!-- Dynamic Summary List -->
+                          <div id="summary-container">
+                            <!-- The dynamic summary list will be populated here -->
 
-              {{ govukSummaryList({
-                classes: "govuk-summary-list govuk-section-break govuk-section-break--visible",
-                rows: [
-                  {
-                    key: {
-                      text: "Question"
-                    },
-                    value: {
-                      html: data['questionLabelInputPhone'] or ''
+                            {{ govukSummaryList({
+                            classes: "govuk-summary-list govuk-section-break govuk-section-break--visible",
+                            rows: [
+                            {
+                            key: {
+                            text: "Question"
+                            },
+                            value: {
+                            html: data['questionLabelInputPhone'] or ''
 
-                    },
-                    actions: {
-                      items: [
-                        {
-                                                    href: "/redesigntest/templates/1-question/phone/edit.html",
-                          text: "Change",
-                          visuallyHiddenText: "name"
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }) }}
+                            },
+                            actions: {
+                            items: [
+                            {
+                            href: "/redesigntest/templates/1-question/phone/edit.html",
+                            text: "Change",
+                            visuallyHiddenText: "name"
+                            }
+                            ]
+                            }
+                            }
+                            ]
+                            }) }}
 
-            </div>
-          </form>
+                          </div>
+                        </form>
 
-          <a href="#tab-one" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
-            Skip to page preview
-          </a>
+                        <a href="#tab-one" class="govuk-skip-link" style="margin-bottom: 30px!important;"
+                          data-module="govuk-skip-link">
+                          Skip to page preview
+                        </a>
 
-          <a href="#tab-two" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
-            Skip to error messages preview
-          </a>
+                        <a href="#tab-two" class="govuk-skip-link" style="margin-bottom: 30px!important;"
+                          data-module="govuk-skip-link">
+                          Skip to error messages preview
+                        </a>
 
-          <div class="govuk-button-group govuk-!-margin-top-6">
-            <a href="/redesigntest/templates/1-question/page-type.html" class="govuk-button" role="button">
-              Create next page
-            </a>
+                        <div class="govuk-button-group govuk-!-margin-top-6">
+                          <a href="/redesigntest/templates/1-question/page-type.html" class="govuk-button"
+                            role="button">
+                            Create next page
+                          </a>
 
-            <a href="/redesigntest/listing.html" class="govuk-button govuk-button--inverse" role="button">
-              Back to all pages
-            </a>
+                          <a href="/redesigntest/listing.html" class="govuk-button govuk-button--inverse" role="button">
+                            Back to all pages
+                          </a>
 
-            <p class="govuk-body">
-              <a href="/redesigntest/templates/delete.html" class="govuk-link govuk-link--no-visited-state">Delete page</a>
-            </p>
+                          <p class="govuk-body">
+                            <a href="/redesigntest/templates/delete.html"
+                              class="govuk-link govuk-link--no-visited-state">Delete page</a>
+                          </p>
 
 
 
-          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
                 </dd>
               </div>
             </dl>
@@ -149,12 +153,13 @@
         </div>
       </div>
 
-       <!-- Right Column for Preview -->
-       <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+      <!-- Right Column for Preview -->
+      <div class="govuk-grid-column-one-half-from-desktop" id="second-container"
+        style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
         <!-- Before content -->
         <div id="before-content" style=" background-color:  #cce2d8;">
           <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 3px;
-    text-align: center;" > Preview
+    text-align: center;"> Preview
           </p>
         </div>
 
@@ -186,7 +191,8 @@
 
               {% include "/redesigntest/templates/previews/phone/overview.html" %}
 
-              <a href="#overviewquestions" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+              <a href="#overviewquestions" class="govuk-skip-link" style="margin-bottom: 30px!important;"
+                data-module="govuk-skip-link">
                 Skip to overview of questions
               </a>
             </div>
@@ -194,160 +200,163 @@
             <div class="govuk-tabs__panel" id="tab-two">
               <!-- Error Messages Content -->
 
-                 <!-- Error Messages Section -->
-                 <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
-                  <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
-                    Preview error messages in a new tab
-                  </a>
-                </p>
-                <!-- Error Messages Content -->
-                <div class="govuk-error-summary" data-module="govuk-error-summary">
-                  <h2 class="govuk-error-summary__title">There is a problem</h2>
-                  <ul class="govuk-list govuk-error-summary__list">
-                    <!-- List of errors -->
-                    <li><a id="empty-input-error-shorttext" class="govuk-error-message">Enter <span id="error-dynamic-text">[short description]</span></a></li>
-
-                    <li><a id="empty-input-error-shorttext" class="govuk-error-message"><span id="error-dynamic-text">[Short description]</span> must be in the correct format</a></li>
-                  </ul>
-                </div>
-                <a href="#overviewquestions" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
-                  Skip to overview of questions
+              <!-- Error Messages Section -->
+              <p class="govuk-body-s" style="margin-bottom: 30px; border-bottom: #008938 1px;">
+                <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                  Preview error messages in a new tab
                 </a>
+              </p>
+              <!-- Error Messages Content -->
+              <div class="govuk-error-summary" data-disable-auto-focus="true">
+                <h2 class="govuk-error-summary__title">There is a problem</h2>
+                <ul class="govuk-list govuk-error-summary__list">
+                  <!-- List of errors -->
+                  <li><a id="empty-input-error-shorttext" class="govuk-error-message">Enter <span
+                        id="error-dynamic-text">[short description]</span></a></li>
+
+                  <li><a id="empty-input-error-shorttext" class="govuk-error-message"><span
+                        id="error-dynamic-text">[Short description]</span> must be in the correct format</a></li>
+                </ul>
               </div>
-
+              <a href="#overviewquestions" class="govuk-skip-link" style="margin-bottom: 30px!important;"
+                data-module="govuk-skip-link">
+                Skip to overview of questions
+              </a>
             </div>
-          </div>
 
+          </div>
         </div>
 
-    <!-- JavaScript code -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // DOM Elements
-        const domElements = {
-          // Existing elements
-          questionLabelInput: document.getElementById('question-label-input'),
-          questionLabelLegend: document.getElementById('question-label-legend'),
-          hintTextInput: document.getElementById('hint-text-input'),
-          hintTextOutput: document.getElementById('hint-text-output'),
-          makeOptionalCheckbox: document.getElementById('make-optional'),
+      </div>
 
-          // New elements for page heading and guidance text
-          pageHeadingInput: document.getElementById('page-heading-input'),
-          dynamicHeading: document.getElementById('dynamic-heading'),
-          guidanceTextarea: document.getElementById('guidance-textarea'),
-          guidanceParagraph: document.getElementById('guidance-paragraph')
-        };
+      <!-- JavaScript code -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // DOM Elements
+          const domElements = {
+            // Existing elements
+            questionLabelInput: document.getElementById('question-label-input'),
+            questionLabelLegend: document.getElementById('question-label-legend'),
+            hintTextInput: document.getElementById('hint-text-input'),
+            hintTextOutput: document.getElementById('hint-text-output'),
+            makeOptionalCheckbox: document.getElementById('make-optional'),
 
-        // Initialize event listeners
-        initializeEventListeners();
+            // New elements for page heading and guidance text
+            pageHeadingInput: document.getElementById('page-heading-input'),
+            dynamicHeading: document.getElementById('dynamic-heading'),
+            guidanceTextarea: document.getElementById('guidance-textarea'),
+            guidanceParagraph: document.getElementById('guidance-paragraph')
+          };
 
-        function initializeEventListeners() {
-          // Update question label
-          if (domElements.questionLabelInput && domElements.questionLabelLegend) {
-            domElements.questionLabelInput.addEventListener('input', updateQuestionLabel);
+          // Initialize event listeners
+          initializeEventListeners();
+
+          function initializeEventListeners() {
+            // Update question label
+            if (domElements.questionLabelInput && domElements.questionLabelLegend) {
+              domElements.questionLabelInput.addEventListener('input', updateQuestionLabel);
+            }
+
+            // Update hint text
+            if (domElements.hintTextInput && domElements.hintTextOutput) {
+              domElements.hintTextInput.addEventListener('input', updateHintText);
+            }
+
+            // Update optional label
+            if (domElements.makeOptionalCheckbox) {
+              domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
+            }
+
+            // Update page heading
+            if (domElements.pageHeadingInput && domElements.dynamicHeading) {
+              domElements.pageHeadingInput.addEventListener('input', updatePageHeading);
+            }
+
+            // Update guidance text
+            if (domElements.guidanceTextarea && domElements.guidanceParagraph) {
+              domElements.guidanceTextarea.addEventListener('input', updateGuidanceText);
+            }
+
+            // Apply focus/blur highlighting
+            applyHighlightOnFocus(domElements.questionLabelInput, domElements.questionLabelLegend);
+            applyHighlightOnFocus(domElements.hintTextInput, domElements.hintTextOutput);
+            applyHighlightOnFocus(domElements.pageHeadingInput, domElements.dynamicHeading);
+            applyHighlightOnFocus(domElements.guidanceTextarea, domElements.guidanceParagraph);
           }
 
-          // Update hint text
-          if (domElements.hintTextInput && domElements.hintTextOutput) {
-            domElements.hintTextInput.addEventListener('input', updateHintText);
+          function updateQuestionLabel() {
+            const suffix = domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
+            domElements.questionLabelLegend.textContent = domElements.questionLabelInput.value || 'Question';
+            domElements.questionLabelLegend.textContent += suffix;
           }
 
-          // Update optional label
-          if (domElements.makeOptionalCheckbox) {
-            domElements.makeOptionalCheckbox.addEventListener('change', updateQuestionLabel);
+          function updateHintText() {
+            domElements.hintTextOutput.textContent = domElements.hintTextInput.value;
           }
 
-          // Update page heading
-          if (domElements.pageHeadingInput && domElements.dynamicHeading) {
-            domElements.pageHeadingInput.addEventListener('input', updatePageHeading);
+          function updatePageHeading() {
+            domElements.dynamicHeading.textContent = domElements.pageHeadingInput.value;
           }
 
-          // Update guidance text
-          if (domElements.guidanceTextarea && domElements.guidanceParagraph) {
-            domElements.guidanceTextarea.addEventListener('input', updateGuidanceText);
+          function updateGuidanceText() {
+            domElements.guidanceParagraph.textContent = domElements.guidanceTextarea.value;
           }
 
-          // Apply focus/blur highlighting
-          applyHighlightOnFocus(domElements.questionLabelInput, domElements.questionLabelLegend);
-          applyHighlightOnFocus(domElements.hintTextInput, domElements.hintTextOutput);
-          applyHighlightOnFocus(domElements.pageHeadingInput, domElements.dynamicHeading);
-          applyHighlightOnFocus(domElements.guidanceTextarea, domElements.guidanceParagraph);
-        }
+          function applyHighlightOnFocus(inputElement, targetElement) {
+            if (inputElement && targetElement) {
+              inputElement.addEventListener('focus', function () {
+                targetElement.classList.add('highlight');
+              });
+              inputElement.addEventListener('blur', function () {
+                targetElement.classList.remove('highlight');
+              });
 
-        function updateQuestionLabel() {
-          const suffix = domElements.makeOptionalCheckbox.checked ? ' (optional)' : '';
-          domElements.questionLabelLegend.textContent = domElements.questionLabelInput.value || 'Question';
-          domElements.questionLabelLegend.textContent += suffix;
-        }
-
-        function updateHintText() {
-          domElements.hintTextOutput.textContent = domElements.hintTextInput.value;
-        }
-
-        function updatePageHeading() {
-          domElements.dynamicHeading.textContent = domElements.pageHeadingInput.value;
-        }
-
-        function updateGuidanceText() {
-          domElements.guidanceParagraph.textContent = domElements.guidanceTextarea.value;
-        }
-
-        function applyHighlightOnFocus(inputElement, targetElement) {
-          if (inputElement && targetElement) {
-            inputElement.addEventListener('focus', function () {
-              targetElement.classList.add('highlight');
-            });
-            inputElement.addEventListener('blur', function () {
-              targetElement.classList.remove('highlight');
-            });
-
-            // If the input is already focused
-            if (document.activeElement === inputElement) {
-              targetElement.classList.add('highlight');
+              // If the input is already focused
+              if (document.activeElement === inputElement) {
+                targetElement.classList.add('highlight');
+              }
             }
           }
-        }
-      });
+        });
       </script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-window.scrollTo(0, 0);
-});
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          window.scrollTo(0, 0);
+        });
 
-</script>
+      </script>
 
-    <!-- CSS for Highlighting -->
-    <style>
-      .highlight {
-        background-color: #ffe5cc;
-        border-bottom: 2px solid #ffb266;
-      }
+      <!-- CSS for Highlighting -->
+      <style>
+        .highlight {
+          background-color: #ffe5cc;
+          border-bottom: 2px solid #ffb266;
+        }
 
-      #before-content {
-        position: absolute;
-        top: 0;
-        left: 10 !important;
-        right: 0;
-        width: 100%;
-        padding: 10px !important;
-        box-sizing: border-box;
-        z-index: 1;
-        border-bottom: 1px solid #008938;
-        padding-left: 10px;
-      }
+        #before-content {
+          position: absolute;
+          top: 0;
+          left: 10 !important;
+          right: 0;
+          width: 100%;
+          padding: 10px !important;
+          box-sizing: border-box;
+          z-index: 1;
+          border-bottom: 1px solid #008938;
+          padding-left: 10px;
+        }
 
-      #second-container {
-        padding: 0;
-        box-sizing: border-box;
-      }
+        #second-container {
+          padding: 0;
+          box-sizing: border-box;
+        }
 
-      #second-container > * {
-        padding-left: 0px;
-        z-index: 2;
-      }
-    </style>
+        #second-container>* {
+          padding-left: 0px;
+          z-index: 2;
+        }
+      </style>
+    </div>
   </div>
-</div>
-{% endblock %}
+  {% endblock %}

@@ -3,39 +3,35 @@
 {% set pageName = "Edit page 1 - Apply for a county parish holding number in England" %}
 {% set headingPlaceholder = "Page heading" %}
 {% set guidancePlaceholder = "" %}
-{#  #}
+{# #}
 {% block header %}
-  {{ serviceHeader({
-    organisationName: "Defra",
-    productName: "Forms Designer",
-    serviceName: "",
-    containerClasses: containerClasses,
-    accountName: "Chris Smith",
-    homepageLink: "/",
-    signOutLink: "/onboarding/sign-out-confirmation",
-    navigationItems: [
-      { href: "/library.html", text: "Forms library", id: "nav-library" },
-      { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
-      { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }    ],
-    activeLinkId: "nav-editor"
-  }) }}
+{{ serviceHeader({
+organisationName: "Defra",
+productName: "Forms Designer",
+serviceName: "",
+containerClasses: containerClasses,
+accountName: "Chris Smith",
+homepageLink: "/",
+signOutLink: "/onboarding/sign-out-confirmation",
+navigationItems: [
+{ href: "/library.html", text: "Forms library", id: "nav-library" },
+{ href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
+{ href: "/redesigntest/listing", text: "Editor", id: "nav-editor" } ],
+activeLinkId: "nav-editor"
+}) }}
 
 <div class="x-govuk-masthead x-govuk-masthead--large">
   <div class="govuk-width-container">
     {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add
     and edit pages", href: "/redesigntest/listing.html" }) }}
 
-    <hr
-      class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
-      style="border-bottom: 1px solid white; margin-bottom: 0"
-    />
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+      style="border-bottom: 1px solid white; margin-bottom: 0" />
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds-from-desktop">
         <h1 class="x-govuk-masthead__title">
-          <span class="govuk-caption-l" style="color: white"
-            >Apply for a county parish holding certificate</span
-          >
+          <span class="govuk-caption-l" style="color: white">Apply for a county parish holding certificate</span>
 
           Edit page 2
         </h1>
@@ -52,16 +48,9 @@
   <div class="govuk-grid-column-full">
     <div class="govuk-grid-row">
       <!-- Left Column for Form Controls -->
-      <div
-        class="govuk-grid-column-one-half-from-desktop"
-        id="container"
-        style="flex: 1 1 75%; overflow-y: auto"
-      >
+      <div class="govuk-grid-column-one-half-from-desktop" id="container" style="flex: 1 1 75%; overflow-y: auto">
         <div class="govuk-summary-card govuk-!-margin-top-0" style="border-left: 10px solid #008938">
-          <div
-            class="govuk-summary-card__content govuk-!-padding-top-0"
-            style="background-color: #f3f2f1"
-          >
+          <div class="govuk-summary-card__content govuk-!-padding-top-0" style="background-color: #f3f2f1">
 
             <dl class="govuk-summary-list">
               <div class="govuk-summary-list__row">
@@ -71,32 +60,28 @@
                   <!-- Question Settings Container -->
                   <div class="govuk-grid-row" id="page-settings-container-1">
                     <div id="question-1">
-                      <div
-                        class="govuk-summary-card__content"
-                        style="margin-bottom: 0"
-                      >
+                      <div class="govuk-summary-card__content" style="margin-bottom: 0">
                         <!-- Sub Navigation for Question -->
                         <nav class="moj-sub-navigation" aria-label="Sub navigation">
                           <ul class="moj-sub-navigation__list" id="nav-list2">
                             <!-- Question Link -->
                             <li class="moj-sub-navigation__item">
-                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1">Page settings</a>
+                              <a class="moj-sub-navigation__link" aria-current="page" href="#question-1">Page
+                                settings</a>
                             </li>
 
                           </ul>
                         </nav>
 
-                        <div
-                          class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"
-                        ></div>
+                        <div class="govuk-summary-card__title-wrapper govuk-!-padding-top-0"></div>
 
 
 
 
-                          <span class="govuk-caption-l">Page 1</span>
-                          <h1 class="govuk-heading-l">Page settings</h1>
+                        <span class="govuk-caption-l">Page 1</span>
+                        <h1 class="govuk-heading-l">Page settings</h1>
 
-                          <form class="form" action="/overview-0" method="post">
+                        <form class="form" action="/overview-0" method="post">
 
                           {% set morethan1Html %}
                           <div class="govuk-form-group">
@@ -117,8 +102,9 @@
                                 <div class="govuk-date-input__item">
                                   <div class="govuk-form-group">
                                     <label class="govuk-label govuk-date-input__label" for="dob-month">Max</label>
-                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month"
-                                      name="dob-month" type="text" autocomplete="bday-month" inputmode="numeric">
+                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                      id="dob-month" name="dob-month" type="text" autocomplete="bday-month"
+                                      inputmode="numeric">
                                   </div>
                                 </div>
                               </div>
@@ -132,10 +118,11 @@
                           isPageHeading: true
                           },
                           hint: {
-                          text: "Use a word to describe what these questions are asking about. For example, 'cow', 'pet'. This will be used to categorise the answers, for example 'cow 1', cow 2'"
+                          text: "Use a word to describe what these questions are asking about. For example, 'cow',
+                          'pet'. This will be used to categorise the answers, for example 'cow 1', cow 2'"
                           },
-                           id: "set-name",
-    name: "setName"
+                          id: "set-name",
+                          name: "setName"
                           }) }}
                           {% endset -%}
 
@@ -166,15 +153,15 @@
                           ]
                           }) }}
 
-                        {# },
-                        {
-                        value: "morethan1",
-                        text: "More than once",
-                        id: "more-than-1",
-                        disabled: true,
-                        conditional: {
-                        html: morethan1Html
-                        } #}
+                          {# },
+                          {
+                          value: "morethan1",
+                          text: "More than once",
+                          id: "more-than-1",
+                          disabled: true,
+                          conditional: {
+                          html: morethan1Html
+                          } #}
 
                           <div class="govuk-button-group">
                             {{ govukButton({
@@ -189,34 +176,31 @@
                           </div>
 
 
-</form>
+                        </form>
 
 
-</div></div></div></div></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Right Column for Additional Content -->
-      <div
-        class="govuk-grid-column-one-half-from-desktop"
-        id="second-container"
-        style="
+      <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="
           outline: solid 1px #008938;
           height: 100%;
           position: sticky;
           top: 0;
           padding: 20px;
           box-shadow: 5px 10px #008938;
-        "
-      >
+        ">
         <!-- New HTML content for before element -->
         <div id="before-content">
           <p class="govuk-body-s" style="margin-bottom: 0">
-            <a
-              href="#"
-              class="govuk-link govuk-link--no-visited-state"
-              rel="noreferrer noopener"
-              target="_blank"
-              >Preview this page in a new tab</a
-            >
+            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener"
+              target="_blank">Preview this page in a new tab</a>
           </p>
         </div>
 
@@ -233,7 +217,8 @@
 
 
               <div id="heading-container">
-                <span id="dynamic-caption" style="display: none;" class="govuk-caption-l">{{ (data['setName'] or '') + ' 1' }}</span>
+                <span id="dynamic-caption" style="display: none;" class="govuk-caption-l">{{ (data['setName'] or '') + '
+                  1' }}</span>
 
 
 
@@ -249,19 +234,19 @@
 
 
               {{ govukButton({
-                text: "Save and continue",
-                classes: "govuk-button govuk-!-margin-top-3",
-                id: "once-button",
-                disabled: true
-                }) }}
+              text: "Save and continue",
+              classes: "govuk-button govuk-!-margin-top-3",
+              id: "once-button",
+              disabled: true
+              }) }}
 
-                {{ govukButton({
-                text: "Add another [question set name]",
-                classes: "govuk-button govuk-!-margin-top-3",
-                id: "add-another-set-button",
-                disabled: true,
-                attributes: { style: "display:none;" }
-                }) }}
+              {{ govukButton({
+              text: "Add another [question set name]",
+              classes: "govuk-button govuk-!-margin-top-3",
+              id: "add-another-set-button",
+              disabled: true,
+              attributes: { style: "display:none;" }
+              }) }}
 
           </div>
         </div>
@@ -338,14 +323,14 @@
         }
       });
 
-      </script>
+    </script>
 
 
     <style>
-
       .highlight {
         background-color: #ffe5cc;
         border-bottom: 2px solid #ffb266;
+        color: black;
       }
 
       #before-content {
@@ -373,7 +358,7 @@
         /* Ensure container handles padding/border correctly */
       }
 
-      #second-container > * {
+      #second-container>* {
         padding-left: 0px;
         z-index: 2;
         /* Ensure content is above the #before-content */

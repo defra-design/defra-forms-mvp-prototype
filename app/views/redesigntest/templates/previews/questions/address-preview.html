@@ -1,9 +1,11 @@
 <fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
         <h1 class="govuk-fieldset__heading" id="question-label-legend">
-            {{ question.label or data['questionLabelInputAddress'] or '' }}
+            {{ question.label or '' }}
         </h1>
-        <div class="govuk-hint" id="hint-text-output">{{ data['hintTextInputAddress'] or '' }}</div>
+    </legend>
+    <div class="govuk-hint" id="hint-text-output">{{ question.hint or data or '' }}
+    </div>
     </legend>
 
     <!-- Address Line 1 -->

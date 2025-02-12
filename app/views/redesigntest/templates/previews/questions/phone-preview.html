@@ -9,7 +9,7 @@
         {{ question.label or data['questionLabelInputPhone'] or '' }}
     </label>
     <div id="hint-text-output" class="govuk-hint">
-        {{ question.hint or data['hintTextInputPhone'] or '' }}
+        {{ question.hint or '' }}
     </div>
     <input class="govuk-input govuk-input--width-20" id="phone-number-input" name="phoneNumber" type="tel"
         autocomplete="tel">

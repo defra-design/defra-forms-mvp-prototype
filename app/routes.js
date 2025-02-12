@@ -1146,21 +1146,33 @@ router.post("/question-number", function (req, res) {
 //    Handle user picking the specific question type (e.g. "text", "date")
 //--------------------------------------
 router.post("/information-type-answer-nf", function (req, res) {
-  // The main question type, e.g. "text", "date", "address", "list", etc.
-  const mainType = req.session.data["informationQuestion1"];
+  // 1. The main question type (e.g. "text", "date", "list")
+  const mainType = req.body["informationQuestion1"];
 
-  // Subtypes if relevant
-  const writtenSubType = req.session.data["written"]; // e.g. "short-answer-nf"
-  const dateSubType = req.session.data["dateType"]; // e.g. "day-month-year"
-  const listSubType = req.session.data["listType"]; // e.g. "yes-no"
+  // 2. Subtypes for each category:
+  const writtenSubType = req.body["written"]; // "short-answer-nf", "long-answer", etc.
+  const dateSubType = req.body["dateType"]; // "day-month-year", "month-year"
+  const listSubType = req.body["listType"]; // "yes-no", "checkboxes", "radios", "select"
 
-  // Store them to use on the question configuration page
+  const questionType = req.session.data["currentQuestionType"]; // e.g. "list"
+
+  // 3. Store them in session so the GET /question-configuration route can read them
   req.session.data["currentQuestionType"] = mainType;
   req.session.data["writtenSubType"] = writtenSubType;
   req.session.data["dateSubType"] = dateSubType;
   req.session.data["listSubType"] = listSubType;
 
-  // Redirect to question configuration
+  // NEW: If the user chose "list -> checkboxes", clear out the global array
+  if (mainType === "list" && listSubType === "checkboxes") {
+    req.session.data.checkboxList = [];
+  }
+
+  // If user picked "list → radios," clear the global radioList array
+  if (mainType === "list" && listSubType === "radios") {
+    req.session.data.radioList = [];
+  }
+
+  // 4. Now redirect to the question configuration route
   res.redirect("/question-configuration");
 });
 
@@ -1178,11 +1190,12 @@ router.get("/question-configuration", function (req, res) {
   // Decide which template to render
   let templateToRender = "/redesigntest/templates/1-question/default.html";
 
-  // Example logic:
+  // Decide which template to render based on mainType & subType
   if (mainType === "text") {
+    // Choose the template based on writtenSubType
     if (writtenSubType === "short-answer-nf") {
-      questionLabel =
-        req.body["questionLabelInputShortText"] || "Short written answer";
+      templateToRender =
+        "/redesigntest/templates/1-question/shorttext/edit-nf.html";
     } else if (writtenSubType === "long-answer") {
       templateToRender =
         "/redesigntest/templates/1-question/textarea/edit-nf.html";
@@ -1190,14 +1203,15 @@ router.get("/question-configuration", function (req, res) {
       templateToRender =
         "/redesigntest/templates/1-question/numbers/edit-nf.html";
     } else {
-      // Fallback for text with an unknown sub-type
+      // Fallback for an unknown sub-type
       templateToRender = "/redesigntest/templates/1-question/default.html";
     }
   } else if (mainType === "date") {
     if (dateSubType === "day-month-year") {
       templateToRender = "/redesigntest/templates/1-question/date/edit-nf.html";
     } else if (dateSubType === "month-year") {
-      templateToRender = "/redesigntest/templates/1-question/date/edit-nf.html";
+      templateToRender =
+        "/redesigntest/templates/1-question/date-mmyy/edit-nf.html";
     } else {
       templateToRender = "/redesigntest/templates/1-question/default.html";
     }
@@ -1208,7 +1222,7 @@ router.get("/question-configuration", function (req, res) {
     templateToRender = "/redesigntest/templates/1-question/phone/edit-nf.html";
   } else if (mainType === "file") {
     templateToRender =
-      "/redesigntest/templates/1-question/fileupload/edit.html";
+      "/redesigntest/templates/1-question/fileupload/edit-nf.html";
   } else if (mainType === "email") {
     templateToRender = "/redesigntest/templates/1-question/email/edit-nf.html";
   } else if (mainType === "list") {
@@ -1217,13 +1231,13 @@ router.get("/question-configuration", function (req, res) {
         "/redesigntest/templates/1-question/yesno/edit-nf.html";
     } else if (listSubType === "checkboxes") {
       templateToRender =
-        "/redesigntest/templates/1-question/checkboxes/edit-nf.html";
+        "/redesigntest/templates/1-question/checkboxes-nf/add.html";
     } else if (listSubType === "radios") {
       templateToRender =
-        "/redesigntest/templates/1-question/radios/edit-nf.html";
+        "/redesigntest/templates/1-question/radios-nf/add.html";
     } else if (listSubType === "select") {
       templateToRender =
-        "/redesigntest/templates/1-question/autocomplete/edit-nf.html";
+        "/redesigntest/templates/1-question/autocomplete-nf/edit.html";
     } else {
       templateToRender = "/redesigntest/templates/1-question/default.html";
     }
@@ -1235,102 +1249,196 @@ router.get("/question-configuration", function (req, res) {
 
 // POST /question-configuration-save
 router.post("/question-configuration-save", function (req, res) {
-  // Ensure formPages is initialized
+  // 1. Ensure formPages is initialized
   if (!req.session.data["formPages"]) {
     req.session.data["formPages"] = [];
   }
 
+  // 2. Identify current page
   const pageIndex = req.session.data["currentPageIndex"] || 0;
   const formPages = req.session.data["formPages"];
   const currentPage = formPages[pageIndex] || { questions: [] };
 
-  // Ensure questions array exists in the currentPage
   if (!currentPage.questions) {
     currentPage.questions = [];
   }
 
-  // Capture the question type and subtype from the form
+  // 3. Read the question type & subtypes from session (Option A)
   const questionType = req.session.data["currentQuestionType"];
-  const writtenSubType = req.body["writtenSubType"]; // For text question subtypes
+  const writtenSubType = req.session.data["writtenSubType"]; // short-answer-nf, long-answer, numbers
+  const dateSubType = req.session.data["dateSubType"]; // day-month-year, month-year
+  const listSubType = req.session.data["listSubType"]; // yes-no, checkboxes, radios, select
+
+  // 4. We'll decide what final subType to store on the question object
+  let finalSubType = null;
+  if (questionType === "text") {
+    finalSubType = writtenSubType;
+  } else if (questionType === "date") {
+    finalSubType = dateSubType;
+  } else if (questionType === "list") {
+    finalSubType = listSubType;
+  }
+  // For phone/email/address/file, there's no subType
+
+  // 5. Dynamically assign the question label
   let questionLabel = "";
 
-  // Dynamically assign the label based on the question type
   switch (questionType) {
+    // ------------------
     case "phone":
       questionLabel = req.body["questionLabelInputPhone"] || "Phone number";
       break;
+
+    // ------------------
     case "text":
+      // Use writtenSubType from session
       if (writtenSubType === "short-answer-nf") {
         questionLabel =
           req.body["questionLabelInputShortText"] || "Short written answer";
       } else if (writtenSubType === "long-answer") {
         questionLabel =
-          req.body["questionLabelInputText"] || "Long written answer";
+          req.body["questionLabelInputTextArea"] || "Long written answer";
       } else if (writtenSubType === "numbers") {
         questionLabel = req.body["questionLabelInputNumbers"] || "Numbers only";
       } else {
-        questionLabel = req.body["questionLabelInputText"] || "Text question"; // Default
+        // fallback if none of the above
+        questionLabel = req.body["questionLabelInputText"] || "Text question";
       }
       break;
+
+    // ------------------
     case "email":
       questionLabel = req.body["questionLabelInputEmail"] || "Email address";
       break;
+
+    // ------------------
     case "date":
-      questionLabel = req.body["questionLabelInputDate"] || "Date question";
+      // Use dateSubType from session
+      if (dateSubType === "day-month-year") {
+        questionLabel =
+          req.body["questionLabelInputDate"] ||
+          "Day, month, year date question";
+      } else if (dateSubType === "month-year") {
+        questionLabel =
+          req.body["questionLabelInputDate"] || "Month, year date question";
+      } else {
+        questionLabel = req.body["questionLabelInputDate"] || "Date question";
+      }
       break;
+
+    // ------------------
     case "address":
       questionLabel = req.body["questionLabelInputAddress"] || "Address";
       break;
+
+    // ------------------
     case "file":
-      questionLabel = req.body["questionLabelInputFile"] || "File upload";
+      questionLabel = req.body["multiQuestionLabelInputFile"] || "File upload";
+      break;
+
+    // ------------------
+    case "list":
+      // Already have listSubType from session
+      if (listSubType === "yes-no") {
+        questionLabel =
+          req.body["questionLabelInputYesno"] || "Yes/no question";
+      } else if (listSubType === "checkboxes") {
+        questionLabel =
+          req.body["multiQuestionLabelInputRadios"] || "Checkboxes question";
+      } else if (listSubType === "radios") {
+        questionLabel =
+          req.body["multiQuestionLabelInputRadios"] || "Radios question";
+      } else if (listSubType === "select") {
+        questionLabel =
+          req.body["questionLabelInputAutocomplete"] || "Autocomplete question";
+      } else {
+        questionLabel = req.body["questionLabelInputList"] || "List of options";
+      }
+      break;
+
+    // ------------------
+    default:
+      questionLabel = "Test question"; // fallback
+      break;
+  }
+
+  // Now capture the hint text that the user entered.
+  // (Adjust the field names below as needed for your different question types.)
+  let questionHint = "";
+  switch (questionType) {
+    case "phone":
+      questionHint = req.body["hintTextInputPhone"] || "";
+      break;
+    case "text":
+      if (writtenSubType === "short-answer-nf") {
+        questionHint = req.body["hintTextInputShorttext"] || "";
+      } else if (writtenSubType === "long-answer") {
+        questionHint = req.body["hintTextInputTextarea"] || "";
+      } else if (writtenSubType === "numbers") {
+        questionHint = req.body["hintTextInputNumbers"] || "";
+      } else {
+        questionHint = req.body["questionHintInputText"] || "";
+      }
+      break;
+    case "email":
+      questionHint = req.body["hintTextInputEmail"] || "";
+      break;
+    case "date":
+      // Use dateSubType stored in session to customize the default label
+      if (req.session.data["dateSubType"] === "day-month-year") {
+        questionHint =
+          req.body["hintTextInputDate"] || "Day, month, year date question";
+      } else if (req.session.data["dateSubType"] === "month-year") {
+        questionHint =
+          req.body["hintTextInputDateMini"] || "Month, year date question";
+      }
+      break;
+    case "address":
+      questionHint = req.body["hintTextInputAddress"] || "";
+      break;
+    case "file":
+      questionHint = req.body["questionHintInputFile"] || "";
       break;
     case "list":
-      questionLabel = req.body["questionLabelInputList"] || "List of options";
+      if (listSubType === "yes-no") {
+        questionHint = req.body["hintTextInputYesno"] || "";
+      } else if (listSubType === "checkboxes") {
+        questionHint = req.body["questionHintInputCheckboxes"] || "";
+      } else if (listSubType === "radios") {
+        questionHint = req.body["multiQuestionHintTextInputRadios"] || "";
+      } else if (listSubType === "select") {
+        questionHint = req.body["hintTextInputAutocomplete"] || "";
+      } else {
+        questionHint = req.body["questionHintInputList"] || "";
+      }
       break;
     default:
-      questionLabel = "Test question"; // Fallback label if no match
+      questionHint = "";
       break;
   }
 
-  // Handle specific logic for subtypes, e.g., for text questions
-  if (questionType === "text") {
-    switch (writtenSubType) {
-      case "short-answer-nf":
-        questionLabel += " (Short Answer)";
-        break;
-      case "long-answer":
-        questionLabel += " (Long Answer)";
-        break;
-      case "numbers":
-        questionLabel += " (Numbers Only)";
-        break;
-      default:
-        questionLabel += " (Default Text)";
-        break;
-        console.log("Written SubType:", writtenSubType);
-    }
-  }
-
-  // Create the new question object
+  // 6. Create the new question object
   const newQuestion = {
     questionId: Date.now(),
     label: questionLabel,
-    type: questionType, // e.g., "phone", "text", "email", etc.
-    subType: writtenSubType, // Store the subtype (if any)
+    hint: questionHint,
+    type: questionType,
+    subType: finalSubType, // short-answer-nf, long-answer, day-month-year, yes-no, etc.
   };
 
-  // Add the new question to the questions array in the session
+  // 7. Push it onto the current page
   currentPage.questions.push(newQuestion);
 
-  // Save the updated page back into the session
+  // 8. Save back to session
   formPages[pageIndex] = currentPage;
+  req.session.data["formPages"] = formPages;
 
-  // Log the current state before redirecting
   console.log("Updated formPages:", req.session.data["formPages"]);
 
-  // Redirect to the page overview to display the added question
+  // 9. Redirect to the page overview
   res.redirect("/page-overview");
 });
+
 //--------------------------------------
 // 8. GET /page-overview
 //    Display a summary of the questions on the current page
@@ -1433,5 +1541,196 @@ router.post("/test-form", (req, res) => {
   console.log("Final allowMultipleResponses:", allowMultipleResponses);
   res.send("Check your console for output");
 });
+
+// Route to configure checkboxes (when the user is on the add page)
+router.post("/configure-checkbox-nf", function (req, res) {
+  // Ensure checkboxList exists in the session
+  req.session.data.checkboxList = req.session.data.checkboxList || [];
+
+  // Create a new checkbox option
+  const checkboxOption = {
+    label: req.body.label, // Label for the checkbox
+    value: req.body.value, // Value of the checkbox
+    hint: req.body.hint, // (Optional) hint for the checkbox
+  };
+
+  // Append the new checkbox option to the list
+  req.session.data.checkboxList.push(checkboxOption);
+
+  // Redirect to the edit page after adding the new checkbox
+  res.redirect("/redesigntest/templates/1-question/checkboxes-nf/edit");
+});
+
+// Route to save the checkbox option
+router.post("/save-option", (req, res) => {
+  const index = parseInt(req.body.index, 10); // Get the index from the form
+  const checkboxList = req.session.data.checkboxList; // Access the checkboxList array
+
+  if (checkboxList && checkboxList[index]) {
+    // Update the data at the specified index
+    checkboxList[index].label = req.body["option-label"];
+    checkboxList[index].hint = req.body["option-hint"];
+    checkboxList[index].value = req.body["option-value"];
+  }
+
+  // Redirect back to the edit page for checkboxes
+  res.redirect("/redesigntest/templates/1-question/checkboxes-nf/edit");
+});
+
+/// Route to access the edit page for checkboxes
+router.get(
+  "/redesigntest/templates/1-question/checkboxes-nf/edit",
+  (req, res) => {
+    const checkboxList = req.session.data?.checkboxList || []; // Check if the checkboxList is empty, redirect to the add page if so
+    if (checkboxList.length === 0) {
+      res.redirect("/redesigntest/templates/1-question/checkboxes-nf/add.html");
+    } else {
+      // Render the edit page if there are items in the list
+      res.render("/redesigntest/templates/1-question/checkboxes-nf/edit.html", {
+        checkboxList: checkboxList,
+      });
+    }
+  }
+);
+
+// Route to configure radio buttons (when the user is on the add page)
+router.post("/configure-radio-nf", function (req, res) {
+  // Ensure radioList exists in the session
+  req.session.data.radioList = req.session.data.radioList || [];
+
+  // Create a new radio option
+  const radioOption = {
+    label: req.body.label, // Label for the radio button
+    value: req.body.value, // Value of the radio button
+    hint: req.body.hint, // (Optional) hint for the radio button
+  };
+
+  // Append the new radio option to the list
+  req.session.data.radioList.push(radioOption);
+
+  // Redirect to the edit page after adding the new radio button
+  res.redirect("/redesigntest/templates/1-question/radios-nf/edit");
+});
+
+// Route to save the radio button option
+router.post("/save-radio-option", (req, res) => {
+  const index = parseInt(req.body.index, 10); // Get the index from the form
+  const radioList = req.session.data.radioList; // Access the radioList array
+
+  if (radioList && radioList[index]) {
+    // Update the data at the specified index
+    radioList[index].label = req.body["option-label"];
+    radioList[index].hint = req.body["option-hint"];
+    radioList[index].value = req.body["option-value"];
+  }
+
+  // Redirect back to the edit page for radio buttons
+  res.redirect("/redesigntest/templates/1-question/radios-nf/edit");
+});
+
+// Route to access the edit page for radio buttons
+router.get("/redesigntest/templates/1-question/radios-nf/edit", (req, res) => {
+  const radioList = req.session.data?.radioList || [];
+
+  // Check if the radioList is empty, redirect to the add page if so
+  if (radioList.length === 0) {
+    res.redirect("/redesigntest/templates/1-question/radios-nf/add.html");
+  } else {
+    // Render the edit page if there are items in the list
+    res.render("/redesigntest/templates/1-question/radios-nf/edit.html", {
+      radioList: radioList,
+    });
+  }
+});
+
+// -------------
+//  /checkboxes-finalize
+// -------------
+router.post("/checkboxes-finalize", (req, res) => {
+  // 1. Grab the question label from the form
+  const questionLabel =
+    req.body.questionLabelInputCheckboxes || "Checkboxes question";
+
+  // 2. Retrieve current page
+  const pageIndex = req.session.data["currentPageIndex"] || 0;
+  const formPages = req.session.data["formPages"] || [];
+  const currentPage = formPages[pageIndex] || { questions: [] };
+
+  // 3. The "type" and "subType" are already in session, but let's be explicit:
+  const questionType = req.session.data["currentQuestionType"]; // Should be "list"
+  const listSubType = req.session.data["listSubType"]; // Should be "checkboxes"
+
+  // 4. The array of checkbox items
+  const checkboxList = req.session.data.checkboxList || [];
+
+  // 5. Create final question object
+  const newQuestion = {
+    questionId: Date.now(),
+    label: questionLabel, // e.g. user typed "Which species do you own?"
+    type: questionType, // "list"
+    subType: listSubType, // "checkboxes"
+    options: checkboxList, // store the array of { label, value, hint }
+  };
+
+  // 6. Add to current page's .questions array
+  currentPage.questions.push(newQuestion);
+
+  // 7. Save back into session
+  formPages[pageIndex] = currentPage;
+  req.session.data["formPages"] = formPages;
+
+  // 8. Clear the session array so next time it doesn't show old options
+  req.session.data.checkboxList = [];
+
+  console.log("Added a new checkboxes question:", newQuestion);
+
+  // 9. redirect to page overview
+  res.redirect("/page-overview");
+});
+
+// -------------
+//  /radios-finalize
+// -------------
+router.post("/radios-finalize", (req, res) => {
+  // 1. Grab the question label from the form
+  const questionLabel = req.body.questionLabelInputRadios || "Radios question";
+
+  // 2. Retrieve current page
+  const pageIndex = req.session.data["currentPageIndex"] || 0;
+  const formPages = req.session.data["formPages"] || [];
+  const currentPage = formPages[pageIndex] || { questions: [] };
+
+  // 3. "type" and "subType" are in session
+  const questionType = req.session.data["currentQuestionType"]; // "list"
+  const listSubType = req.session.data["listSubType"]; // "radios"
+
+  // 4. The array of radio items
+  const radioList = req.session.data.radioList || [];
+
+  // 5. Create final question object
+  const newQuestion = {
+    questionId: Date.now(),
+    label: questionLabel,
+    type: questionType, // "list"
+    subType: listSubType, // "radios"
+    options: radioList, // store the array of { label, value, hint }
+  };
+
+  // 6. Add to current page's .questions array
+  currentPage.questions.push(newQuestion);
+
+  // 7. Save back into session
+  formPages[pageIndex] = currentPage;
+  req.session.data["formPages"] = formPages;
+
+  // 8. Clear the session array so we don't re-use these radio options
+  req.session.data.radioList = [];
+
+  console.log("Added a new radios question:", newQuestion);
+
+  // 9. redirect to page overview
+  res.redirect("/page-overview");
+});
+
 // Finally, export the router
 module.exports = router;

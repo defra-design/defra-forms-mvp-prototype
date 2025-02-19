@@ -1,27 +1,27 @@
-<div class="govuk-form-group">
-    <fieldset class="govuk-fieldset" aria-describedby="listPreview-hint">
+<div class="preview-item" data-id="question-{{ question.questionId }}">
+    <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-fieldset__heading">
-
-                {{ question.label or data['questionLabelInputCheckboxes'] or '' }}
-            </h1>
+            {{ question.label or 'Default Label' }}
         </legend>
-        {% if data['multiQuestionHintTextInputRadios'] %}
-        <div id="listPreview-hint" class="govuk-hint">
-            {{ data['multiQuestionHintTextInputRadios'] }}
-        </div>
-        {% endif %}
-        <div class="govuk-checkboxes" data-module="govuk-checkboxes" id="checkbox-list">
-            {% for option in data.checkboxList %}
+
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            {% if question.options and question.options | length > 0 %}
+            {% for option in question.options %}
             <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="listPreview-option{{ loop.index0 }}" name="listPreview"
-                    type="checkbox" value="{{ option.label }}">
-                <label class="govuk-label govuk-checkboxes__label" for="listPreview-option{{ loop.index0 }}">
+                <input class="govuk-checkboxes__input" id="checkbox-{{ loop.index }}" name="previewCheckboxes"
+                    type="checkbox" value="{{ option.value }}">
+                <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ loop.index }}">
                     {{ option.label }}
                 </label>
+
+                {% if option.hint %}
+                <div class="govuk-hint govuk-checkboxes__hint">{{ option.hint }}</div>
+                {% endif %}
             </div>
             {% endfor %}
+            {% else %}
+            <p class="govuk-body">No options available.</p>
+            {% endif %}
         </div>
     </fieldset>
-
 </div>

@@ -1,0 +1,1638 @@
+{% extends "layouts/main.html" %}
+
+{% from "components/service-header/macro.njk" import serviceHeader %}
+
+{% set pageName = "Add and edit your pages - Apply for a county parish holding number in England" %}
+
+{% block header %}
+{{ serviceHeader({
+organisationName: "Defra",
+productName: "Forms Designer",
+serviceName: "",
+containerClasses: containerClasses,
+accountName: "Chris Smith",
+homepageLink: "/",
+signOutLink: "/onboarding/sign-out-confirmation",
+navigationItems: [
+{ href: "/library.html", text: "Forms library", id: "nav-library" },
+{ href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
+{ href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }
+],
+activeLinkId: "nav-editor"
+}) }}
+
+<div class="x-govuk-masthead x-govuk-masthead--large">
+    <div class="govuk-width-container">
+        {{ govukBackLink({
+        classes: "govuk-back-link--inverse govuk-!-margin-bottom-0",
+        text: "Back to overview",
+        href: "#"
+        }) }}
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+            style="border-bottom:1px solid white; margin-bottom: 0;">
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds-from-desktop">
+                <h1 class="govuk-heading-l--inverse x-govuk-masthead__title ">
+                    <span class="govuk-caption-l" style="color: white;">Apply for a county parish holding number</span>
+                    Add and edit pages
+                </h1>
+                <div class="govuk-button-group">
+                    <a href="/redesigntest/questionnumber.html" role="button" draggable="false"
+                        class="govuk-button govuk-button--inverse" data-module="govuk-button">
+                        Add new page
+                    </a>
+
+                    <a href="/redesigntest/reorder/main.html" role="button" draggable="false"
+                        class="govuk-button govuk-button--secondary" id="reorder-button" data-module="govuk-button"
+                        style="display: none;">
+                        Re-order pages
+                    </a>
+
+
+                    <a href="#" class="govuk-link govuk-link--inverse" id="preview-link" style="display: none;">Preview
+                        form</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .app-header--full-width-border {
+        border-bottom: 10px solid #1f70b8;
+    }
+
+    .x-govuk-masthead {
+        background-color: #008531 !important;
+    }
+
+    .preview-container {
+        display: none;
+        outline: solid 1px #008938;
+        position: sticky;
+        top: 0;
+        padding: 20px;
+        box-shadow: 5px 10px #008938;
+        margin-bottom: 30px;
+    }
+</style>
+
+
+<form class="form" action="/redesigntest/questionnumber" method="post">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop" id="container" style="overflow-y: auto;">
+
+            <!-- Main Content -->
+            <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+                <div class="govuk-summary-card__title-wrapper">
+                    <h2 class="govuk-summary-card__title" id="card-title-yesno-1q">
+                        Page 1: Your Page Heading (single question page)
+                    </h2>
+                    <ul class="govuk-summary-card__actions">
+                        <li class="govuk-summary-card__action">
+                            <a class="govuk-link govuk-link--no-visited-state" id="editpage1" href="/redesigntest/templates/1-question/yesno/overview.html">
+                                Edit<span class="govuk-visually-hidden"> page 1</span>
+                            </a>
+                        </li>
+                        <li class="govuk-summary-card__action">
+                            <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="yesno-preview" href="#">
+                                Preview<span class="govuk-visually-hidden"> page 1</span>
+                            </a>
+                            <a class="govuk-link close-link" data-preview="yesno-preview" style="display: none;" href="#">
+                                Close Preview<span class="govuk-visually-hidden"> page 1</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#editpage1" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                    Skip to page preview
+                </a>
+                <div class="govuk-summary-card__content">
+                    <dl class="govuk-summary-list">
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Question</dt>
+                            <dd class="govuk-summary-list__value">Your question goes here</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+            <!-- Preview Container -->
+            <div class="preview-container govuk-!-margin-top-1" id="yesno-preview">
+                <div id="dynamic-preview-content-yesno">
+
+                    <!-- Preview Header -->
+                    <div id="before-content" style="background-color: #cce2d8; display: flex; justify-content: space-between; align-items: left;">
+                        <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 2px;">
+                            Preview of page 1
+                        </p>
+                        <a href="#" id="close-before-content" class="govuk-link" style="color: #005a30;" aria-label="Close Previews">
+                            Close<span class="govuk-visually-hidden"> Previews section</span>
+                        </a>
+                    </div>
+                    <div style="margin-top: 60px;">
+
+                    <!-- Tab Structure -->
+                    <div class="govuk-tabs" data-module="govuk-tabs">
+                        <h2 class="govuk-tabs__title">Contents</h2>
+                        <ul class="govuk-tabs__list">
+                            <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                                <a class="govuk-tabs__tab" href="#tab-one-yesno">Page preview</a>
+                            </li>
+                            <li class="govuk-tabs__list-item">
+                                <a class="govuk-tabs__tab" href="#tab-two-yesno">Error messages</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab One Content -->
+                        <div class="govuk-tabs__panel" id="tab-one-yesno">
+                            <p class="govuk-body-s" style="margin-bottom: 30px;">
+                                <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                    Preview this page in a new tab
+                                </a>
+                            </p>
+
+                            <!-- Dynamic Heading -->
+                            <div id="heading-container">
+                                {# <span id="dynamic-caption" class="govuk-caption-xl">Set Name 1</span> #}
+                                <h1 class="govuk-heading-xl" id="dynamic-heading">Your Heading Here</h1>
+                            </div>
+
+                            <!-- Guidance Paragraph -->
+                            <p class="govuk-body" id="guidance-paragraph">Guidance text here</p>
+
+                            <!-- Yes/No Question -->
+                            <div class="govuk-form-group govuk-!-margin-top-6">
+                                <fieldset class="govuk-fieldset" aria-describedby="hint-text-output">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                        <h1 class="govuk-fieldset__heading">
+                                            <label class="govuk-label govuk-label--l" for="yesno-input" id="question-label-legend">
+                                                Your question goes here
+                                            </label>
+                                        </h1>
+                                        <div id="hint-text-output" class="govuk-hint">Hint text here</div>
+                                    </legend>
+                                    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                                        <div class="govuk-radios__item">
+                                            <input class="govuk-radios__input" id="yes-option" name="generic-question" type="radio" value="yes">
+                                            <label class="govuk-label govuk-radios__label" for="yes-option">Yes</label>
+                                        </div>
+                                        <div class="govuk-radios__item">
+                                            <input class="govuk-radios__input" id="no-option" name="generic-question" type="radio" value="no">
+                                            <label class="govuk-label govuk-radios__label" for="no-option">No</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <a href="#editpage1" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                                Close preview and skip to page 1 details
+                            </a>
+
+                            <!-- Continue Button -->
+                            {{ govukButton({
+                                text: "Continue",
+                                classes: "govuk-button govuk-!-margin-top-3",
+                                id: "continue-button",
+                                disabled: true
+                            }) }}
+                        </div> <!-- End of Tab One -->
+
+                        <!-- Tab Two Content -->
+                        <div class="govuk-tabs__panel" id="tab-two-yesno">
+                            <p class="govuk-body-s" style="margin-bottom: 30px;">
+                                <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                    Preview error messages in a new tab
+                                </a>
+                            </p>
+                            <!-- Error Messages -->
+                            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                                <h2 class="govuk-error-summary__title">There is a problem</h2>
+                                <ul class="govuk-list govuk-error-summary__list">
+                                    <!-- List of errors -->
+                                    <li>
+                                      <a
+                                        id="empty-input-error-shorttext"
+                                        class="govuk-error-message"
+                                        href="#error-message-input-shorttext"
+                                      >
+                                        Select yes if <span id="error-dynamic-text">[short description is true]</span>
+                                      </a>
+                                    </li>
+                                  </ul>
+                            </div>
+                        </div> <!-- End of Tab Two -->
+
+                    </div> <!-- End of govuk-tabs -->
+                    </div>
+                </div> <!-- End of dynamic-preview-content-yesno -->
+            </div> <!-- End of preview-container -->
+        </div>
+    </div>
+{#
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dynamicCaption = document.getElementById("dynamic-caption");
+            if (dynamicCaption) {
+                const setName = dynamicCaption.textContent.trim();
+                if (!setName) {
+                    dynamicCaption.style.display = "none";
+                }
+            }
+
+            // Preview Toggle Functionality
+            document.querySelectorAll(".preview-link").forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const previewId = this.dataset.preview;
+                    const previewContainer = document.getElementById(previewId);
+                    if (previewContainer) {
+                        previewContainer.style.display = "block";
+                    }
+                    togglePreviewLinks(previewId, true);
+                });
+            });
+
+            document.querySelectorAll(".close-link").forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const previewId = this.dataset.preview;
+                    const previewContainer = document.getElementById(previewId);
+                    if (previewContainer) {
+                        previewContainer.style.display = "none";
+                    }
+                    togglePreviewLinks(previewId, false);
+                });
+            });
+
+            function togglePreviewLinks(previewId, showPreview) {
+                const previewLink = document.querySelector(`a[data-preview="${previewId}"]`);
+                const closeLink = document.querySelector(`a[data-preview="${previewId}"] + a`);
+                if (previewLink && closeLink) {
+                    previewLink.style.display = showPreview ? "none" : "inline";
+                    closeLink.style.display = showPreview ? "inline" : "none";
+                }
+            }
+        });
+    </script> #}
+
+
+       <!-- Page 2: Textarea Question -->
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+        <!-- Summary Card -->
+        <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title" id="card-title-textarea-2q">
+                    Page 2: Your question (single question page)
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage2" href="/redesigntest/templates/1-question/textarea/overview.html">
+                            Edit<span class="govuk-visually-hidden"> page 2</span>
+                        </a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="textarea-preview" href="#">
+                            Preview<span class="govuk-visually-hidden"> page 2</span>
+                        </a>
+                        <a class="govuk-link close-link" data-preview="textarea-preview" style="display: none;" href="#">
+                            Close Preview<span class="govuk-visually-hidden"> page 2</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Skip Link -->
+            <a href="#editpage2" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                Skip to page preview
+            </a>
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+        <!-- Preview Container -->
+        <div class="preview-container" id="textarea-preview">
+            <div id="dynamic-preview-content-textarea">
+                <!-- Preview Header -->
+                <div id="before-content" style="background-color: #cce2d8; display: flex; justify-content: space-between; align-items: left;">
+                    <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 2px;">
+                        Preview of page 2
+                    </p>
+                    <a href="#" id="close-before-content" class="govuk-link" style="color: #005a30;" aria-label="Close Previews">
+                        Close<span class="govuk-visually-hidden"> Previews section</span>
+                    </a>
+                </div>
+                <div style="margin-top: 60px;">
+
+                <!-- Tab Structure -->
+                <div class="govuk-tabs" data-module="govuk-tabs">
+                    <h2 class="govuk-tabs__title">Contents</h2>
+                    <ul class="govuk-tabs__list">
+                        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                            <a class="govuk-tabs__tab" href="#tab-one-textarea">Page preview</a>
+                        </li>
+                        <li class="govuk-tabs__list-item">
+                            <a class="govuk-tabs__tab" href="#tab-two-textarea">Error messages</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab One Content -->
+                    <div class="govuk-tabs__panel" id="tab-one-textarea">
+                        <p class="govuk-body-s" style="margin-bottom: 30px;">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                Preview this page in a new tab
+                            </a>
+                        </p>
+
+                        <!-- Dynamic Heading -->
+                        {# <div id="heading-container">
+                            <h1 class="govuk-heading-xl" id="dynamic-heading">Your QY</h1>
+                        </div> #}
+
+                        <!-- Guidance Paragraph -->
+                        {# <p class="govuk-body" id="guidance-paragraph">Your guidance text</p> #}
+
+                        <!-- Textarea Question -->
+                        <div class="govuk-form-group govuk-!-margin-top-6">
+                            <label class="govuk-label govuk-label--xl" for="text-input-field" id="question-label-legend-textarea">
+                                Your Question Here
+                            </label>
+                            <div id="hint-text-output" class="govuk-hint">Hint text here</div>
+                            <textarea class="govuk-textarea" rows="5" id="text-input-field" name="textInputField" aria-describedby="hint-text-output" disabled></textarea>
+                        </div>
+
+                        <a href="#editpage2" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                            Close preview and skip to page 2 details
+                        </a>
+
+                        <!-- Continue Button -->
+                        <button class="govuk-button govuk-!-margin-top-3" id="continue-button" disabled>
+                            Continue
+                        </button>
+                    </div> <!-- End of Tab One -->
+
+                    <!-- Tab Two Content -->
+                    <div class="govuk-tabs__panel" id="tab-two-textarea">
+                        <p class="govuk-body-s" style="margin-bottom: 30px;">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                Preview error messages in a new tab
+                            </a>
+                        </p>
+                        <!-- Error Messages -->
+                        <div class="govuk-error-summary" data-module="govuk-error-summary">
+                            <h2 class="govuk-error-summary__title">There is a problem</h2>
+                            <ul class="govuk-list govuk-error-summary__list">
+                                <!-- Empty input error -->
+                                <li>
+
+                                  <a id="empty-input-error-textarea" class="govuk-error-message">
+                                    <span class="govuk-visually-hidden">Error:</span>
+                                    Enter <span id="error-dynamic-text" style="text-transform: lowercase;"
+                                    >[short description]</span>
+                                  </a>
+                                </li>
+
+                                <h3 class="govuk-heading-s">If you set answer limits:</h3>
+
+                                <!-- Too long input error -->
+                                <li>
+                                  <a id="too-long-input-error-textarea" class="govuk-error-message">
+                                    <span class="govuk-visually-hidden">Error:</span>
+                                    <span id="error-dynamic-text-long"
+                                    >[Short description]</span> must be
+                                    <span id="max-length">[max length]</span> characters or less
+                                  </a>
+                                </li>
+                                <!-- Too short input error -->
+                                <li>
+                                  <a id="too-short-input-error-textarea" class="govuk-error-message">
+                                    <span class="govuk-visually-hidden">Error:</span>
+                                    <span id="error-dynamic-text-short"
+                                    >[Short description]</span> must be
+                                    <span id="min-length">[min length]</span> characters or more
+                                  </a>
+                                </li>
+                                <!-- Input within range error -->
+                                <li>
+                                  <a id="range-input-error-textarea" class="govuk-error-message">
+                                    <span class="govuk-visually-hidden">Error:</span>
+                                    <span id="error-dynamic-text-range"
+                                    >[Short description]</span> must be between
+                                    <span id="min-length-range">[min length]</span> and
+                                    <span id="max-length-range">[max length]</span> characters
+                                  </a>
+                                </li>
+                                <!-- Additional error messages can be added here -->
+                            </ul>
+                        </div>
+                    </div> <!-- End of Tab Two -->
+
+                </div> <!-- End of govuk-tabs -->
+                </div>
+            </div> <!-- End of dynamic-preview-content-textarea -->
+        </div> <!-- End of preview-container -->
+    </div>
+</div>
+
+<!-- Page 3: Multi-question Page -->
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+        <!-- Summary Card -->
+        <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title" id="card-title-multiq-4q">
+                    Page 3: Your Page Heading (Multi-question - Repeater)
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage3" href="/redesigntest/templates/more-than-1-question/radios/overview.html">
+                            Edit<span class="govuk-visually-hidden"> page 3</span>
+                        </a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="multiq-preview" href="#">
+                            Preview<span class="govuk-visually-hidden"> page 3</span>
+                        </a>
+                        <a class="govuk-link close-link" data-preview="multiq-preview" style="display: none;" href="#">
+                            Close Preview<span class="govuk-visually-hidden"> page 3</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Skip Link -->
+            <a href="#editpage3" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                Skip to page preview
+            </a>
+            <!-- Summary Content -->
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <!-- List all questions -->
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 1</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Short Text Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 2</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Long Answer Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 3</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Number Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 4</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Date Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 5</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Address Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 6</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Phone Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 7</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Email Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 8</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Yes/No Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 9</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Checkboxes Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 10</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Radios Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 11</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Autocomplete Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">People can answer</dt>
+                        <dd class="govuk-summary-list__value">More than once</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+        <!-- Preview Container -->
+        <div class="preview-container" id="multiq-preview">
+            <div id="dynamic-preview-content-multiq">
+                <!-- Preview Header -->
+                <div id="before-content" style="background-color: #cce2d8; display: flex; justify-content: space-between; align-items: left;">
+                    <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 2px;">
+                        Preview of page 3
+                    </p>
+                    <a href="#" id="close-before-content" class="govuk-link" style="color: #005a30;" aria-label="Close Previews">
+                        Close<span class="govuk-visually-hidden"> Previews section</span>
+                    </a>
+                </div>
+                <div style="margin-top: 60px;">
+
+                <!-- Tab Structure -->
+                <div class="govuk-tabs" data-module="govuk-tabs">
+                    <h2 class="govuk-tabs__title">Contents</h2>
+                    <ul class="govuk-tabs__list">
+                        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                            <a class="govuk-tabs__tab" href="#tab-one-multiq">Page preview</a>
+                        </li>
+                        {# <li class="govuk-tabs__list-item">
+                            <a class="govuk-tabs__tab" href="#tab-two-multiq">Error messages</a>
+                        </li> #}
+                    </ul>
+
+                    <!-- Tab One Content -->
+                    <div class="govuk-tabs__panel" id="tab-one-multiq">
+                        <p class="govuk-body-s" style="margin-bottom: 30px;">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                Preview this page in a new tab
+                            </a>
+                        </p>
+
+                        <!-- Dynamic Heading -->
+                        <div id="heading-container">
+                            <span id="dynamic-caption" class="govuk-caption-xl">Question set name 1</span>
+                            <h1 class="govuk-heading-xl" id="dynamic-heading">Your page heading (multi-question)</h1>
+                            <p class="govuk-body" id="guidance-paragraph">Your guidance text</p>
+                        </div>
+
+                        <!-- Multiple Questions -->
+                        <!-- Question 1: Short Text Question -->
+                        <div class="govuk-form-group govuk-!-margin-top-6">
+                            <label class="govuk-label govuk-label--l" for="text-input-field-1" id="question-label-legend-1">
+                                Short text question
+                            </label>
+                            <div id="hint-text-output-1" class="govuk-hint">Hint text for short text question</div>
+                            <input class="govuk-input" id="text-input-field-1" name="textInputField1" type="text" aria-describedby="hint-text-output-1" disabled>
+                        </div>
+
+                        <!-- Question 2: Long Text Question -->
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-label--l" for="text-input-field-2" id="question-label-legend-2">
+                                Long text question
+                            </label>
+                            <div id="hint-text-output-2" class="govuk-hint">Hint text for long text question</div>
+                            <textarea class="govuk-textarea" rows="5" id="text-input-field-2" name="textInputField2" aria-describedby="hint-text-output-2" disabled></textarea>
+                        </div>
+
+                        <!-- Question 3: Number Question -->
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-label--l" for="number-input-field" id="question-label-legend-3">
+                                Number question
+                            </label>
+                            <div id="hint-text-output-3" class="govuk-hint">Hint text for number question</div>
+                            <input class="govuk-input govuk-input--width-10" id="number-input-field" name="numberInputField" type="number" aria-describedby="hint-text-output-3" disabled>
+                        </div>
+
+                        <!-- Question 4: Date Question -->
+                        <div class="govuk-form-group govuk-!-margin-top-6">
+                            <fieldset class="govuk-fieldset" role="group">
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l" id="question-label-legend-4">
+                                    Date question
+                                </legend>
+                                <div id="hint-text-output-4" class="govuk-hint">Hint text for date question</div>
+                                <div class="govuk-date-input" id="date-input" data-module="govuk-date-input">
+                                    <div class="govuk-date-input__item">
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label govuk-date-input__label" for="date-day">Day</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day" name="date-day" type="text" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="govuk-date-input__item">
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label govuk-date-input__label" for="date-month">Month</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month" name="date-month" type="text" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="govuk-date-input__item">
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label govuk-date-input__label" for="date-year">Year</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year" name="date-year" type="text" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <!-- Include other questions in full, ensuring all label classes remain unchanged -->
+                        <!-- Question 5: Address Question -->
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                <h1 class="govuk-fieldset__heading" id="question-label-legend-5">
+                                    Address question
+                                </h1>
+                            </legend>
+                            <div id="hint-text-output-5" class="govuk-hint">Hint text for address question</div>
+
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="address-line-1">
+                                    Address line 1
+                                </label>
+                                <input class="govuk-input" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1" disabled>
+                            </div>
+
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="address-line-2">
+                                    Address line 2 (optional)
+                                </label>
+                                <input class="govuk-input" id="address-line-2" name="addressLine2" type="text" autocomplete="address-line2" disabled>
+                            </div>
+
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="address-town">
+                                    Town or city
+                                </label>
+                                <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="addressTown" type="text" autocomplete="address-level2" disabled>
+                            </div>
+
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="address-postcode">
+                                    Postcode
+                                </label>
+                                <input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode" type="text" autocomplete="postal-code" disabled>
+                            </div>
+                        </fieldset>
+
+                        <!-- Continue adding all other questions in full, with labels and hints, and ensure all label classes remain unchanged -->
+
+                        <!-- Add Another Button -->
+                        <button class="govuk-button govuk-!-margin-top-3" id="add-another-set-button" disabled>
+                            Add another [question set name]
+                        </button>
+                    </div> <!-- End of Tab One -->
+
+                    <!-- Tab Two Content -->
+                    {# <div class="govuk-tabs__panel" id="tab-two-multiq">
+                        <p class="govuk-body-s" style="margin-bottom: 30px;">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                Preview error messages in a new tab
+                            </a>
+                        </p>
+                        <!-- Error Messages -->
+                        <div class="govuk-error-summary" data-module="govuk-error-summary">
+                            <h2 class="govuk-error-summary__title">There is a problem (NOT FINISHED)</h2>
+                            <ul class="govuk-list govuk-error-summary__list">
+                                <!-- List error messages for each question -->
+                                <li>
+                                    <a href="#" class="govuk-error-message">
+                                        <span class="govuk-visually-hidden">Error:</span>
+                                        Enter your answer for <span id="error-dynamic-text-1">short text question</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="govuk-error-message">
+                                        <span class="govuk-visually-hidden">Error:</span>
+                                        Enter your answer for <span id="error-dynamic-text-2">long text question</span>
+                                    </a>
+                                </li>
+                                <!-- Include error messages for all other questions -->
+                            </ul>
+                        </div>
+                    </div> <!-- End of Tab Two --> #}
+
+                </div> <!-- End of govuk-tabs -->
+                </div>
+            </div> <!-- End of dynamic-preview-content-multiq -->
+        </div> <!-- End of preview-container -->
+    </div>
+</div>
+
+
+
+<!-- Page 3: Multi-question Page -->
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+        <!-- Summary Card -->
+        <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title" id="card-title-multiq-4q">
+                    Page 4: Your Page Heading (Multi-question)
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage4" href="/redesigntest/templates/more-than-1-question/radios/overview.html">
+                            Edit<span class="govuk-visually-hidden"> page 3</span>
+                        </a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="multiq-preview-norepeater" href="#">
+                            Preview<span class="govuk-visually-hidden"> page 3</span>
+                        </a>
+                        <a class="govuk-link close-link" data-preview="multiq-preview" style="display: none;" href="#">
+                            Close Preview<span class="govuk-visually-hidden"> page 3</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Skip Link -->
+            <a href="#editpage4" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                Skip to page preview
+            </a>
+            <!-- Summary Content -->
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <!-- List all questions -->
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 1</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Short Text Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 2</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Long Answer Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 3</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Number Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 4</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Date Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 5</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Address Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 6</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Phone Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 7</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Email Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 8</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Yes/No Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 9</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Checkboxes Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 10</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Radios Question</dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Question 11</dt>
+                        <dd class="govuk-summary-list__value">Placeholder for Autocomplete Question</dd>
+                    </div>
+                    {# <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">People can answer</dt>
+                        <dd class="govuk-summary-list__value">More than once</dd>
+                    </div> #}
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+        <!-- Preview Container -->
+        <div class="preview-container" id="multiq-preview-norepeater">
+            <div id="dynamic-preview-content-multiq-norepeater">
+                <!-- Preview Header -->
+                <div id="before-content" style="background-color: #cce2d8; display: flex; justify-content: space-between; align-items: left;">
+                    <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 2px;">
+                        Preview of page 4
+                    </p>
+                    <a href="#" id="close-before-content" class="govuk-link" style="color: #005a30;" aria-label="Close Previews">
+                        Close<span class="govuk-visually-hidden"> Previews section</span>
+                    </a>
+                </div>
+                <div style="margin-top: 60px;">
+
+                <!-- Tab Structure -->
+                <div class="govuk-tabs" data-module="govuk-tabs">
+                    <h2 class="govuk-tabs__title">Contents</h2>
+                    <ul class="govuk-tabs__list">
+                        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                            <a class="govuk-tabs__tab" href="#tab-one-multiq">Page preview</a>
+                        </li>
+                        {# <li class="govuk-tabs__list-item">
+                            <a class="govuk-tabs__tab" href="#tab-two-multiq">Error messages</a>
+                        </li> #}
+                    </ul>
+
+                    <!-- Tab One Content -->
+                    <div class="govuk-tabs__panel"  id="tab-one-multiq">
+                        <p class="govuk-body-s" style="margin-bottom: 30px;">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                Preview this page in a new tab
+                            </a>
+                        </p>
+
+                        <!-- Dynamic Heading -->
+                        <div id="heading-container">
+                            {# <span id="dynamic-caption" class="govuk-caption-xl">Question set name 1</span> #}
+                            <h1 class="govuk-heading-xl" id="dynamic-heading">Your page heading (multi-question)</h1>
+                            <p class="govuk-body" id="guidance-paragraph">Your guidance text</p>
+                        </div>
+
+                        <!-- Multiple Questions -->
+                        <!-- Question 1: Short Text Question -->
+                        <div class="govuk-form-group govuk-!-margin-top-6">
+                            <label class="govuk-label govuk-label--l" for="text-input-field-1" id="question-label-legend-1">
+                                Short text question
+                            </label>
+                            <div id="hint-text-output-1" class="govuk-hint">Hint text for short text question</div>
+                            <input class="govuk-input" id="text-input-field-1" name="textInputField1" type="text" aria-describedby="hint-text-output-1" disabled>
+                        </div>
+
+                        <!-- Question 2: Long Text Question -->
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-label--l" for="text-input-field-2" id="question-label-legend-2">
+                                Long text question
+                            </label>
+                            <div id="hint-text-output-2" class="govuk-hint">Hint text for long text question</div>
+                            <textarea class="govuk-textarea" rows="5" id="text-input-field-2" name="textInputField2" aria-describedby="hint-text-output-2" disabled></textarea>
+                        </div>
+
+                        <!-- Question 3: Number Question -->
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-label--l" for="number-input-field" id="question-label-legend-3">
+                                Number question
+                            </label>
+                            <div id="hint-text-output-3" class="govuk-hint">Hint text for number question</div>
+                            <input class="govuk-input govuk-input--width-10" id="number-input-field" name="numberInputField" type="number" aria-describedby="hint-text-output-3" disabled>
+                        </div>
+
+                        <!-- Question 4: Date Question -->
+                        <div class="govuk-form-group govuk-!-margin-top-6">
+                            <fieldset class="govuk-fieldset" role="group">
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l" id="question-label-legend-4">
+                                    Date question
+                                </legend>
+                                <div id="hint-text-output-4" class="govuk-hint">Hint text for date question</div>
+                                <div class="govuk-date-input" id="date-input" data-module="govuk-date-input">
+                                    <div class="govuk-date-input__item">
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label govuk-date-input__label" for="date-day">Day</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day" name="date-day" type="text" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="govuk-date-input__item">
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label govuk-date-input__label" for="date-month">Month</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month" name="date-month" type="text" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="govuk-date-input__item">
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label govuk-date-input__label" for="date-year">Year</label>
+                                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year" name="date-year" type="text" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <!-- Include other questions in full, ensuring all label classes remain unchanged -->
+                        <!-- Question 5: Address Question -->
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                <h1 class="govuk-fieldset__heading" id="question-label-legend-5">
+                                    Address question
+                                </h1>
+                            </legend>
+                            <div id="hint-text-output-5" class="govuk-hint">Hint text for address question</div>
+
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="address-line-1">
+                                    Address line 1
+                                </label>
+                                <input class="govuk-input" id="address-line-1" name="addressLine1" type="text" autocomplete="address-line1" disabled>
+                            </div>
+
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="address-line-2">
+                                    Address line 2 (optional)
+                                </label>
+                                <input class="govuk-input" id="address-line-2" name="addressLine2" type="text" autocomplete="address-line2" disabled>
+                            </div>
+
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="address-town">
+                                    Town or city
+                                </label>
+                                <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="addressTown" type="text" autocomplete="address-level2" disabled>
+                            </div>
+
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="address-postcode">
+                                    Postcode
+                                </label>
+                                <input class="govuk-input govuk-input--width-10" id="address-postcode" name="addressPostcode" type="text" autocomplete="postal-code" disabled>
+                            </div>
+                        </fieldset>
+
+                        <!-- Continue adding all other questions in full, with labels and hints, and ensure all label classes remain unchanged -->
+
+                        <!-- Add Another Button -->
+                        <button class="govuk-button govuk-!-margin-top-3" id="add-another-set-button" disabled>
+                            Continue
+                        </button>
+                    </div> <!-- End of Tab One -->
+
+                    <!-- Tab Two Content -->
+                    <div class="govuk-tabs__panel" id="tab-two-multiq">
+                        <p class="govuk-body-s" style="margin-bottom: 30px;">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                Preview error messages in a new tab
+                            </a>
+                        </p>
+                        <!-- Error Messages -->
+                        <div class="govuk-error-summary" data-module="govuk-error-summary">
+                            <h2 class="govuk-error-summary__title">There is a problem (NOT FINISHED)</h2>
+                            <ul class="govuk-list govuk-error-summary__list">
+                                <!-- List error messages for each question -->
+                                <li>
+                                    <a href="#" class="govuk-error-message">
+                                        <span class="govuk-visually-hidden">Error:</span>
+                                        Enter your answer for <span id="error-dynamic-text-1">short text question</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="govuk-error-message">
+                                        <span class="govuk-visually-hidden">Error:</span>
+                                        Enter your answer for <span id="error-dynamic-text-2">long text question</span>
+                                    </a>
+                                </li>
+                                <!-- Include error messages for all other questions -->
+                            </ul>
+                        </div>
+                    </div> <!-- End of Tab Two -->
+
+                </div> <!-- End of govuk-tabs -->
+                </div>
+            </div> <!-- End of dynamic-preview-content-multiq -->
+        </div> <!-- End of preview-container -->
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+        <!-- Section Break and Heading -->
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+        <h2 class="govuk-heading-m">End pages</h2>
+
+        <!-- Summary Card -->
+        <div class="govuk-summary-card" style="border-left: 10px solid #b1b4b6;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title" id="card-title-check-1q">
+                    Check answers page (with declaration <150 characters)<span id="page-1-heading-text"></span>
+                    </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage1" href="/redesigntest/templates/check-answers/settings.html">
+                            Edit <span class="govuk-visually-hidden">page 1</span>
+                        </a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="check-preview-no-dec" href="#">
+                            Preview <span class="govuk-visually-hidden">page 1</span>
+                        </a>
+                        <a class="govuk-link close-link" data-preview="check-preview-no-dec" style="display: none;" href="#">
+                            Close Preview <span class="govuk-visually-hidden">page 1</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Summary Card Content -->
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Declaration</dt>
+                        <dd class="govuk-summary-list__value">
+                            By sending the application you agree that the information you have given is complete and correct.
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+        <!-- Preview Container -->
+        <div class="preview-container govuk-!-margin-top-1" style="outline-color: #b1b4b6; box-shadow: 5px 10px #b1b4b6;" id="second-container">
+            <div id="dynamic-preview-content">
+                <!-- Preview Header -->
+                <div id="before-content" style="background-color: #e3e3e3; outline-color: #b1b4b6; border-bottom-color: #b1b4b6; display: flex; justify-content: space-between; align-items: left;">
+                    <p class="govuk-body-s" style="margin-bottom: 0; color: #0b0c0c; padding: 2px 8px 2px;">
+                        Preview of Check answers page
+                    </p>
+                    <a href="#" id="close-before-content" class="govuk-link" style="color: #0b0c0c;" aria-label="Close Previews">
+                        Close<span class="govuk-visually-hidden"> Previews section</span>
+                    </a>
+                </div>
+                <div style="margin-top: 60px;">
+                    <!-- Tabs Structure -->
+                    <div class="govuk-tabs" data-module="govuk-tabs">
+                        <h2 class="govuk-tabs__title">Contents</h2>
+                        <ul class="govuk-tabs__list">
+                            <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                                <a class="govuk-tabs__tab" href="#tab-one-check-answers">Page preview</a>
+                            </li>
+                            <li class="govuk-tabs__list-item">
+                                <a class="govuk-tabs__tab" href="#tab-two-check-answers">Error messages</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab One Content -->
+                        <div class="govuk-tabs__panel" id="tab-one-check-answers">
+                            <!-- Preview Link -->
+                            <p class="govuk-body-s" style="margin-bottom: 30px;">
+                                <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                    Preview this page in a new tab
+                                </a>
+                            </p>
+
+                            <!-- Dynamic Heading -->
+                            <div id="heading-container">
+                                {% if data['setName'] %}
+                                <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ data['setName'] | capitalize }}">
+                                    {{ data['setName'] | capitalize }} 1
+                                </span>
+                                {% endif %}
+                                <h1 class="govuk-heading-l" id="dynamic-heading">Check your answers before sending your form</h1>
+                            </div>
+
+                            <!-- Summary List -->
+                            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Business registered with RPA</dt>
+                                    <dd class="govuk-summary-list__value">Yes</dd>
+                                    <dd class="govuk-summary-list__actions">
+                                        <a class="govuk-link govuk-link--no-visited-state" href="#" style="color: #b1b4b6; cursor: default;" onclick="event.preventDefault(); return false;">
+                                            Change<span class="govuk-visually-hidden"> registration status</span>
+                                        </a>
+                                    </dd>
+                                </div>
+                                <!-- Repeat similar blocks for each summary item -->
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Country for livestock</dt>
+                                    <dd class="govuk-summary-list__value">England</dd>
+                                    <dd class="govuk-summary-list__actions">
+                                        <a class="govuk-link govuk-link--no-visited-state" href="#" style="color: #b1b4b6; cursor: default;" onclick="event.preventDefault(); return false;">
+                                            Change<span class="govuk-visually-hidden"> country</span>
+                                        </a>
+                                    </dd>
+                                </div>
+                                <!-- Add other summary items here following the same structure -->
+                                <!-- Declaration -->
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Declaration</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        By sending the application you agree that the information you have given is complete and correct.
+                                    </dd>
+                                </div>
+                            </dl>
+
+                            <!-- Guidance Paragraph -->
+                            <p class="govuk-body" id="guidance-paragraph">
+                                {{ data['checkAnswersGuidanceTextInput'] or '' }}
+                            </p>
+
+                            <!-- Send Button -->
+                            {{ govukButton({
+                                text: "Send",
+                                classes: "govuk-button govuk-!-margin-top-6",
+                                id: "once-button",
+                                disabled: true
+                            }) }}
+
+                            <!-- Skip Link -->
+                            <a href="#editpage1" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                                Close preview and skip to page details
+                            </a>
+
+                        </div> <!-- End of Tab One -->
+
+                        <!-- Tab Two Content -->
+                        <div class="govuk-tabs__panel" id="tab-two-check-answers">
+                            <!-- Error Messages -->
+                            <div class="govuk-error-summary" data-module="govuk-error-summary">
+                                <h2 class="govuk-error-summary__title">There is a problem</h2>
+                                <ul class="govuk-list govuk-error-summary__list">
+                                    <li>
+                                        <a href="#" class="govuk-error-message">
+                                            <span class="govuk-visually-hidden">Error:</span>
+                                            You must agree to the declaration before sending your form
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> <!-- End of Tab Two -->
+                    </div> <!-- End of govuk-tabs -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dynamicCaption = document.getElementById("dynamic-caption");
+        const setName = dynamicCaption ? dynamicCaption.getAttribute("data-setname") : null;
+
+        if (!setName && dynamicCaption) {
+            dynamicCaption.style.display = "none";
+        }
+    });
+</script>
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+        <!-- Summary Card -->
+        <div class="govuk-summary-card" style="border-left: 10px solid #b1b4b6;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title" id="card-title-check-long-declaration">
+                    Check answers page (with declaration >150 characters)<span id="page-1-heading-text"></span>
+                    </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage1" href="/redesigntest/templates/check-answers/settings.html">
+                            Edit <span class="govuk-visually-hidden">page 1</span>
+                        </a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="check-preview-long-dec" href="#">
+                            Preview <span class="govuk-visually-hidden">page 1</span>
+                        </a>
+                        <a class="govuk-link close-link" data-preview="check-preview-long-dec" style="display: none;" href="#">
+                            Close Preview <span class="govuk-visually-hidden">page 1</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">Declaration</dt>
+                        <dd class="govuk-summary-list__value">
+                            {% if (data['checkAnswersGuidanceTextInput'] or 'By sending the application you agree that the information you have given is complete and correct. If you deliberately give the wrong or incomplete information, or you do not report any changes, you may:
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>be prosecuted</li>
+                                <li>need to pay a financial penalty</li>
+                                <li>need to pay back any money you are overpaid if you are asked to</li>
+                            </ul>').length > 150 %}
+                                {{ (data['checkAnswersGuidanceTextInput'] or 'By sending the application you agree that the information you have given is complete and correct. If you deliberately give the wrong or incomplete information, or you do not report any changes, you may:
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <li>be prosecuted</li>
+                                    <li>need to pay a financial penalty</li>
+                                    <li>need to pay back any money you are overpaid if you are asked to</li>
+                                </ul>').substring(0, 150) }}...
+                            {% else %}
+                                {{ data['checkAnswersGuidanceTextInput'] or '' }}
+                            {% endif %}
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+        <!-- Preview Container -->
+        <div class="preview-container govuk-!-margin-top-1" style="outline-color: #b1b4b6; box-shadow: 5px 10px #b1b4b6;" id="check-preview-long-dec">
+            <div id="dynamic-preview-content-check-long-dec">
+                <!-- Preview Header -->
+                <div id="before-content" style="background-color: #e3e3e3; outline-color: #b1b4b6; border-bottom-color: #b1b4b6; display: flex; justify-content: space-between; align-items: left;">
+                    <p class="govuk-body-s" style="margin-bottom: 0; color: #0b0c0c; padding: 2px 8px 2px;">
+                        Preview of Check answers page
+                    </p>
+                    <a href="#" id="close-before-content" class="govuk-link" style="color: #0b0c0c;" aria-label="Close Previews">
+                        Close<span class="govuk-visually-hidden"> Previews section</span>
+                    </a>
+                </div>
+                <div style="margin-top: 60px;">
+
+                <!-- Tab Structure -->
+                <div class="govuk-tabs" data-module="govuk-tabs">
+                    <h2 class="govuk-tabs__title">Contents</h2>
+                    <ul class="govuk-tabs__list">
+                        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                            <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab One Content -->
+                    <div class="govuk-tabs__panel" id="tab-one">
+                        <p class="govuk-body-s" style="margin-bottom: 30px; ">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                Preview this page in a new tab
+                            </a>
+                        </p>
+
+                        <!-- Dynamic Heading -->
+                        <div id="heading-container">
+                            {% if data['setName'] %}
+                            <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ data['setName'] | capitalize }}">
+                                {{ data['setName'] | capitalize }} 1
+                            </span>
+                            {% endif %}
+                            <h1 class="govuk-heading-l" id="dynamic-heading">Check your answers before sending your form</h1>
+                        </div>
+
+                        <!-- Summary List -->
+                        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Business registered with RPA</dt>
+                                <dd class="govuk-summary-list__value">Yes</dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link govuk-link--no-visited-state" href="#"
+                                       style="color: #b1b4b6; cursor: default;"
+                                       onclick="event.preventDefault(); event.stopPropagation(); this.blur(); return false;">
+                                        Change<span class="govuk-visually-hidden"> registration status</span>
+                                    </a>
+                                </dd>
+                            </div>
+                            <!-- Include other summary list entries as needed -->
+                            <!-- ... -->
+                            <!-- Declaration -->
+                            {# <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Declaration</dt>
+                                <dd class="govuk-summary-list__value">
+                                    By sending the application you agree that the information you have given is complete and correct. If you deliberately give the wrong or incomplete information, or you do not report any changes, you may:
+                                    <ul class="govuk-list govuk-list--bullet">
+                                        <li>be prosecuted</li>
+                                        <li>need to pay a financial penalty</li>
+                                        <li>need to pay back any money you are overpaid if you are asked to</li>
+                                    </ul>
+                                </dd>
+                            </div> #}
+                        </dl>
+
+                        <!-- Guidance Paragraph -->
+                        <div class="govuk-body" id="guidance-paragraph">
+                            By sending the application you agree that the information you have given is complete and correct. If you deliberately give the wrong or incomplete information, or you do not report any changes, you may:
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>be prosecuted</li>
+                                <li>need to pay a financial penalty</li>
+                                <li>need to pay back any money you are overpaid if you are asked to</li>
+                            </ul>
+                        </div>
+
+                        <!-- Conditional Button -->
+                        {{ govukButton({
+                            text: "Accept and send",
+                            classes: "govuk-button govuk-!-margin-top-3",
+                            id: "accept-and-send-button",
+                            disabled: true
+                        }) }}
+
+                        <a href="#editpage1" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                            Close preview and skip to page details
+                        </a>
+
+                    </div> <!-- End of Tab One -->
+                </div> <!-- End of govuk-tabs -->
+                </div>
+            </div> <!-- End of dynamic-preview-content-check-long-dec -->
+        </div> <!-- End of preview-container -->
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dynamicCaption = document.getElementById("dynamic-caption");
+        const setName = dynamicCaption ? dynamicCaption.getAttribute("data-setname") : null;
+
+        if (!setName && dynamicCaption) {
+            dynamicCaption.style.display = "none";
+        }
+    });
+</script>
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+        <!-- Summary Card -->
+        <div class="govuk-summary-card" style="border-left: 10px solid #b1b4b6;">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title" id="card-title-check-no-declaration">
+                    Check answers page<span id="page-1-heading-text"></span>
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state" id="editpage1" href="/redesigntest/templates/check-answers/settings.html">
+                            Edit <span class="govuk-visually-hidden">page 1</span>
+                        </a>
+                    </li>
+                    <li class="govuk-summary-card__action">
+                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="check-preview-no-declaration" href="#">
+                            Preview <span class="govuk-visually-hidden">page 1</span>
+                        </a>
+                        <a class="govuk-link close-link" data-preview="check-preview-no-declaration" style="display: none;" href="#">
+                            Close Preview <span class="govuk-visually-hidden">page 1</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+   <!-- Right Column for Additional Content -->
+<div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+    <!-- Preview Container -->
+    <div class="preview-container" style="margin-top: 1px;" id="check-preview-no-declaration">
+        <div id="dynamic-preview-content-check-no-declaration">
+            <div id="before-content" style="background-color: #e3e3e3; outline-color: #b1b4b6; border-bottom-color: #b1b4b6; display: flex; align-items: left;">
+                <p class="govuk-body-s" style="margin-bottom: 0; color: #0b0c0c; padding: 2px 8px 2px;">
+                    Preview of Check answers page
+                </p>
+                <!-- Close link removed as per your instruction -->
+            </div>
+
+            <div style="margin-top: 60px;">
+                <!-- Tab Structure -->
+                <div class="govuk-tabs" data-module="govuk-tabs">
+                    <h2 class="govuk-tabs__title">Contents</h2>
+                    <ul class="govuk-tabs__list">
+                        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                            <a class="govuk-tabs__tab" href="#tab-one-check-answers">Page preview</a>
+                        </li>
+                        <li class="govuk-tabs__list-item">
+                            <a class="govuk-tabs__tab" href="#tab-two-check-answers">Error messages</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab One Content -->
+                    <div class="govuk-tabs__panel" id="tab-one-check-answers">
+                        <p class="govuk-body-s" style="margin-bottom: 30px;">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                Preview this page in a new tab
+                            </a>
+                        </p>
+
+                        <!-- Dynamic Heading -->
+                        <div id="heading-container">
+                            {% if data['setName'] %}
+                            <span id="dynamic-caption" class="govuk-caption-xl" data-setname="{{ data['setName'] | capitalize }}">
+                                {{ data['setName'] | capitalize }} 1
+                            </span>
+                            {% endif %}
+                            <h1 class="govuk-heading-l" id="dynamic-heading">Check your answers before sending your form</h1>
+                        </div>
+
+                        <!-- Summary List -->
+                        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Business registered with RPA</dt>
+                                <dd class="govuk-summary-list__value">Yes</dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link govuk-link--no-visited-state" href="#" style="color: #b1b4b6; cursor: default;" onclick="event.preventDefault(); return false;">
+                                        Change<span class="govuk-visually-hidden"> registration status</span>
+                                    </a>
+                                </dd>
+                            </div>
+                            <!-- Additional summary list rows -->
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Country for livestock</dt>
+                                <dd class="govuk-summary-list__value">England</dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link govuk-link--no-visited-state" href="#" style="color: #b1b4b6; cursor: default;" onclick="event.preventDefault(); return false;">
+                                        Change<span class="govuk-visually-hidden"> country</span>
+                                    </a>
+                                </dd>
+                            </div>
+                            <!-- Continue adding other summary list rows -->
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Arrival date of livestock</dt>
+                                <dd class="govuk-summary-list__value">20 04 2024</dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link govuk-link--no-visited-state" href="#" style="color: #b1b4b6; cursor: default;" onclick="event.preventDefault(); return false;">
+                                        Change<span class="govuk-visually-hidden"> arrival date</span>
+                                    </a>
+                                </dd>
+                            </div>
+                            <!-- Add all other summary list rows as in your original code -->
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Methodology statement</dt>
+                                <dd class="govuk-summary-list__value">1 file uploaded</dd>
+                                <dd class="govuk-summary-list__actions">
+                                    <a class="govuk-link govuk-link--no-visited-state" href="#" style="color: #b1b4b6; cursor: default;" onclick="event.preventDefault(); return false;">
+                                        Change<span class="govuk-visually-hidden"> methodology statement</span>
+                                    </a>
+                                </dd>
+                            </div>
+                        </dl>
+
+                        <!-- Guidance Paragraph -->
+                        <div class="govuk-!-margin-top-6">
+                            <p class="govuk-body" id="guidance-paragraph">{{ data['checkAnswersGuidanceTextInput'] or '' }}</p>
+                        </div>
+
+                        <!-- Send Button -->
+                        <button class="govuk-button govuk-!-margin-top-3" id="send-button" disabled>
+                            Send
+                        </button>
+
+                        <a href="#editpage1" class="govuk-skip-link" style="margin-bottom: 30px!important;" data-module="govuk-skip-link">
+                            Close preview and skip to page details
+                        </a>
+                    </div> <!-- End of Tab One -->
+
+                    <!-- Tab Two Content -->
+                    <div class="govuk-tabs__panel" id="tab-two-check-answers">
+                        <p class="govuk-body-s" style="margin-bottom: 30px;">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">
+                                Preview error messages in a new tab
+                            </a>
+                        </p>
+                        <!-- Error Messages -->
+                        <div class="govuk-error-summary" data-module="govuk-error-summary">
+                            <h2 class="govuk-error-summary__title">There is a problem</h2>
+                            <ul class="govuk-list govuk-error-summary__list">
+                                <li>
+                                    <a href="#" class="govuk-error-message">
+                                        <span class="govuk-visually-hidden">Error:</span>
+                                        You must agree to the declaration before sending your form
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> <!-- End of Tab Two -->
+                </div> <!-- End of govuk-tabs -->
+            </div>
+        </div> <!-- End of dynamic-preview-content-check-no-declaration -->
+    </div> <!-- End of preview-container -->
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dynamicCaption = document.getElementById("dynamic-caption");
+        const setName = dynamicCaption ? dynamicCaption.getAttribute("data-setname") : null;
+
+        if (!setName && dynamicCaption) {
+            dynamicCaption.style.display = "none";
+        }
+    });
+</script>
+
+
+
+             <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    // Add event listener to all preview links
+                    document.querySelectorAll(".preview-link").forEach(link => {
+                        link.addEventListener("click", function (e) {
+                            e.preventDefault();
+
+                            // Get the ID of the preview container to open
+                            const previewId = this.dataset.preview;
+                            const previewContainer = document.getElementById(previewId);
+
+                            if (previewContainer) {
+                                // Show the preview container
+                                previewContainer.style.display = "block";
+
+                                // Move focus to the "Close Previews" link
+                                const closeLink = previewContainer.querySelector("#close-before-content");
+                                if (closeLink) {
+                                    closeLink.focus();
+                                }
+                            }
+                        });
+                    });
+
+                    // Add event listener to all close links within previews
+                    document.querySelectorAll("#close-before-content").forEach(link => {
+                        link.addEventListener("click", function (e) {
+                            e.preventDefault();
+
+                            // Get the parent preview container
+                            const previewContainer = this.closest(".preview-container");
+
+                            if (previewContainer) {
+                                // Hide the preview container
+                                previewContainer.style.display = "none";
+
+                                // Move focus back to the corresponding preview link
+                                const previewLink = document.querySelector(`.preview-link[data-preview="${previewContainer.id}"]`);
+                                if (previewLink) {
+                                    previewLink.focus();
+                                }
+                            }
+                        });
+                    });
+
+                    // Add event listener to all "Close preview and skip" links
+                    document.querySelectorAll("[data-module='govuk-skip-link']").forEach(link => {
+                        link.addEventListener("click", function (e) {
+                            e.preventDefault();
+
+                            // Get the ID to skip to from the href attribute
+                            const targetId = this.getAttribute("href").substring(1);
+                            const targetElement = document.getElementById(targetId);
+
+                            // Hide the current preview if applicable
+                            const previewContainer = this.closest(".preview-container");
+                            if (previewContainer) {
+                                previewContainer.style.display = "none";
+                            }
+
+                            // Move focus to the target section if it exists
+                            if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: "smooth" });
+                                targetElement.focus();
+                            }
+                        });
+                    });
+                });
+
+
+                    </script>
+
+{#
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const previewContainers = document.querySelectorAll('.preview-container');
+
+                // Function to toggle between Preview and Close Preview links
+                function togglePreviewLinks(previewId, showPreview) {
+                    const previewLink = document.querySelector(`a[data-preview="${previewId}"]`);
+                    const closeLink = document.querySelector(`a[data-preview="${previewId}"] + a`);
+
+                    if (previewLink && closeLink) {
+                        previewLink.style.display = showPreview ? "none" : "inline";
+                        closeLink.style.display = showPreview ? "inline" : "none";
+                    }
+                }
+
+                // Add event listeners to all preview and close links
+                document.querySelectorAll(".preview-link").forEach(link => {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const linkId = this.dataset.preview;
+
+                        // Show the selected preview
+                        const selectedPreview = document.getElementById(linkId);
+                        if (selectedPreview) {
+                            selectedPreview.style.display = "block"; // Show the selected preview
+                        }
+
+                        // Update visibility of the close link
+                        togglePreviewLinks(linkId, true);
+                    });
+                });
+
+                document.querySelectorAll(".close-link").forEach(link => {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const previewId = this.dataset.preview;
+
+                        // Hide the selected preview
+                        const previewContainer = document.getElementById(previewId);
+                        if (previewContainer) {
+                            previewContainer.style.display = "none";
+                        }
+
+                        // Update visibility of the links
+                        togglePreviewLinks(previewId, false);
+                    });
+                });
+            });
+        </script> #}
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Count the number of <h2> elements with the class govuk-summary-card__title
+                const pageTitles = document.querySelectorAll("h2.govuk-summary-card__title");
+
+                // Get the reorder button and preview form link elements
+                const reorderButton = document.querySelector("#reorder-button");
+                const previewLink = document.querySelector("#preview-link");
+
+                // Show the reorder button and preview link if 2 or more titles are found
+                if (pageTitles.length >= 2) {
+                    reorderButton.style.display = "inline-block";
+                    previewLink.style.display = "inline-block";
+                } else {
+                    reorderButton.style.display = "none";
+                    previewLink.style.display = "none";
+                }
+            });
+
+
+        </script>
+
+        {% endblock %}

@@ -1,39 +1,53 @@
-<!-- Form Group Container -->
-<div class="govuk-form-group">
-    <fieldset class="govuk-fieldset" aria-describedby="listPreview-hint">
-        <!-- Legend for the Fieldset -->
+<div class="preview-item" data-id="question-{{ question.questionId }}">
+    <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-fieldset__heading">
-                {{ question.label or data['questionLabelInputCheckboxes'] or '' }}
-            </h1>
+            {{ question.label }}
         </legend>
-
-
-        <div id="listPreview-hint" class="govuk-hint">
-            {{ question.hint or '' }}
+        {% if question.options | length > 0 %}
+        {% for option in question.options %}
+        <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="option-{{ loop.index }}" name="previewRadios" type="radio"
+                value="{{ option.value }}">
+            <label class="govuk-label govuk-radios__label" for="option-{{ loop.index }}">
+                {{ option.label }}
+            </label>
+            {% if option.hint %}
+            <div class="govuk-hint govuk-radios__hint">{{ option.hint }}</div>
+            {% endif %}
         </div>
+        {% endfor %}
+        {% else %}
+        <p class="govuk-body">No options available.</p>
+        {% endif %}
+    </fieldset>
+</div>
 
-        <!-- Radio List -->
-        <div class="govuk-radios" data-module="govuk-radios" id="radio-list">
-            {% for option in data.radioList %}
+
+{# {% for question in currentPage.questions %}
+<div class="preview-item" data-id="question-{{ question.questionId }}">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{ question.label }}
+        </legend>
+        <div class="govuk-radios">
+            {% set options = question.options or [] %}
+            {% if options | length > 0 %}
+            {% for option in options %}
             <div class="govuk-radios__item">
-                <!-- Radio Input -->
-                <input class="govuk-radios__input" id="listPreview-option{{ loop.index0 }}" name="listPreview"
-                    type="radio" value="{{ option.label }}">
-                <!-- Radio Label -->
-                <label class="govuk-label govuk-radios__label" for="listPreview-option{{ loop.index0 }}">
+                <input class="govuk-radios__input" id="option-{{ question.questionId }}-{{ loop.index }}"
+                    name="previewRadios-{{ question.questionId }}" type="radio" value="{{ option.label }}">
+                <label class="govuk-label govuk-radios__label" for="option-{{ question.questionId }}-{{ loop.index }}">
                     {{ option.label }}
                 </label>
-
-                <!-- Optional Hint for Each Option -->
                 {% if option.hint %}
-                <div class="govuk-hint govuk-radios__hint">
-                    {{ option.hint }}
-                </div>
+                <div class="govuk-hint govuk-radios__hint">{{ option.hint }}</div>
                 {% endif %}
             </div>
             {% endfor %}
+            {% else %}
+            <p class="govuk-body">No options available.</p>
+            {% endif %}
         </div>
     </fieldset>
-
 </div>
+{% endfor %} #}

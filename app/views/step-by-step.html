@@ -1,0 +1,455 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
+
+{# {% block pageTitle %}
+Step by step navigation template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %} #}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+{{ govukHeader() }}
+{% endblock %}
+
+{% block pageScripts %}
+<script type="text/javascript">
+  var $element = document.querySelector('#step-by-step-navigation')
+  var stepByStepNavigation = new GOVUK.Modules.AppStepNav($element).init()
+</script>
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Section</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link">Subsection</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .with-arrow {
+    position: relative;
+    border: none;
+    /* Remove default hr styles */
+    height: 2px;
+    background-color: #b1b4b6;
+    /* GOV.UK default grey */
+    margin: 1.5em 0;
+  }
+
+  .with-arrow::after {
+    content: "▼";
+    /* Unicode down arrow */
+    display: block;
+    position: absolute;
+    left: 2%;
+    transform: translateX(-50%);
+    top: -4px;
+    /* Adjust spacing */
+    font-size: 18px;
+    color: #b1b4b6;
+    /* GOV.UK dark grey */
+    z-index: 10;
+  }
+
+  .govuk-summary-list__key p {
+    display: block !important;
+  }
+</style>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Notification Banner (Hidden by Default) -->
+    <div id="success-banner" class="govuk-visually-hidden">
+      {% set html %}
+      <h3 class="govuk-notification-banner__heading">
+        Condition successfully saved
+      </h3>
+      <p class="govuk-body">You can add more conditions or continue.</p>
+      {% endset %}
+      {{ govukNotificationBanner({
+      html: html,
+      type: "success"
+      }) }}
+    </div>
+
+    <h1 class="govuk-heading-l">Control who can see this page based on previous answers</h1>
+    <p class="govuk-body">Set the conditions for when this page is shown to user.</p>
+
+    <!-- Display added conditions here -->
+    <div id="conditions-list-container" class="govuk-!-margin-top-4 govuk-visually-hidden">
+      <h2 class="govuk-heading-m">Added conditions</h2>
+      <dl id="conditions-list" class="govuk-summary-list"></dl>
+    </div>
+
+
+
+    {% set availableConditions = [
+    { value: "", text: "Select an existing condition", selected: true },
+
+    { value: "owns-farm", text: "Not a farm owner:'Do you own a farm' Is 'No'", type: "yesno" },
+    { value: "england", text: "Lives in England:'Where do you live' Is 'Yes'", type: "yesno" },
+    { value: "animal-types", text: "Has cows, sheep and horses:'What animals do you have' Is 'Cow, Sheep, Horses'",
+    type: "radios" }
+
+    ] %}
+
+    {% set availableQuestions = [
+    { value: "", text: "Select a question", selected: true },
+
+    { value: "owns-car", text: "Do you own a car?", type: "yesno" },
+    { value: "driving-license", text: "Do you have a valid driving license?", type: "yesno" },
+    { value: "preferred-contact", text: "How would you like to be contacted?", type: "radios" },
+    { value: "vehicle-types", text: "Which types of vehicles do you own?", type: "checkboxes" }
+    ] %}
+
+    <div id="conditions-wrapper">
+
+
+      {{ govukRadios({
+      name: "conditionType",
+      fieldset: {
+      legend: {
+      text: "Add or create conditions for this page",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+      }
+      },
+      items: [
+      {
+      value: "existing",
+      text: "Add an existing condition",
+      conditional: {
+      html:
+      govukSelect({
+      id: "existing-condition",
+      name: "existingCondition",
+      label: { text: "Select an existing condition" },
+      items: availableConditions
+      }) +
+      govukButton({
+      text: "Add another existing condition",
+      id: "add-existing-condition",
+      classes: "govuk-button--secondary govuk-!-margin-top-6"
+      })
+      }
+      },
+
+      {
+      value: "new",
+      text: "Create a new condition",
+      conditional: {
+      html:
+      govukInput({
+      id: "condition-name",
+      name: "conditionName",
+      label: { text: "Condition name" },
+      classes: "govuk-!-width-two-thirds"
+      }) +
+
+      '<span class="govuk-caption-m govuk-!-font-weight-bold govuk-!-margin-bottom-4">If users answer</span>' +
+
+      govukSelect({
+      id: "condition-question",
+      name: "question",
+      label: { text: "Select a question" },
+      items: [
+      { value: "", text: "Select a question", selected: true },
+      { value: "owns-car", text: "Do you own a car?", type: "yesno" },
+      { value: "driving-license", text: "Do you have a valid driving license?", type: "yesno" },
+      { value: "preferred-contact", text: "How would you like to be contacted?", type: "radios" },
+      { value: "vehicle-types", text: "Which types of vehicles do you own?", type: "checkboxes" }
+      ]
+      }) +
+
+
+      govukSelect({
+      id: "condition-operator",
+      name: "operator",
+      label: { text: "Operator" },
+      items: [
+      { value: "", text: "Select an operator", selected: true },
+
+      { value: "is", text: "is" },
+      { value: "is-not", text: "is not" }
+      ]
+      }) +
+
+      "<div id='condition-value-container'>"
+        +
+
+
+
+        govukInput({
+        id: "condition-value",
+        name: "value",
+        label: { text: "Enter a value" },
+        classes: "govuk-!-width-one-third"
+        })
+
+        +
+
+
+        "</div>" +
+
+      '
+      <div class="govuk-section-break govuk-section-break--m govuk-section-break--visible with-arrow"></div>
+      <span class="govuk-caption-m govuk-!-font-weight-bold govuk-!-margin-bottom-4 govuk-!-margin-top-4">Then show
+        this page</span>'
+
+
+
+      }
+      }
+      ]
+      }) }}
+
+      {# {{ govukButton({
+      text: "Save conditions",
+      classes: "govuk-button"
+      }) }} #}
+
+
+
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const successBanner = document.getElementById("success-banner");
+
+          const conditionsListContainer = document.getElementById("conditions-list-container");
+          const conditionsList = document.getElementById("conditions-list");
+          const questionSelect = document.getElementById("condition-question");
+          const valueContainer = document.getElementById("condition-value-container");
+
+          const questionOptions = {
+            "owns-car": ["Yes", "No"], // Yes/No question
+            "driving-license": ["Yes", "No"], // Yes/No question
+            "preferred-contact": ["Email", "Phone", "Text Message"], // Radio question
+            "vehicle-types": ["Car", "Bike", "Van", "Truck"] // Checkbox question
+          };
+
+          function showSuccessBanner() {
+            successBanner.classList.remove("govuk-visually-hidden");
+            setTimeout(() => {
+              successBanner.classList.add("govuk-visually-hidden");
+            }, 5000);
+          }
+
+          function addConditionToList(conditionText, conditionId) {
+            // Check if the conditionText has a colon, which separates the condition name from the rest.
+            let conditionName = "";
+            let conditionDetails = "";
+            if (conditionText.includes(":")) {
+              const parts = conditionText.split(":");
+              conditionName = parts[0].trim();
+              // The rest will be used for the "if" clause.
+              conditionDetails = parts.slice(1).join(":").trim();
+            } else {
+              // If there’s no colon, treat the entire text as the condition name.
+              conditionName = conditionText;
+            }
+
+            const newRow = document.createElement("div");
+            newRow.classList.add("govuk-summary-list__row");
+            newRow.setAttribute("data-condition-id", conditionId);
+            newRow.innerHTML = `
+    <dt class="govuk-summary-list__key">
+      <p class="govuk-body govuk-!-font-weight-bold">${conditionName}</p>
+      ${conditionDetails
+                ? `<p class="govuk-body">If ${conditionDetails}</p>`
+                : ""
+              }
+    </dt>
+    <dd class="govuk-summary-list__actions">
+<a href="#" class="govuk-link remove-condition">Remove</a>    </dd>
+  `;
+
+            conditionsList.appendChild(newRow);
+            conditionsListContainer.classList.remove("govuk-visually-hidden");
+            saveConditionsToStorage();
+          }
+
+          function clearExistingSelection() {
+            document.getElementById("existing-condition").value = "";
+          }
+
+          function clearNewConditionInputs() {
+            document.getElementById("condition-name").value = "";
+            document.getElementById("condition-question").value = "";
+            document.getElementById("condition-operator").value = "";
+
+            // Clear text input or select if present
+            const valueField = document.getElementById("condition-value");
+            if (valueField) {
+              valueField.value = "";
+            }
+
+            // Clear any checkbox selections within the container
+            const checkboxes = document.querySelectorAll("#condition-value-container input[type='checkbox']");
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+          }
+
+          function saveConditionsToStorage() {
+            const conditions = [];
+            document.querySelectorAll(".govuk-summary-list__row").forEach((row) => {
+              conditions.push(row.querySelector(".govuk-summary-list__key").textContent);
+            });
+            sessionStorage.setItem("conditions", JSON.stringify(conditions));
+          }
+
+          function loadConditionsFromStorage() {
+            const storedConditions = JSON.parse(sessionStorage.getItem("conditions")) || [];
+            storedConditions.forEach((conditionText) => addConditionToList(conditionText, Date.now()));
+          }
+
+          document.getElementById("add-existing-condition").addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const selectedCondition = document.getElementById("existing-condition").value;
+            if (!selectedCondition) {
+              alert("Please select a condition before adding.");
+              return;
+            }
+
+            const conditionText = document.querySelector(`#existing-condition option[value="${selectedCondition}"]`).textContent;
+            addConditionToList(conditionText, selectedCondition);
+
+            // Show the success banner after adding an existing condition
+            showSuccessBanner();
+
+            clearExistingSelection();
+          });
+
+          document.addEventListener("click", function (event) {
+            if (event.target && event.target.id === "add-new-condition") {
+              event.preventDefault();
+
+              const conditionName = document.getElementById("condition-name").value.trim();
+              const question = document.getElementById("condition-question").value;
+              const operator = document.getElementById("condition-operator").value;
+              let value = "";
+
+              // Check if the value field contains checkboxes
+              const checkboxes = document.querySelectorAll("#condition-value-container .govuk-checkboxes__input:checked");
+
+              if (checkboxes.length > 0) {
+                // Get selected checkbox values
+                value = Array.from(checkboxes).map(cb => cb.value).join(", ");
+              } else {
+                // Otherwise, get the input/select value
+                const valueField = document.getElementById("condition-value");
+                value = valueField ? valueField.value.trim() : "";
+              }
+
+              if (!conditionName || !question || !operator || !value) {
+                alert("Please complete all fields before adding.");
+                return;
+              }
+
+              const conditionText = `${conditionName}: ${question} ${operator} ${value}`;
+              addConditionToList(conditionText, Date.now());
+
+              // Call the success banner function to display the notification
+              showSuccessBanner();
+
+              clearNewConditionInputs();
+            }
+          });
+
+          // Dynamically update input field based on question type
+          questionSelect.addEventListener("change", function () {
+            const selectedOption = questionSelect.options[questionSelect.selectedIndex];
+            const questionId = selectedOption.value;
+
+            // Reset value container (but keep the Save button outside it)
+            valueContainer.innerHTML = "";
+
+            if (questionOptions[questionId]) {
+              const options = questionOptions[questionId];
+
+              if (questionId === "vehicle-types") {
+                // Checkbox-type question: Show checkboxes instead of dropdown
+                valueContainer.innerHTML = `
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              Choose one or more options
+            </legend>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              ${options
+                    .map(
+                      (option, index) => `
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="condition-value-${index}" name="condition-value" type="checkbox" value="${option}">
+                  <label class="govuk-label govuk-checkboxes__label" for="condition-value-${index}">
+                    ${option}
+                  </label>
+                </div>
+              `
+                    )
+                    .join("")}
+            </div>
+          </fieldset>
+        </div>
+      `;
+              } else {
+                // Default: Single select dropdown for Yes/No or Radio questions
+                valueContainer.innerHTML = `
+        <label class="govuk-label" for="condition-value">Select an option</label>
+        <select class="govuk-select" id="condition-value" name="value">
+          <option value="" selected>Select an option</option>
+          ${options.map(option => `<option value="${option}">${option}</option>`).join("")}
+        </select>
+      `;
+              }
+            } else {
+              // Default fallback (free text input)
+              valueContainer.innerHTML = `
+      <label class="govuk-label" for="condition-value">Enter a value</label>
+      <input class="govuk-input govuk-input--width-20" id="condition-value" name="value" type="text">
+    `;
+            }
+
+            // Ensure the button remains visible by appending it outside the container
+            if (!document.getElementById("add-new-condition")) {
+              const saveButton = document.createElement("button");
+              saveButton.classList.add("govuk-button", "govuk-button--secondary", "govuk-!-margin-top-6");
+              saveButton.id = "add-new-condition";
+              saveButton.textContent = "Save condition";
+              valueContainer.parentNode.appendChild(saveButton);
+            }
+          });
+
+          // Handle "Remove" button clicks
+          conditionsListContainer.addEventListener("click", function (event) {
+            if (event.target.classList.contains("remove-condition")) {
+              event.preventDefault();
+              event.target.closest(".govuk-summary-list__row").remove();
+
+              if (!conditionsList.children.length) {
+                conditionsListContainer.classList.add("govuk-visually-hidden");
+              }
+
+              saveConditionsToStorage();
+            }
+          });
+
+          // Load stored conditions on page load
+          loadConditionsFromStorage();
+        });
+      </script>
+
+
+
+
+      {% endblock %}

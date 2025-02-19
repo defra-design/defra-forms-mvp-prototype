@@ -560,7 +560,7 @@ router.post("/information-type-answer3", function (req, res) {
         );
       } else if (listType === "select") {
         res.redirect(
-          "/redesigntest/templates/more-than-1-question/autocomplete/edit.html"
+          "/redesigntest/templates/more-than-1-question/select/edit.html"
         );
       } else {
         res.redirect(
@@ -811,7 +811,7 @@ router.post("/configure-radio", function (req, res) {
   };
 
   // Append the new radio option to the list
-  req.session.data.radioList.push(radioOption);
+  currentPage.radioList.push(radioOption);
 
   // Redirect to the edit page after adding the new radio button
   res.redirect("/redesigntest/templates/1-question/radios/edit");
@@ -819,33 +819,31 @@ router.post("/configure-radio", function (req, res) {
 
 // Route to save the radio button option
 router.post("/save-radio-option", (req, res) => {
-  const index = parseInt(req.body.index, 10); // Get the index from the form
-  const radioList = req.session.data.radioList; // Access the radioList array
+  const pageIndex = req.session.data["currentPageIndex"] || 0;
+  const formPages = req.session.data["formPages"] || [];
+  const currentPage = formPages[pageIndex] || { questions: [] };
 
-  if (radioList && radioList[index]) {
+  const questionIndex = req.session.data["currentQuestionIndex"];
+  const optionIndex = parseInt(req.body.index, 10);
+
+  if (questionIndex === undefined || optionIndex === undefined) {
+    return res.redirect("/redesigntest/templates/1-question/radios-nf/edit");
+  }
+
+  const question = currentPage.questions[questionIndex];
+
+  if (question && question.options && question.options[optionIndex]) {
     // Update the data at the specified index
-    radioList[index].label = req.body["option-label"];
-    radioList[index].hint = req.body["option-hint"];
-    radioList[index].value = req.body["option-value"];
+    question.options[optionIndex].label = req.body["option-label"];
+    question.options[optionIndex].hint = req.body["option-hint"];
+    question.options[optionIndex].value = req.body["option-value"];
   }
 
-  // Redirect back to the edit page for radio buttons
-  res.redirect("/redesigntest/templates/1-question/radios/edit");
-});
+  // Save back to session
+  formPages[pageIndex] = currentPage;
+  req.session.data["formPages"] = formPages;
 
-// Route to access the edit page for radio buttons
-router.get("/redesigntest/templates/1-question/radios/edit", (req, res) => {
-  const radioList = req.session.data?.radioList || [];
-
-  // Check if the radioList is empty, redirect to the add page if so
-  if (radioList.length === 0) {
-    res.redirect("/redesigntest/templates/1-question/radios/add.html");
-  } else {
-    // Render the edit page if there are items in the list
-    res.render("/redesigntest/templates/1-question/radios/edit.html", {
-      radioList: radioList,
-    });
-  }
+  res.redirect("/redesigntest/templates/1-question/radios-nf/edit");
 });
 
 // Route to configure checkboxes (when the user is on the add page)
@@ -880,7 +878,7 @@ router.post("/save-option", (req, res) => {
   }
 
   // Redirect back to the edit page for checkboxes
-  res.redirect("/redesigntest/templates/1-question/checkboxes/edit");
+  res.redirect("/redesigntest/templates/1-question/checkboxes-nf/edit");
 });
 
 /// Route to access the edit page for checkboxes
@@ -1068,22 +1066,34 @@ router.get(
 module.exports = router;
 
 // routes.js
-
-//--------------------------------------
-// 1. Setup and exports
-//--------------------------------------
 const express = require("express");
 
+// **** LISTING AND SETUP ROUTES ****************************************************
 //--------------------------------------
 // 2. GET /redesigntest/listing.html
 //    Show the initial listing page
 //--------------------------------------
 router.get("/redesigntest/listing.html", function (req, res) {
-  // Retrieve the formPages array from session (or use an empty array)
   const formPages = req.session.data["formPages"] || [];
 
-  // Render the listing template and pass the pages
-  res.render("redesigntest/listing.html", { formPages: formPages });
+  // Ensure each question inside each page has its own options array
+  formPages.forEach((page) => {
+    page.questions.forEach((question) => {
+      if (question.subType === "radios" || question.subType === "checkboxes") {
+        // Add checkboxes here
+        question.options = question.options || [];
+      }
+    });
+  });
+
+  console.log(
+    "✅ Passing formPages with radio and checkbox options:",
+    formPages
+  );
+
+  res.render("redesigntest/listing.html", {
+    formPages,
+  });
 });
 
 //--------------------------------------
@@ -1095,6 +1105,8 @@ router.get("/questiontype", function (req, res) {
   // "Question page" or "Guidance page")
   res.render("redesigntest/questiontype.html");
 });
+
+// **** CREATE A NEW PAGE (QUESTION OR GUIDANCE) ****************************************************
 
 //--------------------------------------
 // 4. POST /question-number
@@ -1120,7 +1132,7 @@ router.post("/question-number", function (req, res) {
   const formPages = req.session.data["formPages"];
   formPages.push(newPage);
 
-  // Keep track of which page index we’re editing
+  // Keep track of which page index we're editing
   // (the newly added page is always at formPages.length - 1)
   req.session.data["currentPageIndex"] = formPages.length - 1;
 
@@ -1141,6 +1153,8 @@ router.post("/question-number", function (req, res) {
   }
 });
 
+// **** Choose Question Type / Subtype ****************************************************
+
 //--------------------------------------
 // 5. POST /information-type-answer-nf
 //    Handle user picking the specific question type (e.g. "text", "date")
@@ -1150,35 +1164,54 @@ router.post("/information-type-answer-nf", function (req, res) {
   const mainType = req.body["informationQuestion1"];
 
   // 2. Subtypes for each category:
-  const writtenSubType = req.body["written"]; // "short-answer-nf", "long-answer", etc.
-  const dateSubType = req.body["dateType"]; // "day-month-year", "month-year"
-  const listSubType = req.body["listType"]; // "yes-no", "checkboxes", "radios", "select"
+  const writtenSubType = req.body["written"];
+  const dateSubType = req.body["dateType"];
+  const listSubType = req.body["listType"];
 
-  const questionType = req.session.data["currentQuestionType"]; // e.g. "list"
+  // Ensure `formPages` exists
+  const formPages = req.session.data["formPages"] || [];
 
-  // 3. Store them in session so the GET /question-configuration route can read them
+  // Get the current page index - DO NOT CREATE NEW PAGE
+  const pageIndex = req.session.data["currentPageIndex"];
+  if (pageIndex === undefined || !formPages[pageIndex]) {
+    console.error("❌ Current page not found in session");
+    return res.redirect("/redesigntest/listing.html");
+  }
+
+  // Get the current page
+  const currentPage = formPages[pageIndex];
+
+  // 3. Store question type and subtypes in session
   req.session.data["currentQuestionType"] = mainType;
   req.session.data["writtenSubType"] = writtenSubType;
   req.session.data["dateSubType"] = dateSubType;
   req.session.data["listSubType"] = listSubType;
 
-  // NEW: If the user chose "list -> checkboxes", clear out the global array
-  if (mainType === "list" && listSubType === "checkboxes") {
-    req.session.data.checkboxList = [];
-  }
+  // 4. Create and add the new question
+  const newQuestion = {
+    questionId: Date.now(),
+    type: mainType,
+    subType: listSubType || dateSubType || writtenSubType,
+    label: "New question",
+    options: [], // Initialize empty options array
+  };
 
-  // If user picked "list → radios," clear the global radioList array
-  if (mainType === "list" && listSubType === "radios") {
-    req.session.data.radioList = [];
-  }
+  // Add the question to the current page
+  currentPage.questions.push(newQuestion);
 
-  // 4. Now redirect to the question configuration route
+  // Store the question index
+  req.session.data["currentQuestionIndex"] = currentPage.questions.length - 1;
+
+  // 5. Save back to session
+  req.session.data["formPages"] = formPages;
+
+  // 6. Redirect to the question configuration route
   res.redirect("/question-configuration");
 });
 
 //--------------------------------------
 // 6. GET /question-configuration
-//    Render different templates depending on the user’s choice
+//    Render different templates depending on the user's choice
 //--------------------------------------
 router.get("/question-configuration", function (req, res) {
   // Retrieve the stored type choices from session
@@ -1247,6 +1280,8 @@ router.get("/question-configuration", function (req, res) {
   res.render(templateToRender);
 });
 
+// **** SAVING QUESTION CONFIGURATION ****
+
 // POST /question-configuration-save
 router.post("/question-configuration-save", function (req, res) {
   // 1. Ensure formPages is initialized
@@ -1263,13 +1298,13 @@ router.post("/question-configuration-save", function (req, res) {
     currentPage.questions = [];
   }
 
-  // 3. Read the question type & subtypes from session (Option A)
+  // 3. Read the question type & subtypes from session
   const questionType = req.session.data["currentQuestionType"];
-  const writtenSubType = req.session.data["writtenSubType"]; // short-answer-nf, long-answer, numbers
-  const dateSubType = req.session.data["dateSubType"]; // day-month-year, month-year
-  const listSubType = req.session.data["listSubType"]; // yes-no, checkboxes, radios, select
+  const writtenSubType = req.session.data["writtenSubType"];
+  const dateSubType = req.session.data["dateSubType"];
+  const listSubType = req.session.data["listSubType"];
 
-  // 4. We'll decide what final subType to store on the question object
+  // 4. Determine the subtype
   let finalSubType = null;
   if (questionType === "text") {
     finalSubType = writtenSubType;
@@ -1278,166 +1313,114 @@ router.post("/question-configuration-save", function (req, res) {
   } else if (questionType === "list") {
     finalSubType = listSubType;
   }
-  // For phone/email/address/file, there's no subType
 
-  // 5. Dynamically assign the question label
+  // 5. Capture the question label
   let questionLabel = "";
-
   switch (questionType) {
-    // ------------------
     case "phone":
       questionLabel = req.body["questionLabelInputPhone"] || "Phone number";
       break;
-
-    // ------------------
     case "text":
-      // Use writtenSubType from session
       if (writtenSubType === "short-answer-nf") {
         questionLabel =
-          req.body["questionLabelInputShortText"] || "Short written answer";
+          req.body["questionLabelInputShortText"] || "Short answer";
       } else if (writtenSubType === "long-answer") {
-        questionLabel =
-          req.body["questionLabelInputTextArea"] || "Long written answer";
+        questionLabel = req.body["questionLabelInputTextArea"] || "Long answer";
       } else if (writtenSubType === "numbers") {
         questionLabel = req.body["questionLabelInputNumbers"] || "Numbers only";
       } else {
-        // fallback if none of the above
         questionLabel = req.body["questionLabelInputText"] || "Text question";
       }
       break;
-
-    // ------------------
     case "email":
       questionLabel = req.body["questionLabelInputEmail"] || "Email address";
       break;
-
-    // ------------------
     case "date":
-      // Use dateSubType from session
-      if (dateSubType === "day-month-year") {
-        questionLabel =
-          req.body["questionLabelInputDate"] ||
-          "Day, month, year date question";
-      } else if (dateSubType === "month-year") {
-        questionLabel =
-          req.body["questionLabelInputDate"] || "Month, year date question";
-      } else {
-        questionLabel = req.body["questionLabelInputDate"] || "Date question";
-      }
+      questionLabel = req.body["questionLabelInputDate"] || "Date question";
       break;
-
-    // ------------------
     case "address":
       questionLabel = req.body["questionLabelInputAddress"] || "Address";
       break;
-
-    // ------------------
     case "file":
       questionLabel = req.body["multiQuestionLabelInputFile"] || "File upload";
       break;
-
-    // ------------------
     case "list":
-      // Already have listSubType from session
       if (listSubType === "yes-no") {
         questionLabel =
-          req.body["questionLabelInputYesno"] || "Yes/no question";
+          req.body["questionLabelInputYesno"] || "Yes/No question";
       } else if (listSubType === "checkboxes") {
         questionLabel =
-          req.body["multiQuestionLabelInputRadios"] || "Checkboxes question";
+          req.body["multiQuestionLabelInputCheckboxes"] ||
+          "Checkboxes question";
       } else if (listSubType === "radios") {
         questionLabel =
           req.body["multiQuestionLabelInputRadios"] || "Radios question";
       } else if (listSubType === "select") {
         questionLabel =
-          req.body["questionLabelInputAutocomplete"] || "Autocomplete question";
+          req.body["questionLabelInputAutocomplete"] || "Select an option";
       } else {
-        questionLabel = req.body["questionLabelInputList"] || "List of options";
-      }
-      break;
-
-    // ------------------
-    default:
-      questionLabel = "Test question"; // fallback
-      break;
-  }
-
-  // Now capture the hint text that the user entered.
-  // (Adjust the field names below as needed for your different question types.)
-  let questionHint = "";
-  switch (questionType) {
-    case "phone":
-      questionHint = req.body["hintTextInputPhone"] || "";
-      break;
-    case "text":
-      if (writtenSubType === "short-answer-nf") {
-        questionHint = req.body["hintTextInputShorttext"] || "";
-      } else if (writtenSubType === "long-answer") {
-        questionHint = req.body["hintTextInputTextarea"] || "";
-      } else if (writtenSubType === "numbers") {
-        questionHint = req.body["hintTextInputNumbers"] || "";
-      } else {
-        questionHint = req.body["questionHintInputText"] || "";
-      }
-      break;
-    case "email":
-      questionHint = req.body["hintTextInputEmail"] || "";
-      break;
-    case "date":
-      // Use dateSubType stored in session to customize the default label
-      if (req.session.data["dateSubType"] === "day-month-year") {
-        questionHint =
-          req.body["hintTextInputDate"] || "Day, month, year date question";
-      } else if (req.session.data["dateSubType"] === "month-year") {
-        questionHint =
-          req.body["hintTextInputDateMini"] || "Month, year date question";
-      }
-      break;
-    case "address":
-      questionHint = req.body["hintTextInputAddress"] || "";
-      break;
-    case "file":
-      questionHint = req.body["questionHintInputFile"] || "";
-      break;
-    case "list":
-      if (listSubType === "yes-no") {
-        questionHint = req.body["hintTextInputYesno"] || "";
-      } else if (listSubType === "checkboxes") {
-        questionHint = req.body["questionHintInputCheckboxes"] || "";
-      } else if (listSubType === "radios") {
-        questionHint = req.body["multiQuestionHintTextInputRadios"] || "";
-      } else if (listSubType === "select") {
-        questionHint = req.body["hintTextInputAutocomplete"] || "";
-      } else {
-        questionHint = req.body["questionHintInputList"] || "";
+        questionLabel = req.body["questionLabelInputList"] || "List question";
       }
       break;
     default:
-      questionHint = "";
+      questionLabel = "Test question"; // Fallback
       break;
   }
 
-  // 6. Create the new question object
-  const newQuestion = {
-    questionId: Date.now(),
-    label: questionLabel,
-    hint: questionHint,
-    type: questionType,
-    subType: finalSubType, // short-answer-nf, long-answer, day-month-year, yes-no, etc.
-  };
+  // 6. Capture the question hint
+  let questionHint = req.body["questionHintInput"] || "";
 
-  // 7. Push it onto the current page
-  currentPage.questions.push(newQuestion);
+  // 7. Capture the options (For Radio and Checkbox lists)
+  let questionOptions = [];
 
-  // 8. Save back to session
+  if (questionType === "list" && listSubType === "radios") {
+    // Copy from currentPage.radioList
+    questionOptions = [...(currentPage.radioList || [])];
+  } else if (questionType === "list" && listSubType === "checkboxes") {
+    // Copy from the question's existing .options array
+    const existingQuestionIndex = req.session.data["currentQuestionIndex"];
+    const existingQuestion = currentPage.questions[existingQuestionIndex];
+
+    questionOptions = existingQuestion.options || [];
+  }
+
+  // 8. Create or update the question
+  let existingQuestionIndex = req.session.data["currentQuestionIndex"];
+  if (
+    existingQuestionIndex !== undefined &&
+    currentPage.questions[existingQuestionIndex]
+  ) {
+    // Update existing question
+    currentPage.questions[existingQuestionIndex].label = questionLabel;
+    currentPage.questions[existingQuestionIndex].hint = questionHint;
+    currentPage.questions[existingQuestionIndex].options = questionOptions; // ✅ Save options
+  } else {
+    // Create new question
+    const newQuestion = {
+      questionId: Date.now(),
+      label: questionLabel,
+      hint: questionHint,
+      type: questionType,
+      subType: finalSubType,
+      options: questionOptions, // ✅ Attach options
+    };
+    currentPage.questions.push(newQuestion);
+  }
+
+  // 9. Save back to session
   formPages[pageIndex] = currentPage;
   req.session.data["formPages"] = formPages;
 
-  console.log("Updated formPages:", req.session.data["formPages"]);
+  console.log(
+    "✅ Updated formPages (saved options):",
+    JSON.stringify(formPages, null, 2)
+  );
 
-  // 9. Redirect to the page overview
+  // 10. Redirect to the page overview
   res.redirect("/page-overview");
 });
+
+// **** PAGE OVERVIEW AND EDITING ****************************************************
 
 //--------------------------------------
 // 8. GET /page-overview
@@ -1446,28 +1429,128 @@ router.post("/question-configuration-save", function (req, res) {
 router.get("/page-overview", function (req, res) {
   const pageIndex = req.session.data["currentPageIndex"] || 0;
   const formPages = req.session.data["formPages"] || [];
-  const currentPage = formPages[pageIndex] || { questions: [] };
 
-  // Log the currentPage to check the data
-  console.log("Rendering currentPage in overview:", currentPage);
+  if (!formPages[pageIndex]) {
+    console.log("⚠️ No current page found, redirecting...");
+    return res.redirect("/redesigntest/listing.html");
+  }
+
+  const currentPage = formPages[pageIndex];
+
+  // Ensure the page has an ID
+  if (!currentPage.pageId) {
+    currentPage.pageId = Date.now(); // Generate an ID if one doesn't exist
+    formPages[pageIndex] = currentPage;
+    req.session.data["formPages"] = formPages;
+  }
+
+  // 🔍 Debugging: Log the questions and options before rendering
+  currentPage.questions.forEach((question, index) => {
+    console.log(
+      `📌 Question #${index + 1}:`,
+      JSON.stringify(question, null, 2)
+    );
+    if (question.type === "list" && question.subType === "radios") {
+      console.log("✅ Radio Options:", question.options || []);
+    }
+  });
+
+  console.log("📌 Current Page ID:", currentPage.pageId); // Debug log for page ID
 
   res.render("redesigntest/templates/1-question/page-overview", {
-    currentPage, // Make sure currentPage is passed to the template
+    currentPage,
   });
 });
 
-// Example route in routes.js
-router.post("/update-question-order", function (req, res) {
-  const orderedIds = req.body.orderedIds; // array of question data-ids
-  // logic to reorder questions in session data
-  // e.g. get the "formPages" array from session, reorder the questions array
-  // then send back a JSON response
-  res.json({ success: true, updatedOrder: orderedIds });
+//--------------------------------------
+// Edit page
+//--------------------------------------
+router.get("/edit-page/:pageId", function (req, res) {
+  const pageId = req.params.pageId;
+  const formPages = req.session.data["formPages"] || [];
+  // Find the page to edit by matching pageId as a string
+  const pageIndex = formPages.findIndex(
+    (page) => String(page.pageId) === pageId
+  );
+  if (pageIndex === -1) {
+    // If the page isn't found, redirect back to the listing page (or show an error)
+    return res.redirect("/redesigntest/listing.html");
+  }
+  // Set this page as the current page for editing
+  req.session.data["currentPageIndex"] = pageIndex;
+
+  // Redirect to the appropriate edit interface.
+  const pageToEdit = formPages[pageIndex];
+  if (pageToEdit.pageType === "question") {
+    res.redirect("/page-overview");
+  } else if (pageToEdit.pageType === "guidance") {
+    res.redirect(
+      "/redesigntest/templates/1-question/guidance-configuration.html"
+    );
+  } else {
+    // Fallback
+    res.redirect("/redesigntest/listing.html");
+  }
 });
 
 //--------------------------------------
+// Edit an existing question
+//--------------------------------------
+router.get("/edit-question", function (req, res) {
+  const questionId = (req.query.questionId || "").trim();
+  console.log("Editing question with ID:", questionId);
+  if (!questionId) {
+    console.log("No questionId provided – redirecting to page overview.");
+    return res.redirect("/page-overview");
+  }
+
+  // Retrieve formPages from session
+  const formPages = req.session.data["formPages"] || [];
+
+  // Search across all pages to find the matching question
+  let foundPageIndex = -1;
+  let foundQuestionIndex = -1;
+  for (let i = 0; i < formPages.length; i++) {
+    const qIndex = formPages[i].questions.findIndex(
+      (q) => String(q.questionId) === questionId
+    );
+    if (qIndex !== -1) {
+      foundPageIndex = i;
+      foundQuestionIndex = qIndex;
+      break;
+    }
+  }
+
+  if (foundPageIndex === -1) {
+    console.log("Question not found – redirecting to page overview.");
+    return res.redirect("/page-overview");
+  }
+
+  // Set the found page as the current page for editing
+  req.session.data["currentPageIndex"] = foundPageIndex;
+  req.session.data["currentQuestionIndex"] = foundQuestionIndex;
+
+  const question = formPages[foundPageIndex].questions[foundQuestionIndex];
+  console.log("Editing question details:", question);
+
+  // Also store the question type and its subtype
+  req.session.data["currentQuestionType"] = question.type;
+  if (question.type === "text") {
+    req.session.data["writtenSubType"] = question.subType;
+  } else if (question.type === "date") {
+    req.session.data["dateSubType"] = question.subType;
+  } else if (question.type === "list") {
+    req.session.data["listSubType"] = question.subType;
+  }
+
+  res.redirect("/question-configuration");
+});
+
+// **** SAVING PAGE LEVEL CHANGES ****************************************************
+
+//--------------------------------------
 // 8a. POST /page-overview
-//     Handle the user clicking “Save changes” on page-overview
+//     Handle the user clicking "Save changes" on page-overview
 //--------------------------------------
 router.post("/page-overview", function (req, res) {
   console.log("req.body:", req.body);
@@ -1523,13 +1606,15 @@ router.post("/page-overview", function (req, res) {
   res.redirect("/page-overview");
 });
 
+//--------------------------------------
+// Test form (not specifically used in flow)
+//--------------------------------------
 router.post("/test-form", (req, res) => {
   // Grab the posted value(s)
   let allowMultipleResponses = req.body.allowMultipleResponses;
 
   // If it's an array of values, check if "true" is included
   if (Array.isArray(allowMultipleResponses)) {
-    // If any of the items is "true", we consider it checked
     if (allowMultipleResponses.includes("true")) {
       allowMultipleResponses = "true";
     } else {
@@ -1537,27 +1622,73 @@ router.post("/test-form", (req, res) => {
     }
   }
 
-  // Now allowMultipleResponses is reliably "true" if the box was checked, or "false" if not
   console.log("Final allowMultipleResponses:", allowMultipleResponses);
   res.send("Check your console for output");
 });
 
-// Route to configure checkboxes (when the user is on the add page)
+// **** CHECKBOXES (ADD/EDIT/FINALIZE) ****************************************************
+// Configure checkbox option route
 router.post("/configure-checkbox-nf", function (req, res) {
-  // Ensure checkboxList exists in the session
-  req.session.data.checkboxList = req.session.data.checkboxList || [];
+  const currentPageIndex = req.session.data["currentPageIndex"];
+  const questionIndex = req.session.data["currentQuestionIndex"];
+  const formPages = req.session.data["formPages"];
+  const currentPage = formPages[currentPageIndex];
+  const currentQuestion = currentPage.questions[questionIndex];
 
-  // Create a new checkbox option
-  const checkboxOption = {
-    label: req.body.label, // Label for the checkbox
-    value: req.body.value, // Value of the checkbox
-    hint: req.body.hint, // (Optional) hint for the checkbox
+  // Get the values from the form
+  const label = req.body.label;
+  const hint = req.body.hint;
+  const value = req.body.value || label;
+
+  // **Add a unique optionId here**
+  const newOption = {
+    optionId: Date.now(), // <---- UNIQUE ID
+    label: req.body.label,
+    value: value,
+    hint: hint,
   };
 
-  // Append the new checkbox option to the list
-  req.session.data.checkboxList.push(checkboxOption);
+  // Initialize options array if it doesn't exist
+  if (!currentQuestion.options) {
+    currentQuestion.options = [];
+  }
 
-  // Redirect to the edit page after adding the new checkbox
+  // Add the option to the question's options array
+  currentQuestion.options.push(newOption);
+
+  // Save back to session
+  req.session.data["formPages"] = formPages;
+
+  console.log("✅ Added checkbox option:", {
+    questionId: currentQuestion.questionId,
+    newOption,
+    allOptions: currentQuestion.options,
+  });
+
+  res.redirect("/redesigntest/templates/1-question/checkboxes-nf/edit");
+});
+
+// Route to save the checkbox option
+router.post("/save-checkbox-option", (req, res) => {
+  const optionId = parseInt(req.body.optionId, 10); // The unique ID from the form
+  const currentPageIndex = req.session.data["currentPageIndex"];
+  const questionIndex = req.session.data["currentQuestionIndex"];
+  const formPages = req.session.data["formPages"];
+  const currentQuestion = formPages[currentPageIndex].questions[questionIndex];
+
+  // Find the matching option by `optionId`
+  const foundIndex = currentQuestion.options.findIndex(
+    (opt) => opt.optionId === optionId
+  );
+  if (foundIndex !== -1) {
+    currentQuestion.options[foundIndex].label = req.body["option-label"];
+    currentQuestion.options[foundIndex].hint = req.body["option-hint"];
+    currentQuestion.options[foundIndex].value = req.body["option-value"];
+  }
+
+  // Save back to session
+  req.session.data["formPages"] = formPages;
+
   res.redirect("/redesigntest/templates/1-question/checkboxes-nf/edit");
 });
 
@@ -1580,52 +1711,144 @@ router.post("/save-option", (req, res) => {
 /// Route to access the edit page for checkboxes
 router.get(
   "/redesigntest/templates/1-question/checkboxes-nf/edit",
-  (req, res) => {
-    const checkboxList = req.session.data?.checkboxList || []; // Check if the checkboxList is empty, redirect to the add page if so
-    if (checkboxList.length === 0) {
-      res.redirect("/redesigntest/templates/1-question/checkboxes-nf/add.html");
-    } else {
-      // Render the edit page if there are items in the list
-      res.render("/redesigntest/templates/1-question/checkboxes-nf/edit.html", {
-        checkboxList: checkboxList,
-      });
+  function (req, res) {
+    const formPages = req.session.data["formPages"] || [];
+    const pageIndex = req.session.data["currentPageIndex"];
+    const questionIndex = req.session.data["currentQuestionIndex"];
+
+    console.log("Loading edit page:", {
+      pageIndex,
+      questionIndex,
+      formPages,
+    });
+
+    const currentPage = formPages[pageIndex];
+    if (!currentPage) {
+      console.error("Page not found");
+      return res.redirect("/redesigntest/listing.html");
     }
+
+    const currentQuestion = currentPage.questions[questionIndex];
+    if (!currentQuestion) {
+      console.error("Question not found");
+      return res.redirect(
+        "/redesigntest/templates/1-question/checkboxes-nf/add.html"
+      );
+    }
+
+    res.render("redesigntest/templates/1-question/checkboxes-nf/edit.html", {
+      currentPageIndex: pageIndex,
+      currentQuestionIndex: questionIndex,
+      formPages: formPages,
+    });
   }
 );
 
-// Route to configure radio buttons (when the user is on the add page)
-router.post("/configure-radio-nf", function (req, res) {
-  // Ensure radioList exists in the session
-  req.session.data.radioList = req.session.data.radioList || [];
+// -------------
+//  /checkboxes-finalize
+// -------------
+router.post("/checkboxes-finalize", function (req, res) {
+  const formPages = req.session.data["formPages"] || [];
+  const pageIndex = req.session.data["currentPageIndex"];
+  const questionIndex = req.session.data["currentQuestionIndex"];
 
-  // Create a new radio option
-  const radioOption = {
-    label: req.body.label, // Label for the radio button
-    value: req.body.value, // Value of the radio button
-    hint: req.body.hint, // (Optional) hint for the radio button
+  console.log(
+    "Before finalize - Current question:",
+    formPages[pageIndex].questions[questionIndex]
+  );
+
+  // Get the current question
+  const currentQuestion = formPages[pageIndex].questions[questionIndex];
+
+  // IMPORTANT: Keep the existing options array
+  const existingOptions = currentQuestion.options || [];
+
+  // Update the question with final values while preserving options
+  formPages[pageIndex].questions[questionIndex] = {
+    ...currentQuestion,
+    label: req.body.multiQuestionLabelInputCheckboxes || "Checkboxes question",
+    hint: req.body.questionHintTextInputCheckboxes || "",
+    options: existingOptions, // Preserve the options array
   };
 
-  // Append the new radio option to the list
-  req.session.data.radioList.push(radioOption);
+  // Save back to session
+  req.session.data["formPages"] = formPages;
 
-  // Redirect to the edit page after adding the new radio button
+  console.log(
+    "After finalize - Updated question:",
+    formPages[pageIndex].questions[questionIndex]
+  );
+
+  res.redirect("/page-overview");
+});
+
+// **** RADIOS ROUTES (ADD/EDIT/FINALIZE) ****************************************************
+
+// Update the configure-radio-nf route to ensure options are being saved properly
+router.post("/configure-radio-nf", function (req, res) {
+  const formPages = req.session.data["formPages"] || [];
+  const pageIndex = req.session.data["currentPageIndex"];
+
+  // Ensure we have a valid page
+  if (!formPages[pageIndex]) {
+    formPages[pageIndex] = { questions: [], radioList: [] };
+  }
+
+  const currentPage = formPages[pageIndex];
+
+  // Ensure radioList exists on the page object
+  if (!currentPage.radioList) {
+    currentPage.radioList = [];
+  }
+
+  // Create new radio option
+  const radioOption = {
+    label: req.body.label,
+    value: req.body.value || req.body.label.toLowerCase().replace(/\s+/g, "-"),
+    hint: req.body.hint || "",
+  };
+
+  // Add to radioList
+  currentPage.radioList.push(radioOption);
+
+  // Save back to session
+  formPages[pageIndex] = currentPage;
+  req.session.data["formPages"] = formPages;
+
+  // Log the state after adding option
+  console.log("✅ Added radio option:", {
+    radioOption,
+    currentPage,
+    radioList: currentPage.radioList,
+  });
+
   res.redirect("/redesigntest/templates/1-question/radios-nf/edit");
 });
 
-// Route to save the radio button option
-router.post("/save-radio-option", (req, res) => {
-  const index = parseInt(req.body.index, 10); // Get the index from the form
-  const radioList = req.session.data.radioList; // Access the radioList array
+// Edit page for radio options
+router.get("/redesigntest/templates/1-question/radios-nf/edit", (req, res) => {
+  const formPages = req.session.data["formPages"] || [];
+  const pageIndex = req.session.data["currentPageIndex"] || 0;
 
-  if (radioList && radioList[index]) {
-    // Update the data at the specified index
-    radioList[index].label = req.body["option-label"];
-    radioList[index].hint = req.body["option-hint"];
-    radioList[index].value = req.body["option-value"];
+  // Ensure current page exists
+  if (!formPages[pageIndex]) {
+    console.log("⚠️ No current page found, redirecting...");
+    return res.redirect(
+      "/redesigntest/templates/1-question/radios-nf/add.html"
+    );
   }
 
-  // Redirect back to the edit page for radio buttons
-  res.redirect("/redesigntest/templates/1-question/radios-nf/edit");
+  const currentPage = formPages[pageIndex];
+
+  // Ensure radioList exists
+  currentPage.radioList = currentPage.radioList || [];
+
+  console.log("Current radio options:", currentPage.radioList);
+
+  // Pass the radioList to the template
+  res.render("redesigntest/templates/1-question/radios-nf/edit.html", {
+    radioList: currentPage.radioList,
+  });
 });
 
 // Route to access the edit page for radio buttons
@@ -1643,93 +1866,424 @@ router.get("/redesigntest/templates/1-question/radios-nf/edit", (req, res) => {
   }
 });
 
-// -------------
-//  /checkboxes-finalize
-// -------------
-router.post("/checkboxes-finalize", (req, res) => {
-  // 1. Grab the question label from the form
-  const questionLabel =
-    req.body.questionLabelInputCheckboxes || "Checkboxes question";
-
-  // 2. Retrieve current page
-  const pageIndex = req.session.data["currentPageIndex"] || 0;
-  const formPages = req.session.data["formPages"] || [];
-  const currentPage = formPages[pageIndex] || { questions: [] };
-
-  // 3. The "type" and "subType" are already in session, but let's be explicit:
-  const questionType = req.session.data["currentQuestionType"]; // Should be "list"
-  const listSubType = req.session.data["listSubType"]; // Should be "checkboxes"
-
-  // 4. The array of checkbox items
-  const checkboxList = req.session.data.checkboxList || [];
-
-  // 5. Create final question object
-  const newQuestion = {
-    questionId: Date.now(),
-    label: questionLabel, // e.g. user typed "Which species do you own?"
-    type: questionType, // "list"
-    subType: listSubType, // "checkboxes"
-    options: checkboxList, // store the array of { label, value, hint }
-  };
-
-  // 6. Add to current page's .questions array
-  currentPage.questions.push(newQuestion);
-
-  // 7. Save back into session
-  formPages[pageIndex] = currentPage;
-  req.session.data["formPages"] = formPages;
-
-  // 8. Clear the session array so next time it doesn't show old options
-  req.session.data.checkboxList = [];
-
-  console.log("Added a new checkboxes question:", newQuestion);
-
-  // 9. redirect to page overview
-  res.redirect("/page-overview");
+router.post("/update-radio-label", function (req, res) {
+  // Update the session with the provided label
+  req.session.data.currentRadioQuestionLabel = req.body.label || "";
+  res.json({ success: true });
 });
 
 // -------------
 //  /radios-finalize
 // -------------
 router.post("/radios-finalize", (req, res) => {
-  // 1. Grab the question label from the form
   const questionLabel = req.body.questionLabelInputRadios || "Radios question";
 
-  // 2. Retrieve current page
-  const pageIndex = req.session.data["currentPageIndex"] || 0;
-  const formPages = req.session.data["formPages"] || [];
-  const currentPage = formPages[pageIndex] || { questions: [] };
+  // Ensure formPages exist
+  req.session.data["formPages"] = req.session.data["formPages"] || [];
 
-  // 3. "type" and "subType" are in session
-  const questionType = req.session.data["currentQuestionType"]; // "list"
-  const listSubType = req.session.data["listSubType"]; // "radios"
+  // Ensure currentPage exists
+  const pageIndex = req.session.data["currentPageIndex"];
+  if (pageIndex === undefined || !req.session.data["formPages"][pageIndex]) {
+    console.log("⚠️ No current page found, creating a new one...");
+    req.session.data["formPages"].push({
+      pageId: Date.now(),
+      pageType: "question",
+      questions: [],
+      radioList: [],
+    });
+    req.session.data["currentPageIndex"] =
+      req.session.data["formPages"].length - 1;
+  }
 
-  // 4. The array of radio items
-  const radioList = req.session.data.radioList || [];
+  const currentPage =
+    req.session.data["formPages"][req.session.data["currentPageIndex"]];
 
-  // 5. Create final question object
+  // 🔥 Ensure `radioList` is defined for this page
+  currentPage.radioList = currentPage.radioList || [];
+
+  // ✅ Move `radioList` into the new question
   const newQuestion = {
     questionId: Date.now(),
     label: questionLabel,
-    type: questionType, // "list"
-    subType: listSubType, // "radios"
-    options: radioList, // store the array of { label, value, hint }
+    hint: "",
+    type: "list",
+    subType: "radios",
+    options: [...currentPage.radioList], // ✅ FIX: Store options properly
   };
 
-  // 6. Add to current page's .questions array
+  // Push the new question into the questions array
   currentPage.questions.push(newQuestion);
 
-  // 7. Save back into session
-  formPages[pageIndex] = currentPage;
+  // ✅ Save back to session
+  req.session.data["formPages"] = req.session.data["formPages"];
+
+  // ✅ Clear `radioList` **only after** assigning it to `options`
+  currentPage.radioList = [];
+
+  console.log(
+    "✅ Final Question Object (with options):",
+    JSON.stringify(newQuestion, null, 2)
+  );
+
+  res.redirect("/page-overview");
+});
+
+// **** CONDITIONS ROUTES ****************************************************
+
+//--------------------------------------
+// GET /conditions
+// Show conditions for the current page
+//--------------------------------------
+
+// Helper function to find a question by ID
+function findQuestionById(formPages, questionId) {
+  for (const page of formPages) {
+    if (page.questions) {
+      for (const question of page.questions) {
+        if (question.questionId.toString() === questionId.toString()) {
+          return {
+            ...question,
+            label: question.label || question.text, // Ensure we have a label
+          };
+        }
+      }
+    }
+  }
+  return null;
+}
+
+router.get("/conditions/:pageId", function (req, res) {
+  const pageId = parseInt(req.params.pageId, 10);
+  const formPages = req.session.data["formPages"] || [];
+
+  // Find the current page
+  const currentPage = formPages.find((page) => page.pageId === pageId);
+
+  if (!currentPage) {
+    console.log("Page not found:", pageId);
+    return res.redirect("/redesigntest/listing.html");
+  }
+
+  // Get the page index and create a label
+  const pageIndex = formPages.indexOf(currentPage);
+
+  // Get the page heading or first question label
+  let pageLabel;
+  if (currentPage.pageHeading) {
+    pageLabel = `Page ${pageIndex + 1}: ${currentPage.pageHeading}`;
+  } else if (currentPage.questions && currentPage.questions.length > 0) {
+    pageLabel = `Page ${pageIndex + 1}: ${currentPage.questions[0].label}`;
+  } else {
+    pageLabel = `Page ${pageIndex + 1}`;
+  }
+
+  // Get available questions for conditions
+  let availableQuestions = [];
+  formPages.forEach((page) => {
+    if (page.questions) {
+      page.questions.forEach((question) => {
+        if (["yes-no", "radios", "checkboxes"].includes(question.subType)) {
+          availableQuestions.push({
+            value: question.questionId,
+            text: question.label,
+            type: question.subType,
+            options: question.options || [],
+          });
+        }
+      });
+    }
+  });
+
+  // Collect all conditions from all pages except current page
+  let allConditions = [];
+  formPages.forEach((page) => {
+    if (page.conditions && page.pageId !== pageId) {
+      page.conditions.forEach((condition) => {
+        allConditions.push({
+          value: condition.id,
+          text: condition.conditionName,
+          hint: condition.rules
+            .map(
+              (rule) => `${rule.questionText} ${rule.operator} ${rule.value}`
+            )
+            .join(" AND "),
+        });
+      });
+    }
+  });
+
+  // For the dropdowns
+  const defaultExistingOption = {
+    value: "",
+    text: "Select an existing condition",
+    selected: true,
+  };
+  const defaultNewOption = {
+    value: "",
+    text: "Select a question",
+    selected: true,
+  };
+
+  const combinedExistingConditions = [defaultExistingOption, ...allConditions];
+  const combinedQuestions = [defaultNewOption, ...availableQuestions];
+
+  // Store current page ID in session
+  req.session.data["currentPageId"] = pageId;
+
+  res.render("redesigntest/templates/1-question/conditions.html", {
+    currentPage: currentPage,
+    pageId: pageId,
+    question: {
+      label: pageLabel,
+    },
+    availableQuestions: combinedQuestions,
+    availableConditions: combinedExistingConditions,
+    conditions: currentPage.conditions || [],
+  });
+});
+
+//--------------------------------------
+// 2. POST /conditions-add
+//    Add a new condition to the page
+//--------------------------------------
+router.post("/conditions-add", function (req, res) {
+  console.log("Current conditions:", req.session.data.conditions || []);
+  console.log("Adding condition - Debug info:", {
+    pageId: req.session.data.currentPageId,
+    availablePages: req.session.data.formPages?.map((p) => p.pageId),
+    body: req.body,
+  });
+
+  // Get the current page
+  const pageId = req.session.data.currentPageId;
+  const formPages = req.session.data.formPages || [];
+  const currentPage = formPages.find((page) => page.pageId === pageId);
+
+  if (!currentPage) {
+    console.error("Current page not found");
+    return res.redirect("back");
+  }
+
+  // Initialize conditions array if it doesn't exist
+  currentPage.conditions = currentPage.conditions || [];
+
+  if (req.body.conditionType === "existing") {
+    // Handle existing condition
+    const existingConditionId = parseInt(req.body.existingConditionId);
+
+    // Find the existing condition from all pages
+    let existingCondition = null;
+    for (const page of formPages) {
+      if (page.conditions) {
+        const found = page.conditions.find((c) => c.id === existingConditionId);
+        if (found) {
+          existingCondition = found;
+          break;
+        }
+      }
+    }
+
+    console.log("Found existing condition:", existingCondition);
+
+    if (existingCondition) {
+      // Create a deep copy of the existing condition with a new ID
+      const newCondition = {
+        id: Date.now(),
+        conditionName: existingCondition.conditionName,
+        rules: existingCondition.rules.map((rule) => ({
+          questionText: rule.questionText,
+          operator: rule.operator,
+          value: rule.value,
+          logicalOperator: rule.logicalOperator,
+        })),
+        text: existingCondition.text,
+      };
+
+      console.log("New condition created from existing:", newCondition);
+      currentPage.conditions.push(newCondition);
+    } else {
+      console.error(
+        "Could not find existing condition with ID:",
+        existingConditionId
+      );
+    }
+  } else {
+    // Handle new condition
+    let rules;
+    try {
+      rules = JSON.parse(req.body.rules);
+    } catch (e) {
+      console.error("Error parsing rules:", e);
+      rules = [];
+    }
+
+    // Create the new condition
+    const newCondition = {
+      id: Date.now(),
+      conditionName: req.body.conditionName,
+      rules: rules.map((rule) => ({
+        questionText: rule.questionText,
+        operator: rule.operator,
+        value: rule.value,
+        logicalOperator: rule.logicalOperator,
+      })),
+      text: rules
+        .map((rule) => `${rule.questionText} ${rule.operator} ${rule.value}`)
+        .join(" AND "),
+    };
+
+    console.log("New condition created:", newCondition);
+    currentPage.conditions.push(newCondition);
+  }
+
+  console.log("Updated page conditions:", currentPage.conditions);
+
+  // Save back to session
+  req.session.data.formPages = formPages;
+
+  res.redirect("back");
+});
+
+//--------------------------------------
+// 3. POST /conditions-remove
+//    Remove a condition
+//--------------------------------------
+router.post("/conditions-remove", function (req, res) {
+  const pageId = req.session.data["currentPageId"]; // Get the stored page ID
+  const formPages = req.session.data["formPages"] || [];
+
+  // Find the specific page by ID
+  const pageIndex = formPages.findIndex((page) => page.pageId === pageId);
+
+  if (pageIndex === -1) {
+    console.log("⚠️ Page not found:", pageId);
+    return res.redirect("/redesigntest/listing.html");
+  }
+
+  // Remove condition by ID
+  const conditionId = req.body.conditionId;
+  formPages[pageIndex].conditions = formPages[pageIndex].conditions.filter(
+    (c) => c.id.toString() !== conditionId
+  );
+
+  // Save back to session
   req.session.data["formPages"] = formPages;
 
-  // 8. Clear the session array so we don't re-use these radio options
-  req.session.data.radioList = [];
+  console.log("✅ Removed condition from page:", pageId);
+  console.log("Current conditions:", formPages[pageIndex].conditions);
 
-  console.log("Added a new radios question:", newQuestion);
+  res.redirect(`/conditions/${pageId}`);
+});
 
-  // 9. redirect to page overview
-  res.redirect("/page-overview");
+// **** PAGE REORDERING ****************************************************
+
+router.get("/redesigntest/reorder/main.html", function (req, res) {
+  const formPages = req.session.data["formPages"] || [];
+  res.render("redesigntest/reorder/main.html", { formPages: formPages });
+});
+
+router.post("/update-page-order", function (req, res) {
+  const orderedIds = req.body.orderedIds;
+  if (!orderedIds || !Array.isArray(orderedIds)) {
+    return res.json({ success: false, message: "Invalid order provided" });
+  }
+
+  // Get the existing pages from session
+  const formPages = req.session.data["formPages"] || [];
+
+  // Build a new array in the order specified by orderedIds
+  const newOrder = [];
+  orderedIds.forEach((id) => {
+    const page = formPages.find((page) => String(page.pageId) === id);
+    if (page) {
+      newOrder.push(page);
+    }
+  });
+
+  // If we have a valid new order, update the session and respond with success
+  if (newOrder.length > 0) {
+    req.session.data["formPages"] = newOrder;
+    console.log(
+      "Updated formPages order:",
+      newOrder.map((page) => page.pageId)
+    );
+    return res.json({ success: true });
+  } else {
+    return res.json({
+      success: false,
+      message: "No pages found for the new order",
+    });
+  }
+});
+
+// Add this route to handle the delete confirmation page
+router.get("/redesigntest/templates/delete/:pageId", function (req, res) {
+  const pageId = parseInt(req.params.pageId, 10);
+  const formPages = req.session.data["formPages"] || [];
+
+  console.log("Delete confirmation page:", {
+    requestedPageId: pageId,
+    availablePages: formPages.map((p) => p.pageId),
+  });
+
+  const currentPage = formPages.find((page) => page.pageId === pageId);
+
+  if (!currentPage) {
+    console.log("Page not found:", pageId);
+    return res.redirect("/redesigntest/listing.html");
+  }
+
+  console.log("Found page to delete:", {
+    pageId: currentPage.pageId,
+    heading: currentPage.pageHeading,
+  });
+
+  res.render("redesigntest/templates/delete.html", {
+    currentPage: currentPage,
+    pageTitle: currentPage.pageHeading || "Untitled page",
+  });
+});
+
+// Add this route to handle the actual deletion
+router.post("/delete-page", function (req, res) {
+  const formPages = req.session.data["formPages"] || [];
+
+  // More robust pageId parsing
+  let pageId = req.body.pageId;
+  if (typeof pageId === "string") {
+    pageId = parseInt(pageId.trim(), 10);
+  }
+
+  const confirmDelete = req.body.confirmDelete;
+
+  console.log("Delete request received:", {
+    rawPageId: req.body.pageId,
+    parsedPageId: pageId,
+    confirmDelete,
+    currentPages: formPages.length,
+  });
+
+  if (confirmDelete === "yes" && !isNaN(pageId)) {
+    // Find the page index
+    const pageIndex = formPages.findIndex((page) => page.pageId === pageId);
+
+    console.log("Found page index:", pageIndex);
+    console.log("Page to delete:", formPages[pageIndex]);
+
+    if (pageIndex !== -1) {
+      // Remove the page
+      formPages.splice(pageIndex, 1);
+      req.session.data["formPages"] = formPages;
+
+      console.log("Page deleted. Remaining pages:", formPages.length);
+    }
+
+    // Redirect to the listing page
+    res.redirect("/redesigntest/listing.html");
+  } else {
+    // If user selected "No" or invalid pageId, return to page overview
+    res.redirect(`/page-overview?pageId=${pageId}`);
+  }
 });
 
 // Finally, export the router

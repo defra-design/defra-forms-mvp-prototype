@@ -35,7 +35,8 @@ activeLinkId: "nav-editor"
             style="border-bottom:1px solid white; margin-bottom: 0;">
 
         <h1 class="govuk-heading-l--inverse x-govuk-masthead__title">
-            <span class="govuk-caption-l" style="color: white;">Apply for a county parish holding number</span>
+            <span class="govuk-caption-l" style="color: white;">Food order form (user research)
+            </span>
             Add and edit pages
         </h1>
 
@@ -130,7 +131,17 @@ activeLinkId: "nav-editor"
     .govuk-checkboxes__item:hover {
         background-color: #f3f2f1;
     }
+
+    .guidance-card {
+        border-left: 10px solid #b1b4b6;
+    }
+
+    .question-card {
+        border-left: 10px solid #008938;
+    }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -214,47 +225,6 @@ activeLinkId: "nav-editor"
     });
 </script>
 
-{# Assign included templates to variables #}
-{% set shorttextPreviewContent %}
-{% include "/redesigntest/templates/previews/shorttext/overview.html" %}
-{% endset %}
-
-{% set textareaPreviewContent %}
-{% include "/redesigntest/templates/previews/textarea/overview.html" %}
-{% endset %}
-
-{% set datePreviewContent %}
-{% include "/redesigntest/templates/previews/date/overview.html" %}
-{% endset %}
-
-{% set addressPreviewContent %}
-{% include "/redesigntest/templates/previews/address/overview.html" %}
-{% endset %}
-
-{% set phonePreviewContent %}
-{% include "/redesigntest/templates/previews/phone/overview.html" %}
-{% endset %}
-
-{% set filePreviewContent %}
-{% include "/redesigntest/templates/previews/fileupload/overview.html" %}
-{% endset %}
-
-{% set emailPreviewContent %}
-{% include "/redesigntest/templates/previews/email/overview.html" %}
-{% endset %}
-
-{% set radiosPreviewContent %}
-{% include "/redesigntest/templates/previews/radios/overview.html" %}
-{% endset %}
-
-{% set yesnoPreviewContent %}
-{% include "/redesigntest/templates/previews/yesno/overview.html" %}
-{% endset %}
-
-{% set GuidancePreviewContent %}
-{% include "/redesigntest/templates/guidance/overview.html" %}
-{% endset %}
-
 <form class="form" action="/redesigntest/questionnumber" method="post">
 
     <div class="govuk-grid-row">
@@ -263,44 +233,45 @@ activeLinkId: "nav-editor"
 
             {% if formPages.length %}
             {% for page in formPages %}
-            {% if page.questions and page.questions.length > 0 %}
+            {% if page.questions and page.questions.length > 0 or page.pageType == 'guidance' %}
 
             <div class="govuk-grid-row page-row app-page-card"
                 data-conditions="{% for condition in page.conditions %}{{ condition.conditionName }}{% if not loop.last %},{% endif %}{% endfor %}">
                 <!-- Left Column: Summary Card -->
                 <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
-                    <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
+                    <div class="govuk-summary-card" {% if page.isExitPage %} style="border-left: 10px solid #6b1c40;" {%
+                        else %} style="border-left: 10px solid #008938;" {% endif %}>
                         <div class="govuk-summary-card__title-wrapper">
                             <div class="govuk-grid-row">
                                 <div class="govuk-grid-column-full">
-                                    {# {% if page.conditions and page.conditions.length > 0 %}
-                                    <div style="margin-bottom: 10px;">
-                                        <strong class="govuk-tag govuk-tag--blue">
-                                            Has conditions
-                                        </strong>
-                                    </div>
-                                    {% endif %} #}
-
-                                    {% if page.questions and page.questions.length == 1 %}
                                     <h2 class="govuk-summary-card__title" style="margin: 0;">
-                                        Page {{ loop.index }}: {{ page.questions[0].label }}
-                                    </h2>
-                                    {% else %}
-                                    <h2 class="govuk-summary-card__title" style="margin: 0;">
+                                        {% if page.isExitPage %}
+                                        <span class="govuk-tag govuk-tag--pink"
+                                            style="margin-right: 10px; max-width: 100%;">Exit
+                                            page</span>
+                                        {% endif %}
                                         Page {{ loop.index }}:
+                                        {% if page.pageType == 'guidance' %}
+                                        {{ page.guidanceOnlyHeadingInput }}
+                                        {% elif page.questions and page.questions.length == 1 %}
+                                        {{ page.questions[0].label }}
+                                        {% else %}
                                         {% if page.pageHeading %}
                                         {{ page.pageHeading }}
                                         {% else %}
                                         {{ page.pageType | capitalize }}
                                         {% endif %}
+                                        {% endif %}
                                     </h2>
-                                    {% endif %}
                                 </div>
                             </div>
                             <ul class="govuk-summary-card__actions">
                                 <li class="govuk-summary-card__action">
-                                    <a class="govuk-link govuk-link--no-visited-state"
-                                        href="/edit-page/{{ page.pageId }}">
+                                    <a class="govuk-link govuk-link--no-visited-state" href="{% if page.pageType == 'guidance' %}
+                                            /redesigntest/edit-guidance?pageId={{ page.pageId }}
+                                        {% else %}
+                                            /edit-page/{{ page.pageId }}
+                                        {% endif %}">
                                         Edit<span class="govuk-visually-hidden"> page {{ page.pageId }}</span>
                                     </a>
                                 </li>
@@ -318,7 +289,8 @@ activeLinkId: "nav-editor"
                             </ul>
                         </div>
                         {% if not (page.questions and page.questions.length == 1) or (page.conditions and
-                        page.conditions.length > 0) %}
+                        page.conditions.length > 0) or
+                        page.pageType == 'guidance' %}
                         <div class="govuk-summary-card__content">
                             <dl class="govuk-summary-list">
                                 {% if page.questions and page.questions.length > 1 %}
@@ -330,6 +302,18 @@ activeLinkId: "nav-editor"
                                 {% endfor %}
                                 {% endif %}
 
+                                {% if page.pageType == 'guidance' %}
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key" style="white-space: nowrap;">Guidance</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        {% if (page.guidanceOnlyGuidanceTextInput or '').length > 150 %}
+                                        {{ (page.guidanceOnlyGuidanceTextInput or '').substring(0, 150) }}...
+                                        {% else %}
+                                        {{ page.guidanceOnlyGuidanceTextInput or '' }}
+                                        {% endif %}
+                                    </dd>
+                                </div>
+                                {% endif %}
 
 
                                 {% if page.setName %}
@@ -419,14 +403,20 @@ activeLinkId: "nav-editor"
                                                 {{ page.setName | capitalize }} {{ loop.index }}
                                             </span>
                                             {% endif %}
+
+                                            {% if page.pageType == 'guidance' %}
+                                            <h1 class="govuk-heading-l">{{ page.guidanceOnlyHeadingInput or '' }}</h1>
+                                            <div class="govuk-body guidance-content"
+                                                id="guidance-content-{{ page.pageId }}">
+                                                {{ page.guidanceOnlyGuidanceTextInput or '' }}
+                                            </div>
+                                            {% else %}
                                             <h1 class="govuk-heading-xl" id="dynamic-heading-{{ page.pageId }}">
                                                 {{ page.pageHeading or '' }}
                                             </h1>
+                                            {% endif %}
                                         </div>
 
-                                        <p class="govuk-body" id="guidance-paragraph-{{ page.pageId }}">
-                                            {{ page.guidanceTextarea or '' }}
-                                        </p>
 
                                         <!-- Render each question's preview -->
                                         <div id="preview-container-inner-{{ page.pageId }}">
@@ -434,8 +424,7 @@ activeLinkId: "nav-editor"
                                                 {% if page.questions and page.questions.length > 0 %}
                                                 {% for question in page.questions %}
                                                 <div class="preview-item" data-id="question-{{ question.questionId }}">
-                                                    {# Set the preview template based on question type and subtype
-                                                    #}
+                                                    {# Set the preview template based on question type and subtype #}
                                                     {% set previewTemplate =
                                                     '/redesigntest/templates/previews/questions/' %}
                                                     {% if question.type == 'phone' %}
@@ -486,7 +475,7 @@ activeLinkId: "nav-editor"
                                                 </div>
                                                 {% endfor %}
                                                 {% else %}
-                                                <p>No questions available to preview.</p>
+                                                {# <p>No content available to preview.</p> #}
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -535,6 +524,8 @@ activeLinkId: "nav-editor"
                     </div>
                 </div>
             </div> <!-- end .govuk-grid-row.page-row -->
+            {% else %}
+            {# Optional content if no formPages exist #}
             {% endif %}
             {% endfor %}
             {% else %}
@@ -545,146 +536,6 @@ activeLinkId: "nav-editor"
 
 
 </form>
-
-{# =========================================================
-GUIDANCE ONLY
-========================================================= #}
-{% if data['guidanceOnlyHeadingInput'] %}
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
-        <!-- Main Content -->
-        <div class="govuk-summary-card" style="border-left: 10px solid #008938;">
-            <div class="govuk-summary-card__title-wrapper">
-                <h2 class="govuk-summary-card__title" id="card-title-guidance-1q">
-                    Page 12:
-                    {{ data['guidanceOnlyHeadingInput'] or '' }}
-                </h2>
-                <ul class="govuk-summary-card__actions">
-                    <li class="govuk-summary-card__action">
-                        <a class="govuk-link govuk-link--no-visited-state" id="editpage12"
-                            href="/redesigntest/templates/guidance/settings.html">
-                            Edit<span class="govuk-visually-hidden"> page 12</span>
-                        </a>
-                    </li>
-                    <li class="govuk-summary-card__action">
-                        <a class="govuk-link govuk-link--no-visited-state preview-link" data-preview="guidance-preview"
-                            href="#">
-                            Preview<span class="govuk-visually-hidden"> page 12</span>
-                        </a>
-                        <a class="govuk-link close-link" data-preview="guidance-preview" style="display: none;"
-                            href="#">
-                            Close Preview<span class="govuk-visually-hidden"> page 12</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            {# <a href="#editpage12" class="govuk-skip-link" style="margin-bottom: 30px!important;"
-                data-module="govuk-skip-link">
-                Skip to page preview
-            </a> #}
-            {% if data['guidanceOnlyHeadingInput'] %}
-            <div class="govuk-summary-card__content">
-                <dl class="govuk-summary-list">
-                    <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">Guidance</dt>
-                        <dd class="govuk-summary-list__value">
-                            {% if (data['guidanceOnlyGuidanceTextInput'] or '').length > 150 %}
-                            {{ (data['guidanceOnlyGuidanceTextInput'] or '').substring(0, 150) }}...
-                            {% else %}
-                            {{ data['guidanceOnlyGuidanceTextInput'] or '' }}
-                            {% endif %}
-                        </dd>
-                    </div>
-                </dl>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-
-    <div class="govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
-        <!-- Preview Container -->
-        <div class="preview-container govuk-!-margin-top-1" id="guidance-preview">
-            <div id="dynamic-preview-content-guidance">
-
-                <!-- Preview Header -->
-                <div id="before-content"
-                    style="background-color: #cce2d8; display: flex; justify-content: space-between; align-items: left;">
-                    <p class="govuk-body-s" style="margin-bottom: 0; color: #005a30; padding: 2px 8px 2px;">
-                        Preview of page 12
-                    </p>
-                    <a href="#" id="close-before-content" class="govuk-link" style="color: #005a30;"
-                        aria-label="Close Previews">
-                        Close<span class="govuk-visually-hidden"> Previews section</span>
-                    </a>
-                </div>
-                <div style="margin-top: 60px;">
-
-                    <!-- Page Preview Content -->
-                    <div class="govuk-tabs" data-module="govuk-tabs">
-                        <h2 class="govuk-tabs__title">Contents</h2>
-                        <ul class="govuk-tabs__list">
-                            <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-                                <a class="govuk-tabs__tab" href="#tab-one">Page preview</a>
-                            </li>
-                        </ul>
-
-                        <!-- Tab One Content -->
-                        <div class="govuk-tabs__panel" id="tab-one">
-                            <!-- Dynamic Heading -->
-                            <div id="heading-container">
-                                {% if data['setName'] %}
-                                <span id="dynamic-caption" class="govuk-caption-xl"
-                                    data-setname="{{ data['setName'] | capitalize }}">
-                                    {{ data['setName'] | capitalize }} 1
-                                </span>
-                                {% endif %}
-                                <h1 class="govuk-heading-xl" id="dynamic-heading">{{
-                                    data['guidanceOnlyHeadingInput'] or '' }}</h1>
-                            </div>
-
-                            <!-- Guidance Paragraph -->
-                            <p class="govuk-body" id="guidance-paragraph">{{
-                                data['guidanceOnlyGuidanceTextInput'] or '' }}</p>
-
-                            <a href="#editpage12" class="govuk-skip-link" style="margin-bottom: 30px!important;"
-                                data-module="govuk-skip-link">
-                                Close preview and skip to page 12 details
-                            </a>
-
-                            {% if data['setName'] %}
-                            {{ govukButton({
-                            text: "Add another " + (data['setName'] | lower),
-                            classes: "govuk-button govuk-!-margin-top-3",
-                            id: "add-another-set-button",
-                            disabled: true
-                            }) }}
-                            {% else %}
-                            {# {{ govukButton({
-                            text: "Continue",
-                            classes: "govuk-button govuk-!-margin-top-3",
-                            id: "add-another-set-button",
-                            disabled: true
-                            }) }} #}
-                            {% endif %}
-                        </div> <!-- End of Tab One -->
-                    </div> <!-- End of govuk-tabs -->
-                </div>
-            </div> <!-- End of dynamic-preview-content-guidance -->
-        </div> <!-- End of preview-container -->
-    </div>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const dynamicCaption = document.getElementById("dynamic-caption");
-        const setName = dynamicCaption.getAttribute("data-setname");
-
-        if (!setName) {
-            dynamicCaption.style.display = "none";
-        }
-    });
-</script>
-{% endif %}
 
 
 {# =========================================================

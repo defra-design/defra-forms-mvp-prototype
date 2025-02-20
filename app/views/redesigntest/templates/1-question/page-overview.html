@@ -35,8 +35,13 @@ activeLinkId: "nav-editor"
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full-from-desktop">
         <h1 class="x-govuk-masthead__title">
-          Apply for a county parish holding (CPH) number
+          Food order form (user research)
         </h1>
+
+        <a href="/redesigntest/questiontype.html" role="button" draggable="false"
+          class="govuk-button govuk-button--inverse" data-module="govuk-button">
+          Add new page
+        </a>
       </div>
     </div>
   </div>
@@ -74,7 +79,7 @@ activeLinkId: "nav-editor"
 
 
                         <h2 class="govuk-heading-l govuk-!-margin-top-4">Page # overview</h2>
-                        <h2 class="govuk-heading-m" id="page-heading">Questions</h2>
+                        {# <h2 class="govuk-heading-m" id="page-heading">Questions</h2> #}
 
                         <ul id="question-list" class="govuk-list">
                           {% for question in currentPage.questions %}
@@ -120,7 +125,7 @@ activeLinkId: "nav-editor"
                         <div class="govuk-button-group govuk-!-margin-top-6">
                           <a href="/redesigntest/templates/1-question/information-type-nf.html"
                             class="govuk-button hide-in-reorder-mode hide-when-edit-mode">
-                            Add next question
+                            Add another question
                           </a>
 
 

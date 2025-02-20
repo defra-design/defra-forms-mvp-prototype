@@ -1967,13 +1967,9 @@ router.get("/conditions/:pageId", function (req, res) {
   // Get the page index and create a label
   const pageIndex = formPages.indexOf(currentPage);
 
-  // Get the page heading based on page type
+  // Get the page heading or first question label
   let pageLabel;
-  if (currentPage.pageType === "guidance") {
-    pageLabel = `Page ${pageIndex + 1}: ${
-      currentPage.guidanceOnlyHeadingInput
-    }`;
-  } else if (currentPage.pageHeading) {
+  if (currentPage.pageHeading) {
     pageLabel = `Page ${pageIndex + 1}: ${currentPage.pageHeading}`;
   } else if (currentPage.questions && currentPage.questions.length > 0) {
     pageLabel = `Page ${pageIndex + 1}: ${currentPage.questions[0].label}`;
@@ -2043,7 +2039,6 @@ router.get("/conditions/:pageId", function (req, res) {
     availableQuestions: combinedQuestions,
     availableConditions: combinedExistingConditions,
     conditions: currentPage.conditions || [],
-    isGuidancePage: currentPage.pageType === "guidance",
   });
 });
 
@@ -2057,15 +2052,6 @@ router.post("/conditions-add", function (req, res) {
     pageId: req.session.data.currentPageId,
     availablePages: req.session.data.formPages?.map((p) => p.pageId),
     body: req.body,
-  });
-
-  // Add this debug log
-  console.log("Raw request body:", {
-    conditionName: req.body.conditionName,
-    question: req.body.question,
-    operator: req.body.operator,
-    "condition-value": req.body["condition-value"],
-    allKeys: Object.keys(req.body),
   });
 
   // Get the current page
@@ -2125,30 +2111,9 @@ router.post("/conditions-add", function (req, res) {
     // Handle new condition
     let rules;
     try {
-      if (req.body.rules) {
-        // Debug log to see what's coming in
-        console.log("Form data received:", {
-          conditionName: req.body.conditionName,
-          rules: req.body.rules,
-          entireBody: req.body,
-        });
-
-        // Parse rules if it's a string, or use directly if it's already an object
-        rules =
-          typeof req.body.rules === "string"
-            ? JSON.parse(req.body.rules)
-            : req.body.rules;
-
-        if (!Array.isArray(rules)) {
-          rules = [rules];
-        }
-      } else {
-        console.error("No rules provided in request");
-        rules = [];
-      }
+      rules = JSON.parse(req.body.rules);
     } catch (e) {
-      console.error("Error handling rules:", e);
-      console.error(e);
+      console.error("Error parsing rules:", e);
       rules = [];
     }
 
@@ -2163,13 +2128,7 @@ router.post("/conditions-add", function (req, res) {
         logicalOperator: rule.logicalOperator,
       })),
       text: rules
-        .map((rule) => {
-          // Only use "or" formatting for checkbox values (which come as arrays)
-          const valueText = Array.isArray(rule.value)
-            ? rule.value.map((v) => `'${v}'`).join(" or ")
-            : `'${rule.value}'`;
-          return `${rule.questionText} ${rule.operator} ${valueText}`;
-        })
+        .map((rule) => `${rule.questionText} ${rule.operator} ${rule.value}`)
         .join(" AND "),
     };
 
@@ -2182,9 +2141,7 @@ router.post("/conditions-add", function (req, res) {
   // Save back to session
   req.session.data.formPages = formPages;
 
-  // Replace deprecated redirect with secure version
-  const returnUrl = `/conditions/${req.session.data.currentPageId}`;
-  res.redirect(returnUrl);
+  res.redirect("back");
 });
 
 //--------------------------------------
@@ -2327,107 +2284,6 @@ router.post("/delete-page", function (req, res) {
     // If user selected "No" or invalid pageId, return to page overview
     res.redirect(`/page-overview?pageId=${pageId}`);
   }
-});
-
-// Add this after your existing routes
-// Update this existing route
-router.post("/redesigntest/templates/guidance/overview", function (req, res) {
-  console.log("Form data received:", req.body);
-
-  const formPages = req.session.data["formPages"] || [];
-  const pageIndex = req.session.data["currentPageIndex"];
-
-  // Create or update the guidance page
-  const guidancePage = {
-    pageId: pageIndex !== undefined ? formPages[pageIndex]?.pageId : Date.now(),
-    pageType: "guidance",
-    guidanceOnlyHeadingInput: req.body.guidanceOnlyHeadingInput,
-    guidanceOnlyGuidanceTextInput: req.body.guidanceOnlyGuidanceTextInput,
-    isExitPage: Array.isArray(req.body.exitPage)
-      ? req.body.exitPage.includes("true")
-      : req.body.exitPage === "true",
-    questions: [],
-    conditions: [], // Initialize empty conditions array
-  };
-
-  // Add or update the page
-  if (pageIndex !== undefined) {
-    formPages[pageIndex] = guidancePage;
-  } else {
-    formPages.push(guidancePage);
-    req.session.data["currentPageIndex"] = formPages.length - 1;
-  }
-
-  req.session.data["formPages"] = formPages;
-
-  // Add this to pass the currentPage to the template
-  res.render("redesigntest/templates/1-question/guidance-configuration", {
-    currentPage: guidancePage,
-    data: req.session.data,
-  });
-});
-
-// Add this GET route for guidance configuration
-router.get(
-  "/redesigntest/templates/1-question/guidance-configuration.html",
-  function (req, res) {
-    const formPages = req.session.data["formPages"] || [];
-    const pageIndex = req.session.data["currentPageIndex"];
-
-    // Get the current page from the session
-    const currentPage = formPages[pageIndex];
-
-    if (!currentPage) {
-      console.log("No current page found:", {
-        pageIndex,
-        formPagesLength: formPages.length,
-      });
-      return res.redirect("/redesigntest/listing.html");
-    }
-
-    console.log("Rendering guidance config with page:", currentPage);
-
-    res.render("redesigntest/templates/1-question/guidance-configuration", {
-      currentPage: currentPage,
-      data: req.session.data,
-    });
-  }
-);
-
-//--------------------------------------
-// Edit an existing guidance page
-//--------------------------------------
-router.get("/redesigntest/edit-guidance", function (req, res) {
-  const pageId = (req.query.pageId || "").trim();
-  console.log("Editing guidance page with ID:", pageId);
-
-  if (!pageId) {
-    console.log("No pageId provided – redirecting to listing.");
-    return res.redirect("/redesigntest/listing.html");
-  }
-
-  // Retrieve formPages from session
-  const formPages = req.session.data["formPages"] || [];
-
-  // Find the guidance page
-  const foundPageIndex = formPages.findIndex(
-    (page) => String(page.pageId) === pageId && page.pageType === "guidance"
-  );
-
-  if (foundPageIndex === -1) {
-    console.log("Guidance page not found – redirecting to listing.");
-    return res.redirect("/redesigntest/listing.html");
-  }
-
-  // Set the found page as the current page for editing
-  req.session.data["currentPageIndex"] = foundPageIndex;
-
-  const guidancePage = formPages[foundPageIndex];
-  console.log("Editing guidance page details:", guidancePage);
-
-  res.redirect(
-    "/redesigntest/templates/1-question/guidance-configuration.html"
-  );
 });
 
 // Finally, export the router

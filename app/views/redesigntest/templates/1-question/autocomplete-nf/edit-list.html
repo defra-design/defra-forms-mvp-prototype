@@ -6,35 +6,36 @@
 {% set pageName = "Edit autocomplete question - Apply for a county parish holding number in England" %}
 
 {% block header %}
-  {{ serviceHeader({
-    organisationName: "Defra",
-    productName: "Forms Designer",
-    accountName: "Chris Smith",
-    homepageLink: "/",
-    signOutLink: "/onboarding/sign-out-confirmation",
-    navigationItems: [
-      { href: "/library.html", text: "Forms library", id: "nav-library" },
-      { href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
-      { href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }
-    ],
-    activeLinkId: "nav-editor"
-  }) }}
+{{ serviceHeader({
+organisationName: "Defra",
+productName: "Forms Designer",
+accountName: "Chris Smith",
+homepageLink: "/",
+signOutLink: "/onboarding/sign-out-confirmation",
+navigationItems: [
+{ href: "/library.html", text: "Forms library", id: "nav-library" },
+{ href: "/cph-overview/draft/complete-clean.html", text: "Overview", id: "nav-overview" },
+{ href: "/redesigntest/listing", text: "Editor", id: "nav-editor" }
+],
+activeLinkId: "nav-editor"
+}) }}
 
-  <div class="x-govuk-masthead x-govuk-masthead--large">
-    <div class="govuk-width-container">
-      {{ govukBackLink({
-        classes: "govuk-back-link--inverse govuk-!-margin-bottom-0",
-        text: "Back to add and edit pages",
-        href: "/redesigntest/listing.html"
-      }) }}
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" style="border-bottom: 1px solid white; margin-bottom: 0" />
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full-from-desktop">
-          <h1 class="x-govuk-masthead__title">Apply for a county parish holding (CPH) number</h1>
-        </div>
+<div class="x-govuk-masthead x-govuk-masthead--large">
+  <div class="govuk-width-container">
+    {{ govukBackLink({
+    classes: "govuk-back-link--inverse govuk-!-margin-bottom-0",
+    text: "Back to add and edit pages",
+    href: "/redesigntest/listing.html"
+    }) }}
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+      style="border-bottom: 1px solid white; margin-bottom: 0" />
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full-from-desktop">
+        <h1 class="x-govuk-masthead__title">Food order form (user research)</h1>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -50,7 +51,8 @@
                 <div id="question-1">
                   <div class="govuk-summary-card__content" style="margin-bottom: 0">
                     <!-- Sub Navigation -->
-                    <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2" aria-label="Sub navigation">
+                    <nav class="moj-sub-navigation govuk-!-padding-top-0 govuk-!-margin-bottom-2"
+                      aria-label="Sub navigation">
                       <ul class="moj-sub-navigation__list" id="nav-list2">
                         <li class="moj-sub-navigation__item">
                           <a class="moj-sub-navigation__link" aria-current="page"
@@ -61,31 +63,34 @@
 
                     <h2 class="govuk-heading-l">Edit page 4</h2>
 
-                    <form method="post" id="options-form" action="/redesigntest/templates/1-question/autocomplete/overview">
+                    <form method="post" id="options-form"
+                      action="/redesigntest/templates/1-question/autocomplete/overview">
                       {{ govukInput({
-                        label: { text: "Question", classes: "govuk-label--m" },
-                        id: "question-label-input-autocomplete",
-                        value: data['question-label-input-autocomplete'],
-                        name: "questionLabelInputAutocomplete",
-                        oninput: "updatePreview()"
+                      label: { text: "Question", classes: "govuk-label--m" },
+                      id: "question-label-input-autocomplete",
+                      value: data['question-label-input-autocomplete'],
+                      name: "questionLabelInputAutocomplete",
+                      oninput: "updatePreview()"
                       }) }}
                       {{ govukTextarea({
-                        label: { text: "Hint text (optional)", classes: "govuk-label--m" },
-                        id: "hint-text-input-autocomplete",
-                        name: "hintTextInputAutocomplete",
-                        value: data['hint-text-input-autocomplete'],
-                        rows: 3,
-                        oninput: "updatePreview()"
+                      label: { text: "Hint text (optional)", classes: "govuk-label--m" },
+                      id: "hint-text-input-autocomplete",
+                      name: "hintTextInputAutocomplete",
+                      value: data['hint-text-input-autocomplete'],
+                      rows: 3,
+                      oninput: "updatePreview()"
                       }) }}
 
                       <!-- Predefined Lists Dropdown -->
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-label--s" for="predefined-lists">Use a saved list of options</label>
+                        <label class="govuk-label govuk-label--s" for="predefined-lists">Use a saved list of
+                          options</label>
                         <div class="govuk-select-wrapper">
                           <select class="govuk-select" id="predefined-lists">
                             <option value="">Loading lists...</option>
                           </select>
-                          <button type="button" class="govuk-button govuk-button--primary govuk-!-margin-bottom-0" id="use-predefined-list">
+                          <button type="button" class="govuk-button govuk-button--primary govuk-!-margin-bottom-0"
+                            id="use-predefined-list">
                             Import
                           </button>
                         </div>
@@ -93,8 +98,10 @@
 
                       <!-- Text Area for Custom Input -->
                       <div class="govuk-form-group">
-                        <label class="govuk-label govuk-label--s govuk-!-margin-top-4" for="csv-input">Or, add each option on a new line</label>
-                        <div class="govuk-hint">To optionally set an input value for each item, separate the option text and value with a colon (e.g., English:en-gb).</div>
+                        <label class="govuk-label govuk-label--s govuk-!-margin-top-4" for="csv-input">Or, add each
+                          option on a new line</label>
+                        <div class="govuk-hint">To optionally set an input value for each item, separate the option text
+                          and value with a colon (e.g., English:en-gb).</div>
                         <textarea id="csv-input" class="govuk-textarea" rows="10"></textarea>
                         <div id="options-entry"></div>
                       </div>
@@ -114,7 +121,8 @@
   </div>
 
   <!-- Right Column (Preview Panel) -->
-  <div class="govuk-grid-column-one-half-from-desktop" id="second-container" style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
+  <div class="govuk-grid-column-one-half-from-desktop" id="second-container"
+    style="outline: solid 1px #008938; height: 100%; position: sticky; top: 0; padding: 20px; box-shadow: 5px 10px #008938;">
     <!-- Before content -->
     <div id="before-content">
       <p class="govuk-body-s" style="margin-bottom: 0">
@@ -122,9 +130,9 @@
           this page in a new tab</a>
       </p>
     </div>
-    
+
     {% include "/redesigntest/templates/previews/autcomplete/edit.html" %}
-    
+
   </div>
 </div>
 
@@ -140,7 +148,7 @@
     const questionLabel = document.getElementById('question-label-legend-q1');
     const questionInput = document.getElementById('question-label-input-autocomplete');
     const hintInput = document.getElementById('hint-text-input-autocomplete');
-  
+
     function processCSV(csvText) {
       return csvText
         .split("\n")
@@ -154,7 +162,7 @@
           return { label: option, value: option };
         });
     }
-  
+
     function initialiseAutocomplete(options = []) {
       if (autocompleteContainer) {
         autocompleteContainer.innerHTML = '';
@@ -166,24 +174,24 @@
         });
       }
     }
-  
+
     function updateAutocomplete() {
       const options = processCSV(csvInput.value);
       initialiseAutocomplete(options);
     }
-  
+
     function updatePreview() {
       // Update the question label in the preview panel
       if (questionLabel) {
         questionLabel.textContent = questionInput.value || 'Question';
       }
-  
+
       // Update the hint text in the preview panel (in listPreview-hint)
       if (listPreviewHint) {
         listPreviewHint.textContent = hintInput.value || '';
       }
     }
-  
+
     function loadPredefinedLists() {
       fetch('/redesigntest/api/lists')
         .then(response => response.json())
@@ -197,11 +205,11 @@
           });
         });
     }
-  
+
     function usePredefinedList() {
       const selectedListName = predefinedListsSelect.value;
       if (!selectedListName) return;
-  
+
       fetch(`/redesigntest/api/list/${selectedListName}`)
         .then(response => response.json())
         .then(data => {
@@ -209,13 +217,13 @@
           updateAutocomplete();
         });
     }
-  
+
     // Attach event listeners
     csvInput.addEventListener('input', updateAutocomplete);
     questionInput.addEventListener('input', updatePreview);
     hintInput.addEventListener('input', updatePreview);
     usePredefinedListButton.addEventListener('click', usePredefinedList);
-  
+
     // Initialise predefined lists and the autocomplete
     loadPredefinedLists();
     updateAutocomplete();

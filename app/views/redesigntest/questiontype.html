@@ -20,15 +20,36 @@ navigationItems: [
 ],
 activeLinkId: "nav-editor"
 }) }}
+
+<div class="x-govuk-masthead x-govuk-masthead--large">
+    <div class="govuk-width-container">
+        {{ govukBackLink({ classes: "govuk-back-link--inverse govuk-!-margin-bottom-0", text: "Back to add and edit
+        pages",
+        href: "/redesigntest/listing.html" }) }}
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+            style="border-bottom: 1px solid white; margin-bottom: 0" />
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full-from-desktop">
+                <h1 class="x-govuk-masthead__title">
+                    {# <span class="govuk-caption-l" style="color: white;">Food order form (user research)
+                    </span> #}
+                    Food order form (user research)
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 
-{% block beforeContent %}
+{# {% block beforeContent %}
 {{ govukBackLink({
 text: "Back",
 href: "javascript:window.history.back()"
 }) }}
-{% endblock %}
+{% endblock %} #}
 
 
 {% block content %}
@@ -41,38 +62,38 @@ href: "javascript:window.history.back()"
         <form class="form" action="/question-number" method="post">
             <div class="govuk-form-group" id="question-page-radio-group">
                 {{ govukRadios({
-                    name: "questionnumber",
-                    fieldset: {
-                        legend: {
-                            text: "What kind of page do you need?",
-                            isPageHeading: true,
-                            classes: "govuk-fieldset__legend--l"
-                        }
-                    },
-                    items: [
-                        {
-                            value: "oncenf",
-                            text: "Question page",
-                            hint: {
-                                text: "A page to hold one or more related questions"
-                            }
-                        },
-                        {
-                            value: "guidance",
-                            text: "Guidance page",
-                            hint: {
-                                text: "If you need to add guidance without asking a question"
-                            }
-                        }
-                    ],
-                    attributes: {
-                        id: "question-page-radio-group"
-                    }
+                name: "questionnumber",
+                fieldset: {
+                legend: {
+                text: "What kind of page do you need?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+                }
+                },
+                items: [
+                {
+                value: "oncenf",
+                text: "Question page",
+                hint: {
+                text: "A page to hold one or more related questions"
+                }
+                },
+                {
+                value: "guidance",
+                text: "Guidance page",
+                hint: {
+                text: "If you need to add guidance without asking a question"
+                }
+                }
+                ],
+                attributes: {
+                id: "question-page-radio-group"
+                }
                 }) }}
             </div>
             {{ govukButton({
-                text: "Save and continue",
-                type: "submit"
+            text: "Save and continue",
+            type: "submit"
             }) }}
         </form>
 

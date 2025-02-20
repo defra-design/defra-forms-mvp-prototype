@@ -1,0 +1,11 @@
+<div class="preview-item" data-id="page-{{ currentPage.pageId }}">
+    <h1 class="govuk-heading-xl" id="dynamic-heading-more-than-1">
+        {{ data['guidanceOnlyHeadingInput'] or currentPage.guidanceOnlyHeadingInput or 'Page heading' }}
+    </h1>
+
+    <div class="govuk-body preview-guidance-text" id="guidance-paragraph">
+        {{ data['guidanceOnlyGuidanceTextInput'] or currentPage.guidanceOnlyGuidanceTextInput or '' }}
+    </div>
+
+
+</div>

@@ -32,7 +32,7 @@ activeLinkId: "nav-editor"
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full-from-desktop">
         <h1 class="x-govuk-masthead__title">
-          Apply for a county parish holding (CPH) number
+          Food order form (user research)
         </h1>
       </div>
     </div>
@@ -112,7 +112,6 @@ activeLinkId: "nav-editor"
                                   {% if loop.first %}
                                   '{{ rule.questionText }}' {{ rule.operator | replace("-", " ") }} '{{ rule.value }}'
                                   {% else %}
-
                                   <span class="govuk-!-font-weight-bold">{{ rule.logicalOperator | default('AND')
                                     }}</span>
                                   '{{ rule.questionText }}' {{ rule.operator | replace("-", " ") }} '{{ rule.value }}'
@@ -127,7 +126,6 @@ activeLinkId: "nav-editor"
                             {% endfor %}
                           </dl>
                         </div>
-
 
 
 
@@ -448,10 +446,10 @@ activeLinkId: "nav-editor"
               select.name = "value";
 
               select.innerHTML = `
-                <option value="">Select yes or no</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              `;
+        <option value="">Select yes or no</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      `;
 
               const label = document.createElement("label");
               label.classList.add("govuk-label");
@@ -509,19 +507,61 @@ activeLinkId: "nav-editor"
               }
             }
 
-            // Handle other question types with dropdown
-            if (["checkboxes", "select"].includes(questionType)) {
+            // Handle checkbox questions with actual checkboxes
+            if (questionType === "checkboxes") {
+              const options = rawOptions ? JSON.parse(rawOptions) : [];
+
+              if (Array.isArray(options) && options.length > 0) {
+                const fieldset = document.createElement("fieldset");
+                fieldset.classList.add("govuk-fieldset");
+
+                const legend = document.createElement("legend");
+                legend.classList.add("govuk-fieldset__legend", "govuk-fieldset__legend");
+                legend.textContent = "Select all that apply";
+                fieldset.appendChild(legend);
+
+                const checkboxesDiv = document.createElement("div");
+                checkboxesDiv.classList.add("govuk-checkboxes", "govuk-checkboxes--small");
+                checkboxesDiv.setAttribute("data-module", "govuk-checkboxes");
+
+                options.forEach((option, index) => {
+                  const itemDiv = document.createElement("div");
+                  itemDiv.classList.add("govuk-checkboxes__item");
+
+                  const checkbox = document.createElement("input");
+                  checkbox.classList.add("govuk-checkboxes__input");
+                  checkbox.type = "checkbox";
+                  checkbox.id = `checkbox-${index}`;
+                  checkbox.name = "condition-value";
+                  checkbox.value = option.value || option.label;
+
+                  const label = document.createElement("label");
+                  label.classList.add("govuk-label", "govuk-checkboxes__label");
+                  label.setAttribute("for", `checkbox-${index}`);
+                  label.textContent = option.label;
+
+                  itemDiv.appendChild(checkbox);
+                  itemDiv.appendChild(label);
+                  checkboxesDiv.appendChild(itemDiv);
+                });
+
+                fieldset.appendChild(checkboxesDiv);
+                valueContainer.appendChild(fieldset);
+                valueContainer.style.display = "block";
+                return;
+              }
+            }
+
+            // Handle select questions with dropdown
+            if (questionType === "select") {
               const select = document.createElement("select");
               select.classList.add("govuk-select");
               select.id = "condition-value";
               select.name = "value";
 
-              // Custom default option based on question type
               const defaultOption = document.createElement("option");
               defaultOption.value = "";
-              defaultOption.textContent = questionType === "checkboxes"
-                ? "Select checkbox options"
-                : "Select from the list";
+              defaultOption.textContent = "Select from the list";
               select.appendChild(defaultOption);
 
               const options = rawOptions ? JSON.parse(rawOptions) : [];
@@ -537,9 +577,7 @@ activeLinkId: "nav-editor"
                 const label = document.createElement("label");
                 label.classList.add("govuk-label");
                 label.setAttribute("for", "condition-value");
-                label.textContent = questionType === "checkboxes"
-                  ? "Select checkbox options"
-                  : "Select from the list";
+                label.textContent = "Select from the list";
 
                 valueContainer.appendChild(label);
                 valueContainer.appendChild(select);
@@ -582,15 +620,20 @@ activeLinkId: "nav-editor"
           if (firstQuestionType === "radios") {
             const selectedRadio = valueContainer.querySelector('input[type="radio"]:checked');
             firstValue = selectedRadio ? selectedRadio.value : "";
+          } else if (firstQuestionType === "checkboxes") {
+            // Get all checked checkboxes
+            const checkedBoxes = valueContainer.querySelectorAll('input[type="checkbox"]:checked');
+            firstValue = Array.from(checkedBoxes).map(cb => cb.value);
           } else {
             const selectElement = valueContainer.querySelector('select');
             firstValue = selectElement ? selectElement.value : "";
           }
 
+
           rules.push({
             questionText: firstQuestionText,
             operator: operatorSelect.value,
-            value: firstValue,
+            value: firstValue, // This will now be an array for checkboxes
             logicalOperator: null // First rule doesn't need a logical operator
           });
 

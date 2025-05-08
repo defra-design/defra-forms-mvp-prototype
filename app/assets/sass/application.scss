@@ -2374,3 +2374,24 @@ code.lang-md {
 .dwp-side-navigation__link:focus {
   color: #0b0c0c;
 }
+
+.app-service-banner {
+  background: #fd0;
+  color: #0b0c0c;
+  display: block;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.app-service-banner__content {
+  margin: 0;
+}
+
+.app-service-banner .govuk-warning-text__text {
+  font-weight: 400;
+}
+
+.govuk-skip-link:active + .app-service-banner,
+.govuk-skip-link:focus + .app-service-banner {
+  margin-top: 8px;
+}

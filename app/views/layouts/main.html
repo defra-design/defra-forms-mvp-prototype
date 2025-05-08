@@ -5,6 +5,38 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
+{% block head %}
+{{ super() }}
+<style>
+    .app-service-banner {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+    }
+</style>
+{% endblock %}
+
+{% block bodyStart %}
+<aside class="app-service-banner" aria-labelledby="app-service-banner-description" aria-live="polite">
+    <div class="govuk-width-container">
+        <div class="govuk-warning-text app-service-banner__content">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text">
+                <span class="govuk-visually-hidden"><span id="app-service-banner-description">Important:</span></span>
+                <span class="govuk-!-font-weight-bold" aria-hidden="true">This is not the latest version of the DxT
+                    prototype: </span>
+                <a href="https://dxt-prototype-682ae311ff10.herokuapp.com/form-editor/listing/"
+                    class="govuk-link govuk-link--no-visited-state">go to the latest version</a> (password: forms2025)
+            </strong>
+        </div>
+    </div>
+</aside>
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+{% endblock %}
+
 
 {% block footer %}
 {{ govukFooter({
